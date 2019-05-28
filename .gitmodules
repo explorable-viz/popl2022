@@ -1,0 +1,3 @@
+[submodule "tex-common"]
+	path = tex-common
+	url = git@github.com:rolyp/tex-common.git
