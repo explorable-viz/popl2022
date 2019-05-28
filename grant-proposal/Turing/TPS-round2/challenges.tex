@@ -1,0 +1,33 @@
+\section*{Research challenges (300 words):}
+
+The project is an unusual blend of programming languages, data visualisation and
+HCI research, and faces technical, usability, and interoperability challenges.
+We have tried to anticipate these with an eclectic but synergistic team.
+
+The basic technical challenge of our project is implementing infrastructure for
+``linking'', or multiple-coordinated views \cite{tobiasz09}, in an
+application-independent way. We are taking a principled approach based on our
+own prior work on dynamic dependency analysis and provenance; in contrast to
+prior work on provenance in data visualisation \cite{callahan06}, our approach
+is much more fine-grained and is able to associate specific bits of data or code
+with parts of a visualisation in a precise way. While the theoretical technique
+is proven, this approach has never been applied to data visualisation before.
+
+A central usability challenge is visualising these complex relationships between
+the various parts of a visualisation and the relevant data and/or visualisation
+code. This is essentially a higher-order visualisation problem: visualising
+information about the provenance of visualisations. We will draw on Bach's
+expertise in temporal data visualisation \cite{bach16} and data-driven
+storytelling \cite{bach18}, and Cheney, Malik and Perera's background in data
+provenance. We may also build on recent work on ``literate'' visualisation
+\cite{wood19}.
+
+Finally, we will need to solve challenging interoperability problems in order to
+coexist usefully with popular visualisation libraries such as Bokeh
+\cite{jolly18}, visual specification languages like Vega \cite{satyanarayan17},
+spatial analytics libraries such as GeoPandas and PySAL \cite{rey07}, and
+notebooks like Wrattler and Jupyter. To use our analysis techniques with such
+third-party frameworks we may need to propose new metadata formats or find
+efficient ways to instrument existing libraries; Wolf's experience with
+developing open source spatial analytics software and Petricek's Wrattler
+expertise will be useful for exploring appropriate techniques.

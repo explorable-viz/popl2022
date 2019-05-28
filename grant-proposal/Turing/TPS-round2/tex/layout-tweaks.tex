@@ -1,0 +1,26 @@
+\raggedbottom % sane vertical paragraph justification
+
+\hypersetup{ % not using recent enough version of hyperref for [hidelinks] option
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+
+\captionsetup{font=small,skip=5pt}
+
+% https://tex.stackexchange.com/questions/282514
+\makeatletter
+\patchcmd{\@maketitle}{\begin{center}}{\begin{flushleft}}{}{}
+\patchcmd{\@maketitle}{\begin{tabular}[t]{c}}{\begin{tabular}[t]{@{}l}}{}{}
+\patchcmd{\@maketitle}{\end{center}}{\end{flushleft}}{}{}
+\makeatother
+
+% https://tex.stackexchange.com/questions/120176
+\renewenvironment{abstract}
+  {\small\quotation
+  {\bfseries\noindent{\large\abstractname}\par\nobreak\smallskip}}
+  {\endquotation}
+
+% Put section and chapter numbering in margins, and color red.
+\makeatletter
+\def\@seccntformat#1{\protect\makebox[0pt][r]{\textcolor{red}{\csname
+      the#1\endcsname}\hspace{6pt}}} \makeatother
