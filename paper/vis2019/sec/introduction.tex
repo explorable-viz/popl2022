@@ -31,39 +31,3 @@ support for linking is built in, making this powerful comprehension feature
 automatic. Moreover, [between data, code, and visualisations.]
 
 \cite{becker87,buja91}
-
-\section{Problem overview}
-
-Our framework provides infrastructure for ``linking'', or multiple-coordinated
-views \cite{tobiasz09}, in an application-independent way. The theoretical
-foundation of the work is our own prior work on dynamic dependency analysis and
-provenance \cite{perera16d, ricciotti17}; in contrast to prior work on
-provenance in data visualisation \cite{callahan06}, our approach is much more
-fine-grained and is able to associate specific parts of the data or code with
-parts of a visualisation in a precise way. While the theoretical technique is
-proven, this approach has never been applied to data visualisation before.
-
-\begin{figure}[H]
-\includegraphics[scale=0.35]{image/chart-bwd}
-\caption{Backward linking from visualisation to code and data}
-\end{figure}
-
-\section{A framework for explorable visualisations}
-
-\section{Related work}
-
-\begin{itemize}
-  \item seminal work on linking and brushing
-  \item program slicing, provenance and dependency analysis
-\end{itemize}
-
-\section{Conclusions and future work}
-
-There are a number of challenges associated with making our approach practical
-and appealing to actual data scientists. A central usability challenge is
-visualising these complex relationships between the various parts of a
-visualisation and the relevant data and/or visualisation code. This is
-essentially a higher-order visualisation problem: visualising information about
-the provenance of visualisations. Ideas from temporal data visualisation
-\cite{bach16}, data-driven storytelling \cite{bach18}, and ``literate''
-visualisation \cite{wood19} may inform our efforts here.
