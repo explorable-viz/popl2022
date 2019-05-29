@@ -1,19 +1,21 @@
 \abstract{
    Linked brushing is a popular interactive visualisation technique for
-   coordinating multiple views of a single dataset. Selecting (brushing) visual
+   coordinating multiple views of a dataset. Selecting (brushing) visual
    elements in one view automatically selects the corresponding elements in
    other views, allowing the user to easily explore how things are related.
    While such coordinated views are common, their implementation is somewhat ad
-   hoc, limiting their application to particular predefined views or to certain
-   visual attributes, such as the appearance of a point in a scatterplot.
+   hoc, limiting their application to certain predefined views or particular
+   visual attributes, such as the appearance of points in a scatterplot.
 
    In this paper, we present a framework for authoring and rendering
    visualisations with built-in support for fine-grained linking been visual
    attributes, code and data. Our approach employs a dynamic program analysis
    technique called \emph{program slicing} to track how individual visual
    attributes (say the colour used to fill a shape or the height of a bar in a
-   histogram) relate to specific source data and to individual expressions in
-   the visualisation code. We give two examples of the kind of view coordination
-   scenarios that our framework supports, and discuss opportunities and
-   challenges.
+   histogram) depend on individual data values and on specific bits of
+   visualisation code. Linking between two views involves a round-trip traversal
+   of these dependencies: backwards from the first view to select the required
+   code and data, and then forwards to determine the relevant parts of the
+   second view. We give two examples of the kind of view coordination scenarios
+   that our framework supports, and contrast our approach to existing solutions.
 }
