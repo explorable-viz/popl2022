@@ -1,33 +1,54 @@
-\section{Introduction}
+\section{Introduction and motivation}
 
-Data visualisation is essential to data science and science communication. The
-power of data visualisation as a communicative tool means it is also open to
-misinterpretation and misuse: patterns in raw data can be obscured, statistical
-assumptions hidden, and effect sizes misrepresented \cite{weissgerber15}. These
-concerns can be addressed in part through improved statistical practices and
-novel plot and chart designs \cite{allen19}, but also by making visualisations
-themselves more open and explorable \cite{dragicevic19}.
+Data visualisation is an essential component of modern data science and science
+communication. Unfortunately, its power as a communicative tool means leaves it
+open to misinterpretation and misuse: patterns in raw data can be obscured,
+statistical assumptions hidden, and effect sizes misrepresented
+\cite{weissgerber15}. These concerns can be addressed in part through improved
+statistical practices and novel plot and chart designs \cite{allen19}, but also
+by making visualisations themselves more open and explorable
+\cite{dragicevic19}.
 
-An important aspect of explorability that has been studied for several decades
-are techniques for helping the user grasp how a visualisation relates to other
-concurrent visualisations of the same underlying data. For example,
-geoscientists often work with multiple layered views. To show how these are
-related, spatial analytics applications like GeoDa \cite{anselin06} can
-automatically select the relevant part of one view as the user changes the
-selection in a related view, say a choropleth map. [This is funky because...]
+One well-established technique for explorability is \emph{linked brushing}
+\cite{fisherkeller75,becker87,buja91}, which allows the user to explore
+interactively how a visualisation relates to other concurrent visualisations of
+the same data. For example, geoscientists often work with multiple layered
+views. To show how these are related, spatial analytics applications like GeoDa
+\cite{anselin06} can automatically select the relevant part of one view as the
+user changes the selection in a related view, say a choropleth map. Such linking
+is an important navigational tool, allowing the user to switch contexts in one
+view and have related views synchronise. With complex multivariate data, linking
+can also be an essential sense-making aid, helping the user see relationships in
+the data more readily \cite{he18}.
 
-However, this feature is available only if it was specifically anticipated by
-the application or library developer; if the geoscientist uses custom libraries
-or wants other views linked that the developer did not onsider, they are out of
-luck.
+However, linked brushing and similar features usually have to be specifically
+anticipated by library developers and carefully designed in, so that
+visualisation authors can make use of them. If an author uses a custom library
+or wants other views or visual attributes linked that the library developer did
+not consider, they are out of luck. For example, contemporary visualisation
+libraries for the web like Bokeh \cite{jolly18} and D3 \cite{bostock11} provide
+advanced linking and brushing features, but only for specific visual elements,
+such as the glyphs used to render the points in a chart.
 
-\begin{figure}[H]
+\begin{figure}[h]
 \includegraphics[scale=0.35]{image/chart-fwd}
 \caption{Forward linking from code and data to visualisation}
 \end{figure}
 
-In this short paper, we present a framework for authoring visualisations where
-support for linking is built in, making this powerful comprehension feature
-automatic. Moreover, [between data, code, and visualisations.]
+Moroever, it is our research hypothesis that, during the development of a
+visualisation, it is useful to see how the view relates to the underlying data.
+For example, one might select a column or cell in a tabular presentation of the
+data in order to explore how particular data elements contribute to various
+parts of the visualisation; equally, one might select a visual element or
+attribute in order to see all the data involved in computing it. Roberts and
+Wright identify the potential utility of ``ubiquitous brushing'' for visual
+elements other than plots, such as data tables and legends \cite{roberts06}; in
+this paper, we present a framework that extends linking not only to all visual
+attributes but also to data and source code. Visualisations authored in our
+framework have fine-grained ubiquitous linking built in, making this powerful
+comprehension feature automatic.
 
-\cite{becker87,buja91}
+We formulate the problem more precisely in \Secref{problem-overview} and
+describe our solution in \Secref{framework}. \Secref{related-work} discusses
+related work in more detail and \Secref{conclusion} concludes with some
+directions for future work.
