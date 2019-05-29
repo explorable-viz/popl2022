@@ -17,13 +17,13 @@ views. To show how these are related, spatial analytics applications like GeoDa
 \cite{anselin06} can automatically select the relevant part of one view as the
 user changes the selection in a related view, say a choropleth map. Such linking
 is an important navigational tool, allowing the user to switch contexts in one
-view and have related views synchronise automatically. With complex multivariate
-data, linking can also be an essential sense-making aid, helping the user see
-relationships in the data more readily \cite{he18}.
+view and have related views synchronise. With complex multivariate data, linking
+can also be an essential sense-making aid, helping the user see relationships in
+the data more readily \cite{he18}.
 
 However, linked brushing and similar features usually have to be specifically
-anticipated by library developer and carefully designed in, so that the
-visualisation author can make use of them. If the author uses a custom library
+anticipated by library developers and carefully designed in, so that
+visualisation authors can make use of them. If an author uses a custom library
 or wants other views or visual attributes linked that the library developer did
 not consider, they are out of luck. For example, contemporary visualisation
 libraries for the web like Bokeh \cite{jolly18} and D3 \cite{bostock11} provide
@@ -36,10 +36,10 @@ such as the glyphs used to render the points in a chart.
 \end{figure}
 
 Moroever, it is our research hypothesis that, during the development of a
-visualisation, it is useful to see how the visualisation relates to the
-underlying data. For example, one might select a column or cell in a tabular
-view of the data in order to explore how particular data elements contribute to
-various parts of the view; equally, one might select a visual element or
+visualisation, it is useful to see how the view relates to the underlying data.
+For example, one might select a column or cell in a tabular presentation of the
+data in order to explore how particular data elements contribute to various
+parts of the visualisation; equally, one might select a visual element or
 attribute in order to see all the data involved in computing it. Roberts and
 Wright identify the potential utility of ``ubiquitous brushing'' for visual
 elements other than plots, such as data tables and legends \cite{roberts06}; in
