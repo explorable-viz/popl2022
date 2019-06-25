@@ -1,19 +1,16 @@
-\section{Introduction and motivation}
+\section{Introduction}
 
-Data visualisation is an essential component of modern data science and science
-communication. Unfortunately, its power as a communicative tool means leaves it
-open to misinterpretation and misuse: patterns in raw data can be obscured,
-statistical assumptions hidden, and effect sizes misrepresented
+Many data visualizations are open to misinterpretation and misuse: patterns in raw data
+can be obscured, statistical assumptions hidden, and effect sizes misrepresented
 \cite{weissgerber15}. These concerns can be addressed in part through improved
 statistical practices and novel plot and chart designs \cite{allen19}, but also
 by making visualisations themselves more open and explorable
 \cite{dragicevic19}.
 
 One well-established technique for explorability is \emph{linked brushing}
-\cite{fisherkeller75,becker87,buja91}, which allows the user to explore
-interactively how a visualisation relates to other concurrent visualisations of
-the same data. For example, geoscientists often work with multiple layered
-views. To show how these are related, spatial analytics applications like GeoDa
+\cite{fisherkeller75,becker87,buja91}, which shows multiple visualizations of the
+same data and allows the user to interactively explore how they relate. For example,
+in the geospatial domain, applications like GeoDa
 \cite{anselin06} can automatically select the relevant part of one view as the
 user changes the selection in a related view, say a choropleth map. Such linking
 is an important navigational tool, allowing the user to switch contexts in one
@@ -21,34 +18,37 @@ view and have related views synchronise. With complex multivariate data, linking
 can also be an essential sense-making aid, helping the user see relationships in
 the data more readily \cite{he18}.
 
-However, linked brushing and similar features usually have to be specifically
-anticipated by library developers and carefully designed in, so that
-visualisation authors can make use of them. If an author uses a custom library
-or wants other views or visual attributes linked that the library developer did
-not consider, they are out of luck. For example, contemporary visualisation
-libraries for the web like Bokeh \cite{jolly18} and D3 \cite{bostock11} provide
-advanced linking and brushing features, but only for specific visual elements,
-such as the glyphs used to render the points in a chart.
+To support linked brushing, data visualization library needs to understand the
+data transformation pipeline so that it can compute what input data correspond
+to markers selected by the user and can highlight corresponding markers on another
+chart. Libraries like Altair \cite{TBD} and Bokeh \cite{jolly18} support linked
+brushing only for specific visual elements and with very limited data transformations
+and even this is a significant coding challenge.
 
 \begin{figure}[h]
 \includegraphics[scale=0.35]{image/chart-fwd}
 \caption{Forward linking from code and data to visualisation}
 \end{figure}
 
-Moroever, it is our research hypothesis that, during the development of a
-visualisation, it is useful to see how the view relates to the underlying data.
-For example, one might select a column or cell in a tabular presentation of the
-data in order to explore how particular data elements contribute to various
+The idea of linked brushing does not have to be limited to charts. Roberts and
+Wright \cite{roberts06} identify the potential utility of ``ubiquitous brushing'' for visual
+elements other than plots. For example, an analyst might select a column or cell in a data
+table in order to explore how particular data elements contribute to various
 parts of the visualisation; equally, one might select a visual element or
-attribute in order to see all the data involved in computing it. Roberts and
-Wright identify the potential utility of ``ubiquitous brushing'' for visual
-elements other than plots, such as data tables and legends \cite{roberts06}; in
-this paper, we present a framework that extends linking not only to all visual
-attributes but also to data and source code. Visualisations authored in our
-framework have fine-grained ubiquitous linking built in, making this powerful
-comprehension feature automatic.
+attribute in order to see all the data involved in computing it.
 
-We formulate the problem more precisely in \Secref{problem-overview} and
-describe our solution in \Secref{framework}. \Secref{related-work} discusses
-related work in more detail and \Secref{conclusion} concludes with some
-directions for future work.
+Supporting such scenarios is beyond the capabilities of most visualization libraries today.
+In this paper, we present a general framework that extends linking not only to all visual
+attributes, but also to data and source code. More specifically:
+
+\begin{itemize}
+\item We motivate our work in \Secref{motivation} by example and we discuss what makes linked
+  brushing challenging in the context of rich data transformation pipelines.
+
+\item Our approach brings together work on data visualization with advances in programming
+  language research. We review the problem and discuss related work in both areas
+  in \Secref{background}.
+
+\item We discuss the implementation of our system in \Secref{framework}. We evaluate our
+  work in \Secref{evaluation} by referring to its formal properties and by using a case study.
+\end{itemize}
