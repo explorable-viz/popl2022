@@ -1,0 +1,29 @@
+\begin{frame}[fragile]
+\frametitle{Demands as tries}
+Pattern-matching usually compiled to some kind of \textbf{decision tree}.
+
+\[
+\Zap{\oplus} \mapsto
+\begin{cases}
+[] \mapsto \Zap{\ttt{ys}} \mapsto \textcolor{gray}{[]} \\
+{\Cons} \mapsto \Zap{\ttt{x}} \mapsto \Zap{\ttt{xs}} \mapsto
+\begin{cases}
+[] \mapsto \textcolor{gray}{[]} \\
+\ttt{$\Cons$ $\mapsto$ \Zap{y} $\mapsto$ \Zap{ys} $\mapsto$ \textcolor{gray}{(x $\oplus$ y) $\Cons$ (zipWith $\oplus$ xs ys)}}
+\end{cases}
+\end{cases}
+\]
+
+\pause
+where
+\[a \mapsto b \mapsto c \quad\eqdef\quad a \mapsto (b \mapsto c)\]
+
+\pause
+
+Our main idea:
+\begin{itemize}
+\item use such trees to model demands $\sigma$
+\item \pause formalise them as \textbf{tries} extended with \textbf{variable binding}
+\item \pause define a semantics which evaluates ``up to $\sigma$''
+\end{itemize}
+\end{frame}

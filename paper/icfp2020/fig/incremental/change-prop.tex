@@ -1,0 +1,218 @@
+\begin{figure}
+\begin{ruleblock}{\chi, \rho, \raw{M}{\idx{i}} \changeProp \chi', \idx{j}}
+   \inferrule*[right={\textnormal{$\atVal{\chi}{\idx{i}} = \textsf{clean}(\tracedVal{T}{\idx{j}})$}}]
+   {
+      \strut
+   }
+   {
+      \chi, \rho, \raw{M}{\idx{i}}
+      \changeProp
+      \chi, \idx{j}
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \chi, \rho, \raw{\exVar{x}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi}{
+         \mapsTr{\idx{i}}{\tracedVal{\trVarOne{x}}{\at{\rho}{\exVar{x}}}}
+      },
+      \at{\rho}{\exVar{x}}
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \chi, \rho, \raw{\exConst{c}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi}{
+         \mapsTr{\idx{i}}{\tracedVal{\trConst{c}}{\idx{i}}},
+         \mapsVal{\idx{i}}{\exConst{c}}
+      },
+      \idx{i}
+   }
+%
+\and
+%
+   \inferrule*[right={$\atVal{\psi}{\idx{j}'}, \atVal{\chi'}{\idx{k}'} = \exConst{c}_1, \exConst{c}_2$}]
+   {
+      \chi, \rho, \at{\chi}{\idx{j}} \changeProp \psi, \idx{j}'
+      \\
+      \psi, \rho, \at{\chi}{\idx{k}} \changeProp \chi', \idx{k}'
+   }
+   {
+      \chi, \rho, \raw{\smash{(\exOp{\idx{j}}{\idx{k}})}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi}{
+         \mapsTr{\idx{i}}{\tracedVal{\trOp{\idx{j}}{\idx{k}}}{\idx{i}}},
+         \mapsVal{\idx{i}}{c_1 \mathrel{\hat{\primOp}} c_2}
+      },
+      \idx{i}
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \chi, \rho, \at{\chi}{\idx{j}} \changeProp \psi, \idx{j}'
+      \\
+      \psi, \envExtendTwo{\rho}{x \mapsto \idx{j}'}, \at{\chi}{\idx{k}} \changeProp \chi', \idx{k}'
+   }
+   {
+      \chi, \rho, \raw{\smash{(\exLet{x}{\idx{j}}{\idx{k}})}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi'}{
+         \mapsTr{\idx{i}}{\tracedVal{\trLet{x}{\idx{j}}{\idx{k}}}{\idx{k}'}}
+      },
+      \idx{k}'
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \chi, \rho, \raw{(\exFunThree{f}{x}{\idx{j}})}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi}{
+         \mapsTr{\idx{i}}{\tracedVal{\exFunThree{f}{x}{\idx{j}}}{\idx{i}}},
+         \mapsVal{\idx{i}}{\exClosureFour{\rho}{f}{x}{\idx{j}}}
+      },
+      \idx{i}
+   }
+%
+\and
+%
+   \inferrule*[
+      right={$\atVal{\psi}{\idx{j}'} = \exClosureFour{\rho'}{f}{x}{\idx{i}^\twoPrime}$}
+   ]
+   {
+      \chi, \rho, \at{\chi}{\idx{j}} \changeProp \psi, \idx{j}'
+      \\
+      \psi, \rho, \at{\chi}{\idx{k}} \changeProp \psi', \idx{k}'
+      \\
+      \psi',
+      \envExtendTwo{\rho'}{f \mapsto \idx{j}', x \mapsto \idx{k}'}, \offset{\at{\chi}{\idx{i}^\twoPrime}}{\idx{k}'}
+      \changeProp
+      \chi',
+      \idx{i}'
+   }
+   {
+      \chi, \rho, \raw{\smash{(\exApp{\idx{j}}{\idx{k}})}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi'}{
+         \mapsTr{\idx{i}}{\tracedVal{\trApp{\idx{j}}{\idx{k}}{\idxConcat{\idx{i}^\twoPrime}{\idx{k'}}}}{\idx{i}'}}
+      },
+      \idx{i}'
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \chi, \rho, \at{\chi}{\idx{j}} \changeProp \psi, \idx{j}'
+      \\
+      \psi, \rho, \at{\chi}{\idx{k}} \changeProp \chi', \idx{k}'
+   }
+   {
+      \chi, \rho, \raw{\smash{\exPair{\idx{j}}{\idx{k}}}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi'}{
+         \mapsTr{\idx{i}}{\tracedVal{\exPair{\idx{j}}{\idx{k}}}{\idx{i}}},
+         \mapsVal{\idx{i}}{\exPair{\idx{j}'}{\idx{k}'}}
+      },
+      \idx{i}
+   }
+%
+\and
+%
+   \inferrule*[right={$\atVal{\chi'}{\idx{j}'} = \exPair{\idx{k}_1}{\idx{k}_2}$}]
+   {
+      \chi, \rho, \at{\chi}{\idx{j}} \changeProp \chi', \idx{j}'
+   }
+   {
+      \chi, \rho, \raw{\smash{(\exFst{\idx{j}})}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi'}{
+         \mapsTr{\idx{i}}{\tracedVal{\exFst{\idx{j}}}{\idx{k}_1}}
+      },
+      \idx{k}_1
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \chi, \rho, \at{\chi}{\idx{j}} \changeProp \chi', \idx{j}'
+   }
+   {
+      \chi, \rho, \raw{\smash{(\exInl{\idx{j}})}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi'}{
+         \mapsTr{\idx{i}}{\tracedVal{\exInl{\idx{j}}}{\idx{i}}},
+         \mapsVal{\idx{i}}{\exInl{\idx{j}'}}
+      },
+      \idx{i}
+   }
+%
+\and
+%
+   \inferrule*[right={$\atVal{\psi}{\idx{j}'} = \exInl{\idx{i}'}$}]
+   {
+      \chi, \rho, \at{\chi}{\idx{j}} \changeProp \psi, \idx{j}'
+      \\
+      \psi, \envExtendTwo{\rho}{x \mapsto \idx{i}'}, \at{\chi}{\idx{k}} \changeProp \chi', \idx{k}^\twoPrime
+   }
+   {
+      \chi, \rho, \raw{\smash{(\exCaseNew{\idx{j}}{x}{\idx{k}}{y}{\idx{k}'})}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi'}{
+         \mapsTr{\idx{i}}{\tracedVal{\trCaseL{\idx{j}}{\idx{k}}}{\idx{k}}^\twoPrime}
+      },
+      \idx{k}^\twoPrime
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \chi, \rho, \at{\chi}{\idx{j}} \changeProp \chi', \idx{j}'
+   }
+   {
+      \chi, \rho, \raw{\smash{(\exRoll{\idx{j}})}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi'}{
+         \mapsTr{\idx{i}}{\tracedVal{\exRoll{\idx{j}}}{\idx{i}}}, \mapsVal{\idx{i}}{\exRoll{\idx{j}'}}
+      },
+      \idx{i}
+   }
+%
+\and
+%
+   \inferrule*[right={$\atVal{\chi'}{\idx{j}'} = \exRoll{\idx{k}}$}]
+   {
+      \chi, \rho , \at{\chi}{\idx{j}} \changeProp \chi', \idx{j}'
+   }
+   {
+      \chi, \rho , \raw{\smash{(\exUnroll{\idx{j}})}}{\idx{i}}
+      \changeProp
+      \storeUpdate{\chi'}{
+         \mapsTr{\idx{i}}{\tracedVal{\exUnroll{\idx{j}}}{\idx{k}}}
+      },
+      \idx{k}
+   }
+\end{ruleblock}
+\caption{Change propagation (rules for $\exInr{\param}$ and $\exSnd{\param}$ omitted)}
+\label{fig:incremental:change-prop}
+\end{figure}

@@ -1,0 +1,429 @@
+\begin{figure}
+\fbox{$\rho, e \trEval_{u} v$}
+\begin{smathpar}
+  \inferrule*
+  {
+    \strut
+  }
+  {
+    \rho, e
+    \trEval_{\hole}
+    \exThunk{\rho}{e}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$, $\rho(x) = \exThunk{\rho'}{e}$}]
+  {
+    \rho', e \trEval_{u} v
+  }
+  {
+    \rho, x
+    \trEval_{u}
+    v
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \strut
+  }
+  {
+    \rho, \exUnit
+    \trEval_{\hnf}
+    \exUnit
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \strut
+  }
+  {
+    \rho, \exConst
+    \trEval_{\hnf}
+    \exConst
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \rho, e_1 \trEval_{\hnf} c_1
+    \\
+    \rho, e_2 \trEval_{\hnf} c_2
+  }
+  {
+    \rho, \exOp{e_1}{e_2}
+    \trEval_{\hnf}
+    c_1 \mathrel{\hat{\primOp}} c_2
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \strut
+  }
+  {
+    \rho, \exFun{f}{x}{e}
+    \trEval_{\hnf}
+    \exClosure{\rho}{f}{x}{e}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$, $v_1 = \exClosure{\rho'}{f}{x}{e}$}]
+  {
+    \rho, e_1 \trEval_{\hnf} v_1
+    \\
+    \envExtend{\envExtend{\rho'}{f}{v_1}}{x}{\exThunk{\rho}{e_2}}, e
+    \trEval_{u}
+    v
+  }
+  {
+    \rho, \exApp{e_1}{e_2}
+    \trEval_{u}
+    v
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \rho, e_1 \trEval_{u_1} v_1
+    \\
+    \rho, e_2 \trEval_{u_2} v_2
+  }
+  {
+    \rho, \exPair{e_1}{e_2}
+    \trEval_{\exPair{u_1}{u_2}}
+    \exPair{v_1}{v_2}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \rho, e \trEval_{\exPair{u}{\hole}} \exPair{v_1}{v_2}
+  }
+  {
+    \rho, \exFst{e}
+    \trEval_{u}
+    v_1
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \rho, e \trEval_{\exPair{\hole}{u}} \exPair{v_1}{v_2}
+  }
+  {
+    \rho, \exSnd{e}
+    \trEval_{u}
+    v_2
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \rho, e \trEval_{u} v
+  }
+  {
+    \rho, \exInl{e}
+    \trEval_{\exInl{u}}
+    \exInl{v}
+  }
+%
+\and
+%
+  \inferrule*
+  {
+  }
+  {
+    \rho, \exInl{e}
+    \trEval_{\hnf}
+    \exInl{\exThunk{\rho}{e}}
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \rho, e \trEval_{u} v
+  }
+  {
+    \rho, \exInr{e}
+    \trEval_{\exInr{u}}
+    \exInr{v}
+  }
+%
+\and
+%
+  \inferrule*
+  {
+  }
+  {
+    \rho, \exInr{e}
+    \trEval_{\hnf}
+    \exInr{\exThunk{\rho}{e}}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \rho, e \trEval_{\hnf} \exInl{v_1}
+    \\
+    \envExtend{\rho}{x_1}{v_1}, e_1 \trEval_{u} v
+  }
+  {
+    \rho, \exCase{e}{x_1}{e_1}{x_2}{e_2}
+    \trEval_{u}
+    v
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \rho, e \trEval_{\hnf} \exInr{v_2}
+    \\
+    \envExtend{\rho}{x_2}{v_2}, e_2 \trEval_{u} v
+  }
+  {
+    \rho, \exCase{e}{x_1}{e_1}{x_2}{e_2}
+    \trEval_{u}
+    v
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \rho, e \trEval_{u} v
+  }
+  {
+    \rho, \exRoll{e}
+    \trEval_{\exRoll{u}}
+    \exRoll{v}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \rho, e \trEval_{\exRoll{u}} \exRoll{v}
+  }
+  {
+    \rho, \exUnroll{e}
+    \trEval_{u}
+    v
+  }
+\end{smathpar}
+\caption{Demand-indexed call-by-name (big-step)}
+\end{figure}
+
+\begin{figure}
+\begin{syntaxfig}
+\mbox{Eval context}
+&
+C
+&
+::=
+&
+[]
+\mid
+e_{\hole}
+\mid
+{\exApp{C}{e}}
+\mid
+{\exOp{C}{e}}
+\mid
+{\exOp{c}{C}}
+\mid
+\exFst{C}
+\mid
+\exSnd{C}
+\mid
+\\
+&&
+\mid
+&
+\exRoll{C}
+\mid
+\exUnroll{C}
+\mid
+\exPair{C}{e}
+\mid
+\exPair{v}{C}
+\mid
+\exInl{C}
+\\
+&&
+\mid
+&
+\exInr{C}
+\mid
+\exCase{C}{x_1}{e_1}{x_2}{e_2}
+\end{syntaxfig}
+\caption{Evaluation contexts}
+\end{figure}
+
+\begin{figure*}
+\begin{align*}
+\focus{C[e]_{\hole}}
+& =
+C[e]
+\\
+\focus{C[\exUnit]_{\hnf}}
+& =
+C[\exUnit]
+\\
+\focus{C[\exConst]_{\hnf}}
+& =
+C[\exConst]
+\\
+\focus{C[\exOp{e_1}{e_2}]_{\hnf}}
+& =
+\focus{C \circ \exOp{[e_1]_{\hnf}}{e_2}}
+\\
+\focus{C[\exOp{c}{e}]_{\hnf}}
+& =
+\focus{C \circ \exOp{c}{[e]_{\hnf}}}
+\\
+\focus{C[\exOp{c_1}{c_2}]_{\hnf}}
+& =
+C[\exOp{c_1}{c_2}]_{\hnf}
+\\
+\focus{C[\exFun{f}{x}{e}]_{\hnf}}
+& =
+C[\exFun{f}{x}{e}]
+\\
+\focus{C[\exApp{(\exFun{f}{x}{e})}{e_2}]_{w}}
+& =
+C[\exApp{e_1}{e_2}]_{w}
+\\
+\focus{C[\exApp{e_1}{e_2}]_{w}}
+& =
+\focus{C \circ \exApp{[e_1]_{\hnf}}{e_2}}
+\\
+\focus{C[\exPair{e_1}{e_2}]_{\exPair{w}{u}}}
+& =
+\focus{C \circ \exPair{[e_1]_{w}}{e_2}}
+\\
+\focus{C[\exPair{v}{e_2}]_{\exPair{u}{w}}}
+& =
+\focus{C \circ \exPair{v}{[e_2]_{w}}}
+\\
+\focus{C[\exPair{e_1}{e_2}]_{\exPair{\hole}{\hole}}}
+& =
+C[\exPair{e_1}{e_2}]
+\\
+\focus{C[\exFst{\exPair{e_1}{e_2}}]_{w}}
+& =
+C[\exFst{e}]_{w}
+\\
+\focus{C[\exFst{e}]_{w}}
+& =
+\focus{C \circ \exFst{[e]_{\exPair{w}{\hole}}}}
+\\
+\focus{C[\exSnd{\exPair{e_1}{e_2}}]_{w}}
+& =
+C[\exSnd{e}]_{w}
+\\
+\focus{C[\exSnd{e}]_{w}}
+& =
+\focus{C \circ \exSnd{[e]_{\exPair{\hole}{w}}}}
+\\
+\focus{C[\exInl{e}]_{\hnf}}
+& =
+C[\exInl{e}]
+\\
+\focus{C[\exInl{e}]_{\exInl{w}}}
+& =
+\focus{C \circ \exInl{[e]_{w}}}
+\\
+\focus{C[\exInr{e}]_{\hnf}}
+& =
+C[\exInr{e}]
+\\
+\focus{C[\exInr{e}]_{\exInr{w}}}
+& =
+\focus{C \circ \exInr{[e]_{w}}}
+\\
+\focus{C[\exCase{\exInl{e'}}{x_1}{e_1}{x_2}{e_2}]_{w}}
+& =
+C[\exCase{e}{x_1}{e_1}{x_2}{e_2}]
+\\
+\focus{C[\exCase{\exInr{e'}}{x_1}{e_1}{x_2}{e_2}]_{w}}
+& =
+C[\exCase{e}{x_1}{e_1}{x_2}{e_2}]
+\\
+\focus{C[\exCase{e}{x_1}{e_1}{x_2}{e_2}]_{w}}
+& =
+\focus{C \circ \exCase{[e]_{\hnf}}{x_1}{e_1}{x_2}{e_2}}
+\\
+\focus{C[\exRoll{e}]_{\hnf}}
+& =
+C[\exRoll{e}]
+\\
+\focus{C[\exRoll{e}]_{\exRoll{w}}}
+& =
+\focus{C \circ \exRoll{[e]_{w}}}
+\\
+\focus{C[\exUnroll{(\exRoll{e'})}]_{w}}
+& = 
+C[\exUnroll{e}]_{w}
+\\
+\focus{C[\exUnroll{e}]_{w}}
+& = 
+\focus{C \circ \exUnroll{[e]_{\exRoll{w}}}}
+\end{align*}
+\caption{Demand-indexed focusing}
+\end{figure*}
+
+\begin{figure*}
+\begin{align*}
+C[\exApp{(\exFun{f}{x}{e})}{e'}]
+&
+\rightarrow
+C[\subst{\exFun{f}{x}{e}}{f}{\subst{e'}{x}{e}}]
+\\
+C[\exCase{\exInl{e}}{x_1}{e_1}{x_2}{e_2}]
+&
+\rightarrow
+C[\subst{e}{x_1}{e_1}]
+\\
+C[\exCase{\exInr{e
+}}{x_1}{e_1}{x_2}{e_2}]
+&
+\rightarrow
+C[\subst{e}{x_2}{e_2}]
+\\
+C[\exFst{\exPair{v_1}{v_2}}]
+&
+\rightarrow
+C[v_1]
+\\
+C[\exSnd{\exPair{v_1}{v_2}}]
+&
+\rightarrow
+C[v_2]
+\\
+C[\exOp{{c_1}}{{c_2}}]
+&
+\rightarrow
+C[c_1\;\hat{\primOp}\;c_2]
+\\
+C[\exUnroll{(\exRoll{v})}]
+&
+\rightarrow
+C[v]
+\end{align*}
+\caption{Contraction rules}
+\end{figure*}

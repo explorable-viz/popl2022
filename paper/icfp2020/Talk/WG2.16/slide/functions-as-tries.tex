@@ -1,0 +1,28 @@
+\begin{frame}[t]
+\frametitle{Functions as tries}
+
+\vspace{10pt}
+A \textbf{function defined by pattern-matching} is precisely one of
+these tries from values to terms.
+
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \vdash \Trie{\sigma}{\exprPartial{B}}{A}
+}
+{
+   \Gamma \vdash \exFun{\sigma} : \tyFun{A}{B}
+}
+\end{smathpar}
+Evaluation rule for application generalises the $\kw{match}$ rule.
+
+\vspace{8pt}
+\pause (Unsurprisingly) $\kw{match}$ is just sugar for a $\beta$-redex:
+{\small
+\begin{align*}
+\desugar{\exMatch{e}{\sigma}}
+&=
+\exApp{(\exFun{\desugar{\sigma}})}{\desugar{e}}
+\end{align*}
+}
+\end{frame}

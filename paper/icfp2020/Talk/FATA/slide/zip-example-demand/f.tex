@@ -1,0 +1,36 @@
+\begin{frame}[fragile]
+\input{slide/zip-example-demand/header}
+\vskip0pt plus 1filll
+
+\begin{smathpar}
+\inferrule*
+{
+  \inferrule*
+  {
+    \inferrule*
+    {
+        \inferrule*
+        {
+          \texttt{{\unk} $\Eval$ \unk}
+          \\
+          \texttt{{\unk} $\Eval$ \unk}
+        }
+        {
+          \texttt{(\unk, \unk) $\Eval$ (\unk, \unk)}
+        }
+    }
+    {
+      \texttt{{\unk} $\oplus$ {\unk} $\Eval$ (\unk, \unk)}
+    }
+    \\
+    \texttt{{\unk} $\Eval$ {\unk}}
+  }
+  {
+    \texttt{({\unk} $\oplus$ {\unk}) {$\Cons$} {\unk} $\Eval$ (\unk, \unk) {$\Cons$} {\unk}}
+  }
+}
+{
+ \texttt{zipW $\oplus$ ({\unk} {$\Cons$} {\unk}) ({\unk} {$\Cons$} {\unk}) $\Eval$ (\unk, \unk) {$\Cons$} {\unk}}
+}
+\end{smathpar}
+\end{frame}

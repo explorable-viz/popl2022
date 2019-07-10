@@ -1,0 +1,49 @@
+\begin{figure}
+{\small
+\begin{align*}
+\intertext{\flushleft{\shadebox{$
+   \fmapTwoF : (\forall\Gamma.K_\Gamma \to K'_\Gamma) \to (\forall\Gamma.K_\Gamma \to K'_\Gamma) \to
+               \Match{A}{K}{\Gamma}{\Gamma'} \to \Match{A}{K'}{\Gamma}{\Gamma'}
+$}}}
+   \fmapTwo{f}{g}{(\matchedVar{x}{\kappa})}
+   &=
+   \matchedVar{x}{f\kappa}
+   \\
+   \fmapTwo{f}{g}{(\matchedGround{c}{\kappa})}
+   &=
+   \matchedGround{c}{f\kappa}
+   \\
+   \fmapTwo{f}{g}{(\matchedFun{\exClosure{\rho}{\exFun{\sigma}}}{\kappa})}
+   &=
+   \matchedFun{\exClosure{\rho}{\exFun{\sigma}}}{f\kappa}
+   \\
+   \fmapTwo{f}{g}{\,\matchedConstr{\Xi}}
+   &=
+   \left\{
+   d \mapsto
+   \begin{cases}
+      \fmapTwo{f}{g}{\Psi}
+      &
+      \text{if $\Xi(d) = \Psi$}
+      \\
+      \fmap{g}{\,\Pi}
+      &
+      \text{if $\Xi(d) = \Pi$}
+   \end{cases}
+   \mathrel{\Big|} d \in \dom{\Xi}
+   \right\}
+   \\[2mm]
+\intertext{\flushleft{\shadebox{$
+   \fmapTwoF : (\forall\Gamma.K_\Gamma \to K'_\Gamma) \to (\forall\Gamma.K_\Gamma \to K'_\Gamma) \to
+               \Match{\vec{A}}{K}{\Gamma}{\Gamma'} \to \Match{\vec{A}}{K'}{\Gamma}{\Gamma'}
+$}}}
+   \fmapTwo{f}{g}{(\matchedUnit{\kappa})}
+   &=
+   \matchedUnit{f\kappa}
+   \\
+   \fmapTwo{f}{g}{\matchedProd{\explVal{T}{\xi}}}
+   &=
+   \matchedProd{\explVal{T}{\fmapTwo{(\fmapTwoPartial{f}{g})}{(\fmapTwoPartial{g}{g})}{\xi}}}
+\end{align*}}
+\caption{Mapping $f$, $g$ to an (explained) match}
+\end{figure}

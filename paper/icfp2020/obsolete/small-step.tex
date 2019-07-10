@@ -1,0 +1,14 @@
+\section{Small-step variants}
+
+\figref{reduce:call-by-name} defines a call-by-name small-step
+operational semantics, using evaluation contexts indexed by the demand
+$\sigma$ active in that context. Only the empty context
+$\evalCxt{\hole}{\sigma}$ may have an empty demand.
+
+\input{obsolete/fig/reduce/call-by-name.tex}
+
+\figref{reduce:call-by-need} introduces a call-by-need variant which
+tracks shared variables using a special runtime-only $\kw{let}$
+construct, avoiding substitution.
+
+\input{obsolete/fig/reduce/call-by-need.tex}

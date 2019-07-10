@@ -1,0 +1,56 @@
+\newcommand*{\hole}{[]}
+\newcommand*{\Ev}{\mathcal{E}}
+\newcommand*{\plug}[3]{{#1}[#2]_{\smash{#3}}}
+
+% Environments.
+\newcommand*{\envSingleton}[3]{\hole_{{#1}.{#2}\mapsto{#3}}}
+\newcommand*{\envFor}[1]{\wideparen{#1}}
+
+% Demand-directed evaluation.
+\newcommand*{\hnf}{\boxdot}
+\newcommand*{\unsubst}[2]{\textsf{unsubst}({#1},{#2})}
+\newcommand*{\focus}[1]{\textsf{focus}({#1})}
+\newcommand*{\match}[2]{\textsf{match\;}{#1}\textsf{\;as\;}{#2}}
+\newcommand*{\catMaybes}[1]{|{#1}|}
+\newcommand*{\bind}{\gg=}
+\newcommand*{\demand}[1]{{\lfloor{#1}\rfloor}}
+\newcommand*{\liftBot}[1]{{#1}_{\bot}}
+
+% Typing.
+\newcommand*{\tycheck}{\blacktriangleleft}
+\newcommand*{\synth}{\blacktriangleright}
+\newcommand*{\bidi}[2]{{^{#1}_{#2}}}
+
+% Translating ML patterns to patterns.
+\newcommand*{\translate}[1]{\llbracket#1\rrbracket}
+
+% Indexed expressions and trace-results.
+\newcommand*{\trcIdx}[2]{{#1}:{#2}}
+\newcommand*{\valIdx}[1]{\textsf{\textup{val}}{#1}}
+\newcommand*{\evalCxt}[2]{#1_{\smash{#2}}}
+\newcommand*{\trcRes}[3]{{#1}^{#3}\TransformHoriz{#2}}
+\newcommand*{\subTerm}{\preccurlyeq}
+
+% Expressions and traces.
+\newcommand*{\exAppTrace}[5]{{#1}\;{#2}\triangleright{#3}({#4}).{#5}}
+\newcommand*{\exAnnot}[2]{{#1}:{#2}}
+\newcommand*{\exCase}[5]{\kw{case}~{#1}~\kw{of}~\{\kw{inl}\;{#2}.{#3}; \kw{inr}\;{#4}.#5\}}
+\newcommand*{\exInlr}[2]{[#1, #2]}
+\newcommand*{\exLambdaDemand}{\lambda}
+\newcommand*{\exOpTrace}[4]{#3 \mathrel{\primOp_{#1,#2}}#4}
+\newcommand*{\exRecDemand}{\kw{rec}\xspace}
+\newcommand*{\exRecFun}[3]{\kw{rec}\;{#1}({#2}).{#3}}
+\newcommand*{\exSuspend}[1]{{#1}_{\bot}}
+\newcommand*{\exThunk}[1]{\langle{#1}\rangle}
+\newcommand*{\exVal}[2]{{#1}:{#2}}
+
+% Types.
+\newcommand*{\tyPrim}{b}
+\newcommand*{\tyRoll}[1]{\kw{roll}\;{#1}}
+
+\newcommand*{\subsumes}[0]{\prec}
+\newcommand*{\subsumedBy}[0]{\succ}
+
+% Evaluation.
+\newcommand*{\tr}[1]{\ensuremath{#1_\mathsf{tr}}}
+\newcommand*{\seval}{\Downarrow}

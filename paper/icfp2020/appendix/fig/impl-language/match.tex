@@ -1,0 +1,53 @@
+\begin{figure}
+\flushleft \shadebox{$u, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha$}
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\lookupR$-var}}]
+   {
+      \strut
+   }
+   {
+      u, \trieVar{x}{\kappa}
+      \lookupR
+      \envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[left={\ruleName{$\lookupR$-constr}}]
+   {
+      \vec{\explVal{T}{u}}, \Sigma(d) \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha'
+   }
+   {
+      \annot{\exConstr{d}{\vec{\explVal{T}{u}}}}{\alpha}, \Sigma
+      \lookupR
+      \rho, \envExtend{\Sigma}{d}{\matchPlug{\Psi}{\kappa}}, \alpha \wedge \alpha'
+   }
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$\vec{\explVal{T}{u}}, \kappa \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha$}
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\lookupR$-args-nil}}]
+   {
+      \strut
+   }
+   {
+      \exUnit, \kappa \lookupR \envEmpty,\matchHole{\kappa}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[left={\ruleName{$\lookupR$-args-cons}}]
+   {
+      u, \sigma \lookupR \rho_1, \matchPlug{\xi}{\kappa}, \alpha
+      \\
+      \vec{\explVal{T}{u}}, \kappa \lookupR \rho_2, \matchPlug{\Psi}{\kappa'}, \alpha'
+   }
+   {
+      (\explVal{T}{u}) \concat (\vec{\explVal{T}{u}}), \sigma
+      \lookupR
+      \rho_1 \concat \rho_2, \matchProd{\explVal{T}{\xi}}{\matchPlug{\Psi}{\kappa'}}, \alpha \wedge \alpha'
+   }
+\end{smathpar}
+\caption{Pattern-matching}
+\label{fig:impl-language:match}
+\end{figure}

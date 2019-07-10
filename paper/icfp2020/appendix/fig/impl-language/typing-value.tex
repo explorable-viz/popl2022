@@ -1,0 +1,131 @@
+\begin{figure}
+\flushleft \shadebox{$\Gamma \vdash \vec{d}: \Delta$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \seqEmpty: \cxtEmpty
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash d: \Delta
+      \\
+      \Gamma \concat \Delta \vdash \vec{d}: \Delta'
+   }
+   {
+      \Gamma \vdash d \concat \vec{d}: \Delta \concat \Delta'
+   }
+\end{smathpar}
+\vspace{5pt}
+
+\flushleft \shadebox{$\Gamma \vdash d: \Delta$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \exprType{e}{\Gamma}{A}
+   }
+   {
+      \Gamma \vdash \exLetDef{x}{e}: \cxtExtend{\cxtEmpty}{x}{A}
+   }
+   %
+   \and
+   %
+   \inferrule*[right={
+      \textnormal{$\Delta = \set{f \mapsto A_f \mid f \in \dom{\delta}}$}
+   }]
+   {
+      \exprType{\exFun{\sigma_f}}{\Gamma \concat \Delta}{A_f}
+      \quad
+      (\forall f \mapsto \exFun{\sigma_f} \in \delta)
+   }
+   {
+      \Gamma \vdash \exLetrecDef{\delta}: \Delta
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \interpret{x} \in \interpret{A}
+   }
+   {
+      \Gamma \vdash \exPrimDef{x}: \cxtExtend{\cxtEmpty}{x}{A}
+   }
+\end{smathpar}
+\vspace{5pt}
+
+\flushleft \shadebox{$\valExplTypeNew{u}{A}$}
+\begin{smathpar}
+\inferrule*[right={$\interpret{\exConst{c}} \in C$}]
+{
+   \strut
+}
+{
+   \valExplTypeNew{\exConst{k}}{\tyGround{C}}
+}
+%
+\and
+%
+\inferrule*[right={\textnormal{$\interpret{\phi} \in \interpret{C} \to \interpret{A}$}}]
+{
+   \strut
+}
+{
+   \valExplTypeNew{\phi}{\tyFun{C}{A}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \envType{\Gamma}{\rho}
+   \\
+   \Gamma \vdash \exLetrecDef{\delta}: \Delta
+   \\
+   \exprType{\exFun{\sigma}}{\Gamma \concat \Delta}{\tyFun{A}{B}}
+}
+{
+   \valExplTypeNew{\exClosureNew{\rho}{\delta}{\exFun{\sigma}}}{\tyFun{A}{B}}
+}
+%
+\and
+%
+\inferrule*[right={\textnormal{$c \in \dom{\interpret{D}}$}}]
+{
+   \explValType{}{\vec{\explVal{T}{v}}}{\interpret{D}(c)}
+}
+{
+   \valExplTypeNew{\exConstr{c}{\vec{\explVal{T}{v}}}}{\tyData{D}}
+}
+\end{smathpar}
+\vspace{5pt}
+
+\flushleft \shadebox{$\envType{\Gamma}{\rho}$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \envType{\cxtEmpty}{\envEmpty}
+}
+%
+\and
+%
+\inferrule*
+{
+   \envType{\Gamma}{\rho}
+   \\
+   \valExplType{\Gamma'}{u}{A}
+}
+{
+   \envType{\cxtExtend{\Gamma}{x}{A}}{\envExtend{\rho}{x}{u}}
+}
+\end{smathpar}
+\caption{Typing rules for partial values, environments and recursive definitions}
+\end{figure}

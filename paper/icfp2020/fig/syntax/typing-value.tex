@@ -1,0 +1,92 @@
+\begin{figure}
+\flushleft \shadebox{$\valType{u}{A}$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \valType{\exUnit}{\tyUnit}
+}
+%
+\and
+%
+\inferrule*
+{
+   \valType{v}{A}
+}
+{
+   \valType{\exInl{v}}{\tySum{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \valType{v}{B}
+}
+{
+   \valType{\exInr{v}}{\tySum{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \valType{u}{A}
+   \\
+   \valType{v}{B}
+}
+{
+   \valType{\exPair{u}{v}}{\tyProd{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \envType{\Gamma}{\rho}
+   \\
+   \trieType{\sigma}{\ExprPartial{B}}{A}{\Gamma}
+}
+{
+   \valType{\exClosure{\rho}{\exFun{\sigma}}}{\tyFun{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \valType{v}{\subst{A}{\tyRec{\tyVar{X}}{A}}{\alpha}}
+}
+{
+   \valType{\exRoll{v}}{\tyRec{\tyVar{X}}{A}}
+}
+\end{smathpar}
+\vspace{5pt}
+
+\noindent \shadebox{$\envType{\Gamma}{\rho}$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \envType{\cxtEmpty}{\envEmpty}
+}
+%
+\and
+%
+\inferrule*
+{
+   \envType{\Gamma}{\rho}
+   \\
+   \valType{u}{A}
+}
+{
+   \envType{\cxtExtend{\Gamma}{x}{A}}{\envExtend{\rho}{x}{u}}
+}
+\end{smathpar}
+\caption{Typing rules for values and environments}
+\label{fig:demand-indexed:typing-value}
+\end{figure}

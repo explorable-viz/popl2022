@@ -1,0 +1,48 @@
+\begin{frame}[fragile]
+
+\begin{smathpar}
+\inferrule*
+{
+  \inferrule*
+  {
+    \inferrule*
+    {
+      \vdots
+    }
+    {
+      \vdots
+    }
+  }
+  {
+    \texttt{x $\oplus$ y} \Eval \texttt{(11, 4)}
+  }
+  \\
+  \inferrule*
+  {
+    \inferrule*
+    {
+      \inferrule*
+      {
+        \texttt{a + 1 $\Eval$ 13}
+        \\
+        \texttt{$\zap{b + 1 $\Eval$ 7}$}
+      }
+      {
+        \texttt{(a + 1, $\zap{b + 1}$) $\Eval$ (13, $\zap{7}$)}
+      }
+    }
+    {
+      \texttt{x $\oplus$ $\zap{y}$ $\Eval$ (13, $\zap{7}$)}
+    }
+    \\
+    \texttt{zipW $\oplus$ [] $\zap{[]}$ $\Eval$ []}
+  }
+  {
+    \texttt{zipW $\oplus$ (12 $\Cons$ []) (6 $\Cons$ $\zap{[]}$) $\Eval$ (13, $\zap{7}$) $\Cons$ []}
+  }
+}
+{
+  \texttt{zipW ($\lambda$ab.(a + 1, b + 1)) (10 $\Cons$ 12 $\Cons$ []) (3 $\Cons$ 6 $\Cons$ $\zap{[]}$) $\Eval$ (11, 4) $\Cons$ (13, $\zap{7}$) $\Cons$ []}
+}
+\end{smathpar}
+\end{frame}

@@ -1,0 +1,16 @@
+\begin{frame}[fragile]
+\input{slide/zip-example/header}
+
+\begin{lstlisting}[mathescape=true,numbers=none]
+zipWith $\oplus$ [] ys = []
+zipWith $\oplus$ xs [] = $\zap{[]}$
+zipWith $\oplus$ (x $\Cons$ xs) (y $\Cons$ ys) = (x $\oplus$ y) $\Cons$ (zipWith $\textcolor{red}{\oplus}$ xs ys)
+
+zipWith $\lambda$ab.(a + 1, b + 1)
+        (10 $\Cons$ $\zap{12}$ $\Cons$ $\zap{22}$ $\Cons$ [])
+        (3 $\Cons$ $\zap{6}$ $\Cons$ $\zap{35}$ $\Cons$ $\zap{[]}$)
+
+= (11, 4) $\Cons$ $\zap{(13, 7)}$ $\Cons$ $\zap{(23, 36)}$ $\Cons$ []
+\end{lstlisting}
+
+\end{frame}

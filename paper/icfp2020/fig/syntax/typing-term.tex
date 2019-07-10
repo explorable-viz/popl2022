@@ -1,0 +1,87 @@
+\begin{figure}
+\flushleft \shadebox{$\exprType{e}{\Gamma}{A}$}
+\begin{smathpar}
+\inferrule*[right={$x : A \in \Gamma$}]
+{
+   \strut
+}
+{
+   \exprType{\exVar{x}}{\Gamma}{A}
+}
+%
+\and
+%
+\inferrule*
+{
+}
+{
+   \exprType{\exUnit}{\Gamma}{\tyUnit}
+}
+%
+\and
+%
+\inferrule*
+{
+   \exprType{e}{\Gamma}{A}
+}
+{
+   \exprType{\exInl{e}}{\Gamma}{\tySum{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \exprType{e}{\Gamma}{B}
+}
+{
+   \exprType{\exInr{e}}{\Gamma}{\tySum{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \exprType{e_1}{\Gamma}{A}
+   \\
+   \exprType{e_2}{\Gamma}{B}
+}
+{
+   \exprType{\exPair{e_1}{e_2}}{\Gamma}{\tyProd{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \trieType{\sigma}{B}{A}{\Gamma}
+}
+{
+   \exprType{\exFun{\sigma}}{\Gamma}{\tyFun{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \exprType{e}{\Gamma}{\tyFun{A}{B}}
+   \\
+   \exprType{e'}{\Gamma}{A}
+}
+{
+   \exprType{\exApp{e}{e'}}{\Gamma}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{\alpha}}
+}
+{
+   \exprType{\exRoll{e}}{\Gamma}{\tyRec{X}{A}}
+}
+\end{smathpar}
+\caption{Typing rules for terms}
+\label{fig:demand-indexed:typing-term}
+\end{figure}

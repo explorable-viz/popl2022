@@ -1,0 +1,26 @@
+\begin{frame}
+\frametitle{Generalised tries}
+
+Generalise tries over \highlight{strings} to tries over an \highlight{arbitrary signature}.
+\begin{align*}
+1 \toFin W
+&\quad\cong\quad
+W
+\\
+(A + B) \toFin W
+&\quad\cong\quad
+(A \toFin W) \times (B \toFin W)
+\\
+\textcolor{blue}{(A \times B) \toFin W}
+&\quad\cong\quad
+\textcolor{blue}{A \toFin B \toFin W}
+\\
+(\tyRec{\alpha}{A}) \toFin W
+&\quad\cong\quad
+\subst{A}{\tyRec{\alpha}{A}}{\alpha} \toFin W
+\end{align*}
+Parametric in codomain $W$.
+
+\vspace{10pt}
+\emph{Generalizing Generalized Tries}, Ralf Hinze (1998)
+\end{frame}

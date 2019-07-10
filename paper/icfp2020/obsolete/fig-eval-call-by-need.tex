@@ -1,0 +1,248 @@
+\begin{figure}
+\fbox{$\chi, e \trEval_{u} \chi', v$ with $e$ closed}
+\begin{smathpar}
+  \inferrule*
+  {
+    \strut
+  }
+  {
+    \chi, e
+    \trEval_{\hole}
+    \chi,
+    e
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \chi, \chi(\alpha) \trEval_{u} \chi', v
+  }
+  {
+    \chi, \alpha
+    \trEval_{u}
+    \envExtend{\chi'}{\alpha}{v},
+    v
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \strut
+  }
+  {
+    \chi, \exConst
+    \trEval_{\hnf}
+    \chi,
+    \exConst
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \strut
+  }
+  {
+    \chi, \exUnit
+    \trEval_{\hnf}
+    \chi,
+    \exUnit
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \chi, e_1 \trEval_{\hnf} \chi', c_1
+    \\
+    \chi', e_2 \trEval_{\hnf} \chi'', c_2
+  }
+  {
+    \chi, \exOp{e_1}{e_2}
+    \trEval_{\hnf}
+    \chi'',
+    c_1 \mathrel{\hat{\primOp}} c_2
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \strut
+  }
+  {
+    \chi, \exFun{f}{x}{e}
+    \trEval_{\hnf}
+    \chi,
+    \exFun{f}{x}{e}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$, $\alpha_1, \alpha_2 \notin \dom(\chi')$, $v_1 = \exFun{f}{x}{e}$}]
+  {
+    \chi, e_1 \trEval_{\hnf} \chi', v_1
+    \\
+    \envExtend{\envExtend{\chi'}{\alpha_1}{v_1}}{\alpha_2}{e_2}, \subst{\alpha_2}{x}{\subst{\alpha_1}{f}{e}}
+    \trEval_{u}
+    \chi'',
+    v
+  }
+  {
+    \chi, \exApp{e_1}{e_2}
+    \trEval_{u}
+    \chi'',
+    v
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \chi, e_1 \trEval_{u_1} \chi', v_1
+    \\
+    \chi', e_2 \trEval_{u_2} \chi'', v_2
+  }
+  {
+    \chi, \exPair{e_1}{e_2}
+    \trEval_{\exPair{u_1}{u_2}}
+    \chi'',
+    \exPair{v_1}{v_2}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \chi, e \trEval_{\exPair{u}{\hole}} \chi', \exPair{v_1}{v_2}
+  }
+  {
+    \chi, \exFst{e}
+    \trEval_{u}
+    \chi',
+    v_1
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \chi, e \trEval_{\exPair{\hole}{u}} \chi', \exPair{v_1}{v_2}
+  }
+  {
+    \chi, \exSnd{e}
+    \trEval_{u}
+    \chi',
+    v_2
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \chi, e \trEval_{u} \chi', v
+  }
+  {
+    \chi, \exInl{e}
+    \trEval_{\exInl{u}}
+    \chi',
+    \exInl{v}
+  }
+%
+\and
+%
+  \inferrule*
+  {
+  }
+  {
+    \chi, \exInl{e}
+    \trEval_{\hnf}
+    \chi,
+    \exInl{e}
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \chi, e \trEval_{u} \chi, v
+  }
+  {
+    \chi, \exInr{e}
+    \trEval_{\exInr{u}}
+    \chi,
+    \exInr{v}
+  }
+%
+\and
+%
+  \inferrule*
+  {
+  }
+  {
+    \chi, \exInr{e}
+    \trEval_{\hnf}
+    \chi,
+    \exInr{e}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$, $\alpha_1 \notin \dom(\chi')$}]
+  {
+    \chi, e \trEval_{\hnf} \chi', \exInl{v_1}
+    \\
+    \envExtend{\chi'}{\alpha_1}{v_1}, \subst{\alpha_1}{x_1}{e_1} \trEval_{u} \chi'', v
+  }
+  {
+    \chi, \exCase{e}{x_1}{e_1}{x_2}{e_2}
+    \trEval_{u}
+    \chi'',
+    v
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$, $\alpha_2 \notin \dom(\chi')$}]
+  {
+    \chi, e \trEval_{\hnf} \chi', \exInr{v_2}
+    \\
+    \envExtend{\chi}{\alpha_2}{v_2}, \subst{\alpha_2}{x_2}{e_2} \trEval_{u} \chi'', v
+  }
+  {
+    \rho, \exCase{e}{x_1}{e_1}{x_2}{e_2}
+    \trEval_{u}
+    \chi'',
+    v
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \chi, e \trEval_{u} \chi', v
+  }
+  {
+    \chi, \exRoll{e}
+    \trEval_{\exRoll{u}}
+    \chi',
+    \exRoll{v}
+  }
+%
+\and
+%
+  \inferrule*[right={$u \neq \hole$}]
+  {
+    \chi, e \trEval_{\exRoll{u}} \chi', \exRoll{v}
+  }
+  {
+    \chi, \exUnroll{e}
+    \trEval_{u}
+    \chi',
+    v
+  }
+\end{smathpar}
+\caption{Demand-indexed call-by-need (substitution semantics)}
+\end{figure}

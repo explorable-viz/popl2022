@@ -1,0 +1,29 @@
+\begin{frame}
+\frametitle{Tries}
+\[
+\begin{cases}
+   \ttt{'a'} \mapsto \textcolor{gray}{15} \\
+   \ttt{'i'} \mapsto \ttt{'n'} \mapsto \ttt{'n'} \mapsto \textcolor{gray}{9} \\
+   \ttt{'t'} \mapsto
+   \begin{cases}
+      \ttt{'e'} \mapsto
+      \begin{cases}
+          \ttt{'a'} \mapsto \textcolor{gray}{3} \\
+          \ttt{'d'} \mapsto \textcolor{gray}{4} \\
+          \ttt{'n'} \mapsto \textcolor{gray}{12}
+      \end{cases} \\
+      \ttt{'o'} \mapsto \textcolor{gray}{7}
+   \end{cases}
+\end{cases}
+\]
+represents
+\[\{
+\ttt{"a"} \mapsto \textcolor{gray}{15},
+\ttt{"inn"} \mapsto \textcolor{gray}{9},
+\ttt{"tea"} \mapsto \textcolor{gray}{3},
+\ttt{"ted"} \mapsto \textcolor{gray}{4},
+\ttt{"ten"} \mapsto \textcolor{gray}{12},
+\ttt{"to"} \mapsto \textcolor{gray}{7}
+\}\]
+(No \textcolor{red}{red} here because no \textbf{variables}.)
+\end{frame}

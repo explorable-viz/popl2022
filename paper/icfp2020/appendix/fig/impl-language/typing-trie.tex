@@ -1,0 +1,46 @@
+\begin{figure}
+\flushleft \shadebox{$\trieType{\sigma}{K}{A}{\Gamma}$}
+\begin{smathpar}
+\inferrule*[right={$\kappa \in K_{\cxtExtend{\Gamma}{x}{A}}$}]
+{
+   \strut
+}
+{
+   \trieType{\trieVar{x}{\kappa}}{K}{A}{\Gamma}
+}
+%
+\and
+%
+\inferrule*[right={\textnormal{$\dom{\interpret{D}} = \dom{\Sigma}$}}]
+{
+   \trieType{\Sigma(d)}{K}{\interpret{D}(d)}{\Gamma}
+   \\
+   (\forall d \in \dom{\interpret{D}})
+}
+{
+   \trieType{\trieConstr{\Sigma}}{K}{\tyData{D}}{\Gamma}
+}
+\end{smathpar}
+\vspace{5pt}
+\flushleft \shadebox{$\trieType{\kappa}{K}{\vec{A}}{\Gamma}$}
+\begin{smathpar}
+\inferrule*[right={$\kappa \in K_{\Gamma}$}]
+{
+   \strut
+}
+{
+   \trieType{\kappa}{K}{\seqEmpty}{\Gamma}
+}
+%
+\and
+%
+\inferrule*
+{
+   \trieType{\sigma}{\trieTypePartial{K}{\vec{A}}}{A}{\Gamma}
+}
+{
+   \trieType{\sigma}{K}{A \concat \vec{A}}{\Gamma}
+}
+\end{smathpar}
+\caption{Typing rules for tries and trie products}
+\end{figure}

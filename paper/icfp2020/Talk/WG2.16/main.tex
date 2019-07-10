@@ -1,0 +1,92 @@
+\documentclass[dvipsnames]{beamer}
+
+\usepackage{color}
+\usepackage{float}
+\usepackage{mathpartir}
+\usepackage{graphicx}
+\usepackage{soul}
+\usepackage{MnSymbol}
+\usepackage{xspace}
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage[scaled=0.66]{beramono}
+\usepackage{framed}
+\usepackage{subdepth}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{bbding}
+\usepackage{pifont} % \for \ding
+\usepackage{upgreek}
+\usepackage{stmaryrd}
+
+\usetikzlibrary{arrows}
+
+\input{../../../../Paper/def/macros}
+\input{../../../../Paper/def/MnSymbol-vdots}
+\input{../../def/macros}
+\input{../../def/listings}
+\input{def/macros}
+
+\begin{document}
+
+\AtBeginSection{
+  \begin{frame}
+    \vfill
+    \begin{center}
+      \Large \structure{\insertsection}
+    \end{center}
+    \vfill
+  \end{frame}
+}
+
+\input{slide/title}
+\input{slide/overview}
+\input{slide/overview-continued}
+\input{slide/UI-example}
+\input{slide/UI-explanation}
+\input{slide/existing-lazy}
+
+\input{slide/zip-example-ghci}
+\input{slide/goals}
+\input{slide/zip-example-trace}
+\input{slide/zip-example-demand}
+
+\input{slide/disjunctive-demands}
+\input{slide/disjunctive-demands-partitioning}
+\input{slide/pattern-matching}
+\input{slide/demands-as-tries}
+\input{slide/tries}
+\input{slide/tries-highlight}
+
+\input{slide/generalised-tries}
+\input{slide/generalised-tries-highlight-1}
+\input{slide/generalised-tries-highlight-2}
+\input{slide/generalised-tries-highlight-3}
+\input{slide/generalised-tries-highlight-4}
+
+\input{slide/evaluation}
+\input{slide/evaluation-sum}
+\input{slide/evaluation-sum-highlight-1}
+\input{slide/evaluation-sum-highlight-2}
+\input{slide/evaluation-product}
+\input{slide/evaluation-product-highlight-1}
+\input{slide/evaluation-product-highlight-2}
+
+\input{slide/evaluation-variable}
+\input{slide/evaluation-variable-substitution}
+\input{slide/evaluation-match}
+\input{slide/evaluation-match-highlight-1}
+\input{slide/evaluation-match-highlight-2}
+\input{slide/evaluation-match-highlight-3}
+
+\input{slide/functions-as-tries}
+\input{slide/functions-as-tries-example}
+
+\input{slide/TODO}
+\input{slide/conclusion}
+
+\end{document}

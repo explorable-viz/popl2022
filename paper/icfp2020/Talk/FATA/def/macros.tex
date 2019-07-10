@@ -1,0 +1,23 @@
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+\newcommand*\good{\item[{\tiny\Checkmark}]}
+\newcommand*\bad{\item[{\tiny\XSolidBrush}]}
+\newcommand{\highlight}[1]{\color{magenta}{#1}}
+\newcommand{\zap}[1]{$\textcolor{red}{#1}$}
+\newcommand{\zapTwo}[1]{$\textcolor{blue}{#1}$}
+\newcommand{\zapBoth}[1]{$\textcolor{purple}{#1}$}
+\newcommand{\unzap}[1]{\textcolor{blue}{#1}}
+\newcommand{\unk}{\zap{\scriptstyle{?}}}
+\newcommand{\toFin}{\xrightharpoonup{\phantom{xx}}}%_{\textsf{fin}}}
+
+% TODO: consolidate these:
+\newcommand{\Zap}[1]{\textcolor{red}{#1}}
+\newcommand{\Unk}{\Zap{\scriptstyle{?}}}
+
+% So as not to clash with macros defined in paper:
+\newcommand{\Eeval}[4]{{#1} \Rightarrow_{#2} {#3,#4}}
+\newcommand{\Eval}{\Rightarrow}
+\newcommand{\Cons}{{\scriptstyle::}}
+\newcommand{\TrieTypePartial}[2]{{#2} \toFin {#1}}
+% TODO: not using the third argument:
+\newcommand{\TrieType}[3]{\TrieTypePartial{#1}{#2}}
+\newcommand{\Trie}[4]{{#1} : \TrieType{#2}{#3}{#4}}

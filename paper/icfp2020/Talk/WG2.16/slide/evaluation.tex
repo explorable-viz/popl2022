@@ -1,0 +1,17 @@
+\begin{frame}
+\frametitle{Demand-indexed evaluation}
+
+Now evaluation of $e$ of type $A$ takes a demand $\sigma : A \toFin W$:
+
+\[\eval{e}{\sigma}{v}\]
+
+At the top-level we would pick $W = \{\star\}$.
+
+\begin{itemize}
+\item \pause $v$ is just enough information about $e$'s value to satisfy
+  $\sigma$
+\item \pause $v$ \textbf{satisfies} $\sigma$ means $\sigma(v)$ is uniquely defined
+\item \pause $v$ contains a thunk $\textcolor{red}{e}$ for every
+  $\textcolor{red}{x}$ encountered in $\sigma$
+\end{itemize}
+\end{frame}

@@ -1,0 +1,1023 @@
+\subsection{\thmref{gc-eval}}
+\proofContext{gc-pattern-match}
+\begin{proof}
+\small
+\stepcounter{myequation}
+\begin{flalign}
+&
+\rho^\dagger, e^\dagger \eval{} T^\dagger, v^\dagger
+&
+\text{suppose ($\rho^\dagger, e^\dagger, T^\dagger, v^\dagger$)}
+\notag
+\\
+\intertext{\textbf{Part (i)}}
+&
+\rho, e \leq \rho^\dagger, e^\dagger
+&
+\text{suppose ($\rho, e$)}
+\notag
+\\
+\intertext{Subgoal:}
+&
+\rho, e \mathrel{\eval{}\uneval\leq} \rho, e
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[
+      left={\ruleName{$\eval{}$-annot/$\eval{}$-var}},
+      right={$\exThunkVar{x}{\annot{v}{\alpha'}} \in \rho$}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho,
+      \annot{\exVar{x}}{\alpha}
+      \eval{}
+      \trVarTwo{x}{\rho}, \annot{v}{\alpha \wedge \alpha'}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-var}}]
+   {
+      \strut
+   }
+   {
+      \trVarTwo{x}{\rho}, \annot{v}{\alpha \wedge \alpha'}
+      \uneval
+      \envExtend{\annot{\rho}{\bot}}{x}{\annot{v}{\alpha \wedge \alpha'}},
+      \annot{\exVar{x}}{\alpha \wedge \alpha'}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{uneval}}
+\notag
+\\
+&
+\qedLocal
+\envExtend{\annot{\rho}{\bot}}{x}{\annot{v}{\alpha \wedge \alpha'}},
+\annot{\exVar{x}}{\alpha \wedge \alpha'}
+\leq
+\rho,
+\annot{\exVar{x}}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot/$\eval{}$-unit}}]
+   {
+      \strut
+   }
+   {
+      \rho,
+      \annot{\exUnit}{\alpha}
+      \eval{}
+      \sub{\trEmpty}{\rho}, \annot{\exUnit}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-unit}}]
+   {
+      \strut
+   }
+   {
+      \sub{\trEmpty}{\rho}, \annot{\exUnit}{\alpha}
+      \uneval
+      \annot{\rho}{\bot},
+      \annot{\exUnit}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\annot{\rho}{\bot},
+\annot{\exUnit}{\alpha}
+\leq
+\rho,
+\annot{\exUnit}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot/$\eval{}$-inl}}]
+   {
+      \rho, e \eval{} T, u
+   }
+   {
+      \rho,
+      \annot{(\exInl{e})}{\alpha}
+      \eval{}
+      \trEmpty, \annot{(\exInl{\explVal{T}{u}})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+T, u \uneval \rho', e' \leq \rho, e
+&
+\text{IH}
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-inl}}]
+   {
+      T, u \uneval \rho', e'
+   }
+   {
+      \trEmpty, \annot{(\exInl{\explVal{T}{u}})}{\alpha}
+      \uneval
+      \rho',
+      \annot{(\exInl{e'})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{uneval}}
+\notag
+\\
+&
+\qedLocal
+\rho', \annot{(\exInl{e'})}{\alpha} \leq \rho, \annot{(\exInl{e})}{\alpha}
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot/$\eval{}$-inr}}]
+   {
+      \rho, e \eval{} T, u
+   }
+   {
+      \rho,
+      \annot{(\exInr{e})}{\alpha}
+      \eval{}
+      \trEmpty, \annot{(\exInr{\explVal{T}{u}})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+T, u \uneval \rho', e' \leq \rho, e
+&
+\text{IH}
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-inr}}]
+   {
+      T, u \uneval \rho', e'
+   }
+   {
+      \trEmpty, \annot{(\exInr{\explVal{T}{u}})}{\alpha}
+      \uneval
+      \rho',
+      \annot{(\exInr{e'})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{uneval}}
+\notag
+\\
+&
+\qedLocal
+\rho', \annot{(\exInr{e'})}{\alpha} \leq \rho, \annot{(\exInr{e})}{\alpha}
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot/$\eval{}$-pair}}]
+   {
+      \rho, e_1 \eval{} T_1, u_1
+      \\
+      \rho, e_2 \eval{} T_2, u_2
+   }
+   {
+      \rho,
+      \annot{\exPair{e_1}{e_2}}{\alpha}
+      \eval{}
+      \trEmpty, \annot{\exPair{\explVal{T_1}{u_1}}{\explVal{T_2}{u_2}}}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+T_1, u_1 \uneval \rho_1, e_1' \leq \rho, e_1
+&
+\text{IH}
+\notag
+\\
+&
+\indent
+T_2, u_2 \uneval \rho_2, e_2' \leq \rho, e_2
+&
+\text{IH}
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-pair}}]
+   {
+      T_1, u_1 \uneval \rho_1, e_1
+      \\
+      T_2, u_2 \uneval \rho_2, e_2
+   }
+   {
+      \trEmpty, \annot{\exPair{\explVal{T_1}{u_1}}{\explVal{T_2}{u_2}}}{\alpha}
+      \uneval
+      \rho_1 \vee \rho_2,
+      \annot{\exPair{e_1}{e_2}}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{uneval}}
+\notag
+\\
+&
+\qedLocal
+\rho_1 \vee \rho_2, \annot{\exPair{e_1'}{e_2'}}{\alpha}
+\leq
+\rho, \annot{\exPair{e_1}{e_2}}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot/$\eval{}$-fun}}]
+   {
+      \strut
+   }
+   {
+      \rho,
+      \annot{(\exFun{\sigma})}{\alpha}
+      \eval{}
+      \trEmpty, \annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-fun}}]
+   {
+      \strut
+   }
+   {
+      \trEmpty, \annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
+      \uneval
+      \rho,
+      \annot{(\exFun{\sigma})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\rho, \annot{(\exFun{\sigma})}{\alpha} \leq \rho, \annot{(\exFun{\sigma})}{\alpha}
+&
+\text{\defref{uneval}}
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[
+      left={\ruleName{$\eval{}$-annot/$\eval{}$-app}},
+      right={$\envType{\Gamma}{\rho_1 \concat \rho_2}$}]
+   {
+      \rho, e \eval{} T, \annot{\exClosure{\rho_1}{\exFun{\sigma}}}{\alpha'}
+      \\
+      \rho, e' \eval{} T', u
+      \\
+      u, \sigma \lookupR \rho_2, e^\twoPrime
+      \\
+      \rho_1 \concat \rho_2, e^\twoPrime \eval{} U, \annot{v}{\alpha^\twoPrime}
+   }
+   {
+      \rho,
+      \annot{(\exApp{e}{e'})}{\alpha}
+      \eval{}
+      \trApp{(\explVal{T}{\exClosure{\rho_1}{\exFun{\sigma}}})}
+            {(\explVal{T'}{u})}
+            {U},
+      \annot{v}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+U, \annot{v}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+\uneval
+\rho_1' \concat \rho_2', e^\threePrime
+\text{ with }
+\rho_1', \rho_2', e^\threePrime \leq \rho_1, \rho_2, e^\twoPrime
+&
+\text{IH}
+\notag
+\\
+&
+\indent
+\rho_2', e^\threePrime \unlookupR{u, \sigma} u', \sigma' \leq u, \sigma
+&
+\text{
+   \thmref{gc-pattern-match};
+   $\unlookupR{u, \sigma}$ monotone
+}
+\notag
+\\
+&
+\indent
+T', u' \uneval \rho', e_2 \leq \rho, e'
+&
+\text{IH; $\uneval$ monotone}
+\notag
+\\
+&
+\indent
+T, \annot{\exClosure{\rho_1'}{\exFun{\sigma'}}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+\uneval
+\rho^\twoPrime, e_1
+\leq
+\rho, e
+&
+\text{IH; $\uneval$ monotone}
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-app}}]
+   {
+      U, \annot{v}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+      \uneval
+      \rho_1' \concat \rho_2', e^\threePrime
+      \\
+      \rho_2', e^\threePrime \unlookupR{u, \sigma} u', \sigma'
+      \\
+      T', u' \uneval \rho', e_2
+      \\
+      T, \annot{\exClosure{\rho_1'}{\exFun{\sigma'}}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+      \uneval
+      \rho^\twoPrime, e_1
+   }
+   {
+      \trApp{(\explVal{T}{\exClosure{\rho_1}{\exFun{\sigma}}})}
+            {(\explVal{T'}{u})}
+            {U},
+      \annot{v}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+      \uneval
+      \rho' \vee \rho^\twoPrime,
+      \annot{(\exApp{e}{e'})}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\rho' \vee \rho^\twoPrime, \annot{(\exApp{e_1}{e_2})}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+\leq
+\rho, \annot{(\exApp{e}{e'})}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot/$\eval{}$-roll}}]
+   {
+      \rho, e \eval{} T, u
+   }
+   {
+      \rho,
+      \annot{(\exRoll{e})}{\alpha}
+      \eval{}
+      \trEmpty, \annot{(\exRoll{\explVal{T}{u}})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+T, u \uneval \rho', e' \leq \rho, e
+&
+\text{IH}
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-roll}}]
+   {
+      T, u \uneval \rho', e'
+   }
+   {
+      \trEmpty, \annot{(\exRoll{\explVal{T}{u}})}{\alpha}
+      \uneval
+      \rho',
+      \annot{(\exRoll{e'})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{uneval}}
+\notag
+\\
+&
+\qedLocal
+\rho', \annot{(\exRoll{e'})}{\alpha} \leq \rho, \annot{(\exRoll{e})}{\alpha}
+\notag
+\\
+\intertext{\textbf{Part (ii)}}
+&
+T, u \leq T^\dagger, u^\dagger
+&
+\text{suppose ($T, u$)}
+\notag
+\\
+\intertext{Subgoal:}
+&
+T, u \mathrel{\uneval\eval{}\geq} T, u
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-var}}]
+   {
+      \strut
+   }
+   {
+      \trVarTwo{x}{\rho}, \annot{v}{\alpha}
+      \uneval
+      \envExtend{\annot{\rho}{\bot}}{x}{\annot{v}{\alpha}},
+      \annot{\exVar{x}}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[
+      left={\ruleName{$\eval{}$-annot/$\eval{}$-var}},
+      right={$\exThunkVar{x}{\annot{v}{\alpha}} \in \envExtend{\annot{\rho}{\bot}}{x}{\annot{v}{\alpha}}$}
+   ]
+   {
+      \strut
+   }
+   {
+      \envExtend{\annot{\rho}{\bot}}{x}{\annot{v}{\alpha}},
+      \annot{\exVar{x}}{\alpha}
+      \eval{}
+      \trVarTwo{x}{\envExtend{\annot{\rho}{\bot}}{x}{\annot{v}{\alpha}}}, \annot{v}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{eval}}
+\notag
+\\
+&
+\qedLocal
+\trVarTwo{x}{\envExtend{\annot{\rho}{\bot}}{x}{\annot{v}{\alpha}}}
+\leq
+\trVarTwo{x}{\rho}
+&
+\text{$\annot{v}{\alpha} \leq \rho^\dagger x \leq \rho x$}
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-unit}}]
+   {
+      \strut
+   }
+   {
+      \sub{\trEmpty}{\rho}, \annot{\exUnit}{\alpha}
+      \uneval
+      \annot{\rho}{\bot},
+      \annot{\exUnit}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot, $\eval{}$-unit}}]
+   {
+      \strut
+   }
+   {
+      \annot{\rho}{\bot},
+      \annot{\exUnit}{\alpha}
+      \eval{}
+      \sub{\trEmpty}{\annot{\rho}{\bot}}, \annot{\exUnit}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{eval}}
+\notag
+\\
+&
+\qedLocal
+\sub{\trEmpty}{\annot{\rho}{\bot}} \leq \sub{\trEmpty}{\rho}
+&
+\notag
+\\
+&
+\qedLocal
+\annot{\exUnit}{\alpha} \geq \annot{\exUnit}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-inl}}]
+   {
+      T, u \uneval \rho, e
+   }
+   {
+      \trEmpty, \annot{(\exInl{\explVal{T}{u}})}{\alpha}
+      \uneval
+      \rho,
+      \annot{(\exInl{e})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+\rho, e \eval{} T', u' \geq T, u
+&
+\text{IH}
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot, $\eval{}$-inl}}]
+   {
+      \rho, e \eval{} T', u'
+   }
+   {
+      \rho,
+      \annot{(\exInl{e})}{\alpha}
+      \eval{}
+      \trEmpty, \annot{(\exInl{\explVal{T'}{u'}})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{eval}}
+\notag
+\\
+&
+\qedLocal
+\trEmpty \leq \trEmpty
+&
+\notag
+\\
+&
+\qedLocal
+\annot{(\exInl{\explVal{T'}{u'}})}{\alpha} \geq \annot{(\exInl{\explVal{T}{u}})}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-inr}}]
+   {
+      T, u \uneval \rho, e
+   }
+   {
+      \trEmpty, \annot{(\exInr{\explVal{T}{u}})}{\alpha}
+      \uneval
+      \rho,
+      \annot{(\exInr{e})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+\rho, e \eval{} T', u' \geq T, u
+&
+\text{IH}
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot, $\eval{}$-inr}}]
+   {
+      \rho, e \eval{} T', u'
+   }
+   {
+      \rho,
+      \annot{(\exInr{e})}{\alpha}
+      \eval{}
+      \trEmpty, \annot{(\exInr{\explVal{T'}{u'}})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{eval}}
+\notag
+\\
+&
+\qedLocal
+\trEmpty \leq \trEmpty
+&
+\notag
+\\
+&
+\qedLocal
+\annot{(\exInr{\explVal{T'}{u'}})}{\alpha} \geq \annot{(\exInr{\explVal{T}{u}})}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-pair}}]
+   {
+      T_1, u_1 \uneval \rho_1, e_1
+      \\
+      T_2, u_2 \uneval \rho_2, e_2
+   }
+   {
+      \trEmpty, \annot{\exPair{\explVal{T_1}{u_1}}{\explVal{T_2}{u_2}}}{\alpha}
+      \uneval
+      \rho_1 \vee \rho_2,
+      \annot{\exPair{e_1}{e_2}}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+\rho_1, e_1 \eval{} T_1', u_1' \geq T_1, u_1
+&
+\text{IH}
+\notag
+\\
+&
+\indent
+\rho_2, e_2 \eval{} T_2', u_2' \geq T_2, u_2
+&
+\text{IH}
+\notag
+\\
+&
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot, $\eval{}$-pair}}]
+   {
+      \rho, e_1 \eval{} T_1', u_1'
+      \\
+      \rho, e_2 \eval{} T_2', u_2'
+   }
+   {
+      \rho,
+      \annot{\exPair{e_1}{e_2}}{\alpha}
+      \eval{}
+      \trEmpty, \annot{\exPair{\explVal{T_1'}{u_1'}}{\explVal{T_2'}{u_2'}}}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{eval}}
+\notag
+\\
+&
+\qedLocal
+\trEmpty \leq \trEmpty
+&
+\notag
+\\
+&
+\qedLocal
+\annot{(\exPair{\explVal{T_1'}{u_1'}}{\explVal{T_2'}{u_2'}})}{\alpha}
+\geq
+\annot{(\exPair{\explVal{T_1}{u_1}}{\explVal{T_2}{u_2}})}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-fun}}]
+   {
+      \strut
+   }
+   {
+      \trEmpty, \annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
+      \uneval
+      \rho,
+      \annot{(\exFun{\sigma})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot, $\eval{}$-fun}}]
+   {
+      \strut
+   }
+   {
+      \rho,
+      \annot{(\exFun{\sigma})}{\alpha}
+      \eval{}
+      \trEmpty, \annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{eval}}
+\notag
+\\
+&
+\qedLocal
+\trEmpty \leq \trEmpty
+&
+\notag
+\\
+&
+\qedLocal
+\annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
+\geq
+\annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-app}}]
+   {
+      U, \annot{v}{\alpha} \uneval \rho_1' \concat \rho_2, e^\twoPrime
+      \\
+      \rho_2, e^\twoPrime \unlookupR{u, \sigma} u', \sigma'
+      \\
+      T', u' \uneval \rho, e'
+      \\
+      T, \annot{\exClosure{\rho_1'}{\exFun{\sigma'}}}{\alpha} \uneval \rho', e
+   }
+   {
+      \trApp{(\explVal{T}{\exClosure{\rho_1}{\exFun{\sigma}}})}
+            {(\explVal{T'}{u})}
+            {U},
+      \annot{v}{\alpha}
+      \uneval
+      \rho \vee \rho',
+      \annot{(\exApp{e}{e'})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+\rho \vee \rho', e
+\eval{}
+T_0, \annot{\exClosure{\rho_1^\twoPrime}{\exFun{\sigma^\twoPrime}}}{\alpha_0}
+\geq
+T, \annot{\exClosure{\rho_1'}{\exFun{\sigma'}}}{\alpha}
+&
+\text{IH; $\eval{}$ monotone}
+\notag
+\\
+&
+\indent
+\rho \vee \rho', e' \eval{} T_1, u_1 \geq T', u'
+&
+\text{IH; $\eval{}$ monotone}
+\notag
+\\
+&
+\indent
+u_1, \sigma^\twoPrime \lookupR \rho_2', e_0 \geq \rho_2, e^\twoPrime
+&
+\text{\thmref{gc-pattern-match}; $\lookupR$ monotone}
+\notag
+\\
+&
+\indent
+\rho_1^\twoPrime \concat \rho_2', e_0
+\eval{}
+U', \annot{v'}{\alpha_1}
+\geq
+U, \annot{v}{\alpha}
+&
+\text{IH; $\eval{}$ monotone}
+\notag
+\\
+&
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[
+      left={\ruleName{$\eval{}$-annot, $\eval{}$-app}},
+      right={$\envType{\Gamma}{\rho_1^\twoPrime \concat \rho_2'}$}]
+   {
+      \rho \vee \rho', e
+      \eval{}
+      T_0, \annot{\exClosure{\rho_1^\twoPrime}{\exFun{\sigma^\twoPrime}}}{\alpha_0}
+      \\
+      \rho \vee \rho', e' \eval{} T_1, u_1
+      \\
+      u_1, \sigma^\twoPrime \lookupR \rho_2', e_0
+      \\
+      \rho_1^\twoPrime \concat \rho_2', e_0 \eval{} U', \annot{v'}{\alpha_1}
+   }
+   {
+      \rho \vee \rho',
+      \annot{(\exApp{e}{e'})}{\alpha}
+      \eval{}
+      \trApp{(\explVal{T_0}{\exClosure{\rho_1^\twoPrime}{\exFun{\sigma^\twoPrime}}})}
+            {(\explVal{T_1}{u_1})}
+            {U'},
+      \annot{v'}{\alpha \wedge \alpha_0 \wedge \alpha_1}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{eval}}
+\notag
+\\
+&
+\qedLocal
+\annot{v'}{\alpha \wedge \alpha_0 \wedge \alpha_1} \geq \annot{v}{\alpha}
+&
+\notag
+\\
+&
+\qedLocal
+\trApp{(\explVal{T_0}{\exClosure{\rho_1^\twoPrime}{\exFun{\sigma^\twoPrime}}})}
+      {(\explVal{T_1}{u_1})}
+      {U'}
+\leq
+\trApp{(\explVal{T}{\exClosure{\rho_1}{\exFun{\sigma}}})}
+      {(\explVal{T'}{u})}
+      {U}
+&
+\text{$
+   \exClosure{\rho_1^\twoPrime}{\exFun{\sigma^\twoPrime}}
+   \leq
+   \exClosure{\rho_1^\dagger}{\exFun{\sigma^\dagger}}
+   \leq
+   \exClosure{\rho_1}{\exFun{\sigma}}
+$}
+&
+\notag
+\\
+&&
+\text{$
+   u_1 \leq u^\dagger \leq u
+$}
+&
+\notag
+\\
+&
+\caseDerivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\uneval$-roll}}]
+   {
+      T, u \uneval \rho, e
+   }
+   {
+      \trEmpty, \annot{(\exRoll{\explVal{T}{u}})}{\alpha}
+      \uneval
+      \rho,
+      \annot{(\exRoll{e})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\notag
+\\
+&
+\indent
+\rho, e \eval{} T', u' \geq T, u
+&
+\text{IH}
+\notag
+\\
+&
+\qedLocal
+\derivation{\derivationWidth}{
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\eval{}$-annot, $\eval{}$-roll}}]
+   {
+      \rho, e \eval{} T', u'
+   }
+   {
+      \rho,
+      \annot{(\exRoll{e})}{\alpha}
+      \eval{}
+      \trEmpty, \annot{(\exRoll{\explVal{T'}{u'}})}{\alpha}
+   }
+\end{smathpar}
+}
+&
+\text{\defref{eval}}
+\notag
+\\
+&
+\qedLocal
+\trEmpty \leq \trEmpty
+&
+\notag
+\\
+&
+\qedLocal
+\annot{(\exRoll{\explVal{T'}{u'}})}{\alpha} \geq \annot{(\exRoll{\explVal{T}{u}})}{\alpha}
+&
+\notag
+\end{flalign}
+\end{proof}

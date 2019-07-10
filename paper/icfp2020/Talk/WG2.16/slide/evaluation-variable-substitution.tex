@@ -1,0 +1,31 @@
+\begin{frame}
+\frametitle{Demand-indexed evaluation}
+
+Suppose
+\begin{align*}
+\sigma: \trieTypePartial{\{\star\}}{[\tyNat \times \tyNat]}
+&\eqdef
+\begin{cases}
+[] \mapsto \textcolor{gray}{\star} \\
+{\Cons} \mapsto \Zap{\ttt{x}} \mapsto \Zap{\ttt{z}} \mapsto
+\begin{cases}
+[] \mapsto \textcolor{gray}{\star} \\
+\ttt{$\Cons$ $\mapsto$ \Zap{x'} $\mapsto$ \Zap{z'} $\mapsto$ \Zap{xs} $\mapsto$ \textcolor{gray}{$\star$}}
+\end{cases}
+\end{cases}
+\\
+\oplus
+&\eqdef
+\lambda \ttt{ab.(a + 1, b + 1)}
+\end{align*}
+\pause
+Then
+\begin{align*}
+\ttt{zipW $\oplus$ (10 $\Cons$ 12 $\Cons$ []) (3 $\Cons$ 6 $\Cons$ [])} \\
+\Eval_{\sigma} \ttt{(\Zap{10 + 1}, \Zap{3 + 1}) $\Cons$ (\Zap{12 + 1}, \Zap{6 + 1}) $\Cons$ \Zap{zipW $\oplus$ [] []}}
+\end{align*}
+\pause with the following variable bindings:
+\[
+\{\ttt{x} \mapsto \Zap{\ttt{10 + 1}}, \ttt{z} \mapsto \Zap{\ttt{3 + 1}}, \ttt{x'} \mapsto \Zap{\ttt{12 + 1}}, \ttt{z'} \mapsto \Zap{\ttt{6 + 1}}, \ttt{xs} \mapsto \Zap{\ttt{zipW $\oplus$ [] []}}\}
+\]
+\end{frame}

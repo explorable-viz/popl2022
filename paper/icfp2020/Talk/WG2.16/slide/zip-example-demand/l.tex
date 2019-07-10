@@ -1,0 +1,50 @@
+\begin{frame}[fragile]
+\input{slide/zip-example-demand/header}
+\vskip0pt plus 1filll
+
+\begin{smathpar}
+\inferrule*
+{
+  \inferrule*
+  {
+    \inferrule*
+    {
+        \inferrule*
+        {
+          \texttt{10 + 1 $\Eval$ 11}
+          \\
+          \texttt{{\unk} $\Eval$ \unk}
+        }
+        {
+          \texttt{(10 + 1, \unk) $\Eval$ (11, \unk)}
+        }
+    }
+    {
+      \texttt{10 $\oplus$ {\unk} $\Eval$ (11, \unk)}
+    }
+    \\
+    \inferrule*
+    {
+      \inferrule*
+      {
+        \texttt{{\unk} $\Eval$ \unk}
+        \\
+        \texttt{zipW {\unk} [] {\unk} $\Eval$ []}
+      }
+      {
+         \texttt{{\unk} {$\Cons$} (zipW {\unk} [] {\unk}) $\Eval$ {\unk} {$\Cons$} []}
+      }
+    }
+    {
+      \texttt{zipW {\unk} ({\unk} {$\Cons$} []) ({\unk} {$\Cons$} \unk) $\Eval$ {\unk} {$\Cons$} []}
+    }
+  }
+  {
+    \texttt{(10 $\oplus$ {\unk}) {$\Cons$} (zipW {\unk} ({\unk} {$\Cons$} []) ({\unk} {$\Cons$} \unk)) $\Eval$ (11, \unk) {$\Cons$} {\unk} {$\Cons$} []}
+  }
+}
+{
+ \texttt{zipW $\oplus$ (10 {$\Cons$} {\unk} {$\Cons$} []) ({\unk} {$\Cons$} {\unk} {$\Cons$} \unk) $\Eval$ (11, \unk) {$\Cons$} {\unk} {$\Cons$} []}
+}
+\end{smathpar}
+\end{frame}

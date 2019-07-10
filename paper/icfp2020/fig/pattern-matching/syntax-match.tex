@@ -1,0 +1,39 @@
+\begin{figure}
+\begin{syntaxfig}
+\mbox{Match}
+&
+\xi
+&
+::=
+&
+\matchVar{x}{\matchHole{}}
+&
+\text{variable}
+\\
+&&&
+\matchUnit{\matchHole{}}
+&
+\text{unit}
+\\
+&&&
+\matchSumL{\xi}{\sigma}
+&
+\text{inject left}
+\\
+&&&
+\matchSumR{\sigma}{\xi}
+&
+\text{inject right}
+\\
+&&&
+\matchProd{\xi}{\xi'}
+&
+\text{product}
+\\
+&&&
+\matchRoll{\xi}
+&
+\text{roll}
+\end{syntaxfig}
+\caption{Syntax of matches}
+\end{figure}

@@ -1,0 +1,162 @@
+\begin{figure}
+\begin{ruleblock}{\rho, \indexed{e} \eval{\sigma} \explVal{\indexed{T}}{\indexed{u}}, \rho', \kappa}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \rho, \indexed{e}
+      \eval{\trieVar{x}{\kappa}}
+      \explVal{\indexed{e}}{\exBot},
+      \envExtend{\envEmpty}{x}{\exClosure{\rho}{\indexed{e}}},
+      \kappa
+   }
+%
+\and
+%
+   \inferrule*[right={
+      $\exThunkVar{x}{\exClosure{\rho'}{\indexed{e}}} \in \rho \wedge \envType{\Gamma}{\rho'}$
+   }]
+   {
+      \rho', \indexed{e} \eval{\tau} \explVal{\indexed{T}}{\indexed{v}}, \rho^\twoPrime, \kappa
+   }
+   {
+      \rho,
+      \raw{\exVar{x}}{\idx{i}}
+      \eval{\tau}
+      \explVal{\raw{(\trVar{x}{\Gamma}{\indexed{T}})}{\idx{i}}}{\indexed{v}},
+      \rho^\twoPrime,
+      \kappa
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \rho, \raw{\exUnit}{\idx{i}}
+      \eval{\trieUnit{\kappa}}
+      \explVal{\raw{\trEmpty}{\idx{i}}}{\raw{\exUnit}{\idx{i}}},
+      \envEmpty,
+      \kappa
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \rho, \indexed{e}_1 \eval{\sigma} \explVal{\indexed{T}_1}{\indexed{u}_1}, \rho_1, \sigma'
+      \\
+      \rho, \indexed{e}_2 \eval{\sigma'} \explVal{\indexed{T}_2}{\indexed{u}_2}, \rho_2, \kappa
+   }
+   {
+      \rho,
+      \raw{\exPair{\indexed{e}_1}{\indexed{e}_2}}{\idx{i}}
+      \eval{\trieProd{\sigma}}
+      \explVal
+         {\raw{\trEmpty}{\idx{i}}}
+         {\raw{\exPair{\explVal{\indexed{T}_1}{\indexed{u}_1}}{\explVal{\indexed{T}_2}{\indexed{u}_2}}}{\idx{i}}},
+      \rho_1 \concat \rho_2,
+      \kappa
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \rho, \indexed{e} \eval{\sigma_1} \explVal{\indexed{T}}{\indexed{u}}, \rho', \kappa
+   }
+   {
+      \rho, \raw{(\exInl{\indexed{e}})}{\idx{i}}
+      \eval{\trieSum{\sigma_1}{\sigma_2}}
+      \explVal
+         {\raw{\trEmpty}{\idx{i}}}
+         {\raw{(\exInl{\explVal{\indexed{T}}{\indexed{u}}})}{\idx{i}}},
+      \rho',
+      \kappa
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \rho, \indexed{e} \eval{\sigma_2} \explVal{\indexed{T}}{\indexed{u}}, \rho', \kappa
+   }
+   {
+      \rho, \raw{(\exInr{\indexed{e}})}{\idx{i}}
+      \eval{\trieSum{\sigma_1}{\sigma_2}}
+      \explVal
+         {\raw{\trEmpty}{\idx{i}}}
+         {\raw{(\exInr{\explVal{\indexed{T}}{\indexed{u}}})}{\idx{i}}},
+      \rho',
+      \kappa
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \rho,
+      \raw{(\exFun{\sigma})}{\idx{i}}
+      \eval{\trieFun{\kappa}}
+      \explVal
+         {\raw{\trEmpty}{\idx{i}}}
+         {\raw{\exClosure{\rho}{\exFun{\sigma}}}{\idx{i}}},
+      \envEmpty,
+      \kappa
+   }
+%
+\and
+%
+   \inferrule*[right={$\envType{\Gamma}{\rho_1 \concat \rho_2}$}]
+   {
+      \rho, \indexed{e} \eval{\trieFun{\metaunit}}
+      \explVal{\indexed{T}}{\raw{\exClosure{\rho_1}{\exFun{\sigma}}}{\idx{j}}}, \envEmpty, \metaunit
+      \\
+      \rho, \indexed{e}' \eval{\sigma} \explVal{\indexed{T}'}{\indexed{u}}, \rho_2, \indexed{e}^\twoPrime
+      \\
+      \rho_1 \concat \rho_2,
+      \shift{\rho_2}{\indexed{e}^\twoPrime}
+      \eval{\tau}
+      \explVal{\indexed{T}^\twoPrime}{\indexed{v}}, \rho', \kappa
+   }
+   {
+      \rho,
+      \raw{(\exApp{\indexed{e}}{\indexed{e}'})}{\idx{i}}
+      \eval{\tau}
+      \explVal
+         {\raw
+            {\smash{(\trApp{(\explVal{\indexed{T}}{\raw{\exClosure{\rho_1}{\exFun{\sigma}}}{\idx{j}}})}
+                           {(\explVal{\indexed{T'}}{\indexed{u}})}
+                           {\indexed{T^\twoPrime}})}}
+            {\idx{i}}}
+         {\indexed{v}},
+      \rho',
+      \kappa
+   }
+%
+\and
+%
+   \inferrule*
+   {
+      \rho, \indexed{e} \eval{\sigma} \explVal{\indexed{T}}{\indexed{u}}, \rho', \kappa
+   }
+   {
+      \rho,
+      \raw{(\exRoll{\indexed{e}})}{\idx{i}}
+      \eval{\trieRoll{\sigma}}
+      \explVal
+         {\raw{\trEmpty}{\idx{i}}}
+         {\raw{(\exRoll{\explVal{\indexed{T}}{\indexed{u}}})}{\idx{i}}},
+      \rho',
+      \kappa
+   }
+\end{ruleblock}
+\caption{Persistent self-explaining demand-indexed evaluation}
+\label{fig:incremental:eval}
+\end{figure}

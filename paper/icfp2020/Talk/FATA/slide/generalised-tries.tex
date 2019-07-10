@@ -1,0 +1,28 @@
+\begin{frame}
+\frametitle{Generalised tries}
+
+Generalise tries over strings to tries over an arbitrary signature.
+\begin{align*}
+1 \toFin X
+&\quad\cong\quad
+X + 1
+\\
+(A + B) \toFin X
+&\quad\cong\quad
+(A \toFin X) \times (B \toFin X)
+\\
+(A \times B) \toFin X
+&\quad\cong\quad
+A \toFin B \toFin X
+\\
+\onslide<2>{
+\textcolor{red}{(\tyRec{\alpha}{A}) \toFin X}
+&\quad\cong\quad
+\textcolor{red}{\subst{A}{\tyRec{\alpha}{A}}{\alpha} \toFin X}
+}
+\end{align*}
+Polymorphic in codomain $X$.
+
+\vspace{10pt}
+\emph{Generalizing Generalized Tries}, Ralf Hinze (1998)
+\end{frame}

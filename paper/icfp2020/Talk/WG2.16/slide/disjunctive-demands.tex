@@ -1,0 +1,28 @@
+\begin{frame}[fragile]
+\frametitle{Disjunctive demands}
+
+So here the notion of ``demand'' is \textbf{partial value} (value with \unk's)
+\begin{itemize}
+\item \pause $\ttt{(\unk, \unk) $\Cons$ (\unk, \unk) $\Cons$ {\unk}}$
+  means ``give me the first two pairs''
+\item \pause works when we know the \emph{shape} of the output
+\end{itemize}
+
+\vspace{10pt}
+\pause \emph{A priori} we only know the \textbf{type} of the output.
+
+\pause
+\begin{itemize}
+\item for products the type determines the shape, but not for sums
+\item \pause can we express ``give me \textbf{at most} 2 elements of the output''?
+\end{itemize}
+\pause
+\[
+\text{\emph{one of}\quad}
+\begin{cases}
+\ttt{[]} \\
+\ttt{($\Unk$, $\Unk$) $\Cons$ []} \\
+\ttt{($\Unk$, $\Unk$) $\Cons$ ($\Unk$, $\Unk$) $\Cons$ $\Unk$}
+\end{cases}
+\]
+\end{frame}

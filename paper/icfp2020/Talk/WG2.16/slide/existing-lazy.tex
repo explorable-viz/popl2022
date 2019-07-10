@@ -1,0 +1,30 @@
+\begin{frame}[t,fragile]
+\frametitle{Lazy languages?}
+\only<1>{
+We want something like:
+\[
+\text{input} \quad\xRightarrow{\text{\quad work\quad}}\quad \text{output}
+\]
+}
+\only<2->{
+We want something like:
+\[
+\text{\highlight{more} input} \quad\xRightarrow{\text{\highlight{more} work}}\quad \text{\highlight{more} output}
+\]
+}
+
+\only<3->{
+In a lazy language, a list computation produces either $[]$ or a value
+of the form $e\;{\Cons}\;es$ where $e$ and $es$ are unevaluated expressions.
+
+\vspace{10pt} Obtaining ``more output'' means explicitly picking an
+unevaluated subterm and evaluating it.
+}
+
+\only<4->{
+\vspace{5pt}
+\begin{itemize}
+\item building this into an application requires ad hoc logic
+\end{itemize}
+}
+\end{frame}

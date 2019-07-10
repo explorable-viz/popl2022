@@ -1,0 +1,37 @@
+\begin{figure}
+{\small
+\begin{align*}
+   \fmapTwo{f}{g}{\matchedInj{\sigma}}
+   &=
+   \matchedInj{\fmap{g}{\sigma}}
+   \\
+   \fmapTwo{f}{g}{(\matchedVar{x}{\kappa})}
+   &=
+   \matchedVar{x}{f\kappa}
+   \\
+   \fmapTwo{f}{g}{(\matchedUnit{\kappa})}
+   &=
+   \matchedUnit{f\kappa}
+   \\
+   \fmapTwo{f}{g}{\matchedSumL{\explVal{T}{\xi}}{\sigma}}
+   &=
+   \matchedSumL{\explVal{T}{\fmapTwo{f}{g}{\xi}}}{\fmap{g}{\sigma}}
+   \\
+   \fmapTwo{f}{g}{\matchedSumR{\sigma}{\explVal{T}{\xi}}}
+   &=
+   \matchedSumR{\fmap{g}{\sigma}}{\explVal{T}{\fmapTwo{f}{g}{\xi}}}
+   \\
+   \fmapTwo{f}{g}{\matchedProd{\explVal{T}{\xi}}}
+   &=
+   \matchedProd{\explVal{T}{\fmapTwo{(\fmapTwoPartial{f}{g})}{(\fmapTwoPartial{g}{g})}{\xi}}}
+   \\
+   \fmapTwo{f}{g}{(\matchedRoll{\explVal{T}{\xi}})}
+   &=
+   \matchedRoll{\explVal{T}{\fmapTwo{f}{g}{\xi}}}
+   \\[2mm]
+   \fmapTwo{f}{g}{(\explVal{T}{\xi})}
+   &=
+   \explVal{T}{\fmapTwo{f}{g}{\xi}}
+\end{align*}}
+\caption{Mapping families of functions $f_{\Gamma}, g_{\Gamma}: K_{\Gamma} \to K'_{\Gamma}$ to an (explained) match}
+\end{figure}

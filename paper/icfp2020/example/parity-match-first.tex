@@ -1,0 +1,10 @@
+\begin{lstlisting}
+fun parity : nat $\times$ nat $\to$ bool {
+   (zero, zero) $\to$ true;
+   (zero, suc zero) $\to$ false;
+   (zero, suc (suc n)) $\to$ parity zero n;
+   (suc zero, zero) $\to$ false;
+   (suc (suc n), zero) $\to$ parity n zero;
+   (suc n, suc m) $\to$ parity n m
+}
+\end{lstlisting}

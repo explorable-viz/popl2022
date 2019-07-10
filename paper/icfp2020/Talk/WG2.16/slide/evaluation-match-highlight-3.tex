@@ -1,0 +1,34 @@
+\begin{frame}[t]
+\frametitle{Demand-indexed evaluation}
+\vspace{10pt}
+Single elimination form, for any type $A$:
+\begin{mathpar}
+\inferrule*
+{
+   \Gamma \vdash e : A
+   \\
+   \Gamma \vdash \Trie{\sigma}{\exprPartial{B}}{A}
+}
+{
+   \Gamma \vdash \exMatch{e}{\sigma} : B
+}
+\end{mathpar}
+Evaluation rule, for a demand $\Highlight{\Trie{\tau}{W}{B}}$:
+\begin{mathpar}
+\inferrule*
+{
+  \eval{e}{\sigma}{u}
+  \\
+  \eval{\substApp{\substFor{u}}{\sigma(u)}}{\textcolor{blue}{\tau}}{v}
+}
+{
+  \eval{\exMatch{e}{\sigma}}{\textcolor{blue}{\tau}}{v}
+}
+\end{mathpar}
+\pause $\substFor{u}$ is the set of bindings associated with $u$.
+
+\begin{itemize}
+\item \pause easy to compute $\substFor{u}$ and $\sigma(u)$ as additional outputs of $\Eval_\sigma$
+\item \pause \textbf{call-by-need} really required here
+\end{itemize}
+\end{frame}

@@ -1,0 +1,26 @@
+% \everymath{\displaystyle}
+
+\allowdisplaybreaks
+
+% Not sure if this does anything with acmart.cls.
+\addtolength{\jot}{-0.25em}
+\def\arraystretch{1.1}
+
+% http://tex.stackexchange.com/questions/47400
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{2pt}%
+  \setlength{\belowdisplayskip}{2pt}%
+  \setlength{\abovedisplayshortskip}{2pt}%
+  \setlength{\belowdisplayshortskip}{2pt}}
+\appto{\normalsize}{\zerodisplayskips}
+\appto{\small}{\zerodisplayskips}
+\appto{\footnotesize}{\zerodisplayskips}
+
+\raggedbottom % saner vertical paragraph justification
+
+\hypersetup{ % not using recent enough version of hyperref for [hidelinks] option
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+
+% \setenumerate[0]{label=(\roman*)}

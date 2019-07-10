@@ -1,0 +1,89 @@
+\begin{figure}
+\fbox{$\Gamma;\vec{p} \tycheck \sigma \vdash \vec{e} \tycheck \tau$}
+\begin{smathpar}
+  \inferrule*
+  {
+    \Gamma;\cxtExtend{\cxtEmpty}{p_1}{\sigma}
+    \vdash e_1 \tycheck \tau
+    \quad \ldots \quad
+    \Gamma;\cxtExtend{\cxtEmpty}{p_n}{\sigma}
+    \vdash e_n \tycheck \tau
+  }
+  {
+    \Gamma;\vec{p} \tycheck \sigma
+    \vdash \vec{e} \tycheck \tau
+  }
+\end{smathpar}
+\\
+\fbox{$\Gamma;\Delta \vdash e \tycheck \tau$}
+\begin{smathpar}
+  \inferrule*
+  {
+    \Gamma \vdash e \tycheck \tau
+  }
+  {
+    \Gamma; \cxtEmpty \vdash e \tycheck \tau
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \cxtExtend{\Gamma}{x}{\sigma}; \Delta
+    \vdash e \tycheck \tau
+  }
+  {
+    \Gamma; \cxtExtend{\Delta}{x}{\sigma}
+    \vdash e \tycheck \tau
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \Gamma;\Delta' \vdash e \tycheck \tau
+  }
+  {
+    \Gamma; \cxtExtend{\Delta}{\exUnit}{\tyUnit}
+    \vdash e \tycheck \tau
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \Gamma;\cxtExtend{\Delta}{p}{\tau_1}
+    \vdash e \tycheck \tau
+  }
+  {
+    \Gamma;\cxtExtend{\Delta}{\exInl{p}}{\tySum{\tau_1}{\tau_2}}
+    \vdash e \tycheck \tau
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \Gamma;\cxtExtend{\cxtExtend{\Delta}{p_1}{\tau_1}}{p_2}{\tau_2}
+    \vdash e \tycheck \tau
+  }
+  {
+    \Gamma;\cxtExtend{\Delta}{\exPair{p_1}{p_2}}{\tyProd{\tau_1}{\tau_2}}
+    \vdash e \tycheck \tau
+  }
+%
+\and
+%
+  \inferrule*
+  {
+    \Gamma; \cxtExtend{\Delta}{p}{\subst{\tyRec{\alpha}{\sigma}}{\alpha}{\sigma}}
+    \vdash e \tycheck \tau
+  }
+  {
+    \Gamma;\cxtExtend{\Delta}{\exRoll{p}}{\tyRec{\alpha}{\sigma}}
+    \vdash e \tycheck \tau
+  }
+\end{smathpar}
+\caption{Pattern typing}
+\label{fig:typing:patterns}
+\end{figure}

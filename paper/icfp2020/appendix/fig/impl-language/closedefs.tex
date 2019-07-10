@@ -1,0 +1,80 @@
+\begin{figure}
+\flushleft \shadebox{$\rho, \vec{d} \closeDefs \rho, \vec{z}$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \rho, \seqEmpty \closeDefs \envEmpty, \seqEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, d \closeDefs \rho_1, z
+   \\
+   \rho \concat \rho_1, \vec{d} \closeDefs \rho_2, \vec{z}
+}
+{
+   \rho, d \concat \vec{d}
+   \closeDefs
+   \rho_1 \concat \rho_2, z \concat \vec{z}
+}
+\end{smathpar}
+\flushleft \shadebox{$\rho, d \closeDefs \rho, z$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \rho, e \eval{} \explVal{T}{u}
+   }
+   {
+      \rho, \exLetDef{x}{e}
+      \closeDefs
+      \envExtend{\envEmpty}{x}{u}, \trLetDef{x}{\explVal{T}{u}}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \rho, \exLetrecDef{\delta}
+      \closeDefs
+      \set{
+         f \mapsto \annot{\exClosureNew{\rho}{\delta}{\exFun{\sigma}}}{\alpha}
+         \mid
+         f \mapsto \annot{(\exFun{\sigma})}{\alpha} \in \delta
+      },
+      \trLetrecDef{\delta}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \rho, \exPrimDef{x}
+      \closeDefs
+      \envExtend{\envEmpty}{x}{\phi}, \trPrimDef{x}
+   }
+\end{smathpar}
+\flushleft \shadebox{$\rho, d \uncloseDefs \rho, z$}
+   \begin{salign}
+      \set{
+         \annot{\exClosureNew{\rho_f}{\delta_f}{\exFun{\sigma_f}}}{\alpha_f}
+      }_{f \in F}
+      &\uncloseDefs
+      \bigvee_{f \in F}\rho_f,
+      \exLetrecDef{
+         \set{f \mapsto \annot{(\exFun{\sigma_f})}{\alpha_f} \mid f \in F} \vee \bigvee_{f \in F}\delta_f
+      }
+   \end{salign}
+\caption{Bindings for a sequence of definitions}
+\label{fig:impl-language:closedefs}
+\end{figure}

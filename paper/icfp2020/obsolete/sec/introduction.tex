@@ -1,0 +1,92 @@
+\section{Introduction}
+
+The notion of how much output we need from a computation $X$ -- what we
+will call the \emph{demand} active on $X$ -- is inherently time-varying
+and compositional. For example a user may want more or less from $X$
+over time, which they might express by expanding or collapsing UI
+widgets. More generally, there may be another computation $Y$ consuming
+the output of $X$, and the demand active on $Y$ it itself varying over
+time. Intuitively at any rate, because the demand on $Y$ is varying, it
+seems reasonable that the demand that $Y$ places on $X$ should vary in
+the same direction.
+
+Put like this, the observation that demand is time-varying and
+compositional is banal and unsurprising. Building applications that
+respond easily to varying demand, on the other hand, requires some
+effort. One might first turn to lazy functional languages as a suitable
+implementation choice for such demand-sensitive applications. However,
+in such languages the notion of demand, at least at the top level, is
+fixed. While sub-computations are demanded to varying degrees --
+depending on the extent to which they are consumed in order to produce
+the result -- the result itself is usually forced to a depth of a single
+constructor. In other words the ``terminal'' terms (normal forms) have
+the following fixed structure:
+\[v ::= \exUnit \mid \exPair{e_1}{e_2} \mid \exInl{e} \mid \exInr{e} \mid \exLambda{x}{e} \]
+where $e$ is a (closed) unevaluated expression. If a user subsequently
+wants more output, they must explicitly pick one of the unevaluated
+sub-expressions and evaluate it. If it is a client system that wants
+additional output, then this possibility must have been explicitly
+catered for by the programmer at the interface between the two systems.
+
+Our goal here is a runtime scheme for automatically and efficiently
+propagating changes in demand into an active computation. This only
+really makes sense if we no longer regard execution as a ``single-shot''
+batch-mode activity that yields a \emph{value}, but rather as an ongoing
+dialogue between producer and consumer, where the consumer requests more
+output and the producer responds by computing more output. What we
+propose here is therefore related to forms of incremental computation,
+such as self-adjusting computation \cite{acar05}. However the problem we
+consider here is simpler, namely incremental processing of changes in
+demand.
+
+An active demand of type $A$ is modelled as a \emph{trie}
+\cite{hinze00} which, for any value of type $A$, specifies the portion
+of that value which would be consumed by the client system. Demands
+are partially ordered, giving rise to the notion of a
+\emph{differential} demand, a pair of demands $(\sigma, \sigma')$
+where $\sigma$ is below $\sigma'$. Differential demands model changes
+in neededness, and we define an incremental operational semantics
+which interprets an increase in demand on the output as a
+corresponding increase in the demand on the program, computed by
+precisely the additional steps required to compute the extra output.
+
+For compositionality, we extend the standard notion of trie with support
+for variable binding. This permits both \ttt{match}...\ttt{as}
+expressions and functions defined by pattern-matching to be represented
+as tries from (partial) values to expressions, capturing the demand on
+the scrutinee or argument implied by the patterns. In the operational
+semantics each step in the computation is indexed by the demand active
+at that step.
+
+\subsection{Examples}
+
+Languages with pattern-matching typically employ a \emph{match-first}
+rule, meaning that the first clause with a pattern which matches is
+chosen. Match-first permits the following definition of
+$\ttt{parity}$, adapted from \cite{cockx14}, which tests for equality
+modulo 2:
+
+\input{example/parity-match-first}
+
+In order to explain the semantics of patterns in terms of eliminators,
+the final $\ttt{(suc n, suc m)}$ clause is conceptually elaborated
+into the following two clauses:
+
+\begin{lstlisting}
+   (suc zero, suc m) $\to$ parity zero m
+   (suc (suc n), suc m) $\to$ parity (suc n) m
+\end{lstlisting}
+
+\noindent For simplicity, we assume here that patterns are already in
+a \emph{sequential} form, meaning that there is no subsumption of one
+clause by another (where a variable subsumes any constructor). In the
+definition above the pattern $\ttt{suc n}$ subsumes $\ttt{suc zero}$
+and $\ttt{suc (suc n)}$, and so the clauses are ill-formed. But by
+replacing the $\ttt{(suc n, suc m)}$ clause by the two clauses above
+and then simplifying to unify the two $\ttt{suc (suc n)}$ cases, we
+can write $\ttt{parity}$ as follows:
+
+\input{example/parity}
+
+\noindent In the absence of subsumption, every clause is reachable,
+regardless of the order in which the patterns are tested for matching.

@@ -1,0 +1,59 @@
+\section{Core calculus}
+
+\subsection{Syntax}
+
+\figref{demand-indexed:syntax} gives the syntax of types, contexts, tries, and
+terms. Types are conventional sums of products with recursion. Terms are
+parameterised over a lattice $\mathcal{A} = \langle \mathcal{A}, \top, \bot,
+\wedge, \vee\rangle$; we write $\leq$ for the partial order of $\mathcal{A}$.
+The lattice $\mathcal{A}$ extends to the set $\Ann{e}$ of all possible
+annotations of the (unannotated) term $e$ by defining $\top_e$, $\bot_e$,
+$\wedge_e$ and $\vee_e$ to apply the corresponding operation of $\mathcal{A}$ at
+every subterm of $e$. For example $\annot{(\exInl{e'})}{\alpha}
+\wedge_{\exInl{e}} \annot{(\exInl{e^\twoPrime})}{\alpha'}$, where $e, e' \in
+\Ann{e}$, is defined recursively as $\annot{(\exInl{(e' \wedge_e
+e^\twoPrime)})}{\alpha \wedge \alpha'}$. The subscripts on the lattice
+operations for $\Ann{e}$, shown here for clarity, are usually omitted.
+
+\input{fig/syntax/syntax}
+
+Tries \cite{hinze00} and terms are somewhat non-standard and are best explained
+with reference to the typing rules in
+\figrefTwo{demand-indexed:typing-trie}{demand-indexed:typing-term}. We start
+with tries, which are a particular syntactic representation of functions over
+values. In the judgement $\trieType{\sigma}{K}{A}{\Gamma}$, the domain of
+$\sigma$ is the set of values of type $A$, and the codomain or
+\emph{continuation type} $K$ is a function from contexts to sets, written either
+$A$, denoting the function $\Gamma \mapsto \exprTypeJudge{\Gamma}{A}$, or
+$\trieTypePartial{K}{A}$, denoting the function $\Gamma \mapsto
+\trieTypeJudge{K}{A}{\Gamma}$. If $v$ is in the domain of $\sigma$, then
+$\lookup{\sigma}{v}$ is an element of $K_{\Gamma\concat\Delta}$, where $\Delta$
+extends $\Gamma$ with additional bindings for the parts of the value which were
+matched by variables in the trie. The $\trieArrow$ arrow associates to the
+right.
+
+\input{fig/syntax/typing-trie}
+\input{fig/syntax/typing-term}
+
+The variable trie $\trieVar{x}{\kappa}$ maps \emph{any} value of type $A$ to
+$\kappa$, which is typed in a context which extends $\Gamma$ with a new binding
+of type $A$. The unit trie $\trieUnit{\kappa}$ maps the single value of type
+$\tyUnit$ to $\kappa$, without introducing a new variable.
+
+Of the non-leaf cases, the trie $\trieRoll{\sigma}$ for a recursive type
+$\tyRec{\tyVar{X}}{A}$, is the simplest: it simply injects $\sigma$, which is a
+trie over the one-step unrolling of $\tyRec{\tyVar{X}}{A}$, into
+$\tyRec{\tyVar{X}}{A}$. Sum tries $\trieSum{\sigma}{\tau}$ are slightly more
+interesting, allowing a trie over $A$ and a trie over $B$ to be combined into a
+trie over $\tySum{A}{B}$ as long they share a codomain. Product tries
+$\trieProd{\sigma}$ rely on currying, allowing a trie over $A$ which returns a
+trie over $B$ to be treated as a trie over $\tyProd{A}{B}$.
+
+\subsection{Values and environments}
+
+\input{fig/syntax/syntax-value}
+\input{fig/syntax/typing-value}
+
+The syntax of values and environments is given in
+\figref{demand-indexed:syntax-value}. Concatenation of sequences is denoted by
+the $\concat$ operator.

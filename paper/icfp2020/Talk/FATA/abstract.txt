@@ -1,0 +1,31 @@
+Demand-indexed computation
+==========================
+
+I'll talk about an idea that came out of the work on program slicing
+that I did for my PhD.
+
+An important role of GUIs is to provide control over how much of the
+output of a computation we actually see, via widgets like scrollpanes,
+collapsible lists, and tooltips. This usually means computing all the
+output upfront and then hiding some of it, or computing it on demand
+using ad hoc, application-specific logic.
+
+A somewhat independent observation is that pattern-matching imposes a
+demand on the thing being pattern-matched: a case expression needs to
+know something (but perhaps not everything) about the scrutinee in
+order to decide which branch to take, and a function defined by a set
+of equations needs to know something (but perhaps not everything)
+about the argument in order to decide which of its defining equations
+is applicable.
+
+"Tries" (a.k.a. prefix trees), extended with a notion of variable
+binding, can be used to formalise both of these notions of demand.
+I'll outline an operational semantics for a simple functional language
+where the demand on the output is specified explicitly in the form of
+a trie of a suitable type. Running the same program with more demand
+produces correspondingly more output. I plan to extend this with a
+notion of "differential" trie, representing a change in demand, plus a
+differential operational semantics which, given an increase in demand,
+does just enough work to produce the required extra output. Although I
+haven't worked this bit out yet, I'll try to explain the idea with
+several examples.

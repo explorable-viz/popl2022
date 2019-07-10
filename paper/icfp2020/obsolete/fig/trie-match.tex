@@ -1,0 +1,41 @@
+\begin{figure}
+{\small
+\begin{align*}
+\intertext{\flushleft{\shadebox{$
+   \matchTrie{\param}{\param} : \ExplVal{A}{\Gamma} \to \Trie{A}{K}{\Gamma'} \to \Match{A}{K}{\Gamma}{\Gamma'}
+$}}}
+   \matchTrie{(\explVal{T}{u})}{\sigma}
+   &=
+   \explVal{T}{(\matchTrie{u}{\sigma})}
+   \\[2mm]
+\intertext{\flushleft{\shadebox{$
+   \matchTrie{\param}{\param} : \ValExpl{A}{\Gamma} \to \Trie{A}{K}{\Gamma'} \to \Match{A}{K}{\Gamma}{\Gamma'}
+$}}}
+   \matchTrie{u}{(\trieVar{x}{\kappa})}
+   &=
+   \matchedVar{x}{\kappa}
+   \\
+   \matchTrie{\exUnit}{(\trieUnit{\kappa})}
+   &=
+   \matchedUnit{\kappa}
+   \\
+   \matchTrie{(\exInl{\explVal{T'}{u}})}{\trieSum{\sigma_1}{\sigma_2}}
+   &=
+   \matchedSumL{\explVal{T'}{(\matchTrie{u}{\sigma_1})}}{\sigma_2}
+   \\
+   \matchTrie{(\exInr{\explVal{T'}{u}})}{\trieSum{\sigma_1}{\sigma_2}}
+   &=
+   \matchedSumR{\sigma_1}{\explVal{T'}{(\matchTrie{u}{\sigma_2})}}
+   \\
+   \matchTrie{\exPair{\explVal{T_1}{u_1}}{\explVal{T_2}{u_2}}}{\trieProd{\sigma}}
+   &= \matchedProd{\explVal{T_1}{\fmapTwo{(\matchTriePartial{(\explVal{T_2}{u_2})})}
+                                           {(\sigma \mapsto \explVal{\trBot}{\matchedInj{\sigma}})}
+                                           {(\matchTrie{u_1}{\sigma})}}}
+   \\
+   \matchTrie{(\exRoll{\explVal{T}{u}})}{(\trieRoll{\sigma})}
+   &=
+   \matchedRoll{\explVal{T}{(\matchTrie{u}{\sigma})}}
+\end{align*}}
+\caption{Matching an explained value to a trie}
+\label{fig:self-explaining:trie-match}
+\end{figure}

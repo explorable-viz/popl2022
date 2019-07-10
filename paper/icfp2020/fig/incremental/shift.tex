@@ -1,0 +1,17 @@
+\begin{figure}
+\flushleft\shadebox{$\shift{\rho}{\idx{i}}$}
+{\small
+\begin{align*}
+   \shift{\envEmpty}{\idx{i}}
+   &=
+   \idx{i}
+   \\
+   \shift{\envExtend{\rho}{x}{\exClosure{\rho'}{\raw{e}{\idx{j}}}}}{\idx{i}}
+   &=
+   \idxVal{\idxExtend{\idx{n}}{\idx{j}}}{\idx{m}}
+   \text{ where }
+   \idxVal{\idx{n}}{\idx{m}} = \shift{\rho}{\idx{i}}
+\end{align*}}%
+\caption{Translating an evaluation id $\idx{i}$ by an environment $\rho$}
+\label{fig:incremental:shift}
+\end{figure}

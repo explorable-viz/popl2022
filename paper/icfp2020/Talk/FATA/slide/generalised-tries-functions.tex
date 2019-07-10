@@ -1,0 +1,17 @@
+\begin{frame}
+\frametitle{Functions as tries}
+
+A \textbf{function defined by pattern-matching} is precisely one of
+these tries from values to terms.
+
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \vdash \Trie{\sigma}{\textsf{Term}_B}{A}{}
+}
+{
+   \Gamma \vdash \exFun{\sigma} : \tyFun{A}{B}
+}
+\end{smathpar}
+assuming $\sigma$ is total.
+\end{frame}

@@ -1,0 +1,63 @@
+\begin{frame}[fragile]
+\vskip0pt plus 1filll
+
+\begin{smathpar}
+\inferrule*
+{
+  \inferrule*
+  {
+    \inferrule*
+    {
+        \inferrule*
+        {
+          \texttt{10 + 1 $\Eval$ 11}
+          \\
+          \texttt{{\unk} $\Eval$ \unk}
+        }
+        {
+          \texttt{(10 + 1, \unk) $\Eval$ (11, \unk)}
+        }
+    }
+    {
+      \texttt{10 $\oplus$ {\unk} $\Eval$ (11, \unk)}
+    }
+    \\
+    \inferrule*
+    {
+      \inferrule*
+      {
+        \inferrule*
+        {
+          \inferrule*
+          {
+            \unzap{\texttt{{\unk} $\Eval$ \unk}}
+            \\
+            \unzap{\texttt{{\unk} $\Eval$ {\unk}}}
+          }
+          {
+            \unzap{\texttt{(\unk, \unk) $\Eval$ (\unk, {\unk})}}
+          }
+        }
+        {
+          \texttt{{\unk} \unzap{$\oplus$} {\unk} $\Eval$ \unzap{(}\unk\unzap{,} {\unk}\unzap{)}}
+        }
+        \\
+        \texttt{zipW {\unk} [] {\unk} $\Eval$ []}
+      }
+      {
+         \texttt{\unzap{(}{\unk} \unzap{$\oplus$} {\unk}\unzap{)} {\Cons} (zipW {\unk} [] {\unk}) $\Eval$ \unzap{(}\unk\unzap{,} {\unk}\unzap{)} {\Cons} []}
+      }
+    }
+    {
+      \texttt{zipW \unzap{$\oplus$} ({\unk} {\Cons} []) ({\unk} {\Cons} \unk) $\Eval$ \unzap{(}\unk\unzap{,} {\unk}\unzap{)} {\Cons} []}
+    }
+  }
+  {
+    \texttt{(10 $\oplus$ {\unk}) {\Cons} (zipW \unzap{$\oplus$} ({\unk} {\Cons} []) ({\unk} {\Cons} \unk)) $\Eval$ (11, \unk) {\Cons} \unzap{(}\unk\unzap{,} {\unk}\unzap{)} {\Cons} []}
+  }
+}
+{
+ \texttt{zipW $\oplus$ (10 {\Cons} {\unk} {\Cons} []) ({\unk} {\Cons} {\unk} {\Cons} \unk) $\Eval$ (11, \unk) {\Cons} \unzap{(}\unk\unzap{,} {\unk}\unzap{)} {\Cons} []}
+}
+\end{smathpar}
+\end{frame}

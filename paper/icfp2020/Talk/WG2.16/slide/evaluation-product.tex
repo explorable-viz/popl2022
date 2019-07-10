@@ -1,0 +1,25 @@
+\begin{frame}
+\frametitle{Demand-indexed evaluation}
+Typing rule for a demand of type $\tyProd{A}{B}$:
+\begin{mathpar}
+\inferrule*
+{
+  \Gamma \vdash \Trie{\sigma}{\TrieTypePartial{W}{B}}{A}
+}
+{
+  \Gamma \vdash \Trie{\langle\sigma\rangle}{W}{(\tyProd{A}{B})}
+}
+\end{mathpar}
+Evaluation rule (intro only):
+\begin{mathpar}
+\inferrule*
+{
+  \eval{e_1}{\sigma}{u}
+  \\
+  \eval{e_2}{\sigma(u)}{v}
+}
+{
+  \eval{\exPair{e_1}{e_2}}{\langle\sigma\rangle}{\exPair{u}{v}}
+}
+\end{mathpar}
+\end{frame}

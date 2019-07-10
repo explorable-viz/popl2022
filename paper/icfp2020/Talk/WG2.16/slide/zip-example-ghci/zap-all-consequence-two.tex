@@ -1,0 +1,20 @@
+\begin{frame}[t,fragile]
+\vspace{35pt}
+\input{slide/zip-example-ghci/header}
+
+\begin{lstlisting}[mathescape=true,numbers=none]
+zipWith $\oplus$ [] ys = []
+zipWith $\oplus$ xs [] = $\zap{[]}$
+zipWith $\oplus$ (x $\Cons$ xs) (y $\Cons$ ys) = $\zap{(x}$ $\textcolor{red}{\oplus}$ $\zap{y)}$ $\Cons$ (zipWith $\textcolor{red}{\oplus}$ xs ys)
+
+zipWith $\lambda$ab.(a + 1, b + 1)
+        ($\zap{10}$ $\Cons$ $\zap{12}$ $\Cons$ $\zap{22}$ $\Cons$ [])
+        ($\zap{3}$ $\Cons$ $\zap{6}$ $\Cons$ $\zap{35}$ $\Cons$ $\zap{[]}$)
+
+= $\zap{(11, 4)}$ $\Cons$ $\zap{(13, 7)}$ $\Cons$ $\zap{(23, 36)}$ $\Cons$ []
+\end{lstlisting}
+
+\vspace{5pt}
+Not lazy enough, not \textbf{compositional}.
+
+\end{frame}

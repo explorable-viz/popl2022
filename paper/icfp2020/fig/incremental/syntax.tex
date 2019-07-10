@@ -1,0 +1,185 @@
+\begin{figure}
+\begin{syntaxfig}
+\small
+\mbox{Expression id}
+&
+\idx{m}
+\\[1mm]
+\mbox{Environment id}
+&
+\idx{n}
+&
+::=
+&
+\idxEmpty
+&
+\text{empty}
+\\
+&&&
+\idxExtend{\idx{n}}{\idx{i}}
+&
+\text{extend}
+\\[1mm]
+\mbox{Evaluation id}
+&
+\idx{i}, \idx{j}, \idx{k}
+&
+::=
+&
+\idxVal{\idx{n}}{\idx{m}}
+\\[1mm]
+\mbox{Persistent value}
+&
+\indexed{u}
+&
+::=
+&
+\exBot
+&
+\text{unknown}
+\\
+&&&
+\raw{v}{\idx{i}}
+&
+\text{known}
+\\[1mm]
+\mbox{Known value}
+&
+v
+&
+::=
+&
+\exUnit
+&
+\text{unit}
+\\
+&&&
+\exInl{\explVal{\indexed{T}}{\indexed{u}}}
+&
+\text{inject left}
+\\
+&&&
+\exInr{\explVal{\indexed{T}}{\indexed{u}}}
+&
+\text{inject right}
+\\
+&&&
+\exPair{\explVal{\indexed{T}_1}{\indexed{u}_1}}
+       {\explVal{\indexed{T}_2}{\indexed{u}_2}}
+&
+\text{pair}
+\\
+&&&
+\exClosure{\rho}{\exFun{\sigma}}
+&
+\text{closure}
+\\
+&&&
+\exRoll{\explVal{\indexed{T}}{\indexed{u}}}
+&
+\text{roll}
+\\[1mm]
+\mbox{Environment}
+&
+\rho
+&
+::=
+&
+\envEmpty
+&
+\text{empty}
+\\
+&&&
+\envExtend{\rho}{x}{\exClosure{\rho'}{\indexed{e}}}
+&
+\text{extend}
+\\[1mm]
+\mbox{Persistent term}
+&
+\indexed{e}
+&
+::=
+&
+\raw{e}{\idx{i}}
+\\[1mm]
+\mbox{Term}
+&
+e
+&
+::=
+&
+\exVar{x}
+&
+\text{variable}
+\\
+&&&
+\exUnit
+&
+\text{unit}
+\\
+&&&
+\exApp{\indexed{e}}{\indexed{e}'}
+&
+\text{application}
+\\
+&&&
+\exInl{\indexed{e}} \mid \exInr{\indexed{e}}
+&
+\text{injection}
+\\\
+&&&
+\exPair{\indexed{e}}{\indexed{e}'}
+&
+\text{pair}
+\\
+&&&
+\exFun{\sigma}
+&
+\text{function}
+\\
+&&&
+\exRoll{\indexed{e}}
+&
+\text{roll}
+\\[1mm]
+\mbox{Persistent explanation}
+&
+\indexed{U}
+&
+::=
+&
+\trBot
+&
+\text{unknown}
+\\
+&&&
+\raw{T}{\idx{i}}
+&
+\text{known}
+\\[1mm]
+\mbox{Known explanation}
+&
+T
+&
+::=
+&
+\trEmpty
+&
+\text{variable}
+\\
+&&&
+\trVar{x}{\Gamma}{\indexed{T}}
+&
+\text{empty}
+\\
+&&&
+\trApp
+   {(\explVal{\indexed{T}}{\indexed{v}})}
+   {(\explVal{\indexed{T}'}{\indexed{u}})}
+   {\indexed{U}}
+&
+\text{application}
+\end{syntaxfig}
+\caption{Persistent explained values}
+\label{fig:incremental:syntax}
+\end{figure}

@@ -1,0 +1,54 @@
+\begin{figure}
+\flushleft \shadebox{$\sigma \join_{\bullet} \sigma'$}
+{\small
+\begin{align*}
+\trieEmpty \join_{\bullet} \sigma
+&=
+\sigma
+\\
+\sigma \join_{\bullet} \trieEmpty
+&=
+\sigma
+\\
+(\trieVar{x}{a}) \join_{\bullet} \sigma
+&=
+\begin{cases}
+\trieVar{x}{a \bullet a'}
+& \text{if }\sigma = \trieVar{x}{a'}
+\\
+\trieVar{x}{a}
+& \text{otherwise}
+\end{cases}
+\\
+\sigma \join_{\bullet} (\trieVar{x}{a})
+&=
+\begin{cases}
+\trieVar{x}{a \bullet a'}
+& \text{if }\sigma = \trieVar{x}{a'}
+\\
+\trieVar{x}{a}
+& \text{otherwise}
+\end{cases}
+\\
+(\trieUnit{a}) \join_{\bullet} (\trieUnit{a'})
+&=
+\trieUnit{a \bullet a'}
+\\
+\trieSum{\sigma}{\tau} \join_{\bullet} \trieSum{\sigma'}{\tau'}
+&=
+\trieSum{\sigma \join_{\bullet} \sigma'}{\tau \join_{\bullet} \tau'}
+\\
+\trieProd{\sigma} \join_{\bullet} \trieProd{\sigma'}
+&=
+\trieProd{\sigma \join_{\join_{\bullet}} \sigma'}
+\\
+(\trieRoll{\sigma}) \join_{\bullet} (\trieRoll{\sigma'})
+&=
+\trieRoll{(\sigma \join_{\bullet} \sigma')}
+\\
+(\trieFun{a}) \join_{\bullet} (\trieFun{a'})
+&=
+\trieFun{a \bullet a'}
+\end{align*}}
+\caption{Joining two tries of the same type}
+\end{figure}
