@@ -15,16 +15,16 @@
    %
    \inferrule*[left={\ruleName{$\lookupR$-constr}}]
    {
-      \vec{\explVal{T}{u}}, \Sigma(d) \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha'
+      \vec{u}, \Sigma(c) \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha'
    }
    {
-      \annot{\exConstr{d}{\vec{\explVal{T}{u}}}}{\alpha}, \Sigma
+      \annot{\exConstr{c}{\vec{u}}}{\alpha}, \Sigma
       \lookupR
-      \rho, \envExtend{\Sigma}{d}{\matchPlug{\Psi}{\kappa}}, \alpha \wedge \alpha'
+      \rho, \envExtend{\Sigma}{c}{\matchPlug{\Psi}{\kappa}}, \alpha \wedge \alpha'
    }
 \end{smathpar}
 \\[2mm]
-\flushleft \shadebox{$\vec{\explVal{T}{u}}, \kappa \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha$}
+\flushleft \shadebox{$\vec{u}, \kappa \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha$}
 \begin{smathpar}
    \inferrule*[left={\ruleName{$\lookupR$-args-nil}}]
    {
@@ -40,12 +40,12 @@
    {
       u, \sigma \lookupR \rho_1, \matchPlug{\xi}{\kappa}, \alpha
       \\
-      \vec{\explVal{T}{u}}, \kappa \lookupR \rho_2, \matchPlug{\Psi}{\kappa'}, \alpha'
+      \vec{u}, \kappa \lookupR \rho_2, \matchPlug{\Psi}{\kappa'}, \alpha'
    }
    {
-      (\explVal{T}{u}) \concat (\vec{\explVal{T}{u}}), \sigma
+      u \concat \vec{u}, \sigma
       \lookupR
-      \rho_1 \concat \rho_2, \matchProd{\explVal{T}{\xi}}{\matchPlug{\Psi}{\kappa'}}, \alpha \wedge \alpha'
+      \rho_1 \concat \rho_2, \matchProd{\xi}{\matchPlug{\Psi}{\kappa'}}, \alpha \wedge \alpha'
    }
 \end{smathpar}
 \caption{Pattern-matching}
