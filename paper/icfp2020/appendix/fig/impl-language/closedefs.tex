@@ -1,5 +1,5 @@
 \begin{figure}
-\flushleft \shadebox{$\rho, \vec{d} \closeDefs \rho, \vec{z}$}
+\flushleft \shadebox{$\rho, \vec{d} \closeDefs \rho', \vec{z}$}
 \begin{smathpar}
 \inferrule*
 {
@@ -23,7 +23,17 @@
    \rho_1 \concat \rho_2, z \concat \vec{z}
 }
 \end{smathpar}
-\flushleft \shadebox{$\rho, d \closeDefs \rho, z$}
+\flushleft \shadebox{$\rho, \vec{z} \uncloseDefs \rho', \vec{d}$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \rho, \seqEmpty \uncloseDefs \envEmpty, \seqEmpty
+}
+\end{smathpar}
+\flushleft \shadebox{$\rho, d \closeDefs \rho', z$}
 \begin{smathpar}
    \inferrule*
    {
@@ -64,17 +74,25 @@
       \envExtend{\envEmpty}{x}{\phi}, \trPrimDef{x}
    }
 \end{smathpar}
-\flushleft \shadebox{$\rho, d \uncloseDefs \rho, z$}
-   \begin{salign}
-      \set{
-         \annot{\exClosureNew{\rho_f}{\delta_f}{\exFun{\sigma_f}}}{\alpha_f}
-      }_{f \in F}
-      &\uncloseDefs
-      \bigvee_{f \in F}\rho_f,
-      \exLetrecDef{
-         \set{f \mapsto \annot{(\exFun{\sigma_f})}{\alpha_f} \mid f \in F} \vee \bigvee_{f \in F}\delta_f
-      }
-   \end{salign}
+\flushleft \shadebox{$\rho, d \uncloseDefs \rho', z$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \begin{aligned}
+         \set{
+            \annot{\exClosureNew{\rho_f}{\delta_f}{\exFun{\sigma_f}}}{\alpha_f}
+         }_{f \in F}
+         &\uncloseDefs
+         \bigvee_{f \in F}\rho_f,
+         \exLetrecDef{
+            \set{f \mapsto \annot{(\exFun{\sigma_f})}{\alpha_f} \mid f \in F} \vee \bigvee_{f \in F}\delta_f
+         }
+      \end{aligned}
+   }
+\end{smathpar}
 \caption{Bindings for a sequence of definitions}
 \label{fig:impl-language:closedefs}
 \end{figure}
