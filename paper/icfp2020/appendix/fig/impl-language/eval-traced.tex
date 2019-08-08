@@ -137,13 +137,13 @@
       \rho,
       \vec{e}
       \eval{}
-      \vec{\explVal{T}{u}}
+      \vec{T}, \vec{u}
    }
    {
       \rho,
-      \exConstr{d}{\vec{e}}
+      \exConstr{c}{\vec{e}}
       \eval{}
-      \explVal{\sub{\trEmpty}{\rho}}{\exConstr{d}{\vec{\explVal{T}{u}}}}
+      \trConstr{c}{\vec{T}}, \exConstr{c}{\vec{u}}
    }
    %
    \and
@@ -207,7 +207,7 @@
 \end{smathpar}
 \vspace{5pt}
 
-\flushleft \shadebox{$\rho, \vec{e} \eval{} \vec{\explVal{T}{u}}$}
+\flushleft \shadebox{$\rho, \vec{e} \eval{} \vec{T}, \vec{u}$}
 \begin{smathpar}
    \inferrule*
    {
@@ -217,21 +217,23 @@
       \rho,
       \exUnit
       \eval{}
+      \sub{\seqEmpty}{\rho},
       \seqEmpty
    }
    \and
    %
    \inferrule*
    {
-      \rho, e \eval{} \explVal{T}{u}
+      \rho, e \eval{} T, u
       \\
-      \rho, \vec{e} \eval{} \vec{\explVal{T}{u}}
+      \rho, \vec{e} \eval{} \vec{T}, \vec{u}
    }
    {
       \rho,
       e \concat \vec{e}
       \eval{}
-      (\explVal{T}{u}) \concat (\vec{\explVal{T}{u}})
+      T \concat \vec{T},
+      u \concat \vec{u}
    }
 \end{smathpar}
 \caption{Evaluation for terms and term sequences}
