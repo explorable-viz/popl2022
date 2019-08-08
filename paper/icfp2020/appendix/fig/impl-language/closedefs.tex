@@ -32,6 +32,21 @@
 {
    \rho, \seqEmpty \uncloseDefs \envEmpty, \seqEmpty
 }
+%
+\and
+%
+\inferrule*
+{
+   \rho_2, \vec{z} \uncloseDefs \rho \concat \rho_1', \vec{d}
+   \\
+   \rho_1', z \uncloseDefs \rho^\dagger, d
+}
+{
+   \rho_1 \concat \rho_2, z \concat \vec{z}
+   \uncloseDefs
+   \rho \vee \rho^\dagger,
+   d \concat \vec{d}
+}
 \end{smathpar}
 \flushleft \shadebox{$\rho, d \closeDefs \rho', z$}
 \begin{smathpar}
