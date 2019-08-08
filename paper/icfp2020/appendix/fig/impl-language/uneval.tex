@@ -114,14 +114,14 @@
    %
    \inferrule*[left={\ruleName{$\uneval$-match}}]
    {
-      \explVal{T'}{\annot{v}{\alpha}} \uneval \rho' \concat \rho_1, e'
+      T', \annot{v}{\alpha} \uneval \rho' \concat \rho_1, e'
       \\
       \rho_1, \matchPlug{\xi}{e'}, \alpha \unlookupR{} u, \sigma
       \\
-      \explVal{T}{u} \uneval \rho, e
+      T, u \uneval \rho, e
    }
    {
-      \explVal{\trMatch{T}{\matchPlug{\xi}{T'}}}{\annot{v}{\alpha}}
+      \trMatch{T}{\matchPlug{\xi}{T'}}, \annot{v}{\alpha}
       \uneval
       \rho \vee \rho',
       \annot{(\exMatch{e}{\sigma})}{\alpha}
@@ -131,12 +131,12 @@
    %
    \inferrule*[left={\ruleName{$\uneval$-let}}]
    {
-      \explVal{U}{\annot{v}{\alpha}} \uneval \envExtend{\rho}{x}{u'}, e'
+      U, \annot{v}{\alpha} \uneval \envExtend{\rho}{x}{u'}, e'
       \\
-      \explVal{T}{u'} \uneval \rho', e
+      T, u' \uneval \rho', e
    }
    {
-      \explVal{\trLet{x}{\explVal{T}{u}}{U}}{\annot{v}{\alpha}}
+      \trLet{x}{T}{U}, \annot{v}{\alpha}
       \uneval
       \rho \vee \rho', \annot{(\exLet{x}{e}{e'})}{\alpha}
    }
@@ -145,12 +145,12 @@
    %
    \inferrule*[left={\ruleName{$\uneval$-letrec}}]
    {
-      \explVal{T}{\annot{v}{\alpha}} \uneval \rho \concat \rho_1, e
+      T, \annot{v}{\alpha} \uneval \rho \concat \rho_1, e
       \\
       \rho_1 \uncloseDefs \rho', \delta'
    }
    {
-      \explVal{\trLetrec{\delta}{T}}{\annot{v}{\alpha}}
+      \trLetrec{\delta}{T}, \annot{v}{\alpha}
       \uneval
       \rho \vee \rho', \annot{(\exLetrec{\delta'}{e})}{\alpha}
    }
