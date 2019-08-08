@@ -78,6 +78,19 @@
 \begin{smathpar}
    \inferrule*
    {
+      T, u \uneval \rho, e
+   }
+   {
+      \envExtend{\envEmpty}{x}{u},
+      \trLetDef{x}{T}
+      \uncloseDefs
+      \rho, \exLetDef{x}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
       \strut
    }
    {
