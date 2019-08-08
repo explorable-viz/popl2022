@@ -1,54 +1,54 @@
 \begin{figure}
-\flushleft \shadebox{$\trieType{\sigma}{K}{A}{\Gamma}$}
+\flushleft \shadebox{$\trieType{\sigma}{B}{A}{\Gamma}$}
 \begin{smathpar}
-\inferrule*[right={$\kappa \in K_{\cxtExtend{\Gamma}{x}{A}}$}]
+\inferrule*
 {
-   \strut
+   \contType{\kappa}{B}{\cxtExtend{\Gamma}{x}{A}}
 }
 {
-   \trieType{\trieVar{x}{\kappa}}{K}{A}{\Gamma}
-}
-%
-\and
-%
-\inferrule*[right={$\kappa \in K_{\Gamma}$}]
-{
-   \strut
-}
-{
-   \trieType{\trieUnit{\kappa}}{K}{\tyUnit}{\Gamma}
+   \trieType{\trieVar{x}{\kappa}}{B}{A}{\Gamma}
 }
 %
 \and
 %
 \inferrule*
 {
-   \trieType{\sigma_1}{K}{A}{\Gamma}
+   \contType{\kappa}{B}{\Gamma}
+}
+{
+   \trieType{\trieUnit{\kappa}}{B}{\tyUnit}{\Gamma}
+}
+%
+\and
+%
+\inferrule*
+{
+   \trieType{\sigma_1}{B}{A}{\Gamma}
    \\
-   \trieType{\sigma_2}{K}{B}{\Gamma}
+   \trieType{\sigma_2}{B}{A'}{\Gamma}
 }
 {
-   \trieType{\trieSum{\sigma_1}{\sigma_2}}{K}{(\tySum{A}{B})}{\Gamma}
-}
-%
-\and
-%
-\inferrule*
-{
-   \trieType{\sigma}{\trieTypePartial{K}{B}}{A}{\Gamma}
-}
-{
-   \trieType{\trieProd{\sigma}}{K}{(\tyProd{A}{B})}{\Gamma}
+   \trieType{\trieSum{\sigma_1}{\sigma_2}}{B}{\tySum{A}{A'}}{\Gamma}
 }
 %
 \and
 %
 \inferrule*
 {
-   \trieType{\sigma}{K}{\subst{A}{\tyRec{\tyVar{X}}{A}}{\alpha}}{\Gamma}
+   \trieType{\sigma}{\trieTypePartial{B}{A'}}{A}{\Gamma}
 }
 {
-   \trieType{\trieRoll{\sigma}}{K}{(\tyRec{\tyVar{X}}{A})}{\Gamma}
+   \trieType{\trieProd{\sigma}}{B}{\tyProd{A}{A'}}{\Gamma}
+}
+%
+\and
+%
+\inferrule*
+{
+   \trieType{\sigma}{B}{\subst{A}{\tyRec{\tyVar{X}}{A}}{\alpha}}{\Gamma}
+}
+{
+   \trieType{\trieRoll{\sigma}}{B}{(\tyRec{\tyVar{X}}{A})}{\Gamma}
 }
 \end{smathpar}
 \caption{Typing rules for tries}

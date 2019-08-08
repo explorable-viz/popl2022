@@ -37,7 +37,7 @@
 %
 \inferrule*
 {
-   \trieType{\sigma}{\ExprPartial{B}}{A}{\Gamma}
+   \trieType{\sigma}{B}{A}{\Gamma}
 }
 {
    \exprType{\exFun{\sigma}}{\Gamma}{\tyFun{A}{B}}
@@ -71,7 +71,7 @@
 {
    \exprType{e}{\Gamma}{A}
    \\
-   \trieType{\sigma}{\ExprPartial{B}}{A}{\Gamma}
+   \trieType{\sigma}{B}{A}{\Gamma}
 }
 {
    \exprType{\exMatch{e}{\sigma}}{\Gamma}{B}

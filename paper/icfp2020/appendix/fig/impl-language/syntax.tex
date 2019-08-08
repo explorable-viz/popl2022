@@ -3,12 +3,12 @@
 \mbox{Ground type}
 &
 C
-\\[1mm]
+\\[2mm]
 \mbox{Data type}
 &
 D
 &
-\\[1mm]
+\\[2mm]
 \mbox{Type}
 &
 A, B
@@ -28,23 +28,38 @@ A, B
 \tyFun{A}{B}
 &
 \text{function}
-\\[1mm]
+\\[2mm]
 \mbox{Constant of ground type}
 &
 k
-\\[1mm]
+\\
 \mbox{Constructor of data type}
 &
 c
-\\[1mm]
+\\
 \mbox{First-class (unary) primitive}
 &
 \phi
-\\[1mm]
+\\
 \mbox{Binary operator}
 &
 \primOp
-\\[1mm]
+\\[2mm]
+\mbox{Continuation}
+&
+\kappa
+&
+::=
+&
+e
+&
+\text{term}
+\\
+&&&
+\sigma
+&
+\text{trie}
+\\[2mm]
 \mbox{Trie}
 &
 \sigma, \tau
@@ -59,7 +74,7 @@ c
 \trieConstr{\Sigma}
 &
 \text{constructor}
-\\[1mm]
+\\[2mm]
 \mbox{Constructor trie}
 &
 \Sigma
@@ -67,7 +82,7 @@ c
 ::=
 &
 \family{\kappa_c}{c}{\tilde{c}}
-\\[1mm]
+\\[2mm]
 \mbox{Term}
 &
 r
@@ -117,7 +132,7 @@ x
 \exDefs{\vec{d}}{e}
 &
 \text{definitions}
-\\[1mm]
+\\[2mm]
 \mbox{Definition}
 &
 d
@@ -137,7 +152,7 @@ d
 \exPrimDef{x}
 &
 \text{primitive}
-\\[1mm]
+\\[2mm]
 \mbox{Recursive functions}
 &
 \delta

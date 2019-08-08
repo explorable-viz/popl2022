@@ -173,7 +173,8 @@
 \newcommand*{\recEnvEntry}[3]{(#1,#2,#3)}
 
 % Typing judgements.
-\newcommand*{\trieArrow}{\rightharpoonup}
+\newcommand*{\contType}[3]{{#3} \vdash {#1} : {#2}}
+\newcommand*{\trieArrow}{\to}
 \newcommand*{\trieTypePartial}[2]{{{#2}\trieArrow{#1}}}
 \newcommand*{\trieType}[4]{{#4} \vdash {#1} : \trieTypePartial{#2}{#3}}
 \newcommand*{\trieTypeJudge}[3]{{#3} \vdash \trieTypePartial{#1}{#2}}
@@ -203,6 +204,7 @@
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
 \newcommand*{\trBot}{\exBot}
+\newcommand*{\trConstr}[2]{#1(#2)}
 \newcommand*{\trDefs}[2]{\exDefs{#1}{#2}}
 \newcommand*{\trEmpty}{\varepsilon}
 \newcommand*{\trFun}[1]{\exFun{#1}}
@@ -226,7 +228,7 @@
 \newcommand*{\expl}[1]{#1}
 \newcommand*{\TrVal}[1]{\mleft\llbracket{#1}\mright\rrbracket}
 \newcommand*{\Tr}[1]{{\mathsf{Tr}\TrVal{#1}}}
-\newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{\textcolor{gray}{::}}{#2}}
+\newcommand*{\explVal}[2]{{#1}\mathrel{::}{#2}}
 \newcommand*{\exprTr}[1]{\mathsf{T}(#1)}
 
 % Differential computation.

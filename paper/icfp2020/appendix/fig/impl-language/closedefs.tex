@@ -1,12 +1,12 @@
 \begin{figure}
-\flushleft \shadebox{$\rho, \vec{d} \closeDefs \rho, \vec{z}$}
+\flushleft \shadebox{$\rho, \vec{d} \closeDefs \rho', \vec{z}$}
 \begin{smathpar}
 \inferrule*
 {
    \strut
 }
 {
-   \rho, \seqEmpty \closeDefs \envEmpty, \seqEmpty
+   \rho, \seqEmpty \closeDefs \envEmpty, \sub{\seqEmpty}{\rho}
 }
 %
 \and
@@ -23,16 +23,41 @@
    \rho_1 \concat \rho_2, z \concat \vec{z}
 }
 \end{smathpar}
-\flushleft \shadebox{$\rho, d \closeDefs \rho, z$}
+\flushleft \shadebox{$\rho, \vec{z} \uncloseDefs \rho', \vec{d}$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \envEmpty, \sub{\seqEmpty}{\rho} \uncloseDefs \sub{\bot}{\rho}, \seqEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho_2, \vec{z} \uncloseDefs \rho \concat \rho_1', \vec{d}
+   \\
+   \rho_1 \vee \rho_1', z \uncloseDefs \rho^\dagger, d
+}
+{
+   \rho_1 \concat \rho_2, z \concat \vec{z}
+   \uncloseDefs
+   \rho \vee \rho^\dagger,
+   d \concat \vec{d}
+}
+\end{smathpar}
+\flushleft \shadebox{$\rho, d \closeDefs \rho', z$}
 \begin{smathpar}
    \inferrule*
    {
-      \rho, e \eval{} \explVal{T}{u}
+      \rho, e \eval{} T, u
    }
    {
       \rho, \exLetDef{x}{e}
       \closeDefs
-      \envExtend{\envEmpty}{x}{u}, \trLetDef{x}{\explVal{T}{u}}
+      \envExtend{\envEmpty}{x}{u}, \trLetDef{x}{T}
    }
    %
    \and
@@ -61,20 +86,55 @@
    {
       \rho, \exPrimDef{x}
       \closeDefs
-      \envExtend{\envEmpty}{x}{\phi}, \trPrimDef{x}
+      \envExtend{\envEmpty}{x}{\annot{\phi}{\top}}, \trPrimDef{\sub{x}{\rho}}
    }
 \end{smathpar}
-\flushleft \shadebox{$\rho, d \uncloseDefs \rho, z$}
-   \begin{salign}
-      \set{
-         \annot{\exClosureNew{\rho_f}{\delta_f}{\exFun{\sigma_f}}}{\alpha_f}
-      }_{f \in F}
-      &\uncloseDefs
-      \bigvee_{f \in F}\rho_f,
-      \exLetrecDef{
-         \set{f \mapsto \annot{(\exFun{\sigma_f})}{\alpha_f} \mid f \in F} \vee \bigvee_{f \in F}\delta_f
-      }
-   \end{salign}
+\flushleft \shadebox{$\rho, d \uncloseDefs \rho', z$}
+\begin{smathpar}
+   \inferrule*
+   {
+      T, u \uneval \rho, e
+   }
+   {
+      \envExtend{\envEmpty}{x}{u},
+      \trLetDef{x}{T}
+      \uncloseDefs
+      \rho, \exLetDef{x}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \begin{aligned}
+         \set{
+            \annot{\exClosureNew{\rho_f}{\delta_f}{\exFun{\sigma_f}}}{\alpha_f}
+         }_{f \in F},
+         \exLetrecDef{\delta'}
+         &\uncloseDefs
+         \bigvee_{f \in F}\rho_f,
+         \exLetrecDef{
+            \set{f \mapsto \annot{(\exFun{\sigma_f})}{\alpha_f} \mid f \in F} \vee \bigvee_{f \in F}\delta_f
+         }
+      \end{aligned}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \envExtend{\envEmpty}{x}{\annot{\phi}{\alpha}},
+      \trPrimDef{\sub{x}{\rho}}
+      \uncloseDefs
+      \sub{\bot}{\rho}, \exPrimDef{x}
+   }
+\end{smathpar}
 \caption{Bindings for a sequence of definitions}
 \label{fig:impl-language:closedefs}
 \end{figure}

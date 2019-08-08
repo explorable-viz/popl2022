@@ -14,8 +14,8 @@
 \Xi
 &
 \text{constructor}
-\\[1mm]
-\mbox{Match sum}
+\\[2mm]
+\mbox{Constructor match}
 &
 \Xi
 &
@@ -23,7 +23,7 @@
 &
 \family{\Psi_c \mid \kappa_c}{c}{\tilde{c}}
 &
-\\[1mm]
+\\[2mm]
 \mbox{Arguments match}
 &
 \Psi
@@ -38,7 +38,7 @@
 \matchProd{\explVal{\indexed{T}}{\xi}}{\Psi}
 &
 \text{non-empty}
-\\[1mm]
+\\[2mm]
 \mbox{Value}
 &
 v
@@ -60,10 +60,10 @@ v
 \text{closure}
 \\
 &&&
-\exConstr{c}{\vec{\smash{\explVal{T}{u}}}}
+\exConstr{c}{\vec{u}}
 &
 \text{constructor}
-\\[1mm]
+\\[2mm]
 \mbox{Environment}
 &
 \rho
@@ -78,7 +78,7 @@ v
 \envExtend{\rho}{x}{u}
 &
 \text{extend}
-\\[1mm]
+\\[2mm]
 \mbox{Explanation}
 &
 \expl{T}
@@ -93,6 +93,11 @@ v
 \trVarTwo{x}{\rho}
 &
 \text{variable}
+\\
+&&&
+\trConstr{c}{\vec{T}}
+&
+\text{constructor}
 \\
 &&&
 \trApp{T}{T'}{\matchPlug{\xi}{U}}
@@ -118,17 +123,17 @@ v
 \text{pattern-match}
 \\
 &&&
-\trDefs{\vec{z}}{\explVal{T}{u}}
+\trDefs{\vec{z}}{T}
 &
 \text{definitions}
-\\[1mm]
+\\[2mm]
 \mbox{Definition}
 &
 z
 &
 ::=
 &
-\trLetDef{x}{\explVal{T}{u}}
+\trLetDef{x}{T}
 &
 \text{let}
 \\
@@ -138,7 +143,7 @@ z
 \text{mutual recursion}
 \\
 &&&
-\trPrimDef{x}
+\trPrimDef{\sub{x}{\rho}}
 &
 \text{primitive}
 \end{syntaxfig}
