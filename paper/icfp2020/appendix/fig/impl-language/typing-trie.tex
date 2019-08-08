@@ -1,46 +1,46 @@
 \begin{figure}
-\flushleft \shadebox{$\trieType{\sigma}{K}{A}{\Gamma}$}
+\flushleft \shadebox{$\trieType{\sigma}{B}{A}{\Gamma}$}
 \begin{smathpar}
-\inferrule*[right={$\kappa \in K_{\cxtExtend{\Gamma}{x}{A}}$}]
+\inferrule*
 {
-   \strut
+   \contType{\kappa}{B}{\cxtExtend{\Gamma}{x}{A}}
 }
 {
-   \trieType{\trieVar{x}{\kappa}}{K}{A}{\Gamma}
+   \trieType{\trieVar{x}{\kappa}}{B}{A}{\Gamma}
 }
 %
 \and
 %
 \inferrule*[right={\textnormal{$\dom{\interpret{D}} = \dom{\Sigma}$}}]
 {
-   \trieType{\Sigma(d)}{K}{\interpret{D}(d)}{\Gamma}
+   \trieType{\Sigma(c)}{A}{\interpret{D}(c)}{\Gamma}
    \\
-   (\forall d \in \dom{\interpret{D}})
+   (\forall c \in \dom{\interpret{D}})
 }
 {
-   \trieType{\trieConstr{\Sigma}}{K}{\tyData{D}}{\Gamma}
+   \trieType{\trieConstr{\Sigma}}{A}{\tyData{D}}{\Gamma}
 }
 \end{smathpar}
 \vspace{5pt}
-\flushleft \shadebox{$\trieType{\kappa}{K}{\vec{A}}{\Gamma}$}
+\flushleft \shadebox{$\trieType{\kappa}{B}{\vec{A}}{\Gamma}$}
 \begin{smathpar}
-\inferrule*[right={$\kappa \in K_{\Gamma}$}]
+\inferrule*
 {
-   \strut
+   \contType{\kappa}{A}{\Gamma}
 }
 {
-   \trieType{\kappa}{K}{\seqEmpty}{\Gamma}
+   \trieType{\kappa}{A}{\seqEmpty}{\Gamma}
 }
 %
 \and
 %
 \inferrule*
 {
-   \trieType{\sigma}{\trieTypePartial{K}{\vec{A}}}{A}{\Gamma}
+   \trieType{\sigma}{\trieTypePartial{B}{\vec{A}}}{A}{\Gamma}
 }
 {
-   \trieType{\sigma}{K}{A \concat \vec{A}}{\Gamma}
+   \trieType{\sigma}{B}{A \concat \vec{A}}{\Gamma}
 }
 \end{smathpar}
-\caption{Typing rules for tries and trie products}
+\caption{Typing rules for tries}
 \end{figure}
