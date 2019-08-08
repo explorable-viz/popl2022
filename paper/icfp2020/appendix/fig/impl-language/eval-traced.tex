@@ -165,34 +165,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval{}$-let}}]
-   {
-      \rho, e \eval{} T, u
-      \\
-      \envExtend{\rho}{x}{u}, e' \eval{} U, u'
-   }
-   {
-      \rho, \exLet{x}{e}{e'}
-      \eval{}
-      \trLet{x}{T}{U}, u'
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval{}$-letrec}}]
-   {
-      \rho, \delta \closeDefs \rho_1
-      \\
-      \rho \concat \rho_1, e \eval{} T, u
-   }
-   {
-      \rho, \exLetrec{\delta}{e}
-      \eval{}
-      \trLetrec{\delta}{T}, u
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\eval{}$-defs}}]
    {
       \rho, \vec{d} \closeDefs \rho_1, \vec{z}
