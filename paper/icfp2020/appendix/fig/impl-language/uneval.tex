@@ -1,12 +1,13 @@
 \begin{figure}
 \flushleft \shadebox{$T, u \uneval \rho, e$}
+\mprset{flushleft}
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\uneval$-var}}]
+   \inferrule*[lab={\ruleName{$\uneval$-var}}]
    {
       \strut
    }
    {
-      {\trVarTwo{x}{\rho}}, \annot{v}{\alpha}
+      \trVarTwo{x}{\rho}, \annot{v}{\alpha}
       \uneval
       \envExtend{\sub{\bot}{\rho}}{x}{\annot{v}{\alpha}},
       \annot{\exVar{x}}{\alpha}
@@ -14,12 +15,12 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-const}}]
+   \inferrule*[lab={\ruleName{$\uneval$-const}}]
    {
       \strut
    }
    {
-      \explVal{\sub{\trEmpty}{\rho}}{\annot{\exConst{k}}{\alpha}}
+      \sub{\trEmpty}{\rho}, \annot{\exConst{k}}{\alpha}
       \uneval
       \sub{\bot}{\rho},
       \annot{\exConst{k}}{\alpha}
@@ -27,7 +28,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-fun}}]
+   \inferrule*[lab={\ruleName{$\uneval$-fun}}]
    {
       \strut
    }
@@ -40,7 +41,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-app}}]
+   \inferrule*[lab={\ruleName{$\uneval$-app}}]
    {
       U, \annot{v}{\alpha} \uneval \rho_1' \concat \rho_2 \concat \rho_3, e^\twoPrime
       \\
@@ -64,7 +65,7 @@
    \and
    %
    \inferrule*[
-      left={\ruleName{$\uneval$-app-unary}}
+      lab={\ruleName{$\uneval$-app-unary}}
    ]
    {
       T', \annot{c}{\alpha} \uneval \rho', e'
@@ -82,7 +83,7 @@
    \and
    %
    \inferrule*[
-      left={\ruleName{$\uneval$-app-binary}}
+      lab={\ruleName{$\uneval$-app-binary}}
    ]
    {
       T', \annot{c'}{\alpha} \uneval \rho', e'
@@ -99,7 +100,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-constr}}]
+   \inferrule*[lab={\ruleName{$\uneval$-constr}}]
    {
       \vec{T}, \vec{u} \uneval \rho', \vec{e}
    }
@@ -112,7 +113,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-match}}]
+   \inferrule*[lab={\ruleName{$\uneval$-match}}]
    {
       T', \annot{v}{\alpha} \uneval \rho' \concat \rho_1, e'
       \\
@@ -129,7 +130,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-let}}]
+   \inferrule*[lab={\ruleName{$\uneval$-let}}]
    {
       U, \annot{v}{\alpha} \uneval \envExtend{\rho}{x}{u'}, e'
       \\
@@ -143,7 +144,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-letrec}}]
+   \inferrule*[lab={\ruleName{$\uneval$-letrec}}]
    {
       T, \annot{v}{\alpha} \uneval \rho \concat \rho_1, e
       \\
@@ -155,7 +156,7 @@
       \rho \vee \rho', \annot{(\exLetrec{\delta'}{e})}{\alpha}
    }
 \end{smathpar}
-\\
+\\[2mm]
 \flushleft \shadebox{$\vec{T}, \vec{u} \uneval \rho, \vec{e}$}
 \begin{smathpar}
    \inferrule*
