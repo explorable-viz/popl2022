@@ -93,6 +93,19 @@
          }
       \end{aligned}
    }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \envExtend{\envEmpty}{x}{}, \trPrimDef{x}
+      ,
+      \uncloseDefs
+      \exPrimDef{x}
+   }
 \end{smathpar}
 \caption{Bindings for a sequence of definitions}
 \label{fig:impl-language:closedefs}
