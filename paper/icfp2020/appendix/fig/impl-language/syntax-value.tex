@@ -95,6 +95,11 @@ v
 \text{variable}
 \\
 &&&
+\trConstr{c}{\vec{T}}
+&
+\text{constructor}
+\\
+&&&
 \trApp{T}{T'}{\matchPlug{\xi}{U}}
 &
 \text{function application}
@@ -118,7 +123,7 @@ v
 \text{pattern-match}
 \\
 &&&
-\trDefs{\vec{z}}{\explVal{T}{u}}
+\trDefs{\vec{z}}{T}
 &
 \text{definitions}
 \\[2mm]
@@ -128,7 +133,7 @@ z
 &
 ::=
 &
-\trLetDef{x}{\explVal{T}{u}}
+\trLetDef{x}{T}
 &
 \text{let}
 \\

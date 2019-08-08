@@ -106,9 +106,8 @@
       \rho,
       \exApp{e}{e'}
       \eval{}
-      \explVal
-         {\trApp{T}{T'}{\matchHole{\sub{\trEmpty}{\envEmpty}}}}
-         {\annot{\interpret{\phi}(c)}{\alpha \wedge \alpha'}}
+      \trUnaryApp{(\explVal{T}{\phi})}{(\explVal{T'}{\exConst{k}})},
+      \annot{\interpret{\phi}(c)}{\alpha \wedge \alpha'}
    }
    %
    \and
