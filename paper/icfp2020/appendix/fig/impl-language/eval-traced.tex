@@ -150,31 +150,31 @@
    %
    \inferrule*[lab={\ruleName{$\eval{}$-match}}]
    {
-      \rho, e \eval{} \explVal{T}{u}
+      \rho, e \eval{} T, u
       \\
       u, \sigma \lookupR \rho_1, \matchProd{\xi}{e'}, \alpha
       \\
-      \rho \concat \rho_1, e' \eval{} \explVal{T'}{\annot{v}{\alpha'}}
+      \rho \concat \rho_1, e' \eval{} T', \annot{v}{\alpha'}
    }
    {
       \rho,
       \exMatch{e}{\sigma}
       \eval{}
-      \explVal{\trMatch{T}{\matchPlug{\xi}{T'}}}{\annot{v}{\alpha \wedge \alpha'}}
+      \trMatch{T}{\matchPlug{\xi}{T'}}, \annot{v}{\alpha \wedge \alpha'}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\eval{}$-let}}]
    {
-      \rho, e \eval{} \explVal{T}{u}
+      \rho, e \eval{} T, u
       \\
-      \envExtend{\rho}{x}{u}, e' \eval{} \explVal{U}{u'}
+      \envExtend{\rho}{x}{u}, e' \eval{} U, u'
    }
    {
       \rho, \exLet{x}{e}{e'}
       \eval{}
-      \explVal{\trLet{x}{\explVal{T}{u}}{U}}{u'}
+      \trLet{x}{T}{U}, u'
    }
    %
    \and
