@@ -36,9 +36,9 @@
    }
    {
       \rho,
-      \exConst{c}
+      \exConst{k}
       \eval{}
-      \sub{\trEmpty}{\rho}, \exConst{c}
+      \sub{\trEmpty}{\rho}, \exConst{k}
    }
    %
    \and
@@ -95,19 +95,19 @@
    %
    \inferrule*[
       left={\ruleName{$\eval{}$-app-unary}},
-      right={\textnormal{$c \in \dom{\interpret{\phi}}$}}
+      right={\textnormal{$k \in \dom{\interpret{\phi}}$}}
    ]
    {
       \rho, e \eval{} \explVal{T}{\annot{\phi}{\alpha}}
       \\
-      \rho, e' \eval{} \explVal{T'}{\annot{c}{\alpha'}}
+      \rho, e' \eval{} \explVal{T'}{\annot{k}{\alpha'}}
    }
    {
       \rho,
       \exApp{e}{e'}
       \eval{}
       \trUnaryApp{(\explVal{T}{\phi})}{(\explVal{T'}{\exConst{k}})},
-      \annot{\interpret{\phi}(c)}{\alpha \wedge \alpha'}
+      \annot{\interpret{\phi}(k)}{\alpha \wedge \alpha'}
    }
    %
    \and
