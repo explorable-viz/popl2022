@@ -6,7 +6,7 @@
    \strut
 }
 {
-   \rho, \seqEmpty \closeDefs \envEmpty, \seqEmpty
+   \rho, \seqEmpty \closeDefs \envEmpty, \sub{\seqEmpty}{\rho}
 }
 %
 \and
@@ -30,7 +30,7 @@
    \strut
 }
 {
-   \rho, \seqEmpty \uncloseDefs \envEmpty, \seqEmpty
+   \envEmpty, \sub{\seqEmpty}{\rho} \uncloseDefs \sub{\bot}{\rho}, \seqEmpty
 }
 %
 \and
