@@ -27,12 +27,12 @@
 \begin{smathpar}
    \inferrule*
    {
-      \rho, e \eval{} \explVal{T}{u}
+      \rho, e \eval{} T, u
    }
    {
       \rho, \exLetDef{x}{e}
       \closeDefs
-      \envExtend{\envEmpty}{x}{u}, \trLetDef{x}{\explVal{T}{u}}
+      \envExtend{\envEmpty}{x}{u}, \trLetDef{x}{T}
    }
    %
    \and
