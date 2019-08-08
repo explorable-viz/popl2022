@@ -141,27 +141,16 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-letrec}}]
+   \inferrule*[lab={\ruleName{$\uneval$-defs}}]
    {
       T, \annot{v}{\alpha} \uneval \rho \concat \rho_1, e
       \\
-      \rho_1 \uncloseDefs \rho', \delta'
-   }
-   {
-      \trLetrec{\delta}{T}, \annot{v}{\alpha}
-      \uneval
-      \rho \vee \rho', \annot{(\exLetrec{\delta'}{e})}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\uneval$-defs}}]
-   {
+      \rho_1, \vec{z} \uncloseDefs \rho', \vec{d}
    }
    {
       \trDefs{\vec{z}}{T}, \annot{v}{\alpha}
       \uneval
-      \rho \vee \rho', \annot{\exDefs{\vec{d}}{e}}{\alpha}
+      \rho \vee \rho', \annot{(\exDefs{\vec{d}}{e})}{\alpha}
    }
 \end{smathpar}
 \\[2mm]
