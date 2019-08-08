@@ -97,10 +97,10 @@
 %
 \inferrule*[right={\textnormal{$c \in \dom{\interpret{D}}$}}]
 {
-   \explValType{}{\vec{\explVal{T}{v}}}{\interpret{D}(c)}
+   \valExplTypeNew{\vec{v}}{\interpret{D}(c)}
 }
 {
-   \valExplTypeNew{\exConstr{c}{\vec{\explVal{T}{v}}}}{\tyData{D}}
+   \valExplTypeNew{\exConstr{c}{\vec{v}}}{\tyData{D}}
 }
 \end{smathpar}
 \vspace{5pt}
