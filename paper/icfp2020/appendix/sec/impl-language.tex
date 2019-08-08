@@ -12,13 +12,12 @@ sums-of-products; primitive operations
 \label{sec:impl-language:data-types}
 
 \figref{impl-language:syntax} includes all the syntax associated with data
-types, including data type names $D$, constructors $d$, constructor expressions
-$\exConstr{d}{\vec{e}}$ where $\vec{e}$ is a vector of arguments, constructor
-(or \emph{sum}) tries $\Sigma$ which are of the form
-$\family{\kappa_d}{d}{\tilde{d}}$ where $\tilde{d}$ is a set of constructors.
-Every data type name $D$ has an interpretation $\interpret{D}$ as a family of
-vectors of types$ \family{\vec{A}_d}{d}{\tilde{d}}$ indexed by a set of
-constructors $\tilde{d}$.
+types, including data type names $D$, constructors $c$, constructor expressions
+$\exConstr{c}{\vec{e}}$ where $\vec{e}$ is a vector of arguments, constructor
+(or \emph{sum}) tries $\Sigma$ of the form $\family{\kappa_c}{c}{\tilde{c}}$
+where $\tilde{c}$ is a set of constructors. Every data type name $D$ has an
+interpretation $\interpret{D}$ as a family of vectors of types
+$\family{\vec{A}_c}{c}{\tilde{c}}$.
 
 \subsection{Primitives}
 \label{sec:impl-language:primitives}
@@ -33,7 +32,7 @@ functions, and binary primitives $\primOp$ which are infix and not first-class.
 It is straightforward to add Haskell-style sections which convert binary
 operators $\primOp$ into first-class values.
 
-Each constant $\exConst{c}$ has an interpretation $\interpret{\exConst{c}} \in
+Each constant $\exConst{k}$ has an interpretation $\interpret{\exConst{k}} \in
 \interpret{\tyGround{C}}$ for a unique $C$; each unary primitive $\phi$ has an
 interpretation $\interpret{\phi} \in \interpret{C} \to \interpret{A}$, for
 unique ground type $C$ and function type or ground type $A$; and each binary

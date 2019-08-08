@@ -20,25 +20,15 @@ operations for $\Ann{e}$, shown here for clarity, are usually omitted.
 Tries \cite{hinze00} and terms are somewhat non-standard and are best explained
 with reference to the typing rules in
 \figrefTwo{demand-indexed:typing-trie}{demand-indexed:typing-term}. We start
-with tries, which are a particular syntactic representation of functions over
-values. In the judgement $\trieType{\sigma}{K}{A}{\Gamma}$, the domain of
-$\sigma$ is the set of values of type $A$, and the codomain or
-\emph{continuation type} $K$ is a function from contexts to sets, written either
-$A$, denoting the function $\Gamma \mapsto \exprTypeJudge{\Gamma}{A}$, or
-$\trieTypePartial{K}{A}$, denoting the function $\Gamma \mapsto
-\trieTypeJudge{K}{A}{\Gamma}$. If $v$ is in the domain of $\sigma$, then
-$\lookup{\sigma}{v}$ is an element of $K_{\Gamma\concat\Delta}$, where $\Delta$
-extends $\Gamma$ with additional bindings for the parts of the value which were
-matched by variables in the trie. The $\trieArrow$ arrow associates to the
-right.
+with tries, which are a particular syntactic representation of functions. The
+$\trieArrow$ arrow associates to the right. The variable trie
+$\trieVar{x}{\kappa}$ maps \emph{any} value of type $A$ to $\kappa$, which is
+typed in a context which extends $\Gamma$ with a new binding of type $A$. The
+unit trie $\trieUnit{\kappa}$ maps the single value of type $\tyUnit$ to
+$\kappa$, without introducing a new variable.
 
 \input{fig/syntax/typing-trie}
 \input{fig/syntax/typing-term}
-
-The variable trie $\trieVar{x}{\kappa}$ maps \emph{any} value of type $A$ to
-$\kappa$, which is typed in a context which extends $\Gamma$ with a new binding
-of type $A$. The unit trie $\trieUnit{\kappa}$ maps the single value of type
-$\tyUnit$ to $\kappa$, without introducing a new variable.
 
 Of the non-leaf cases, the trie $\trieRoll{\sigma}$ for a recursive type
 $\tyRec{\tyVar{X}}{A}$, is the simplest: it simply injects $\sigma$, which is a

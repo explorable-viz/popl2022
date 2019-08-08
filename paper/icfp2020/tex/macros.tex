@@ -173,7 +173,8 @@
 \newcommand*{\recEnvEntry}[3]{(#1,#2,#3)}
 
 % Typing judgements.
-\newcommand*{\trieArrow}{\rightharpoonup}
+\newcommand*{\contType}[3]{{#3} \vdash {#1} : {#2}}
+\newcommand*{\trieArrow}{\to}
 \newcommand*{\trieTypePartial}[2]{{{#2}\trieArrow{#1}}}
 \newcommand*{\trieType}[4]{{#4} \vdash {#1} : \trieTypePartial{#2}{#3}}
 \newcommand*{\trieTypeJudge}[3]{{#3} \vdash \trieTypePartial{#1}{#2}}
