@@ -183,12 +183,12 @@
    {
       \rho, \delta \closeDefs \rho_1
       \\
-      \rho \concat \rho_1, e \eval{} \explVal{T}{u}
+      \rho \concat \rho_1, e \eval{} T, u
    }
    {
       \rho, \exLetrec{\delta}{e}
       \eval{}
-      \explVal{\trLetrec{\delta}{T}}{u}
+      \trLetrec{\delta}{T}, u
    }
    %
    \and
@@ -197,12 +197,12 @@
    {
       \rho, \vec{d} \closeDefs \rho_1, \vec{z}
       \\
-      \rho \concat \rho_1, e \eval{} \explVal{T}{u}
+      \rho \concat \rho_1, e \eval{} T, u
    }
    {
       \rho, \exDefs{\vec{d}}{e}
       \eval{}
-      \explVal{\trDefs{\vec{z}}{T}}{u}
+      \trDefs{\vec{z}}{T}, u
    }
 \end{smathpar}
 \vspace{5pt}
