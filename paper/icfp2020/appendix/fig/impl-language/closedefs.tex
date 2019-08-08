@@ -71,7 +71,7 @@
    {
       \rho, \exPrimDef{x}
       \closeDefs
-      \envExtend{\envEmpty}{x}{\phi}, \trPrimDef{x}
+      \envExtend{\envEmpty}{x}{\annot{\phi}{\top}}, \trPrimDef{\sub{x}{\rho}}
    }
 \end{smathpar}
 \flushleft \shadebox{$\rho, d \uncloseDefs \rho', z$}
@@ -101,10 +101,10 @@
       \strut
    }
    {
-      \envExtend{\envEmpty}{x}{}, \trPrimDef{x}
-      ,
+      \envExtend{\envEmpty}{x}{\annot{\phi}{\alpha}},
+      \trPrimDef{\sub{x}{\rho}}
       \uncloseDefs
-      \exPrimDef{x}
+      \sub{\bot}{\rho}, \exPrimDef{x}
    }
 \end{smathpar}
 \caption{Bindings for a sequence of definitions}
