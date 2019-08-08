@@ -4,7 +4,6 @@
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\uneval$-var}}]
    {
-      \strut
    }
    {
       \trVarTwo{x}{\rho}, \annot{v}{\alpha}
@@ -17,7 +16,6 @@
    %
    \inferrule*[lab={\ruleName{$\uneval$-const}}]
    {
-      \strut
    }
    {
       \sub{\trEmpty}{\rho}, \annot{\exConst{k}}{\alpha}
@@ -30,7 +28,6 @@
    %
    \inferrule*[lab={\ruleName{$\uneval$-fun}}]
    {
-      \strut
    }
    {
       \sub{\trEmpty}{\rho}, \annot{\exClosureNew{\rho'}{\seqEmpty}{\exFun{\sigma}}}{\alpha}
@@ -154,6 +151,17 @@
       \trLetrec{\delta}{T}, \annot{v}{\alpha}
       \uneval
       \rho \vee \rho', \annot{(\exLetrec{\delta'}{e})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-defs}}]
+   {
+   }
+   {
+      \trDefs{\vec{z}}{T}, \annot{v}{\alpha}
+      \uneval
+      \rho \vee \rho', \annot{\exDefs{\vec{d}}{e}}{\alpha}
    }
 \end{smathpar}
 \\[2mm]
