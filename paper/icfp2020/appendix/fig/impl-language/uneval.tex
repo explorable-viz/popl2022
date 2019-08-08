@@ -127,20 +127,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-let}}]
-   {
-      U, \annot{v}{\alpha} \uneval \envExtend{\rho}{x}{u'}, e'
-      \\
-      T, u' \uneval \rho', e
-   }
-   {
-      \trLet{x}{T}{U}, \annot{v}{\alpha}
-      \uneval
-      \rho \vee \rho', \annot{(\exLet{x}{e}{e'})}{\alpha}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\uneval$-defs}}]
    {
       T, \annot{v}{\alpha} \uneval \rho \concat \rho_1, e
