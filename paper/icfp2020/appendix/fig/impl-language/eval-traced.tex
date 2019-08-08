@@ -1,21 +1,21 @@
 \begin{figure}[p]
-\flushleft \shadebox{$\rho, e \eval{} \explVal{T}{u}$}
+\flushleft \shadebox{$\rho, e \eval{} T, u$}
 \begin{smathpar}
    \inferrule*[left={\ruleName{$\eval{}$-annot}}]
    {
       \rho, r
       \eval{}
-      \explVal{T}{\annot{v}{\alpha'}}
+      T, \annot{v}{\alpha'}
    }
    {
       \rho,
       \annot{r}{\alpha}
       \eval{}
-      \explVal{T}{\annot{v}{\alpha \wedge \alpha'}}
+      T, \annot{v}{\alpha \wedge \alpha'}
    }
 \end{smathpar}
 \\
-\flushleft \shadebox{$\rho, r \eval{} \explVal{T}{u}$}
+\flushleft \shadebox{$\rho, r \eval{} T, u$}
 \begin{smathpar}
    \inferrule*[
       left={\ruleName{$\eval{}$-var}},
@@ -25,7 +25,7 @@
       \strut
    }
    {
-      \rho, \exVar{x} \eval{} \explVal{\trVarTwo{x}{\rho}}{u}
+      \rho, \exVar{x} \eval{} \trVarTwo{x}{\rho}, u
    }
    %
    \and
@@ -38,7 +38,7 @@
       \rho,
       \exConst{c}
       \eval{}
-      \explVal{\sub{\trEmpty}{\rho}}{\exConst{c}}
+      \sub{\trEmpty}{\rho}, \exConst{c}
    }
    %
    \and
@@ -51,7 +51,7 @@
       \rho,
       \phi
       \eval{}
-      \explVal{\sub{\trEmpty}{\rho}}{\phi}
+      \sub{\trEmpty}{\rho}, \phi
    }
    %
    \and
@@ -64,7 +64,7 @@
       \rho,
       \exFun{\sigma}
       \eval{}
-      \explVal{\sub{\trEmpty}{\rho}}{\exClosureNew{\rho}{\seqEmpty}{\exFun{\sigma}}}
+      \sub{\trEmpty}{\rho}, \exClosureNew{\rho}{\seqEmpty}{\exFun{\sigma}}
    }
    %
    \and
