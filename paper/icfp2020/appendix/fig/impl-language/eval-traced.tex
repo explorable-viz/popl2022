@@ -114,21 +114,20 @@
    %
    \inferrule*[
       left={\ruleName{$\eval{}$-app-binary}},
-      right={\textnormal{$(c, c') \in \dom{\interpret{\primOp}}$
+      right={\textnormal{$(k, k') \in \dom{\interpret{\primOp}}$
       }}
    ]
    {
-      \rho, e \eval{} \explVal{T}{\annot{c}{\alpha'}}
+      \rho, e \eval{} \explVal{T}{\annot{k}{\alpha'}}
       \\
-      \rho, e' \eval{} \explVal{T'}{\annot{c'}{\smash{\alpha^\twoPrime}}}
+      \rho, e' \eval{} \explVal{T'}{\annot{k'}{\smash{\alpha^\twoPrime}}}
    }
    {
       \rho,
       \exPrimApp{e}{\annot{\primOp}{\alpha}}{e'}
       \eval{}
-      \explVal
-         {\trPrimApp{(\explVal{T}{c})}{\primOp}{(\explVal{T'}{c'})}}
-         {\annot{\interpret{\primOp}(c, c')}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}}}
+      \trPrimApp{(\explVal{T}{k})}{\primOp}{(\explVal{T'}{k'})},
+      \annot{\interpret{\primOp}(k, k')}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}}
    }
    %
    \and
