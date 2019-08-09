@@ -1,7 +1,7 @@
 \begin{figure}[H]
 \flushleft \shadebox{$\rho, e \eval{} u$}
 \begin{smathpar}
-\inferrule*[left={\ruleName{$\eval{}$-annot}}]
+\inferrule*[lab={\ruleName{$\eval{}$-annot}}]
 {
    \rho, r \eval{} \annot{v}{\alpha'}
 }
@@ -13,11 +13,10 @@
 \flushleft \shadebox{$\rho, r \eval{} u$}
 \begin{smathpar}
 \inferrule*[
-   left={\ruleName{$\eval{}$-var}},
+   lab={\ruleName{$\eval{}$-var}},
    right={$\exThunkVar{x}{u} \in \rho$}
 ]
 {
-   \strut
 }
 {
    \rho, \exVar{x} \eval{} u
@@ -25,9 +24,8 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-unit}}]
+\inferrule*[lab={\ruleName{$\eval{}$-unit}}]
 {
-   \strut
 }
 {
    \rho, \exUnit \eval{} \exUnit
@@ -35,7 +33,7 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-inl}}]
+\inferrule*[lab={\ruleName{$\eval{}$-inl}}]
 {
    \rho, e \eval{} u
 }
@@ -45,7 +43,7 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-inr}}]
+\inferrule*[lab={\ruleName{$\eval{}$-inr}}]
 {
    \rho, e \eval{} u
 }
@@ -55,7 +53,7 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-pair}}]
+\inferrule*[lab={\ruleName{$\eval{}$-pair}}]
 {
    \rho, e_1 \eval{} u_1
    \\
@@ -67,9 +65,8 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-fun}}]
+\inferrule*[lab={\ruleName{$\eval{}$-fun}}]
 {
-   \strut
 }
 {
    \rho, \exFun{\sigma} \eval{} \exClosure{\rho}{\exFun{\sigma}}
@@ -77,7 +74,7 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-app}}]
+\inferrule*[lab={\ruleName{$\eval{}$-app}}]
 {
    \rho, e \eval{} \annot{\exClosure{\rho_1}{\exFun{\sigma}}}{\alpha}
    \\
@@ -93,7 +90,7 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-roll}}]
+\inferrule*[lab={\ruleName{$\eval{}$-roll}}]
 {
    \rho, e \eval{} u
 }
