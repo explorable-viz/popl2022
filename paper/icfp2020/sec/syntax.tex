@@ -18,16 +18,14 @@ operations for $\Ann{e}$, shown here for clarity, are usually omitted.
 \input{fig/syntax/syntax}
 
 Tries \cite{hinze00} and terms are somewhat non-standard and are best explained
-with reference to the typing rules in
-\figrefTwo{demand-indexed:typing-trie}{demand-indexed:typing-term}. We start
-with tries, which are a particular syntactic representation of functions. The
-$\trieArrow$ arrow associates to the right. The variable trie
+with reference to the typing rules in \figref{demand-indexed:typing-term}. We
+start with tries, which are a particular syntactic representation of functions.
+The $\trieArrow$ arrow associates to the right. The variable trie
 $\trieVar{x}{\kappa}$ maps \emph{any} value of type $A$ to $\kappa$, which is
 typed in a context which extends $\Gamma$ with a new binding of type $A$. The
 unit trie $\trieUnit{\kappa}$ maps the single value of type $\tyUnit$ to
 $\kappa$, without introducing a new variable.
 
-\input{fig/syntax/typing-trie}
 \input{fig/syntax/typing-term}
 
 Of the non-leaf cases, the trie $\trieRoll{\sigma}$ for a recursive type
