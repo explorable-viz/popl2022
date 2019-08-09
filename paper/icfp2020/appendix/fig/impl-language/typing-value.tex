@@ -30,7 +30,7 @@
       \exprType{e}{\Gamma}{A}
    }
    {
-      \Gamma \vdash \exLetDef{x}{e}: \cxtExtend{\cxtEmpty}{x}{A}
+      \Gamma \vdash \exLetDef{x}{e}: (\cxtExtend{\cxtEmpty}{x}{A})
    }
    %
    \and
@@ -51,32 +51,32 @@
    %
    \inferrule*
    {
-      \interpret{x} \in \interpret{A}
+      \strut
    }
    {
-      \Gamma \vdash \exPrimDef{x}: \cxtExtend{\cxtEmpty}{x}{A}
+      \Gamma \vdash \exPrimDef{x}: (\cxtExtend{\cxtEmpty}{x}{\typeof{\interpret{x}}})
    }
 \end{smathpar}
 \vspace{5pt}
 
 \flushleft \shadebox{$\valExplTypeNew{u}{A}$}
 \begin{smathpar}
-\inferrule*[right={$\interpret{\exConst{c}} \in C$}]
+\inferrule*
 {
    \strut
 }
 {
-   \valExplTypeNew{\exConst{k}}{\tyGround{C}}
+   \valType{\exConst{k}}{\typeof{\exConst{k}}}
 }
 %
 \and
 %
-\inferrule*[right={\textnormal{$\interpret{\phi} \in \interpret{C} \to \interpret{A}$}}]
+\inferrule*
 {
    \strut
 }
 {
-   \valExplTypeNew{\phi}{\tyFun{C}{A}}
+   \valType{\phi}{\typeof{\phi}}
 }
 %
 \and
