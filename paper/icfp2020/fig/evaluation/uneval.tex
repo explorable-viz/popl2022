@@ -1,9 +1,8 @@
 \begin{figure}[H]
 \flushleft \shadebox{$T, u \uneval \rho, e$}
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\uneval$-var}}]
+   \inferrule*[lab={\ruleName{$\uneval$-var}}]
    {
-      \strut
    }
    {
       \trVarTwo{x}{\rho}, \annot{v}{\alpha}
@@ -14,12 +13,11 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-unit}}]
+   \inferrule*[lab={\ruleName{$\uneval$-unit}}]
    {
-      \strut
    }
    {
-      \trUnit{\rho}, \annot{\exUnit}{\alpha}
+      \sub{\trEmpty}{\rho}, \annot{\exUnit}{\alpha}
       \uneval
       \sub{\bot}{\rho},
       \annot{\exUnit}{\alpha}
@@ -27,7 +25,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-inl}}]
+   \inferrule*[lab={\ruleName{$\uneval$-inl}}]
    {
       T, u \uneval \rho', e
    }
@@ -40,7 +38,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-inr}}]
+   \inferrule*[lab={\ruleName{$\uneval$-inr}}]
    {
       T, u \uneval \rho', e
    }
@@ -53,7 +51,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-pair}}]
+   \inferrule*[lab={\ruleName{$\uneval$-pair}}]
    {
       T_1, u_1 \uneval \rho_1, e_1
       \\
@@ -68,25 +66,24 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-fun}}]
+   \inferrule*[lab={\ruleName{$\uneval$-fun}}]
    {
-      \strut
    }
    {
-      \trFun{\sigma}, \annot{\exClosure{\rho}{\exFun{\sigma'}}}{\alpha}
+      \sub{\trEmpty}{\rho}, \annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
       \uneval
       \rho,
-      \annot{(\exFun{\sigma'})}{\alpha}
+      \annot{(\exFun{\sigma})}{\alpha}
    }
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-app}}]
+   \inferrule*[lab={\ruleName{$\uneval$-app}}]
    {
       U, \annot{v}{\alpha} \uneval \rho_1' \concat \rho_2, e^\twoPrime
       \\
       \rho_2, \matchPlug{\xi}{e^\twoPrime}, \alpha \unlookupR{} u, \sigma
-      \\
+      \\\\
       T', u \uneval \rho, e'
       \\
       T, \annot{\exClosure{\rho_1'}{\exFun{\sigma}}}{\alpha} \uneval \rho', e
@@ -103,7 +100,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\uneval$-roll}}]
+   \inferrule*[lab={\ruleName{$\uneval$-roll}}]
    {
       T, u \uneval \rho', e
    }
