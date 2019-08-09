@@ -1,9 +1,8 @@
 \begin{figure}
 \flushleft \shadebox{$\rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \sigma$}
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\unlookupR{}$-var}}]
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-var}}]
    {
-     \strut
    }
    {
      \envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \alpha
@@ -13,9 +12,8 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\unlookupR{}$-unit}}]
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-unit}}]
    {
-     \strut
    }
    {
      \envEmpty, \matchUnit{\matchHole{\kappa}}, \alpha
@@ -25,7 +23,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\unlookupR{}$-inl}}]
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-inl}}]
    {
      \rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \sigma
    }
@@ -37,7 +35,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\unlookupR{}$-inr}}]
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-inr}}]
    {
      \rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \tau
    }
@@ -50,7 +48,7 @@
    \and
    %
    \inferrule*[
-      left={\ruleName{$\unlookupR{}$-pair}}
+      lab={\ruleName{$\unlookupR{}$-pair}}
    ]
    {
      \rho_2, \matchPlug{\xi'}{\kappa}, \alpha \unlookupR{} u_2, \tau
@@ -65,7 +63,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\unlookupR{}$-roll}}]
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-roll}}]
    {
      \rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \sigma
    }

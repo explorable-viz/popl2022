@@ -116,7 +116,7 @@
 \newcommand*{\lookupR}{\rightsquigarrow}
 \newcommand*{\unlookupR}[1]{\mathrel{\sub{\leftsquigarrow}{#1}}}
 \newcommand*{\nonEmpty}[1]{\smash{{#1}^{+}}}
-\newcommand*{\typeof}[1]{\operatorname{\mathsf{type}}(#1)}
+\newcommand*{\typeof}[1]{\operatorname{\mathit{type}}(#1)}
 \newcommand*{\interpret}[1]{\hat{#1}}
 \newcommand*{\trieNarySumUpdate}[3]{#1[#2 \mapsto {#3}]}
 
@@ -167,7 +167,7 @@
 % Environments.
 \newcommand*{\subst}[3]{{#1}[{#2}/{#3}]} % still needed for recursive types..
 \newcommand*{\envEmpty}{\varepsilon}
-\newcommand*{\envType}[2]{{#1} \vdash {#2}}
+\newcommand*{\envType}[2]{\vdash {#2}: {#1}}
 \newcommand*{\envExtend}[3]{{#1}[{#2} \mapsto {#3}]}
 \newcommand*{\envBot}{\bot}
 \newcommand*{\recEnvEntry}[3]{(#1,#2,#3)}

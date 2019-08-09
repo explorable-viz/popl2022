@@ -1,4 +1,15 @@
 \begin{figure}
+\flushleft \shadebox{$\valType{v}{A}$}
+\begin{smathpar}
+\inferrule*
+{
+   \valType{u}{A}
+}
+{
+   \valType{\annot{u}{\alpha}}{A}
+}
+\end{smathpar}
+\\[3mm]
 \flushleft \shadebox{$\valType{u}{A}$}
 \begin{smathpar}
 \inferrule*
@@ -33,12 +44,12 @@
 %
 \inferrule*
 {
-   \valType{u}{A}
+   \valType{v_1}{A}
    \\
-   \valType{v}{B}
+   \valType{v_2}{B}
 }
 {
-   \valType{\exPair{u}{v}}{\tyProd{A}{B}}
+   \valType{\exPair{v_1}{v_2}}{\tyProd{A}{B}}
 }
 %
 \and
@@ -47,7 +58,7 @@
 {
    \envType{\Gamma}{\rho}
    \\
-   \trieType{\sigma}{\ExprPartial{B}}{A}{\Gamma}
+   \trieType{\sigma}{B}{A}{\Gamma}
 }
 {
    \valType{\exClosure{\rho}{\exFun{\sigma}}}{\tyFun{A}{B}}

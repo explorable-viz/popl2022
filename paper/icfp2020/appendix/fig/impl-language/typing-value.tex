@@ -30,7 +30,7 @@
       \exprType{e}{\Gamma}{A}
    }
    {
-      \Gamma \vdash \exLetDef{x}{e}: \cxtExtend{\cxtEmpty}{x}{A}
+      \Gamma \vdash \exLetDef{x}{e}: (\cxtExtend{\cxtEmpty}{x}{A})
    }
    %
    \and
@@ -49,34 +49,34 @@
    %
    \and
    %
-   \inferrule*
+   \inferrule*[right={\textnormal{$\interpret{x}$ defined}}]
    {
-      \interpret{x} \in \interpret{A}
+      \strut
    }
    {
-      \Gamma \vdash \exPrimDef{x}: \cxtExtend{\cxtEmpty}{x}{A}
+      \Gamma \vdash \exPrimDef{x}: (\cxtExtend{\cxtEmpty}{x}{\typeof{\interpret{x}}})
    }
 \end{smathpar}
 \vspace{5pt}
 
-\flushleft \shadebox{$\valExplTypeNew{u}{A}$}
+\flushleft \shadebox{$\valType{u}{A}$}
 \begin{smathpar}
-\inferrule*[right={$\interpret{\exConst{c}} \in C$}]
+\inferrule*
 {
    \strut
 }
 {
-   \valExplTypeNew{\exConst{k}}{\tyGround{C}}
+   \valType{\exConst{k}}{\typeof{\exConst{k}}}
 }
 %
 \and
 %
-\inferrule*[right={\textnormal{$\interpret{\phi} \in \interpret{C} \to \interpret{A}$}}]
+\inferrule*
 {
    \strut
 }
 {
-   \valExplTypeNew{\phi}{\tyFun{C}{A}}
+   \valType{\phi}{\typeof{\phi}}
 }
 %
 \and
@@ -90,17 +90,17 @@
    \exprType{\exFun{\sigma}}{\Gamma \concat \Delta}{\tyFun{A}{B}}
 }
 {
-   \valExplTypeNew{\exClosureNew{\rho}{\delta}{\exFun{\sigma}}}{\tyFun{A}{B}}
+   \valType{\exClosureNew{\rho}{\delta}{\exFun{\sigma}}}{\tyFun{A}{B}}
 }
 %
 \and
 %
 \inferrule*[right={\textnormal{$c \in \dom{\interpret{D}}$}}]
 {
-   \valExplTypeNew{\vec{v}}{\interpret{D}(c)}
+   \valType{\vec{v}}{\interpret{D}(c)}
 }
 {
-   \valExplTypeNew{\exConstr{c}{\vec{v}}}{\tyData{D}}
+   \valType{\exConstr{c}{\vec{v}}}{\tyData{D}}
 }
 \end{smathpar}
 \vspace{5pt}
@@ -121,10 +121,10 @@
 {
    \envType{\Gamma}{\rho}
    \\
-   \valExplType{\Gamma'}{u}{A}
+   \valType{u}{A}
 }
 {
-   \envType{\cxtExtend{\Gamma}{x}{A}}{\envExtend{\rho}{x}{u}}
+   \envType{(\cxtExtend{\Gamma}{x}{A})}{\envExtend{\rho}{x}{u}}
 }
 \end{smathpar}
 \caption{Typing rules for partial values, environments and recursive definitions}
