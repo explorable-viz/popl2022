@@ -1,9 +1,8 @@
 \begin{figure}
 \flushleft \shadebox{$u, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha$}
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\lookupR$-var}}]
+   \inferrule*[lab={\ruleName{$\lookupR$-var}}]
    {
-      \strut
    }
    {
       u, \trieVar{x}{\kappa}
@@ -13,7 +12,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\lookupR$-constr}}]
+   \inferrule*[lab={\ruleName{$\lookupR$-constr}}]
    {
       \vec{u}, \Sigma(c) \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha'
    }
@@ -26,9 +25,8 @@
 \\[2mm]
 \flushleft \shadebox{$\vec{u}, \kappa \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha$}
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\lookupR$-args-nil}}]
+   \inferrule*[lab={\ruleName{$\lookupR$-args-nil}}]
    {
-      \strut
    }
    {
       \seqEmpty, \kappa \lookupR \envEmpty,\matchHole{\kappa}, \top
@@ -36,7 +34,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\lookupR$-args-cons}}]
+   \inferrule*[lab={\ruleName{$\lookupR$-args-cons}}]
    {
       u, \sigma \lookupR \rho_1, \matchPlug{\xi}{\kappa}, \alpha
       \\

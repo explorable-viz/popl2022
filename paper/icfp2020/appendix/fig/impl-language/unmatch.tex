@@ -1,9 +1,8 @@
 \begin{figure}
 \flushleft \shadebox{$\rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \sigma$}
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\unlookupR{}$-var}}]
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-var}}]
    {
-      \strut
    }
    {
       \envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \alpha
@@ -13,7 +12,7 @@
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\unlookupR{}$-constr}}]
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-constr}}]
    {
       \rho, \matchPlug{\Psi}{\kappa}, \alpha \unlookupR{} \vec{u}, \kappa'
    }
@@ -26,9 +25,8 @@
 \\[2mm]
 \flushleft \shadebox{$\rho, \matchPlug{\Psi}{\kappa}, \alpha \unlookupR{} \vec{u}, \kappa$}
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\unlookupR{}$-args-nil}}]
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-args-nil}}]
    {
-      \strut
    }
    {
       \envEmpty, \matchHole{\kappa}, \alpha \unlookupR{} \seqEmpty, \kappa
@@ -37,7 +35,7 @@
    \and
    %
    \inferrule*[
-      left={\ruleName{$\unlookupR{}$-args-cons}}
+      lab={\ruleName{$\unlookupR{}$-args-cons}}
    ]
    {
       \rho_2, \matchPlug{\Psi}{\kappa}, \alpha \unlookupR{} \vec{u}, \kappa'
