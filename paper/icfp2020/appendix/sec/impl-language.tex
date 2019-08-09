@@ -34,9 +34,14 @@ operators $\primOp$ into first-class values.
 
 Each constant $\exConst{k}$ has a unique ground type $\typeof{\exConst{k}}$.
 Each unary primitive $\phi$ has a unique type $\typeof{\phi}$ of the form $C \to
-A$ and interpretation $\interpret{\phi} \in \Val{C} \to \Val{A}$. Each binary
-operator $\primOp$ has a unique type $\typeof{\primOp}$ and interpretation
-$\interpret{\primOp} \in \Val{C_1} \times \Val{C_2} \to \Val{A}$.
+A$ and interpretation $\interpret{\phi} \in \Val{C} \to \Val{A}$. They have no
+expression form; they are introduced by $\exPrimDef{\exVar{x}}$ definitions,
+which bind $\exVar{x}$ to its interpretation $\interpret{\exVar{x}}$ as a
+first-class primitive, if it has one. (This rather complex setup is to allow
+each first-class primitive to be associated with a specific bit of \emph{syntax}
+for slicing purposes.) Each binary operator $\primOp$ has a unique type
+$\typeof{\primOp}$ and interpretation $\interpret{\primOp} \in \Val{C_1} \times
+\Val{C_2} \to \Val{A}$.
 
 \input{appendix/fig/impl-language/typing-term}
 \input{appendix/fig/impl-language/typing-trie}
