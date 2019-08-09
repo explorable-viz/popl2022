@@ -1,5 +1,5 @@
 \begin{figure}
-\flushleft \shadebox{$\exprType{e}{\Gamma}{A}$}
+\flushleft \shadebox{$\exprType{r}{\Gamma}{A}$}
 \begin{smathpar}
 \inferrule*[right={$x : A \in \Gamma$}]
 {
@@ -11,23 +11,21 @@
 %
 \and
 %
-\inferrule*[right={$\interpret{\exConst{k}} \in \interpret{C}$}]
+\inferrule*
 {
    \strut
 }
 {
-   \exprType{\exConst{k}}{\Gamma}{\tyGround{C}}
+   \exprType{\exConst{k}}{\Gamma}{\typeof{\exConst{k}}}
 }
 %
 \and
 %
-\inferrule*[right={
-  \textnormal{$\interpret{\primOp} \in \interpret{C_1} \times \interpret{C_2} \to \interpret{A}$}
-}]
+\inferrule*[right={\textnormal{$\typeof{\primOp} = C_1 \times C_2 \to A$}}]
 {
-   \exprType{e}{\Gamma}{C}
+   \exprType{e}{\Gamma}{C_1}
    \\
-   \exprType{e'}{\Gamma}{C'}
+   \exprType{e'}{\Gamma}{C_2}
 }
 {
    \exprType{\exPrimApp{e}{\primOp}{e'}}{\Gamma}{A}
