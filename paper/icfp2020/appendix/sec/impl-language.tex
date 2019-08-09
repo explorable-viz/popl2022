@@ -32,13 +32,11 @@ functions, and binary primitives $\primOp$ which are infix and not first-class.
 It is straightforward to add Haskell-style sections which convert binary
 operators $\primOp$ into first-class values.
 
-Each constant $\exConst{k}$ has an interpretation $\interpret{\exConst{k}} \in
-\interpret{\tyGround{C}}$ for a unique $C$; each unary primitive $\phi$ has an
-interpretation $\interpret{\phi} \in \interpret{C} \to \interpret{A}$, for
-unique ground type $C$ and function type or ground type $A$; and each binary
-operator $\primOp$ has an interpretation $\interpret{\primOp} \in
-\interpret{C_1} \times \interpret{C_2} \to \interpret{A}$ for unique ground
-types $C_1$, $C_2$ and function type or ground type $A$.
+Each constant $\exConst{k}$ has a unique ground type $\typeof{\exConst{k}}$.
+Each unary primitive $\phi$ has a unique type $\typeof{\phi}$ of the form $C \to
+A$ and interpretation $\interpret{\phi} \in \Val{C} \to \Val{A}$. Each binary
+operator $\primOp$ has a unique type $\typeof{\primOp}$ and interpretation
+$\interpret{\primOp} \in \Val{C_1} \times \Val{C_2} \to \Val{A}$.
 
 \input{appendix/fig/impl-language/typing-term}
 \input{appendix/fig/impl-language/typing-trie}
