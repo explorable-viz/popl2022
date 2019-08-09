@@ -167,7 +167,7 @@
 % Environments.
 \newcommand*{\subst}[3]{{#1}[{#2}/{#3}]} % still needed for recursive types..
 \newcommand*{\envEmpty}{\varepsilon}
-\newcommand*{\envType}[2]{{#1} \vdash {#2}}
+\newcommand*{\envType}[2]{\vdash {#2}: {#1}}
 \newcommand*{\envExtend}[3]{{#1}[{#2} \mapsto {#3}]}
 \newcommand*{\envBot}{\bot}
 \newcommand*{\recEnvEntry}[3]{(#1,#2,#3)}
