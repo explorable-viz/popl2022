@@ -230,25 +230,3 @@
 \newcommand*{\Tr}[1]{{\mathsf{Tr}\TrVal{#1}}}
 \newcommand*{\explVal}[2]{{#1}\mathrel{::}{#2}}
 \newcommand*{\exprTr}[1]{\mathsf{T}(#1)}
-
-% Differential computation.
-\newcommand*{\at}[2]{{#1}(#2)}
-\newcommand*{\atVal}[2]{\mathsf{val}_{#1}(#2)}
-\newcommand*{\ctr}[1]{\kw{#1}}
-\newcommand*{\idx}[1]{\mathsf{#1}}
-\newcommand*{\idxConcat}[2]{{#1} \concat {#2}}
-\newcommand*{\idxEmpty}{\varepsilon}
-\newcommand*{\idxExtend}[2]{{#1} \concat {#2}}
-\newcommand*{\idxVal}[2]{(#1,#2)}
-\newcommand*{\indexed}[1]{\bm{#1}}
-\newcommand*{\indexOf}[1]{\&{#1}}
-\newcommand*{\offset}[2]{[{#1}]_{#2}}
-\newcommand*{\raw}[2]{{#1}^{#2}}
-
-\newcommand*{\indexEval}{\Rightarrow}
-\newcommand*{\changeProp}{\curvearrowright}
-\newcommand*{\storeUpdate}[2]{{#1}\{#2\}}
-\newcommand*{\mapsTr}[2]{#1 \mapsto_{\mathsf{t}} #2}
-\newcommand*{\mapsVal}[2]{#1 \mapsto_{\mathsf{v}} #2}
-\newcommand*{\shift}[2]{{\shiftPartial{#1}}\,{#2}}
-\newcommand*{\shiftPartial}[1]{{#1}{\Mnthinstar}}
