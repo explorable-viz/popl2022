@@ -1,7 +1,7 @@
 \begin{figure}[H]
 \flushleft \shadebox{$\rho, e \eval{} T, u$}
 \begin{smathpar}
-\inferrule*[left={\ruleName{$\eval{}$-annot}}]
+\inferrule*[lab={\ruleName{$\eval{}$-annot}}]
 {
    \rho, r
    \eval{}
@@ -18,11 +18,10 @@
 \flushleft \shadebox{$\rho, r \eval{} T, u$}
 \begin{smathpar}
 \inferrule*[
-   left={\ruleName{$\eval{}$-var}},
+   lab={\ruleName{$\eval{}$-var}},
    right={$\exThunkVar{x}{u} \in \rho$}
 ]
 {
-   \strut
 }
 {
    \rho,
@@ -33,20 +32,19 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-unit}}]
+\inferrule*[lab={\ruleName{$\eval{}$-unit}}]
 {
-   \strut
 }
 {
    \rho,
    \exUnit
    \eval{}
-   \trUnit{\rho}, \exUnit
+   \sub{\trEmpty}{\rho}, \exUnit
 }
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-inl}}]
+\inferrule*[lab={\ruleName{$\eval{}$-inl}}]
 {
    \rho, e \eval{} T, u
 }
@@ -59,7 +57,7 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-inr}}]
+\inferrule*[lab={\ruleName{$\eval{}$-inr}}]
 {
    \rho, e \eval{} T, u
 }
@@ -72,7 +70,7 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-pair}}]
+\inferrule*[lab={\ruleName{$\eval{}$-pair}}]
 {
    \rho, e_1 \eval{} T_1, u_1
    \\
@@ -87,25 +85,24 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-fun}}]
+\inferrule*[lab={\ruleName{$\eval{}$-fun}}]
 {
-   \strut
 }
 {
    \rho,
    \exFun{\sigma}
    \eval{}
-   \trFun{\sigma}, \exClosure{\rho}{\exFun{\sigma}}
+   \sub{\trEmpty}{\rho}, \exClosure{\rho}{\exFun{\sigma}}
 }
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-app}}]
+\inferrule*[lab={\ruleName{$\eval{}$-app}}]
 {
    \rho, e \eval{} T, \annot{\exClosure{\rho_1}{\exFun{\sigma}}}{\alpha}
    \\
    \rho, e' \eval{} T', u
-   \\
+   \\\\
    u, \sigma \lookupR \rho_2, \matchPlug{\xi}{e^\twoPrime}, \alpha'
    \\
    \rho_1 \concat \rho_2, e^\twoPrime \eval{} U, \annot{v}{\alpha^\twoPrime}
@@ -122,7 +119,7 @@
 %
 \and
 %
-\inferrule*[left={\ruleName{$\eval{}$-roll}}]
+\inferrule*[lab={\ruleName{$\eval{}$-roll}}]
 {
    \rho, e \eval{} T, u
 }
@@ -133,6 +130,6 @@
    \trRoll{T}, \exRoll{u}
 }
 \end{smathpar}
-\caption{Self-explaining calculus: evaluation}
+\caption{Traced evaluation}
 \label{fig:self-explaining:eval}
 \end{figure}

@@ -1,216 +1,169 @@
 \begin{figure}[p]
-\flushleft \shadebox{$\rho, e \eval{} \explVal{T}{u}$}
+\flushleft \shadebox{$\rho, e \eval{} T, u$}
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\eval{}$-annot}}]
+   \inferrule*[lab={\ruleName{$\eval{}$-annot}}]
    {
       \rho, r
       \eval{}
-      \explVal{T}{\annot{v}{\alpha'}}
+      T, \annot{v}{\alpha'}
    }
    {
       \rho,
       \annot{r}{\alpha}
       \eval{}
-      \explVal{T}{\annot{v}{\alpha \wedge \alpha'}}
+      T, \annot{v}{\alpha \wedge \alpha'}
    }
 \end{smathpar}
 \\
-\flushleft \shadebox{$\rho, r \eval{} \explVal{T}{u}$}
+\flushleft \shadebox{$\rho, r \eval{} T, u$}
 \begin{smathpar}
    \inferrule*[
-      left={\ruleName{$\eval{}$-var}},
+      lab={\ruleName{$\eval{}$-var}},
       right={\textnormal{$\exThunkVar{x}{u} \in \rho$}}
    ]
    {
-      \strut
    }
    {
-      \rho, \exVar{x} \eval{} \explVal{\trVarTwo{x}{\rho}}{u}
+      \rho, \exVar{x} \eval{} \trVarTwo{x}{\rho}, u
    }
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\eval{}$-const}}]
+   \inferrule*[lab={\ruleName{$\eval{}$-const}}]
    {
-      \strut
    }
    {
       \rho,
-      \exConst{c}
+      \exConst{k}
       \eval{}
-      \explVal{\sub{\trEmpty}{\rho}}{\exConst{c}}
+      \sub{\trEmpty}{\rho}, \exConst{k}
    }
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\eval{}$-op}}]
+   \inferrule*[lab={\ruleName{$\eval{}$-fun}}]
    {
-      \strut
-   }
-   {
-      \rho,
-      \phi
-      \eval{}
-      \explVal{\sub{\trEmpty}{\rho}}{\phi}
-   }
-   %
-   \and
-   %
-   \inferrule*[left={\ruleName{$\eval{}$-fun}}]
-   {
-      \strut
    }
    {
       \rho,
       \exFun{\sigma}
       \eval{}
-      \explVal{\sub{\trEmpty}{\rho}}{\exClosureNew{\rho}{\seqEmpty}{\exFun{\sigma}}}
+      \sub{\trEmpty}{\rho}, \exClosureNew{\rho}{\seqEmpty}{\exFun{\sigma}}
    }
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\eval{}$-app}}]
+   \inferrule*[lab={\ruleName{$\eval{}$-app}}]
    {
-      \rho, e \eval{} \explVal{T}{\annot{\exClosureNew{\rho_1}{\delta}{\exFun{\sigma}}}{\alpha}}
+      \rho, e \eval{} T, \annot{\exClosureNew{\rho_1}{\delta}{\exFun{\sigma}}}{\alpha}
       \\
       \rho_1, \delta \closeDefs \rho_2
       \\
-      \rho, e' \eval{} \explVal{T'}{u}
-      \\
+      \rho, e' \eval{} T', u
+      \\\\
       u, \sigma \lookupR \rho_3, \matchPlug{\xi}{e^\twoPrime}, \alpha'
       \\
       \rho_1 \concat \rho_2 \concat \rho_3, e^\twoPrime
       \eval{}
-      \explVal{U}{\annot{v}{\alpha^\twoPrime}}
+      U, \annot{v}{\alpha^\twoPrime}
    }
    {
       \rho,
       \exApp{e}{e'}
       \eval{}
-      \explVal
-         {\trApp{T}{T'}{\matchPlug{\xi}{U}}}
-         {\annot{v}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}}
+      \trApp{T}{T'}{\matchPlug{\xi}{U}},
+      \annot{v}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
    }
    %
    \and
    %
    \inferrule*[
-      left={\ruleName{$\eval{}$-app-unary}},
-      right={\textnormal{$c \in \dom{\interpret{\phi}}$}}
+      lab={\ruleName{$\eval{}$-app-unary}},
+      right={\textnormal{$k \in \dom{\interpret{\phi}}$}}
    ]
    {
-      \rho, e \eval{} \explVal{T}{\annot{\phi}{\alpha}}
+      \rho, e \eval{} T, \annot{\phi}{\alpha}
       \\
-      \rho, e' \eval{} \explVal{T'}{\annot{c}{\alpha'}}
+      \rho, e' \eval{} T', \annot{k}{\alpha'}
    }
    {
       \rho,
       \exApp{e}{e'}
       \eval{}
-      \explVal
-         {\trApp{T}{T'}{\matchHole{\sub{\trEmpty}{\envEmpty}}}}
-         {\annot{\interpret{\phi}(c)}{\alpha \wedge \alpha'}}
+      \trUnaryApp{(\explVal{T}{\phi})}{(\explVal{T'}{\exConst{k}})},
+      \annot{\interpret{\phi}(k)}{\alpha \wedge \alpha'}
    }
    %
    \and
    %
    \inferrule*[
-      left={\ruleName{$\eval{}$-app-binary}},
-      right={\textnormal{$(c, c') \in \dom{\interpret{\primOp}}$
+      lab={\ruleName{$\eval{}$-app-binary}},
+      right={\textnormal{$(k, k') \in \dom{\interpret{\primOp}}$
       }}
    ]
    {
-      \rho, e \eval{} \explVal{T}{\annot{c}{\alpha'}}
+      \rho, e \eval{} T, \annot{k}{\alpha'}
       \\
-      \rho, e' \eval{} \explVal{T'}{\annot{c'}{\smash{\alpha^\twoPrime}}}
+      \rho, e' \eval{} T', \annot{k'}{\smash{\alpha^\twoPrime}}
    }
    {
       \rho,
       \exPrimApp{e}{\annot{\primOp}{\alpha}}{e'}
       \eval{}
-      \explVal
-         {\trPrimApp{(\explVal{T}{c})}{\primOp}{(\explVal{T'}{c'})}}
-         {\annot{\interpret{\primOp}(c, c')}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}}}
+      \trPrimApp{(\explVal{T}{k})}{\primOp}{(\explVal{T'}{k'})},
+      \annot{\interpret{\primOp}(k, k')}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}}
    }
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\eval{}$-constr}}]
+   \inferrule*[lab={\ruleName{$\eval{}$-constr}}]
    {
       \rho,
       \vec{e}
       \eval{}
-      \vec{\explVal{T}{u}}
+      \vec{T}, \vec{u}
    }
    {
       \rho,
-      \exConstr{d}{\vec{e}}
+      \exConstr{c}{\vec{e}}
       \eval{}
-      \explVal{\sub{\trEmpty}{\rho}}{\exConstr{d}{\vec{\explVal{T}{u}}}}
+      \trConstr{c}{\vec{T}}, \exConstr{c}{\vec{u}}
    }
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\eval{}$-match}}]
+   \inferrule*[lab={\ruleName{$\eval{}$-match}}]
    {
-      \rho, e \eval{} \explVal{T}{u}
+      \rho, e \eval{} T, u
       \\
       u, \sigma \lookupR \rho_1, \matchProd{\xi}{e'}, \alpha
       \\
-      \rho \concat \rho_1, e' \eval{} \explVal{T'}{\annot{v}{\alpha'}}
+      \rho \concat \rho_1, e' \eval{} T', \annot{v}{\alpha'}
    }
    {
       \rho,
       \exMatch{e}{\sigma}
       \eval{}
-      \explVal{\trMatch{T}{\matchPlug{\xi}{T'}}}{\annot{v}{\alpha \wedge \alpha'}}
+      \trMatch{T}{\matchPlug{\xi}{T'}}, \annot{v}{\alpha \wedge \alpha'}
    }
    %
    \and
    %
-   \inferrule*[left={\ruleName{$\eval{}$-let}}]
-   {
-      \rho, e \eval{} \explVal{T}{u}
-      \\
-      \envExtend{\rho}{x}{u}, e' \eval{} \explVal{U}{u'}
-   }
-   {
-      \rho, \exLet{x}{e}{e'}
-      \eval{}
-      \explVal{\trLet{x}{\explVal{T}{u}}{U}}{u'}
-   }
-   %
-   \and
-   %
-   \inferrule*[left={\ruleName{$\eval{}$-letrec}}]
-   {
-      \rho, \delta \closeDefs \rho_1
-      \\
-      \rho \concat \rho_1, e \eval{} \explVal{T}{u}
-   }
-   {
-      \rho, \exLetrec{\delta}{e}
-      \eval{}
-      \explVal{\trLetrec{\delta}{T}}{u}
-   }
-   %
-   \and
-   %
-   \inferrule*[left={\ruleName{$\eval{}$-defs}}]
+   \inferrule*[lab={\ruleName{$\eval{}$-defs}}]
    {
       \rho, \vec{d} \closeDefs \rho_1, \vec{z}
       \\
-      \rho \concat \rho_1, e \eval{} \explVal{T}{u}
+      \rho \concat \rho_1, e \eval{} T, u
    }
    {
       \rho, \exDefs{\vec{d}}{e}
       \eval{}
-      \explVal{\trDefs{\vec{z}}{T}}{u}
+      \trDefs{\vec{z}}{T}, u
    }
 \end{smathpar}
 \vspace{5pt}
 
-\flushleft \shadebox{$\rho, \vec{e} \eval{} \vec{\explVal{T}{u}}$}
+\flushleft \shadebox{$\rho, \vec{e} \eval{} \vec{T}, \vec{u}$}
 \begin{smathpar}
    \inferrule*
    {
@@ -218,23 +171,25 @@
    }
    {
       \rho,
-      \exUnit
+      \seqEmpty
       \eval{}
+      \sub{\seqEmpty}{\rho},
       \seqEmpty
    }
    \and
    %
    \inferrule*
    {
-      \rho, e \eval{} \explVal{T}{u}
+      \rho, e \eval{} T, u
       \\
-      \rho, \vec{e} \eval{} \vec{\explVal{T}{u}}
+      \rho, \vec{e} \eval{} \vec{T}, \vec{u}
    }
    {
       \rho,
       e \concat \vec{e}
       \eval{}
-      (\explVal{T}{u}) \concat (\vec{\explVal{T}{u}})
+      T \concat \vec{T},
+      u \concat \vec{u}
    }
 \end{smathpar}
 \caption{Evaluation for terms and term sequences}

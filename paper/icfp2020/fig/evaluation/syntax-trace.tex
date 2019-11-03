@@ -1,6 +1,6 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Explanation}
+\mbox{Trace}
 &
 T, U
 &
@@ -11,9 +11,9 @@ T, U
 \text{variable}
 \\
 &&&
-\trUnit{\rho}
+\sub{\trEmpty}{\rho}
 &
-\text{unit}
+\text{constant}
 \\
 &&&
 \trInl{T}
@@ -31,11 +31,6 @@ T, U
 \text{pair}
 \\
 &&&
-\trFun{\sigma}
-&
-\text{function}
-\\
-&&&
 \trApp{T}{T'}{\matchPlug{\xi}{U}}
 &
 \text{application}
@@ -45,5 +40,5 @@ T, U
 &
 \text{roll}
 \end{syntaxfig}
-\caption{Explanations}
+\caption{Traces}
 \end{figure}
