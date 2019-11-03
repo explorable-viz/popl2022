@@ -8,4 +8,4 @@ main:
 	$(PDFLATEX) $@
 	$(PDFLATEX) $@
 	rm -f $@.aux $@.dvi $@.log $@.bbl $@.blg $@.out $@.pag $@.cb $@.cb2 $@.toc
-	evince $@.pdf &
+	open $@.pdf &
