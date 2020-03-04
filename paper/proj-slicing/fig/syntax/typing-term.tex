@@ -249,10 +249,10 @@
 %
 \inferrule*
 {
-   \trieType{\sigma}{B}{\subst{A}{\tyRec{\tyVar{X}}{A}}{\alpha}}{\Gamma}
+   \Gamma \vdash \sigma: \tyFun{\subst{A}{\tyRec{\tyVar{X}}{A}}{X}}{B}
 }
 {
-   \trieType{\trieRoll{\sigma}}{B}{(\tyRec{\tyVar{X}}{A})}{\Gamma}
+   \Gamma \vdash \trieRoll{\sigma}: \tyFun{(\tyRec{\tyVar{X}}{A})}{B}
 }
 \end{smathpar}
 \caption{Typing rules for terms and tries}
