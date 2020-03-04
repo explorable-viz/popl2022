@@ -6,7 +6,7 @@
       \strut
    }
    {
-         v, \trieVarProj{x}{\kappa}, \matchVar{x}{\matchHole{}} \match \envExtendProj{\envEmpty}{x}{v}, \kappa
+         v, \trieVarProj{x}{\kappa}, \matchVar{x}{\matchHole{}} \matchFwd \envExtendProj{\envEmpty}{x}{v}, \kappa
    }
    %
    \and
@@ -16,21 +16,17 @@
       \strut
    }
    {
-      \explVal
-         {\matchUnit{\matchHole{}}}
-         {\exUnit, \trieUnit{\kappa} \lookupR \envEmpty, \kappa}
+      \exUnit, \trieUnitProj{\kappa}, \matchUnit{\matchHole{}} \matchFwd \envEmpty, \kappa
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\lookupR$-inl}}]
    {
-      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+      v, \sigma, \xi \matchFwd \rho, \kappa
    }
    {
-      \explVal
-         {\matchSumL{\xi}{\tau}}
-         {\exInl{v}, \trieSum{\sigma}{\tau} \lookupR \rho, \kappa}
+      \exInl{v}, \trieSum{\sigma}{\tau}, \matchSumL{\xi}{\tau} \matchFwd \rho, \kappa
    }
    %
    \and
