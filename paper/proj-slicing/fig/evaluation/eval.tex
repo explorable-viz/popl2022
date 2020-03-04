@@ -1,25 +1,14 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\rho, e \eval{} u$}
-\begin{smathpar}
-\inferrule*[lab={\ruleName{$\eval{}$-annot}}]
-{
-   \rho, r \eval{} \annot{v}{\alpha'}
-}
-{
-   \rho, \annot{r}{\alpha} \eval{} \annot{v}{\alpha \wedge \alpha'}
-}
-\end{smathpar}
-\\
-\flushleft \shadebox{$\rho, r \eval{} u$}
+\flushleft \shadebox{$\rho, e \eval{} v$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\eval{}$-var}},
-   right={$\exThunkVar{x}{u} \in \rho$}
+   right={$\exThunkVar{x}{v} \in \rho$}
 ]
 {
 }
 {
-   \rho, \exVar{x} \eval{} u
+   \rho, \exVar{x} \eval{} v
 }
 %
 \and
@@ -35,32 +24,32 @@
 %
 \inferrule*[lab={\ruleName{$\eval{}$-inl}}]
 {
-   \rho, e \eval{} u
+   \rho, e \eval{} v
 }
 {
-   \rho, \exInl{e} \eval{} \exInl{u}
+   \rho, \exInl{e} \eval{} \exInl{v}
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\eval{}$-inr}}]
 {
-   \rho, e \eval{} u
+   \rho, e \eval{} v
 }
 {
-   \rho, \exInr{e} \eval{} \exInr{u}
+   \rho, \exInr{e} \eval{} \exInr{v}
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\eval{}$-pair}}]
 {
-   \rho, e_1 \eval{} u_1
+   \rho, e_1 \eval{} v_1
    \\
-   \rho, e_2 \eval{} u_2
+   \rho, e_2 \eval{} v_2
 }
 {
-   \rho, \exPair{e_1}{e_2} \eval{} \exPair{u_1}{u_2}
+   \rho, \exPair{e_1}{e_2} \eval{} \exPair{v_1}{v_2}
 }
 %
 \and
@@ -76,26 +65,26 @@
 %
 \inferrule*[lab={\ruleName{$\eval{}$-app}}]
 {
-   \rho, e \eval{} \annot{\exClosure{\rho_1}{\exFun{\sigma}}}{\alpha}
+   \rho, e \eval{} \exClosure{\rho_1}{\exFun{\sigma}}
    \\
-   \rho, e' \eval{} u
+   \rho, e' \eval{} v
    \\
-   u, \sigma \lookupR \rho_2, e^\twoPrime
+   v, \sigma \lookupR \rho_2, e^\twoPrime
    \\
-   \rho_1 \concat \rho_2, e^\twoPrime \eval{} \annot{v}{\alpha'}
+   \rho_1 \concat \rho_2, e^\twoPrime \eval{} v'
 }
 {
-   \rho, \exApp{e}{e'} \eval{} \annot{v}{\alpha \wedge \alpha'}
+   \rho, \exApp{e}{e'} \eval{} v'
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\eval{}$-roll}}]
 {
-   \rho, e \eval{} u
+   \rho, e \eval{} v
 }
 {
-   \rho, \exRoll{e} \eval{} \exRoll{u}
+   \rho, \exRoll{e} \eval{} \exRoll{v}
 }
 \end{smathpar}
 \caption{Evaluation}
