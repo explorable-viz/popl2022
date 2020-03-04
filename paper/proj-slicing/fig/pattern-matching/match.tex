@@ -49,9 +49,9 @@
    %
    \inferrule*[lab={\ruleName{$\lookupR$-pair}}]
    {
-      u, \sigma \lookupR \rho_1, \matchPlug{\xi}{\tau}, \alpha
+      \explVal{\xi}{u, \sigma \lookupR \rho_1, \tau}
       \\
-      v, \tau \lookupR \rho_2, \matchPlug{\xi'}{\kappa}, \alpha'
+      \explVal{\xi'}{v, \tau \lookupR \rho_2, \kappa}
    }
    {
       \exPair{u}{v}, \trieProd{\sigma}
