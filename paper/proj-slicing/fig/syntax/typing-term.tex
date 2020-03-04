@@ -254,6 +254,16 @@
 {
    \Gamma \vdash \trieRoll{\sigma}: \tyFun{(\tyRec{\tyVar{X}}{A})}{B}
 }
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{\subst{A}{\tyRec{\tyVar{X}}{A}}{X}}{B}
+}
+{
+   \Gamma \vdash \trieRollProj{\sigma}: \tyFun{(\tyRec{\tyVar{X}}{A})}{B}
+}
 \end{smathpar}
 \caption{Typing rules for terms and tries}
 \end{figure}
