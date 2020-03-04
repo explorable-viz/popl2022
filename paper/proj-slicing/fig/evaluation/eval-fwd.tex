@@ -116,13 +116,13 @@
 %
 \inferrule*[lab={\ruleName{$\eval{}$-app}}]
 {
-   \explVal{T}{\rho, e \eval{} \exClosure{\rho_1}{\exFun{\sigma}}}
+   \rho, e, T \fwdSlice \exClosure{\rho_1}{\exFun{\sigma}}
    \\
-   \explVal{T'}{\rho, e' \eval{} v}
+   \rho, e', T' \fwdSlice v
    \\
    \explVal{\xi}{v, \sigma \lookupR \rho_2, e^\twoPrime}
    \\
-   \explVal{U}{\rho_1 \concat \rho_2, e^\twoPrime \eval{} v'}
+   \rho_1 \concat \rho_2, e^\twoPrime, U \fwdSlice v'
 }
 {
    \explVal{\trApp{T}{T'}{\matchPlug{\xi}{U}}}{\rho, \exApp{e}{e'} \eval{} v'}
