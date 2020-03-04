@@ -1,0 +1,44 @@
+\begin{figure}[H]
+\begin{syntaxfig}
+\mbox{Trace}
+&
+T, U
+&
+::=
+&
+\trVarTwo{x}{\rho}
+&
+\text{variable}
+\\
+&&&
+\sub{\trEmpty}{\rho}
+&
+\text{constant}
+\\
+&&&
+\trInl{T}
+&
+\text{inject left}
+\\
+&&&
+\trInr{T}
+&
+\text{inject right}
+\\
+&&&
+\trPair{T_1}{T_2}
+&
+\text{pair}
+\\
+&&&
+\trApp{T}{T'}{\matchPlug{\xi}{U}}
+&
+\text{application}
+\\
+&&&
+\trRoll{T}
+&
+\text{roll}
+\end{syntaxfig}
+\caption{Traces}
+\end{figure}

@@ -1,0 +1,53 @@
+\begin{figure}
+\flushleft \shadebox{$\rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \sigma$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-var}}]
+   {
+   }
+   {
+      \envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \alpha
+      \unlookupR{}
+      u, \trieVar{x}{\kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-constr}}]
+   {
+      \rho, \matchPlug{\Psi}{\kappa}, \alpha \unlookupR{} \vec{u}, \kappa'
+   }
+   {
+      \rho, \envExtend{\Sigma}{c}{\matchPlug{\Psi}{\kappa}}, \alpha
+      \unlookupR{}
+      \annot{\exConstr{c}{\vec{u}}}{\alpha}, \envExtend{\sub{\bot}{\Sigma}}{c}{\kappa'}
+   }
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$\rho, \matchPlug{\Psi}{\kappa}, \alpha \unlookupR{} \vec{u}, \kappa$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\unlookupR{}$-args-nil}}]
+   {
+   }
+   {
+      \envEmpty, \matchHole{\kappa}, \alpha \unlookupR{} \seqEmpty, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\unlookupR{}$-args-cons}}
+   ]
+   {
+      \rho_2, \matchPlug{\Psi}{\kappa}, \alpha \unlookupR{} \vec{u}, \kappa'
+      \\
+      \rho_1, \matchPlug{\xi}{\kappa'}, \alpha \unlookupR{} u, \sigma
+   }
+   {
+      \rho_1 \concat \rho_2, \matchProd{\xi}{\matchPlug{\Psi}{\kappa}}, \alpha
+      \unlookupR{}
+      u \concat \vec{u}, \trieProd{\sigma}
+   }
+\end{smathpar}
+\caption{Reverse pattern-matching}
+\label{fig:impl-language:unmatch}
+\end{figure}

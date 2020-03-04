@@ -1,0 +1,90 @@
+\begin{figure}
+\flushleft \shadebox{$u, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\lookupR$-var}}]
+   {
+   }
+   {
+      u, \trieVar{x}{\kappa}
+      \lookupR
+      \envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\lookupR$-non-var}},
+      right={$\nexists x, \kappa'.\sigma = \trieVar{x}{\kappa'}$}
+   ]
+   {
+      v, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha'
+   }
+   {
+      \annot{v}{\alpha}, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha \wedge \alpha'
+   }
+\end{smathpar}
+\\[3mm]
+\flushleft \shadebox{$v, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\lookupR$-unit}}]
+   {
+   }
+   {
+      \exUnit, \trieUnit{\kappa} \lookupR \envEmpty, \matchUnit{\matchHole{\kappa}, \top}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-inl}}]
+   {
+      u, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha
+   }
+   {
+      \exInl{u}, \trieSum{\sigma}{\tau}
+      \lookupR
+      \rho, \matchSumL{\matchPlug{\xi}{\kappa}}{\tau}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-inr}}]
+   {
+      u, \tau \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha
+   }
+   {
+      \exInr{u}, \trieSum{\sigma}{\tau}
+      \lookupR
+      \rho, \matchSumR{\sigma}{\matchPlug{\xi}{\kappa}}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-pair}}]
+   {
+      u_1, \sigma \lookupR \rho_1, \matchPlug{\xi}{\tau}, \alpha
+      \\
+      u_2, \tau \lookupR \rho_2, \matchPlug{\xi'}{\kappa}, \alpha'
+   }
+   {
+      \exPair{u_1}{u_2}, \trieProd{\sigma}
+      \lookupR
+      \rho_1 \concat \rho_2,
+      \matchProd{\xi}{\matchPlug{\xi'}{\kappa}},
+      \alpha \wedge \alpha'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-roll}}]
+   {
+      u, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha
+   }
+   {
+      \exRoll{u}, \trieRoll{\sigma}
+      \lookupR
+      \rho, \matchRoll{\matchPlug{\xi}{\kappa}}, \alpha
+   }
+\end{smathpar}
+\caption{Pattern-matching}
+\label{fig:pattern-matching:match}
+\end{figure}

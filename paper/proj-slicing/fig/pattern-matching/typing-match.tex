@@ -1,0 +1,94 @@
+\begin{figure}
+\flushleft \shadebox{$\matchType{\Gamma}{\matchPlug{\xi}{\kappa}}{K}{A}{\Gamma'}$}
+\begin{smathpar}
+\inferrule*[right={$\kappa \in K_{\Gamma \concat \Gamma'}$}]
+{
+   \matchType{\Gamma}{\xi}{K}{A}{\Gamma'}
+}
+{
+   \matchType{\Gamma}{\matchPlug{\xi}{\kappa}}{K}{A}{\Gamma'}
+}
+\end{smathpar}
+\\[3mm]
+\flushleft \shadebox{$\matchType{\Gamma}{\xi}{K}{A}{\Gamma'}$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \matchType{\Gamma}{\matchVar{x}{\matchHole{}}}{K}{A}{\cxtExtend{\cxtEmpty}{x}{A}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \matchType{\Gamma}{\matchUnit{\matchHole{}}}{K}{\tyUnit}{\cxtEmpty}
+}
+%
+\and
+%
+\inferrule*
+{
+   \matchType{\Gamma}{\xi}{K}{A}{\Gamma'}
+   \\
+   \trieType{\sigma}{K}{B}{\Gamma}
+}
+{
+   \matchType{\Gamma}{\matchSumL{\xi}{\sigma}}{K}{(\tySum{A}{B})}{\Gamma'}
+}
+%
+\and
+%
+\inferrule*
+{
+   \trieType{\sigma}{K}{A}{\Gamma}
+   \\
+   \matchType{\Gamma}{\xi}{K}{B}{\Gamma'}
+}
+{
+   \matchType{\Gamma}{\matchSumR{\sigma}{\xi}}{K}{(\tySum{A}{B})}{\Gamma'}
+}
+%
+\and
+%
+\inferrule*
+{
+   \matchType{\Gamma}{\explVal{T}{\xi}}{K'}{A}{\Delta}
+   \\
+   \matchType{\Gamma \concat \Delta}{\explVal{U}{\xi'}}{K}{B}{\Gamma'}
+}
+{
+   \matchType{\Gamma}{\matchProd{\xi}{\xi'}}{K}{(\tyProd{A}{B})}{\Gamma'}
+}
+%
+\and
+%
+\inferrule*
+{
+   \matchType{\Gamma}{\xi}{K}{\subst{A}{\tyRec{\alpha}{A}}{\alpha}}{\Gamma'}
+}
+{
+   \matchType{\Gamma}{\matchRoll{\xi}}{K}{(\tyRec{\alpha}{A})}{\Gamma'}
+}
+\end{smathpar}
+\vspace{5pt}
+
+\flushleft \shadebox{$\explMatchType{\Gamma}{\explVal{T}{\xi}}{K}{A}{\Gamma'}$}
+\begin{smathpar}
+\inferrule*
+{
+   \explType{\Gamma}{T}{A}
+   \\
+   \matchType{\Gamma}{\xi}{T}{A}{\Gamma'}
+}
+{
+   \explMatchType{\Gamma}{\explVal{T}{\xi}}{K}{A}{\Gamma'}
+}
+\end{smathpar}
+\caption{Typing rules for matches}
+\end{figure}

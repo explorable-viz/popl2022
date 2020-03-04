@@ -1,0 +1,116 @@
+\begin{figure}[H]
+\flushleft \shadebox{$T, u \uneval \rho, e$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\uneval$-var}}]
+   {
+   }
+   {
+      \trVarTwo{x}{\rho}, \annot{v}{\alpha}
+      \uneval
+      \envExtend{\sub{\bot}{\rho}}{x}{\annot{v}{\alpha}},
+      \annot{\exVar{x}}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-unit}}]
+   {
+   }
+   {
+      \sub{\trEmpty}{\rho}, \annot{\exUnit}{\alpha}
+      \uneval
+      \sub{\bot}{\rho},
+      \annot{\exUnit}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-inl}}]
+   {
+      T, u \uneval \rho', e
+   }
+   {
+      \trInl{T}, \annot{(\exInl{u})}{\alpha}
+      \uneval
+      \rho',
+      \annot{(\exInl{e})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-inr}}]
+   {
+      T, u \uneval \rho', e
+   }
+   {
+      \trInr{T}, \annot{(\exInr{u})}{\alpha}
+      \uneval
+      \rho',
+      \annot{(\exInr{e})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-pair}}]
+   {
+      T_1, u_1 \uneval \rho_1, e_1
+      \\
+      T_2, u_2 \uneval \rho_2, e_2
+   }
+   {
+      \trPair{T_1}{T_2}, \annot{\exPair{u_1}{u_2}}{\alpha}
+      \uneval
+      \rho_1 \vee \rho_2,
+      \annot{\exPair{e_1}{e_2}}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-fun}}]
+   {
+   }
+   {
+      \sub{\trEmpty}{\rho}, \annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
+      \uneval
+      \rho,
+      \annot{(\exFun{\sigma})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-app}}]
+   {
+      U, \annot{v}{\alpha} \uneval \rho_1' \concat \rho_2, e^\twoPrime
+      \\
+      \rho_2, \matchPlug{\xi}{e^\twoPrime}, \alpha \unlookupR{} u, \sigma
+      \\\\
+      T', u \uneval \rho, e'
+      \\
+      T, \annot{\exClosure{\rho_1'}{\exFun{\sigma}}}{\alpha} \uneval \rho', e
+   }
+   {
+      \trApp{T}
+            {T'}
+            {\matchPlug{\xi}{U}},
+      \annot{v}{\alpha}
+      \uneval
+      \rho \vee \rho',
+      \annot{(\exApp{e}{e'})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-roll}}]
+   {
+      T, u \uneval \rho', e
+   }
+   {
+      \trRoll{T}, \annot{(\exRoll{u})}{\alpha}
+      \uneval
+      \rho',
+      \annot{(\exRoll{e})}{\alpha}
+   }
+\end{smathpar}
+\caption{Reverse evaluation}
+\label{fig:evaluation:uneval}
+\end{figure}
