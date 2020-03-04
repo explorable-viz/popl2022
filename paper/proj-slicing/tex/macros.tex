@@ -133,21 +133,22 @@
 
 \newcommand*{\del}[1]{\textcolor{red}{#1}}
 
-\newcommand*{\tySumDelR}[2]{{\del{#1}}\mathbin{\del{+}}{#2}}
-\newcommand*{\tySumDelL}[2]{{#1}\mathbin{\del{+}}{\del{#2}}}
-\newcommand*{\tyProdDelR}[2]{{\del{#1}}\mathbin{\del{\times}}{#2}}
-\newcommand*{\tyProdDelL}[2]{{#1}\mathbin{\del{\times}}{\del{#2}}}
-\newcommand*{\tyFunDelR}[2]{{\del{#1}}\mathbin{\del{\rightarrow}}{#2}}
-\newcommand*{\tyFunDelL}[2]{{#1}\mathbin{\del{\rightarrow}}{\del{#2}}}
-\newcommand*{\tyRecDel}[2]{\del{\mu{#1}.}{#2}}
+\newcommand*{\tySumProjR}[2]{{\del{#1}}\mathbin{\del{+}}{#2}}
+\newcommand*{\tySumProjL}[2]{{#1}\mathbin{\del{+}}{\del{#2}}}
+\newcommand*{\tyProdProjR}[2]{{\del{#1}}\mathbin{\del{\times}}{#2}}
+\newcommand*{\tyProdProjL}[2]{{#1}\mathbin{\del{\times}}{\del{#2}}}
+\newcommand*{\tyFunProjR}[2]{{\del{#1}}\mathbin{\del{\rightarrow}}{#2}}
+\newcommand*{\tyFunProjL}[2]{{#1}\mathbin{\del{\rightarrow}}{\del{#2}}}
+\newcommand*{\tyRecProj}[2]{\del{\mu{#1}.}{#2}}
 
-\newcommand*{\cxtExtendDel}[3]{{#1}\del{,{#2}: {#3}}}
+\newcommand*{\cxtExtendProj}[3]{{#1}\del{,{#2}: {#3}}}
 
-\newcommand*{\exInlDel}[1]{\del{\kw{inl}}\;{#1}}
-\newcommand*{\exInrDel}[1]{\del{\kw{inr}}\;{#1}}
-\newcommand*{\exPairDelL}[2]{\del{\langle}#1\del{,#2\rangle}}
-\newcommand*{\exPairDelR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
-\newcommand*{\exRollDel}[1]{\del{\kw{roll}}\;{#1}}
+\newcommand*{\exAppProjFun}[2]{{#1}\,{\del{#2}}}
+\newcommand*{\exInlProj}[1]{\del{\kw{inl}}\;{#1}}
+\newcommand*{\exInrProj}[1]{\del{\kw{inr}}\;{#1}}
+\newcommand*{\exPairProjL}[2]{\del{\langle}#1\del{,#2\rangle}}
+\newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
+\newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}

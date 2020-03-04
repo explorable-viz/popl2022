@@ -71,7 +71,7 @@ x
 \text{inject left}
 \\
 &&&
-\exInlDel{e}
+\exInlProj{e}
 &
 \\
 &&&
@@ -80,7 +80,7 @@ x
 \text{inject right}
 \\
 &&&
-\exInrDel{e}
+\exInrProj{e}
 &
 \\
 &&&
@@ -89,11 +89,11 @@ x
 \text{pair}
 \\
 &&&
-\exPairDelL{e_1}{e_2}
+\exPairProjL{e_1}{e_2}
 &
 \\
 &&&
-\exPairDelR{e_1}{e_2}
+\exPairProjR{e_1}{e_2}
 &
 \\
 &&&
@@ -107,12 +107,16 @@ x
 \text{application}
 \\
 &&&
+\exAppProjFun{e}{e'}
+&
+\\
+&&&
 \exRoll{e}
 &
 \text{roll}
 \\
 &&&
-\exRollDel{e}
+\exRollProj{e}
 &
 \end{syntaxfig}
 \caption{Terms, branches and tries}
