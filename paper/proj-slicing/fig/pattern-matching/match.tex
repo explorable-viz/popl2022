@@ -15,9 +15,12 @@
    %
    \inferrule*[lab={\ruleName{$\lookupR$-unit}}]
    {
+      \strut
    }
    {
-      \exUnit, \trieUnit{\kappa} \lookupR \envEmpty, \matchUnit{\matchHole{\kappa}, \top}
+      \explVal
+         {\matchUnit{\matchHole{}}}
+         {\exUnit, \trieUnit{\kappa} \lookupR \envEmpty, \kappa}
    }
    %
    \and
