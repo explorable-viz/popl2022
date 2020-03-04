@@ -13,20 +13,6 @@
    %
    \and
    %
-   \inferrule*[
-      lab={\ruleName{$\lookupR$-non-var}},
-      right={$\nexists x, \kappa'.\sigma = \trieVar{x}{\kappa'}$}
-   ]
-   {
-      v, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha'
-   }
-   {
-      \annot{v}{\alpha}, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha \wedge \alpha'
-   }
-\end{smathpar}
-\\[3mm]
-\flushleft \shadebox{$v, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha$}
-\begin{smathpar}
    \inferrule*[lab={\ruleName{$\lookupR$-unit}}]
    {
    }
