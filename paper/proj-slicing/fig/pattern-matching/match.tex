@@ -1,5 +1,5 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}$}
+\flushleft \shadebox{$v, \sigma \lookupR \rho, \kappa$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\lookupR$-var}}]
    {
@@ -49,12 +49,12 @@
    %
    \inferrule*[lab={\ruleName{$\lookupR$-pair}}]
    {
-      u_1, \sigma \lookupR \rho_1, \matchPlug{\xi}{\tau}, \alpha
+      u, \sigma \lookupR \rho_1, \matchPlug{\xi}{\tau}, \alpha
       \\
-      u_2, \tau \lookupR \rho_2, \matchPlug{\xi'}{\kappa}, \alpha'
+      v, \tau \lookupR \rho_2, \matchPlug{\xi'}{\kappa}, \alpha'
    }
    {
-      \exPair{u_1}{u_2}, \trieProd{\sigma}
+      \exPair{u}{v}, \trieProd{\sigma}
       \lookupR
       \rho_1 \concat \rho_2,
       \matchProd{\xi}{\matchPlug{\xi'}{\kappa}},
