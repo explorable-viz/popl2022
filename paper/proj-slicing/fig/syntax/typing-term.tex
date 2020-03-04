@@ -159,36 +159,80 @@
 }
 \end{smathpar}
 \\[3mm]
-\flushleft \shadebox{$\trieType{\sigma}{B}{A}{\Gamma}$}
+\flushleft \shadebox{$\Gamma \vdash \sigma: A \to B$}
 \begin{smathpar}
 \inferrule*
 {
-   \contType{\kappa}{B}{\cxtExtend{\Gamma}{x}{A}}
+   \cxtExtend{\Gamma}{x}{A} \vdash \kappa: B
 }
 {
-   \trieType{\trieVar{x}{\kappa}}{B}{A}{\Gamma}
-}
-%
-\and
-%
-\inferrule*
-{
-   \contType{\kappa}{B}{\Gamma}
-}
-{
-   \trieType{\trieUnit{\kappa}}{B}{\tyUnit}{\Gamma}
+   \Gamma \vdash \trieVar{x}{\kappa}: A \to B
 }
 %
 \and
 %
 \inferrule*
 {
-   \trieType{\sigma}{B}{A}{\Gamma}
+   \cxtExtendProj{\Gamma}{x}{A} \vdash \kappa: B
+}
+{
+   \Gamma \vdash \trieVarProj{x}{\kappa}: \tyFunProjR{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: B
+}
+{
+   \Gamma \vdash \trieUnit{\kappa}: \tyFun{\tyUnit}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: B
+}
+{
+   \Gamma \vdash \trieUnitProj{\kappa}: \tyFunProjR{\tyUnit}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
    \\
-   \trieType{\tau}{B}{A'}{\Gamma}
+   \Gamma \vdash \tau: \tyFun{A'}{B}
 }
 {
-   \trieType{\trieSum{\sigma}{\tau}}{B}{\tySum{A}{A'}}{\Gamma}
+   \Gamma \vdash \trieSum{\sigma}{\tau}: \tyFun{\tySum{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+   \\
+   \Gamma \vdash \tau: \tyFun{A'}{B}
+}
+{
+   \Gamma \vdash \trieSumProjL{\sigma}{\tau}: \tyFun{\tySumProjL{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+   \\
+   \Gamma \vdash \tau: \tyFun{A'}{B}
+}
+{
+   \Gamma \vdash \trieSumProjR{\sigma}{\tau}: \tyFun{\tySumProjR{A}{A'}}{B}
 }
 %
 \and
