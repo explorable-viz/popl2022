@@ -61,12 +61,10 @@
    %
    \inferrule*[lab={\ruleName{$\lookupR$-roll}}]
    {
-      u, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
    }
    {
-      \exRoll{u}, \trieRoll{\sigma}
-      \lookupR
-      \rho, \matchRoll{\matchPlug{\xi}{\kappa}}, \alpha
+      \explVal{\matchRoll{\xi}}{\exRoll{v}, \trieRoll{\sigma} \lookupR \rho, \kappa}
    }
 \end{smathpar}
 \caption{Pattern-matching}
