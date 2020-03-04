@@ -3,11 +3,12 @@
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\lookupR$-var}}]
    {
+      \strut
    }
    {
-      u, \trieVar{x}{\kappa}
-      \lookupR
-      \envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \top
+      \explVal
+         {\matchVar{x}{\matchHole{}}}
+         {v, \trieVar{x}{\kappa} \lookupR \envExtend{\envEmpty}{x}{v}, \kappa}
    }
    %
    \and
