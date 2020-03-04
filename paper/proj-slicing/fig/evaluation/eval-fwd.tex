@@ -1,64 +1,115 @@
 \begin{figure}
-\flushleft \shadebox{$\rho, e \eval{} v$}
+\flushleft \shadebox{$\rho, e, T \fwdSlice v$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\eval{}$-var}},
-   right={$\exThunkVar{x}{v} \in \rho$}
-]
+\inferrule*[right={$\explVal{T}{\rho, e \eval{} v}$}]
 {
 }
 {
-   \explVal{\trVarTwo{x}{}}{\rho, \exVar{x} \eval{} v}
+   \rho, \del{e}, T \fwdSlice \del{v}
 }
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\eval{}$-unit}}]
+\inferrule*[right={$\explVal{T}{\rho, e \eval{} v}$}]
 {
 }
 {
-   \explVal{\trUnit{}}{\rho, \exUnit \eval{} \exUnit}
+   \rho, \exVar{x}, \trVarTwo{x}{} \fwdSlice v
 }
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\eval{}$-inl}}]
+\inferrule*[lab={\ruleName{$\fwdSlice$-unit}}]
 {
-   \explVal{T}{\rho, e \eval{} v}
 }
 {
-   \explVal{\trInl{T}}{\rho, \exInl{e} \eval{} \exInl{v}}
+   \rho, \exUnit, \trUnit{} \fwdSlice \exUnit
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-inl}}]
+{
+   \rho, e, T \fwdSlice v
+}
+{
+   \rho, \exInl{e}, \trInl{T} \fwdSlice \exInl{v}
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e, T \fwdSlice v
+}
+{
+   \rho, \exInlProj{e}, \trInl{T} \fwdSlice \exInlProj{v}
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\eval{}$-inr}}]
 {
-   \explVal{T}{\rho, e \eval{} v}
+   \rho, e, T \fwdSlice v
 }
 {
-   \explVal{\trInr{T}}{\rho, \exInr{e} \eval{} \exInr{v}}
+   \rho, \exInr{e}, \trInr{T} \fwdSlice \exInr{v}
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e, T \fwdSlice v
+}
+{
+   \rho, \exInrProj{e}, \trInr{T} \fwdSlice \exInrProj{v}
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\eval{}$-pair}}]
 {
-   \explVal{T_1}{\rho, e_1 \eval{} v_1}
+   \rho, e_1, T_1 \fwdSlice v_1
    \\
-   \explVal{T_2}{\rho, e_2 \eval{} v_2}
+   \rho, e_2, T_2 \fwdSlice v_2
 }
 {
-   \explVal{\trPair{T_1}{T_2}}{\rho, \exPair{e_1}{e_2} \eval{} \exPair{v_1}{v_2}}
+   \rho, \exPair{e_1}{e_2}, \trPair{T_1}{T_2} \eval{} \exPair{v_1}{v_2}
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e_1, T_1 \fwdSlice v_1
+   \\
+   \rho, e_2, T_2 \fwdSlice v_2
+}
+{
+   \rho, \exPairProjL{e_1}{e_2}, \trPair{T_1}{T_2} \eval{} \exPairProjL{v_1}{v_2}
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e_1, T_1 \fwdSlice v_1
+   \\
+   \rho, e_2, T_2 \fwdSlice v_2
+}
+{
+   \rho, \exPairProjR{e_1}{e_2}, \trPair{T_1}{T_2} \eval{} \exPairProjR{v_1}{v_2}
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\eval{}$-fun}}]
 {
+   \strut
 }
 {
-   \explVal{\trFun{\sigma}}{\rho, \exFun{\sigma} \eval{} \exClosure{\rho}{\exFun{\sigma}}}
+   \rho, \exFun{\sigma}, \trFun{\sigma} \fwdSlice \exClosure{\rho}{\exFun{\sigma}}
 }
 %
 \and
