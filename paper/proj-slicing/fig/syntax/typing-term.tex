@@ -142,7 +142,7 @@
 %
 \inferrule*
 {
-   \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{\alpha}}
+   \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{X}}
 }
 {
    \exprType{\exRoll{e}}{\Gamma}{\tyRec{X}{A}}
@@ -152,7 +152,7 @@
 %
 \inferrule*[right={\textnormal{$A$ closed}}]
 {
-   \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{\alpha}}
+   \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{X}}
 }
 {
    \exprType{\exRollProj{e}}{\Gamma}{\tyRecProj{X}{A}}
@@ -262,7 +262,7 @@
    \Gamma \vdash \sigma: \tyFun{\subst{A}{\tyRec{\tyVar{X}}{A}}{X}}{B}
 }
 {
-   \Gamma \vdash \trieRollProj{\sigma}: \tyFun{(\tyRec{\tyVar{X}}{A})}{B}
+   \Gamma \vdash \trieRollProj{\sigma}: \tyFun{(\tyRecProj{\tyVar{X}}{A})}{B}
 }
 \end{smathpar}
 \caption{Typing rules for terms and tries}
