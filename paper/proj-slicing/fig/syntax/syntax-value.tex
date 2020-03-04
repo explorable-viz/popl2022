@@ -1,21 +1,17 @@
 \begin{figure}
 \begin{syntaxfig}
 \small
-\mbox{Annotated value}
-&
-u
-&
-::=
-&
-\annot{v}{\alpha}
-&
-\\[1mm]
 \mbox{Value}
 &
-v
+u, v
 &
 ::=
 &
+\del{v}
+&
+\text{erase}
+\\
+&&&
 \exUnit
 &
 \text{unit}
@@ -26,14 +22,30 @@ v
 \text{inject left}
 \\
 &&&
+\exInlProj{v}
+&
+\\
+&&&
 \exInr{v}
 &
 \text{inject right}
 \\
 &&&
-\exPair{v_1}{v_2}
+\exInrProj{v}
+&
+\\
+&&&
+\exPair{u}{v}
 &
 \text{pair}
+\\
+&&&
+\exPairProjL{u}{v}
+&
+\\
+&&&
+\exPairProjR{u}{v}
+&
 \\
 &&&
 \exClosure{\rho}{\exFun{\sigma}}
@@ -42,6 +54,11 @@ v
 \\
 &&&
 \exRoll{v}
+&
+\text{roll}
+\\
+&&&
+\exRollProj{v}
 &
 \text{roll}
 \\[1mm]
