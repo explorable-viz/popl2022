@@ -2,36 +2,11 @@
 
 \subsection{Syntax}
 
-\figref{demand-indexed:syntax} gives the syntax of types, contexts, tries, and
-terms. Types are conventional sums of products with recursion.
+\input{fig/syntax/type}
+\input{fig/syntax/term}
 
-\input{fig/syntax/syntax}
-
-Tries \cite{hinze00} and terms are somewhat non-standard and are best explained
-with reference to the typing rules in \figref{demand-indexed:typing-term}. We
-start with tries, which are a particular syntactic representation of functions.
-The $\trieArrow$ arrow associates to the right. The variable trie
-$\trieVar{x}{\kappa}$ maps any value of type $A$ to $\kappa$, which is
-typed in a context which extends $\Gamma$ with a new binding of type $A$. The
-unit trie $\trieUnit{\kappa}$ maps the single value of type $\tyUnit$ to
-$\kappa$, without introducing a new variable.
+Tries extend \citet{hinze00} with variable binding.
 
 \input{fig/syntax/typing-term}
-
-Of the non-leaf cases, the trie $\trieRoll{\sigma}$ for a recursive type
-$\tyRec{\tyVar{X}}{A}$, is the simplest: it simply injects $\sigma$, which is a
-trie over the one-step unrolling of $\tyRec{\tyVar{X}}{A}$, into
-$\tyRec{\tyVar{X}}{A}$. Sum tries $\trieSum{\sigma}{\tau}$ are slightly more
-interesting, allowing a trie over $A$ and a trie over $B$ to be combined into a
-trie over $\tySum{A}{B}$ as long they share a codomain. Product tries
-$\trieProd{\sigma}$ rely on currying, allowing a trie over $A$ which returns a
-trie over $B$ to be treated as a trie over $\tyProd{A}{B}$.
-
-\subsection{Values and environments}
-
 \input{fig/syntax/syntax-value}
 \input{fig/syntax/typing-value}
-
-The syntax of values and environments is given in
-\figref{demand-indexed:syntax-value}. Concatenation of sequences is denoted by
-the $\concat$ operator.

@@ -131,6 +131,18 @@
 \newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
 \newcommand*{\tyVar}[1]{#1}
 
+\newcommand*{\del}[1]{\textcolor{red}{#1}}
+
+\newcommand*{\tySumDelR}[2]{{\del{#1}}\mathbin{\del{+}}{#2}}
+\newcommand*{\tySumDelL}[2]{{#1}\mathbin{\del{+}}{\del{#2}}}
+\newcommand*{\tyProdDelR}[2]{{\del{#1}}\mathbin{\del{\times}}{#2}}
+\newcommand*{\tyProdDelL}[2]{{#1}\mathbin{\del{\times}}{\del{#2}}}
+\newcommand*{\tyFunDelR}[2]{{\del{#1}}\mathbin{\del{\rightarrow}}{#2}}
+\newcommand*{\tyFunDelL}[2]{{#1}\mathbin{\del{\rightarrow}}{\del{#2}}}
+\newcommand*{\tyRecDel}[2]{\del{\mu{#1}.}{#2}}
+
+\newcommand*{\cxtExtendDel}[3]{{#1}\del{,{#2}: {#3}}}
+
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}
 \newcommand*{\Below}[1]{{\downarrow{#1}}}
