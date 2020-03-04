@@ -27,12 +27,12 @@
    %
    \inferrule*[lab={\ruleName{$\lookupR$-inl}}]
    {
-      u, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
    }
    {
-      \exInl{u}, \trieSum{\sigma}{\tau}
-      \lookupR
-      \rho, \matchSumL{\matchPlug{\xi}{\kappa}}{\tau}, \alpha
+      \explVal
+         {\matchSumL{\xi}{\tau}}
+         {\exInl{v}, \trieSum{\sigma}{\tau} \lookupR \rho, \kappa}
    }
    %
    \and
