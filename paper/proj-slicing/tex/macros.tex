@@ -143,6 +143,12 @@
 
 \newcommand*{\cxtExtendDel}[3]{{#1}\del{,{#2}: {#3}}}
 
+\newcommand*{\exInlDel}[1]{\del{\kw{inl}}\;{#1}}
+\newcommand*{\exInrDel}[1]{\del{\kw{inr}}\;{#1}}
+\newcommand*{\exPairDelL}[2]{\del{\langle}#1\del{,#2\rangle}}
+\newcommand*{\exPairDelR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
+\newcommand*{\exRollDel}[1]{\del{\kw{roll}}\;{#1}}
+
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}
 \newcommand*{\Below}[1]{{\downarrow{#1}}}

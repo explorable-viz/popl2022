@@ -51,6 +51,11 @@ e
 &
 ::=
 &
+\del{e}
+&
+\text{erase}
+\\
+&&&
 x
 &
 \text{variable}
@@ -66,14 +71,30 @@ x
 \text{inject left}
 \\
 &&&
+\exInlDel{e}
+&
+\\
+&&&
 \exInr{e}
 &
 \text{inject right}
 \\
 &&&
+\exInrDel{e}
+&
+\\
+&&&
 \exPair{e_1}{e_2}
 &
 \text{pair}
+\\
+&&&
+\exPairDelL{e_1}{e_2}
+&
+\\
+&&&
+\exPairDelR{e_1}{e_2}
+&
 \\
 &&&
 \exFun{\sigma}
@@ -89,6 +110,10 @@ x
 \exRoll{e}
 &
 \text{roll}
+\\
+&&&
+\exRollDel{e}
+&
 \end{syntaxfig}
 \caption{Terms, branches and tries}
 \end{figure}
