@@ -136,12 +136,12 @@
    \\
    \rho, e', T' \fwdSlice v
    \\
-   v, \sigma, \xi \matchFwd \rho_2, e^\twoPrime
+   v, \sigma, \xi \matchFwd \rho_2, \exFun{\tau}
    \\
-   \rho_1 \concat \rho_2, e^\twoPrime, U \fwdSlice v'
+   \rho_1 \concat \rho_2, \exFun{\tau}, U \fwdSlice \exClosure{\rho_1 \concat \rho_2}{\exFun{\tau}}
 }
 {
-   \rho, \exAppProjFun{e}{e'}, \trApp{T}{T'}{\matchPlug{\xi}{U}} \fwdSlice v'
+   \rho, \exAppProjFun{e}{e'}, \trApp{T}{T'}{\matchPlug{\xi}{U}} \fwdSlice \exClosure{\rho_1 \mathbin{\del{\concat}} \del{\rho_2}}{\exFun{\tau}}
 }
 %
 \and
