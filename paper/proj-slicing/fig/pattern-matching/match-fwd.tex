@@ -6,9 +6,7 @@
       \strut
    }
    {
-      \explVal
-         {\matchVar{x}{\matchHole{}}}
-         {v, \trieVar{x}{\kappa} \lookupR \envExtend{\envEmpty}{x}{v}, \kappa}
+         v, \trieVarProj{x}{\kappa}, \matchVar{x}{\matchHole{}} \match \envExtendProj{\envEmpty}{x}{v}, \kappa
    }
    %
    \and
