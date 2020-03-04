@@ -1,0 +1,108 @@
+\begin{figure}[H]
+\begin{syntaxfig}
+\mbox{Type variable}
+&
+X
+\\[2mm]
+\mbox{Type}
+&
+A, B
+&
+::=
+&
+\del{A}
+&
+\text{erase}
+\\
+&&&
+\tyVar{X}
+&
+\text{variable}
+\\
+&&&
+\tyUnit
+&
+\text{unit}
+\\
+&&&
+\tySum{A}{B}
+&
+\text{sum}
+\\
+&&&
+\tySumDelL{A}{B}
+&
+\text{\phantom{sum} project left}
+\\
+&&&
+\tySumDelR{A}{B}
+&
+\text{\phantom{sum} project right}
+\\
+&&&
+\tyProd{A}{B}
+&
+\text{product}
+\\
+&&&
+\tyProdDelL{A}{B}
+&
+\text{\phantom{product} project first}
+\\
+&&&
+\tyProdDelR{A}{B}
+&
+\text{\phantom{product} project second}
+\\
+&&&
+\tyFun{A}{B}
+&
+\text{function}
+\\
+&&&
+\tyFunDelL{A}{B}
+&
+\text{\phantom{function} project domain}
+\\
+&&&
+\tyFunDelR{A}{B}
+&
+\text{\phantom{function} project codomain}
+\\
+&&&
+\tyRec{X}{A}
+&
+\text{recursive}
+\\
+&&&
+\tyRecDel{X}{A}
+&
+\text{\phantom{recursive} project}
+\\[2mm]
+\mbox{Variable}
+&
+x
+\\[2mm]
+\mbox{Context}
+&
+\Gamma, \Delta
+&
+::=
+&
+\cxtEmpty
+&
+\text{empty}
+\\
+&&&
+\cxtExtend{\Gamma}{x}{A}
+&
+\text{extend}
+\\
+&&&
+\cxtExtendDel{\Gamma}{x}{A}
+&
+\text{\phantom{extend} project}
+\\[2mm]
+\end{syntaxfig}
+\caption{Types, variables and contexts}
+\end{figure}
