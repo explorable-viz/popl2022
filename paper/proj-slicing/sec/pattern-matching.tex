@@ -1,36 +1,6 @@
-\section{Galois slicing for pattern-matching}
+\section{Projectional slicing for pattern-matching}
 
 \input{fig/pattern-matching/syntax-match}
 % \input{fig/pattern-matching/typing-match}
-
-\begin{definition}
-   \label{def:match}
-   \figref{pattern-matching:match} defines pattern matching.
-\end{definition}
-
-Pattern-matching consumes the least precise approximant of the value of $e$
-which is precise enough to match a unique entry $\kappa$ of $\sigma$. When $e$
-is the argument to a function, $\kappa$ will be the body of the selected branch;
-if $\sigma$ is a product trie, then $\kappa$ will be another trie, representing
-the demand on the second component.
-
-\begin{definition}
-   \label{def:unmatch}
-   \figref{pattern-matching:unmatch} defines reverse pattern matching.
-\end{definition}
-
 \input{fig/pattern-matching/match}
 \input{fig/pattern-matching/unmatch}
-
-\subsection{Galois connection}
-
-\begin{theorem}
-\label{thm:gc-pattern-match}
-
-Write $\lookupR_{u, \sigma}$ for unannotated $u$, $\sigma$ to mean $\lookupR$
-domain-restricted to $\Ann{u, \sigma}$ and suppose $u, \sigma \lookupR \rho,
-\kappa$. Then $\lookupR_{u, \sigma}$ and $\unlookupR{u, \sigma}$ form a Galois
-connection: \[{\lookupR_{u, \sigma}} \adjoint {\unlookupR{u, \sigma}}: \Ann{u,
-\sigma} \to \Ann{\rho, \kappa}\]
-
-\end{theorem}

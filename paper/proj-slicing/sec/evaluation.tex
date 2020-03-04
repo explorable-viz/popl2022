@@ -1,36 +1,7 @@
-\section{Galois slicing for evaluation}
+\section{Projectional slicing for evaluation}
 
 \input{fig/evaluation/syntax-trace}
 % \input{fig/evaluation/typing-trace}
-
-\begin{definition}
-   \label{def:eval}
-   \figref{evaluation:eval} defines a big-step, call-by-value operational
-   semantics.
-\end{definition}
-
-For any expression $e$ of type $A$ in $\Gamma$ the judgement $\rho, e \eval{} v$
-asserts that $e$, when evaluated in environment $\rho$ for $\Gamma$, yields a
-value $v$.
-
-\begin{definition}
-   \label{def:uneval}
-   \figref{evaluation:uneval} defines reverse evaluation.
-\end{definition}
-
 \input{fig/evaluation/eval}
 \input{fig/evaluation/eval-traced} % redo as a function from derivation trees?
 \input{fig/evaluation/uneval}
-
-\subsection{Galois connection}
-
-\begin{theorem}
-\label{thm:gc-eval}
-
-Suppose $\rho, e \eval{} T, u$. Write $\eval{}_{\rho, e}$ to mean $\eval{}$
-domain-restricted to $\Ann{\rho, e}$ and $\uneval_{\rho, e}$ to mean $\uneval$
-domain-restricted to $\Ann{T, u}$. Then $\eval{}_{\rho, e}$ and $\uneval_{\rho,
-e}$ form a Galois connection: \[{\eval{}_{\rho, e}} \adjoint {\uneval_{\rho,
-e}}: \Ann{\rho, e} \to \Ann{T, u}\]
-
-\end{theorem}

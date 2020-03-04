@@ -3,17 +3,7 @@
 \subsection{Syntax}
 
 \figref{demand-indexed:syntax} gives the syntax of types, contexts, tries, and
-terms. Types are conventional sums of products with recursion. Terms are
-parameterised over a lattice $\mathcal{A} = \langle \mathcal{A}, \top, \bot,
-\wedge, \vee\rangle$; we write $\leq$ for the partial order of $\mathcal{A}$.
-The lattice $\mathcal{A}$ extends to the set $\Ann{e}$ of all possible
-annotations of the (unannotated) term $e$ by defining $\top_e$, $\bot_e$,
-$\wedge_e$ and $\vee_e$ to apply the corresponding operation of $\mathcal{A}$ at
-every subterm of $e$. For example $\annot{(\exInl{e'})}{\alpha}
-\wedge_{\exInl{e}} \annot{(\exInl{e^\twoPrime})}{\alpha'}$, where $e, e' \in
-\Ann{e}$, is defined recursively as $\annot{(\exInl{(e' \wedge_e
-e^\twoPrime)})}{\alpha \wedge \alpha'}$. The subscripts on the lattice
-operations for $\Ann{e}$, shown here for clarity, are usually omitted.
+terms. Types are conventional sums of products with recursion.
 
 \input{fig/syntax/syntax}
 
@@ -21,7 +11,7 @@ Tries \cite{hinze00} and terms are somewhat non-standard and are best explained
 with reference to the typing rules in \figref{demand-indexed:typing-term}. We
 start with tries, which are a particular syntactic representation of functions.
 The $\trieArrow$ arrow associates to the right. The variable trie
-$\trieVar{x}{\kappa}$ maps \emph{any} value of type $A$ to $\kappa$, which is
+$\trieVar{x}{\kappa}$ maps any value of type $A$ to $\kappa$, which is
 typed in a context which extends $\Gamma$ with a new binding of type $A$. The
 unit trie $\trieUnit{\kappa}$ maps the single value of type $\tyUnit$ to
 $\kappa$, without introducing a new variable.
