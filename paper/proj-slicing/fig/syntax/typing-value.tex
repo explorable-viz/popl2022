@@ -3,15 +3,14 @@
 \begin{smathpar}
 \inferrule*
 {
-   \valType{u}{A}
+   \valType{v}{A}
 }
 {
-   \valType{\annot{u}{\alpha}}{A}
+   \valType{\del{v}}{\del{A}}
 }
-\end{smathpar}
-\\[3mm]
-\flushleft \shadebox{$\valType{u}{A}$}
-\begin{smathpar}
+%
+\and
+%
 \inferrule*
 {
    \strut
@@ -34,10 +33,30 @@
 %
 \inferrule*
 {
+   \valType{v}{A}
+}
+{
+   \valType{\exInlProj{v}}{\tySumProjL{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
    \valType{v}{B}
 }
 {
    \valType{\exInr{v}}{\tySum{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \valType{v}{B}
+}
+{
+   \valType{\exInrProj{v}}{\tySumProjR{A}{B}}
 }
 %
 \and
@@ -56,6 +75,30 @@
 %
 \inferrule*
 {
+   \valType{v_1}{A}
+   \\
+   \valType{v_2}{B}
+}
+{
+   \valType{\exPairProjL{v_1}{v_2}}{\tyProdProjL{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \valType{v_1}{A}
+   \\
+   \valType{v_2}{B}
+}
+{
+   \valType{\exPairProjR{v_1}{v_2}}{\tyProdProjR{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
    \envType{\Gamma}{\rho}
    \\
    \trieType{\sigma}{B}{A}{\Gamma}
@@ -68,10 +111,20 @@
 %
 \inferrule*
 {
-   \valType{v}{\subst{A}{\tyRec{\tyVar{X}}{A}}{\alpha}}
+   \valType{v}{\subst{A}{\tyRec{\tyVar{X}}{A}}{X}}
 }
 {
    \valType{\exRoll{v}}{\tyRec{\tyVar{X}}{A}}
+}
+%
+\and
+%
+\inferrule*[right={\textnormal{$A$ closed}}]
+{
+   \valType{v}{\subst{A}{\tyRec{\tyVar{X}}{A}}{X}}
+}
+{
+   \valType{\exRollProj{v}}{\tyRecProj{\tyVar{X}}{A}}
 }
 \end{smathpar}
 \vspace{5pt}
@@ -92,10 +145,22 @@
 {
    \envType{\Gamma}{\rho}
    \\
-   \valType{u}{A}
+   \valType{v}{A}
 }
 {
-   \envType{\cxtExtend{\Gamma}{x}{A}}{\envExtend{\rho}{x}{u}}
+   \envType{\cxtExtend{\Gamma}{x}{A}}{\envExtend{\rho}{x}{v}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \envType{\Gamma}{\rho}
+   \\
+   \valType{v}{A}
+}
+{
+   \envType{\cxtExtendProj{\Gamma}{x}{A}}{\envExtendProj{\rho}{x}{v}}
 }
 \end{smathpar}
 \caption{Typing rules for values and environments}

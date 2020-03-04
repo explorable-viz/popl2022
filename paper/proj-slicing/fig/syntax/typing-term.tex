@@ -1,17 +1,6 @@
 \begin{figure}
 \flushleft \shadebox{$\exprType{e}{\Gamma}{A}$}
 \begin{smathpar}
-\inferrule*
-{
-   \exprType{r}{\Gamma}{A}
-}
-{
-   \exprType{\annot{r}{\alpha}}{\Gamma}{A}
-}
-\end{smathpar}
-\\[3mm]
-\flushleft \shadebox{$\exprType{r}{\Gamma}{A}$}
-\begin{smathpar}
 \inferrule*[right={$x : A \in \Gamma$}]
 {
    \strut
