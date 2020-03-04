@@ -132,10 +132,10 @@
 %
 \inferrule*
 {
-   \rho, e, T \fwdSlice \exClosure{\rho_1}{\exFun{\sigma}}
+   \rho, e, T \fwdSlice \exClosure{\rho_1}{\trieSingletonProj{\exFun{\sigma}}{\exFun{\tau}}}
 }
 {
-   \rho, \exAppProjFun{e}{e'}, \trApp{T}{T'}{\matchPlug{\xi}{U}} \fwdSlice \exClosure{\rho_1 \mathbin{\del{\concat}} \del{\rho_2}}{\exFun{\sigma}}
+   \rho, \exAppProjFun{e}{e'}, \trApp{T}{T'}{\matchPlug{\xi}{U}} \fwdSlice \exClosure{\rho_1 \mathbin{\del{\concat}} \del{\rho_2}}{\exFun{\tau}}
 }
 %
 \and

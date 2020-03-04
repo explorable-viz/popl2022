@@ -88,6 +88,7 @@
 \newcommand*{\trieGround}[2]{\trieGroundNoRHS{#1} \mapsto {#2}}
 \newcommand*{\trieGroundNoRHS}[1]{\tyGround{#1}}
 \newcommand*{\trieNarySum}[1]{\{#1\}}
+\newcommand*{\trieSingleton}[2]{#1[#2]}
 \newcommand*{\trieSum}[2]{[#1,#2]}
 \newcommand*{\trieProd}[1]{{\langle#1\rangle}}
 \newcommand*{\trieRoll}[1]{\kw{roll}\;{#1}}
@@ -154,6 +155,7 @@
 \newcommand*{\trieVarProj}[2]{\del{\trieVarNoRHS{#1}} \mathrel{\del{\mapsto}} {#2}}
 \newcommand*{\trieProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
 \newcommand*{\trieRollProj}[1]{\del{\kw{roll}}\;{#1}}
+\newcommand*{\trieSingletonProj}[2]{\del{#1[}#2\del{]}}
 \newcommand*{\trieSumProjL}[2]{\del{[}#1\del{,#2]}}
 \newcommand*{\trieSumProjR}[2]{\del{[#1,}\,#2\del{]}}
 \newcommand*{\trieUnitProj}[1]{\del{\exUnit} \mathrel{\del{\mapsto}} {#1}}
