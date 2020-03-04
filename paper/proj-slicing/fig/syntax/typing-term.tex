@@ -152,7 +152,7 @@
 %
 \inferrule*[right={\textnormal{$A$ closed}}]
 {
-   \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{X}}
+   \exprType{e}{\Gamma}{A}
 }
 {
    \exprType{\exRollProj{e}}{\Gamma}{\tyRecProj{X}{A}}
@@ -257,9 +257,9 @@
 %
 \and
 %
-\inferrule*
+\inferrule*[right={\textnormal{$A$ closed}}]
 {
-   \Gamma \vdash \sigma: \tyFun{\subst{A}{\tyRec{\tyVar{X}}{A}}{X}}{B}
+   \Gamma \vdash \sigma: \tyFun{A}{B}
 }
 {
    \Gamma \vdash \trieRollProj{\sigma}: \tyFun{(\tyRecProj{\tyVar{X}}{A})}{B}
