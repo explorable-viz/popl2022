@@ -120,7 +120,7 @@
    \\
    \rho, e', T' \fwdSlice v
    \\
-   \explVal{\xi}{v, \sigma \lookupR \rho_2, e^\twoPrime}
+   v, \sigma, \xi \lookupR \rho_2, e^\twoPrime
    \\
    \rho_1 \concat \rho_2, e^\twoPrime, U \fwdSlice v'
 }
@@ -132,10 +132,20 @@
 %
 \inferrule*[lab={\ruleName{$\eval{}$-roll}}]
 {
-   \explVal{T}{\rho, e \eval{} v}
+   \rho, e, T \fwdSlice v
 }
 {
-   \explVal{\trRoll{T}}{\rho, \exRoll{e} \eval{} \exRoll{v}}
+   \rho, \exRoll{e}, \trRoll{T} \fwdSlice \exRoll{v}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\eval{}$-roll}}]
+{
+   \rho, e, T \fwdSlice v
+}
+{
+   \rho, \exRollProj{e}, \trRoll{T} \fwdSlice \exRollProj{v}
 }
 \end{smathpar}
 \caption{Forward slicing}
