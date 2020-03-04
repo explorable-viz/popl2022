@@ -1,6 +1,16 @@
 \begin{figure}
 \flushleft \shadebox{$\exprType{e}{\Gamma}{A}$}
 \begin{smathpar}
+\inferrule*
+{
+   \exprType{e}{\Gamma}{A}
+}
+{
+   \exprType{\del{e}}{\Gamma}{\del{A}}
+}
+%
+\and
+%
 \inferrule*[right={$x : A \in \Gamma$}]
 {
    \strut
@@ -32,10 +42,30 @@
 %
 \inferrule*
 {
+   \exprType{e}{\Gamma}{A}
+}
+{
+   \exprType{\exInlProj{e}}{\Gamma}{\tySumProjL{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
    \exprType{e}{\Gamma}{B}
 }
 {
    \exprType{\exInr{e}}{\Gamma}{\tySum{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \exprType{e}{\Gamma}{B}
+}
+{
+   \exprType{\exInrProj{e}}{\Gamma}{\tySumProjR{A}{B}}
 }
 %
 \and
@@ -48,6 +78,30 @@
 }
 {
    \exprType{\exPair{e_1}{e_2}}{\Gamma}{\tyProd{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \exprType{e_1}{\Gamma}{A}
+   \\
+   \exprType{e_2}{\Gamma}{B}
+}
+{
+   \exprType{\exPairProjL{e_1}{e_2}}{\Gamma}{\tyProdProjL{A}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \exprType{e_1}{\Gamma}{A}
+   \\
+   \exprType{e_2}{\Gamma}{B}
+}
+{
+   \exprType{\exPairProjR{e_1}{e_2}}{\Gamma}{\tyProdProjR{A}{B}}
 }
 %
 \and
@@ -76,10 +130,32 @@
 %
 \inferrule*
 {
+   \exprType{e}{\Gamma}{\tyFun{A}{\tyFunProjR{A'}{B}}}
+   \\
+   \exprType{e'}{\Gamma}{A'}
+}
+{
+   \exprType{\exAppProjFun{e}{e'}}{\Gamma}{B}
+}
+%
+\and
+%
+\inferrule*
+{
    \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{\alpha}}
 }
 {
    \exprType{\exRoll{e}}{\Gamma}{\tyRec{X}{A}}
+}
+%
+\and
+%
+\inferrule*[right={\textnormal{$A$ closed}}]
+{
+   \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{\alpha}}
+}
+{
+   \exprType{\exRollProj{e}}{\Gamma}{\tyRecProj{X}{A}}
 }
 \end{smathpar}
 \\[3mm]
@@ -135,6 +211,5 @@
    \trieType{\trieRoll{\sigma}}{B}{(\tyRec{\tyVar{X}}{A})}{\Gamma}
 }
 \end{smathpar}
-\caption{Typing rules for annotated terms and tries}
-\label{fig:demand-indexed:typing-term}
+\caption{Typing rules for terms and tries}
 \end{figure}
