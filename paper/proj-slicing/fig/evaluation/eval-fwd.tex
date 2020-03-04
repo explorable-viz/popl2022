@@ -126,7 +126,24 @@
 }
 {
    \rho, \exApp{e}{e'}, \trApp{T}{T'}{\matchPlug{\xi}{U}} \fwdSlice v'
-}%
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e, T \fwdSlice \exClosure{\rho_1}{\exFun{\sigma}}
+   \\
+   \rho, e', T' \fwdSlice v
+   \\
+   v, \sigma, \xi \matchFwd \rho_2, e^\twoPrime
+   \\
+   \rho_1 \concat \rho_2, e^\twoPrime, U \fwdSlice v'
+}
+{
+   \rho, \exAppProjFun{e}{e'}, \trApp{T}{T'}{\matchPlug{\xi}{U}} \fwdSlice v'
+}
+%
 \and
 %
 \inferrule*[lab={\ruleName{$\eval{}$-roll}}]
