@@ -73,6 +73,30 @@
    %
    \and
    %
+   \inferrule*
+   {
+      u, \sigma \matchFwd \rho_1, \tau
+   }
+   {
+      \exPairProjL{u}{v}, \trieProd{\trieSingleton{\sigma}{\trieSingletonProj{\tau}{\kappa}}}
+      \matchFwd
+      \rho_1 \delConcat \del{\rho_2}, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \tau \matchFwd \rho_2, \kappa
+   }
+   {
+      \exPairProjR{u}{v}, \trieProd{\trieSingletonProj{\sigma}{\trieSingleton{\tau}{\kappa}}}
+      \matchFwd
+      \del{\rho_1} \delConcat \rho_2, \kappa
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\matchFwd$-roll}}]
    {
       \explVal{\xi}{v, \sigma \matchFwd \rho, \kappa}
