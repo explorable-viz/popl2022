@@ -63,12 +63,12 @@
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
    {
-      \explVal{\xi}{u, \sigma \matchFwd \rho_1, \tau}
+      u, \sigma \matchFwd \rho_1, \tau
       \\
-      \explVal{\xi'}{v, \tau \matchFwd \rho_2, \kappa}
+      v, \tau \matchFwd \rho_2, \kappa
    }
    {
-      \explVal{\matchProd{\xi}{\xi'}}{\exPair{u}{v}, \trieProd{\sigma} \matchFwd \rho_1 \concat \rho_2, \kappa}
+      \exPair{u}{v}, \trieProd{\sigma} \matchFwd \rho_1 \concat \rho_2, \kappa
    }
    %
    \and
