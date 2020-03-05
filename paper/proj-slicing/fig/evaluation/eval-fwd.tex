@@ -10,7 +10,7 @@
 %
 \and
 %
-\inferrule*[right={$\explVal{T}{\rho, e \eval{} v}$}]
+\inferrule*[right={$\explVal{x}{\rho, x \eval{} v}$}]
 {
 }
 {
@@ -48,7 +48,7 @@
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\eval{}$-inr}}]
+\inferrule*[lab={\ruleName{$\fwdSlice$-inr}}]
 {
    \rho, e, T \fwdSlice v
 }
@@ -68,7 +68,7 @@
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\eval{}$-pair}}]
+\inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
 {
    \rho, e_1, T_1 \fwdSlice v_1
    \\
@@ -104,7 +104,7 @@
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\eval{}$-fun}}]
+\inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
 {
    \strut
 }
@@ -114,7 +114,19 @@
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\eval{}$-app}}]
+\inferrule*
+{
+   \strut
+}
+{
+   \rho, \exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}, \trFun{\sigma}
+   \fwdSlice
+   \exClosure{\rho}{\exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-app}}]
 {
    \rho, e, T \fwdSlice \exClosure{\rho_1}{\exFun{\sigma}}
    \\
@@ -140,7 +152,7 @@
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\eval{}$-roll}}]
+\inferrule*[lab={\ruleName{$\fwdSlice$-roll}}]
 {
    \rho, e, T \fwdSlice v
 }
@@ -150,7 +162,7 @@
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\eval{}$-roll}}]
+\inferrule*[lab={\ruleName{$\fwdSlice$-roll}}]
 {
    \rho, e, T \fwdSlice v
 }
