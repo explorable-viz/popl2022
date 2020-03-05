@@ -1,22 +1,12 @@
 \begin{figure}
 \flushleft \shadebox{$\exprType{e}{\Gamma}{A}$}
 \begin{smathpar}
-\inferrule*
-{
-   \exprType{e}{\Gamma}{A}
-}
-{
-   \exprType{\del{e}}{\Gamma}{\del{A}}
-}
-%
-\and
-%
 \inferrule*[right={$x : A \in \Gamma$}]
 {
    \strut
 }
 {
-   \exprType{\exVar{x}}{\Gamma}{A}
+   \Gamma \vdash \exVar{x}: A
 }
 %
 \and
@@ -25,93 +15,93 @@
 {
 }
 {
-   \exprType{\exUnit}{\Gamma}{\tyUnit}
+   \Gamma \vdash \exUnit: \tyUnit
 }
 %
 \and
 %
 \inferrule*
 {
-   \exprType{e}{\Gamma}{A}
+   \Gamma \vdash e: A
 }
 {
-   \exprType{\exInl{e}}{\Gamma}{\tySum{A}{B}}
-}
-%
-\and
-%
-\inferrule*
-{
-   \exprType{e}{\Gamma}{A}
-}
-{
-   \exprType{\exInlProj{e}}{\Gamma}{\tySumProjL{A}{B}}
+   \Gamma \vdash \exInl{e}: \tySum{A}{B}
 }
 %
 \and
 %
 \inferrule*
 {
-   \exprType{e}{\Gamma}{B}
+   \Gamma \vdash e: A
 }
 {
-   \exprType{\exInr{e}}{\Gamma}{\tySum{A}{B}}
-}
-%
-\and
-%
-\inferrule*
-{
-   \exprType{e}{\Gamma}{B}
-}
-{
-   \exprType{\exInrProj{e}}{\Gamma}{\tySumProjR{A}{B}}
+   \Gamma \vdash \exInlProj{e}: \tySumProjL{A}{B}
 }
 %
 \and
 %
 \inferrule*
 {
-   \exprType{e_1}{\Gamma}{A}
+   \Gamma \vdash e: B
+}
+{
+   \Gamma \vdash \exInr{e}: \tySum{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: B
+}
+{
+   \Gamma \vdash \exInrProj{e}: \tySumProjR{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e_1: A
    \\
-   \exprType{e_2}{\Gamma}{B}
+   \Gamma \vdash e_2: B
 }
 {
-   \exprType{\exPair{e_1}{e_2}}{\Gamma}{\tyProd{A}{B}}
+   \Gamma \vdash \exPair{e_1}{e_2}: \tyProd{A}{B}
 }
 %
 \and
 %
 \inferrule*
 {
-   \exprType{e_1}{\Gamma}{A}
+   \Gamma \vdash e_1: A
    \\
-   \exprType{e_2}{\Gamma}{B}
+   \Gamma \vdash e_2: B
 }
 {
-   \exprType{\exPairProjL{e_1}{e_2}}{\Gamma}{\tyProdProjL{A}{B}}
+   \Gamma \vdash \exPairProjL{e_1}{e_2}: \tyProdProjL{A}{B}
 }
 %
 \and
 %
 \inferrule*
 {
-   \exprType{e_1}{\Gamma}{A}
+   \Gamma \vdash e_1: A
    \\
-   \exprType{e_2}{\Gamma}{B}
+   \Gamma \vdash e_2: B
 }
 {
-   \exprType{\exPairProjR{e_1}{e_2}}{\Gamma}{\tyProdProjR{A}{B}}
+   \Gamma \vdash \exPairProjR{e_1}{e_2}: \tyProdProjR{A}{B}
 }
 %
 \and
 %
 \inferrule*
 {
-   \trieType{\sigma}{B}{A}{\Gamma}
+   \Gamma \vdash \sigma: \tyFun{A}{B}
 }
 {
-   \exprType{\exFun{\sigma}}{\Gamma}{\tyFun{A}{B}}
+   \Gamma \vdash \exFun{\sigma}: \tyFun{A}{B}
 }
 %
 \and
@@ -128,44 +118,44 @@
 %
 \inferrule*
 {
-   \exprType{e}{\Gamma}{\tyFun{A}{B}}
+   \Gamma \vdash e: \tyFun{A}{B}
    \\
-   \exprType{e'}{\Gamma}{A}
+   \Gamma \vdash e': A
 }
 {
-   \exprType{\exApp{e}{e'}}{\Gamma}{B}
+   \Gamma \vdash \exApp{e}{e'}: B
 }
 %
 \and
 %
 \inferrule*
 {
-   \exprType{e}{\Gamma}{\tyFun{A}{\tyFunProjR{A'}{B}}}
+   \Gamma \vdash e: \tyFun{A}{\tyFunProjR{A'}{B}}
    \\
-   \exprType{e'}{\Gamma}{A'}
+   \Gamma \vdash e': A'
 }
 {
-   \exprType{\exAppProjFun{e}{e'}}{\Gamma}{B}
+   \Gamma \vdash \exAppProjFun{e}{e'}: B
 }
 %
 \and
 %
 \inferrule*
 {
-   \exprType{e}{\Gamma}{\subst{A}{\tyRec{X}{A}}{X}}
+   \Gamma \vdash e: \subst{A}{\tyRec{X}{A}}{X}
 }
 {
-   \exprType{\exRoll{e}}{\Gamma}{\tyRec{X}{A}}
+   \Gamma \vdash \exRoll{e}: \tyRec{X}{A}
 }
 %
 \and
 %
 \inferrule*[right={\textnormal{$A$ closed}}]
 {
-   \exprType{e}{\Gamma}{A}
+   \Gamma \vdash e: A
 }
 {
-   \exprType{\exRollProj{e}}{\Gamma}{\tyRecProj{X}{A}}
+   \Gamma \vdash \exRollProj{e}: \tyRecProj{X}{A}
 }
 \end{smathpar}
 \\[3mm]

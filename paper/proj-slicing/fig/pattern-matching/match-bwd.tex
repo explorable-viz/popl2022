@@ -1,76 +1,76 @@
 \begin{figure}
 \flushleft \shadebox{$\rho, \kappa, \xi \matchBwd v, \sigma$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\unlookupR{}$-var}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-var}}]
    {
    }
    {
-     \envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \alpha
-     \unlookupR{}
-     u, \trieVar{x}{\kappa}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\unlookupR{}$-unit}}]
-   {
-   }
-   {
-     \envEmpty, \matchUnit{\matchHole{\kappa}}, \alpha
-     \unlookupR{}
-     \annot{\exUnit}{\alpha}, \trieUnit{\kappa}
+     \envExtend{\envEmpty}{x}{v}, \kappa, \matchVar{x}{\matchHole{}}
+     \matchBwd
+     v, \trieVar{x}{\kappa}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\unlookupR{}$-inl}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-unit}}]
    {
-     \rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \sigma
    }
    {
-     \rho, \matchSumL{\matchPlug{\xi}{\kappa}}{\tau}, \alpha
-     \unlookupR{}
-     \annot{(\exInl{u})}{\alpha}, \trieSum{\sigma}{\bot_{\tau}}
+     \envEmpty, \kappa, \matchUnit{\matchHole{}}
+     \matchBwd
+     \exUnit, \trieUnit{\kappa}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\unlookupR{}$-inr}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-inl}}]
    {
-     \rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \tau
+     \rho, \kappa, \xi \matchBwd v, \sigma
    }
    {
-     \rho, \matchSumR{\sigma}{\matchPlug{\xi}{\kappa}}, \alpha
-     \unlookupR{}
-     \annot{(\exInr{u})}{\alpha}, \trieSum{\bot_{\sigma}}{\tau}
+     \rho, \kappa, \matchSumL{\xi}{\tau}
+     \matchBwd
+     \exInl{v}, \trieSum{\sigma}{\tau}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-inr}}]
+   {
+     \rho, \kappa, \xi \matchBwd v, \tau
+   }
+   {
+     \rho, \kappa, \matchSumR{\sigma}{\xi}
+     \matchBwd
+     \exInr{v}, \trieSum{\sigma}{\tau}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\unlookupR{}$-pair}}
+      lab={\ruleName{$\matchBwd$-pair}}
    ]
    {
-     \rho_2, \matchPlug{\xi'}{\kappa}, \alpha \unlookupR{} u_2, \tau
+     \rho_2, \kappa, \xi' \matchBwd v, \tau
      \\
-     \rho_1, \matchPlug{\xi}{\tau}, \alpha \unlookupR{} u_1, \sigma
+     \rho_1, \tau, \xi \matchBwd u, \sigma
    }
    {
-     \rho_1 \concat \rho_2, \matchProd{\xi}{\matchPlug{\xi'}{\kappa}}, \alpha
-     \unlookupR{}
-     \annot{\exPair{u_1}{u_2}}{\alpha}, \trieProd{\sigma}
+     \rho_1 \concat \rho_2, \kappa, \matchProd{\xi}{\xi'}
+     \matchBwd
+     \exPair{u}{v}, \trieProd{\sigma}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\unlookupR{}$-roll}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-roll}}]
    {
-     \rho, \matchPlug{\xi}{\kappa}, \alpha \unlookupR{} u, \sigma
+     \rho, \kappa, \xi \matchBwd v, \sigma
    }
    {
-     \rho, \matchRoll{\matchPlug{\xi}{\kappa}}, \alpha
-     \unlookupR{}
-     \annot{(\exRoll{u})}{\alpha}, \trieRoll{\sigma}
+     \rho, \kappa, \matchRoll{\xi}
+     \matchBwd
+     \exRoll{v}, \trieRoll{\sigma}
    }
 \end{smathpar}
 \caption{Pattern-matching: backward slicing}
