@@ -88,6 +88,7 @@
 \newcommand*{\trieGround}[2]{\trieGroundNoRHS{#1} \mapsto {#2}}
 \newcommand*{\trieGroundNoRHS}[1]{\tyGround{#1}}
 \newcommand*{\trieNarySum}[1]{\{#1\}}
+\newcommand*{\trieSingleton}[2]{#1[#2]}
 \newcommand*{\trieSum}[2]{[#1,#2]}
 \newcommand*{\trieProd}[1]{{\langle#1\rangle}}
 \newcommand*{\trieRoll}[1]{\kw{roll}\;{#1}}
@@ -99,8 +100,8 @@
 % Matched tries.
 %\newcommand*{\matchedConstr}[1]{\trieConstr{#1}}
 \newcommand*{\matchHole}[1]{[#1]}
-\newcommand*{\matchSumR}[2]{[#1,#2\rrbracket}
-\newcommand*{\matchSumL}[2]{\llbracket#1,#2]}
+\newcommand*{\matchSumR}[2]{[#1,#2]}
+\newcommand*{\matchSumL}[2]{[#1,#2]}
 \newcommand*{\matchPlug}[2]{#1\matchHole{#2}}
 \newcommand*{\matchProd}[2]{\matchPlug{#1}{#2}}
 \newcommand*{\matchRoll}[1]{\trieRoll{#1}}
@@ -130,6 +131,35 @@
 \newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
 \newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
 \newcommand*{\tyVar}[1]{#1}
+
+\newcommand*{\del}[1]{\textcolor{red}{#1}}
+
+\newcommand*{\tySumProjR}[2]{{\del{#1}}\mathbin{\del{+}}{#2}}
+\newcommand*{\tySumProjL}[2]{{#1}\mathbin{\del{+}}{\del{#2}}}
+\newcommand*{\tyProdProjR}[2]{{\del{#1}}\mathbin{\del{\times}}{#2}}
+\newcommand*{\tyProdProjL}[2]{{#1}\mathbin{\del{\times}}{\del{#2}}}
+\newcommand*{\tyFunProjR}[2]{{\del{#1}}\mathbin{\del{\rightarrow}}{#2}}
+\newcommand*{\tyFunProjL}[2]{{#1}\mathbin{\del{\rightarrow}}{\del{#2}}}
+\newcommand*{\tyRecProj}[2]{\del{\mu{#1}.}{#2}}
+
+\newcommand*{\cxtExtendProj}[3]{{#1}\del{,{#2}: {#3}}}
+\newcommand*{\envExtendProj}[3]{{#1}\del{[{#2} \mapsto {#3}]}}
+
+\newcommand*{\exAppProjFun}[2]{{#1}\,{\del{#2}}}
+\newcommand*{\exFunProj}[1]{\del{\uplambda}{#1}}
+\newcommand*{\exInlProj}[1]{\del{\kw{inl}}\;{#1}}
+\newcommand*{\exInrProj}[1]{\del{\kw{inr}}\;{#1}}
+\newcommand*{\exPairProjL}[2]{\del{\langle}#1\del{,#2\rangle}}
+\newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
+\newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
+
+\newcommand*{\trieVarProj}[2]{\del{\trieVarNoRHS{#1}} \mathrel{\del{\mapsto}} {#2}}
+\newcommand*{\trieProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
+\newcommand*{\trieRollProj}[1]{\del{\kw{roll}}\;{#1}}
+\newcommand*{\trieSingletonProj}[2]{\del{#1[}#2\del{]}}
+\newcommand*{\trieSumProjL}[2]{\del{[}#1\del{,#2]}}
+\newcommand*{\trieSumProjR}[2]{\del{[#1,}\,#2\del{]}}
+\newcommand*{\trieUnitProj}[1]{\del{\exUnit} \mathrel{\del{\mapsto}} {#1}}
 
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}
@@ -194,7 +224,11 @@
 
 % Evaluation.
 \newcommand*{\eval}[1]{\mathrel{\Rightarrow_{#1}}}
+\newcommand*{\fwdSlice}{\nearrow}
 \newcommand*{\uneval}{\Leftarrow}
+\newcommand*{\match}{\rightsquigarrow}
+\newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
+\newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
 \newcommand*{\reduce}[1]{\xlongrightarrow{\textsf{\tiny name}}_{\smash{#1}}}
 \newcommand*{\reduceNeed}[1]{\xlongrightarrow{\textsf{\tiny need}}_{\smash{#1}}}
 \newcommand*{\close}[2]{\operatorname{\mathsf{close}}(#1,#2)}
@@ -228,5 +262,5 @@
 \newcommand*{\expl}[1]{#1}
 \newcommand*{\TrVal}[1]{\mleft\llbracket{#1}\mright\rrbracket}
 \newcommand*{\Tr}[1]{{\mathsf{Tr}\TrVal{#1}}}
-\newcommand*{\explVal}[2]{{#1}\mathrel{::}{#2}}
+\newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 \newcommand*{\exprTr}[1]{\mathsf{T}(#1)}

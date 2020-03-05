@@ -1,0 +1,40 @@
+\begin{figure}
+\flushleft \shadebox{$e \join e'$}
+
+\begin{minipage}{0.5\textwidth}
+\begin{salign}
+   \del{e} \join e' &= e'
+   \\
+   \exVar{x} \join \exVar{x} &= \exVar{x}
+   \\
+   \exUnit \join \exUnit &= \exUnit
+   \\
+   (\exInl{e}) \join (\exInl{e'}) &= \exInl{(e \join e')}
+   \\
+   (\exInlProj{e}) \join (\exInl{e'}) &= \exInl{(e \join e')}
+   \\
+   (\exInr{e}) \join (\exInr{e'}) &= \exInr{(e \join e')}
+   \\
+   (\exInrProj{e}) \join (\exInr{e'}) &= \exInr{(e \join e')}
+   \\
+   (\exInrProj{e}) \join (\exInrProj{e'}) &= \exInrProj{(e \join e')}
+   \\
+   \exPair{e_1}{e_2} \join \exPair{e_1'}{e_2'} &= \exPair{e_1 \join e_1'}{e_2 \join e_2'}
+   \\
+   \exPairProjL{e_1}{e_2} \join \exPair{e_1'}{e_2'} &= \exPair{e_1 \join e_1'}{e_2'}
+   \\
+   \exPairProjR{e_1}{e_2} \join \exPair{e_1}{e_2'} &= \exPair{e_1'}{e_2 \join e_2'}
+   \\
+   \exPairProjL{e_1}{e_2} \join \exPairProjL{e_1'}{e_2} &= \exPairProjL{e_1 \join e_1'}{e_2}
+   \\
+   \exPairProjR{e_1}{e_2} \join \exPairProjR{e_1}{e_2'} &= \exPairProjR{e_1}{e_1 \join e_2'}
+   \\
+   \exPairProjR{e_1}{e_2} \join \exPairProjL{e_1}{e_2'} &= \exPair{e_1}{e_2 \join e_2'}
+\end{salign}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\begin{salign}
+\end{salign}
+\end{minipage}
+\caption{Join and meet of slices of the same term (commutative cases omitted)}
+\end{figure}

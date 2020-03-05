@@ -1,0 +1,85 @@
+\begin{figure}
+\flushleft \shadebox{$v, \sigma \matchFwd \rho, \kappa$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
+   {
+      \strut
+   }
+   {
+         v, \trieVar{x}{\kappa} \matchFwd \envExtend{\envEmpty}{x}{v}, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-unit}}]
+   {
+      \strut
+   }
+   {
+      \exUnit, \trieUnit{\kappa} \matchFwd \envEmpty, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-inl}}]
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInl{v}, \trieSum{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInlProj{v}, \trieSumProjL{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-inr}}]
+   {
+      v, \tau \matchFwd \rho, \kappa
+   }
+   {
+      \exInr{v}, \trieSum{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \tau \matchFwd \rho, \kappa
+   }
+   {
+      \exInrProj{v}, \trieSumProjR{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   {
+      \explVal{\xi}{u, \sigma \matchFwd \rho_1, \tau}
+      \\
+      \explVal{\xi'}{v, \tau \matchFwd \rho_2, \kappa}
+   }
+   {
+      \explVal{\matchProd{\xi}{\xi'}}{\exPair{u}{v}, \trieProd{\sigma} \matchFwd \rho_1 \concat \rho_2, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-roll}}]
+   {
+      \explVal{\xi}{v, \sigma \matchFwd \rho, \kappa}
+   }
+   {
+      \explVal{\matchRoll{\xi}}{\exRoll{v}, \trieRoll{\sigma} \matchFwd \rho, \kappa}
+   }
+\end{smathpar}
+\caption{Pattern-matching: forward slicing}
+\end{figure}

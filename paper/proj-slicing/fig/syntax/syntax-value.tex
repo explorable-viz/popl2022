@@ -1,39 +1,51 @@
 \begin{figure}
 \begin{syntaxfig}
 \small
-\mbox{Annotated value}
-&
-u
-&
-::=
-&
-\annot{v}{\alpha}
-&
-\\[1mm]
 \mbox{Value}
 &
-v
+u, v
 &
 ::=
 &
+\del{v}
+&
+\text{erase}
+\\
+&&&
 \exUnit
 &
 \text{unit}
 \\
 &&&
-\exInl{u}
+\exInl{v}
 &
 \text{inject left}
 \\
 &&&
-\exInr{u}
+\exInlProj{v}
+&
+\\
+&&&
+\exInr{v}
 &
 \text{inject right}
 \\
 &&&
-\exPair{u_1}{u_2}
+\exInrProj{v}
+&
+\\
+&&&
+\exPair{u}{v}
 &
 \text{pair}
+\\
+&&&
+\exPairProjL{u}{v}
+&
+\\
+&&&
+\exPairProjR{u}{v}
+&
 \\
 &&&
 \exClosure{\rho}{\exFun{\sigma}}
@@ -41,7 +53,12 @@ v
 \text{closure}
 \\
 &&&
-\exRoll{u}
+\exRoll{v}
+&
+\text{roll}
+\\
+&&&
+\exRollProj{v}
 &
 \text{roll}
 \\[1mm]
@@ -56,10 +73,13 @@ v
 \text{empty}
 \\
 &&&
-\envExtend{\rho}{x}{u}
+\envExtend{\rho}{x}{v}
 &
 \text{extend}
+\\
+&&&
+\envExtendProj{\rho}{x}{v}
+&
 \end{syntaxfig}
-\caption{Partial values and environments}
-\label{fig:demand-indexed:syntax-value}
+\caption{Values and environments}
 \end{figure}

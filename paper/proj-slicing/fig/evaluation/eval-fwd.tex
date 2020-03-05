@@ -1,0 +1,177 @@
+\begin{figure}
+\flushleft \shadebox{$\rho, e \fwdSlice v$}
+\begin{smathpar}
+\inferrule*[right={$\rho, e \eval{} v$}]
+{
+   \strut
+}
+{
+   \rho, \del{e} \fwdSlice \del{v}
+}
+%
+\and
+%
+\inferrule*[right={$x: v \in \rho$}]
+{
+   \strut
+}
+{
+   \rho, \exVar{x} \fwdSlice v
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-unit}}]
+{
+   \strut
+}
+{
+   \rho, \exUnit \fwdSlice \exUnit
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-inl}}]
+{
+   \rho, e \fwdSlice v
+}
+{
+   \rho, \exInl{e} \fwdSlice \exInl{v}
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e \fwdSlice v
+}
+{
+   \rho, \exInlProj{e} \fwdSlice \exInlProj{v}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-inr}}]
+{
+   \rho, e \fwdSlice v
+}
+{
+   \rho, \exInr{e} \fwdSlice \exInr{v}
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e \fwdSlice v
+}
+{
+   \rho, \exInrProj{e} \fwdSlice \exInrProj{v}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
+{
+   \rho, e_1 \fwdSlice v_1
+   \\
+   \rho, e_2 \fwdSlice v_2
+}
+{
+   \rho, \exPair{e_1}{e_2} \fwdSlice \exPair{v_1}{v_2}
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e_1 \fwdSlice v_1
+   \\
+   \rho, e_2 \fwdSlice v_2
+}
+{
+   \rho, \exPairProjL{e_1}{e_2} \fwdSlice \exPairProjL{v_1}{v_2}
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e_1 \fwdSlice v_1
+   \\
+   \rho, e_2 \fwdSlice v_2
+}
+{
+   \rho, \exPairProjR{e_1}{e_2} \fwdSlice \exPairProjR{v_1}{v_2}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
+{
+   \strut
+}
+{
+   \rho, \exFun{\sigma} \fwdSlice \exClosure{\rho}{\exFun{\sigma}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \rho, \exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}
+   \fwdSlice
+   \exClosure{\rho}{\exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-app}}]
+{
+   \rho, e \fwdSlice \exClosure{\rho_1}{\exFun{\sigma}}
+   \\
+   \rho, e' \fwdSlice v
+   \\
+   v, \sigma \matchFwd \rho_2, e^\twoPrime
+   \\
+   \rho_1 \concat \rho_2, e^\twoPrime \fwdSlice v'
+}
+{
+   \rho, \exApp{e}{e'} \fwdSlice v'
+}
+%
+\and
+%
+\inferrule*
+{
+   \rho, e \fwdSlice \exClosure{\rho_1}{\trieSingletonProj{\exFun{\sigma}}{\exFun{\tau}}}
+}
+{
+   \rho, \exAppProjFun{e}{e'} \fwdSlice \exClosure{\rho_1 \mathbin{\del{\concat}} \del{\rho_2}}{\exFun{\tau}}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-roll}}]
+{
+   \rho, e \fwdSlice v
+}
+{
+   \rho, \exRoll{e} \fwdSlice \exRoll{v}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\fwdSlice$-roll}}]
+{
+   \rho, e \fwdSlice v
+}
+{
+   \rho, \exRollProj{e} \fwdSlice \exRollProj{v}
+}
+\end{smathpar}
+\caption{Forward slicing}
+\end{figure}

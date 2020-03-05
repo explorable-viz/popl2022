@@ -1,0 +1,83 @@
+\begin{figure}
+\flushleft \shadebox{$\Gamma \vdash \trieSingleton{\sigma}{\kappa}: A \to B$}
+\begin{smathpar}
+\inferrule*
+{
+   \cxtExtend{\Gamma}{x}{A} \vdash \kappa: B
+}
+{
+   \Gamma \vdash \trieVar{x}{\kappa}: A \to B
+}
+%
+\and
+%
+\inferrule*
+{
+   \cxtExtendProj{\Gamma}{x}{A} \vdash \kappa: B
+}
+{
+   \Gamma \vdash \trieVarProj{x}{\kappa}: \tyFunProjR{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: B
+}
+{
+   \Gamma \vdash \trieSingleton{(\trieUnit{\kappa})}{\kappa}: \tyFun{\tyUnit}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: B
+}
+{
+   \Gamma \vdash \trieSingleton{(\trieUnitProj{\kappa})}{\kappa}: \tyFunProjR{\tyUnit}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \trieSingleton{\sigma}{\trieSingleton{\tau}{\kappa}}: \tyFun{A}{\tyFun{A'}{B}}
+}
+{
+   \Gamma \vdash \trieSingleton{\trieProd{\sigma}}{\kappa}: \tyFun{\tyProd{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \trieSingletonProj{\sigma}{\trieSingleton{\tau}{\kappa}}: \tyFunProjR{A}{\tyFun{A'}{B}}
+}
+{
+   \Gamma \vdash \trieSingleton{\trieProdProj{\sigma}}{\kappa}: \tyFun{\tyProdProjR{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \trieSingleton{\sigma}{\kappa}: \tyFun{\subst{A}{\tyRec{\tyVar{X}}{A}}{X}}{B}
+}
+{
+   \Gamma \vdash \trieSingleton{(\trieRoll{\sigma})}{\kappa}: \tyFun{(\tyRec{\tyVar{X}}{A})}{B}
+}
+%
+\and
+%
+\inferrule*[right={\textnormal{$A$ closed}}]
+{
+   \Gamma \vdash \trieSingleton{\sigma}{\kappa}: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \trieSingleton{(\trieRollProj{\sigma})}{\kappa}: \tyFun{(\tyRecProj{\tyVar{X}}{A})}{B}
+}
+\end{smathpar}
+\caption{Singleton tries}
+\end{figure}
