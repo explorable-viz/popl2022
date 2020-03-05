@@ -118,6 +118,16 @@
 %
 \inferrule*
 {
+   \Gamma \vdash \trieSingletonProj{\sigma}{\exFun{\tau}}: \tyFunProjR{A}{\tyFun{A'}{B}}
+}
+{
+   \Gamma \vdash \exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}: \tyFunProjR{A}{\tyFun{A'}{B}}
+}
+%
+\and
+%
+\inferrule*
+{
    \exprType{e}{\Gamma}{\tyFun{A}{B}}
    \\
    \exprType{e'}{\Gamma}{A}
