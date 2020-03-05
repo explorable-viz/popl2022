@@ -135,6 +135,7 @@
    %
    \inferrule*
    {
+      \strut
    }
    {
       \exClosure{\rho}{\exFunProj{\trieSingletonProj{\sigma'}{\exFun{\tau}}}}, \trFun{\sigma}
@@ -147,22 +148,22 @@
    %
    \inferrule*[lab={\ruleName{$\bwdSlice$-app}}]
    {
-      U, \annot{v}{\alpha} \bwdSlice \rho_1' \concat \rho_2, e^\twoPrime
+      v, U \bwdSlice \rho_1' \concat \rho_2, e^\twoPrime
       \\
-      \rho_2, \matchPlug{\xi}{e^\twoPrime}, \alpha \unlookupR{} u, \sigma
-      \\\\
-      T', u \bwdSlice \rho, e'
+      \rho_2, e^\twoPrime, \xi \matchBwd u, \sigma
       \\
-      T, \annot{\exClosure{\rho_1'}{\exFun{\sigma}}}{\alpha} \bwdSlice \rho', e
+      u, T' \bwdSlice \rho, e'
+      \\
+      \exClosure{\rho_1'}{\exFun{\sigma}}, T \bwdSlice \rho', e
    }
    {
+      v,
       \trApp{T}
             {T'}
             {\matchPlug{\xi}{U}},
-      \annot{v}{\alpha}
       \bwdSlice
       \rho \vee \rho',
-      \annot{(\exApp{e}{e'})}{\alpha}
+      \exApp{e}{e'}
    }
    %
    \and
