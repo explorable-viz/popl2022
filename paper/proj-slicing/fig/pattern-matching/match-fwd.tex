@@ -99,10 +99,20 @@
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-roll}}]
    {
-      \explVal{\xi}{v, \sigma \matchFwd \rho, \kappa}
+      v, \sigma \matchFwd \rho, \kappa
    }
    {
-      \explVal{\matchRoll{\xi}}{\exRoll{v}, \trieRoll{\sigma} \matchFwd \rho, \kappa}
+      \exRoll{v}, \trieRoll{\sigma} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exRollProj{v}, \trieRollProj{\sigma} \matchFwd \rho, \kappa
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}
