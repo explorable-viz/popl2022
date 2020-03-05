@@ -17,10 +17,10 @@
    {
    }
    {
-      \sub{\trEmpty}{\rho}, \annot{\exUnit}{\alpha}
+      \exUnit, \trUnit{}
       \bwdSlice
-      \sub{\bot}{\rho},
-      \annot{\exUnit}{\alpha}
+      \envErase{\rho},
+      \exUnit
    }
    %
    \and
@@ -188,6 +188,5 @@
       \exRollProj{e}
    }
 \end{smathpar}
-\caption{Reverse evaluation}
-\label{fig:evaluation:uneval}
+\caption{Backward slicing}
 \end{figure}
