@@ -3,11 +3,12 @@
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\bwdSlice$-var}}]
    {
+      \strut
    }
    {
-      v, \trVarTwo{x}{}
+      v, \trVarTwo{x}{\rho}
       \bwdSlice
-      \envExtend{\sub{\bot}{\rho}}{x}{v},
+      \envUpdate{(\envErase{\rho})}{x}{v},
       \exVar{x}
    }
    %
@@ -15,9 +16,10 @@
    %
    \inferrule*[lab={\ruleName{$\bwdSlice$-unit}}]
    {
+      \strut
    }
    {
-      \exUnit, \trUnit{}
+      \exUnit, \trUnit{\rho}
       \bwdSlice
       \envErase{\rho},
       \exUnit
@@ -120,6 +122,7 @@
    %
    \inferrule*[lab={\ruleName{$\bwdSlice$-fun}}]
    {
+      \strut
    }
    {
       \exClosure{\rho}{\exFun{\sigma'}}, \trFun{\sigma}
