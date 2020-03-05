@@ -1,112 +1,112 @@
 \begin{figure}
-\flushleft \shadebox{$T, u \uneval \rho, e$}
+\flushleft \shadebox{$T, u \bwdSlice \rho, e$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\uneval$-var}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-var}}]
    {
    }
    {
       \trVarTwo{x}{\rho}, \annot{v}{\alpha}
-      \uneval
+      \bwdSlice
       \envExtend{\sub{\bot}{\rho}}{x}{\annot{v}{\alpha}},
       \annot{\exVar{x}}{\alpha}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-unit}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-unit}}]
    {
    }
    {
       \sub{\trEmpty}{\rho}, \annot{\exUnit}{\alpha}
-      \uneval
+      \bwdSlice
       \sub{\bot}{\rho},
       \annot{\exUnit}{\alpha}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-inl}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-inl}}]
    {
-      T, u \uneval \rho', e
+      T, u \bwdSlice \rho', e
    }
    {
       \trInl{T}, \annot{(\exInl{u})}{\alpha}
-      \uneval
+      \bwdSlice
       \rho',
       \annot{(\exInl{e})}{\alpha}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-inr}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-inr}}]
    {
-      T, u \uneval \rho', e
+      T, u \bwdSlice \rho', e
    }
    {
       \trInr{T}, \annot{(\exInr{u})}{\alpha}
-      \uneval
+      \bwdSlice
       \rho',
       \annot{(\exInr{e})}{\alpha}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-pair}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-pair}}]
    {
-      T_1, u_1 \uneval \rho_1, e_1
+      T_1, u_1 \bwdSlice \rho_1, e_1
       \\
-      T_2, u_2 \uneval \rho_2, e_2
+      T_2, u_2 \bwdSlice \rho_2, e_2
    }
    {
       \trPair{T_1}{T_2}, \annot{\exPair{u_1}{u_2}}{\alpha}
-      \uneval
+      \bwdSlice
       \rho_1 \vee \rho_2,
       \annot{\exPair{e_1}{e_2}}{\alpha}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-fun}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-fun}}]
    {
    }
    {
       \sub{\trEmpty}{\rho}, \annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
-      \uneval
+      \bwdSlice
       \rho,
       \annot{(\exFun{\sigma})}{\alpha}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-app}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-app}}]
    {
-      U, \annot{v}{\alpha} \uneval \rho_1' \concat \rho_2, e^\twoPrime
+      U, \annot{v}{\alpha} \bwdSlice \rho_1' \concat \rho_2, e^\twoPrime
       \\
       \rho_2, \matchPlug{\xi}{e^\twoPrime}, \alpha \unlookupR{} u, \sigma
       \\\\
-      T', u \uneval \rho, e'
+      T', u \bwdSlice \rho, e'
       \\
-      T, \annot{\exClosure{\rho_1'}{\exFun{\sigma}}}{\alpha} \uneval \rho', e
+      T, \annot{\exClosure{\rho_1'}{\exFun{\sigma}}}{\alpha} \bwdSlice \rho', e
    }
    {
       \trApp{T}
             {T'}
             {\matchPlug{\xi}{U}},
       \annot{v}{\alpha}
-      \uneval
+      \bwdSlice
       \rho \vee \rho',
       \annot{(\exApp{e}{e'})}{\alpha}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\uneval$-roll}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-roll}}]
    {
-      T, u \uneval \rho', e
+      T, u \bwdSlice \rho', e
    }
    {
       \trRoll{T}, \annot{(\exRoll{u})}{\alpha}
-      \uneval
+      \bwdSlice
       \rho',
       \annot{(\exRoll{e})}{\alpha}
    }
