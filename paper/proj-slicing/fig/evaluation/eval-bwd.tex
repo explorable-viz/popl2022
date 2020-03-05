@@ -168,6 +168,24 @@
    %
    \and
    %
+   \inferrule*
+   {
+      v, U \bwdSlice \rho_1' \delConcat \del{\rho_2}, \exFun{\tau}
+      \\
+      \exClosure{\rho_1'}{\exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}}, T \bwdSlice \rho, e
+   }
+   {
+      v,
+      \trApp{T}
+            {T'}
+            {\matchPlug{\xi}{U}},
+      \bwdSlice
+      \rho,
+      \exAppProjFun{e}{e'}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\bwdSlice$-roll}}]
    {
       u, T \bwdSlice \rho', e
