@@ -51,26 +51,26 @@
       lab={\ruleName{$\matchBwd$-pair}}
    ]
    {
-     \rho_2, \matchPlug{\xi'}{\kappa}, \alpha \matchBwd u_2, \tau
+     \rho_2, \kappa, \xi' \matchBwd v, \tau
      \\
-     \rho_1, \matchPlug{\xi}{\tau}, \alpha \matchBwd u_1, \sigma
+     \rho_1, \tau, \xi \matchBwd u, \sigma
    }
    {
-     \rho_1 \concat \rho_2, \matchProd{\xi}{\matchPlug{\xi'}{\kappa}}, \alpha
+     \rho_1 \concat \rho_2, \kappa, \matchProd{\xi}{\xi'}
      \matchBwd
-     \annot{\exPair{u_1}{u_2}}{\alpha}, \trieProd{\sigma}
+     \exPair{u}{v}, \trieProd{\sigma}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchBwd$-roll}}]
    {
-     \rho, \matchPlug{\xi}{\kappa}, \alpha \matchBwd u, \sigma
+     \rho, \kappa, \xi \matchBwd v, \sigma
    }
    {
-     \rho, \matchRoll{\matchPlug{\xi}{\kappa}}, \alpha
+     \rho, \kappa, \matchRoll{\xi}
      \matchBwd
-     \annot{(\exRoll{u})}{\alpha}, \trieRoll{\sigma}
+     \exRoll{v}, \trieRoll{\sigma}
    }
 \end{smathpar}
 \caption{Pattern-matching: backward slicing}
