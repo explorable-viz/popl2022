@@ -27,41 +27,93 @@
    %
    \inferrule*[lab={\ruleName{$\bwdSlice$-inl}}]
    {
-      T, u \bwdSlice \rho', e
+      v, T \bwdSlice \rho, e
    }
    {
-      \trInl{T}, \annot{(\exInl{u})}{\alpha}
+      \exInl{v}, \trInl{T}
       \bwdSlice
-      \rho',
-      \annot{(\exInl{e})}{\alpha}
+      \rho,
+      \exInl{e}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, T \bwdSlice \rho, e
+   }
+   {
+      \exInlProj{v}, \trInl{T}
+      \bwdSlice
+      \rho,
+      \exInlProj{e}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\bwdSlice$-inr}}]
    {
-      T, u \bwdSlice \rho', e
+      v, T \bwdSlice \rho', e
    }
    {
-      \trInr{T}, \annot{(\exInr{u})}{\alpha}
+      \exInr{v}, \trInr{T}
       \bwdSlice
       \rho',
-      \annot{(\exInr{e})}{\alpha}
+      \exInr{e}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, T \bwdSlice \rho', e
+   }
+   {
+      \exInrProj{v}, \trInr{T}
+      \bwdSlice
+      \rho',
+      \exInrProj{e}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\bwdSlice$-pair}}]
    {
-      T_1, u_1 \bwdSlice \rho_1, e_1
+      T_2, v \bwdSlice \rho_2, e_2
       \\
-      T_2, u_2 \bwdSlice \rho_2, e_2
+      T_1, u \bwdSlice \rho_1, e_1
    }
    {
-      \trPair{T_1}{T_2}, \annot{\exPair{u_1}{u_2}}{\alpha}
+      \exPair{u}{v}, \trPair{T_1}{T_2}
       \bwdSlice
       \rho_1 \vee \rho_2,
-      \annot{\exPair{e_1}{e_2}}{\alpha}
+      \exPair{e_1}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      T_1, u \bwdSlice \rho, e_1
+   }
+   {
+      \exPairProjL{u}{v}, \trPair{T_1}{T_2}
+      \bwdSlice
+      \rho,
+      \exPairProjL{e_1}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      T_2, v \bwdSlice \rho, e_2
+   }
+   {
+      \exPairProjR{u}{v}, \trPair{T_1}{T_2}
+      \bwdSlice
+      \rho,
+      \exPairProjR{e_1}{e_2}
    }
    %
    \and
@@ -70,10 +122,22 @@
    {
    }
    {
-      \sub{\trEmpty}{\rho}, \annot{\exClosure{\rho}{\exFun{\sigma}}}{\alpha}
+      \exClosure{\rho}{\exFun{\sigma'}}, \trFun{\sigma}
       \bwdSlice
       \rho,
-      \annot{(\exFun{\sigma})}{\alpha}
+      \exFun{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+   }
+   {
+      \exClosure{\rho}{\exFunProj{\trieSingletonProj{\sigma'}{\exFun{\tau}}}}, \trFun{\sigma}
+      \bwdSlice
+      \rho,
+      \exFunProj{\trieSingletonProj{\sigma'}{\exFun{\tau}}}
    }
    %
    \and
@@ -102,13 +166,26 @@
    %
    \inferrule*[lab={\ruleName{$\bwdSlice$-roll}}]
    {
-      T, u \bwdSlice \rho', e
+      u, T \bwdSlice \rho', e
    }
    {
-      \trRoll{T}, \annot{(\exRoll{u})}{\alpha}
+      \exRoll{u}, \trRoll{T}
       \bwdSlice
       \rho',
-      \annot{(\exRoll{e})}{\alpha}
+      \exRoll{e}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      u, T \bwdSlice \rho', e
+   }
+   {
+      \exRollProj{u}, \trRoll{T}
+      \bwdSlice
+      \rho',
+      \exRollProj{e}
    }
 \end{smathpar}
 \caption{Reverse evaluation}
