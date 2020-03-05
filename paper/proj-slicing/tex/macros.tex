@@ -145,6 +145,7 @@
 
 \newcommand*{\cxtExtendProj}[3]{{#1}\del{,{#2}: {#3}}}
 \newcommand*{\envExtendProj}[3]{{#1}\del{[{#2} \mapsto {#3}]}}
+\newcommand*{\envErase}[1]{\rotatebox[origin=c]{90}{$\rightsquigarrow$}{#1}}
 
 \newcommand*{\exAppProjFun}[2]{{#1}\,{\del{#2}}}
 \newcommand*{\exFunProj}[1]{\del{\uplambda}{#1}}
@@ -200,6 +201,7 @@
 \newcommand*{\envEmpty}{\varepsilon}
 \newcommand*{\envType}[2]{\vdash {#2}: {#1}}
 \newcommand*{\envExtend}[3]{{#1}[{#2} \mapsto {#3}]}
+\newcommand*{\envUpdate}[3]{{#1}\{{#2} \mapsto {#3}\}}
 \newcommand*{\envBot}{\bot}
 \newcommand*{\recEnvEntry}[3]{(#1,#2,#3)}
 
