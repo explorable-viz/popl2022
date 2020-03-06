@@ -36,7 +36,7 @@
 {
    \matchType{\Gamma}{\xi}{K}{A}{\Gamma'}
    \\
-   \trieType{\sigma}{K}{B}{\Gamma}
+   \elimType{\sigma}{K}{B}{\Gamma}
 }
 {
    \matchType{\Gamma}{\matchSumL{\xi}{\sigma}}{K}{(\tySum{A}{B})}{\Gamma'}
@@ -46,7 +46,7 @@
 %
 \inferrule*
 {
-   \trieType{\sigma}{K}{A}{\Gamma}
+   \elimType{\sigma}{K}{A}{\Gamma}
    \\
    \matchType{\Gamma}{\xi}{K}{B}{\Gamma'}
 }

@@ -2,53 +2,53 @@
 \flushleft \shadebox{$\sigma \join_{\bullet} \sigma'$}
 {\small
 \begin{align*}
-\trieEmpty \join_{\bullet} \sigma
+\elimEmpty \join_{\bullet} \sigma
 &=
 \sigma
 \\
-\sigma \join_{\bullet} \trieEmpty
+\sigma \join_{\bullet} \elimEmpty
 &=
 \sigma
 \\
-(\trieVar{x}{a}) \join_{\bullet} \sigma
+(\elimVar{x}{a}) \join_{\bullet} \sigma
 &=
 \begin{cases}
-\trieVar{x}{a \bullet a'}
-& \text{if }\sigma = \trieVar{x}{a'}
+\elimVar{x}{a \bullet a'}
+& \text{if }\sigma = \elimVar{x}{a'}
 \\
-\trieVar{x}{a}
+\elimVar{x}{a}
 & \text{otherwise}
 \end{cases}
 \\
-\sigma \join_{\bullet} (\trieVar{x}{a})
+\sigma \join_{\bullet} (\elimVar{x}{a})
 &=
 \begin{cases}
-\trieVar{x}{a \bullet a'}
-& \text{if }\sigma = \trieVar{x}{a'}
+\elimVar{x}{a \bullet a'}
+& \text{if }\sigma = \elimVar{x}{a'}
 \\
-\trieVar{x}{a}
+\elimVar{x}{a}
 & \text{otherwise}
 \end{cases}
 \\
-(\trieUnit{a}) \join_{\bullet} (\trieUnit{a'})
+(\elimUnit{a}) \join_{\bullet} (\elimUnit{a'})
 &=
-\trieUnit{a \bullet a'}
+\elimUnit{a \bullet a'}
 \\
-\trieSum{\sigma}{\tau} \join_{\bullet} \trieSum{\sigma'}{\tau'}
+\elimSum{\sigma}{\tau} \join_{\bullet} \elimSum{\sigma'}{\tau'}
 &=
-\trieSum{\sigma \join_{\bullet} \sigma'}{\tau \join_{\bullet} \tau'}
+\elimSum{\sigma \join_{\bullet} \sigma'}{\tau \join_{\bullet} \tau'}
 \\
-\trieProd{\sigma} \join_{\bullet} \trieProd{\sigma'}
+\elimProd{\sigma} \join_{\bullet} \elimProd{\sigma'}
 &=
-\trieProd{\sigma \join_{\join_{\bullet}} \sigma'}
+\elimProd{\sigma \join_{\join_{\bullet}} \sigma'}
 \\
-(\trieRoll{\sigma}) \join_{\bullet} (\trieRoll{\sigma'})
+(\elimRoll{\sigma}) \join_{\bullet} (\elimRoll{\sigma'})
 &=
-\trieRoll{(\sigma \join_{\bullet} \sigma')}
+\elimRoll{(\sigma \join_{\bullet} \sigma')}
 \\
-(\trieFun{a}) \join_{\bullet} (\trieFun{a'})
+(\elimFun{a}) \join_{\bullet} (\elimFun{a'})
 &=
-\trieFun{a \bullet a'}
+\elimFun{a \bullet a'}
 \end{align*}}
-\caption{Joining two tries of the same type}
+\caption{Joining two eliminators of the same type}
 \end{figure}

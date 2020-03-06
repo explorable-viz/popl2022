@@ -112,9 +112,9 @@
    \strut
 }
 {
-   \rho, \exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}
+   \rho, \exFunProj{\elimSingletonProj{\sigma}{\exFun{\tau}}}
    \fwdSlice
-   \exClosure{\rho}{\exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}}
+   \exClosure{\rho}{\exFunProj{\elimSingletonProj{\sigma}{\exFun{\tau}}}}
 }
 %
 \and
@@ -137,7 +137,7 @@
 %
 \inferrule*
 {
-   \rho, e \fwdSlice \exClosure{\rho_1}{\trieSingletonProj{\exFun{\sigma}}{\exFun{\tau}}}
+   \rho, e \fwdSlice \exClosure{\rho_1}{\elimSingletonProj{\exFun{\sigma}}{\exFun{\tau}}}
 }
 {
    \rho, \exAppProjFun{e}{e'} \fwdSlice \exClosure{\rho_1 \delConcat \del{\rho_2}}{\exFun{\tau}}

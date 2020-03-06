@@ -81,30 +81,30 @@
 \newcommand*{\exTop}{\top}
 
 % Tries.
-\newcommand*{\trieConstr}[1]{#1}
-\newcommand*{\trieEmpty}{\bot}
-\newcommand*{\trieFun}[1]{\trieFunNoRHS \mapsto {#1}}
-\newcommand*{\trieFunNoRHS}{\uplambda}
-\newcommand*{\trieGround}[2]{\trieGroundNoRHS{#1} \mapsto {#2}}
-\newcommand*{\trieGroundNoRHS}[1]{\tyGround{#1}}
-\newcommand*{\trieNarySum}[1]{\{#1\}}
-\newcommand*{\trieSingleton}[2]{#1[#2]}
-\newcommand*{\trieSum}[2]{[#1,#2]}
-\newcommand*{\trieProd}[1]{{\langle#1\rangle}}
-\newcommand*{\trieRoll}[1]{\kw{roll}\;{#1}}
-\newcommand*{\trieUnit}[1]{\exUnit \mapsto {#1}}
-\newcommand*{\trieUnitNoRHS}{\exUnit}
-\newcommand*{\trieVar}[2]{\trieVarNoRHS{#1} \mapsto {#2}}
-\newcommand*{\trieVarNoRHS}[1]{#1}
+\newcommand*{\elimConstr}[1]{#1}
+\newcommand*{\elimEmpty}{\bot}
+\newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
+\newcommand*{\elimFunNoRHS}{\uplambda}
+\newcommand*{\elimGround}[2]{\elimGroundNoRHS{#1} \mapsto {#2}}
+\newcommand*{\elimGroundNoRHS}[1]{\tyGround{#1}}
+\newcommand*{\elimNarySum}[1]{\{#1\}}
+\newcommand*{\elimSingleton}[2]{#1[#2]}
+\newcommand*{\elimSum}[2]{[#1,#2]}
+\newcommand*{\elimProd}[1]{{\langle#1\rangle}}
+\newcommand*{\elimRoll}[1]{\kw{roll}\;{#1}}
+\newcommand*{\elimUnit}[1]{\exUnit \mapsto {#1}}
+\newcommand*{\elimUnitNoRHS}{\exUnit}
+\newcommand*{\elimVar}[2]{\elimVarNoRHS{#1} \mapsto {#2}}
+\newcommand*{\elimVarNoRHS}[1]{#1}
 
-% Matched tries.
-%\newcommand*{\matchedConstr}[1]{\trieConstr{#1}}
+% Matches.
+%\newcommand*{\matchedConstr}[1]{\elimConstr{#1}}
 \newcommand*{\matchHole}[1]{[#1]}
 \newcommand*{\matchSumR}[2]{[#1,#2]}
 \newcommand*{\matchSumL}[2]{[#1,#2]}
 \newcommand*{\matchPlug}[2]{#1\matchHole{#2}}
 \newcommand*{\matchProd}[2]{\matchPlug{#1}{#2}}
-\newcommand*{\matchRoll}[1]{\trieRoll{#1}}
+\newcommand*{\matchRoll}[1]{\elimRoll{#1}}
 \newcommand*{\matchInj}[1]{#1}
 \newcommand*{\matchUnit}[1]{\exUnit \mapsto {#1}}
 \newcommand*{\matchVar}[2]{{#1} \mapsto {#2}}
@@ -119,7 +119,7 @@
 \newcommand*{\nonEmpty}[1]{\smash{{#1}^{+}}}
 \newcommand*{\typeof}[1]{\operatorname{\mathit{type}}(#1)}
 \newcommand*{\interpret}[1]{\hat{#1}}
-\newcommand*{\trieNarySumUpdate}[3]{#1[#2 \mapsto {#3}]}
+\newcommand*{\elimNarySumUpdate}[3]{#1[#2 \mapsto {#3}]}
 
 % Types.
 \newcommand*{\tyData}[1]{#1}
@@ -132,9 +132,9 @@
 \newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
 \newcommand*{\tyVar}[1]{#1}
 
-\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon}
+\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 
-\newcommand*{\del}[1]{\grayuline{\textcolor{gray}{#1}}}
+\newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
 \newcommand*{\delConcat}{\mathbin{\del{\concat}}}
 
 \newcommand*{\tySumProjR}[2]{\del{{#1}\:+}\:{#2}}
@@ -157,13 +157,13 @@
 \newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
 \newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
-\newcommand*{\trieVarProj}[2]{\del{\trieVarNoRHS{#1}\mapsto}\;{#2}}
-\newcommand*{\trieProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
-\newcommand*{\trieRollProj}[1]{\del{\kw{roll}}\;{#1}}
-\newcommand*{\trieSingletonProj}[2]{\del{#1[}#2\del{]}}
-\newcommand*{\trieSumProjL}[2]{\del{[}#1\del{,#2]}}
-\newcommand*{\trieSumProjR}[2]{\del{[#1,}\,#2\del{]}}
-\newcommand*{\trieUnitProj}[1]{\del{\exUnit\mapsto}\;{#1}}
+\newcommand*{\elimVarProj}[2]{\del{\elimVarNoRHS{#1}\mapsto}\;{#2}}
+\newcommand*{\elimProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
+\newcommand*{\elimRollProj}[1]{\del{\kw{roll}}\;{#1}}
+\newcommand*{\elimSingletonProj}[2]{\del{#1[}#2\del{]}}
+\newcommand*{\elimSumProjL}[2]{\del{[}#1\del{,#2]}}
+\newcommand*{\elimSumProjR}[2]{\del{[#1,}\,#2\del{]}}
+\newcommand*{\elimUnitProj}[1]{\del{\exUnit\mapsto}\;{#1}}
 
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}
@@ -209,10 +209,10 @@
 
 % Typing judgements.
 \newcommand*{\contType}[3]{{#3} \vdash {#1} : {#2}}
-\newcommand*{\trieArrow}{\to}
-\newcommand*{\trieTypePartial}[2]{{{#2}\trieArrow{#1}}}
-\newcommand*{\trieType}[4]{{#4} \vdash {#1} : \trieTypePartial{#2}{#3}}
-\newcommand*{\trieTypeJudge}[3]{{#3} \vdash \trieTypePartial{#1}{#2}}
+\newcommand*{\elimArrow}{\to}
+\newcommand*{\elimTypePartial}[2]{{{#2}\elimArrow{#1}}}
+\newcommand*{\elimType}[4]{{#4} \vdash {#1} : \elimTypePartial{#2}{#3}}
+\newcommand*{\elimTypeJudge}[3]{{#3} \vdash \elimTypePartial{#1}{#2}}
 \newcommand*{\matchArrow}{\rightbarharpoon}
 \newcommand*{\matchTypePartial}[2]{{{#2}\matchArrow{#1}}}
 \newcommand*{\matchType}[5]{{#1} \vdash {#2} : \matchTypePartial{#3}{#4} \dashv {#5}}

@@ -8,7 +8,7 @@
 {
    \rho,
    \indexed{e}
-   \eval{\trieVar{x}{\kappa}}
+   \eval{\elimVar{x}{\kappa}}
    \explVal{\indexed{e}}{\exBot},
    \envExtend{\envEmpty}{x}{\recEnvEntry{\rho}{\envEmpty}{\indexed{e}}},
    \kappa
@@ -46,7 +46,7 @@ $}]
 {
    \rho,
    \raw{\exConst{c}}{\idx{i}}
-   \eval{\trieGround{C}{\kappa}}
+   \eval{\elimGround{C}{\kappa}}
    \explVal
       {\raw{\trEmpty}{\idx{i}}}
       {\raw{\exConst{c}}{\idx{i}}},
@@ -63,7 +63,7 @@ $}]
 {
    \rho,
    \raw{\phi}{\idx{i}}
-   \eval{\trieFun{\kappa}}
+   \eval{\elimFun{\kappa}}
    \explVal
       {\raw{\trEmpty}{\idx{i}}}
       {\raw{\phi}{\idx{i}}},
@@ -80,7 +80,7 @@ $}]
 {
    \rho,
    \raw{\exFun{\sigma}}{\idx{i}}
-   \eval{\trieFun{\kappa}}
+   \eval{\elimFun{\kappa}}
    \explVal
       {\raw{\trEmpty}{\idx{i}}}
       {\raw{\exClosure{\rho}{\exFun{\sigma}}}{\idx{i}}},
@@ -92,7 +92,7 @@ $}]
 %
    \inferrule*[right={$\envType{\Gamma}{\rho_1 \concat \rho_2}$}]
    {
-      \rho, \indexed{e} \eval{\trieFun{\metaunit}}
+      \rho, \indexed{e} \eval{\elimFun{\metaunit}}
       \explVal{\indexed{T}}{\raw{\exClosure{\rho_1}{\exFun{\sigma}}}{\idx{j}}}, \envEmpty, \metaunit
       \\
       \rho, \indexed{e}' \eval{\sigma} \explVal{\indexed{T}'}{\indexed{u}}, \rho_2, \indexed{e}^\twoPrime
@@ -123,9 +123,9 @@ $}]
    $\interpret{\phi} \in \UnaryOp{C}{A} \wedge \interpret{\phi}(c, \tau) = (v, \kappa)$
 }}]
 {
-   \rho, \indexed{e} \eval{\trieFun{\metaunit}} \explVal{\indexed{T}}{\raw{\phi}{\idx{j}}}, \envEmpty, \metaunit
+   \rho, \indexed{e} \eval{\elimFun{\metaunit}} \explVal{\indexed{T}}{\raw{\phi}{\idx{j}}}, \envEmpty, \metaunit
    \\
-   \rho, \indexed{e}' \eval{\trieGround{C}{\metaunit}} \explVal{\indexed{T}'}{\raw{c}{\idx{k}}}, \envEmpty, \metaunit
+   \rho, \indexed{e}' \eval{\elimGround{C}{\metaunit}} \explVal{\indexed{T}'}{\raw{c}{\idx{k}}}, \envEmpty, \metaunit
 }
 {
    \rho,
@@ -147,9 +147,9 @@ $}]
    $\interpret{\primOp} \in \BinaryOp{C}{C'}{A} \wedge \interpret{\primOp}(c, c', \tau) = (v, \kappa)$
 }}]
 {
-   \rho, e \eval{\trieGround{C}{\metaunit}} \explVal{\indexed{T}}{\raw{c}{\idx{j}}}, \envEmpty, \metaunit
+   \rho, e \eval{\elimGround{C}{\metaunit}} \explVal{\indexed{T}}{\raw{c}{\idx{j}}}, \envEmpty, \metaunit
    \\
-   \rho, e' \eval{\trieGround{C'}{\metaunit}} \explVal{\indexed{T}'}{\raw{\smash{c'}}{\idx{k}}}, \envEmpty, \metaunit
+   \rho, e' \eval{\elimGround{C'}{\metaunit}} \explVal{\indexed{T}'}{\raw{\smash{c'}}{\idx{k}}}, \envEmpty, \metaunit
 }
 {
    \rho,

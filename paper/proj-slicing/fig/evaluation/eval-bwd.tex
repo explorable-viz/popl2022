@@ -138,10 +138,10 @@
       \strut
    }
    {
-      \exClosure{\rho}{\exFunProj{\trieSingletonProj{\sigma'}{\exFun{\tau}}}}, \trFun{\sigma}
+      \exClosure{\rho}{\exFunProj{\elimSingletonProj{\sigma'}{\exFun{\tau}}}}, \trFun{\sigma}
       \bwdSlice
       \rho,
-      \exFunProj{\trieSingletonProj{\sigma'}{\exFun{\tau}}}
+      \exFunProj{\elimSingletonProj{\sigma'}{\exFun{\tau}}}
    }
    %
    \and
@@ -172,7 +172,7 @@
    {
       v, U \bwdSlice \rho_1' \delConcat \del{\rho_2}, \exFun{\tau}
       \\
-      \exClosure{\rho_1'}{\exFunProj{\trieSingletonProj{\sigma}{\exFun{\tau}}}}, T \bwdSlice \rho, e
+      \exClosure{\rho_1'}{\exFunProj{\elimSingletonProj{\sigma}{\exFun{\tau}}}}, T \bwdSlice \rho, e
    }
    {
       v,

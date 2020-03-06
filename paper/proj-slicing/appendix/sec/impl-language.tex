@@ -70,7 +70,7 @@ $\exMatch{e}{\sigma}$ desugars to $\exApp{\exFun{\sigma'}}{e'}$ where $\sigma'$
 and $e'$ are the desugaring of $\sigma$ and $e$. Alternatively, the rules shown
 are derivable and give the same static and dynamic semantics as the desugaring.
 Similarly, $\exLet{x}{e}{e'}$ can also be expressed as a desugaring to
-$\exMatch{e}{\trieVar{x}{e^\twoPrime}}$ where $e^\twoPrime$ is the desugaring of
+$\exMatch{e}{\elimVar{x}{e^\twoPrime}}$ where $e^\twoPrime$ is the desugaring of
 $e'$.
 
 \subsection{Mutual recursion}

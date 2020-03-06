@@ -7,7 +7,7 @@
    {
      \envExtend{\envEmpty}{x}{v}, \kappa, \matchVar{x}{\matchHole{}}
      \matchBwd
-     v, \trieVar{x}{\kappa}
+     v, \elimVar{x}{\kappa}
    }
    %
    \and
@@ -18,7 +18,7 @@
    {
      \envEmpty, \kappa, \matchUnit{\matchHole{}}
      \matchBwd
-     \exUnit, \trieUnit{\kappa}
+     \exUnit, \elimUnit{\kappa}
    }
    %
    \and
@@ -30,7 +30,7 @@
    {
      \rho, \kappa, \matchSumL{\xi}{\tau}
      \matchBwd
-     \exInl{v}, \trieSum{\sigma}{\tau}
+     \exInl{v}, \elimSum{\sigma}{\tau}
    }
    %
    \and
@@ -42,7 +42,7 @@
    {
      \rho, \kappa, \matchSumR{\sigma}{\xi}
      \matchBwd
-     \exInr{v}, \trieSum{\sigma}{\tau}
+     \exInr{v}, \elimSum{\sigma}{\tau}
    }
    %
    \and
@@ -58,7 +58,7 @@
    {
      \rho_1 \concat \rho_2, \kappa, \matchProd{\xi}{\xi'}
      \matchBwd
-     \exPair{u}{v}, \trieProd{\sigma}
+     \exPair{u}{v}, \elimProd{\sigma}
    }
    %
    \and
@@ -70,7 +70,7 @@
    {
      \rho, \kappa, \matchRoll{\xi}
      \matchBwd
-     \exRoll{v}, \trieRoll{\sigma}
+     \exRoll{v}, \elimRoll{\sigma}
    }
 \end{smathpar}
 \caption{Pattern-matching: backward slicing}

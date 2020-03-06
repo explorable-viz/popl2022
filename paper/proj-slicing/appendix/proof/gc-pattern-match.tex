@@ -34,7 +34,7 @@ u, \sigma \mathrel{\lookupR\unlookupR{v^\dagger, \sigma^\dagger}\leq} u, \sigma
       \strut
    }
    {
-      \annot{v}{\alpha}, \trieVar{x}{\annot{\iota}{\alpha'}}
+      \annot{v}{\alpha}, \elimVar{x}{\annot{\iota}{\alpha'}}
       \lookupR
       \envExtend{\envEmpty}{x}{\annot{v}{\alpha}}, \annot{\iota}{\alpha'}
    }
@@ -53,8 +53,8 @@ u, \sigma \mathrel{\lookupR\unlookupR{v^\dagger, \sigma^\dagger}\leq} u, \sigma
    }
    {
      \envExtend{\envEmpty}{x}{\annot{v}{\alpha}}, \annot{\iota}{\alpha'}
-     \unlookupR{v^\dagger, \trieVar{x}{\kappa^\dagger}}
-     \annot{v}{\alpha}, \trieVar{x}{\annot{\iota}{\alpha'}}
+     \unlookupR{v^\dagger, \elimVar{x}{\kappa^\dagger}}
+     \annot{v}{\alpha}, \elimVar{x}{\annot{\iota}{\alpha'}}
    }
 \end{smathpar}
 }
@@ -64,9 +64,9 @@ u, \sigma \mathrel{\lookupR\unlookupR{v^\dagger, \sigma^\dagger}\leq} u, \sigma
 \\
 &
 \qedLocal
-\annot{v}{\alpha}, \trieVar{x}{\annot{\iota}{\alpha'}}
+\annot{v}{\alpha}, \elimVar{x}{\annot{\iota}{\alpha'}}
 \leq
-\annot{v}{\alpha}, \trieVar{x}{\annot{\iota}{\alpha'}}
+\annot{v}{\alpha}, \elimVar{x}{\annot{\iota}{\alpha'}}
 \notag
 \\
 &
@@ -77,7 +77,7 @@ u, \sigma \mathrel{\lookupR\unlookupR{v^\dagger, \sigma^\dagger}\leq} u, \sigma
       \strut
    }
    {
-      \annot{\exUnit}{\alpha}, \trieUnit{\annot{\iota}{\alpha'}}
+      \annot{\exUnit}{\alpha}, \elimUnit{\annot{\iota}{\alpha'}}
       \lookupR
       \envEmpty, \annot{\iota}{\alpha \wedge \alpha'}
    }
@@ -96,8 +96,8 @@ u, \sigma \mathrel{\lookupR\unlookupR{v^\dagger, \sigma^\dagger}\leq} u, \sigma
    }
    {
      \envEmpty, \annot{\iota}{\alpha \wedge \alpha'}
-     \unlookupR{\exUnit, \trieUnit{\kappa^\dagger}}
-     \annot{\exUnit}{\alpha \wedge \alpha'}, \trieUnit{\annot{\iota}{\alpha \wedge \alpha'}}
+     \unlookupR{\exUnit, \elimUnit{\kappa^\dagger}}
+     \annot{\exUnit}{\alpha \wedge \alpha'}, \elimUnit{\annot{\iota}{\alpha \wedge \alpha'}}
    }
 \end{smathpar}
 }
@@ -107,9 +107,9 @@ u, \sigma \mathrel{\lookupR\unlookupR{v^\dagger, \sigma^\dagger}\leq} u, \sigma
 \\
 &
 \qedLocal
-\annot{\exUnit}{\alpha \wedge \alpha'}, \trieUnit{\annot{\iota}{\alpha \wedge \alpha'}}
+\annot{\exUnit}{\alpha \wedge \alpha'}, \elimUnit{\annot{\iota}{\alpha \wedge \alpha'}}
 \leq
-\annot{\exUnit}{\alpha'}, \trieUnit{\annot{\iota}{\alpha}}
+\annot{\exUnit}{\alpha'}, \elimUnit{\annot{\iota}{\alpha}}
 &
 \notag
 \\
@@ -121,7 +121,7 @@ u, \sigma \mathrel{\lookupR\unlookupR{v^\dagger, \sigma^\dagger}\leq} u, \sigma
       u, \sigma \lookupR \rho, \annot{\iota}{\alpha'}
    }
    {
-      \annot{(\exInl{u})}{\alpha}, \trieSum{\sigma}{\tau} \lookupR \rho, \annot{\iota}{\alpha \wedge \alpha'}
+      \annot{(\exInl{u})}{\alpha}, \elimSum{\sigma}{\tau} \lookupR \rho, \annot{\iota}{\alpha \wedge \alpha'}
    }
 \end{smathpar}
 }
@@ -138,8 +138,8 @@ u, \sigma \mathrel{\lookupR\unlookupR{v^\dagger, \sigma^\dagger}\leq} u, \sigma
    }
    {
      \rho, \annot{\iota}{\alpha \wedge \alpha'}
-     \unlookupR{\exInl{v^\dagger}, \trieSum{\sigma^\dagger}{\tau^\dagger}}
-     \annot{(\exInl{u'})}{\alpha \wedge \alpha'}, \trieSum{\sigma'}{\annot{\tau}{\bot}}
+     \unlookupR{\exInl{v^\dagger}, \elimSum{\sigma^\dagger}{\tau^\dagger}}
+     \annot{(\exInl{u'})}{\alpha \wedge \alpha'}, \elimSum{\sigma'}{\annot{\tau}{\bot}}
    }
 \end{smathpar}
 }
@@ -158,9 +158,9 @@ u', \sigma' \leq u, \sigma
 \\
 &
 \qedLocal
-\annot{(\exInl{u'})}{\alpha \wedge \alpha'}, \trieSum{\sigma'}{\annot{\tau}{\bot}}
+\annot{(\exInl{u'})}{\alpha \wedge \alpha'}, \elimSum{\sigma'}{\annot{\tau}{\bot}}
 \leq
-\annot{(\exInl{u})}{\alpha}, \trieSum{\sigma}{\tau}
+\annot{(\exInl{u})}{\alpha}, \elimSum{\sigma}{\tau}
 &
 \notag
 \\
@@ -172,7 +172,7 @@ u', \sigma' \leq u, \sigma
       u, \tau \lookupR \rho, \annot{\iota}{\alpha'}
    }
    {
-      \annot{(\exInr{u})}{\alpha}, \trieSum{\sigma}{\tau} \lookupR \rho, \annot{\iota}{\alpha \wedge \alpha'}
+      \annot{(\exInr{u})}{\alpha}, \elimSum{\sigma}{\tau} \lookupR \rho, \annot{\iota}{\alpha \wedge \alpha'}
    }
 \end{smathpar}
 }
@@ -189,8 +189,8 @@ u', \sigma' \leq u, \sigma
    }
    {
      \rho, \annot{\iota}{\alpha \wedge \alpha'}
-     \unlookupR{\exInr{v^\dagger}, \trieSum{\sigma^\dagger}{\tau^\dagger}}
-     \annot{(\exInr{u'})}{\alpha \wedge \alpha'}, \trieSum{\annot{\sigma}{\bot}}{\tau'}
+     \unlookupR{\exInr{v^\dagger}, \elimSum{\sigma^\dagger}{\tau^\dagger}}
+     \annot{(\exInr{u'})}{\alpha \wedge \alpha'}, \elimSum{\annot{\sigma}{\bot}}{\tau'}
    }
 \end{smathpar}
 }
@@ -209,9 +209,9 @@ u', \sigma' \leq u, \sigma
 \\
 &
 \qedLocal
-\annot{(\exInr{u'})}{\alpha \wedge \alpha'}, \trieSum{\annot{\sigma}{\bot}}{\tau'}
+\annot{(\exInr{u'})}{\alpha \wedge \alpha'}, \elimSum{\annot{\sigma}{\bot}}{\tau'}
 \leq
-\annot{(\exInr{u})}{\alpha}, \trieSum{\sigma}{\tau}
+\annot{(\exInr{u})}{\alpha}, \elimSum{\sigma}{\tau}
 &
 \notag
 \\
@@ -225,7 +225,7 @@ u', \sigma' \leq u, \sigma
       u_2, \tau \lookupR \rho_2, \annot{\iota}{\alpha^\twoPrime}
    }
    {
-      \annot{\exPair{u_1}{u_2}}{\alpha}, \trieProd{\sigma}
+      \annot{\exPair{u_1}{u_2}}{\alpha}, \elimProd{\sigma}
       \lookupR
       \rho_1 \concat \rho_2, \annot{\iota}{\alpha \wedge \alpha' \alpha^\twoPrime}
    }
@@ -268,8 +268,8 @@ u_1', \sigma' \leq u_1, \sigma
       }
       {
         \rho_1 \concat \rho_2, \annot{\iota}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
-        \unlookupR{\exPair{v_1^\dagger}{v_2^\dagger}, \trieProd{\sigma^\dagger}}
-        \annot{\exPair{u_1'}{u_2'}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}, \trieProd{\sigma'}
+        \unlookupR{\exPair{v_1^\dagger}{v_2^\dagger}, \elimProd{\sigma^\dagger}}
+        \annot{\exPair{u_1'}{u_2'}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}, \elimProd{\sigma'}
       }
    \end{smathpar}
 }
@@ -279,9 +279,9 @@ u_1', \sigma' \leq u_1, \sigma
 \\
 &
 \qedLocal
-\annot{\exPair{u_1'}{u_2'}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}, \trieProd{\sigma'}
+\annot{\exPair{u_1'}{u_2'}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}, \elimProd{\sigma'}
 \leq
-\annot{\exPair{u_1}{u_2}}{\alpha}, \trieProd{\sigma}
+\annot{\exPair{u_1}{u_2}}{\alpha}, \elimProd{\sigma}
 &
 \notag
 \\
@@ -293,7 +293,7 @@ u_1', \sigma' \leq u_1, \sigma
       u, \tau \lookupR \rho, \annot{\iota}{\alpha'}
    }
    {
-      \annot{(\exRoll{u})}{\alpha}, \trieRoll{\sigma} \lookupR \rho, \annot{\iota}{\alpha \wedge \alpha'}
+      \annot{(\exRoll{u})}{\alpha}, \elimRoll{\sigma} \lookupR \rho, \annot{\iota}{\alpha \wedge \alpha'}
    }
 \end{smathpar}
 }
@@ -310,8 +310,8 @@ u_1', \sigma' \leq u_1, \sigma
    }
    {
      \rho, \annot{\iota}{\alpha \wedge \alpha'}
-     \unlookupR{\exRoll{v^\dagger}, \trieRoll{\sigma^\dagger}}
-     \annot{(\exRoll{u'})}{\alpha \wedge \alpha'}, \trieRoll{\sigma'}
+     \unlookupR{\exRoll{v^\dagger}, \elimRoll{\sigma^\dagger}}
+     \annot{(\exRoll{u'})}{\alpha \wedge \alpha'}, \elimRoll{\sigma'}
    }
 \end{smathpar}
 }
@@ -330,9 +330,9 @@ u', \sigma' \leq u, \sigma
 \\
 &
 \qedLocal
-\annot{(\exRoll{u'})}{\alpha \wedge \alpha'}, \trieRoll{\sigma'}
+\annot{(\exRoll{u'})}{\alpha \wedge \alpha'}, \elimRoll{\sigma'}
 \leq
-\annot{(\exRoll{u})}{\alpha}, \trieRoll{\sigma'}
+\annot{(\exRoll{u})}{\alpha}, \elimRoll{\sigma'}
 &
 \notag
 \\
@@ -358,8 +358,8 @@ u', \sigma' \leq u, \sigma
    }
    {
      \envExtend{\envEmpty}{x}{u}, \kappa
-     \unlookupR{v, \trieVar{x}{\kappa^\dagger}}
-     u, \trieVar{x}{\kappa}
+     \unlookupR{v, \elimVar{x}{\kappa^\dagger}}
+     u, \elimVar{x}{\kappa}
    }
 \end{smathpar}
 }
@@ -376,7 +376,7 @@ u', \sigma' \leq u, \sigma
       \strut
    }
    {
-      u, \trieVar{x}{\kappa}
+      u, \elimVar{x}{\kappa}
       \lookupR
       \envExtend{\envEmpty}{x}{u}, \kappa
    }
@@ -401,8 +401,8 @@ u', \sigma' \leq u, \sigma
    }
    {
      \envEmpty, \annot{\iota}{\alpha}
-     \unlookupR{\exUnit, \trieUnit{\kappa^\dagger}}
-     \annot{\exUnit}{\alpha}, \trieUnit{\annot{\iota}{\alpha}}
+     \unlookupR{\exUnit, \elimUnit{\kappa^\dagger}}
+     \annot{\exUnit}{\alpha}, \elimUnit{\annot{\iota}{\alpha}}
    }
 \end{smathpar}
 }
@@ -418,7 +418,7 @@ u', \sigma' \leq u, \sigma
       \strut
    }
    {
-      \annot{\exUnit}{\alpha}, \trieUnit{\annot{\iota}{\alpha}}
+      \annot{\exUnit}{\alpha}, \elimUnit{\annot{\iota}{\alpha}}
       \lookupR
       \envEmpty, \annot{\iota}{\alpha \wedge \alpha}
    }
@@ -443,8 +443,8 @@ u', \sigma' \leq u, \sigma
    }
    {
      \rho, \annot{\iota}{\alpha}
-     \unlookupR{\exInl{v^\dagger}, \trieSum{\sigma^\dagger}{\tau^\dagger}}
-     \annot{(\exInl{u})}{\alpha}, \trieSum{\sigma}{\annot{\tau}{\bot}}
+     \unlookupR{\exInl{v^\dagger}, \elimSum{\sigma^\dagger}{\tau^\dagger}}
+     \annot{(\exInl{u})}{\alpha}, \elimSum{\sigma}{\annot{\tau}{\bot}}
    }
 \end{smathpar}
 }
@@ -466,7 +466,7 @@ u, \sigma \lookupR \rho', \annot{\iota'}{\alpha'} \geq \rho, \annot{\iota}{\alph
       u, \sigma \lookupR \rho', \annot{\iota'}{\alpha'}
    }
    {
-      \annot{(\exInl{u})}{\alpha}, \trieSum{\sigma}{\annot{\tau}{\bot}}
+      \annot{(\exInl{u})}{\alpha}, \elimSum{\sigma}{\annot{\tau}{\bot}}
       \lookupR \rho', \annot{\iota'}{\alpha \wedge \alpha'}
    }
 \end{smathpar}
@@ -490,8 +490,8 @@ u, \sigma \lookupR \rho', \annot{\iota'}{\alpha'} \geq \rho, \annot{\iota}{\alph
    }
    {
      \rho, \annot{\iota}{\alpha}
-     \unlookupR{\exInr{v^\dagger}, \trieSum{\sigma^\dagger}{\tau^\dagger}}
-     \annot{(\exInr{u})}{\alpha}, \trieSum{\annot{\sigma}{\bot}}{\tau}
+     \unlookupR{\exInr{v^\dagger}, \elimSum{\sigma^\dagger}{\tau^\dagger}}
+     \annot{(\exInr{u})}{\alpha}, \elimSum{\annot{\sigma}{\bot}}{\tau}
    }
 \end{smathpar}
 }
@@ -513,7 +513,7 @@ u, \tau \lookupR \rho', \annot{\iota'}{\alpha'} \geq \rho, \annot{\iota}{\alpha}
       u, \sigma \lookupR \rho', \annot{\iota'}{\alpha'}
    }
    {
-      \annot{(\exInr{u})}{\alpha}, \trieSum{\annot{\sigma}{\bot}}{\tau}
+      \annot{(\exInr{u})}{\alpha}, \elimSum{\annot{\sigma}{\bot}}{\tau}
       \lookupR \rho', \annot{\iota'}{\alpha \wedge \alpha'}
    }
 \end{smathpar}
@@ -542,8 +542,8 @@ u, \tau \lookupR \rho', \annot{\iota'}{\alpha'} \geq \rho, \annot{\iota}{\alpha}
    }
    {
      \rho_1 \concat \rho_2, \annot{\iota}{\alpha}
-     \unlookupR{\exPair{v_1^\dagger}{v_2^\dagger}, \trieProd{\sigma^\dagger}}
-     \annot{\exPair{u_1}{u_2}}{\alpha}, \trieProd{\sigma}
+     \unlookupR{\exPair{v_1^\dagger}{v_2^\dagger}, \elimProd{\sigma^\dagger}}
+     \annot{\exPair{u_1}{u_2}}{\alpha}, \elimProd{\sigma}
    }
 \end{smathpar}
 }
@@ -579,7 +579,7 @@ u_1, \sigma \lookupR \rho_1', \annot{\tau'}{\alpha'}
       u_2, \tau \lookupR \rho_2', \annot{\iota'}{\alpha^\twoPrime}
    }
    {
-      \annot{\exPair{u_1}{u_2}}{\alpha}, \trieProd{\sigma}
+      \annot{\exPair{u_1}{u_2}}{\alpha}, \elimProd{\sigma}
       \lookupR
       \rho_1' \concat \rho_2', \annot{\iota'}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
    }
@@ -605,8 +605,8 @@ u_1, \sigma \lookupR \rho_1', \annot{\tau'}{\alpha'}
    }
    {
      \rho, \annot{\iota}{\alpha}
-     \unlookupR{\exRoll{v^\dagger}, \trieRoll{\sigma^\dagger}}
-     \annot{(\exRoll{u})}{\alpha}, \trieRoll{\sigma}
+     \unlookupR{\exRoll{v^\dagger}, \elimRoll{\sigma^\dagger}}
+     \annot{(\exRoll{u})}{\alpha}, \elimRoll{\sigma}
    }
 \end{smathpar}
 }
@@ -628,7 +628,7 @@ u, \sigma \lookupR \rho', \annot{\iota'}{\alpha'} \geq \rho, \annot{\iota}{\alph
       u, \sigma \lookupR \rho', \annot{\iota'}{\alpha'}
    }
    {
-      \annot{(\exRoll{u})}{\alpha}, \trieRoll{\sigma}
+      \annot{(\exRoll{u})}{\alpha}, \elimRoll{\sigma}
       \lookupR \rho', \annot{\iota'}{\alpha \wedge \alpha'}
    }
 \end{smathpar}

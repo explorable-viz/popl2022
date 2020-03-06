@@ -6,7 +6,7 @@
       \strut
    }
    {
-         v, \trieVar{x}{\kappa} \matchFwd \envExtend{\envEmpty}{x}{v}, \kappa
+         v, \elimVar{x}{\kappa} \matchFwd \envExtend{\envEmpty}{x}{v}, \kappa
    }
    %
    \and
@@ -16,7 +16,7 @@
       \strut
    }
    {
-      \exUnit, \trieUnit{\kappa} \matchFwd \envEmpty, \kappa
+      \exUnit, \elimUnit{\kappa} \matchFwd \envEmpty, \kappa
    }
    %
    \and
@@ -26,7 +26,7 @@
       v, \sigma \matchFwd \rho, \kappa
    }
    {
-      \exInl{v}, \trieSum{\sigma}{\tau} \matchFwd \rho, \kappa
+      \exInl{v}, \elimSum{\sigma}{\tau} \matchFwd \rho, \kappa
    }
    %
    \and
@@ -36,7 +36,7 @@
       v, \sigma \matchFwd \rho, \kappa
    }
    {
-      \exInlProj{v}, \trieSumProjL{\sigma}{\tau} \matchFwd \rho, \kappa
+      \exInlProj{v}, \elimSumProjL{\sigma}{\tau} \matchFwd \rho, \kappa
    }
    %
    \and
@@ -46,7 +46,7 @@
       v, \tau \matchFwd \rho, \kappa
    }
    {
-      \exInr{v}, \trieSum{\sigma}{\tau} \matchFwd \rho, \kappa
+      \exInr{v}, \elimSum{\sigma}{\tau} \matchFwd \rho, \kappa
    }
    %
    \and
@@ -56,7 +56,7 @@
       v, \tau \matchFwd \rho, \kappa
    }
    {
-      \exInrProj{v}, \trieSumProjR{\sigma}{\tau} \matchFwd \rho, \kappa
+      \exInrProj{v}, \elimSumProjR{\sigma}{\tau} \matchFwd \rho, \kappa
    }
    %
    \and
@@ -68,7 +68,7 @@
       v, \tau \matchFwd \rho_2, \kappa
    }
    {
-      \exPair{u}{v}, \trieProd{\sigma} \matchFwd \rho_1 \concat \rho_2, \kappa
+      \exPair{u}{v}, \elimProd{\sigma} \matchFwd \rho_1 \concat \rho_2, \kappa
    }
    %
    \and
@@ -78,7 +78,7 @@
       u, \sigma \matchFwd \rho_1, \tau
    }
    {
-      \exPairProjL{u}{v}, \trieProd{\trieSingleton{\sigma}{\trieSingletonProj{\tau}{\kappa}}}
+      \exPairProjL{u}{v}, \elimProd{\elimSingleton{\sigma}{\elimSingletonProj{\tau}{\kappa}}}
       \matchFwd
       \rho_1 \delConcat \del{\rho_2}, \kappa
    }
@@ -90,7 +90,7 @@
       v, \tau \matchFwd \rho_2, \kappa
    }
    {
-      \exPairProjR{u}{v}, \trieProd{\trieSingletonProj{\sigma}{\trieSingleton{\tau}{\kappa}}}
+      \exPairProjR{u}{v}, \elimProd{\elimSingletonProj{\sigma}{\elimSingleton{\tau}{\kappa}}}
       \matchFwd
       \del{\rho_1} \delConcat \rho_2, \kappa
    }
@@ -102,7 +102,7 @@
       v, \sigma \matchFwd \rho, \kappa
    }
    {
-      \exRoll{v}, \trieRoll{\sigma} \matchFwd \rho, \kappa
+      \exRoll{v}, \elimRoll{\sigma} \matchFwd \rho, \kappa
    }
    %
    \and
@@ -112,7 +112,7 @@
       v, \sigma \matchFwd \rho, \kappa
    }
    {
-      \exRollProj{v}, \trieRollProj{\sigma} \matchFwd \rho, \kappa
+      \exRollProj{v}, \elimRollProj{\sigma} \matchFwd \rho, \kappa
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}
