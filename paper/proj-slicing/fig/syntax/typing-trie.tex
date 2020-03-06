@@ -1,0 +1,129 @@
+\begin{figure}
+\flushleft \shadebox{$\Gamma \vdash \sigma: A \to B$}
+\begin{smathpar}
+\inferrule*
+{
+   \cxtExtend{\Gamma}{x}{A} \vdash \kappa: B
+}
+{
+   \Gamma \vdash \elimVar{x}{\kappa}: A \to B
+}
+%
+\and
+%
+\inferrule*
+{
+   \cxtExtendProj{\Gamma}{x}{A} \vdash \kappa: B
+}
+{
+   \Gamma \vdash \elimVarProj{x}{\kappa}: \tyFunProjR{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: B
+}
+{
+   \Gamma \vdash \elimUnit{\kappa}: \tyFun{\tyUnit}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: B
+}
+{
+   \Gamma \vdash \elimUnitProj{\kappa}: \tyFunProjR{\tyUnit}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+   \\
+   \Gamma \vdash \tau: \tyFun{A'}{B}
+}
+{
+   \Gamma \vdash \elimSum{\sigma}{\tau}: \tyFun{\tySum{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+   \\
+   \Gamma \vdash \tau: \tyFun{A'}{B}
+}
+{
+   \Gamma \vdash \elimSumProjL{\sigma}{\tau}: \tyFun{\tySumProjL{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+   \\
+   \Gamma \vdash \tau: \tyFun{A'}{B}
+}
+{
+   \Gamma \vdash \elimSumProjR{\sigma}{\tau}: \tyFun{\tySumProjR{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{A'}{B}}
+}
+{
+   \Gamma \vdash \elimProd{\sigma}: \tyFun{\tyProd{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFunProjR{A}{\tyFun{A'}{B}}
+}
+{
+   \Gamma \vdash \elimProdProj{\sigma}: \tyFun{\tyProdProjR{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{\tyFunProjR{A'}{B}}
+}
+{
+   \Gamma \vdash \elimProdProj{\sigma}: \tyFun{\tyProdProjL{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{\subst{A}{\tyRec{\tyVar{X}}{A}}{X}}{B}
+}
+{
+   \Gamma \vdash \elimRoll{\sigma}: \tyFun{(\tyRec{\tyVar{X}}{A})}{B}
+}
+%
+\and
+%
+\inferrule*[right={\textnormal{$A$ closed}}]
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \elimRollProj{\sigma}: \tyFun{(\tyRecProj{\tyVar{X}}{A})}{B}
+}
+\end{smathpar}
+\caption{Typing rules for terms}
+\end{figure}
