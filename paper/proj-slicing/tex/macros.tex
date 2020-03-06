@@ -89,7 +89,7 @@
 \newcommand*{\elimGroundNoRHS}[1]{\tyGround{#1}}
 \newcommand*{\elimNarySum}[1]{\{#1\}}
 \newcommand*{\elimSingleton}[2]{#1[#2]}
-\newcommand*{\elimSum}[2]{[#1,#2]}
+\newcommand*{\elimSum}[2]{[\exInl{#1},\exInr{#2}]}
 \newcommand*{\elimProd}[1]{{\langle#1\rangle}}
 \newcommand*{\elimRoll}[1]{\kw{roll}\;{#1}}
 \newcommand*{\elimUnit}[1]{\exUnit \mapsto {#1}}
@@ -161,8 +161,10 @@
 \newcommand*{\elimProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
 \newcommand*{\elimRollProj}[1]{\del{\kw{roll}}\;{#1}}
 \newcommand*{\elimSingletonProj}[2]{\del{#1[}#2\del{]}}
-\newcommand*{\elimSumProjL}[2]{\del{[}#1\del{,#2]}}
-\newcommand*{\elimSumProjR}[2]{\del{[#1,}\,#2\del{]}}
+\newcommand*{\elimSumOnlyL}[2]{[\exInl{#1}\del{,\exInr{#2}}]}
+\newcommand*{\elimSumOnlyR}[2]{[\del{\exInl{#1},}\,\exInr{#2}]}
+\newcommand*{\elimSumProjL}[2]{\del{[\kw{inl}}\;{#1}\del{,\exInr{#2}]}}
+\newcommand*{\elimSumProjR}[2]{\del{[\exInl{#1},}\,\exInrProj{#2}\del{]}}
 \newcommand*{\elimUnitProj}[1]{\del{\exUnit\mapsto}\;{#1}}
 
 % Sets
