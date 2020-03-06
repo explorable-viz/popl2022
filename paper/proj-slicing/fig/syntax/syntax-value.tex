@@ -81,6 +81,8 @@ u, v
    \envUpdate{\envEmpty}{x}{v} &= \envEmpty
    \\
    \envUpdate{(\envExtend{\rho}{x}{u})}{x}{v} &= \envExtend{\rho}{x}{v}
+   \\
+   \envUpdate{(\envExtend{\rho}{y}{u})}{x}{v} &= \envExtend{(\envUpdate{\rho}{x}{v})}{y}{u}
 \end{salign}
 \caption{Values and environments}
 \end{figure}
