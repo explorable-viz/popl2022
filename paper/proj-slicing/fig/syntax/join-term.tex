@@ -28,6 +28,16 @@
    \exPairProjR{e_1}{e_2} \join \exPairProjR{e_1}{e_2'} &= \exPairProjR{e_1}{e_1 \join e_2'}
    \\
    \exPairProjR{e_1}{e_2} \join \exPairProjL{e_1}{e_2'} &= \exPair{e_1}{e_2 \join e_2'}
+   \\
+   (\exApp{e_1}{e_2}) \join (\exApp{e_1'}{e_2'}) &= \exApp{(e_1 \join e_1')}{(e_2 \join e_2')}
+   \\
+   (\exAppProjFun{e_1}{e_2}) \join (\exApp{e_1'}{e_2'}) &= \exApp{(e_1 \join e_1')}{e_2'}
+   \\
+   (\exAppProjFun{e_1}{e_2}) \join (\exAppProjFun{e_1'}{e_2}) &= \exAppProjFun{(e_1 \join e_1')}{e_2}
+   \\
+   (\exRoll{e}) \join (\exRoll{e'}) &= \exRoll{(e \join e')}
+   \\
+   (\exRollProj{e}) \join (\exRoll{e'}) &= \exRoll{(e \join e')}
 \end{salign}
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}

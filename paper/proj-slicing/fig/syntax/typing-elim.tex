@@ -60,7 +60,31 @@
    \Gamma \vdash \tau: \tyFun{A'}{B}
 }
 {
+   \Gamma \vdash \elimSumOnlyL{\sigma}{\tau}: \tyFun{\tySum{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+   \\
+   \Gamma \vdash \tau: \tyFun{A'}{B}
+}
+{
    \Gamma \vdash \elimSumProjL{\sigma}{\tau}: \tyFun{\tySumProjL{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+   \\
+   \Gamma \vdash \tau: \tyFun{A'}{B}
+}
+{
+   \Gamma \vdash \elimSumOnlyR{\sigma}{\tau}: \tyFun{\tySum{A}{A'}}{B}
 }
 %
 \and
@@ -125,5 +149,5 @@
    \Gamma \vdash \elimRollProj{\sigma}: \tyFun{(\tyRecProj{\tyVar{X}}{A})}{B}
 }
 \end{smathpar}
-\caption{Typing rules for terms}
+\caption{Typing rules for eliminators}
 \end{figure}
