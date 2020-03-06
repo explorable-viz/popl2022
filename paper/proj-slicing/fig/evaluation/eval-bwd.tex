@@ -170,7 +170,7 @@
    %
    \inferrule*
    {
-      v, U \bwdSlice \rho_1' \delConcat \del{\rho_2}, \exFun{\tau}
+      v, U \bwdSlice \concatProjL{\rho_1'}{\rho_2}, \exFun{\tau}
       \\
       \exClosure{\rho_1'}{\exFunProj{\elimSingletonProj{\sigma}{\exFun{\tau}}}}, T \bwdSlice \rho, e
    }

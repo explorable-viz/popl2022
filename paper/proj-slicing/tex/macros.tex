@@ -138,7 +138,6 @@
 \newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 
 \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
-\newcommand*{\delConcat}{\mathbin{\del{\concat}}}
 
 \newcommand*{\tySumProjR}[2]{\del{{#1}\:+}\:{#2}}
 \newcommand*{\tySumProjL}[2]{{#1}\:\del{+\:{#2}}}
@@ -151,6 +150,8 @@
 \newcommand*{\cxtExtendProj}[3]{{#1}\del{,{#2}: {#3}}}
 \newcommand*{\envExtendProj}[3]{{#1}\del{[{#2} \mapsto {#3}]}}
 \newcommand*{\envErase}[1]{\sub{\bot}{#1}}
+\newcommand*{\concatProjL}[2]{{#1}\,\del{\concat\,{#2}}}
+\newcommand*{\concatProjR}[2]{\del{{#1}\,\concat}\,{#2}}
 
 \newcommand*{\exAppProjFun}[2]{{#1}\,{\del{#2}}}
 \newcommand*{\exFunProj}[1]{\del{\uplambda}{#1}}
