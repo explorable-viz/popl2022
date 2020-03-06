@@ -30,7 +30,19 @@
    {
      \rho, \kappa, \matchSum{\xi}{\tau}
      \matchBwd
-     \exInl{v}, \elimSum{\sigma}{\tau}
+     \exInl{v}, \elimSumOnlyL{\sigma}{\tau}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+     \rho, \kappa, \xi \matchBwd v, \sigma
+   }
+   {
+     \rho, \kappa, \matchSumL{\xi}
+     \matchBwd
+     \exInlProj{v}, \elimSumLProj{\sigma}
    }
    %
    \and
@@ -42,7 +54,19 @@
    {
      \rho, \kappa, \matchSum{\sigma}{\xi}
      \matchBwd
-     \exInr{v}, \elimSum{\sigma}{\tau}
+     \exInr{v}, \elimSumOnlyR{\sigma}{\tau}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+     \rho, \kappa, \xi \matchBwd v, \sigma
+   }
+   {
+     \rho, \kappa, \matchSumR{\xi}
+     \matchBwd
+     \exInrProj{v}, \elimSumRProj{\sigma}
    }
    %
    \and

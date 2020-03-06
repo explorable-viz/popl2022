@@ -36,6 +36,26 @@
       v, \sigma \matchFwd \rho, \kappa
    }
    {
+      \exInl{v}, \elimSumL{\sigma} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInl{v}, \elimSumOnlyL{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
       \exInlProj{v}, \elimSumProjL{\sigma}{\tau} \matchFwd \rho, \kappa
    }
    %
@@ -47,6 +67,26 @@
    }
    {
       \exInr{v}, \elimSum{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInr{v}, \elimSumR{\sigma} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \tau \matchFwd \rho, \kappa
+   }
+   {
+      \exInr{v}, \elimSumOnlyR{\sigma}{\tau} \matchFwd \rho, \kappa
    }
    %
    \and
