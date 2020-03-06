@@ -6,7 +6,7 @@
    \cxtExtend{\Gamma}{x}{A} \vdash \kappa: B
 }
 {
-   \Gamma \vdash \elimVar{x}{\kappa}: A \to B
+   \Gamma \vdash \elimSingleton{\elimVar{x}{}}{\kappa}: A \to B
 }
 %
 \and
@@ -16,7 +16,7 @@
    \cxtExtendProj{\Gamma}{x}{A} \vdash \kappa: B
 }
 {
-   \Gamma \vdash \elimVarProj{x}{\kappa}: \tyFunProjR{A}{B}
+   \Gamma \vdash \elimSingleton{\elimVarProj{x}{}}{\kappa}: \tyFunProjR{A}{B}
 }
 %
 \and
@@ -26,7 +26,7 @@
    \Gamma \vdash \kappa: B
 }
 {
-   \Gamma \vdash \elimSingleton{(\elimUnit{\kappa})}{\kappa}: \tyFun{\tyUnit}{B}
+   \Gamma \vdash \elimSingleton{\elimUnit{}}{\kappa}: \tyFun{\tyUnit}{B}
 }
 %
 \and
@@ -36,7 +36,27 @@
    \Gamma \vdash \kappa: B
 }
 {
-   \Gamma \vdash \elimSingleton{(\elimUnitProj{\kappa})}{\kappa}: \tyFunProjR{\tyUnit}{B}
+   \Gamma \vdash \elimSingleton{\elimUnitProj{}}{\kappa}: \tyFunProjR{\tyUnit}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \elimSingleton{\sigma}{\kappa}: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \elimSingleton{\elimSumL{\sigma}}{\kappa}: \tyFun{\tySum{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \elimSingleton{\sigma}{\kappa}: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \elimSingleton{\elimSumR{\sigma}}{\kappa}: \tyFun{\tySum{A}{A'}}{B}
 }
 %
 \and

@@ -56,6 +56,26 @@
 \inferrule*
 {
    \Gamma \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \elimSumL{\sigma}: \tyFun{\tySum{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \elimSumR{\sigma}: \tyFun{\tySum{A}{A'}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
    \\
    \Gamma \vdash \tau: \tyFun{A'}{B}
 }
