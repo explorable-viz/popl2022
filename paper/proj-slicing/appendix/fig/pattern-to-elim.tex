@@ -1,0 +1,58 @@
+\begin{figure}
+\flushleft \shadebox{$\pattToTrie{p}{a}$}
+{\small
+\begin{align*}
+\pattToTrie{\exUnit}{a}
+&=
+\elimUnit{a}
+\\
+\pattToTrie{\exVar{x}}{a}
+&=
+\elimVar{x}{a}
+\\
+\pattToTrie{\exInl{p}}{a}
+&=
+\elimSum{\pattToTrie{p}{a}}{\elimEmpty}
+\\
+\pattToTrie{\exInr{p}}{a}
+&=
+\elimSum{\elimEmpty}{\pattToTrie{p}{a}}
+\\
+\pattToTrie{\exPair{p_1}{p_2}}{a}
+&=
+\elimProd{\pattToTrie{p_1}{\pattToTrie{p_2}{a}}}
+\\
+\pattToTrie{\exRoll{p}}{a}
+&=
+\elimRoll{\pattToTrie{p}{a}}
+\end{align*}}
+
+\flushleft \shadebox{$\branchesToTrie{\exBranch{p_1}{e_1},\ldots,\exBranch{p_1}{e_1}}$}
+{\small
+\begin{align*}
+\branchesToTrie{\exBranch{p_1}{e_1},\ldots,\exBranch{p_n}{e_n}}
+&=
+\pattToTrie{p_1}{\optSome{(1,e_1)}} \joinWith{\eqJoin} \; \ldots \; \joinWith{\eqJoin} \pattToTrie{p_n}{\optSome{(n,e_n)}}
+\end{align*}}
+
+\flushleft \shadebox{$z \eqJoin z'$}
+{\small
+\begin{align*}
+\optNone \eqJoin z
+&=
+\optNone
+\\
+z \eqJoin \optNone
+&=
+\optNone
+\\
+(\optSome{a}) \eqJoin (\optSome{a'})
+&=
+\begin{cases}
+\optSome{a} & \text{if $a = a'$}
+\\
+\optNone & \text{otherwise}
+\end{cases}
+\end{align*}}
+\caption{ML-style \kw{case} branches as eliminators to (optional) terms}
+\end{figure}
