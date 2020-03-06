@@ -31,8 +31,20 @@
    }
    {
       \explVal
-         {\matchSumL{\xi}{\tau}}
+         {\matchSum{\xi}{\tau}}
          {\exInl{v}, \elimSum{\sigma}{\tau} \lookupR \rho, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+   }
+   {
+      \explVal
+         {\matchSumLL{\xi}}
+         {\exInl{v}, \elimSumL{\sigma} \lookupR \rho, \kappa}
    }
    %
    \and
@@ -42,7 +54,17 @@
       \explVal{\xi}{v, \tau \lookupR \rho, \kappa}
    }
    {
-      \explVal{\matchSumR{\sigma}{\xi}}{\exInr{v}, \elimSum{\sigma}{\tau} \lookupR \rho, \kappa}
+      \explVal{\matchSum{\sigma}{\xi}}{\exInr{v}, \elimSum{\sigma}{\tau} \lookupR \rho, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+   }
+   {
+      \explVal{\matchSumRR{\xi}}{\exInr{v}, \elimSumR{\sigma} \lookupR \rho, \kappa}
    }
    %
    \and

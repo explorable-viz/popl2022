@@ -102,8 +102,9 @@
 % Matches.
 %\newcommand*{\matchedConstr}[1]{\elimConstr{#1}}
 \newcommand*{\matchHole}[1]{[#1]}
-\newcommand*{\matchSumR}[2]{[#1,#2]}
-\newcommand*{\matchSumL}[2]{[#1,#2]}
+\newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
+\newcommand*{\matchSumLL}[1]{[\exInl{#1}]}
+\newcommand*{\matchSumRR}[1]{[\exInr{#1}]}
 \newcommand*{\matchPlug}[2]{#1\matchHole{#2}}
 \newcommand*{\matchProd}[2]{\matchPlug{#1}{#2}}
 \newcommand*{\matchRoll}[1]{\elimRoll{#1}}
