@@ -132,15 +132,17 @@
 \newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
 \newcommand*{\tyVar}[1]{#1}
 
-\newcommand*{\del}[1]{\textcolor{red}{#1}}
+\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon}
+
+\newcommand*{\del}[1]{\grayuline{\textcolor{gray}{#1}}}
 \newcommand*{\delConcat}{\mathbin{\del{\concat}}}
 
-\newcommand*{\tySumProjR}[2]{{\del{#1}}\mathbin{\del{+}}{#2}}
-\newcommand*{\tySumProjL}[2]{{#1}\mathbin{\del{+}}{\del{#2}}}
-\newcommand*{\tyProdProjR}[2]{{\del{#1}}\mathbin{\del{\times}}{#2}}
-\newcommand*{\tyProdProjL}[2]{{#1}\mathbin{\del{\times}}{\del{#2}}}
-\newcommand*{\tyFunProjR}[2]{{\del{#1}}\mathbin{\del{\rightarrow}}{#2}}
-\newcommand*{\tyFunProjL}[2]{{#1}\mathbin{\del{\rightarrow}}{\del{#2}}}
+\newcommand*{\tySumProjR}[2]{\del{{#1}\:+}\:{#2}}
+\newcommand*{\tySumProjL}[2]{{#1}\:\del{+\:{#2}}}
+\newcommand*{\tyProdProjR}[2]{\del{{#1}\:\times}\:{#2}}
+\newcommand*{\tyProdProjL}[2]{{#1}\:\del{\times\:{#2}}}
+\newcommand*{\tyFunProjR}[2]{\del{{#1}\rightarrow}\:{#2}}
+\newcommand*{\tyFunProjL}[2]{{#1}\;\del{\rightarrow{#2}}}
 \newcommand*{\tyRecProj}[2]{\del{\mu{#1}.}{#2}}
 
 \newcommand*{\cxtExtendProj}[3]{{#1}\del{,{#2}: {#3}}}
@@ -155,13 +157,13 @@
 \newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
 \newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
-\newcommand*{\trieVarProj}[2]{\del{\trieVarNoRHS{#1}} \mathrel{\del{\mapsto}} {#2}}
+\newcommand*{\trieVarProj}[2]{\del{\trieVarNoRHS{#1}\mapsto}\;{#2}}
 \newcommand*{\trieProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
 \newcommand*{\trieRollProj}[1]{\del{\kw{roll}}\;{#1}}
 \newcommand*{\trieSingletonProj}[2]{\del{#1[}#2\del{]}}
 \newcommand*{\trieSumProjL}[2]{\del{[}#1\del{,#2]}}
 \newcommand*{\trieSumProjR}[2]{\del{[#1,}\,#2\del{]}}
-\newcommand*{\trieUnitProj}[1]{\del{\exUnit} \mathrel{\del{\mapsto}} {#1}}
+\newcommand*{\trieUnitProj}[1]{\del{\exUnit\mapsto}\;{#1}}
 
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}
