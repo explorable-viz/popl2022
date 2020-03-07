@@ -81,12 +81,9 @@ u, v
    \envUpdate{\envEmpty}{x}{v} &= \envEmpty
    \\
    \envUpdate{(\envExtend{\rho}{x}{u})}{x}{v} &= \envExtend{\rho}{x}{v}
-\end{salign}
-\flushleft \shadebox{$\envErase{\rho}$}
-\begin{salign}
-   \envErase{\envEmpty} &= \envEmpty
    \\
-   \envErase{(\envExtend{\rho}{x}{u})} &= \envExtendProj{(\envErase{\rho})}{x}{v}
+   \envUpdate{(\envExtend{\rho}{y}{u})}{x}{v} &= \envExtend{(\envUpdate{\rho}{x}{v})}{y}{u}
+   \quad (x \neq y)
 \end{salign}
 \caption{Values and environments}
 \end{figure}

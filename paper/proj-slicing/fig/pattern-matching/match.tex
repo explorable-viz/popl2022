@@ -8,7 +8,7 @@
    {
       \explVal
          {\matchVar{x}{\matchHole{}}}
-         {v, \trieVar{x}{\kappa} \lookupR \envExtend{\envEmpty}{x}{v}, \kappa}
+         {v, \elimVar{x}{\kappa} \lookupR \envExtend{\envEmpty}{x}{v}, \kappa}
    }
    %
    \and
@@ -20,7 +20,7 @@
    {
       \explVal
          {\matchUnit{\matchHole{}}}
-         {\exUnit, \trieUnit{\kappa} \lookupR \envEmpty, \kappa}
+         {\exUnit, \elimUnit{\kappa} \lookupR \envEmpty, \kappa}
    }
    %
    \and
@@ -31,8 +31,20 @@
    }
    {
       \explVal
-         {\matchSumL{\xi}{\tau}}
-         {\exInl{v}, \trieSum{\sigma}{\tau} \lookupR \rho, \kappa}
+         {\matchSumL{\xi}}
+         {\exInl{v}, \elimSum{\sigma}{\tau} \lookupR \rho, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+   }
+   {
+      \explVal
+         {\matchSumL{\xi}}
+         {\exInl{v}, \elimSumL{\sigma} \lookupR \rho, \kappa}
    }
    %
    \and
@@ -42,7 +54,17 @@
       \explVal{\xi}{v, \tau \lookupR \rho, \kappa}
    }
    {
-      \explVal{\matchSumR{\sigma}{\xi}}{\exInr{v}, \trieSum{\sigma}{\tau} \lookupR \rho, \kappa}
+      \explVal{\matchSumR{\xi}}{\exInr{v}, \elimSum{\sigma}{\tau} \lookupR \rho, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+   }
+   {
+      \explVal{\matchSumR{\xi}}{\exInr{v}, \elimSumR{\sigma} \lookupR \rho, \kappa}
    }
    %
    \and
@@ -54,7 +76,7 @@
       \explVal{\xi'}{v, \tau \lookupR \rho_2, \kappa}
    }
    {
-      \explVal{\matchProd{\xi}{\xi'}}{\exPair{u}{v}, \trieProd{\sigma} \lookupR \rho_1 \concat \rho_2, \kappa}
+      \explVal{\matchProd{\xi}{\xi'}}{\exPair{u}{v}, \elimProd{\sigma} \lookupR \rho_1 \concat \rho_2, \kappa}
    }
    %
    \and
@@ -64,7 +86,7 @@
       \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
    }
    {
-      \explVal{\matchRoll{\xi}}{\exRoll{v}, \trieRoll{\sigma} \lookupR \rho, \kappa}
+      \explVal{\matchRoll{\xi}}{\exRoll{v}, \elimRoll{\sigma} \lookupR \rho, \kappa}
    }
 \end{smathpar}
 \caption{Pattern-matching}

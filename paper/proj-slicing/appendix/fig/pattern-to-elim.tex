@@ -4,27 +4,27 @@
 \begin{align*}
 \pattToTrie{\exUnit}{a}
 &=
-\trieUnit{a}
+\elimUnit{a}
 \\
 \pattToTrie{\exVar{x}}{a}
 &=
-\trieVar{x}{a}
+\elimVar{x}{a}
 \\
 \pattToTrie{\exInl{p}}{a}
 &=
-\trieSum{\pattToTrie{p}{a}}{\trieEmpty}
+\elimSum{\pattToTrie{p}{a}}{\elimEmpty}
 \\
 \pattToTrie{\exInr{p}}{a}
 &=
-\trieSum{\trieEmpty}{\pattToTrie{p}{a}}
+\elimSum{\elimEmpty}{\pattToTrie{p}{a}}
 \\
 \pattToTrie{\exPair{p_1}{p_2}}{a}
 &=
-\trieProd{\pattToTrie{p_1}{\pattToTrie{p_2}{a}}}
+\elimProd{\pattToTrie{p_1}{\pattToTrie{p_2}{a}}}
 \\
 \pattToTrie{\exRoll{p}}{a}
 &=
-\trieRoll{\pattToTrie{p}{a}}
+\elimRoll{\pattToTrie{p}{a}}
 \end{align*}}
 
 \flushleft \shadebox{$\branchesToTrie{\exBranch{p_1}{e_1},\ldots,\exBranch{p_1}{e_1}}$}
@@ -54,5 +54,5 @@ z \eqJoin \optNone
 \optNone & \text{otherwise}
 \end{cases}
 \end{align*}}
-\caption{ML-style \kw{case} branches as tries over (optional) terms}
+\caption{ML-style \kw{case} branches as eliminators to (optional) terms}
 \end{figure}

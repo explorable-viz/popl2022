@@ -14,7 +14,7 @@ sums-of-products; primitive operations
 \figref{impl-language:syntax} includes all the syntax associated with data
 types, including data type names $D$, constructors $c$, constructor expressions
 $\exConstr{c}{\vec{e}}$ where $\vec{e}$ is a vector of arguments, constructor
-(or \emph{sum}) tries $\Sigma$ of the form $\family{\kappa_c}{c}{\tilde{c}}$
+(or \emph{sum}) eliminators $\Sigma$ of the form $\family{\kappa_c}{c}{\tilde{c}}$
 where $\tilde{c}$ is a set of constructors. Every data type name $D$ has an
 interpretation $\interpret{D}$ as a family of vectors of types
 $\family{\vec{A}_c}{c}{\tilde{c}}$.
@@ -44,7 +44,7 @@ binary operator $\primOp$ has a unique type $\typeof{\primOp}$ and
 interpretation $\interpret{\primOp} \in \Val{C_1} \times \Val{C_2} \to \Val{A}$.
 
 \input{appendix/fig/impl-language/typing-term}
-\input{appendix/fig/impl-language/typing-trie}
+\input{appendix/fig/impl-language/typing-elim}
 \input{appendix/fig/impl-language/typing-value}
 % \input{appendix/fig/impl-language/typing-trace}
 
@@ -55,7 +55,6 @@ interpretation $\interpret{\primOp} \in \Val{C_1} \times \Val{C_2} \to \Val{A}$.
 
 % \input{appendix/fig/impl-language/syntax-match}
 % \input{appendix/fig/impl-language/typing-match}
-% \input{appendix/fig/impl-language/trie-match}
 % \input{appendix/fig/impl-language/match-map}
 % \input{appendix/fig/impl-language/trace-for-expr}
 
@@ -70,7 +69,7 @@ $\exMatch{e}{\sigma}$ desugars to $\exApp{\exFun{\sigma'}}{e'}$ where $\sigma'$
 and $e'$ are the desugaring of $\sigma$ and $e$. Alternatively, the rules shown
 are derivable and give the same static and dynamic semantics as the desugaring.
 Similarly, $\exLet{x}{e}{e'}$ can also be expressed as a desugaring to
-$\exMatch{e}{\trieVar{x}{e^\twoPrime}}$ where $e^\twoPrime$ is the desugaring of
+$\exMatch{e}{\elimVar{x}{e^\twoPrime}}$ where $e^\twoPrime$ is the desugaring of
 $e'$.
 
 \subsection{Mutual recursion}

@@ -81,30 +81,33 @@
 \newcommand*{\exTop}{\top}
 
 % Tries.
-\newcommand*{\trieConstr}[1]{#1}
-\newcommand*{\trieEmpty}{\bot}
-\newcommand*{\trieFun}[1]{\trieFunNoRHS \mapsto {#1}}
-\newcommand*{\trieFunNoRHS}{\uplambda}
-\newcommand*{\trieGround}[2]{\trieGroundNoRHS{#1} \mapsto {#2}}
-\newcommand*{\trieGroundNoRHS}[1]{\tyGround{#1}}
-\newcommand*{\trieNarySum}[1]{\{#1\}}
-\newcommand*{\trieSingleton}[2]{#1[#2]}
-\newcommand*{\trieSum}[2]{[#1,#2]}
-\newcommand*{\trieProd}[1]{{\langle#1\rangle}}
-\newcommand*{\trieRoll}[1]{\kw{roll}\;{#1}}
-\newcommand*{\trieUnit}[1]{\exUnit \mapsto {#1}}
-\newcommand*{\trieUnitNoRHS}{\exUnit}
-\newcommand*{\trieVar}[2]{\trieVarNoRHS{#1} \mapsto {#2}}
-\newcommand*{\trieVarNoRHS}[1]{#1}
+\newcommand*{\elimConstr}[1]{#1}
+\newcommand*{\elimEmpty}{\bot}
+\newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
+\newcommand*{\elimFunNoRHS}{\uplambda}
+\newcommand*{\elimGround}[2]{\elimGroundNoRHS{#1} \mapsto {#2}}
+\newcommand*{\elimGroundNoRHS}[1]{\tyGround{#1}}
+\newcommand*{\elimNarySum}[1]{\{#1\}}
+\newcommand*{\elimSingleton}[2]{#1[#2]}
+\newcommand*{\elimSum}[2]{[\exInl{#1},\exInr{#2}]}
+\newcommand*{\elimSumL}[1]{[\exInl{#1}]}
+\newcommand*{\elimSumR}[1]{[\exInr{#1}]}
+\newcommand*{\elimProd}[1]{{\langle#1\rangle}}
+\newcommand*{\elimRoll}[1]{\kw{roll}\;{#1}}
+\newcommand*{\elimUnit}[1]{\exUnit \mapsto {#1}}
+\newcommand*{\elimUnitNoRHS}{\exUnit}
+\newcommand*{\elimVar}[2]{\elimVarNoRHS{#1} \mapsto {#2}}
+\newcommand*{\elimVarNoRHS}[1]{#1}
 
-% Matched tries.
-%\newcommand*{\matchedConstr}[1]{\trieConstr{#1}}
+% Matches.
+%\newcommand*{\matchedConstr}[1]{\elimConstr{#1}}
 \newcommand*{\matchHole}[1]{[#1]}
-\newcommand*{\matchSumR}[2]{[#1,#2]}
-\newcommand*{\matchSumL}[2]{[#1,#2]}
+\newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
+\newcommand*{\matchSumL}[1]{[\exInl{#1}]}
+\newcommand*{\matchSumR}[1]{[\exInr{#1}]}
 \newcommand*{\matchPlug}[2]{#1\matchHole{#2}}
 \newcommand*{\matchProd}[2]{\matchPlug{#1}{#2}}
-\newcommand*{\matchRoll}[1]{\trieRoll{#1}}
+\newcommand*{\matchRoll}[1]{\elimRoll{#1}}
 \newcommand*{\matchInj}[1]{#1}
 \newcommand*{\matchUnit}[1]{\exUnit \mapsto {#1}}
 \newcommand*{\matchVar}[2]{{#1} \mapsto {#2}}
@@ -119,7 +122,7 @@
 \newcommand*{\nonEmpty}[1]{\smash{{#1}^{+}}}
 \newcommand*{\typeof}[1]{\operatorname{\mathit{type}}(#1)}
 \newcommand*{\interpret}[1]{\hat{#1}}
-\newcommand*{\trieNarySumUpdate}[3]{#1[#2 \mapsto {#3}]}
+\newcommand*{\elimNarySumUpdate}[3]{#1[#2 \mapsto {#3}]}
 
 % Types.
 \newcommand*{\tyData}[1]{#1}
@@ -132,20 +135,23 @@
 \newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
 \newcommand*{\tyVar}[1]{#1}
 
-\newcommand*{\del}[1]{\textcolor{red}{#1}}
-\newcommand*{\delConcat}{\mathbin{\del{\concat}}}
+\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 
-\newcommand*{\tySumProjR}[2]{{\del{#1}}\mathbin{\del{+}}{#2}}
-\newcommand*{\tySumProjL}[2]{{#1}\mathbin{\del{+}}{\del{#2}}}
-\newcommand*{\tyProdProjR}[2]{{\del{#1}}\mathbin{\del{\times}}{#2}}
-\newcommand*{\tyProdProjL}[2]{{#1}\mathbin{\del{\times}}{\del{#2}}}
-\newcommand*{\tyFunProjR}[2]{{\del{#1}}\mathbin{\del{\rightarrow}}{#2}}
-\newcommand*{\tyFunProjL}[2]{{#1}\mathbin{\del{\rightarrow}}{\del{#2}}}
+\newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
+
+\newcommand*{\tySumProjR}[2]{\del{{#1}\:+}\:{#2}}
+\newcommand*{\tySumProjL}[2]{{#1}\:\del{+\:{#2}}}
+\newcommand*{\tyProdProjR}[2]{\del{{#1}\:\times}\:{#2}}
+\newcommand*{\tyProdProjL}[2]{{#1}\:\del{\times\:{#2}}}
+\newcommand*{\tyFunProjR}[2]{\del{{#1}\rightarrow}\:{#2}}
+\newcommand*{\tyFunProjL}[2]{{#1}\;\del{\rightarrow{#2}}}
 \newcommand*{\tyRecProj}[2]{\del{\mu{#1}.}{#2}}
 
 \newcommand*{\cxtExtendProj}[3]{{#1}\del{,{#2}: {#3}}}
 \newcommand*{\envExtendProj}[3]{{#1}\del{[{#2} \mapsto {#3}]}}
-\newcommand*{\envErase}[1]{\rotatebox[origin=c]{90}{$\rightsquigarrow$}{#1}}
+\newcommand*{\envErase}[1]{\sub{\bot}{#1}}
+\newcommand*{\concatProjL}[2]{{#1}\,\del{\concat\,{#2}}}
+\newcommand*{\concatProjR}[2]{\del{{#1}\,\concat}\,{#2}}
 
 \newcommand*{\exAppProjFun}[2]{{#1}\,{\del{#2}}}
 \newcommand*{\exFunProj}[1]{\del{\uplambda}{#1}}
@@ -155,13 +161,17 @@
 \newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
 \newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
-\newcommand*{\trieVarProj}[2]{\del{\trieVarNoRHS{#1}} \mathrel{\del{\mapsto}} {#2}}
-\newcommand*{\trieProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
-\newcommand*{\trieRollProj}[1]{\del{\kw{roll}}\;{#1}}
-\newcommand*{\trieSingletonProj}[2]{\del{#1[}#2\del{]}}
-\newcommand*{\trieSumProjL}[2]{\del{[}#1\del{,#2]}}
-\newcommand*{\trieSumProjR}[2]{\del{[#1,}\,#2\del{]}}
-\newcommand*{\trieUnitProj}[1]{\del{\exUnit} \mathrel{\del{\mapsto}} {#1}}
+\newcommand*{\elimVarProj}[2]{\del{\elimVarNoRHS{#1}\mapsto}\;{#2}}
+\newcommand*{\elimProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
+\newcommand*{\elimRollProj}[1]{\del{\kw{roll}}\;{#1}}
+\newcommand*{\elimSingletonProj}[2]{\del{#1[}#2\del{]}}
+\newcommand*{\elimSumOnlyL}[2]{[\exInl{#1}\del{,\exInr{#2}}]}
+\newcommand*{\elimSumOnlyR}[2]{[\del{\exInl{#1},}\,\exInr{#2}]}
+\newcommand*{\elimSumProjL}[2]{\del{[\kw{inl}}\;{#1}\del{,\exInr{#2}]}}
+\newcommand*{\elimSumProjR}[2]{\del{[\exInl{#1},\kw{inr}}\;{#2}\del{]}}
+\newcommand*{\elimSumLProj}[1]{\del{[\kw{inl}}\;{#1}\del{]}}
+\newcommand*{\elimSumRProj}[1]{\del{[\kw{inr}}\;{#1}\del{]}}
+\newcommand*{\elimUnitProj}[1]{\del{\exUnit\mapsto}\;{#1}}
 
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}
@@ -207,10 +217,10 @@
 
 % Typing judgements.
 \newcommand*{\contType}[3]{{#3} \vdash {#1} : {#2}}
-\newcommand*{\trieArrow}{\to}
-\newcommand*{\trieTypePartial}[2]{{{#2}\trieArrow{#1}}}
-\newcommand*{\trieType}[4]{{#4} \vdash {#1} : \trieTypePartial{#2}{#3}}
-\newcommand*{\trieTypeJudge}[3]{{#3} \vdash \trieTypePartial{#1}{#2}}
+\newcommand*{\elimArrow}{\to}
+\newcommand*{\elimTypePartial}[2]{{{#2}\elimArrow{#1}}}
+\newcommand*{\elimType}[4]{{#4} \vdash {#1} : \elimTypePartial{#2}{#3}}
+\newcommand*{\elimTypeJudge}[3]{{#3} \vdash \elimTypePartial{#1}{#2}}
 \newcommand*{\matchArrow}{\rightbarharpoon}
 \newcommand*{\matchTypePartial}[2]{{{#2}\matchArrow{#1}}}
 \newcommand*{\matchType}[5]{{#1} \vdash {#2} : \matchTypePartial{#3}{#4} \dashv {#5}}
@@ -227,12 +237,12 @@
 
 % Evaluation.
 \newcommand*{\eval}[1]{\mathrel{\Rightarrow_{#1}}}
-\newcommand*{\bwdSlice}{\nearrow}
-\newcommand*{\fwdSlice}{\searrow}
+\newcommand*{\fwdSlice}{\nearrow}
+\newcommand*{\bwdSlice}{\searrow}
 \newcommand*{\uneval}{\Leftarrow}
 \newcommand*{\match}{\rightsquigarrow}
-\newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
-\newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
+\newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
+\newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
 \newcommand*{\reduce}[1]{\xlongrightarrow{\textsf{\tiny name}}_{\smash{#1}}}
 \newcommand*{\reduceNeed}[1]{\xlongrightarrow{\textsf{\tiny need}}_{\smash{#1}}}
 \newcommand*{\close}[2]{\operatorname{\mathsf{close}}(#1,#2)}
