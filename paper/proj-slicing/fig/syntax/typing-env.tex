@@ -29,6 +29,7 @@
       (\cxtExtendProj{\Gamma}{x}{A}) : \Cxt
    }
 \end{smathpar}
+\\[2mm]
 \flushleft \shadebox{$x : A \in \Gamma$}
 \begin{smathpar}
    \inferrule*
@@ -60,36 +61,6 @@
    }
 \end{smathpar}
 \\[2mm]
-\flushleft \shadebox{$\envLookup{\rho}{x}{v}$}
-\begin{smathpar}
-   \inferrule*
-   {
-      \strut
-   }
-   {
-      \envLookup{\envExtend{\rho}{x}{v}}{x}{v}
-   }
-   %
-   \and
-   %
-   \inferrule*[right={$x \neq y$}]
-   {
-      \envLookup{\rho}{x}{v}
-   }
-   {
-      \envLookup{\envExtend{\rho}{y}{u}}{x}{v}
-   }
-   %
-   \and
-   %
-   \inferrule*
-   {
-      \envLookup{\rho}{x}{v}
-   }
-   {
-      \envLookup{\envExtendProj{\rho}{y}{u}}{x}{v}
-   }
-\end{smathpar}
 \noindent \shadebox{$\envType{\Gamma}{\rho}$}
 \begin{smathpar}
 \inferrule*
@@ -123,6 +94,37 @@
 {
    \envType{\cxtExtendProj{\Gamma}{x}{A}}{\envExtendProj{\rho}{x}{v}}
 }
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$\envLookup{\rho}{x}{v}$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \envLookup{\envExtend{\rho}{x}{v}}{x}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[right={$x \neq y$}]
+   {
+      \envLookup{\rho}{x}{v}
+   }
+   {
+      \envLookup{\envExtend{\rho}{y}{u}}{x}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \envLookup{\rho}{x}{v}
+   }
+   {
+      \envLookup{\envExtendProj{\rho}{y}{u}}{x}{v}
+   }
 \end{smathpar}
 \caption{Well-formed contexts and environments; context and environment lookup}
 \end{figure}
