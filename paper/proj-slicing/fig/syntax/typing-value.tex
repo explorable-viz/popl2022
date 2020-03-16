@@ -117,42 +117,5 @@
    \valType{\exRollProj{v}}{\tyRecProj{\tyVar{X}}{A}}
 }
 \end{smathpar}
-\vspace{5pt}
-
-\noindent \shadebox{$\envType{\Gamma}{\rho}$}
-\begin{smathpar}
-\inferrule*
-{
-   \strut
-}
-{
-   \envType{\cxtEmpty}{\envEmpty}
-}
-%
-\and
-%
-\inferrule*
-{
-   \envType{\Gamma}{\rho}
-   \\
-   \valType{v}{A}
-}
-{
-   \envType{\cxtExtend{\Gamma}{x}{A}}{\envExtend{\rho}{x}{v}}
-}
-%
-\and
-%
-\inferrule*[right={$\not\exists u.\envLookup{\rho}{x}{u}$}]
-{
-   \envType{\Gamma}{\rho}
-   \\
-   \valType{v}{A}
-}
-{
-   \envType{\cxtExtendProj{\Gamma}{x}{A}}{\envExtendProj{\rho}{x}{v}}
-}
-\end{smathpar}
-\caption{Typing rules for values and environments}
-\label{fig:demand-indexed:typing-value}
+\caption{Typing rules for values}
 \end{figure}
