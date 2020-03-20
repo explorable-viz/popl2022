@@ -1,3 +1,6 @@
+\newcommand*{\true}{\mathSf{tt}}
+\newcommand*{\false}{\mathSf{ff}}
+
 \renewcommand*{\ldots}{...} % \ldots sucks with acmart
 \renewcommand*{\ruleName}[1]{\textcolor{gray}{\textnormal{\textsf{#1}}}}
 
@@ -126,6 +129,8 @@
 % Types.
 \newcommand*{\tyData}[1]{#1}
 \newcommand*{\tyGround}[1]{#1}
+\newcommand*{\tyList}[0]{\mathSf{List}}
+\newcommand*{\tyInt}[0]{\mathSf{Int}}
 \newcommand*{\tyZero}{\kw{0}}
 \newcommand*{\tyUnit}{\kw{1}}
 \newcommand*{\tySum}[2]{{#1}+{#2}}

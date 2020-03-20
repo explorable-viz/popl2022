@@ -1,105 +1,16 @@
 \section{Implementation language}
 
-We now describe a more realistic implementation language with \emph{data types}
-(\secref{impl-language:data-types}), which replace recursive types, binary
-sums and binary products by a single construct for named recursive
-sums-of-products; primitive operations
-(\secref{impl-language:primitives}), \ttt{match}...\ttt{as}
-(\secref{impl-language:match-as}), and mutually recursive functions
-(\secref{impl-language:recursion}).
-
-\subsection{Data types}
-\label{sec:impl-language:data-types}
-
-\figref{impl-language:syntax} includes all the syntax associated with data
-types, including data type names $D$, constructors $c$, constructor expressions
-$\exConstr{c}{\vec{e}}$ where $\vec{e}$ is a vector of arguments, constructor
-(or \emph{sum}) eliminators $\Sigma$ of the form $\family{\kappa_c}{c}{\tilde{c}}$
-where $\tilde{c}$ is a set of constructors. Every data type name $D$ has an
-interpretation $\interpret{D}$ as a family of vectors of types
-$\family{\vec{A}_c}{c}{\tilde{c}}$.
-
-\subsection{Primitives}
-\label{sec:impl-language:primitives}
-
 \input{appendix/fig/impl-language/syntax}
-\input{appendix/fig/impl-language/syntax-value}
-
-\figref{impl-language:syntax} includes all the syntax associated with primitive
-operations, including pairwise-disjoint ground types $\tyGround{C}$, constants
-$\exConst{k}$ of ground type, unary primitives $\phi$ which are first-class
-functions, and binary primitives $\primOp$ which are infix and not first-class.
-It is straightforward to add Haskell-style sections which convert binary
-operators $\primOp$ into first-class values.
-
-Each constant $\exConst{k}$ has a unique ground type $\typeof{\exConst{k}}$.
-Each unary primitive $\phi$ has a unique type $\typeof{\phi}$ of the form $C \to
-A$ and interpretation $\interpret{\phi} \in \Val{C} \to \Val{A}$. Unary
-primitives have no expression form; they are introduced by
-$\exPrimDef{\exVar{x}}$ definitions, which bind $\exVar{x}$ to its
-interpretation $\interpret{\exVar{x}}$ as a unary primitive, if it has one.
-(This rather complex setup is to allow each first-class primitive to be
-associated with a specific bit of \emph{syntax} for slicing purposes.) Each
-binary operator $\primOp$ has a unique type $\typeof{\primOp}$ and
-interpretation $\interpret{\primOp} \in \Val{C_1} \times \Val{C_2} \to \Val{A}$.
-
-\input{appendix/fig/impl-language/typing-term}
-\input{appendix/fig/impl-language/typing-elim}
-\input{appendix/fig/impl-language/typing-value}
+% \input{appendix/fig/impl-language/syntax-value}
+% \input{appendix/fig/impl-language/typing-term}
+% \input{appendix/fig/impl-language/typing-elim}
+% \input{appendix/fig/impl-language/typing-value}
 % \input{appendix/fig/impl-language/typing-trace}
-
-\input{appendix/fig/impl-language/match}
-\input{appendix/fig/impl-language/unmatch}
-\input{appendix/fig/impl-language/eval-traced}
-\input{appendix/fig/impl-language/uneval}
-
+% \input{appendix/fig/impl-language/match}
+% \input{appendix/fig/impl-language/unmatch}
+% \input{appendix/fig/impl-language/eval-traced}
+% \input{appendix/fig/impl-language/uneval}
 % \input{appendix/fig/impl-language/syntax-match}
 % \input{appendix/fig/impl-language/typing-match}
 % \input{appendix/fig/impl-language/match-map}
 % \input{appendix/fig/impl-language/trace-for-expr}
-
-% \input{appendix/fig/impl-language/eval-incremental}
-
-\subsection{\ttt{match}...\ttt{as}}
-\label{sec:impl-language:match-as}
-
-Pattern-matching expressions, which are essentially generalised $\kw{let}$
-forms, are easily added as syntactic sugar for a beta-redex. Specifically,
-$\exMatch{e}{\sigma}$ desugars to $\exApp{\exFun{\sigma'}}{e'}$ where $\sigma'$
-and $e'$ are the desugaring of $\sigma$ and $e$. Alternatively, the rules shown
-are derivable and give the same static and dynamic semantics as the desugaring.
-Similarly, $\exLet{x}{e}{e'}$ can also be expressed as a desugaring to
-$\exMatch{e}{\elimVar{x}{e^\twoPrime}}$ where $e^\twoPrime$ is the desugaring of
-$e'$.
-
-\subsection{Mutual recursion}
-\label{sec:impl-language:recursion}
-
-\input{appendix/fig/impl-language/closedefs}
-
-\begin{definition}
-\label{def:closedefs}
-   \figref{impl-language:closedefs} defines the deterministic relation $\closeDefs$.
-\end{definition}
-
-\begin{definition}
-\label{def:unclosedefs}
-   \figref{impl-language:closedefs} defines the deterministic relation $\uncloseDefs$.
-\end{definition}
-
-\begin{lemma}
-\label{lem:gc-closedefs}
-
-Suppose $\rho, \exLetrecDef{\delta} \closeDefs \rho', \exLetrecDef{\delta}$
-where $\rho$, $\delta$ and $\rho'$ are unannotated, and write $\closeDefs_{\rho,
-\delta}$ for $\closeDefs$ domain-restricted to $\Ann{\rho,
-\exLetrecDef{\delta}}$ and $\uncloseDefs_{\rho, \delta}$ for $\uncloseDefs$
-domain-restricted to $\Ann{\rho',\exLetrecDef{\delta}}$. Then $\closeDefs_{\rho,
-\delta}$ and $\uncloseDefs_{\rho, \delta}$ form a Galois injection:
-
-\[
-   {\closeDefs_{\rho, \delta}} \adjoint {\uncloseDefs_{\rho, \delta}}:
-   \Ann{\rho, \exLetrecDef{\delta}} \inj \Ann{\rho',\exLetrecDef{\delta}}
-\]
-
-\end{lemma}

@@ -1,64 +1,29 @@
 \begin{figure}
 \begin{syntaxfig}
-\mbox{Ground type}
-&
-C
-\\[2mm]
-\mbox{Data type}
-&
-D
-&
-\\[2mm]
 \mbox{Type}
 &
 A, B
 &
 ::=
 &
-\tyGround{C}
+\tyInt
 &
-\text{ground type}
+\text{integers}
 \\
 &&&
-\tyData{D}
+\tyList
 &
-\text{data type}
+\text{list of integers}
+\\
+&&&
+\tyProd{A}{B}
+&
+\text{pairs}
 \\
 &&&
 \tyFun{A}{B}
 &
 \text{function}
-\\[2mm]
-\mbox{Constant of ground type}
-&
-k
-\\
-\mbox{Constructor of data type}
-&
-c
-\\
-\mbox{First-class (unary) primitive}
-&
-\phi
-\\
-\mbox{Binary operator}
-&
-\primOp
-\\[2mm]
-\mbox{Continuation}
-&
-\kappa
-&
-::=
-&
-e
-&
-\text{term}
-\\
-&&&
-\sigma
-&
-\text{eliminator}
 \\[2mm]
 \mbox{Eliminator}
 &
@@ -66,7 +31,7 @@ e
 &
 ::=
 &
-\elimVar{x}{\kappa}
+\elimVar{x}{e}
 &
 \text{variable}
 \\
