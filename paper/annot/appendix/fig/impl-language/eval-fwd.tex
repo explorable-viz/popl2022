@@ -1,29 +1,30 @@
 \begin{figure}[p]
-\flushleft \shadebox{$\alpha, \rho, e \fwdSlice u$}
+\flushleft \shadebox{$\rho, e, \alpha \fwdSlice u$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\eval{}$-annot}}]
    {
-      \alpha \wedge \alpha', \rho, r
+      \rho, r, \alpha \wedge \alpha'
       \fwdSlice
       v
    }
    {
-      \alpha, \rho, \annot{r}{\alpha'}
+      \rho, \annot{r}{\alpha'}, \alpha
       \fwdSlice
       v
    }
 \end{smathpar}
 \\
-\flushleft \shadebox{$\alpha, \rho, r \fwdSlice u$}
+\flushleft \shadebox{$\rho, r, \alpha \fwdSlice u$}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-var}},
       right={\textnormal{$x: v \in \rho$}}
    ]
    {
+      \strut
    }
    {
-      \alpha, \rho, \exVar{x} \fwdSlice v
+      \rho, \exVar{x}, \alpha \fwdSlice v
    }
    %
    \and
@@ -32,7 +33,7 @@
    {
    }
    {
-      \alpha, \rho, \exInt{n}
+      \rho, \exInt{n}, \alpha
       \fwdSlice
       \annot{\exInt{n}}{\alpha}
    }
@@ -41,12 +42,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
    {
-      \alpha, \rho, e \fwdSlice v
+      \rho, e, \alpha \fwdSlice v
       \\
-      \alpha, \rho, e' \fwdSlice v'
+      \rho, e', \alpha \fwdSlice v'
    }
    {
-      \alpha, \rho, \exPair{e}{e'}
+      \rho, \exPair{e}{e'}, \alpha
       \fwdSlice
       \annot{\exPair{v}{v'}}{\alpha}
    }
@@ -55,9 +56,10 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
    {
+      \strut
    }
    {
-      \alpha, \rho, \exRec{f}{\sigma}
+      \rho, \exRec{f}{\sigma}, \alpha
       \fwdSlice
       \annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha}
    }
@@ -66,19 +68,19 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-app}}]
    {
-      \alpha, \rho, e \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}
+      \rho, e, \alpha \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}
       \\
-      \alpha, \rho, e' \fwdSlice v
+      \rho, e', \alpha \fwdSlice v
       \\\\
       v, \sigma \match \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
       \\
-      \alpha^\twoPrime,
-      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}, e^\twoPrime
+      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}, e^\twoPrime,
+      \alpha^\twoPrime
       \fwdSlice
       v'
    }
    {
-      \alpha, \rho, \exApp{e}{e'} \fwdSlice v'
+      \rho, \exApp{e}{e'}, \alpha \fwdSlice v'
    }
    %
    \and
@@ -87,14 +89,14 @@
       lab={\ruleName{$\fwdSlice$-addition}}
    ]
    {
-      \alpha, \rho, e \fwdSlice \annot{m}{\alpha'}
+      \rho, e, \alpha \fwdSlice \annot{m}{\alpha'}
       \\
-      \alpha, \rho, e' \fwdSlice \annot{n}{\smash{\alpha^\twoPrime}}
+      \rho, e', \alpha \fwdSlice \annot{n}{\smash{\alpha^\twoPrime}}
    }
    {
-      \alpha,
       \rho,
-      \exAdd{e}{e'}
+      \exAdd{e}{e'},
+      \alpha,
       \fwdSlice
       \annot{(m \mathbin{\hat{+}} n)}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}}
    }
@@ -106,7 +108,7 @@
       \strut
    }
    {
-      \alpha, \rho, \exNil
+      \rho, \exNil, \alpha
       \fwdSlice
       \annot{\exNil}{\alpha}
    }
@@ -115,12 +117,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-cons}}]
    {
-      \alpha, \rho, e \fwdSlice v
+      \rho, e, \alpha \fwdSlice v
       \\
-      \alpha, \rho, e' \fwdSlice v'
+      \rho, e', \alpha \fwdSlice v'
    }
    {
-      \alpha, \rho, \exCons{e}{e'}
+      \rho, \exCons{e}{e'}, \alpha
       \fwdSlice
       \annot{\exCons{v}{v'}}{\alpha}
    }
@@ -129,12 +131,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
    {
-      \rho, e \fwdSlice v
+      \rho, e, \alpha \fwdSlice v
       \\
-      \envExtend{\rho}{x}{v}, e' \fwdSlice v'
+      \envExtend{\rho}{x}{v}, e', \alpha \fwdSlice v'
    }
    {
-      \rho, \exLet{x}{e}{e'}
+      \rho, \exLet{x}{e}{e'}, \alpha
       \fwdSlice
       v'
    }
