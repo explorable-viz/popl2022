@@ -65,6 +65,7 @@
 \newcommand*{\exFun}[1]{\uplambda{#1}}
 \newcommand*{\exInl}[1]{\kw{inl}\;{#1}}
 \newcommand*{\exInr}[1]{\kw{inr}\;{#1}}
+\newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetDef}[2]{\kw{let}\;{#1}={#2}}
 \newcommand*{\exLetrec}[2]{\kw{letrec}\;{#1}\;\kw{in}\;{#2}}
@@ -275,12 +276,12 @@
 \newcommand*{\trFun}[1]{\exFun{#1}}
 \newcommand*{\trInl}[1]{\exInl{#1}}
 \newcommand*{\trInr}[1]{\exInr{#1}}
+\newcommand*{\trInt}[1]{\exInt{#1}}
 \newcommand*{\trLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
 \newcommand*{\trLetDef}[2]{\kw{let}\;{#1}={#2}}
 \newcommand*{\trLetrec}[2]{{\kw{letrec}\;{#1}}\;\kw{in}\;{#2}}
 \newcommand*{\trLetrecDef}[1]{\exLetrecDef{#1}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}%\seq_{\lowlight{#3}}{#4}}
-\newcommand*{\trNat}[1]{\exNat{#1}}
 \newcommand*{\trNil}{\exNil}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\trPrimApp}[3]{{#1} #2 {#3}}
