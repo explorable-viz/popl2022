@@ -278,6 +278,7 @@
 \newcommand*{\trLetrec}[2]{{\kw{letrec}\;{#1}}\;\kw{in}\;{#2}}
 \newcommand*{\trLetrecDef}[1]{\exLetrecDef{#1}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}%\seq_{\lowlight{#3}}{#4}}
+\newcommand*{\trNat}[1]{\exNat{#1}}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\trPrimApp}[3]{{#1} #2 {#3}}
 \newcommand*{\trPrimDef}[1]{\exPrimDef{#1}}
@@ -285,6 +286,7 @@
 \newcommand*{\trUnaryApp}[2]{\exApp{#1}{#2}}
 \newcommand*{\trUnit}[1]{\sub{\exUnit}{#1}}
 \newcommand*{\trVar}[3]{{#1}\seq_{\lowlight{#2}}{#3}}
+\newcommand*{\trVarOne}[1]{\exVar{#1}}
 \newcommand*{\trVarTwo}[2]{{#1}_{\lowlight{#2}}}
 
 % Self-explaining computation
