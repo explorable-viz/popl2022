@@ -99,9 +99,14 @@ n
 \text{pair}
 \\
 &&&
-\trConstr{c}{\vec{T}}
+\trNil
 &
-\text{constructor}
+\text{nil}
+\\
+&&&
+\trCons{T}{T'}
+&
+\text{cons}
 \\
 &&&
 \trApp{T}{T'}{\matchPlug{\xi}{U}}
@@ -109,27 +114,14 @@ n
 \text{function application}
 \\
 &&&
-\trUnaryApp{(\explVal{T}{\phi})}{(\explVal{T'}{\exConst{k}})}
+\trAdd{T}{T'}
 &
-\text{unary application}
+\text{addition}
 \\
 &&&
-\trPrimApp
-   {(\explVal{T}{u})}
-   {\exPrimOp}
-   {(\explVal{T'}{u'})}
+\trLet{x}{T}{T'}
 &
-\text{binary infix application}
-\\
-&&&
-\trMatch{T}{\matchPlug{\xi}{T'}}
-&
-\text{pattern-match}
-\\
-&&&
-\trDefs{\vec{z}}{T}
-&
-\text{definitions}
+\text{let}
 \end{syntaxfig}
 \caption{Runtime syntax}
 \end{figure}

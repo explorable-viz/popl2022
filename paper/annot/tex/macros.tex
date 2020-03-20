@@ -265,8 +265,10 @@
 \newcommand*{\seq}{\mathrel{\smalltriangleright}}
 
 % Traces.
+\newcommand*{\trAdd}[2]{\exAdd{#1}{#2}}
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
 \newcommand*{\trBot}{\exBot}
+\newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trConstr}[2]{#1(#2)}
 \newcommand*{\trDefs}[2]{\exDefs{#1}{#2}}
 \newcommand*{\trEmpty}{\varepsilon}
@@ -279,6 +281,7 @@
 \newcommand*{\trLetrecDef}[1]{\exLetrecDef{#1}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}%\seq_{\lowlight{#3}}{#4}}
 \newcommand*{\trNat}[1]{\exNat{#1}}
+\newcommand*{\trNil}{\exNil}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\trPrimApp}[3]{{#1} #2 {#3}}
 \newcommand*{\trPrimDef}[1]{\exPrimDef{#1}}
