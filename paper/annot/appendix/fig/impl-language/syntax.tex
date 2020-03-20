@@ -1,5 +1,20 @@
 \begin{figure}
 \begin{syntaxfig}
+\mbox{Annotation}
+&
+\alpha
+&
+::=
+&
+\true
+&
+\text{true}
+\\
+&&&
+\false
+&
+\text{false}
+\\[2mm]
 \mbox{Type}
 &
 A, B
@@ -52,6 +67,14 @@ A, B
 \\[2mm]
 \mbox{Term}
 &
+e
+&
+::=
+&
+\annot{r}{\alpha}
+\\[2mm]
+\mbox{Raw term}
+&
 r
 &
 ::=
@@ -61,17 +84,17 @@ x
 \text{variable}
 \\
 &&&
-\exConst{k}
+n
 &
-\text{constant}
+\text{integer}
 \\
 &&&
-\phi
+\exPair{e}{e'}
 &
-\text{first-class primitive}
+\text{pair}
 \\
 &&&
-\exFun{\sigma}
+\exRec{f}{\sigma}
 &
 \text{function}
 \\
@@ -81,52 +104,24 @@ x
 \text{application}
 \\
 &&&
-\exPrimApp{e}{\exPrimOp}{e'}
+\exAdd{e}{e'}
 &
-\text{binary infix application}
+\text{addition}
 \\
 &&&
-\exConstr{c}{\vec{e}}
+\exNil
 &
-\text{constructor}
+\text{nil}
 \\
 &&&
-\exMatch{e}{\sigma}
+\exCons{e}{e'}
 &
-\text{pattern-match}
+\text{cons}
 \\
 &&&
-\exDefs{\vec{d}}{e}
-&
-\text{definitions}
-\\[2mm]
-\mbox{Definition}
-&
-d
-&
-::=
-&
-\exLetDef{x}{e}
+\exLet{x}{e}{e'}
 &
 \text{let}
-\\
-&&&
-\exLetrecDef{\delta}
-&
-\text{mutual recursion}
-\\
-&&&
-\exPrimDef{x}
-&
-\text{primitive}
-\\[2mm]
-\mbox{Recursive functions}
-&
-\delta
-&
-::=
-&
-\set{\annot{(\exFun{\sigma_f})}{\alpha_f}}_{f \in F}
 \end{syntaxfig}
 \caption{Syntax for the implementation language}
 \label{fig:impl-language:syntax}

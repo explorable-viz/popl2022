@@ -50,6 +50,7 @@
 \newcommand{\annot}[2]{#1_{#2}}
 
 % Expressions.
+\newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exBot}{\bot}
 \newcommand*{\exBranch}[2]{{#1}.{#2}}
@@ -76,6 +77,7 @@
 \newcommand*{\exPrimApp}[3]{{#1} #2 {#3}}
 \newcommand*{\exPrimDef}[1]{\kw{primitive}\;{#1}}
 \newcommand*{\exPrimOp}{\primOp}
+\newcommand*{\exRec}[2]{\kw{fun}\,{#1}\:{#2}}
 \newcommand*{\exRoll}[1]{\kw{roll}\;{#1}}
 \newcommand*{\exSnd}[1]{\kw{snd}\;#1}
 \newcommand*{\exUnit}{\langle\rangle}
@@ -85,6 +87,7 @@
 \newcommand*{\exTop}{\top}
 
 % Tries.
+\newcommand*{\elimCons}[3]{\exCons{#1}{#2}\mapsto{#3}}
 \newcommand*{\elimConstr}[1]{#1}
 \newcommand*{\elimEmpty}{\bot}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
@@ -92,6 +95,8 @@
 \newcommand*{\elimGround}[2]{\elimGroundNoRHS{#1} \mapsto {#2}}
 \newcommand*{\elimGroundNoRHS}[1]{\tyGround{#1}}
 \newcommand*{\elimNarySum}[1]{\{#1\}}
+\newcommand*{\elimNil}[1]{\kw{Nil}\mapsto{#1}}
+\newcommand*{\elimPair}[3]{\exPair{#1}{#2}\mapsto{#3}}
 \newcommand*{\elimSingleton}[2]{#1[#2]}
 \newcommand*{\elimSum}[2]{[\exInl{#1},\exInr{#2}]}
 \newcommand*{\elimSumL}[1]{[\exInl{#1}]}
@@ -167,9 +172,6 @@
 \newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
 \newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
-\newcommand*{\elimNil}[1]{\kw{Nil}\;\mapsto\;{#1}}
-\newcommand*{\elimCons}[3]{\exCons{#1}{#2}\;\mapsto\;{#3}}
-\newcommand*{\elimPair}[3]{\exPair{#1}{#2}\;\mapsto\;{#3}}
 \newcommand*{\elimVarProj}[2]{\del{\elimVarNoRHS{#1}\mapsto}\;{#2}}
 \newcommand*{\elimProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
 \newcommand*{\elimRollProj}[1]{\del{\kw{roll}}\;{#1}}
