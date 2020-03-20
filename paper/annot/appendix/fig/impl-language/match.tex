@@ -1,50 +1,44 @@
 \begin{figure}
 \flushleft \shadebox{$\explVal{\xi}{u, \sigma \match \rho, e, \alpha}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\match$-var}}]
+   \inferrule*[lab={\ruleName{$\matchVar{x}{\matchHole{}}$}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{e}
+      v, \elimVar{x}{e} \match \envExtend{\envEmpty}{x}{v}, e, \true
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchPair{x}{y}{\matchHole{}}$}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exPair{v}{v'}}{\alpha}, \elimPair{x}{y}{e} \match \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\elimList{\branchNil{\matchHole{}}}{\branchCons{x}{y}{e'}}$}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}} \match \envEmpty, e, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\elimList{\branchNil{e}}{\branchCons{x}{y}{\matchHole{}}}$}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exCons{v}{v'}}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \explVal{\matchVar{x}{\matchHole{}}}{\envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \top}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\lookupR$-constr}}]
-   {
-      \vec{u}, \Sigma(c) \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha'
-   }
-   {
-      \annot{\exConstr{c}{\vec{u}}}{\alpha}, \Sigma
-      \lookupR
-      \rho, \envExtend{\Sigma}{c}{\matchPlug{\Psi}{\kappa}}, \alpha \wedge \alpha'
-   }
-\end{smathpar}
-\\[2mm]
-\flushleft \shadebox{$\vec{u}, \kappa \lookupR \rho, \matchPlug{\Psi}{\kappa}, \alpha$}
-\begin{smathpar}
-   \inferrule*[lab={\ruleName{$\lookupR$-args-nil}}]
-   {
-   }
-   {
-      \seqEmpty, \kappa \lookupR \envEmpty,\matchHole{\kappa}, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\lookupR$-args-cons}}]
-   {
-      u, \sigma \lookupR \rho_1, \matchPlug{\xi}{\kappa}, \alpha
-      \\
-      \vec{u}, \kappa \lookupR \rho_2, \matchPlug{\Psi}{\kappa'}, \alpha'
-   }
-   {
-      u \concat \vec{u}, \sigma
-      \lookupR
-      \rho_1 \concat \rho_2, \matchProd{\xi}{\matchPlug{\Psi}{\kappa'}}, \alpha \wedge \alpha'
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \alpha
    }
 \end{smathpar}
 \caption{Pattern-matching}
