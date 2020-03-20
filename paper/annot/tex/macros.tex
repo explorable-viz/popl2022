@@ -77,7 +77,7 @@
 \newcommand*{\exPrimApp}[3]{{#1} #2 {#3}}
 \newcommand*{\exPrimDef}[1]{\kw{primitive}\;{#1}}
 \newcommand*{\exPrimOp}{\primOp}
-\newcommand*{\exRec}[2]{\kw{fun}\,{#1}\:{#2}}
+\newcommand*{\exRec}[2]{\kw{fun}\,{#1}{#2}}
 \newcommand*{\exRoll}[1]{\kw{roll}\;{#1}}
 \newcommand*{\exSnd}[1]{\kw{snd}\;#1}
 \newcommand*{\exUnit}{\langle\rangle}
@@ -86,16 +86,18 @@
 \newcommand*{\exThunkVar}[2]{{#1}: {#2}}
 \newcommand*{\exTop}{\top}
 
+\newcommand*{\branchCons}[3]{\exCons{#1}{#2}\mapsto{#3}}
+\newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
+
 % Tries.
-\newcommand*{\elimCons}[3]{\exCons{#1}{#2}\mapsto{#3}}
 \newcommand*{\elimConstr}[1]{#1}
 \newcommand*{\elimEmpty}{\bot}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimFunNoRHS}{\uplambda}
 \newcommand*{\elimGround}[2]{\elimGroundNoRHS{#1} \mapsto {#2}}
 \newcommand*{\elimGroundNoRHS}[1]{\tyGround{#1}}
+\newcommand*{\elimList}[2]{\{{#1},{#2}\}}
 \newcommand*{\elimNarySum}[1]{\{#1\}}
-\newcommand*{\elimNil}[1]{\kw{Nil}\mapsto{#1}}
 \newcommand*{\elimPair}[3]{\exPair{#1}{#2}\mapsto{#3}}
 \newcommand*{\elimSingleton}[2]{#1[#2]}
 \newcommand*{\elimSum}[2]{[\exInl{#1},\exInr{#2}]}

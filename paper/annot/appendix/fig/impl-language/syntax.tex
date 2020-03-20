@@ -51,14 +51,9 @@ A, B
 \text{variable}
 \\
 &&&
-\elimNil{e}
+\elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
 &
-\text{nil}
-\\
-&&&
-\elimCons{x}{y}{e}
-&
-\text{cons}
+\text{list}
 \\
 &&&
 \elimPair{x}{y}{e}
@@ -96,7 +91,7 @@ n
 &&&
 \exRec{f}{\sigma}
 &
-\text{function}
+\text{recursive function}
 \\
 &&&
 \exApp{e}{e'}
