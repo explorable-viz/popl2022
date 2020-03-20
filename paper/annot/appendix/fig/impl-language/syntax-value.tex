@@ -11,33 +11,19 @@
 \text{variable}
 \\
 &&&
-\Xi
+\elimPair{x}{y}{\matchHole{}}
 &
-\text{constructor}
-\\[2mm]
-\mbox{Constructor match}
-&
-\Xi
-&
-::=
-&
-\family{\Psi_c \mid \kappa_c}{c}{\tilde{c}}
-&
-\\[2mm]
-\mbox{Arguments match}
-&
-\Psi
-&
-::=
-&
-\matchHole{}
-&
-\text{empty}
+\text{pair}
 \\
 &&&
-\matchProd{\xi}{\Psi}
+\elimList{\branchNil{\matchHole{}}}{\branchCons{x}{y}{e'}}
 &
-\text{non-empty}
+\text{nil}
+\\
+&&&
+\elimList{\branchNil{e}}{\branchCons{x}{y}{\matchHole{}}}
+&
+\text{cons}
 \\[2mm]
 \mbox{Value}
 &
