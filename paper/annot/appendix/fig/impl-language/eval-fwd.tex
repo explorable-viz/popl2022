@@ -50,26 +50,21 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval{}$-app}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-app}}]
    {
-      \rho, e \eval{} T, \annot{\exClosureNew{\rho_1}{\delta}{\exFun{\sigma}}}{\alpha}
+      \alpha, \rho, e \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}
       \\
-      \rho_1, \delta \closeDefs \rho_2
-      \\
-      \rho, e' \eval{} T', u
+      \alpha, \rho, e' \fwdSlice v
       \\\\
-      u, \sigma \lookupR \rho_3, \matchPlug{\xi}{e^\twoPrime}, \alpha'
+      v, \sigma \match \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
       \\
-      \rho_1 \concat \rho_2 \concat \rho_3, e^\twoPrime
-      \eval{}
-      U, \annot{v}{\alpha^\twoPrime}
+      \alpha^\twoPrime,
+      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}, e^\twoPrime
+      \fwdSlice
+      v'
    }
    {
-      \rho,
-      \exApp{e}{e'}
-      \eval{}
-      \trApp{T}{T'}{\matchPlug{\xi}{U}},
-      \annot{v}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+      \alpha, \rho, \exApp{e}{e'} \fwdSlice v'
    }
    %
    \and
