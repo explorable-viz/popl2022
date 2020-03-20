@@ -1,13 +1,14 @@
 \begin{figure}
-\flushleft \shadebox{$u, \sigma \lookupR \rho, \matchPlug{\xi}{\kappa}, \alpha$}
+\flushleft \shadebox{$\explVal{\xi}{u, \sigma \match \rho, e, \alpha}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\lookupR$-var}}]
+   \inferrule*[lab={\ruleName{$\match$-var}}]
    {
+      \strut
    }
    {
-      u, \elimVar{x}{\kappa}
-      \lookupR
-      \envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \top
+      v, \elimVar{x}{e}
+      \match
+      \explVal{\matchVar{x}{\matchHole{}}}{\envExtend{\envEmpty}{x}{u}, \matchVar{x}{\matchHole{\kappa}}, \top}
    }
    %
    \and
