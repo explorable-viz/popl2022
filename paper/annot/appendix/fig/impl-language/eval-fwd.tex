@@ -70,25 +70,6 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval{}$-app-unary}},
-      right={\textnormal{$k \in \dom{\interpret{\phi}}$}}
-   ]
-   {
-      \rho, e \eval{} T, \annot{\phi}{\alpha}
-      \\
-      \rho, e' \eval{} T', \annot{k}{\alpha'}
-   }
-   {
-      \rho,
-      \exApp{e}{e'}
-      \eval{}
-      \trUnaryApp{(\explVal{T}{\phi})}{(\explVal{T'}{\exConst{k}})},
-      \annot{\interpret{\phi}(k)}{\alpha \wedge \alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\eval{}$-app-binary}},
       right={\textnormal{$(k, k') \in \dom{\interpret{\primOp}}$
       }}
