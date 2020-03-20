@@ -53,6 +53,7 @@
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exBot}{\bot}
 \newcommand*{\exBranch}[2]{{#1}.{#2}}
+\newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
 \newcommand*{\exConst}[1]{#1}
 \newcommand*{\exConstr}[2]{#1(#2)}
 \newcommand*{\exClosure}[2]{(#1,#2)}
@@ -69,6 +70,7 @@
 \newcommand*{\exLambda}[2]{\uplambda{#1}.{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNat}[1]{#1}
+\newcommand*{\exNil}{\kw{Nil}}
 \newcommand*{\exOp}[2]{{#1}\primOp{#2}}
 \newcommand*{\exPair}[2]{\langle#1,#2\rangle}
 \newcommand*{\exPrimApp}[3]{{#1} #2 {#3}}
@@ -129,8 +131,8 @@
 % Types.
 \newcommand*{\tyData}[1]{#1}
 \newcommand*{\tyGround}[1]{#1}
-\newcommand*{\tyList}[0]{\mathSf{List}}
-\newcommand*{\tyInt}[0]{\mathSf{Int}}
+\newcommand*{\tyList}[0]{\kw{List}}
+\newcommand*{\tyInt}[0]{\kw{Int}}
 \newcommand*{\tyZero}{\kw{0}}
 \newcommand*{\tyUnit}{\kw{1}}
 \newcommand*{\tySum}[2]{{#1}+{#2}}
@@ -165,6 +167,9 @@
 \newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
 \newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
+\newcommand*{\elimNil}[1]{\kw{Nil}\;\mapsto\;{#1}}
+\newcommand*{\elimCons}[3]{\exCons{#1}{#2}\;\mapsto\;{#3}}
+\newcommand*{\elimPair}[3]{\exPair{#1}{#2}\;\mapsto\;{#3}}
 \newcommand*{\elimVarProj}[2]{\del{\elimVarNoRHS{#1}\mapsto}\;{#2}}
 \newcommand*{\elimProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
 \newcommand*{\elimRollProj}[1]{\del{\kw{roll}}\;{#1}}
