@@ -39,14 +39,13 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval{}$-fun}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
    {
    }
    {
-      \rho,
-      \exFun{\sigma}
-      \eval{}
-      \sub{\trEmpty}{\rho}, \exClosureNew{\rho}{\seqEmpty}{\exFun{\sigma}}
+      \alpha, \rho, \exRec{f}{\sigma}
+      \fwdSlice
+      \annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha}
    }
    %
    \and
