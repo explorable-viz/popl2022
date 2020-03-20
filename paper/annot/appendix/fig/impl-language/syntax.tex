@@ -1,0 +1,166 @@
+\begin{figure}
+\begin{syntaxfig}
+\mbox{Ground type}
+&
+C
+\\[2mm]
+\mbox{Data type}
+&
+D
+&
+\\[2mm]
+\mbox{Type}
+&
+A, B
+&
+::=
+&
+\tyGround{C}
+&
+\text{ground type}
+\\
+&&&
+\tyData{D}
+&
+\text{data type}
+\\
+&&&
+\tyFun{A}{B}
+&
+\text{function}
+\\[2mm]
+\mbox{Constant of ground type}
+&
+k
+\\
+\mbox{Constructor of data type}
+&
+c
+\\
+\mbox{First-class (unary) primitive}
+&
+\phi
+\\
+\mbox{Binary operator}
+&
+\primOp
+\\[2mm]
+\mbox{Continuation}
+&
+\kappa
+&
+::=
+&
+e
+&
+\text{term}
+\\
+&&&
+\sigma
+&
+\text{eliminator}
+\\[2mm]
+\mbox{Eliminator}
+&
+\sigma, \tau
+&
+::=
+&
+\elimVar{x}{\kappa}
+&
+\text{variable}
+\\
+&&&
+\elimConstr{\Sigma}
+&
+\text{constructor}
+\\[2mm]
+\mbox{Constructor eliminator}
+&
+\Sigma
+&
+::=
+&
+\family{\kappa_c}{c}{\tilde{c}}
+\\[2mm]
+\mbox{Term}
+&
+r
+&
+::=
+&
+x
+&
+\text{variable}
+\\
+&&&
+\exConst{k}
+&
+\text{constant}
+\\
+&&&
+\phi
+&
+\text{first-class primitive}
+\\
+&&&
+\exFun{\sigma}
+&
+\text{function}
+\\
+&&&
+\exApp{e}{e'}
+&
+\text{application}
+\\
+&&&
+\exPrimApp{e}{\exPrimOp}{e'}
+&
+\text{binary infix application}
+\\
+&&&
+\exConstr{c}{\vec{e}}
+&
+\text{constructor}
+\\
+&&&
+\exMatch{e}{\sigma}
+&
+\text{pattern-match}
+\\
+&&&
+\exDefs{\vec{d}}{e}
+&
+\text{definitions}
+\\[2mm]
+\mbox{Definition}
+&
+d
+&
+::=
+&
+\exLetDef{x}{e}
+&
+\text{let}
+\\
+&&&
+\exLetrecDef{\delta}
+&
+\text{mutual recursion}
+\\
+&&&
+\exPrimDef{x}
+&
+\text{primitive}
+\\[2mm]
+\mbox{Recursive functions}
+&
+\delta
+&
+::=
+&
+\set{\annot{(\exFun{\sigma_f})}{\alpha_f}}_{f \in F}
+\end{syntaxfig}
+\caption{Syntax for the implementation language}
+\label{fig:impl-language:syntax}
+\end{figure}
