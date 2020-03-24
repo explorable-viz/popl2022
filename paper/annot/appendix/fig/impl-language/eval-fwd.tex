@@ -42,14 +42,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
    {
-      \rho, e, \alpha \fwdSlice v
+      \explVal{T}{\rho, e, \alpha \fwdSlice v}
       \\
-      \rho, e', \alpha \fwdSlice v'
+      \explVal{T'}{\rho, e', \alpha \fwdSlice v'}
    }
    {
-      \rho, \exPair{e}{e'}, \alpha
-      \fwdSlice
-      \annot{\exPair{v}{v'}}{\alpha}
+      \explVal{\trPair{T}{T'}}{\rho, \exPair{e}{e'}, \alpha \fwdSlice \annot{\exPair{v}{v'}}{\alpha}}
    }
    %
    \and
@@ -59,28 +57,27 @@
       \strut
    }
    {
-      \rho, \exRec{f}{\sigma}, \alpha
-      \fwdSlice
-      \annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha}
+      \explVal
+         {\trRec{f}{\sigma}}
+         {\rho, \exRec{f}{\sigma}, \alpha \fwdSlice \annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-app}}]
    {
-      \rho, e, \alpha \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}
+      \explVal{T}{\rho, e, \alpha \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}
       \\
-      \rho, e', \alpha \fwdSlice v
+      \explVal{T'}{\rho, e', \alpha \fwdSlice v}
       \\\\
-      v, \sigma \match \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
+      v, \sigma \match \rho^\twoPrime, \matchPlug{\xi}{e^\twoPrime}, \alpha^\twoPrime
       \\
-      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}, e^\twoPrime,
-      \alpha^\twoPrime
-      \fwdSlice
-      v'
+      \explVal
+         {U}
+         {\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}, e^\twoPrime, \alpha^\twoPrime \fwdSlice v'}
    }
    {
-      \rho, \exApp{e}{e'}, \alpha \fwdSlice v'
+      \explVal{\trApp{T}{T'}{\matchPlug{\xi}{U}}}{\rho, \exApp{e}{e'}, \alpha \fwdSlice v'}
    }
    %
    \and

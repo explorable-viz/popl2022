@@ -113,17 +113,17 @@
 \newcommand*{\elimVarNoRHS}[1]{#1}
 
 % Matches.
-\newcommand*{\matchHole}[1]{[#1]}
+\newcommand*{\matchHole}[1]{\textcolor{gray}{[}#1\textcolor{gray}{]}}
 \newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
 \newcommand*{\matchSumL}[1]{[\exInl{#1}]}
 \newcommand*{\matchSumR}[1]{[\exInr{#1}]}
 \newcommand*{\matchPair}[3]{\elimPair{#1}{#2}{#3}}
-\newcommand*{\matchPlug}[2]{#1\matchHole{#2}}
+\newcommand*{\matchPlug}[2]{\textcolor{gray}{#1}\matchHole{#2}}
 \newcommand*{\matchProd}[2]{\matchPlug{#1}{#2}}
 \newcommand*{\matchRoll}[1]{\elimRoll{#1}}
 \newcommand*{\matchInj}[1]{#1}
 \newcommand*{\matchUnit}[1]{\exUnit \mapsto {#1}}
-\newcommand*{\matchVar}[2]{{#1} \mapsto {#2}}
+\newcommand*{\matchVar}[2]{\matchPlug{#1 \mapsto\;}{#2}}
 
 \newcommand*{\pattToTrie}[2]{\llbracket#1\rrbracket_{#2}}
 \newcommand*{\branchesToTrie}[1]{\llbracket#1\rrbracket}
@@ -286,6 +286,7 @@
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\trPrimApp}[3]{{#1} #2 {#3}}
 \newcommand*{\trPrimDef}[1]{\exPrimDef{#1}}
+\newcommand*{\trRec}[2]{\kw{fun}\,{#1}{#2}}
 \newcommand*{\trRoll}[1]{\exRoll{#1}}
 \newcommand*{\trUnaryApp}[2]{\exApp{#1}{#2}}
 \newcommand*{\trUnit}[1]{\sub{\exUnit}{#1}}
