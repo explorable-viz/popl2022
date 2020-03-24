@@ -11,34 +11,38 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchPair{x}{y}{\matchHole{}}$}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
    {
       \strut
    }
    {
-      \annot{\exPair{v}{v'}}{\alpha}, \elimPair{x}{y}{e} \match \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \alpha
+      \annot{\exPair{v}{v'}}{\alpha}, \elimPair{x}{y}{e}
+      \match
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchPair{x}{y}{e}, \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\elimList{\branchNil{\matchHole{}}}{\branchCons{x}{y}{e'}}$}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
    {
       \strut
    }
    {
-      \annot{\exNil}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}} \match \envEmpty, e, \alpha
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \match
+      \envEmpty, \matchNil{e}{x}{y}{e'}, \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\elimList{\branchNil{e}}{\branchCons{x}{y}{\matchHole{}}}$}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
    {
       \strut
    }
    {
       \annot{\exCons{v}{v'}}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \alpha
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchCons{e}{x}{y}{e'}, \alpha
    }
 \end{smathpar}
 \caption{Pattern-matching}
