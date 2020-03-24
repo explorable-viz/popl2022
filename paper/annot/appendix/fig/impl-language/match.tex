@@ -6,7 +6,7 @@
       \strut
    }
    {
-      v, \elimVar{x}{e} \match \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}, \true
+      v, \elimVar{x}{e} \matchFwd \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}, \true
    }
    %
    \and
@@ -17,7 +17,7 @@
    }
    {
       \annot{\exPair{v}{v'}}{\alpha}, \elimPair{x}{y}{e}
-      \match
+      \matchFwd
       \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchPair{x}{y}{e}, \alpha
    }
    %
@@ -29,7 +29,7 @@
    }
    {
       \annot{\exNil}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
-      \match
+      \matchFwd
       \envEmpty, \matchNil{e}{x}{y}{e'}, \alpha
    }
    %
@@ -41,7 +41,7 @@
    }
    {
       \annot{\exCons{v}{v'}}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
-      \match
+      \matchFwd
       \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchCons{e}{x}{y}{e'}, \alpha
    }
 \end{smathpar}
