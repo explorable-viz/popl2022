@@ -125,8 +125,10 @@
 \newcommand*{\matchUnit}[1]{\exUnit \mapsto {#1}}
 \newcommand*{\matchVar}[2]{\matchPlug{#1 \mapsto\;}{#2}}
 
-\newcommand*{\matchCons}[4]{\lowlight{\{\branchNil{#1}}\lowlight{,\exCons{#2}{#3}\mapsto\;}{#4}\lowlight{\}}}
+\renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
+
 \newcommand*{\matchNil}[4]{\lowlight{\{}\matchPlug{\exNil\mapsto\;}{#1}\lowlight{,\branchCons{#2}{#3}{#4}\}}}
+\newcommand*{\matchCons}[4]{\lowlight{\{\branchNil{#1},\,}\matchPlug{\exCons{#2}{#3}\mapsto\;}{#4}\lowlight{\}}}
 
 \newcommand*{\pattToTrie}[2]{\llbracket#1\rrbracket_{#2}}
 \newcommand*{\branchesToTrie}[1]{\llbracket#1\rrbracket}
