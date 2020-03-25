@@ -103,7 +103,7 @@
       \strut
    }
    {
-      \envLookup{\envExtend{\rho}{x}{v}}{x}{v}
+      \envLookup{\envExtend{\rho}{x_{\true}}{v}}{x}{v}
    }
    %
    \and
@@ -113,17 +113,7 @@
       \envLookup{\rho}{x}{v}
    }
    {
-      \envLookup{\envExtend{\rho}{y}{u}}{x}{v}
-   }
-   %
-   \and
-   %
-   \inferrule*
-   {
-      \envLookup{\rho}{x}{v}
-   }
-   {
-      \envLookup{\envExtendProj{\rho}{y}{u}}{x}{v}
+      \envLookup{\envExtend{\rho}{y_{\alpha}}{u}}{x}{v}
    }
 \end{smathpar}
 \caption{Well-formed contexts and environments; context and environment lookup}
