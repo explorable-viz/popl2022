@@ -11,6 +11,30 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exTrue}{\alpha}, \elimBool{e}{e'}
+      \matchFwd
+      \envEmpty, \matchTrue{e}{e'}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exFalse}{\alpha}, \elimBool{e}{e'}
+      \matchFwd
+      \envEmpty, \matchFalse{e}{e'}, \alpha
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
    {
       \strut
