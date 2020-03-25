@@ -80,19 +80,7 @@
    \valType{v}{A}
 }
 {
-   \envType{\cxtExtend{\Gamma}{x}{A}}{\envExtend{\rho}{x}{v}}
-}
-%
-\and
-%
-\inferrule*
-{
-   \envType{\Gamma}{\rho}
-   \\
-   \valType{v}{A}
-}
-{
-   \envType{\cxtExtendProj{\Gamma}{x}{A}}{\envExtendProj{\rho}{x}{v}}
+   \envType{\cxtExtend{\Gamma}{x_{\alpha}}{A}}{\envExtend{\rho}{x_{\alpha}}{v}}
 }
 \end{smathpar}
 \\[2mm]
