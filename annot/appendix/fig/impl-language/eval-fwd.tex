@@ -129,12 +129,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
    {
-      \explVal{T}{\rho, e, \alpha \fwdSlice v}
+      \explVal{T}{\rho, e, \alpha' \fwdSlice v}
       \\
-      \explVal{T'}{\envExtend{\rho}{x}{v}, e', \alpha \fwdSlice v'}
+      \explVal{T'}{\envExtend{\rho}{x_{\alpha}}{v}, e', \alpha' \fwdSlice v'}
    }
    {
-      \explVal{\trLet{x}{T}{T'}}{\rho, \exLet{x}{e}{e'}, \alpha \fwdSlice v'}
+      \explVal{\trLet{x}{T}{T'}}{\rho, \exLet{x_{\alpha}}{e}{e'}, \alpha' \fwdSlice v'}
    }
 \end{smathpar}
 \caption{Forward slicing}

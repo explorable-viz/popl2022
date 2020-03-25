@@ -37,7 +37,7 @@
       \strut
    }
    {
-      x : A \in (\cxtExtend{\Gamma}{x}{A})
+      x : A \in (\cxtExtend{\Gamma}{x_{\true}}{A})
    }
    %
    \and
@@ -48,16 +48,6 @@
    }
    {
       x : A \in (\cxtExtend{\Gamma}{y_{\alpha}}{B})
-   }
-   %
-   \and
-   %
-   \inferrule*
-   {
-      x : A \in \Gamma
-   }
-   {
-      x : A \in (\cxtExtend{\Gamma}{y_{\false}}{B})
    }
 \end{smathpar}
 \\[2mm]
