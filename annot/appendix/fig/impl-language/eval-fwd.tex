@@ -1,36 +1,48 @@
 \begin{figure}[p]
 \flushleft \shadebox{$\rho, e, \alpha \fwdSlice v$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\fwdSlice$-expr-$\true$}}]
-   {
-      \explVal{T}{\rho, r, \alpha \fwdSlice v}
-   }
-   {
-      \explVal{T}{\rho, \annot{r}{\true}, \alpha \fwdSlice v}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-expr-$\false$}}]
-   {
-      \strut
-   }
-   {
-      \explVal{T}{\rho, \annot{r}{\false}, \alpha \fwdSlice \false_{v}}
-   }
-\end{smathpar}
-\\
-\flushleft \shadebox{$\rho, r, \alpha \fwdSlice v$}
-\begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-var}},
+      lab={\ruleName{$\fwdSlice$-var-$\true$}},
       right={\textnormal{$x: v \in \rho$}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trVarOne{x}}{\rho, \exVar{x}, \alpha \fwdSlice v}
+      \explVal{\trVarOne{x}}{\rho, \exVar{x_{\true}}, \alpha \fwdSlice v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-var-$\false$}},
+      right={\textnormal{$x: v \in \rho$}}
+   ]
+   {
+      \strut
+   }
+   {
+      \explVal{\trVarOne{x}}{\rho, \exVar{x_{\false}}, \alpha \fwdSlice \false_{v}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-true}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\trNil}{\rho, \annot{\exTrue}{\alpha}, \alpha' \fwdSlice \annot{\exTrue}{\alpha \wedge \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-false}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\trNil}{\rho, \annot{\exFalse}{\alpha}, \alpha' \fwdSlice \annot{\exFalse}{\alpha \wedge \alpha'}}
    }
    %
    \and
@@ -40,19 +52,21 @@
       \strut
    }
    {
-      \explVal{\trInt{n}}{\rho, \exInt{n}, \alpha \fwdSlice \annot{\exInt{n}}{\alpha}}
+      \explVal{\trInt{n}}{\rho, \annot{\exInt{n}}{\alpha}, \alpha' \fwdSlice \annot{\exInt{n}}{\alpha \wedge \alpha'}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
    {
-      \explVal{T}{\rho, e, \alpha \fwdSlice v}
+      \explVal{T}{\rho, e, \alpha' \fwdSlice v}
       \\
-      \explVal{T'}{\rho, e', \alpha \fwdSlice v'}
+      \explVal{T'}{\rho, e', \alpha' \fwdSlice v'}
    }
    {
-      \explVal{\trPair{T}{T'}}{\rho, \exPair{e}{e'}, \alpha \fwdSlice \annot{\exPair{v}{v'}}{\alpha}}
+      \explVal
+         {\trPair{T}{T'}}
+         {\rho, \annot{\exPair{e}{e'}}{\alpha}, \alpha' \fwdSlice \annot{\exPair{v}{v'}}{\alpha \wedge \alpha'}}
    }
    %
    \and
@@ -91,16 +105,16 @@
       lab={\ruleName{$\fwdSlice$-add}}
    ]
    {
-      \explVal{T}{\rho, e, \alpha \fwdSlice \annot{m}{\alpha'}}
+      \explVal{T}{\rho, e, \alpha' \fwdSlice \annot{m}{\alpha^\twoPrime}}
       \\
-      \explVal{T'}{\rho, e', \alpha \fwdSlice \annot{n}{\smash{\alpha^\twoPrime}}}
+      \explVal{T'}{\rho, e', \alpha' \fwdSlice \annot{n}{\smash{\alpha^\threePrime}}}
    }
    {
       \explVal
          {\trAdd{T}{T'}}
-         {\rho, \exAdd{e}{e'}, \alpha,
+         {\rho, \annot{\exAdd{e}{e'}}{\alpha}, \alpha',
           \fwdSlice
-          \annot{(m \mathbin{\hat{+}} n)}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}}}
+          \annot{(m \mathbin{\hat{+}} n)}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime \wedge \alpha^\threePrime}}}
    }
    %
    \and
@@ -110,19 +124,21 @@
       \strut
    }
    {
-      \explVal{\trNil}{\rho, \exNil, \alpha \fwdSlice \annot{\exNil}{\alpha}}
+      \explVal{\trNil}{\rho, \annot{\exNil}{\alpha}, \alpha' \fwdSlice \annot{\exNil}{\alpha \wedge \alpha'}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-cons}}]
    {
-      \explVal{T}{\rho, e, \alpha \fwdSlice v}
+      \explVal{T}{\rho, e, \alpha' \fwdSlice v}
       \\
-      \explVal{T'}{\rho, e', \alpha \fwdSlice v'}
+      \explVal{T'}{\rho, e', \alpha' \fwdSlice v'}
    }
    {
-      \explVal{\trCons{T}{T'}}{\rho, \exCons{e}{e'}, \alpha \fwdSlice \annot{\exCons{v}{v'}}{\alpha}}
+      \explVal
+         {\trCons{T}{T'}}
+         {\rho, \annot{\exCons{e}{e'}}{\alpha}, \alpha' \fwdSlice \annot{\exCons{v}{v'}}{\alpha \wedge \alpha'}}
    }
    %
    \and
