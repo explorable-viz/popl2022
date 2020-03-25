@@ -6,20 +6,12 @@ v
 &
 ::=
 &
-\annot{u}{\alpha}
-\\[2mm]
-\mbox{Raw value}
-&
-u
-&
-::=
-&
-\exTrue \mid \exFalse
+\annot{\exTrue}{\alpha} \mid \annot{\exFalse}{\alpha}
 &
 \text{Boolean}
 \\
 &&&
-\exInt{n}
+\annot{\exInt{n}}{\alpha}
 &
 \text{integer}
 \\
@@ -29,17 +21,17 @@ u
 \text{closure}
 \\
 &&&
-\exPair{v}{v'}
+\annot{\exPair{v}{v'}}{\alpha}
 &
 \text{pair}
 \\
 &&&
-\exNil
+\annot{\exNil}{\alpha}
 &
 \text{nil}
 \\
 &&&
-\exCons{v}{v'}
+\annot{\exCons{v}{v'}}{\alpha}
 &
 \text{pair}
 \\[2mm]
@@ -54,7 +46,7 @@ u
 \text{empty}
 \\
 &&&
-\envExtend{\rho}{x}{v}
+\envExtend{\rho}{x_{\alpha}}{v}
 &
 \text{extend}
 \end{syntaxfig}
