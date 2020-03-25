@@ -1,12 +1,22 @@
 \begin{figure}[p]
 \flushleft \shadebox{$\rho, e, \alpha \fwdSlice v$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\fwdSlice$-annot}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-expr-$\true$}}]
    {
-      \explVal{T}{\rho, r, \alpha \wedge \alpha' \fwdSlice v}
+      \explVal{T}{\rho, r, \alpha \fwdSlice v}
    }
    {
-      \explVal{T}{\rho, \annot{r}{\alpha'}, \alpha \fwdSlice v}
+      \explVal{T}{\rho, \annot{r}{\true}, \alpha \fwdSlice v}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-expr-$\false$}}]
+   {
+      \strut
+   }
+   {
+      \explVal{T}{\rho, \annot{r}{\false}, \alpha \fwdSlice \false_{v}}
    }
 \end{smathpar}
 \\
@@ -59,7 +69,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-app}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
    {
       \explVal{T}{\rho, e, \alpha \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}
       \\
@@ -78,7 +88,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-addition}}
+      lab={\ruleName{$\fwdSlice$-add}}
    ]
    {
       \explVal{T}{\rho, e, \alpha \fwdSlice \annot{m}{\alpha'}}
