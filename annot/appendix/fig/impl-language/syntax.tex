@@ -6,14 +6,14 @@
 &
 ::=
 &
-\true
+\top % \true
 &
-\text{true}
+\text{present}
 \\
 &&&
-\false
+\bot % \false
 &
-\text{false}
+\text{absent}
 \\[2mm]
 \mbox{Type}
 &
@@ -21,6 +21,11 @@ A, B
 &
 ::=
 &
+\tyBool
+&
+\text{Booleans}
+\\
+&&&
 \tyInt
 &
 \text{integers}
@@ -51,6 +56,11 @@ A, B
 \text{variable}
 \\
 &&&
+\elimBool{e}{e'}
+&
+\text{Boolean}
+\\
+&&&
 \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
 &
 \text{list}
@@ -77,6 +87,11 @@ r
 x
 &
 \text{variable}
+\\
+&&&
+\exTrue \mid \exFalse
+&
+\text{Boolean}
 \\
 &&&
 \exInt{n}

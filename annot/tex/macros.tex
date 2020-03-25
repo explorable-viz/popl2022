@@ -61,6 +61,7 @@
 \newcommand*{\exClosureNew}[3]{(#1,#2,#3)}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exDefs}[2]{{#1}\;\kw{in}\;{#2}}
+\newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFst}[1]{\kw{fst}\;#1}
 \newcommand*{\exFun}[1]{\uplambda{#1}}
 \newcommand*{\exInl}[1]{\kw{inl}\;{#1}}
@@ -82,6 +83,7 @@
 \newcommand*{\exRec}[2]{\kw{fun}\,{#1}{#2}}
 \newcommand*{\exRoll}[1]{\kw{roll}\;{#1}}
 \newcommand*{\exSnd}[1]{\kw{snd}\;#1}
+\newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exUnit}{\langle\rangle}
 \newcommand*{\exUnroll}[1]{\kw{unroll}\;{#1}}
 \newcommand*{\exVar}[1]{#1}
@@ -92,6 +94,7 @@
 \newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
 
 % Tries.
+\newcommand*{\elimBool}[2]{\{\exTrue \mapsto {#1}, \exFalse \mapsto {#2}\}}
 \newcommand*{\elimConstr}[1]{#1}
 \newcommand*{\elimEmpty}{\bot}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
@@ -143,6 +146,7 @@
 \newcommand*{\elimNarySumUpdate}[3]{#1[#2 \mapsto {#3}]}
 
 % Types.
+\newcommand*{\tyBool}[0]{\kw{Bool}}
 \newcommand*{\tyData}[1]{#1}
 \newcommand*{\tyGround}[1]{#1}
 \newcommand*{\tyList}[0]{\kw{List}}
