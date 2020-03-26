@@ -68,14 +68,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
    {
-      \explVal{T}{\rho, e, \alpha' \fwdSlice v}
+      \rho, e, \top \fwdSlice v
       \\
-      \explVal{T'}{\rho, e', \alpha' \fwdSlice v'}
+      \rho, e', \top \fwdSlice v'
    }
    {
-      \explVal
-         {\trPair{T}{T'}}
-         {\rho, \annot{\exPair{e}{e'}}{\alpha}, \alpha' \fwdSlice \annot{\exPair{v}{v'}}{\alpha \wedge \alpha'}}
+      \rho, \exPair{e}{e'}, \top \fwdSlice \exPair{v}{v'}
    }
    %
    \and
