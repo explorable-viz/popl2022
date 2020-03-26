@@ -94,18 +94,16 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
    {
-      \explVal{T}{\rho, e, \alpha \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}
+      \rho, e, \alpha \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}
       \\
-      \explVal{T'}{\rho, e', \alpha \fwdSlice v}
+      \rho, e', \alpha \fwdSlice v
       \\\\
-      v, \sigma \match \rho^\twoPrime, \matchPlug{\xi}{e^\twoPrime}, \alpha^\twoPrime
+      v, \sigma \match \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
       \\
-      \explVal
-         {U}
-         {\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}, e^\twoPrime, \alpha^\twoPrime \fwdSlice v'}
+      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}, e^\twoPrime, \alpha^\twoPrime \fwdSlice v'
    }
    {
-      \explVal{\trApp{T}{T'}{\matchPlug{\xi}{U}}}{\rho, \exApp{e}{e'}, \alpha \fwdSlice v'}
+      \rho, \exApp{e}{e'}, \alpha \fwdSlice v'
    }
    %
    \and
