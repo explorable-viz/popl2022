@@ -4,7 +4,7 @@ default: main
 
 main:
 	$(PDFLATEX) $@
-	bibtex $@
-	$(PDFLATEX) $@
+#	bibtex $@
+#	$(PDFLATEX) $@
 	$(PDFLATEX) $@
 	rm -f $@.aux $@.dvi $@.log $@.bbl $@.blg $@.out $@.pag $@.cb $@.cb2 $@.toc

@@ -1,0 +1,172 @@
+\begin{figure}
+\flushleft \shadebox{$T, u \uneval \rho, e$}
+\mprset{flushleft}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\uneval$-var}}]
+   {
+   }
+   {
+      \trVarTwo{x}{\rho}, \annot{v}{\alpha}
+      \uneval
+      \envExtend{\sub{\bot}{\rho}}{x}{\annot{v}{\alpha}},
+      \annot{\exVar{x}}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-const}}]
+   {
+   }
+   {
+      \sub{\trEmpty}{\rho}, \annot{\exConst{k}}{\alpha}
+      \uneval
+      \sub{\bot}{\rho},
+      \annot{\exConst{k}}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-fun}}]
+   {
+   }
+   {
+      \sub{\trEmpty}{\rho}, \annot{\exClosureNew{\rho'}{\seqEmpty}{\exFun{\sigma}}}{\alpha}
+      \uneval
+      \rho',
+      \annot{(\exFun{\sigma})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-app}}]
+   {
+      U, \annot{v}{\alpha} \uneval \rho_1' \concat \rho_2 \concat \rho_3, e^\twoPrime
+      \\
+      \rho_3, \matchPlug{\xi}{e^\twoPrime}, \alpha \unlookupR{} u, \sigma
+      \\\\
+      T', u \uneval \rho, e'
+      \\
+      \rho_2 \uncloseDefs \rho_1^\twoPrime, \delta'
+      \\
+      T, \annot{\exClosureNew{\rho_1' \vee \rho_1^\twoPrime}{\delta'}{\exFun{\sigma}}}{\alpha}
+      \uneval
+      \rho', e
+   }
+   {
+      \trApp{T}{T'}{\matchPlug{\xi}{U}}, \annot{v}{\alpha}
+      \uneval
+      \rho \vee \rho',
+      \annot{(\exApp{e}{e'})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\uneval$-app-unary}}
+   ]
+   {
+      T', \annot{c}{\alpha} \uneval \rho', e'
+      \\
+      T, \annot{\phi}{\alpha} \uneval \rho, e
+   }
+   {
+      \trApp{(\explVal{T}{\phi})}{(\explVal{T'}{c})}{\sub{\trEmpty}{\envEmpty}},
+      \annot{v}{\alpha}
+      \uneval
+      \rho \vee \rho',
+      \annot{(\exApp{e}{e'})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\uneval$-app-binary}}
+   ]
+   {
+      T', \annot{c'}{\alpha} \uneval \rho', e'
+      \\
+      T, \annot{c}{\alpha} \uneval \rho, e
+   }
+   {
+      \trPrimApp{(\explVal{T}{c})}{\primOp}{(\explVal{T'}{c'})},
+      \annot{v}{\alpha}
+      \uneval
+      \rho \vee \rho',
+      \annot{(\exPrimApp{e}{\annot{\primOp}{\alpha}}{e'})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-constr}}]
+   {
+      \vec{T}, \vec{u} \uneval \rho', \vec{e}
+   }
+   {
+      \trConstr{c}{\vec{T}}, \annot{\exConstr{c}{\vec{u}}}{\alpha}
+      \uneval
+      \rho',
+      \annot{\exConstr{c}{\vec{e}}}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-match}}]
+   {
+      T', \annot{v}{\alpha} \uneval \rho' \concat \rho_1, e'
+      \\
+      \rho_1, \matchPlug{\xi}{e'}, \alpha \unlookupR{} u, \sigma
+      \\
+      T, u \uneval \rho, e
+   }
+   {
+      \trMatch{T}{\matchPlug{\xi}{T'}}, \annot{v}{\alpha}
+      \uneval
+      \rho \vee \rho',
+      \annot{(\exMatch{e}{\sigma})}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\uneval$-defs}}]
+   {
+      T, \annot{v}{\alpha} \uneval \rho \concat \rho_1, e
+      \\
+      \rho_1, \vec{z} \uncloseDefs \rho', \vec{d}
+   }
+   {
+      \trDefs{\vec{z}}{T}, \annot{v}{\alpha}
+      \uneval
+      \rho \vee \rho', \annot{(\exDefs{\vec{d}}{e})}{\alpha}
+   }
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$\vec{T}, \vec{u} \uneval \rho, \vec{e}$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \annot{\seqEmpty}{\rho}, \seqEmpty
+      \uneval
+      \sub{\bot}{\rho},
+      \seqEmpty
+   }
+   \and
+   %
+   \inferrule*
+   {
+      \vec{T}, \vec{u} \uneval \rho_1, \vec{e}
+      \\
+      T, u \uneval \rho_2, e
+   }
+   {
+      T \concat \vec{T},
+      u \concat \vec{u}
+      \uneval
+      \rho_1 \vee \rho_2,
+      e \concat \vec{e}
+   }
+\end{smathpar}
+\caption{Reverse evaluation for terms and term sequences}
+\end{figure}

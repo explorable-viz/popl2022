@@ -1,0 +1,74 @@
+\begin{figure}
+\flushleft \shadebox{$v, \sigma \matchFwd \rho, \matchPlug{\xi}{e}, \alpha$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
+   {
+      \strut
+   }
+   {
+      v, \elimVar{x}{e} \matchFwd \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}, \true
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exTrue}{\alpha}, \elimBool{e}{e'}
+      \matchFwd
+      \envEmpty, \matchTrue{e}{e'}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exFalse}{\alpha}, \elimBool{e}{e'}
+      \matchFwd
+      \envEmpty, \matchFalse{e}{e'}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exPair{v}{v'}}{\alpha}, \elimPair{x}{y}{e}
+      \matchFwd
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchPair{x}{y}{e}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \matchFwd
+      \envEmpty, \matchNil{e}{x}{y}{e'}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exCons{v}{v'}}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \matchFwd
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchCons{e}{x}{y}{e'}, \alpha
+   }
+\end{smathpar}
+\caption{Pattern-matching}
+\label{fig:impl-language:match}
+\end{figure}
