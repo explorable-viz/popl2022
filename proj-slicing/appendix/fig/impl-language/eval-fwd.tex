@@ -78,6 +78,30 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-bot-l}}]
+   {
+      \rho, e, \bot \fwdSlice u
+      \\
+      \rho, e', \bot \fwdSlice \bot
+   }
+   {
+      \rho, \exPair{e}{e'}, \bot \fwdSlice \exPairProjL{u}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-bot-r}}]
+   {
+      \rho, e, \bot \fwdSlice \bot
+      \\
+      \rho, e', \bot \fwdSlice u
+   }
+   {
+      \rho, \exPair{e}{e'}, \bot \fwdSlice \exPairProjR{v}{u}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
    {
       \strut
