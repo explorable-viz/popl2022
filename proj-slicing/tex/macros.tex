@@ -87,14 +87,20 @@
 \newcommand*{\exThunkVar}[2]{{#1}: {#2}}
 \newcommand*{\exTop}{\top}
 
+\newcommand*{\branchCons}[3]{\exCons{#1}{#2}\mapsto{#3}}
+\newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
+
 % Tries.
+\newcommand*{\elimBool}[2]{\{\exTrue \mapsto {#1}, \exFalse \mapsto {#2}\}}
 \newcommand*{\elimConstr}[1]{#1}
 \newcommand*{\elimEmpty}{\bot}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimFunNoRHS}{\uplambda}
 \newcommand*{\elimGround}[2]{\elimGroundNoRHS{#1} \mapsto {#2}}
 \newcommand*{\elimGroundNoRHS}[1]{\tyGround{#1}}
+\newcommand*{\elimList}[2]{\{{#1},{#2}\}}
 \newcommand*{\elimNarySum}[1]{\{#1\}}
+\newcommand*{\elimPair}[3]{\exPair{#1}{#2}\mapsto{#3}}
 \newcommand*{\elimSingleton}[2]{#1[#2]}
 \newcommand*{\elimSum}[2]{[\exInl{#1},\exInr{#2}]}
 \newcommand*{\elimSumL}[1]{[\exInl{#1}]}
@@ -132,8 +138,11 @@
 \newcommand*{\elimNarySumUpdate}[3]{#1[#2 \mapsto {#3}]}
 
 % Types.
+\newcommand*{\tyBool}[0]{\kw{Bool}}
 \newcommand*{\tyData}[1]{#1}
 \newcommand*{\tyGround}[1]{#1}
+\newcommand*{\tyInt}[0]{\kw{Int}}
+\newcommand*{\tyList}[0]{\kw{List}}
 \newcommand*{\tyZero}{\kw{0}}
 \newcommand*{\tyUnit}{\kw{1}}
 \newcommand*{\tySum}[2]{{#1}+{#2}}
