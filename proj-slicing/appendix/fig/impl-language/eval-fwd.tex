@@ -112,16 +112,12 @@
       lab={\ruleName{$\fwdSlice$-add}}
    ]
    {
-      \explVal{T}{\rho, e, \alpha' \fwdSlice \annot{m}{\alpha^\twoPrime}}
+      \rho, e, \top \fwdSlice m
       \\
-      \explVal{T'}{\rho, e', \alpha' \fwdSlice \annot{n}{\smash{\alpha^\threePrime}}}
+      \rho, e', \top \fwdSlice n
    }
    {
-      \explVal
-         {\trAdd{T}{T'}}
-         {\rho, \annot{\exAdd{e}{e'}}{\alpha}, \alpha',
-          \fwdSlice
-          \annot{(m \mathbin{\hat{+}} n)}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime \wedge \alpha^\threePrime}}}
+      \rho, \exAdd{e}{e'}, \top \fwdSlice m \mathbin{\hat{+}} n
    }
    %
    \and
