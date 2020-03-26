@@ -31,17 +31,17 @@
       \strut
    }
    {
-      \explVal{\trNil}{\rho, \annot{\exTrue}{\alpha}, \alpha' \fwdSlice \annot{\exTrue}{\alpha \wedge \alpha'}}
+      \rho, \exTrue, \top \fwdSlice \exTrue
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-false}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-true-bot}}]
    {
       \strut
    }
    {
-      \explVal{\trNil}{\rho, \annot{\exFalse}{\alpha}, \alpha' \fwdSlice \annot{\exFalse}{\alpha \wedge \alpha'}}
+      \rho, \exTrue, \bot \fwdSlice \bot
    }
    %
    \and
