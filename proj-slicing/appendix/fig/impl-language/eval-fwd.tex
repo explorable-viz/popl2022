@@ -51,7 +51,17 @@
       \strut
    }
    {
-      \explVal{\trInt{n}}{\rho, \annot{\exInt{n}}{\alpha}, \alpha' \fwdSlice \annot{\exInt{n}}{\alpha \wedge \alpha'}}
+      \rho, \exInt{n}, \top \fwdSlice \exInt{n}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-int-bot}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exInt{n}, \bot \fwdSlice \bot
    }
    %
    \and
@@ -114,30 +124,6 @@
          {\rho, \annot{\exAdd{e}{e'}}{\alpha}, \alpha',
           \fwdSlice
           \annot{(m \mathbin{\hat{+}} n)}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime \wedge \alpha^\threePrime}}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
-   {
-      \strut
-   }
-   {
-      \explVal{\trNil}{\rho, \annot{\exNil}{\alpha}, \alpha' \fwdSlice \annot{\exNil}{\alpha \wedge \alpha'}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-cons}}]
-   {
-      \explVal{T}{\rho, e, \alpha' \fwdSlice v}
-      \\
-      \explVal{T'}{\rho, e', \alpha' \fwdSlice v'}
-   }
-   {
-      \explVal
-         {\trCons{T}{T'}}
-         {\rho, \annot{\exCons{e}{e'}}{\alpha}, \alpha' \fwdSlice \annot{\exCons{v}{v'}}{\alpha \wedge \alpha'}}
    }
    %
    \and
