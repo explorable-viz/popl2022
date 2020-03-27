@@ -1,13 +1,14 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma \matchFwd \rho, \matchPlug{\xi}{e}, \alpha$}
+\flushleft \shadebox{$v, \sigma \matchFwd \rho, e, \alpha$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{e} \matchFwd \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}, \true
+      v, \elimVar{x}{e} \matchFwd \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}, \top
    }
+   \\
    %
    \and
    %
@@ -16,9 +17,21 @@
       \strut
    }
    {
-      \annot{\exTrue}{\alpha}, \elimBool{e}{e'}
+      \exTrue, \elimBool{e}{e'}
       \matchFwd
-      \envEmpty, \matchTrue{e}{e'}, \alpha
+      \envEmpty, e, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true-del}}]
+   {
+      \strut
+   }
+   {
+      \bot, \elimBool{e}{e'}
+      \matchFwd
+      \envEmpty, e, \bot
    }
    %
    \and
@@ -28,9 +41,33 @@
       \strut
    }
    {
-      \annot{\exFalse}{\alpha}, \elimBool{e}{e'}
+      \exFalse, \elimBool{e}{e'}
       \matchFwd
-      \envEmpty, \matchFalse{e}{e'}, \alpha
+      \envEmpty, e', \top
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false-del}}]
+   {
+      \strut
+   }
+   {
+      \bot, \elimBool{e}{e'}
+      \matchFwd
+      \envEmpty, e', \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-del}}]
+   {
+      \strut
+   }
+   {
+      \exPair{v}{v'}, \elimPair{x}{y}{e}
+      \matchFwd
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \top
    }
    %
    \and
@@ -40,9 +77,9 @@
       \strut
    }
    {
-      \annot{\exPair{v}{v'}}{\alpha}, \elimPair{x}{y}{e}
+      \exPairDel{v}{v'}, \elimPair{x}{y}{e}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchPair{x}{y}{e}, \alpha
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \bot
    }
    %
    \and
@@ -52,9 +89,21 @@
       \strut
    }
    {
-      \annot{\exNil}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \matchFwd
-      \envEmpty, \matchNil{e}{x}{y}{e'}, \alpha
+      \envEmpty, e, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-nil-del}}]
+   {
+      \strut
+   }
+   {
+      \bot, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \matchFwd
+      \envEmpty, e, \bot
    }
    %
    \and
@@ -64,9 +113,21 @@
       \strut
    }
    {
-      \annot{\exCons{v}{v'}}{\alpha}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchCons{e}{x}{y}{e'}, \alpha
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \top
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons-del}}]
+   {
+      \strut
+   }
+   {
+      \exConsDel{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \matchFwd
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \bot
    }
 \end{smathpar}
 \caption{Pattern-matching}
