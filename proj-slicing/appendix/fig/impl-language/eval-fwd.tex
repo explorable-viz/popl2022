@@ -78,42 +78,26 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-proj-l}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-bot}}]
    {
-      \rho, e, \alpha \fwdSlice u
+      \rho, e, \bot \fwdSlice v
+      \\
+      \rho, e', \bot \fwdSlice v'
    }
    {
-      \rho, \exPairProjL{e}{e'}, \alpha \fwdSlice \exPairProjL{u}{\bot}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-proj-l-bot}}]
-   {
-      \rho, e, \alpha \fwdSlice \bot
-   }
-   {
-      \rho, \exPairProjL{e}{e'}, \alpha \fwdSlice \bot
+      \rho, \exPair{e}{e'}, \bot \fwdSlice \exPairDel{v}{v'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-proj-r}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-del}}]
    {
-      \rho, e', \alpha \fwdSlice u
+      \rho, e, \alpha \fwdSlice v
+      \\
+      \rho, e', \alpha \fwdSlice v'
    }
    {
-      \rho, \exPairProjR{e}{e'}, \alpha \fwdSlice \exPairProjR{\bot}{u}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-proj-bot}}]
-   {
-      \rho, e', \alpha \fwdSlice \bot
-   }
-   {
-      \rho, \exPairProjR{e}{e'}, \alpha \fwdSlice \bot
+      \rho, \exPairDel{e}{e'}, \alpha \fwdSlice \exPairDel{v}{v'}
    }
    %
    \and
