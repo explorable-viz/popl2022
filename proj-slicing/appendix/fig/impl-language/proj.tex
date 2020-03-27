@@ -1,8 +1,7 @@
 \begin{figure}[p]
 \flushleft \shadebox{$e \proj e'$}
 \begin{smathpar}
-   \inferrule*[
-   ]
+   \inferrule*
    {
       \strut
    }
@@ -19,8 +18,32 @@
       e_2 \proj e_2'
    }
    {
-      \exCons(e_1, e_2) \proj \exCons{e_1', e_2'}
+      \exPair{e_1}{e_2} \proj \exPair{e_1'}{e_2'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj e_1'
+      \\
+      e_2 \proj \bot
+   }
+   {
+      \exPairDel{e_1}{e_2} \proj e_1'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj \bot
+      \\
+      e_2 \proj e_2'
+   }
+   {
+      \exPairDel{e_1}{e_2} \proj e_2'
    }
 \end{smathpar}
-\caption{Projection (deterministic and partial)}
+\caption{Projection (deterministic and partial; selected rules only)}
 \end{figure}
