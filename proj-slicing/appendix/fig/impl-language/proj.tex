@@ -13,6 +13,36 @@
    %
    \inferrule*
    {
+      \strut
+   }
+   {
+      x \proj x
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \exTrue \proj \exTrue
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      n \proj n
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
       e_1 \proj e_1'
       \\
       e_2 \proj e_2'
@@ -43,6 +73,64 @@
    }
    {
       \exPairDel{e_1}{e_2} \proj e_2'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \sigma \proj \sigma'
+   }
+   {
+      \exRec{f}{\sigma} \proj \exRec{f}{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj e_1'
+      \\
+      e_2 \proj e_2'
+   }
+   {
+      \exApp{e_1}{e_2} \proj \exApp{e_1'}{e_2'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj e_1'
+      \\
+      e_2 \proj e_2'
+   }
+   {
+      \exAdd{e_1}{e_2} \proj \exAdd{e_1'}{e_2'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj e_1'
+      \\
+      e_2 \proj e_2'
+   }
+   {
+      \exLet{x}{e_1}{e_2} \proj \exLet{x}{e_1'}{e_2'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj \bot
+      \\
+      e_2 \proj e_2'
+   }
+   {
+      \exLet{x}{e_1}{e_2} \proj \exLet{x}{e_1'}{e_2'}
    }
 \end{smathpar}
 \caption{Projection (deterministic and partial; selected rules only)}
