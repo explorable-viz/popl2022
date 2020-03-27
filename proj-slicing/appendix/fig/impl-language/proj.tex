@@ -1,0 +1,26 @@
+\begin{figure}[p]
+\flushleft \shadebox{$e \proj e'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \bot \proj \bot
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj e_1'
+      \\
+      e_2 \proj e_2'
+   }
+   {
+      \exCons(e_1, e_2) \proj \exCons{e_1', e_2'}
+   }
+\end{smathpar}
+\caption{Projection (deterministic and partial)}
+\end{figure}
