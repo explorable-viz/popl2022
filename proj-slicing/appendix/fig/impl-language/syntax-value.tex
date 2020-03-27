@@ -6,12 +6,17 @@ v
 &
 ::=
 &
-\annot{\exTrue}{\alpha} \mid \annot{\exFalse}{\alpha}
+\bot
+&
+\text{absent}
+\\
+&&&
+\exTrue \mid \exFalse
 &
 \text{Boolean}
 \\
 &&&
-\annot{\exInt{n}}{\alpha}
+\exInt{n}
 &
 \text{integer}
 \\
@@ -21,19 +26,25 @@ v
 \text{closure}
 \\
 &&&
-\annot{\exPair{v}{v'}}{\alpha}
+\exPair{v}{v'}
 &
 \text{pair}
 \\
 &&&
-\annot{\exNil}{\alpha}
+\exPairDel{v}{v'}
+\\
+&&&
+\exNil
 &
 \text{nil}
 \\
 &&&
-\annot{\exCons{v}{v'}}{\alpha}
+\exCons{v}{v'}
 &
-\text{pair}
+\text{cons}
+\\
+&&&
+\exConsDel{v}{v'}
 \\[2mm]
 \mbox{Environment}
 &
@@ -50,5 +61,5 @@ v
 &
 \text{extend}
 \end{syntaxfig}
-\caption{Runtime syntax}
+\caption{Values and environments}
 \end{figure}
