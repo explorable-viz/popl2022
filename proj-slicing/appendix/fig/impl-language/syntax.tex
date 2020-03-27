@@ -116,10 +116,7 @@ x
 \text{pair}
 \\
 &&&
-\exPairProjL{e}{e'}
-\\
-&&&
-\exPairProjR{e}{e'}
+\exPairDel{e}{e'}
 \\
 &&&
 \exRec{f}{\sigma}
@@ -147,19 +144,15 @@ x
 \text{cons}
 \\
 &&&
-\exConsProjL{e}{e'}
-\\
-&&&
-\exConsProjR{e}{e'}
+\exConsDel{e}{e'}
 \\
 &&&
 \exLet{x}{e}{e'}
 &
+\text{let}
 \\
 &&&
 \exLetProj{x}{e}{e'}
-&
-\text{let}
 \end{syntaxfig}
 \caption{Syntax for the implementation language}
 \label{fig:impl-language:syntax}
