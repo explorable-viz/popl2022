@@ -43,24 +43,24 @@
    %
    \inferrule*
    {
-      e_1 \proj e_1'
+      e_1 \proj {e_1}'
       \\
-      e_2 \proj e_2'
+      e_2 \proj {e_2}'
    }
    {
-      \exPair{e_1}{e_2} \proj \exPair{e_1'}{e_2'}
+      \exPair{e_1}{e_2} \proj \exPair{{e_1}'}{{e_2}'}
    }
    %
    \and
    %
    \inferrule*
    {
-      e_1 \proj e_1'
+      e_1 \proj {e_1}'
       \\
       e_2 \proj \bot
    }
    {
-      \exPairDel{e_1}{e_2} \proj e_1'
+      \exPairDel{e_1}{e_2} \proj {e_1}'
    }
    %
    \and
@@ -69,10 +69,10 @@
    {
       e_1 \proj \bot
       \\
-      e_2 \proj e_2'
+      e_2 \proj {e_2}'
    }
    {
-      \exPairDel{e_1}{e_2} \proj e_2'
+      \exPairDel{e_1}{e_2} \proj {e_2}'
    }
    %
    \and
@@ -89,36 +89,36 @@
    %
    \inferrule*
    {
-      e_1 \proj e_1'
+      e_1 \proj {e_1}'
       \\
-      e_2 \proj e_2'
+      e_2 \proj {e_2}'
    }
    {
-      \exApp{e_1}{e_2} \proj \exApp{e_1'}{e_2'}
+      \exApp{e_1}{e_2} \proj \exApp{{e_1}'}{{e_2}'}
    }
    %
    \and
    %
    \inferrule*
    {
-      e_1 \proj e_1'
+      e_1 \proj {e_1}'
       \\
-      e_2 \proj e_2'
+      e_2 \proj {e_2}'
    }
    {
-      \exAdd{e_1}{e_2} \proj \exAdd{e_1'}{e_2'}
+      \exAdd{e_1}{e_2} \proj \exAdd{{e_1}'}{{e_2}'}
    }
    %
    \and
    %
    \inferrule*
    {
-      e_1 \proj e_1'
+      e_1 \proj {e_1}'
       \\
-      e_2 \proj e_2'
+      e_2 \proj {e_2}'
    }
    {
-      \exLet{x}{e_1}{e_2} \proj \exLet{x}{e_1'}{e_2'}
+      \exLet{x}{e_1}{e_2} \proj \exLet{x}{{e_1}'}{{e_2}'}
    }
    %
    \and
@@ -127,10 +127,10 @@
    {
       e_1 \proj \bot
       \\
-      e_2 \proj e_2'
+      e_2 \proj {e_2}'
    }
    {
-      \exLetDel{x}{e_1}{e_2} \proj e_2'
+      \exLetDel{x}{e_1}{e_2} \proj {e_2}'
    }
 \end{smathpar}
 \caption{Projection (deterministic and partial; selected rules only)}
