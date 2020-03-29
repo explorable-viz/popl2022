@@ -116,16 +116,19 @@
 
 % Matches.
 %\newcommand*{\matchedConstr}[1]{\elimConstr{#1}}
+\newcommand*{\matchCons}[4]{\{\branchNil{#1},\,\matchPlug{\exCons{#2}{#3}\mapsto\;}{#4}\}}
 \newcommand*{\matchConsLow}[4]{\lowlight{\{\branchNil{#1},\,}\matchPlugLow{\exCons{#2}{#3}\mapsto\;}{#4}\lowlight{\}}}
 \newcommand*{\matchFalse}[2]{\{\exTrue\mapsto{#1},\,\matchPlug{\exFalse\mapsto}{#2}\}}
 \newcommand*{\matchFalseLow}[2]{\lowlight{\{\exTrue\mapsto{#1},\,}\matchPlugLow{\exFalse\mapsto}{#2}\lowlight{\}}}
 \newcommand*{\matchHole}[1]{[#1]}
+\newcommand*{\matchNil}[4]{\{\matchPlug{\exNil\mapsto}{#1},\branchCons{#2}{#3}{#4}\}}
 \newcommand*{\matchNilLow}[4]{\lowlight{\{}\matchPlugLow{\exNil\mapsto}{#1}\lowlight{,\branchCons{#2}{#3}{#4}\}}}
 \newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
 \newcommand*{\matchSumL}[1]{[\exInl{#1}]}
 \newcommand*{\matchSumR}[1]{[\exInr{#1}]}
 \newcommand*{\matchTrue}[2]{\{\matchPlug{\exTrue\mapsto}{#1},\exFalse\mapsto{#2}\}}
 \newcommand*{\matchTrueLow}[2]{\lowlight{\{}\matchPlugLow{\exTrue\mapsto}{#1}\lowlight{,\exFalse\mapsto{#2}\}}}
+\newcommand*{\matchPair}[3]{\matchPlug{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPairLow}[3]{\matchPlugLow{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPlug}[2]{#1[#2]}
 \newcommand*{\matchPlugLow}[2]{\lowlight{#1[}#2\lowlight{]}}
@@ -269,9 +272,11 @@
 \newcommand*{\valExplTypeNew}[2]{\vdash {#1} : {#2}}
 
 % Evaluation.
-\newcommand*{\eval}[1]{\mathrel{\Rightarrow_{#1}}}
-\newcommand*{\fwdSlice}{\nearrow}
-\newcommand*{\bwdSlice}{\searrow}
+\newcommand*{\eval}{\mathrel{\Rightarrow}}
+% \newcommand*{\fwdSlice}{\nearrow}
+% \newcommand*{\bwdSlice}{\searrow}
+\newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
+\newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\uneval}{\Leftarrow}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
@@ -284,13 +289,14 @@
 \newcommand*{\seq}{\mathrel{\smalltriangleright}}
 
 % Traces.
-\newcommand*{\trAdd}[2]{\exAdd{#1}{#2}}
+\newcommand*{\trAdd}[4]{\exAdd{#1_{#2}}{#3_{#4}}}
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
 \newcommand*{\trBot}{\exBot}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trConstr}[2]{#1(#2)}
 \newcommand*{\trDefs}[2]{\exDefs{#1}{#2}}
 \newcommand*{\trEmpty}{\varepsilon}
+\newcommand*{\trFalse}{\exFalse}
 \newcommand*{\trFun}[1]{\exFun{#1}}
 \newcommand*{\trInl}[1]{\exInl{#1}}
 \newcommand*{\trInr}[1]{\exInr{#1}}
@@ -306,6 +312,7 @@
 \newcommand*{\trPrimDef}[1]{\exPrimDef{#1}}
 \newcommand*{\trRec}[2]{\kw{fun}\,{#1}{#2}}
 \newcommand*{\trRoll}[1]{\exRoll{#1}}
+\newcommand*{\trTrue}{\exTrue}
 \newcommand*{\trUnaryApp}[2]{\exApp{#1}{#2}}
 \newcommand*{\trUnit}[1]{\sub{\exUnit}{#1}}
 \newcommand*{\trVar}[3]{{#1}\seq_{\lowlight{#2}}{#3}}

@@ -14,7 +14,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-var-$\top$}},
+      lab={\ruleName{$\fwdSlice$-var}},
       right={\textnormal{$x: v \in \rho$}}
    ]
    {
@@ -153,9 +153,7 @@
       \strut
    }
    {
-      \explVal
-         {\trRec{f}{\sigma}}
-         {\rho, \exRec{f}{\sigma}, \alpha \fwdSlice \exClosureRec{\rho}{f}{\sigma}}
+      \rho, \exRec{f}{\sigma}, \top \fwdSlice \exClosureRec{\rho}{f}{\sigma}
    }
    %
    \and
