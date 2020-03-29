@@ -120,12 +120,14 @@
 \newcommand*{\matchFalse}[2]{\{\exTrue\mapsto{#1},\,\matchPlug{\exFalse\mapsto}{#2}\}}
 \newcommand*{\matchFalseLow}[2]{\lowlight{\{\exTrue\mapsto{#1},\,}\matchPlugLow{\exFalse\mapsto}{#2}\lowlight{\}}}
 \newcommand*{\matchHole}[1]{[#1]}
+\newcommand*{\matchNil}[4]{\{\matchPlug{\exNil\mapsto}{#1},\branchCons{#2}{#3}{#4}\}}
 \newcommand*{\matchNilLow}[4]{\lowlight{\{}\matchPlugLow{\exNil\mapsto}{#1}\lowlight{,\branchCons{#2}{#3}{#4}\}}}
 \newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
 \newcommand*{\matchSumL}[1]{[\exInl{#1}]}
 \newcommand*{\matchSumR}[1]{[\exInr{#1}]}
 \newcommand*{\matchTrue}[2]{\{\matchPlug{\exTrue\mapsto}{#1},\exFalse\mapsto{#2}\}}
 \newcommand*{\matchTrueLow}[2]{\lowlight{\{}\matchPlugLow{\exTrue\mapsto}{#1}\lowlight{,\exFalse\mapsto{#2}\}}}
+\newcommand*{\matchPair}[3]{\matchPlug{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPairLow}[3]{\matchPlugLow{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPlug}[2]{#1[#2]}
 \newcommand*{\matchPlugLow}[2]{\lowlight{#1[}#2\lowlight{]}}
