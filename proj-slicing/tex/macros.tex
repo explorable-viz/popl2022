@@ -272,9 +272,11 @@
 \newcommand*{\valExplTypeNew}[2]{\vdash {#1} : {#2}}
 
 % Evaluation.
-\newcommand*{\eval}[1]{\mathrel{\Rightarrow_{#1}}}
-\newcommand*{\fwdSlice}{\nearrow}
-\newcommand*{\bwdSlice}{\searrow}
+\newcommand*{\eval}{\mathrel{\Rightarrow}}
+% \newcommand*{\fwdSlice}{\nearrow}
+% \newcommand*{\bwdSlice}{\searrow}
+\newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
+\newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\uneval}{\Leftarrow}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
