@@ -8,6 +8,42 @@
    {
       v, \elimVar{x}{e} \match \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\match$-true}}]
+   {
+      \strut
+   }
+   {
+      \exTrue, \elimBool{e}{e'}
+      \match
+      \envEmpty, e
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\match$-false}}]
+   {
+      \strut
+   }
+   {
+      \exFalse, \elimBool{e}{e'}
+      \match
+      \envEmpty, e'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\match$-pair}}]
+   {
+      \strut
+   }
+   {
+      \exPair{v}{v'}, \elimPair{x}{y}{e}
+      \match
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e
+   }
 \end{smathpar}
 \caption{Pattern-matching}
 \end{figure}
