@@ -1,196 +1,206 @@
 \begin{figure}[p]
-\flushleft \shadebox{$\rho, e \eval T, u$}
-\begin{smathpar}
-   \inferrule*[lab={\ruleName{$\eval$-annot}}]
-   {
-      \rho, r
-      \eval
-      T, \annot{v}{\alpha'}
-   }
-   {
-      \rho,
-      \annot{r}{\alpha}
-      \eval
-      T, \annot{v}{\alpha \wedge \alpha'}
-   }
-\end{smathpar}
-\\
-\flushleft \shadebox{$\rho, r \eval T, u$}
+\flushleft \shadebox{$\explVal{T}{\rho, e \eval v}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\eval$-var}},
-      right={\textnormal{$\exThunkVar{x}{u} \in \rho$}}
+      lab={\ruleName{$\fwdSlice$-bot}},
    ]
-   {
-   }
-   {
-      \rho, \exVar{x} \eval \trVarTwo{x}{\rho}, u
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-const}}]
-   {
-   }
-   {
-      \rho,
-      \exConst{k}
-      \eval
-      \sub{\trEmpty}{\rho}, \exConst{k}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-fun}}]
-   {
-   }
-   {
-      \rho,
-      \exFun{\sigma}
-      \eval
-      \sub{\trEmpty}{\rho}, \exClosureNew{\rho}{\seqEmpty}{\exFun{\sigma}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-app}}]
-   {
-      \rho, e \eval T, \annot{\exClosureNew{\rho_1}{\delta}{\exFun{\sigma}}}{\alpha}
-      \\
-      \rho_1, \delta \closeDefs \rho_2
-      \\
-      \rho, e' \eval T', u
-      \\\\
-      u, \sigma \lookupR \rho_3, \matchPlug{\xi}{e^\twoPrime}, \alpha'
-      \\
-      \rho_1 \concat \rho_2 \concat \rho_3, e^\twoPrime
-      \eval
-      U, \annot{v}{\alpha^\twoPrime}
-   }
-   {
-      \rho,
-      \exApp{e}{e'}
-      \eval
-      \trApp{T}{T'}{\matchPlug{\xi}{U}},
-      \annot{v}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\eval$-app-unary}},
-      right={\textnormal{$k \in \dom{\interpret{\phi}}$}}
-   ]
-   {
-      \rho, e \eval T, \annot{\phi}{\alpha}
-      \\
-      \rho, e' \eval T', \annot{k}{\alpha'}
-   }
-   {
-      \rho,
-      \exApp{e}{e'}
-      \eval
-      \trUnaryApp{(\explVal{T}{\phi})}{(\explVal{T'}{\exConst{k}})},
-      \annot{\interpret{\phi}(k)}{\alpha \wedge \alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\eval$-app-binary}},
-      right={\textnormal{$(k, k') \in \dom{\interpret{\primOp}}$
-      }}
-   ]
-   {
-      \rho, e \eval T, \annot{k}{\alpha'}
-      \\
-      \rho, e' \eval T', \annot{k'}{\smash{\alpha^\twoPrime}}
-   }
-   {
-      \rho,
-      \exPrimApp{e}{\annot{\primOp}{\alpha}}{e'}
-      \eval
-      \trPrimApp{(\explVal{T}{k})}{\primOp}{(\explVal{T'}{k'})},
-      \annot{\interpret{\primOp}(k, k')}{\smash{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-constr}}]
-   {
-      \rho,
-      \vec{e}
-      \eval
-      \vec{T}, \vec{u}
-   }
-   {
-      \rho,
-      \exConstr{c}{\vec{e}}
-      \eval
-      \trConstr{c}{\vec{T}}, \exConstr{c}{\vec{u}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-match}}]
-   {
-      \rho, e \eval T, u
-      \\
-      u, \sigma \lookupR \rho_1, \matchProd{\xi}{e'}, \alpha
-      \\
-      \rho \concat \rho_1, e' \eval T', \annot{v}{\alpha'}
-   }
-   {
-      \rho,
-      \exMatch{e}{\sigma}
-      \eval
-      \trMatch{T}{\matchPlug{\xi}{T'}}, \annot{v}{\alpha \wedge \alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-defs}}]
-   {
-      \rho, \vec{d} \closeDefs \rho_1, \vec{z}
-      \\
-      \rho \concat \rho_1, e \eval T, u
-   }
-   {
-      \rho, \exDefs{\vec{d}}{e}
-      \eval
-      \trDefs{\vec{z}}{T}, u
-   }
-\end{smathpar}
-\vspace{5pt}
-
-\flushleft \shadebox{$\rho, \vec{e} \eval \vec{T}, \vec{u}$}
-\begin{smathpar}
-   \inferrule*
    {
       \strut
    }
    {
-      \rho,
-      \seqEmpty
-      \eval
-      \sub{\seqEmpty}{\rho},
-      \seqEmpty
+      \rho, \bot \eval \bot
    }
+   %
    \and
    %
-   \inferrule*
+   \inferrule*[
+      lab={\ruleName{$\eval$-var}},
+      right={\textnormal{$x: v \in \rho$}}
+   ]
    {
-      \rho, e \eval T, u
-      \\
-      \rho, \vec{e} \eval \vec{T}, \vec{u}
+      \strut
    }
    {
-      \rho,
-      e \concat \vec{e}
-      \eval
-      T \concat \vec{T},
-      u \concat \vec{u}
+      \rho, x \eval v
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-true}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exTrue, \top \fwdSlice \exTrue
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-true-bot}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exTrue, \bot \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-int}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exInt{n}, \top \fwdSlice \exInt{n}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-int-bot}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exInt{n}, \bot \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
+   {
+      \rho, e, \top \fwdSlice v
+      \\
+      \rho, e', \top \fwdSlice v'
+   }
+   {
+      \rho, \exPair{e}{e'}, \top \fwdSlice \exPair{v}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-bot}}]
+   {
+      \rho, e, \bot \fwdSlice v
+      \\
+      \rho, e', \bot \fwdSlice v'
+   }
+   {
+      \rho, \exPair{e}{e'}, \bot \fwdSlice \exPairDel{v}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-del}}]
+   {
+      \rho, e, \alpha \fwdSlice v
+      \\
+      \rho, e', \alpha \fwdSlice v'
+   }
+   {
+      \rho, \exPairDel{e}{e'}, \alpha \fwdSlice \exPairDel{v}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
+   {
+      \strut
+   }
+   {
+      \explVal
+         {\trRec{f}{\sigma}}
+         {\rho, \exRec{f}{\sigma}, \alpha \fwdSlice \exClosureRec{\rho}{f}{\sigma}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
+   {
+      \rho, e, \alpha \fwdSlice \exClosureRec{\rho'}{f}{\sigma}
+      \\
+      \rho, e', \alpha \fwdSlice v
+      \\
+      v, \sigma \match \rho^\twoPrime, e^\twoPrime, \alpha'
+      \\
+      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime, \alpha' \fwdSlice v'
+   }
+   {
+      \rho, \exApp{e}{e'}, \alpha \fwdSlice v'
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add}}
+   ]
+   {
+      \rho, e, \top \fwdSlice m
+      \\
+      \rho, e', \top \fwdSlice n
+   }
+   {
+      \rho, \exAdd{e}{e'}, \top \fwdSlice m \mathbin{\hat{+}} n
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add-bot}}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, \exAdd{e}{e'}, \bot \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add-bot-1}}
+   ]
+   {
+      \rho, e, \alpha \fwdSlice \bot
+   }
+   {
+      \rho, \exAdd{e}{e'}, \alpha \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add-bot-2}}
+   ]
+   {
+      \rho, e, \alpha \fwdSlice m
+      \\
+      \rho, e', \alpha \fwdSlice \bot
+   }
+   {
+      \rho, \exAdd{e}{e'}, \alpha \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
+   {
+      \rho, e, \alpha \fwdSlice v
+      \\
+      \envExtend{\rho}{x}{v}, e', \alpha \fwdSlice v'
+   }
+   {
+      \rho, \exLet{x}{e}{e'}, \alpha \fwdSlice v'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-let-proj}}]
+   {
+      \envExtend{\rho}{x}{\bot}, e', \alpha \fwdSlice v'
+   }
+   {
+      \rho, \exLetProj{x}{e}{e'}, \alpha \fwdSlice v'
    }
 \end{smathpar}
-\caption{Evaluation for terms and term sequences}
+\caption{Evaluation}
 \end{figure}
