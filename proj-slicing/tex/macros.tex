@@ -112,13 +112,23 @@
 \newcommand*{\elimVar}[2]{\elimVarNoRHS{#1} \mapsto {#2}}
 \newcommand*{\elimVarNoRHS}[1]{#1}
 
+\renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
+
 % Matches.
 %\newcommand*{\matchedConstr}[1]{\elimConstr{#1}}
+\newcommand*{\matchConsLow}[4]{\lowlight{\{\branchNil{#1},\,}\matchPlugLow{\exCons{#2}{#3}\mapsto\;}{#4}\lowlight{\}}}
+\newcommand*{\matchFalse}[2]{\{\exTrue\mapsto{#1},\,\matchPlug{\exFalse\mapsto}{#2}\}}
+\newcommand*{\matchFalseLow}[2]{\lowlight{\{\exTrue\mapsto{#1},\,}\matchPlugLow{\exFalse\mapsto}{#2}\lowlight{\}}}
 \newcommand*{\matchHole}[1]{[#1]}
+\newcommand*{\matchNilLow}[4]{\lowlight{\{}\matchPlugLow{\exNil\mapsto}{#1}\lowlight{,\branchCons{#2}{#3}{#4}\}}}
 \newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
 \newcommand*{\matchSumL}[1]{[\exInl{#1}]}
 \newcommand*{\matchSumR}[1]{[\exInr{#1}]}
-\newcommand*{\matchPlug}[2]{#1\matchHole{#2}}
+\newcommand*{\matchTrue}[2]{\{\matchPlug{\exTrue\mapsto}{#1},\exFalse\mapsto{#2}\}}
+\newcommand*{\matchTrueLow}[2]{\lowlight{\{}\matchPlugLow{\exTrue\mapsto}{#1}\lowlight{,\exFalse\mapsto{#2}\}}}
+\newcommand*{\matchPairLow}[3]{\matchPlugLow{\exPair{#1}{#2}\mapsto}{#3}}
+\newcommand*{\matchPlug}[2]{#1[#2]}
+\newcommand*{\matchPlugLow}[2]{\lowlight{#1[}#2\lowlight{]}}
 \newcommand*{\matchProd}[2]{\matchPlug{#1}{#2}}
 \newcommand*{\matchRoll}[1]{\elimRoll{#1}}
 \newcommand*{\matchInj}[1]{#1}

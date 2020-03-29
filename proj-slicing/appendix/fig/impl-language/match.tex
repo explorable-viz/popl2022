@@ -1,61 +1,37 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma \matchFwd \rho, e, \alpha$}
+\flushleft \shadebox{$v, \sigma \match \rho, \matchPlugLow{\xi}{e}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
+   \inferrule*[lab={\ruleName{$\match$-var}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{e} \matchFwd \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}, \top
+      v, \elimVar{x}{e} \match \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}
    }
    \\
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   \inferrule*[lab={\ruleName{$\match$-true}}]
    {
       \strut
    }
    {
       \exTrue, \elimBool{e}{e'}
-      \matchFwd
-      \envEmpty, e, \top
+      \match
+      \envEmpty, \matchTrueLow{e}{e'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-true-del}}]
-   {
-      \strut
-   }
-   {
-      \bot, \elimBool{e}{e'}
-      \matchFwd
-      \envEmpty, e, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   \inferrule*[lab={\ruleName{$\match$-false}}]
    {
       \strut
    }
    {
       \exFalse, \elimBool{e}{e'}
-      \matchFwd
-      \envEmpty, e', \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-false-del}}]
-   {
-      \strut
-   }
-   {
-      \bot, \elimBool{e}{e'}
-      \matchFwd
-      \envEmpty, e', \bot
+      \match
+      \envEmpty, \matchFalseLow{e}{e'}
    }
    %
    \and
@@ -84,52 +60,27 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
+   \inferrule*[lab={\ruleName{$\match$-nil}}]
    {
       \strut
    }
    {
       \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
-      \matchFwd
-      \envEmpty, e, \top
+      \match
+      \envEmpty, \matchNilLow{e}{x}{y}{e'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil-del}}]
-   {
-      \strut
-   }
-   {
-      \bot, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
-      \matchFwd
-      \envEmpty, e, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
+   \inferrule*[lab={\ruleName{$\match$-cons}}]
    {
       \strut
    }
    {
       \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-del}}]
-   {
-      \strut
-   }
-   {
-      \exConsDel{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \bot
+      \match
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchConsLow{e}{x}{y}{e'}
    }
 \end{smathpar}
 \caption{Pattern-matching}
-\label{fig:impl-language:match}
 \end{figure}
