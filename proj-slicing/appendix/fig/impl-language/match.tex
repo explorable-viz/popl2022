@@ -1,5 +1,5 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma \match \rho, e$}
+\flushleft \shadebox{$v, \sigma \match \rho, \matchPlugLow{\xi}{e}$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\match$-var}}]
    {
@@ -55,7 +55,7 @@
    {
       \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \envEmpty, e
+      \envEmpty, \matchNilLow{e}{x}{y}{e'}
    }
    %
    \and
@@ -67,7 +67,7 @@
    {
       \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e'
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchConsLow{e}{x}{y}{e'}
    }
 \end{smathpar}
 \caption{Pattern-matching}
