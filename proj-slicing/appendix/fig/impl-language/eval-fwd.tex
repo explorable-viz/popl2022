@@ -102,6 +102,52 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exNil, \alpha \fwdSlice \exNil
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-cons}}]
+   {
+      \rho, e, \top \fwdSlice v
+      \\
+      \rho, e', \top \fwdSlice v'
+   }
+   {
+      \rho, \exCons{e}{e'}, \top \fwdSlice \exCons{v}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-cons-bot}}]
+   {
+      \rho, e, \bot \fwdSlice v
+      \\
+      \rho, e', \bot \fwdSlice v'
+   }
+   {
+      \rho, \exCons{e}{e'}, \bot \fwdSlice \exConsDel{v}{v'}
+   }
+   %
+   \and 
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-cons-del}}]
+   {
+      \rho, e, \alpha \fwdSlice v
+      \\
+      \rho, e', \alpha \fwdSlice v'
+   }
+   {
+      \rho, \exConsDel{e}{e'}, \alpha \fwdSlice \exConsDel{v}{v'}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
    {
       \strut
