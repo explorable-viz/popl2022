@@ -8,7 +8,7 @@
       \strut
    }
    {
-      \rho, \bot \eval \bot
+      \explVal{\bot}{\rho, \bot \eval \bot}
    }
    %
    \and
@@ -21,47 +21,37 @@
       \strut
    }
    {
-      \rho, x \eval v
+      \explVal{x}{\rho, x \eval v}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-true}}]
+   \inferrule*[lab={\ruleName{$\eval$-true}}]
    {
       \strut
    }
    {
-      \rho, \exTrue, \top \fwdSlice \exTrue
+      \explVal{\trTrue}{\rho, \exTrue, \top \fwdSlice \exTrue}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-true-bot}}]
+   \inferrule*[lab={\ruleName{$\eval$-false}}]
    {
       \strut
    }
    {
-      \rho, \exTrue, \bot \fwdSlice \bot
+      \explVal{\trFalse}{\rho, \exFalse, \top \fwdSlice \exFalse}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-int}}]
+   \inferrule*[lab={\ruleName{$\eval$-int}}]
    {
       \strut
    }
    {
-      \rho, \exInt{n}, \top \fwdSlice \exInt{n}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-int-bot}}]
-   {
-      \strut
-   }
-   {
-      \rho, \exInt{n}, \bot \fwdSlice \bot
+      \explVal{\trInt{n}}{\rho, \exInt{n}, \top \fwdSlice \exInt{n}}
    }
    %
    \and
