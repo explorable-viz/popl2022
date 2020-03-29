@@ -91,7 +91,7 @@
       \explVal{U}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v'}
    }
    {
-      \explVal{\trApp{T}{T'}{\matchPlugLow{\xi}{U}}}{\rho, \exApp{e}{e'}, \alpha \eval v'}
+      \explVal{\trApp{T}{T'}{\matchPlugLow{\xi}{U}}}{\rho, \exApp{e}{e'} \eval v'}
    }
    %
    \and
@@ -100,34 +100,24 @@
       lab={\ruleName{$\eval$-add}}
    ]
    {
-      \explVal{T}{\rho, e \fwdSlice m}
+      \explVal{T}{\rho, e \eval m}
       \\
-      \explVal{T'}{\rho, e' \fwdSlice n}
+      \explVal{T'}{\rho, e' \eval n}
    }
    {
-      \explVal{\trAdd{T}{T'}}{\rho, \exAdd{e}{e'} \fwdSlice m \mathbin{\hat{+}} n}
+      \explVal{\trAdd{T}{m}{T'}{n}}{\rho, \exAdd{e}{e'} \eval m \mathbin{\hat{+}} n}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
+   \inferrule*[lab={\ruleName{$\eval$-let}}]
    {
-      \rho, e, \alpha \fwdSlice v
+      \explVal{T}{\rho, e \eval v}
       \\
-      \envExtend{\rho}{x}{v}, e', \alpha \fwdSlice v'
+      \explVal{T'}{\envExtend{\rho}{x}{v}, e' \eval v'}
    }
    {
-      \rho, \exLet{x}{e}{e'}, \alpha \fwdSlice v'
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-let-proj}}]
-   {
-      \envExtend{\rho}{x}{\bot}, e', \alpha \fwdSlice v'
-   }
-   {
-      \rho, \exLetProj{x}{e}{e'}, \alpha \fwdSlice v'
+      \explVal{\trLet{x}{T}{T'}}{\rho, \exLet{x}{e}{e'} \eval v'}
    }
 \end{smathpar}
 \caption{Evaluation}
