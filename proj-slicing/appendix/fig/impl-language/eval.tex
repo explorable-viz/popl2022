@@ -31,7 +31,7 @@
       \strut
    }
    {
-      \explVal{\trTrue}{\rho, \exTrue, \top \fwdSlice \exTrue}
+      \explVal{\trTrue}{\rho, \exTrue \fwdSlice \exTrue}
    }
    %
    \and
@@ -41,7 +41,7 @@
       \strut
    }
    {
-      \explVal{\trFalse}{\rho, \exFalse, \top \fwdSlice \exFalse}
+      \explVal{\trFalse}{\rho, \exFalse \fwdSlice \exFalse}
    }
    %
    \and
@@ -51,123 +51,61 @@
       \strut
    }
    {
-      \explVal{\trInt{n}}{\rho, \exInt{n}, \top \fwdSlice \exInt{n}}
+      \explVal{\trInt{n}}{\rho, \exInt{n} \fwdSlice \exInt{n}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
+   \inferrule*[lab={\ruleName{$\eval$-pair}}]
    {
-      \rho, e, \top \fwdSlice v
+      \explVal{T}{\rho, e \eval v}
       \\
-      \rho, e', \top \fwdSlice v'
+      \explVal{T'}{\rho, e' \eval v'}
    }
    {
-      \rho, \exPair{e}{e'}, \top \fwdSlice \exPair{v}{v'}
+      \explVal{\trPair{T}{T'}}{\rho, \exPair{e}{e'} \eval \exPair{v}{v'}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-bot}}]
-   {
-      \rho, e, \bot \fwdSlice v
-      \\
-      \rho, e', \bot \fwdSlice v'
-   }
-   {
-      \rho, \exPair{e}{e'}, \bot \fwdSlice \exPairDel{v}{v'}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-del}}]
-   {
-      \rho, e, \alpha \fwdSlice v
-      \\
-      \rho, e', \alpha \fwdSlice v'
-   }
-   {
-      \rho, \exPairDel{e}{e'}, \alpha \fwdSlice \exPairDel{v}{v'}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
+   \inferrule*[lab={\ruleName{$\eval$-fun}}]
    {
       \strut
    }
    {
       \explVal
          {\trRec{f}{\sigma}}
-         {\rho, \exRec{f}{\sigma}, \alpha \fwdSlice \exClosureRec{\rho}{f}{\sigma}}
+         {\rho, \exRec{f}{\sigma} \fwdSlice \exClosureRec{\rho}{f}{\sigma}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
+   \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
-      \rho, e, \alpha \fwdSlice \exClosureRec{\rho'}{f}{\sigma}
+      \explVal{T}{\rho, e \fwdSlice \exClosureRec{\rho'}{f}{\sigma}}
       \\
-      \rho, e', \alpha \fwdSlice v
+      \explVal{T'}{\rho, e' \fwdSlice v}
       \\
-      v, \sigma \match \rho^\twoPrime, e^\twoPrime, \alpha'
+      v, \sigma \match \rho^\twoPrime, \matchPlugLow{\xi}{e^\twoPrime}
       \\
-      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime, \alpha' \fwdSlice v'
+      \explVal{U}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v'}
    }
    {
-      \rho, \exApp{e}{e'}, \alpha \fwdSlice v'
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add}}
-   ]
-   {
-      \rho, e, \top \fwdSlice m
-      \\
-      \rho, e', \top \fwdSlice n
-   }
-   {
-      \rho, \exAdd{e}{e'}, \top \fwdSlice m \mathbin{\hat{+}} n
+      \explVal{\trApp{T}{T'}{\matchPlugLow{\xi}{U}}}{\rho, \exApp{e}{e'}, \alpha \eval v'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-bot}}
+      lab={\ruleName{$\eval$-add}}
    ]
    {
-      \strut
-   }
-   {
-      \rho, \exAdd{e}{e'}, \bot \fwdSlice \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-bot-1}}
-   ]
-   {
-      \rho, e, \alpha \fwdSlice \bot
-   }
-   {
-      \rho, \exAdd{e}{e'}, \alpha \fwdSlice \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-bot-2}}
-   ]
-   {
-      \rho, e, \alpha \fwdSlice m
+      \explVal{T}{\rho, e \fwdSlice m}
       \\
-      \rho, e', \alpha \fwdSlice \bot
+      \explVal{T'}{\rho, e' \fwdSlice n}
    }
    {
-      \rho, \exAdd{e}{e'}, \alpha \fwdSlice \bot
+      \explVal{\trAdd{T}{T'}}{\rho, \exAdd{e}{e'} \fwdSlice m \mathbin{\hat{+}} n}
    }
    %
    \and
