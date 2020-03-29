@@ -19,7 +19,7 @@
    {
       \exTrue, \elimBool{e}{e'}
       \match
-      \envEmpty, e
+      \envEmpty, \matchTrueLow{e}{e'}
    }
    %
    \and
@@ -31,7 +31,7 @@
    {
       \exFalse, \elimBool{e}{e'}
       \match
-      \envEmpty, e'
+      \envEmpty, \matchFalseLow{e}{e'}
    }
    %
    \and
