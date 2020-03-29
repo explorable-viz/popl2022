@@ -116,6 +116,7 @@
 
 % Matches.
 %\newcommand*{\matchedConstr}[1]{\elimConstr{#1}}
+\newcommand*{\matchCons}[4]{\{\branchNil{#1},\,\matchPlug{\exCons{#2}{#3}\mapsto\;}{#4}\}}
 \newcommand*{\matchConsLow}[4]{\lowlight{\{\branchNil{#1},\,}\matchPlugLow{\exCons{#2}{#3}\mapsto\;}{#4}\lowlight{\}}}
 \newcommand*{\matchFalse}[2]{\{\exTrue\mapsto{#1},\,\matchPlug{\exFalse\mapsto}{#2}\}}
 \newcommand*{\matchFalseLow}[2]{\lowlight{\{\exTrue\mapsto{#1},\,}\matchPlugLow{\exFalse\mapsto}{#2}\lowlight{\}}}
