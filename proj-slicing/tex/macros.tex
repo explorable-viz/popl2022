@@ -116,13 +116,13 @@
 
 % Matches.
 %\newcommand*{\matchedConstr}[1]{\elimConstr{#1}}
-\newcommand*{\matchCons}[4]{\{\branchNil{#1},\,\matchPlug{\exCons{#2}{#3}\mapsto\;}{#4}\}}
-\newcommand*{\matchConsLow}[4]{\lowlight{\{\branchNil{#1},\,}\matchPlugLow{\exCons{#2}{#3}\mapsto\;}{#4}\lowlight{\}}}
+\newcommand*{\matchCons}[3]{\matchPlug{\exCons{#1}{#2}\mapsto}{#3}}
+\newcommand*{\matchConsLow}[3]{\matchPlugLow{\exCons{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchFalse}[1]{\matchPlug{\exFalse\mapsto}{#1}}
 \newcommand*{\matchFalseLow}[1]{\matchPlugLow{\exFalse\mapsto}{#1}}
 \newcommand*{\matchHole}[1]{[#1]}
-\newcommand*{\matchNil}[4]{\{\matchPlug{\exNil\mapsto}{#1},\branchCons{#2}{#3}{#4}\}}
-\newcommand*{\matchNilLow}[4]{\lowlight{\{}\matchPlugLow{\exNil\mapsto}{#1}\lowlight{,\branchCons{#2}{#3}{#4}\}}}
+\newcommand*{\matchNil}[1]{\matchPlug{\exNil\mapsto}{#1}}
+\newcommand*{\matchNilLow}[1]{\matchPlugLow{\exNil\mapsto}{#1}}
 \newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
 \newcommand*{\matchSumL}[1]{[\exInl{#1}]}
 \newcommand*{\matchSumR}[1]{[\exInr{#1}]}

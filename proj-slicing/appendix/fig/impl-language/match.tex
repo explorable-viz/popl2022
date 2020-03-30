@@ -67,7 +67,7 @@
    {
       \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \envEmpty, \matchNilLow{e}{x}{y}{e'}
+      \envEmpty, \matchNilLow{e}
    }
    %
    \and
@@ -79,7 +79,7 @@
    {
       \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchConsLow{e}{x}{y}{e'}
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchConsLow{x}{y}{e'}
    }
 \end{smathpar}
 \caption{Pattern-matching}
