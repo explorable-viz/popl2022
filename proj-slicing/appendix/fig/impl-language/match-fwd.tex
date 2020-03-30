@@ -1,12 +1,14 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma \matchFwd \rho, e, \alpha$}
+\flushleft \shadebox{$v, \sigma, \xi \matchFwd \rho, e, \alpha$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{e} \matchFwd \envExtend{\envEmpty}{x}{v}, \matchVar{x}{e}, \top
+      v, \elimVar{x}{e}, \matchVar{x}{e'}
+      \matchFwd
+      \envExtend{\envEmpty}{x}{v}, e, \top
    }
    \\
    %
