@@ -136,7 +136,8 @@
 \newcommand*{\matchRoll}[1]{\elimRoll{#1}}
 \newcommand*{\matchInj}[1]{#1}
 \newcommand*{\matchUnit}[1]{\exUnit \mapsto {#1}}
-\newcommand*{\matchVar}[2]{{#1} \mapsto {#2}}
+\newcommand*{\matchVarLow}[2]{\matchPlugLow{{#1}\mapsto}{#2}}
+\newcommand*{\matchVar}[2]{\matchPlug{{#1}\mapsto}{#2}}
 
 \newcommand*{\pattToTrie}[2]{\llbracket#1\rrbracket_{#2}}
 \newcommand*{\branchesToTrie}[1]{\llbracket#1\rrbracket}
