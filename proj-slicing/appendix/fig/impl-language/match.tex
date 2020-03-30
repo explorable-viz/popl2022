@@ -19,7 +19,7 @@
    {
       \exTrue, \elimBool{e}{e'}
       \match
-      \envEmpty, \matchTrueLow{e}{e'}
+      \envEmpty, \matchTrueLow{e}
    }
    %
    \and
@@ -31,31 +31,19 @@
    {
       \exFalse, \elimBool{e}{e'}
       \match
-      \envEmpty, \matchFalseLow{e}{e'}
+      \envEmpty, \matchFalseLow{e'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   \inferrule*[lab={\ruleName{$\match$-pair}}]
    {
       \strut
    }
    {
       \exPair{v}{v'}, \elimPair{x}{y}{e}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair-del}}]
-   {
-      \strut
-   }
-   {
-      \exPairDel{v}{v'}, \elimPair{x}{y}{e}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \bot
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchPairLow{x}{y}{e}, \top
    }
    %
    \and
@@ -67,7 +55,7 @@
    {
       \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \envEmpty, \matchNilLow{e}{x}{y}{e'}
+      \envEmpty, \matchNilLow{e}
    }
    %
    \and
@@ -79,7 +67,7 @@
    {
       \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchConsLow{e}{x}{y}{e'}
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchConsLow{x}{y}{e'}
    }
 \end{smathpar}
 \caption{Pattern-matching}
