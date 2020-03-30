@@ -19,7 +19,7 @@
       \strut
    }
    {
-      \exTrue, \elimBool{e}{e'}, \matchTrue{e}
+      \exTrue, \elimBool{e}{e'}, \matchTrue{}
       \matchFwd
       \envEmpty, e, \top
    }
@@ -31,7 +31,7 @@
       \strut
    }
    {
-      \bot, \elimBool{e}{e'}
+      \bot, \elimBool{e}{e'}, \matchTrue{}
       \matchFwd
       \envEmpty, e, \bot
    }
@@ -43,7 +43,7 @@
       \strut
    }
    {
-      \exFalse, \elimBool{e}{e'}
+      \exFalse, \elimBool{e}{e'}, \matchFalse{}
       \matchFwd
       \envEmpty, e', \top
    }
@@ -55,7 +55,7 @@
       \strut
    }
    {
-      \bot, \elimBool{e}{e'}
+      \bot, \elimBool{e}{e'}, \matchFalse{}
       \matchFwd
       \envEmpty, e', \bot
    }
@@ -91,7 +91,7 @@
       \strut
    }
    {
-      \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchNil{}
       \matchFwd
       \envEmpty, e, \top
    }
@@ -103,7 +103,7 @@
       \strut
    }
    {
-      \bot, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \bot, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchNil{}
       \matchFwd
       \envEmpty, e, \bot
    }
@@ -115,7 +115,7 @@
       \strut
    }
    {
-      \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
       \matchFwd
       \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \top
    }
@@ -127,7 +127,7 @@
       \strut
    }
    {
-      \exConsDel{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \exConsDel{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
       \matchFwd
       \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \bot
    }
