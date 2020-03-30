@@ -126,8 +126,8 @@
 \newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
 \newcommand*{\matchSumL}[1]{[\exInl{#1}]}
 \newcommand*{\matchSumR}[1]{[\exInr{#1}]}
-\newcommand*{\matchTrue}[2]{\{\matchPlug{\exTrue\mapsto}{#1},\exFalse\mapsto{#2}\}}
-\newcommand*{\matchTrueLow}[2]{\lowlight{\{}\matchPlugLow{\exTrue\mapsto}{#1}\lowlight{,\exFalse\mapsto{#2}\}}}
+\newcommand*{\matchTrue}[1]{\matchPlug{\exTrue\mapsto}{#1}}
+\newcommand*{\matchTrueLow}[1]{\matchPlugLow{\exTrue\mapsto}{#1}}
 \newcommand*{\matchPair}[3]{\matchPlug{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPairLow}[3]{\matchPlugLow{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPlug}[2]{#1[#2]}
