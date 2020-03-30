@@ -67,7 +67,7 @@
       \strut
    }
    {
-      \exPair{v}{v'}, \elimPair{x}{y}{e}
+      \exPair{v}{v'}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
       \matchFwd
       \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \top
    }
@@ -79,7 +79,7 @@
       \strut
    }
    {
-      \exPairDel{v}{v'}, \elimPair{x}{y}{e}
+      \exPairDel{v}{v'}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
       \matchFwd
       \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \bot
    }
