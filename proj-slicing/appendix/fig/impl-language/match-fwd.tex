@@ -6,7 +6,7 @@
       \strut
    }
    {
-      v, \elimVar{x}{e}, \matchVar{x}{e'}
+      v, \elimVar{x}{e}, \matchVar{x}{}
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, e, \top
    }
@@ -19,7 +19,7 @@
       \strut
    }
    {
-      \exTrue, \elimBool{e}{e'}
+      \exTrue, \elimBool{e}{e'}, \matchTrue{e}{e'}
       \matchFwd
       \envEmpty, e, \top
    }
