@@ -36,26 +36,14 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   \inferrule*[lab={\ruleName{$\match$-pair}}]
    {
       \strut
    }
    {
       \exPair{v}{v'}, \elimPair{x}{y}{e}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair-del}}]
-   {
-      \strut
-   }
-   {
-      \exPairDel{v}{v'}, \elimPair{x}{y}{e}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \bot
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchPairLow{x}{y}{e}, \top
    }
    %
    \and

@@ -224,7 +224,7 @@
       lab={\ruleName{$\fwdSlice$-add-bot-1}}
    ]
    {
-      \rho, e, \alpha \fwdSlice \bot
+      \rho, e, T, \alpha \fwdSlice \bot
    }
    {
       \rho, \exAdd{e}{e'}, \trAdd{T}{m}{U}{n}, \alpha \fwdSlice \bot
@@ -236,9 +236,9 @@
       lab={\ruleName{$\fwdSlice$-add-bot-2}}
    ]
    {
-      \rho, e, \alpha \fwdSlice m
+      \rho, e, T, \alpha \fwdSlice m
       \\
-      \rho, e', \alpha \fwdSlice \bot
+      \rho, e', U, \alpha \fwdSlice \bot
    }
    {
       \rho, \exAdd{e}{e'}, \trAdd{T}{m}{U}{n}, \alpha \fwdSlice \bot
@@ -248,22 +248,22 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
    {
-      \rho, e, \alpha \fwdSlice v
+      \rho, e, T, \alpha \fwdSlice v
       \\
-      \envExtend{\rho}{x}{v}, e', \alpha \fwdSlice v'
+      \envExtend{\rho}{x}{v}, e', T, \alpha \fwdSlice v'
    }
    {
-      \rho, \exLet{x}{e}{e'}, \alpha \fwdSlice v'
+      \rho, \exLet{x}{e}{e'}, \trLet{x}{T}{T'}, \alpha \fwdSlice v'
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let-proj}}]
    {
-      \envExtend{\rho}{x}{\bot}, e', \alpha \fwdSlice v'
+      \envExtend{\rho}{x}{\bot}, e', T', \alpha \fwdSlice v'
    }
    {
-      \rho, \exLetProj{x}{e}{e'}, \alpha \fwdSlice v'
+      \rho, \exLetProj{x}{e}{e'}, \trLet{x}{T}{T'}, \alpha \fwdSlice v'
    }
 \end{smathpar}
 \caption{Forward slicing}
