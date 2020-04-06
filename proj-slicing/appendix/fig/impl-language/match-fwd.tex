@@ -134,14 +134,26 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-del}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons-projl}}]
    {
       \strut
    }
    {
-      \exConsDel{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
+      \exConsProjL{v}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \bot
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{\bot}, e', \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons-projr}}]
+   {
+      \strut
+   }
+   {
+      \exConsProjR{v}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
+      \matchFwd
+      \envExtend{\envExtend{\envEmpty}{x}{\bot}}{y}{v}, e', \bot
    }
 \end{smathpar}
 \caption{Pattern-matching (forward slicing)}

@@ -55,24 +55,20 @@
    %
    \inferrule*
    {
-      e_1 \proj {e_1}'
-      \\
-      e_2 \proj \bot
+      e \proj e'
    }
    {
-      \exPairDel{e_1}{e_2} \proj {e_1}'
+      \exPairProjL{e} \proj e'
    }
    %
    \and
    %
    \inferrule*
    {
-      e_1 \proj \bot
-      \\
-      e_2 \proj {e_2}'
+      e \proj e'
    }
    {
-      \exPairDel{e_1}{e_2} \proj {e_2}'
+      \exPairProjR{e} \proj e'
    }
    %
    \and
@@ -107,6 +103,48 @@
    }
    {
       \exAdd{e_1}{e_2} \proj \exAdd{{e_1}'}{{e_2}'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \exNil \proj \exNil
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj {e_1}'
+      \\
+      e_2 \proj {e_2}'
+   }
+   {
+      \exCons{e_1}{e_2} \proj \exCons{{e_1}'}{{e_2}'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e \proj e'
+   }
+   {
+      \exConsProjL{e} \proj e'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e \proj e'
+   }
+   {
+      \exConsProjR{e} \proj e'
    }
    %
    \and
