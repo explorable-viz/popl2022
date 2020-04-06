@@ -185,16 +185,16 @@
 
 \newcommand*{\exAppProjFun}[2]{{#1}\,{\del{#2}}}
 \newcommand*{\exConsDel}[2]{\del{\kw{Cons}(}#1, #2\del{)}}
-\newcommand*{\exConsProjL}[2]{\del{\kw{Cons}(}#1\del{,#2)}}
-\newcommand*{\exConsProjR}[2]{\del{\kw{Cons}(#1,}\,#2\del{)}}
+\newcommand*{\exConsProjL}[1]{\del{\kw{Cons}(}#1\del{,\bot)}}
+\newcommand*{\exConsProjR}[1]{\del{\kw{Cons}(\bot,}\,#1\del{)}}
 \newcommand*{\exFunProj}[1]{\del{\uplambda}{#1}}
 \newcommand*{\exInlProj}[1]{\del{\kw{inl}}\;{#1}}
 \newcommand*{\exInrProj}[1]{\del{\kw{inr}}\;{#1}}
 \newcommand*{\exLetDel}[3]{\del{\kw{let}\;{#1}=}\;{#2}\;\del{\kw{in}}\;{#3}}
 \newcommand*{\exLetProj}[3]{\del{\kw{let}\;{#1}={#2}\;\kw{in}}\;{#3}}
 \newcommand*{\exPairDel}[2]{\del{\langle}#1, #2\del{\rangle}}
-\newcommand*{\exPairProjL}[2]{\del{\langle}#1\del{,#2\rangle}}
-\newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
+\newcommand*{\exPairProjL}[1]{\del{\langle}#1\del{,\bot\rangle}}
+\newcommand*{\exPairProjR}[1]{\del{\langle\bot,}\,#1\del{\rangle}}
 \newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
 \newcommand*{\elimVarProj}[2]{\del{\elimVarNoRHS{#1}\mapsto}\;{#2}}
