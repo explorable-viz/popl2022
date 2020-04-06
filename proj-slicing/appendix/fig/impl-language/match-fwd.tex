@@ -95,66 +95,6 @@
       \matchFwd
       \envExtend{\envExtend{\envEmpty}{x}{\bot}}{y}{v}, e, \bot
    }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
-   {
-      \strut
-   }
-   {
-      \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchNil{}
-      \matchFwd
-      \envEmpty, e, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil-del}}]
-   {
-      \strut
-   }
-   {
-      \bot, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchNil{}
-      \matchFwd
-      \envEmpty, e, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
-   {
-      \strut
-   }
-   {
-      \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-projl}}]
-   {
-      \strut
-   }
-   {
-      \exConsProjL{v}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{\bot}, e', \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-projr}}]
-   {
-      \strut
-   }
-   {
-      \exConsProjR{v}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{\bot}}{y}{v}, e', \bot
-   }
 \end{smathpar}
-\caption{Pattern-matching (forward slicing)}
+\caption{Pattern-matching (forward slicing); \kw{Cons} and \kw{Nil} cases omitted}
 \end{figure}

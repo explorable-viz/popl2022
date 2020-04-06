@@ -98,72 +98,52 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-bot}}]
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-pair-botl}},
+      right={$v \proj \bot$}
+   ]
    {
       \rho, e, T, \bot \fwdSlice v
       \\
       \rho, e', T', \bot \fwdSlice v'
    }
    {
-      \rho, \exPair{e}{e'}, \trPair{T}{T'}, \bot \fwdSlice \exPairDel{v}{v'}
+      \rho, \exPair{e}{e'}, \trPair{T}{T'}, \bot \fwdSlice \exPairProjR{v'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-del}}]
-   {
-      \rho, e, T, \alpha \fwdSlice v
-      \\
-      \rho, e', T', \alpha \fwdSlice v'
-   }
-   {
-      \rho, \exPairDel{e}{e'}, \trPair{T}{T'}, \alpha \fwdSlice \exPairDel{v}{v'}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
-   {
-      \strut
-   }
-   {
-      \rho, \exNil, \trNil, \alpha \fwdSlice \exNil
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-cons}}]
-   {
-      \rho, e, T, \top \fwdSlice v
-      \\
-      \rho, e', T', \top \fwdSlice v'
-   }
-   {
-      \rho, \exCons{e}{e'}, \trCons{T}{T'}, \top \fwdSlice \exCons{v}{v'}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-cons-bot}}]
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-pair-botr}},
+      right={$v' \proj \bot$}
+   ]
    {
       \rho, e, T, \bot \fwdSlice v
       \\
       \rho, e', T', \bot \fwdSlice v'
    }
    {
-      \rho, \exCons{e}{e'}, \exCons{T}{T'}, \bot \fwdSlice \exConsDel{v}{v'}
+      \rho, \exPair{e}{e'}, \trPair{T}{T'}, \bot \fwdSlice \exPairProjL{v}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-cons-del}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-projl}}]
    {
       \rho, e, T, \alpha \fwdSlice v
-      \\
-      \rho, e', T, \alpha \fwdSlice v'
    }
    {
-      \rho, \exConsDel{e}{e'}, \exCons{T}{T'}, \alpha \fwdSlice \exConsDel{v}{v'}
+      \rho, \exPairProjL{e}, \trPair{T}{T'}, \alpha \fwdSlice \exPairProjL{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-projr}}]
+   {
+      \rho, e, T', \alpha \fwdSlice v
+   }
+   {
+      \rho, \exPairProjR{e}, \trPair{T}{T'}, \alpha \fwdSlice \exPairProjR{v}
    }
    %
    \and
@@ -266,5 +246,5 @@
       \rho, \exLetProj{x}{e}{e'}, \trLet{x}{T}{T'}, \alpha \fwdSlice v'
    }
 \end{smathpar}
-\caption{Forward slicing}
+\caption{Forward slicing; \kw{Cons} and \kw{Nil} rules omitted}
 \end{figure}
