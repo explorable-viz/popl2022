@@ -74,14 +74,26 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair-del}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-projl}}]
    {
       \strut
    }
    {
-      \exPairDel{v}{v'}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
+      \exPairProjL{v}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \bot
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{\bot}, e, \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-projr}}]
+   {
+      \strut
+   }
+   {
+      \exPairProjR{v}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
+      \matchFwd
+      \envExtend{\envExtend{\envEmpty}{x}{\bot}}{y}{v}, e, \bot
    }
    %
    \and
