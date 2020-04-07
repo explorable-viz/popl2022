@@ -156,7 +156,7 @@
 \newcommand*{\tyData}[1]{#1}
 \newcommand*{\tyGround}[1]{#1}
 \newcommand*{\tyInt}[0]{\kw{Int}}
-\newcommand*{\tyList}[0]{\kw{List}\;\tyInt}
+\newcommand*{\tyList}[1]{\kw{List}\;{#1}}
 \newcommand*{\tyZero}{\kw{0}}
 \newcommand*{\tyUnit}{\kw{1}}
 \newcommand*{\tySum}[2]{{#1}+{#2}}
@@ -169,10 +169,11 @@
 
 \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
 
+\newcommand*{\tyListProj}[1]{\del{\kw{List}}\;{#1}}
 \newcommand*{\tySumProjR}[2]{\del{{#1}\:+}\:{#2}}
 \newcommand*{\tySumProjL}[2]{{#1}\:\del{+\:{#2}}}
-\newcommand*{\tyProdProjR}[2]{\del{{#1}\:\times}\:{#2}}
-\newcommand*{\tyProdProjL}[2]{{#1}\:\del{\times\:{#2}}}
+\newcommand*{\tyProdProjR}[1]{\del{{\bot}\:\times}\:{#1}}
+\newcommand*{\tyProdProjL}[1]{{#1}\:\del{\times\:{\bot}}}
 \newcommand*{\tyFunProjR}[2]{\del{{#1}\rightarrow}\:{#2}}
 \newcommand*{\tyFunProjL}[2]{{#1}\;\del{\rightarrow{#2}}}
 \newcommand*{\tyRecProj}[2]{\del{\mu{#1}.}{#2}}

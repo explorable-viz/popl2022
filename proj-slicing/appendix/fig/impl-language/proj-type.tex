@@ -32,6 +32,43 @@
 \\[2mm]
 \noindent \shadebox{$A \proj A'$}
 \begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \bot \proj \bot
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \tyBool \proj \tyBool
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \tyInt \proj \tyInt
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      A \proj A'
+   }
+   {
+      \tyProdProjL{A} \proj \tyBool
+   }
 \end{smathpar}
 \caption{Projection for contexts and types}
 \end{figure}

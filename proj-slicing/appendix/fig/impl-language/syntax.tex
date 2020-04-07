@@ -36,20 +36,23 @@ A, B
 \text{integers}
 \\
 &&&
-\tyList
-&
-\text{list of integers}
-\\
-&&&
 \tyProd{A}{B}
 &
 \text{pairs}
 \\
 &&&
-\tyProdProjL{A}{B}
+\tyProdProjL{A}
 \\
 &&&
-\tyProdProjR{A}{B}
+\tyProdProjR{A}
+\\
+&&&
+\tyList{\tyInt}
+&
+\text{list of integers}
+\\
+&&&
+\tyListProj{\tyInt}
 \\
 &&&
 \tyFun{A}{B}
