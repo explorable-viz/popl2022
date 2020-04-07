@@ -53,6 +53,38 @@
 %
 \inferrule*
 {
+   \Gamma \vdash u: A
+   \\
+   \Gamma \vdash v: B
+}
+{
+   \Gamma \vdash \exPair{u}{v}: \tyProd{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash u: A
+}
+{
+   \Gamma \vdash \exPairProjL{v}: \tyProdProjL{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash u: A
+}
+{
+   \Gamma \vdash \exPairProjR{v}: \tyProdProjR{A}
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash e: \tyInt
    \\
    \Gamma \vdash e': \tyInt
@@ -85,36 +117,14 @@
 %
 \and
 %
-\inferrule*[right={\textnormal{$c \in \dom{\interpret{D}}$}}]
-{
-   \exprType{\vec{e}}{\Gamma}{\interpret{D}(c)}
-}
-{
-   \exprType{\exConstr{c}{\vec{e}}}{\Gamma}{\tyData{D}}
-}
-%
-\and
-%
 \inferrule*
 {
-   \exprType{e}{\Gamma}{A}
+   \Gamma \vdash e: A
    \\
-   \elimType{\sigma}{B}{A}{\Gamma}
+   \cxtExtend{\Gamma}{x}{A} \vdash e': B
 }
 {
-   \exprType{\exMatch{e}{\sigma}}{\Gamma}{B}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \vec{d}: \Delta
-   \\
-   \exprType{e}{\Gamma \concat \Delta}{A}
-}
-{
-   \exprType{\exDefs{\vec{d}}{e}}{\Gamma}{A}
+   \Gamma \vdash \exLet{x}{e}{e'}: B
 }
 \end{smathpar}
 \caption{Typing rules for terms}
