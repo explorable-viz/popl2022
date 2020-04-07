@@ -58,12 +58,12 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-pair}}]
    {
-      \explVal{T}{\rho, e \eval v}
+      \explVal{T}{\rho, e \eval u}
       \\
-      \explVal{T'}{\rho, e' \eval v'}
+      \explVal{U}{\rho, e' \eval v}
    }
    {
-      \explVal{\trPair{T}{T'}}{\rho, \exPair{e}{e'} \eval \exPair{v}{v'}}
+      \explVal{\trPair{T}{U}}{\rho, \exPair{e}{e'} \eval \exPair{u}{v}}
    }
    %
    \and
@@ -80,12 +80,12 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-cons}}]
    {
-      \explVal{T}{\rho, e \eval v}
+      \explVal{T}{\rho, e \eval u}
       \\
-      \explVal{T'}{\rho, e' \eval v'}
+      \explVal{U}{\rho, e' \eval v}
    }
    {
-      \explVal{\trCons{T}{T'}}{\rho, \exCons{e}{e'} \eval \exCons{v}{v'}}
+      \explVal{\trCons{T}{U}}{\rho, \exCons{e}{e'} \eval \exCons{u}{v}}
    }
    %
    \and
@@ -106,14 +106,14 @@
    {
       \explVal{T}{\rho, e \eval \exClosureRec{\rho'}{f}{\sigma}}
       \\
-      \explVal{T'}{\rho, e' \eval v}
+      \explVal{T'}{\rho, e' \eval u}
       \\
-      v, \sigma \match \rho^\twoPrime, \matchPlugLow{\xi}{e^\twoPrime}
+      u, \sigma \match \rho^\twoPrime, \matchPlugLow{\xi}{e^\twoPrime}
       \\
-      \explVal{U}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v'}
+      \explVal{U}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v}
    }
    {
-      \explVal{\trApp{T}{T'}{\matchPlugLow{\xi}{U}}}{\rho, \exApp{e}{e'} \eval v'}
+      \explVal{\trApp{T}{T'}{\matchPlugLow{\xi}{U}}}{\rho, \exApp{e}{e'} \eval v}
    }
    %
    \and
@@ -134,12 +134,12 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-let}}]
    {
-      \explVal{T}{\rho, e \eval v}
+      \explVal{T}{\rho, e \eval u}
       \\
-      \explVal{T'}{\envExtend{\rho}{x}{v}, e' \eval v'}
+      \explVal{T'}{\envExtend{\rho}{x}{u}, e' \eval v}
    }
    {
-      \explVal{\trLet{x}{T}{T'}}{\rho, \exLet{x}{e}{e'} \eval v'}
+      \explVal{\trLet{x}{T}{T'}}{\rho, \exLet{x}{e}{e'} \eval v}
    }
 \end{smathpar}
 \caption{Evaluation}
