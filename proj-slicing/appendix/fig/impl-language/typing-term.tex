@@ -1,12 +1,22 @@
 \begin{figure}
-\flushleft \shadebox{$\exprType{r}{\Gamma}{A}$}
+\flushleft \shadebox{$\Gamma \vdash e: A$}
 \begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \bot: \bot
+}
+%
+\and
+%
 \inferrule*[right={$x : A \in \Gamma$}]
 {
    \strut
 }
 {
-   \exprType{\exVar{x}}{\Gamma}{A}
+   \Gamma \vdash \exVar{x}: A
 }
 %
 \and
@@ -16,29 +26,49 @@
    \strut
 }
 {
-   \exprType{\exConst{k}}{\Gamma}{\typeof{\exConst{k}}}
-}
-%
-\and
-%
-\inferrule*[right={\textnormal{$\typeof{\primOp} = C_1 \times C_2 \to A$}}]
-{
-   \exprType{e}{\Gamma}{C_1}
-   \\
-   \exprType{e'}{\Gamma}{C_2}
-}
-{
-   \exprType{\exPrimApp{e}{\primOp}{e'}}{\Gamma}{A}
+   \Gamma \vdash n: \tyInt
 }
 %
 \and
 %
 \inferrule*
 {
-   \elimType{\sigma}{B}{A}{\Gamma}
+   \strut
 }
 {
-   \exprType{\exFun{\sigma}}{\Gamma}{\tyFun{A}{B}}
+   \Gamma \vdash \exTrue: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exFalse: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: \tyInt
+   \\
+   \Gamma \vdash e': \tyInt
+}
+{
+   \Gamma \vdash \exAdd{e}{e'}: \tyInt
+}
+%
+\and
+%
+\inferrule*
+{
+   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exRec{f}{\sigma}: \tyFun{A}{B}
 }
 %
 \and
@@ -87,29 +117,5 @@
    \exprType{\exDefs{\vec{d}}{e}}{\Gamma}{A}
 }
 \end{smathpar}
-\vspace{5pt}
-
-\flushleft \shadebox{$\exprType{\vec{e}}{\Gamma}{\vec{A}}$}
-\begin{smathpar}
-\inferrule*
-{
-   \strut
-}
-{
-   \exprType{\seqEmpty}{\Gamma}{\seqEmpty}
-}
-%
-\and
-%
-\inferrule*
-{
-   \exprType{e}{\Gamma}{A}
-   \\
-   \exprType{\vec{e}}{\Gamma}{\vec{A}}
-}
-{
-   \exprType{e \concat \vec{e}}{\Gamma}{A \concat \vec{A}}
-}
-\end{smathpar}
-\caption{Typing rules for terms and term sequences}
+\caption{Typing rules for terms}
 \end{figure}
