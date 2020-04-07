@@ -131,6 +131,16 @@
 %
 \inferrule*
 {
+   \cxtExtend{\Gamma}{x}{\bot} \vdash e: B
+}
+{
+   \Gamma \vdash \exLetProj{x}{e}: B
+}
+%
+\and
+%
+\inferrule*
+{
    \strut
 }
 {
