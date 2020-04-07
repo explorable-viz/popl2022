@@ -136,10 +136,10 @@
    {
       \explVal{T}{\rho, e \eval u}
       \\
-      \explVal{T'}{\envExtend{\rho}{x}{u}, e' \eval v}
+      \explVal{U}{\envExtend{\rho}{x}{u}, e' \eval v}
    }
    {
-      \explVal{\trLet{x}{T}{T'}}{\rho, \exLet{x}{e}{e'} \eval v}
+      \explVal{\trLet{x}{T}{U}}{\rho, \exLet{x}{e}{e'} \eval v}
    }
 \end{smathpar}
 \caption{Evaluation}
