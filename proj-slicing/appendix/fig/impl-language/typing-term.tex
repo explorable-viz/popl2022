@@ -126,6 +126,48 @@
 {
    \Gamma \vdash \exLet{x}{e}{e'}: B
 }
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exNil: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash u: \tyInt
+   \\
+   \Gamma \vdash v: \tyList{\tyInt}
+}
+{
+   \vdash \exCons{u}{v}: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash v: \tyInt
+}
+{
+   \Gamma \vdash \exConsProjL{v}: \tyListProj{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash v: \tyList{\tyInt}
+}
+{
+   \Gamma \vdash \exConsProjR{v}: \tyList{\tyInt}
+}
 \end{smathpar}
 \caption{Typing rules for terms}
 \end{figure}
