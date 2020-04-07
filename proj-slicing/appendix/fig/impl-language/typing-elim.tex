@@ -1,45 +1,34 @@
 \begin{figure}
-\flushleft \shadebox{$\elimType{\sigma}{B}{A}{\Gamma}$}
+\flushleft \shadebox{$\Gamma \vdash \sigma: \tyFun{A}{B}$}
 \begin{smathpar}
 \inferrule*
 {
-   \contType{\kappa}{B}{\cxtExtend{\Gamma}{x}{A}}
+   \cxtExtend{\Gamma}{x}{A} \vdash e: B
 }
 {
-   \elimType{\elimVar{x}{\kappa}}{B}{A}{\Gamma}
+   \Gamma \vdash \elimVar{x}{e}: \tyFun{A}{B}
 }
 %
 \and
 %
-\inferrule*[right={\textnormal{$\dom{\interpret{D}} = \dom{\Sigma}$}}]
+\inferrule*
 {
-   \elimType{\Sigma(c)}{A}{\interpret{D}(c)}{\Gamma}
+   \Gamma \vdash e: A
    \\
-   (\forall c \in \dom{\interpret{D}})
+   \Gamma \vdash e': A
 }
 {
-   \elimType{\elimConstr{\Sigma}}{A}{\tyData{D}}{\Gamma}
-}
-\end{smathpar}
-\vspace{5pt}
-\flushleft \shadebox{$\elimType{\kappa}{B}{\vec{A}}{\Gamma}$}
-\begin{smathpar}
-\inferrule*
-{
-   \contType{\kappa}{A}{\Gamma}
-}
-{
-   \elimType{\kappa}{A}{\seqEmpty}{\Gamma}
+   \Gamma \vdash \elimBool{e}{e'}: \tyFun{\tyBool}{A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \elimType{\sigma}{\elimTypePartial{B}{\vec{A}}}{A}{\Gamma}
+   \cxtExtend{\cxtExtend{\Gamma}{x}{A}}{y}{A'} \vdash e: B
 }
 {
-   \elimType{\sigma}{B}{A \concat \vec{A}}{\Gamma}
+   \Gamma \vdash \elimPair{x}{y}{e}: \tyFun{\tyProd{A}{A'}}{B}
 }
 \end{smathpar}
 \caption{Typing rules for eliminators}
