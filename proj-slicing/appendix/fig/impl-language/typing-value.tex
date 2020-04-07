@@ -1,72 +1,12 @@
 \begin{figure}
-\flushleft \shadebox{$\Gamma \vdash \vec{d}: \Delta$}
-\begin{smathpar}
-   \inferrule*
-   {
-      \strut
-   }
-   {
-      \Gamma \vdash \seqEmpty: \cxtEmpty
-   }
-   %
-   \and
-   %
-   \inferrule*
-   {
-      \Gamma \vdash d: \Delta
-      \\
-      \Gamma \concat \Delta \vdash \vec{d}: \Delta'
-   }
-   {
-      \Gamma \vdash d \concat \vec{d}: \Delta \concat \Delta'
-   }
-\end{smathpar}
-\vspace{5pt}
-
-\flushleft \shadebox{$\Gamma \vdash d: \Delta$}
-\begin{smathpar}
-   \inferrule*
-   {
-      \exprType{e}{\Gamma}{A}
-   }
-   {
-      \Gamma \vdash \exLetDef{x}{e}: (\cxtExtend{\cxtEmpty}{x}{A})
-   }
-   %
-   \and
-   %
-   \inferrule*[right={
-      \textnormal{$\Delta = \set{f \mapsto A_f \mid f \in \dom{\delta}}$}
-   }]
-   {
-      \exprType{\exFun{\sigma_f}}{\Gamma \concat \Delta}{A_f}
-      \quad
-      (\forall f \mapsto \exFun{\sigma_f} \in \delta)
-   }
-   {
-      \Gamma \vdash \exLetrecDef{\delta}: \Delta
-   }
-   %
-   \and
-   %
-   \inferrule*[right={\textnormal{$\interpret{x}$ defined}}]
-   {
-      \strut
-   }
-   {
-      \Gamma \vdash \exPrimDef{x}: (\cxtExtend{\cxtEmpty}{x}{\typeof{\interpret{x}}})
-   }
-\end{smathpar}
-\vspace{5pt}
-
-\flushleft \shadebox{$\valType{u}{A}$}
+\flushleft \shadebox{$\vdash v: A$}
 \begin{smathpar}
 \inferrule*
 {
    \strut
 }
 {
-   \valType{\exConst{k}}{\typeof{\exConst{k}}}
+   \vdash \bot: \bot
 }
 %
 \and
@@ -76,31 +16,51 @@
    \strut
 }
 {
-   \valType{\phi}{\typeof{\phi}}
+   \vdash n: \tyInt
 }
 %
 \and
 %
 \inferrule*
 {
-   \envType{\Gamma}{\rho}
-   \\
-   \Gamma \vdash \exLetrecDef{\delta}: \Delta
-   \\
-   \exprType{\exFun{\sigma}}{\Gamma \concat \Delta}{\tyFun{A}{B}}
+   \strut
 }
 {
-   \valType{\exClosureNew{\rho}{\delta}{\exFun{\sigma}}}{\tyFun{A}{B}}
+   \vdash \exTrue: \tyBool
 }
 %
 \and
 %
-\inferrule*[right={\textnormal{$c \in \dom{\interpret{D}}$}}]
+\inferrule*
 {
-   \valType{\vec{v}}{\interpret{D}(c)}
+   \strut
 }
 {
-   \valType{\exConstr{c}{\vec{v}}}{\tyData{D}}
+   \vdash \exFalse: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash u: A
+   \\
+   \vdash v: B
+}
+{
+   \vdash \exPair{u}{v}: \tyProd{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash \rho: \Gamma
+   \\
+   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B} 
+}
+{
+   \vdash \exClosureRec{\rho}{f}{\sigma}: \tyFun{A}{B}
 }
 \end{smathpar}
 \vspace{5pt}
