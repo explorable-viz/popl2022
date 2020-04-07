@@ -67,70 +67,34 @@
       \strut
    }
    {
-      \exPair{v}{v'}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
+      \exPair{u}{v}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \top
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \top
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair-del}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-projl}}]
    {
       \strut
    }
    {
-      \exPairDel{v}{v'}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
+      \exPairProjL{v}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e, \bot
+      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{\bot}, e, \bot
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-projr}}]
    {
       \strut
    }
    {
-      \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchNil{}
+      \exPairProjR{v}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
       \matchFwd
-      \envEmpty, e, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil-del}}]
-   {
-      \strut
-   }
-   {
-      \bot, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchNil{}
-      \matchFwd
-      \envEmpty, e, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
-   {
-      \strut
-   }
-   {
-      \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-del}}]
-   {
-      \strut
-   }
-   {
-      \exConsDel{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}, \matchCons{x}{y}{}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, e', \bot
+      \envExtend{\envExtend{\envEmpty}{x}{\bot}}{y}{v}, e, \bot
    }
 \end{smathpar}
-\caption{Pattern-matching (forward slicing)}
+\caption{Pattern-matching (forward slicing); \kw{Cons} and \kw{Nil} cases omitted}
 \end{figure}

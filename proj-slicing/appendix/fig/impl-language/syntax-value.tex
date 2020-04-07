@@ -2,7 +2,7 @@
 \begin{syntaxfig}
 \mbox{Value}
 &
-v
+u, v
 &
 ::=
 &
@@ -26,12 +26,15 @@ v
 \text{closure}
 \\
 &&&
-\exPair{v}{v'}
+\exPair{u}{v}
 &
 \text{pair}
 \\
 &&&
-\exPairDel{v}{v'}
+\exPairProjL{v}
+\\
+&&&
+\exPairProjR{v}
 \\
 &&&
 \exNil
@@ -39,12 +42,15 @@ v
 \text{nil}
 \\
 &&&
-\exCons{v}{v'}
+\exCons{u}{v}
 &
 \text{cons}
 \\
 &&&
-\exConsDel{v}{v'}
+\exConsProjL{v}
+\\
+&&&
+\exConsProjR{v}
 \\[2mm]
 \mbox{Environment}
 &

@@ -36,6 +36,16 @@
       \strut
    }
    {
+      \exFalse \proj \exFalse
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
       n \proj n
    }
    %
@@ -55,24 +65,20 @@
    %
    \inferrule*
    {
-      e_1 \proj {e_1}'
-      \\
-      e_2 \proj \bot
+      e \proj e'
    }
    {
-      \exPairDel{e_1}{e_2} \proj {e_1}'
+      \exPairProjL{e} \proj e'
    }
    %
    \and
    %
    \inferrule*
    {
-      e_1 \proj \bot
-      \\
-      e_2 \proj {e_2}'
+      e \proj e'
    }
    {
-      \exPairDel{e_1}{e_2} \proj {e_2}'
+      \exPairProjR{e} \proj e'
    }
    %
    \and
@@ -113,6 +119,48 @@
    %
    \inferrule*
    {
+      \strut
+   }
+   {
+      \exNil \proj \exNil
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e_1 \proj {e_1}'
+      \\
+      e_2 \proj {e_2}'
+   }
+   {
+      \exCons{e_1}{e_2} \proj \exCons{{e_1}'}{{e_2}'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e \proj e'
+   }
+   {
+      \exConsProjL{e} \proj e'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e \proj e'
+   }
+   {
+      \exConsProjR{e} \proj e'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
       e_1 \proj {e_1}'
       \\
       e_2 \proj {e_2}'
@@ -125,23 +173,11 @@
    %
    \inferrule*
    {
-      e_1 \proj \bot
-      \\
-      e_2 \proj {e_2}'
+      e \proj e'
    }
    {
-      \exLetDel{x}{e_1}{e_2} \proj {e_2}'
-   }
-   %
-   \and
-   %
-   \inferrule*
-   {
-      e_2 \proj \bot
-   }
-   {
-      \exLetDel{x}{e_1}{e_2} \proj \bot
+      \exLetProj{x}{e} \proj e'
    }
 \end{smathpar}
-\caption{Projection (deterministic and partial; selected rules only)}
+\caption{Projection (deterministic and partial)}
 \end{figure}

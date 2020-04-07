@@ -41,9 +41,9 @@
       \strut
    }
    {
-      \exPair{v}{v'}, \elimPair{x}{y}{e}
+      \exPair{u}{v}, \elimPair{x}{y}{e}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchPairLow{x}{y}{e}, \top
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, \matchPairLow{x}{y}{e}, \top
    }
    %
    \and
@@ -65,9 +65,9 @@
       \strut
    }
    {
-      \exCons{v}{v'}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \exCons{u}{v}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
       \match
-      \envExtend{\envExtend{\envEmpty}{x}{v}}{y}{v'}, \matchConsLow{x}{y}{e'}
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, \matchConsLow{x}{y}{e'}
    }
 \end{smathpar}
 \caption{Pattern-matching}

@@ -1,3 +1,10 @@
+\let\oldbot\bot
+\renewcommand{\bot}{\del{\oldbot}}
+
+\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
+% \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
+\newcommand*{\del}[1]{\textcolor{red}{#1}}
+
 \renewcommand*{\ldots}{...} % \ldots sucks with acmart
 \renewcommand*{\ruleName}[1]{\textcolor{gray}{\textnormal{\textsf{#1}}}}
 
@@ -156,7 +163,7 @@
 \newcommand*{\tyData}[1]{#1}
 \newcommand*{\tyGround}[1]{#1}
 \newcommand*{\tyInt}[0]{\kw{Int}}
-\newcommand*{\tyList}[0]{\kw{List}}
+\newcommand*{\tyList}[1]{\kw{List}\;{#1}}
 \newcommand*{\tyZero}{\kw{0}}
 \newcommand*{\tyUnit}{\kw{1}}
 \newcommand*{\tySum}[2]{{#1}+{#2}}
@@ -165,14 +172,11 @@
 \newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
 \newcommand*{\tyVar}[1]{#1}
 
-\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
-
-\newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
-
+\newcommand*{\tyListProj}[1]{\del{\kw{List}}\;{#1}}
 \newcommand*{\tySumProjR}[2]{\del{{#1}\:+}\:{#2}}
 \newcommand*{\tySumProjL}[2]{{#1}\:\del{+\:{#2}}}
-\newcommand*{\tyProdProjR}[2]{\del{{#1}\:\times}\:{#2}}
-\newcommand*{\tyProdProjL}[2]{{#1}\:\del{\times\:{#2}}}
+\newcommand*{\tyProdProjR}[1]{\bot\mathbin{\del{\times}}{#1}}
+\newcommand*{\tyProdProjL}[1]{{#1}\mathbin{\del{\times}}\bot}
 \newcommand*{\tyFunProjR}[2]{\del{{#1}\rightarrow}\:{#2}}
 \newcommand*{\tyFunProjL}[2]{{#1}\;\del{\rightarrow{#2}}}
 \newcommand*{\tyRecProj}[2]{\del{\mu{#1}.}{#2}}
@@ -185,16 +189,16 @@
 
 \newcommand*{\exAppProjFun}[2]{{#1}\,{\del{#2}}}
 \newcommand*{\exConsDel}[2]{\del{\kw{Cons}(}#1, #2\del{)}}
-\newcommand*{\exConsProjL}[2]{\del{\kw{Cons}(}#1\del{,#2)}}
-\newcommand*{\exConsProjR}[2]{\del{\kw{Cons}(#1,}\,#2\del{)}}
+\newcommand*{\exConsProjL}[1]{\del{\kw{Cons}(}#1,\bot\del{)}}
+\newcommand*{\exConsProjR}[1]{\del{\kw{Cons}(}\bot,#1\del{)}}
 \newcommand*{\exFunProj}[1]{\del{\uplambda}{#1}}
 \newcommand*{\exInlProj}[1]{\del{\kw{inl}}\;{#1}}
 \newcommand*{\exInrProj}[1]{\del{\kw{inr}}\;{#1}}
 \newcommand*{\exLetDel}[3]{\del{\kw{let}\;{#1}=}\;{#2}\;\del{\kw{in}}\;{#3}}
-\newcommand*{\exLetProj}[3]{\del{\kw{let}\;{#1}={#2}\;\kw{in}}\;{#3}}
+\newcommand*{\exLetProj}[2]{\del{\kw{let}\;{#1}={\bot}\;\kw{in}}\;{#2}}
 \newcommand*{\exPairDel}[2]{\del{\langle}#1, #2\del{\rangle}}
-\newcommand*{\exPairProjL}[2]{\del{\langle}#1\del{,#2\rangle}}
-\newcommand*{\exPairProjR}[2]{\del{\langle#1,}\,#2\del{\rangle}}
+\newcommand*{\exPairProjL}[1]{\del{\langle}#1,\bot\del{\rangle}}
+\newcommand*{\exPairProjR}[1]{\del{\langle}\bot,#1\del{\rangle}}
 \newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
 \newcommand*{\elimVarProj}[2]{\del{\elimVarNoRHS{#1}\mapsto}\;{#2}}
