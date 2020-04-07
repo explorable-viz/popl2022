@@ -30,6 +30,16 @@
 {
    \Gamma \vdash \elimPair{x}{y}{e}: \tyFun{\tyProd{A}{A'}}{B}
 }
+%
+\and
+%
+\inferrule*
+{
+   \cxtExtend{\cxtExtend{\Gamma}{x}{\tyInt}}{y}{\tyList{\tyInt}} \vdash e: A
+}
+{
+   \Gamma \vdash \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}: \tyFun{\tyList{\tyInt}}{A}
+}
 \end{smathpar}
 \caption{Typing rules for eliminators}
 \end{figure}
