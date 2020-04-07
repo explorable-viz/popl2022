@@ -65,9 +65,63 @@
    \inferrule*
    {
       A \proj A'
+      \\
+      B \proj B'
    }
    {
-      \tyProdProjL{A} \proj \tyBool
+      \tyProd{A}{B} \proj \tyProd{A'}{B'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      A \proj A'
+   }
+   {
+      \tyProdProjL{A} \proj A'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      A \proj A'
+   }
+   {
+      \tyProdProjR{A} \proj A'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      A \proj A'
+   }
+   {
+      \tyList{A} \proj \tyList{A'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      A \proj A'
+   }
+   {
+      \tyListProj{A} \proj A'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      A \proj A'
+      \\
+      B \proj B'
+   }
+   {
+      (\tyFun{A}{B}) \proj (\tyFun{A'}{B'})
    }
 \end{smathpar}
 \caption{Projection for contexts and types}
