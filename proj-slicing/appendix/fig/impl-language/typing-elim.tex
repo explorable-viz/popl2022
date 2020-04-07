@@ -35,10 +35,24 @@
 %
 \inferrule*
 {
-   \cxtExtend{\cxtExtend{\Gamma}{x}{\tyInt}}{y}{\tyList{\tyInt}} \vdash e: A
+   \Gamma \vdash e: A
+   \\
+   \cxtExtend{\cxtExtend{\Gamma}{x}{\tyInt}}{y}{\tyList{\tyInt}} \vdash e': A
 }
 {
    \Gamma \vdash \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}: \tyFun{\tyList{\tyInt}}{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: A
+   \\
+   \cxtExtend{\cxtExtend{\Gamma}{x}{\bot}}{y}{\tyListProj{\tyInt}} \vdash e: A
+}
+{
+   \Gamma \vdash \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}: \tyFun{\tyListProj{\tyInt}}{A}
 }
 \end{smathpar}
 \caption{Typing rules for eliminators}
