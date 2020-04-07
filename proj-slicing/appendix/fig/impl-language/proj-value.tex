@@ -1,0 +1,37 @@
+\begin{figure}
+\flushleft \shadebox{$\rho \proj \rho'$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \cxtEmpty \proj \cxtEmpty
+   }
+   %
+   \and
+   %
+   \inferrule*[right={$A \neq \bot$}]
+   {
+      \Gamma \proj \Gamma'
+   }
+   {
+      \cxtExtend{\Gamma}{x}{A} \proj \cxtExtend{\Gamma'}{x}{A}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \proj \Gamma'
+   }
+   {
+      \cxtExtend{\Gamma}{x}{\bot} \proj \Gamma'
+   }
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$v \proj v'$}
+\begin{smathpar}
+\end{smathpar}
+\caption{Projection for environments and values}
+\end{figure}
