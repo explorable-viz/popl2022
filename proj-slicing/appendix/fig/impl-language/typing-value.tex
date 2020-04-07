@@ -57,10 +57,32 @@
 {
    \vdash \rho: \Gamma
    \\
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B} 
+   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
 }
 {
    \vdash \exClosureRec{\rho}{f}{\sigma}: \tyFun{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exNil: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash u: \tyInt
+   \\
+   \vdash v: \tyList{\tyInt}
+}
+{
+   \vdash \exCons{u}{v}: \tyList{\tyInt}
 }
 \end{smathpar}
 \vspace{5pt}
