@@ -1,4 +1,27 @@
 \begin{figure}
+\flushleft \shadebox{$\vdash \rho: \Gamma$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash: \envEmpty: \cxtEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash \rho: \Gamma
+   \\
+   \vdash v: A
+}
+{
+   \vdash \envExtend{\rho}{x}{u}: \cxtExtend{\Gamma}{x}{A}
+}
+\end{smathpar}
+\\[2mm]
 \flushleft \shadebox{$\vdash v: A$}
 \begin{smathpar}
 \inferrule*
@@ -123,30 +146,6 @@
 }
 {
    \vdash \exConsProjR{v}: \tyList{\tyInt}
-}
-\end{smathpar}
-\vspace{5pt}
-
-\flushleft \shadebox{$\envType{\Gamma}{\rho}$}
-\begin{smathpar}
-\inferrule*
-{
-   \strut
-}
-{
-   \envType{\cxtEmpty}{\envEmpty}
-}
-%
-\and
-%
-\inferrule*
-{
-   \envType{\Gamma}{\rho}
-   \\
-   \valType{u}{A}
-}
-{
-   \envType{(\cxtExtend{\Gamma}{x}{A})}{\envExtend{\rho}{x}{u}}
 }
 \end{smathpar}
 \caption{Typing rules for partial values, environments and recursive definitions}
