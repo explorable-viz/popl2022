@@ -1,32 +1,33 @@
 \begin{figure}
 \flushleft \shadebox{$\Gamma : \Cxt$}
+\flushleft \shadebox{$\Gamma \proj \Gamma'$}
 \begin{smathpar}
    \inferrule*
    {
       \strut
    }
    {
-      \cxtEmpty : \Cxt
+      \cxtEmpty \proj \cxtEmpty
+   }
+   %
+   \and
+   %
+   \inferrule*[right={$A \neq \bot$}]
+   {
+      \Gamma \proj \Gamma'
+   }
+   {
+      \cxtExtend{\Gamma}{x}{A} \proj \cxtExtend{\Gamma'}{x}{A}
    }
    %
    \and
    %
    \inferrule*
    {
-      \Gamma : \Cxt
+      \Gamma \proj \Gamma'
    }
    {
-      (\cxtExtend{\Gamma}{x_{\true}}{A}) : \Cxt
-   }
-   %
-   \and
-   %
-   \inferrule*[right={$\nexists B.x : B \in \Gamma$}]
-   {
-      \Gamma : \Cxt
-   }
-   {
-      (\cxtExtend{\Gamma}{x_{\false}}{A}) : \Cxt
+      \cxtExtend{\Gamma}{x}{\bot} \proj \Gamma'
    }
 \end{smathpar}
 \\[2mm]
@@ -37,7 +38,7 @@
       \strut
    }
    {
-      x : A \in (\cxtExtend{\Gamma}{x_{\true}}{A})
+      x : A \in (\cxtExtend{\Gamma}{x_{\top}}{A})
    }
    %
    \and
@@ -81,7 +82,7 @@
       \strut
    }
    {
-      \envLookup{\envExtend{\rho}{x_{\true}}{v}}{x}{v}
+      \envLookup{\envExtend{\rho}{x_{\top}}{v}}{x}{v}
    }
    %
    \and
