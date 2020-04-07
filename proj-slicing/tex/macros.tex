@@ -1,6 +1,10 @@
 \let\oldbot\bot
 \renewcommand{\bot}{\del{\oldbot}}
 
+\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
+% \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
+\newcommand*{\del}[1]{\textcolor{red}{#1}}
+
 \renewcommand*{\ldots}{...} % \ldots sucks with acmart
 \renewcommand*{\ruleName}[1]{\textcolor{gray}{\textnormal{\textsf{#1}}}}
 
@@ -167,10 +171,6 @@
 \newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
 \newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
 \newcommand*{\tyVar}[1]{#1}
-
-\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
-
-\newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
 
 \newcommand*{\tyListProj}[1]{\del{\kw{List}}\;{#1}}
 \newcommand*{\tySumProjR}[2]{\del{{#1}\:+}\:{#2}}
