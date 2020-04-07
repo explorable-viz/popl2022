@@ -1,5 +1,4 @@
 \begin{figure}
-\flushleft \shadebox{$\Gamma : \Cxt$}
 \flushleft \shadebox{$\Gamma \proj \Gamma'$}
 \begin{smathpar}
    \inferrule*
@@ -30,70 +29,5 @@
       \cxtExtend{\Gamma}{x}{\bot} \proj \Gamma'
    }
 \end{smathpar}
-\\[2mm]
-\flushleft \shadebox{$x : A \in \Gamma$}
-\begin{smathpar}
-   \inferrule*
-   {
-      \strut
-   }
-   {
-      x : A \in (\cxtExtend{\Gamma}{x_{\top}}{A})
-   }
-   %
-   \and
-   %
-   \inferrule*[right={$x \neq y$}]
-   {
-      x : A \in \Gamma
-   }
-   {
-      x : A \in (\cxtExtend{\Gamma}{y_{\alpha}}{B})
-   }
-\end{smathpar}
-\\[2mm]
-\noindent \shadebox{$\envType{\Gamma}{\rho}$}
-\begin{smathpar}
-\inferrule*
-{
-   \strut
-}
-{
-   \envType{\cxtEmpty}{\envEmpty}
-}
-%
-\and
-%
-\inferrule*
-{
-   \envType{\Gamma}{\rho}
-   \\
-   \valType{v}{A}
-}
-{
-   \envType{\cxtExtend{\Gamma}{x_{\alpha}}{A}}{\envExtend{\rho}{x_{\alpha}}{v}}
-}
-\end{smathpar}
-\\[2mm]
-\flushleft \shadebox{$\envLookup{\rho}{x}{v}$}
-\begin{smathpar}
-   \inferrule*
-   {
-      \strut
-   }
-   {
-      \envLookup{\envExtend{\rho}{x_{\top}}{v}}{x}{v}
-   }
-   %
-   \and
-   %
-   \inferrule*[right={$x \neq y$}]
-   {
-      \envLookup{\rho}{x}{v}
-   }
-   {
-      \envLookup{\envExtend{\rho}{y_{\alpha}}{u}}{x}{v}
-   }
-\end{smathpar}
-\caption{Well-formed contexts and environments; context and environment lookup}
+\caption{Projection for contexts}
 \end{figure}
