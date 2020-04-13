@@ -11,12 +11,14 @@
    %
    \and
    %
-   \inferrule*[right={$A \neq \bot$}]
+   \inferrule*[right={$v' \neq \bot$}]
    {
       \Gamma \proj \Gamma'
+      \\
+      v \proj v'
    }
    {
-      \cxtExtend{\Gamma}{x}{A} \proj \cxtExtend{\Gamma'}{x}{A}
+      \cxtExtend{\Gamma}{x}{v} \proj \cxtExtend{\Gamma'}{x}{v'}
    }
    %
    \and
@@ -24,9 +26,11 @@
    \inferrule*
    {
       \Gamma \proj \Gamma'
+      \\
+      v \proj \bot
    }
    {
-      \cxtExtend{\Gamma}{x}{\bot} \proj \Gamma'
+      \cxtExtend{\Gamma}{x}{v} \proj \Gamma'
    }
 \end{smathpar}
 \\[2mm]
