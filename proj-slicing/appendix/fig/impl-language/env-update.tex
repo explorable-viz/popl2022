@@ -1,0 +1,12 @@
+\begin{figure}
+\flushleft \shadebox{$\envUpdate{\rho}{x}{v}$}
+\begin{salign}
+   \envUpdate{\envEmpty}{x}{v} &= \envEmpty
+   \\
+   \envUpdate{(\envExtend{\rho}{x}{u})}{x}{v} &= \envExtend{\rho}{x}{v}
+   \\
+   \envUpdate{(\envExtend{\rho}{y}{u})}{x}{v} &= \envExtend{(\envUpdate{\rho}{x}{v})}{y}{u}
+   \quad (x \neq y)
+\end{salign}
+\caption{Environment update}
+\end{figure}
