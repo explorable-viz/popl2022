@@ -128,6 +128,35 @@
    {
       v, \trApp{T}{T'}{\matchPlug{\xi}{U}} \bwdSlice \rho_1 \join \rho_2, \exApp{e}{e'}, \alpha \join \alpha'
    }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-add}}
+   ]
+   {
+      n', T \bwdSlice \rho, e, \alpha
+      \\
+      m, U \bwdSlice \rho', e', \alpha'
+   }
+   {
+      n, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e'}{e}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-let}},
+      right={$v' \nproj \bot$}
+   ]
+   {
+      v, U, \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+      \\
+      v', T \bwdSlice \rho', e', \alpha'
+   }
+   {
+      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
+   }
 \end{smathpar}
-\caption{Backward slicing}
+\caption{Backward slicing; \kw{Cons} and \kw{Nil} rules omitted}
 \end{figure}
