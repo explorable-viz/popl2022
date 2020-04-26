@@ -1,0 +1,29 @@
+\begin{figure}[p]
+\flushleft \shadebox{$v, T \bwdSlice \rho, e, \alpha$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-bot}},
+      right={$\Gamma \vdash T$}
+   ]
+   {
+      \strut
+   }
+   {
+      \bot, T \bwdSlice \bot_{\Gamma}, \bot, \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-var}},
+      right={$\Gamma \vdash x$}
+   ]
+   {
+      \strut
+   }
+   {
+      v, \trVarOne{x} \bwdSlice \envUpdate{\bot_{\Gamma}}{x}{v}, \bot
+   }
+\end{smathpar}
+\caption{Backward slicing}
+\end{figure}
