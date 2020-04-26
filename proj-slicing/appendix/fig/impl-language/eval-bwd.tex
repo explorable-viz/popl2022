@@ -98,6 +98,36 @@
    {
       \exPairProjR{v}, \trPair{T}{U} \bwdSlice \rho, \exPairProjR{e}, \alpha
    }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-fun}}
+   ]
+   {
+      \strut
+   }
+   {
+      \exClosureRec{\rho}{f}{\sigma}, \trRec{f}{\sigma'} \bwdSlice \rho, \exRec{f}{\sigma}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-app}}
+   ]
+   {
+      v, T \bwdSlice \envExtend{(\rho \concat \rho')}{f}{\exClosureRec{\rho^\twoPrime}{f}{\sigma}}, e, \alpha
+      \\
+      \rho', e, \alpha, \xi, \matchBwd v', \sigma'
+      \\
+      v', T \bwdSlice \rho_1, e', \alpha'
+      \\
+      \exClosureRec{\rho}{f}{(\sigma \join \sigma')}, T \bwdSlice \rho_2, e^\twoPrime, \alpha^\twoPrime
+   }
+   {
+      v, \trApp{T}{T'}{\matchPlug{\xi}{U}} \bwdSlice \rho_1 \join \rho_2, \exApp{e}{e'}, \alpha \join \alpha'
+   }
 \end{smathpar}
 \caption{Backward slicing}
 \end{figure}
