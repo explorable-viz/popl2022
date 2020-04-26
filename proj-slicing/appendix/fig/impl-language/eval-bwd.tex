@@ -157,6 +157,19 @@
    {
       v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
    }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-let-proj}},
+      right={$v' \proj \bot$}
+   ]
+   {
+      v, U, \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+   }
+   {
+      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLetProj{x}{e}, \alpha
+   }
 \end{smathpar}
 \caption{Backward slicing; \kw{Cons} and \kw{Nil} rules omitted}
 \end{figure}
