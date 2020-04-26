@@ -24,6 +24,17 @@
    {
       v, \trVarOne{x} \bwdSlice \envUpdate{\bot_{\Gamma}}{x}{v}, \bot
    }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-pair}}
+   ]
+   {
+   }
+   {
+      \exPair{u}{v}, \trPair{U}{T} \bwdSlice \rho \join \rho'
+   }
 \end{smathpar}
 \caption{Backward slicing}
 \end{figure}
