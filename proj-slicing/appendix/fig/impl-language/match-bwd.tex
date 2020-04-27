@@ -10,6 +10,7 @@
       \matchBwd
       v, \elimVar{x}{e}
    }
+   \\
    %
    \and
    %
@@ -20,7 +21,19 @@
    {
       \envEmpty, e, \top, \matchTrue{}
       \matchBwd
-      \exTrue, \elimBool{e}{e'}
+      \exTrue, \elimBool{e}{\bot}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-true-del}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, e, \bot, \matchTrue{}
+      \matchBwd
+      \bot, \elimBool{e}{\bot}
    }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}
