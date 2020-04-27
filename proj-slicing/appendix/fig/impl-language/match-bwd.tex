@@ -71,6 +71,51 @@
       \matchBwd
       \exPair{u}{v}, \elimPair{x}{y}{e}
    }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-del}},
+      right={\textnormal{$u \nproj \bot$ and $v \nproj \bot$}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \matchBwd
+      \exPair{u}{v}, \elimPair{x}{y}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-projl}},
+      right={$v \proj \bot$}
+   ]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \matchBwd
+      \exPairProjL{u}, \elimPair{x}{y}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-projr}},
+      right={$u \proj \bot$}
+   ]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \matchBwd
+      \exPairProjR{v}, \elimPair{x}{y}{e}
+   }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}
 \end{figure}
