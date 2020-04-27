@@ -59,6 +59,18 @@
       \matchBwd
       \bot, \elimBool{\bot}{e}
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \top, \matchPair{x}{y}{}
+      \matchBwd
+      \exPair{u}{v}, \elimPair{x}{y}{e}
+   }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}
 \end{figure}
