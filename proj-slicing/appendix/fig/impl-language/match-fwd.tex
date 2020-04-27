@@ -1,14 +1,14 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma, \xi \matchFwd \rho, e, \alpha$}
+\flushleft \shadebox{$v, \sigma, \xi \matchFwd \rho, \kappa, \alpha$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{e}, \matchVar{x}{}
+      v, \elimVar{x}{\kappa}, \matchVar{x}{}
       \matchFwd
-      \envExtend{\envEmpty}{x}{v}, e, \top
+      \envExtend{\envEmpty}{x}{v}, \kappa, \top
    }
    \\
    %
@@ -19,9 +19,9 @@
       \strut
    }
    {
-      \exTrue, \elimBool{e}{e'}, \matchTrue{}
+      \exTrue, \elimBool{\kappa}{\kappa'}, \matchTrue{}
       \matchFwd
-      \envEmpty, e, \top
+      \envEmpty, \kappa, \top
    }
    %
    \and
@@ -31,9 +31,9 @@
       \strut
    }
    {
-      \bot, \elimBool{e}{e'}, \matchTrue{}
+      \bot, \elimBool{\kappa}{\kappa'}, \matchTrue{}
       \matchFwd
-      \envEmpty, e, \bot
+      \envEmpty, \kappa, \bot
    }
    %
    \and
@@ -43,9 +43,9 @@
       \strut
    }
    {
-      \exFalse, \elimBool{e}{e'}, \matchFalse{}
+      \exFalse, \elimBool{\kappa}{\kappa'}, \matchFalse{}
       \matchFwd
-      \envEmpty, e', \top
+      \envEmpty, \kappa', \top
    }
    %
    \and
@@ -55,23 +55,23 @@
       \strut
    }
    {
-      \bot, \elimBool{e}{e'}, \matchFalse{}
+      \bot, \elimBool{\kappa}{\kappa'}, \matchFalse{}
       \matchFwd
-      \envEmpty, e', \bot
+      \envEmpty, \kappa', \bot
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
    {
-      u, \sigma \match \rho_1, \matchPlugLow{\xi}{\tau}
+      u, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
       \\
-      v, \tau \match, \rho_2, \matchPlugLow{\xi'}{\kappa}
+      v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exPair{u}{v}, \elimProd{\sigma}, \matchProd{x}{y}{}
+      \exPair{u}{v}, \elimProd{\sigma}, \matchProd{\xi}{\xi'}{}
       \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \top
+      \rho_1 \concat \rho_2, e, \alpha \meet \alpha'
    }
    %
    \and
