@@ -1,14 +1,14 @@
 \begin{figure}
-\flushleft \shadebox{$\rho, e, \alpha, \xi \matchBwd v, \sigma$}
+\flushleft \shadebox{$\rho, \kappa, \alpha, \xi \matchBwd v, \sigma$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchBwd$-var}}]
    {
       \strut
    }
    {
-      \envExtend{\envEmpty}{x}{v}, e, \alpha, \matchVar{x}{}
+      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVar{x}{}
       \matchBwd
-      v, \elimVar{x}{e}
+      v, \elimVar{x}{\kappa}
    }
    \\
    %
@@ -19,9 +19,9 @@
       \strut
    }
    {
-      \envEmpty, e, \top, \matchTrue{}
+      \envEmpty, \kappa, \top, \matchTrue{}
       \matchBwd
-      \exTrue, \elimBool{e}{\bot}
+      \exTrue, \elimBool{\kappa}{\bot}
    }
    %
    \and
@@ -31,9 +31,9 @@
       \strut
    }
    {
-      \envEmpty, e, \bot, \matchTrue{}
+      \envEmpty, \kappa, \bot, \matchTrue{}
       \matchBwd
-      \bot, \elimBool{e}{\bot}
+      \bot, \elimBool{\kappa}{\bot}
    }
    %
    \and
@@ -43,9 +43,9 @@
       \strut
    }
    {
-      \envEmpty, e, \top, \matchFalse{}
+      \envEmpty, \kappa, \top, \matchFalse{}
       \matchBwd
-      \exFalse, \elimBool{\bot}{e}
+      \exFalse, \elimBool{\bot}{\kappa}
    }
    %
    \and
@@ -55,9 +55,9 @@
       \strut
    }
    {
-      \envEmpty, e, \bot, \matchFalse{}
+      \envEmpty, \kappa, \bot, \matchFalse{}
       \matchBwd
-      \bot, \elimBool{\bot}{e}
+      \bot, \elimBool{\bot}{\kappa}
    }
    %
    \and
