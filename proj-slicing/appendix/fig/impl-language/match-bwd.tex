@@ -64,12 +64,14 @@
    %
    \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
    {
-      \strut
+      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \top, \matchPair{x}{y}{}
+      \rho_1 \concat \rho_2, \kappa, \top, \matchProd{\xi}{\xi'}{}
       \matchBwd
-      \exPair{u}{v}, \elimPair{x}{y}{e}
+      \exPair{u}{v}, \elimProd{\tau}
    }
    %
    \and
@@ -79,12 +81,14 @@
       right={\textnormal{$u \nproj \bot$ and $v \nproj \bot$}}
    ]
    {
-      \strut
+      \rho_2, \kappa, \bot, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \bot, \xi \matchBwd u, \tau
    }
    {
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchProd{\xi}{\xi'}{}
       \matchBwd
-      \exPair{u}{v}, \elimPair{x}{y}{e}
+      \exPair{u}{v}, \elimProd{\tau}
    }
    %
    \and
@@ -94,12 +98,14 @@
       right={$v \proj \bot$}
    ]
    {
-      \strut
+      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchProd{\xi}{\xi'}{}
       \matchBwd
-      \exPairProjL{u}, \elimPair{x}{y}{e}
+      \exPairProjL{u}, \elimProd{\tau}
    }
    %
    \and
@@ -109,12 +115,14 @@
       right={$u \proj \bot$}
    ]
    {
-      \strut
+      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchProd{\xi}{\xi'}{}
       \matchBwd
-      \exPairProjR{v}, \elimPair{x}{y}{e}
+      \exPairProjR{v}, \elimProd{\tau}
    }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}
