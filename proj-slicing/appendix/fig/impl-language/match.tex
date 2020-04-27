@@ -1,5 +1,5 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma \match \rho, \matchPlugLow{\xi}{e}$}
+\flushleft \shadebox{$v, \sigma \match \rho, \matchPlugLow{\xi}{\kappa}$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\match$-var}}]
    {
@@ -55,9 +55,9 @@
       \strut
    }
    {
-      \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \exNil, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \match
-      \envEmpty, \matchNilLow{e}
+      \envEmpty, \matchNilLow{\kappa}
    }
    %
    \and
