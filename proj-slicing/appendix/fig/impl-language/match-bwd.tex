@@ -35,6 +35,30 @@
       \matchBwd
       \bot, \elimBool{e}{\bot}
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, e, \top, \matchFalse{}
+      \matchBwd
+      \exFalse, \elimBool{\bot}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false-del}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, e, \bot, \matchFalse{}
+      \matchBwd
+      \bot, \elimBool{\bot}{e}
+   }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}
 \end{figure}
