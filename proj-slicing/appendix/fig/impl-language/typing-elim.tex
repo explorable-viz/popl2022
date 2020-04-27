@@ -3,22 +3,22 @@
 \begin{smathpar}
 \inferrule*
 {
-   \cxtExtend{\Gamma}{x}{A} \vdash e: B
+   \cxtExtend{\Gamma}{x}{A} \vdash \kappa: B
 }
 {
-   \Gamma \vdash \elimVar{x}{e}: \tyFun{A}{B}
+   \Gamma \vdash \elimVar{x}{\kappa}: \tyFun{A}{B}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash e: A
+   \Gamma \vdash \kappa: A
    \\
-   \Gamma \vdash e': A
+   \Gamma \vdash \kappa': A
 }
 {
-   \Gamma \vdash \elimBool{e}{e'}: \tyFun{\tyBool}{A}
+   \Gamma \vdash \elimBool{\kappa}{\kappa'}: \tyFun{\tyBool}{A}
 }
 %
 \and

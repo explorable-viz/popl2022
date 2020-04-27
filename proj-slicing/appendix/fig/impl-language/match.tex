@@ -38,14 +38,14 @@
    %
    \inferrule*[lab={\ruleName{$\match$-pair}}]
    {
-      u, \sigma \match \rho_1, \matchProdLow{\xi}{\tau}, \alpha
+      u, \sigma \match \rho_1, \matchProdLow{\xi}{\tau}
       \\
-      v, \tau \match, \rho_2, \matchProdLow{\xi'}{\kappa}, \alpha'
+      v, \tau \match, \rho_2, \matchProdLow{\xi'}{\kappa}
    }
    {
       \exPair{u}{v}, \elimProd{\sigma}
       \match
-      \rho_1 \concat \rho_2, \matchProdLow{\xi}{\matchProdLow{\xi'}{\kappa}}, \alpha \wedge \alpha'
+      \rho_1 \concat \rho_2, \matchProdLow{\xi}{\matchProdLow{\xi'}{\kappa}}
    }
    %
    \and
@@ -64,12 +64,15 @@
    %
    \inferrule*[lab={\ruleName{$\match$-cons}}]
    {
-      \strut
+      u, \sigma \match \rho_1, \matchProdLow{\xi}{\tau}
+      \\
+      v, \tau \match \rho_2, \matchProdLow{\xi'}{\kappa'}
    }
    {
-      \exCons{u}{v}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
+      \exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \match
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, \matchConsLow{x}{y}{e'}
+      \rho_1 \concat \rho_2,
+      \matchConsNewLow{\matchProdLow{\xi}{\matchProdLow{\xi'}{\kappa'}}}
    }
 \end{smathpar}
 \caption{Pattern-matching}
