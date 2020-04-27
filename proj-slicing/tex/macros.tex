@@ -143,7 +143,7 @@
 \newcommand*{\matchPlug}[2]{#1[#2]}
 \newcommand*{\matchPlugLow}[2]{\lowlight{#1[}#2\lowlight{]}}
 \newcommand*{\matchProd}[2]{\matchPlug{#1}{#2}}
-\newcommand*{\matchProdLow}[2]{\matchPlugLow{#1}{#2}}
+\newcommand*{\matchProdLow}[3]{\matchPlugLow{#1}{\matchPlugLow{#2}{#3}}}
 \newcommand*{\matchRoll}[1]{\elimRoll{#1}}
 \newcommand*{\matchInj}[1]{#1}
 \newcommand*{\matchUnit}[1]{\exUnit \mapsto {#1}}

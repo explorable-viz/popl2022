@@ -64,10 +64,12 @@
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
    {
-      \strut
+      u, \sigma \match \rho_1, \matchPlugLow{\xi}{\tau}
+      \\
+      v, \tau \match, \rho_2, \matchPlugLow{\xi'}{\kappa}
    }
    {
-      \exPair{u}{v}, \elimPair{x}{y}{e}, \matchPair{x}{y}{}
+      \exPair{u}{v}, \elimProd{\sigma}, \matchProd{x}{y}{}
       \matchFwd
       \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \top
    }

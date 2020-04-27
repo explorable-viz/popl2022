@@ -38,14 +38,14 @@
    %
    \inferrule*[lab={\ruleName{$\match$-pair}}]
    {
-      u, \sigma \match \rho_1, \matchProdLow{\xi}{\tau}
+      u, \sigma \match \rho_1, \matchPlugLow{\xi}{\tau}
       \\
-      v, \tau \match, \rho_2, \matchProdLow{\xi'}{\kappa}
+      v, \tau \match, \rho_2, \matchPlugLow{\xi'}{\kappa}
    }
    {
       \exPair{u}{v}, \elimProd{\sigma}
       \match
-      \rho_1 \concat \rho_2, \matchProdLow{\xi}{\matchProdLow{\xi'}{\kappa}}
+      \rho_1 \concat \rho_2, \matchProdLow{\xi}{\xi'}{\kappa}
    }
    %
    \and
@@ -64,15 +64,15 @@
    %
    \inferrule*[lab={\ruleName{$\match$-cons}}]
    {
-      u, \sigma \match \rho_1, \matchProdLow{\xi}{\tau}
+      u, \sigma \match \rho_1, \matchPlugLow{\xi}{\tau}
       \\
-      v, \tau \match \rho_2, \matchProdLow{\xi'}{\kappa'}
+      v, \tau \match \rho_2, \matchPlugLow{\xi'}{\kappa'}
    }
    {
       \exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \match
       \rho_1 \concat \rho_2,
-      \matchConsNewLow{\matchProdLow{\xi}{\matchProdLow{\xi'}{\kappa'}}}
+      \matchConsNewLow{\matchProdLow{\xi}{\xi'}{\kappa'}}
    }
 \end{smathpar}
 \caption{Pattern-matching}
