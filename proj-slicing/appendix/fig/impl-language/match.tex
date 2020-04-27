@@ -6,7 +6,7 @@
       \strut
    }
    {
-      v, \elimVar{x}{e} \match \envExtend{\envEmpty}{x}{v}, \matchVarLow{x}{e}
+      v, \elimVar{x}{\kappa} \match \envExtend{\envEmpty}{x}{v}, \matchVarLow{x}{\kappa}
    }
    \\
    %
@@ -17,9 +17,9 @@
       \strut
    }
    {
-      \exTrue, \elimBool{e}{e'}
+      \exTrue, \elimBool{\kappa}{\kappa'}
       \match
-      \envEmpty, \matchTrueLow{e}
+      \envEmpty, \matchTrueLow{\kappa}
    }
    %
    \and
@@ -29,9 +29,9 @@
       \strut
    }
    {
-      \exFalse, \elimBool{e}{e'}
+      \exFalse, \elimBool{\kappa}{\kappa'}
       \match
-      \envEmpty, \matchFalseLow{e'}
+      \envEmpty, \matchFalseLow{\kappa'}
    }
    %
    \and
