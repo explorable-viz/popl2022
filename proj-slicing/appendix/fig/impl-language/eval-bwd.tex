@@ -117,18 +117,18 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, U \bwdSlice \envExtend{(\rho \concat \rho')}{f}{\exClosureRec{\rho^\twoPrime}{f}{\sigma}}, e, \alpha
+      v, U \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_2}{f}{\sigma}}, e, \alpha
       \\
-      \rho', e, \alpha, \xi, \matchBwd v', \sigma'
+      \rho_1, e, \alpha, \xi, \matchBwd v', \sigma'
       \\
-      v', T' \bwdSlice \rho_1, e', \alpha'
+      v', T' \bwdSlice \rho', e', \alpha'
       \\
-      \exClosureRec{\rho \join \rho^\twoPrime}{f}{(\sigma \join \sigma')}, T
+      \exClosureRec{\rho_1 \join \rho_2}{f}{(\sigma \join \sigma')}, T
       \bwdSlice
-      \rho_2, e^\twoPrime, \alpha^\twoPrime
+      \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
    }
    {
-      v, \trApp{T}{T'}{\matchPlug{\xi}{U}} \bwdSlice \rho_1 \join \rho_2, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+      v, \trApp{T}{T'}{\matchPlug{\xi}{U}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
    }
    %
    \and
