@@ -1,0 +1,177 @@
+\begin{figure}[p]
+\flushleft \shadebox{$v, T \bwdSlice \rho, e, \alpha$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-bot}},
+      right={$\Gamma \vdash T$}
+   ]
+   {
+      \strut
+   }
+   {
+      \bot, T \bwdSlice \bot_{\Gamma}, \bot, \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-var}},
+      right={$\Gamma \vdash x$}
+   ]
+   {
+      \strut
+   }
+   {
+      v, \trVarOne{x} \bwdSlice \envUpdate{\bot_{\Gamma}}{x}{v}, \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-true}}
+   ]
+   {
+      \strut
+   }
+   {
+      \exTrue, \trTrue \bwdSlice \bot_{\Gamma}, \exTrue, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-false}}
+   ]
+   {
+      \strut
+   }
+   {
+      \exFalse, \trFalse \bwdSlice \bot_{\Gamma}, \exFalse, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-int}}
+   ]
+   {
+      \strut
+   }
+   {
+      \exInt{n}, \trInt{n} \bwdSlice \bot_{\Gamma}, \exInt{n}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-pair}}
+   ]
+   {
+      u, T \bwdSlice \rho, e, \alpha
+      \\
+      v, U \bwdSlice \rho', e', \alpha'
+   }
+   {
+      \exPair{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exPair{e}{e'}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-pair-projl}}
+   ]
+   {
+      v, T \bwdSlice \rho, e, \alpha
+   }
+   {
+      \exPairProjL{v}, \trPair{T}{U} \bwdSlice \rho, \exPairProjL{e}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-pair-projr}}
+   ]
+   {
+      v, U \bwdSlice \rho, e, \alpha
+   }
+   {
+      \exPairProjR{v}, \trPair{T}{U} \bwdSlice \rho, \exPairProjR{e}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-fun}}
+   ]
+   {
+      \strut
+   }
+   {
+      \exClosureRec{\rho}{f}{\sigma}, \trRec{f}{\sigma'} \bwdSlice \rho, \exRec{f}{\sigma}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-apply}}
+   ]
+   {
+      v, U \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_2}{f}{\sigma}}, e, \alpha
+      \\
+      \rho_1, e, \alpha, \xi, \matchBwd v', \sigma'
+      \\
+      v', T' \bwdSlice \rho', e', \alpha'
+      \\
+      \exClosureRec{\rho_1 \join \rho_2}{f}{(\sigma \join \sigma')}, T
+      \bwdSlice
+      \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
+   }
+   {
+      v, \trApp{T}{T'}{\matchPlug{\xi}{U}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-add}}
+   ]
+   {
+      n', T \bwdSlice \rho, e, \alpha
+      \\
+      m, U \bwdSlice \rho', e', \alpha'
+   }
+   {
+      n, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e'}{e}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-let}},
+      right={$v' \nproj \bot$}
+   ]
+   {
+      v, U, \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+      \\
+      v', T \bwdSlice \rho', e', \alpha'
+   }
+   {
+      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-let-proj}},
+      right={$v' \proj \bot$}
+   ]
+   {
+      v, U, \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+   }
+   {
+      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLetProj{x}{e}, \alpha
+   }
+\end{smathpar}
+\caption{Backward slicing; \kw{Cons} and \kw{Nil} rules omitted}
+\end{figure}

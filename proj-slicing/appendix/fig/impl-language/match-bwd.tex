@@ -1,0 +1,121 @@
+\begin{figure}
+\flushleft \shadebox{$\rho, e, \alpha, \xi \matchBwd v, \sigma$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchBwd$-var}}]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envEmpty}{x}{v}, e, \alpha, \matchVar{x}{}
+      \matchBwd
+      v, \elimVar{x}{e}
+   }
+   \\
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, e, \top, \matchTrue{}
+      \matchBwd
+      \exTrue, \elimBool{e}{\bot}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-true-del}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, e, \bot, \matchTrue{}
+      \matchBwd
+      \bot, \elimBool{e}{\bot}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, e, \top, \matchFalse{}
+      \matchBwd
+      \exFalse, \elimBool{\bot}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false-del}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, e, \bot, \matchFalse{}
+      \matchBwd
+      \bot, \elimBool{\bot}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \top, \matchPair{x}{y}{}
+      \matchBwd
+      \exPair{u}{v}, \elimPair{x}{y}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-del}},
+      right={\textnormal{$u \nproj \bot$ and $v \nproj \bot$}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \matchBwd
+      \exPair{u}{v}, \elimPair{x}{y}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-projl}},
+      right={$v \proj \bot$}
+   ]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \matchBwd
+      \exPairProjL{u}, \elimPair{x}{y}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-projr}},
+      right={$u \proj \bot$}
+   ]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \matchBwd
+      \exPairProjR{v}, \elimPair{x}{y}{e}
+   }
+\end{smathpar}
+\caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}
+\end{figure}

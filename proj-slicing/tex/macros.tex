@@ -235,6 +235,8 @@
 \newcommand*{\rcons}{\cdot} % can't use \snoc as a macro name inside mathpar
 \newcommand*{\cons}{::}
 \newcommand*{\unionWith}[1]{\cup_{#1}}
+\renewcommand*{\join}{\vee}
+\renewcommand*{\meet}{\wedge}
 \newcommand*{\joinWith}[1]{\join_{#1}}
 \newcommand*{\eqJoin}{\mathbin{!}}
 
@@ -290,6 +292,7 @@
 \newcommand*{\reduceNeed}[1]{\xlongrightarrow{\textsf{\tiny need}}_{\smash{#1}}}
 \newcommand*{\close}[2]{\operatorname{\mathsf{close}}(#1,#2)}
 \newcommand*{\proj}{\downarrow}
+\newcommand*{\nproj}{\not\downarrow}
 
 \newcommand*{\seq}{\mathrel{\smalltriangleright}}
 
