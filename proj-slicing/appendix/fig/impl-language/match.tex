@@ -38,12 +38,14 @@
    %
    \inferrule*[lab={\ruleName{$\match$-pair}}]
    {
-      \strut
+      u, \sigma \match \rho_1, \matchProdLow{\xi}{\tau}, \alpha
+      \\
+      v, \tau \match, \rho_2, \matchProdLow{\xi'}{\kappa}, \alpha'
    }
    {
-      \exPair{u}{v}, \elimPair{x}{y}{e}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, \matchPairLow{x}{y}{e}, \top
+      \exPair{u}{v}, \elimProd{\sigma}
+      \match
+      \rho_1 \concat \rho_2, \matchProdLow{\xi}{\matchProdLow{\xi'}{\kappa}}, \alpha \wedge \alpha'
    }
    %
    \and
