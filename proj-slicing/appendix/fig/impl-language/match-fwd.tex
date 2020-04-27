@@ -78,24 +78,28 @@
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-pair-projl}}]
    {
-      v, \sigma, \xi \matchFwd \rho, \tau, \alpha
+      v, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      \\
+      \bot, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
    }
    {
       \exPairProjL{v}, \elimProd{\sigma}, \matchProd{\xi}{\xi'}{}
       \matchFwd
-      \rho, \tau, \alpha
+      \rho_1 \concat \rho_2, \kappa, \bot
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-pair-projr}}]
    {
-      \strut
+      \bot, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      \\
+      v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
    }
    {
       \exPairProjR{v}, \elimProd{\sigma}, \matchProd{\xi}{\xi'}{}
       \matchFwd
-      \rho, e, \alpha
+      \rho_1 \concat \rho_2, \kappa, \bot
    }
 \end{smathpar}
 \caption{Pattern-matching (forward slicing); \kw{Cons} and \kw{Nil} cases omitted}
