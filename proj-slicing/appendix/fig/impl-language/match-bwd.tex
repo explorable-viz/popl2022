@@ -6,9 +6,21 @@
       \strut
    }
    {
-      \envExtend{\envEmpty}{x}{v}, e, \top, \matchVar{x}{}
+      \envExtend{\envEmpty}{x}{v}, e, \alpha, \matchVar{x}{}
       \matchBwd
       v, \elimVar{x}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, e, \top, \matchTrue{}
+      \matchBwd
+      \exTrue, \elimBool{e}{e'}
    }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}
