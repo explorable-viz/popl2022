@@ -6,7 +6,7 @@
       \strut
    }
    {
-      v, \elimVar{x}{\kappa}, \matchVar{x}{}
+      v, \elimVar{x}{\kappa}, \matchVarNew{x}
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, \kappa, \top
    }
@@ -19,7 +19,7 @@
       \strut
    }
    {
-      \exTrue, \elimBool{\kappa}{\kappa'}, \matchTrue{}
+      \exTrue, \elimBool{\kappa}{\kappa'}, \matchTrueNew
       \matchFwd
       \envEmpty, \kappa, \top
    }
@@ -31,7 +31,7 @@
       \strut
    }
    {
-      \bot, \elimBool{\kappa}{\kappa'}, \matchTrue{}
+      \bot, \elimBool{\kappa}{\kappa'}, \matchTrueNew
       \matchFwd
       \envEmpty, \kappa, \bot
    }
@@ -43,7 +43,7 @@
       \strut
    }
    {
-      \exFalse, \elimBool{\kappa}{\kappa'}, \matchFalse{}
+      \exFalse, \elimBool{\kappa}{\kappa'}, \matchFalseNew
       \matchFwd
       \envEmpty, \kappa', \top
    }
@@ -55,7 +55,7 @@
       \strut
    }
    {
-      \bot, \elimBool{\kappa}{\kappa'}, \matchFalse{}
+      \bot, \elimBool{\kappa}{\kappa'}, \matchFalseNew
       \matchFwd
       \envEmpty, \kappa', \bot
    }
@@ -69,7 +69,7 @@
       v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exPair{u}{v}, \elimProd{\sigma}, \matchProd{\xi}{\xi'}{}
+      \exPair{u}{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
       \matchFwd
       \rho_1 \concat \rho_2, e, \alpha \meet \alpha'
    }
@@ -83,7 +83,7 @@
       \bot, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exPairProjL{v}, \elimProd{\sigma}, \matchProd{\xi}{\xi'}{}
+      \exPairProjL{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \bot
    }
@@ -97,7 +97,7 @@
       v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exPairProjR{v}, \elimProd{\sigma}, \matchProd{\xi}{\xi'}{}
+      \exPairProjR{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \bot
    }

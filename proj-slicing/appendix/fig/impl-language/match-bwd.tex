@@ -6,7 +6,7 @@
       \strut
    }
    {
-      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVar{x}{}
+      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVarNew{x}
       \matchBwd
       v, \elimVar{x}{\kappa}
    }
@@ -19,7 +19,7 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \top, \matchTrue{}
+      \envEmpty, \kappa, \top, \matchTrueNew
       \matchBwd
       \exTrue, \elimBool{\kappa}{\bot}
    }
@@ -31,7 +31,7 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \bot, \matchTrue{}
+      \envEmpty, \kappa, \bot, \matchTrueNew
       \matchBwd
       \bot, \elimBool{\kappa}{\bot}
    }
@@ -43,7 +43,7 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \top, \matchFalse{}
+      \envEmpty, \kappa, \top, \matchFalseNew
       \matchBwd
       \exFalse, \elimBool{\bot}{\kappa}
    }
@@ -55,7 +55,7 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \bot, \matchFalse{}
+      \envEmpty, \kappa, \bot, \matchFalseNew
       \matchBwd
       \bot, \elimBool{\bot}{\kappa}
    }
@@ -69,7 +69,7 @@
       \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \top, \matchProd{\xi}{\xi'}{}
+      \rho_1 \concat \rho_2, \kappa, \top, \matchPairNew{\xi}{\xi'}
       \matchBwd
       \exPair{u}{v}, \elimProd{\tau}
    }
@@ -86,7 +86,7 @@
       \rho_1, \sigma, \bot, \xi \matchBwd u, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \bot, \matchProd{\xi}{\xi'}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
       \matchBwd
       \exPair{u}{v}, \elimProd{\tau}
    }
@@ -103,7 +103,7 @@
       \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \bot, \matchProd{\xi}{\xi'}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
       \matchBwd
       \exPairProjL{u}, \elimProd{\tau}
    }
@@ -120,7 +120,7 @@
       \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \bot, \matchProd{\xi}{\xi'}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
       \matchBwd
       \exPairProjR{v}, \elimProd{\tau}
    }
