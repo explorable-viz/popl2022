@@ -49,24 +49,21 @@
       \strut
    }
    {
-      \exNil, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
-      \match
-      \envEmpty, \matchNilLow{\kappa}
+      \explVal{\matchNilNew}{\exNil, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}} \match \envEmpty, \kappa}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\match$-cons}}]
    {
-      u, \sigma \match \rho_1, \matchPlugLow{\xi}{\tau}
+      \explVal{\xi}{u, \sigma \match \rho_1, \tau}
       \\
-      v, \tau \match \rho_2, \matchPlugLow{\xi'}{\kappa'}
+      \explVal{\xi'}{v, \tau \match \rho_2, \kappa'}
    }
    {
-      \exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
-      \match
-      \rho_1 \concat \rho_2,
-      \matchConsNewLow{\matchProdLow{\xi}{\xi'}{\kappa'}}
+      \explVal
+         {\matchConsNewNew{\xi}{\xi'}}
+         {\exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}} \match \rho_1 \concat \rho_2, \kappa'}
    }
 \end{smathpar}
 \caption{Pattern-matching}

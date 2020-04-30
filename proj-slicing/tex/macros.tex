@@ -128,6 +128,7 @@
 \newcommand*{\matchConsLow}[3]{\matchPlugLow{\exCons{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchConsNew}[1]{\matchPlug{\kw{Cons}\;}{#1}}
 \newcommand*{\matchConsNewLow}[1]{\matchPlugLow{\kw{Cons}\;}{#1}}
+\newcommand*{\matchConsNewNew}[2]{\exCons{#1}{#2}}
 \newcommand*{\matchFalse}[1]{\matchPlug{\exFalse\mapsto}{#1}}
 \newcommand*{\matchFalseLow}[1]{\matchPlugLow{\exFalse\mapsto}{#1}}
 \newcommand*{\matchFalseNew}{\exFalse}
@@ -135,6 +136,7 @@
 \newcommand*{\matchInj}[1]{#1}
 \newcommand*{\matchNil}[1]{\matchPlug{\exNil\mapsto}{#1}}
 \newcommand*{\matchNilLow}[1]{\matchPlugLow{\exNil\mapsto}{#1}}
+\newcommand*{\matchNilNew}{\exNil}
 \newcommand*{\matchPair}[3]{\matchPlug{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPairLow}[3]{\matchPlugLow{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
