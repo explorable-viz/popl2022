@@ -1,14 +1,14 @@
 \begin{figure}
-\flushleft \shadebox{$\rho, e, \alpha, \xi \matchBwd v, \sigma$}
+\flushleft \shadebox{$\rho, \kappa, \alpha, \xi \matchBwd v, \sigma$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchBwd$-var}}]
    {
       \strut
    }
    {
-      \envExtend{\envEmpty}{x}{v}, e, \alpha, \matchVar{x}{}
+      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVarNew{x}
       \matchBwd
-      v, \elimVar{x}{e}
+      v, \elimVar{x}{\kappa}
    }
    \\
    %
@@ -19,9 +19,9 @@
       \strut
    }
    {
-      \envEmpty, e, \top, \matchTrue{}
+      \envEmpty, \kappa, \top, \matchTrueNew
       \matchBwd
-      \exTrue, \elimBool{e}{\bot}
+      \exTrue, \elimBool{\kappa}{\bot}
    }
    %
    \and
@@ -31,9 +31,9 @@
       \strut
    }
    {
-      \envEmpty, e, \bot, \matchTrue{}
+      \envEmpty, \kappa, \bot, \matchTrueNew
       \matchBwd
-      \bot, \elimBool{e}{\bot}
+      \bot, \elimBool{\kappa}{\bot}
    }
    %
    \and
@@ -43,9 +43,9 @@
       \strut
    }
    {
-      \envEmpty, e, \top, \matchFalse{}
+      \envEmpty, \kappa, \top, \matchFalseNew
       \matchBwd
-      \exFalse, \elimBool{\bot}{e}
+      \exFalse, \elimBool{\bot}{\kappa}
    }
    %
    \and
@@ -55,21 +55,23 @@
       \strut
    }
    {
-      \envEmpty, e, \bot, \matchFalse{}
+      \envEmpty, \kappa, \bot, \matchFalseNew
       \matchBwd
-      \bot, \elimBool{\bot}{e}
+      \bot, \elimBool{\bot}{\kappa}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
    {
-      \strut
+      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \top, \matchPair{x}{y}{}
+      \rho_1 \concat \rho_2, \kappa, \top, \matchPairNew{\xi}{\xi'}
       \matchBwd
-      \exPair{u}{v}, \elimPair{x}{y}{e}
+      \exPair{u}{v}, \elimProd{\tau}
    }
    %
    \and
@@ -79,12 +81,14 @@
       right={\textnormal{$u \nproj \bot$ and $v \nproj \bot$}}
    ]
    {
-      \strut
+      \rho_2, \kappa, \bot, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \bot, \xi \matchBwd u, \tau
    }
    {
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
       \matchBwd
-      \exPair{u}{v}, \elimPair{x}{y}{e}
+      \exPair{u}{v}, \elimProd{\tau}
    }
    %
    \and
@@ -94,12 +98,14 @@
       right={$v \proj \bot$}
    ]
    {
-      \strut
+      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
       \matchBwd
-      \exPairProjL{u}, \elimPair{x}{y}{e}
+      \exPairProjL{u}, \elimProd{\tau}
    }
    %
    \and
@@ -109,12 +115,14 @@
       right={$u \proj \bot$}
    ]
    {
-      \strut
+      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
    }
    {
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, e, \bot, \matchPair{x}{y}{}
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
       \matchBwd
-      \exPairProjR{v}, \elimPair{x}{y}{e}
+      \exPairProjR{v}, \elimProd{\tau}
    }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}

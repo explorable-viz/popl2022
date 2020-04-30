@@ -108,12 +108,12 @@
       \\
       \explVal{T'}{\rho, e' \eval u}
       \\
-      u, \sigma \match \rho^\twoPrime, \matchPlugLow{\xi}{e^\twoPrime}
+      \explVal{\xi}{u, \sigma \match \rho^\twoPrime, e^\twoPrime}
       \\
       \explVal{U}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v}
    }
    {
-      \explVal{\trApp{T}{T'}{\matchPlugLow{\xi}{U}}}{\rho, \exApp{e}{e'} \eval v}
+      \explVal{\trApp{T}{T'}{\matchPlug{\xi}{U}}}{\rho, \exApp{e}{e'} \eval v}
    }
    %
    \and

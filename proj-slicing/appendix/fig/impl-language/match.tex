@@ -1,12 +1,12 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma \match \rho, \matchPlugLow{\xi}{e}$}
+\flushleft \shadebox{$\explVal{\xi}{v, \sigma \match \rho, \kappa}$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\match$-var}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{e} \match \envExtend{\envEmpty}{x}{v}, \matchVarLow{x}{e}
+      \explVal{\matchVarNew{x}}{v, \elimVar{x}{\kappa} \match \envExtend{\envEmpty}{x}{v}, \kappa}
    }
    \\
    %
@@ -17,9 +17,7 @@
       \strut
    }
    {
-      \exTrue, \elimBool{e}{e'}
-      \match
-      \envEmpty, \matchTrueLow{e}
+      \explVal{\matchTrueNew}{\exTrue, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa}
    }
    %
    \and
@@ -29,21 +27,19 @@
       \strut
    }
    {
-      \exFalse, \elimBool{e}{e'}
-      \match
-      \envEmpty, \matchFalseLow{e'}
+      \explVal{\matchFalseNew}{\exFalse, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa'}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\match$-pair}}]
    {
-      \strut
+      \explVal{\xi}{u, \sigma \match \rho_1, \tau}
+      \\
+      \explVal{\xi'}{v, \tau \match, \rho_2, \kappa}
    }
    {
-      \exPair{u}{v}, \elimPair{x}{y}{e}
-      \matchFwd
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, \matchPairLow{x}{y}{e}, \top
+      \explVal{\matchPairNew{\xi}{\xi'}}{\exPair{u}{v}, \elimProd{\sigma} \match \rho_1 \concat \rho_2, \kappa}
    }
    %
    \and
@@ -53,21 +49,21 @@
       \strut
    }
    {
-      \exNil, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
-      \match
-      \envEmpty, \matchNilLow{e}
+      \explVal{\matchNilNew}{\exNil, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}} \match \envEmpty, \kappa}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\match$-cons}}]
    {
-      \strut
+      \explVal{\xi}{u, \sigma \match \rho_1, \tau}
+      \\
+      \explVal{\xi'}{v, \tau \match \rho_2, \kappa'}
    }
    {
-      \exCons{u}{v}, \elimList{\branchNil{e}}{\branchCons{x}{y}{e'}}
-      \match
-      \envExtend{\envExtend{\envEmpty}{x}{u}}{y}{v}, \matchConsLow{x}{y}{e'}
+      \explVal
+         {\matchConsNewNew{\xi}{\xi'}}
+         {\exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}} \match \rho_1 \concat \rho_2, \kappa'}
    }
 \end{smathpar}
 \caption{Pattern-matching}
