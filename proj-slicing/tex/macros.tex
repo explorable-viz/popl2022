@@ -123,37 +123,13 @@
 \renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
 
 % Matches.
-%\newcommand*{\matchedConstr}[1]{\elimConstr{#1}}
-%\newcommand*{\matchCons}[3]{\matchPlug{\exCons{#1}{#2}\mapsto}{#3}}
-%\newcommand*{\matchConsLow}[3]{\matchPlugLow{\exCons{#1}{#2}\mapsto}{#3}}
-%\newcommand*{\matchConsNew}[1]{\matchPlug{\kw{Cons}\;}{#1}}
-%\newcommand*{\matchConsNewLow}[1]{\matchPlugLow{\kw{Cons}\;}{#1}}
 \newcommand*{\matchConsNewNew}[2]{\exCons{#1}{#2}}
-%\newcommand*{\matchFalse}[1]{\matchPlug{\exFalse\mapsto}{#1}}
-%\newcommand*{\matchFalseLow}[1]{\matchPlugLow{\exFalse\mapsto}{#1}}
 \newcommand*{\matchFalseNew}{\exFalse}
 \newcommand*{\matchHole}[1]{[#1]}
-%\newcommand*{\matchInj}[1]{#1}
-%\newcommand*{\matchNil}[1]{\matchPlug{\exNil\mapsto}{#1}}
-%\newcommand*{\matchNilLow}[1]{\matchPlugLow{\exNil\mapsto}{#1}}
 \newcommand*{\matchNilNew}{\exNil}
-%\newcommand*{\matchPair}[3]{\matchPlug{\exPair{#1}{#2}\mapsto}{#3}}
-%\newcommand*{\matchPairLow}[3]{\matchPlugLow{\exPair{#1}{#2}\mapsto}{#3}}
 \newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{#1[#2]}
-%\newcommand*{\matchPlugLow}[2]{\lowlight{#1[}#2\lowlight{]}}
-%\newcommand*{\matchProd}[2]{\matchPlug{#1}{#2}}
-%\newcommand*{\matchProdLow}[3]{\matchPlugLow{#1}{\matchPlugLow{#2}{#3}}}
-%\newcommand*{\matchRoll}[1]{\elimRoll{#1}}
-%\newcommand*{\matchSum}[2]{[\exInl{#1}, \exInr{#2}]}
-%\newcommand*{\matchSumL}[1]{[\exInl{#1}]}
-%\newcommand*{\matchSumR}[1]{[\exInr{#1}]}
-%\newcommand*{\matchTrue}[1]{\matchPlug{\exTrue\mapsto}{#1}}
-%\newcommand*{\matchTrueLow}[1]{\matchPlugLow{\exTrue\mapsto}{#1}}
 \newcommand*{\matchTrueNew}{\exTrue}
-%\newcommand*{\matchUnit}[1]{\exUnit \mapsto {#1}}
-%\newcommand*{\matchVarLow}[2]{\matchPlugLow{{#1}\mapsto}{#2}}
-%\newcommand*{\matchVar}[2]{\matchPlug{{#1}\mapsto}{#2}}
 \newcommand*{\matchVarNew}[1]{#1}
 
 \newcommand*{\pattToTrie}[2]{\llbracket#1\rrbracket_{#2}}
