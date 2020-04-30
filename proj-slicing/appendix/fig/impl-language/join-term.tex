@@ -1,0 +1,19 @@
+\begin{figure}
+\shadebox{$e \join e'$}
+\begin{salign}
+   \bot \join e &= e
+   \\
+   e \join \bot &= e
+   \\
+   \exVar{x} \join \exVar{x} &= \exVar{x}
+   \\
+   \exTrue \join \exTrue &= \exTrue
+   \\
+   \exFalse \join \exFalse &= \exFalse
+   \\
+   \exInt{n} \join \exInt{n} &= \exInt{n}
+   \\
+   \exPair{e_1}{e_2} \join \exPair{e_1'}{e_2'} &= \exPair{e_1 \join e_1'}{e_2 \join e_2'}
+\end{salign}
+\caption{Join of term slices}
+\end{figure}
