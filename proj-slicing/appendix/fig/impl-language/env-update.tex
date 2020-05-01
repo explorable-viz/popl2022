@@ -1,4 +1,11 @@
 \begin{figure}
+\flushleft \shadebox{$\bot_{\Gamma}$}
+\begin{salign}
+   \bot_{\cxtEmpty} &= \envEmpty
+   \\
+   \bot_{\cxtExtend{\Gamma}{x}{A}} &= \envExtend{\bot_{\Gamma}}{x}{\bot}
+\end{salign}
+\\[2mm]
 \flushleft \shadebox{$\envUpdate{\rho}{x}{v}$}
 \begin{salign}
    \envUpdate{\envEmpty}{x}{v} &= \envEmpty
@@ -8,5 +15,5 @@
    \envUpdate{(\envExtend{\rho}{y}{u})}{x}{v} &= \envExtend{(\envUpdate{\rho}{x}{v})}{y}{u}
    \quad (x \neq y)
 \end{salign}
-\caption{Environment update}
+\caption{Bottom environment; environment update}
 \end{figure}
