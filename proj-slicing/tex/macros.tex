@@ -105,51 +105,14 @@
 \newcommand*{\matchTrueNew}{\exTrue}
 \newcommand*{\matchVarNew}[1]{#1}
 
-\newcommand*{\pattToTrie}[2]{\llbracket#1\rrbracket_{#2}}
-\newcommand*{\branchesToTrie}[1]{\llbracket#1\rrbracket}
-\newcommand*{\matchTrie}[2]{{#1} \triangleleft {#2}}
-\newcommand*{\matchTriePartial}[1]{{#1}\:\triangleleft}
-\newcommand*{\lookup}[2]{{#1}\,{#2}}
-\newcommand*{\lookupR}{\rightsquigarrow}
-\newcommand*{\unlookupR}[1]{\mathrel{\sub{\leftsquigarrow}{#1}}}
-\newcommand*{\nonEmpty}[1]{\smash{{#1}^{+}}}
-\newcommand*{\typeof}[1]{\operatorname{\mathit{type}}(#1)}
 \newcommand*{\interpret}[1]{\hat{#1}}
-\newcommand*{\elimNarySumUpdate}[3]{#1[#2 \mapsto {#3}]}
 
 % Types.
 \newcommand*{\tyBool}[0]{\kw{Bool}}
-\newcommand*{\tyData}[1]{#1}
-\newcommand*{\tyGround}[1]{#1}
 \newcommand*{\tyInt}[0]{\kw{Int}}
 \newcommand*{\tyList}[1]{\kw{List}\;{#1}}
-\newcommand*{\tyZero}{\kw{0}}
-\newcommand*{\tyUnit}{\kw{1}}
-\newcommand*{\tySum}[2]{{#1}+{#2}}
 \newcommand*{\tyProd}[2]{{#1}\times{#2}}
 \newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
-\newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
-\newcommand*{\tyVar}[1]{#1}
-
-\newcommand*{\cxtExtendProj}[3]{{#1}\del{,{#2}: {#3}}}
-\newcommand*{\envExtendProj}[3]{{#1}\del{[{#2} \mapsto {#3}]}}
-\newcommand*{\envErase}[1]{\sub{\bot}{#1}}
-\newcommand*{\concatProjL}[2]{{#1}\,\del{\concat\,{#2}}}
-\newcommand*{\concatProjR}[2]{\del{{#1}\,\concat}\,{#2}}
-
-\newcommand*{\exAppProjFun}[2]{{#1}\,{\del{#2}}}
-\newcommand*{\exConsDel}[2]{\del{\kw{Cons}(}#1, #2\del{)}}
-\newcommand*{\exConsProjL}[1]{\del{\kw{Cons}(}#1,\bot\del{)}}
-\newcommand*{\exConsProjR}[1]{\del{\kw{Cons}(}\bot,#1\del{)}}
-\newcommand*{\exFunProj}[1]{\del{\uplambda}{#1}}
-\newcommand*{\exInlProj}[1]{\del{\kw{inl}}\;{#1}}
-\newcommand*{\exInrProj}[1]{\del{\kw{inr}}\;{#1}}
-\newcommand*{\exLetDel}[3]{\del{\kw{let}\;{#1}=}\;{#2}\;\del{\kw{in}}\;{#3}}
-\newcommand*{\exLetProj}[2]{\del{\kw{let}\;{#1}={\bot}\;\kw{in}}\;{#2}}
-\newcommand*{\exPairDel}[2]{\del{\langle}#1, #2\del{\rangle}}
-\newcommand*{\exPairProjL}[1]{\del{\langle}#1,\bot\del{\rangle}}
-\newcommand*{\exPairProjR}[1]{\del{\langle}\bot,#1\del{\rangle}}
-\newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
 
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}
@@ -183,18 +146,13 @@
 \newcommand*{\cxtEmpty}{\varepsilon}
 \newcommand*{\cxtExtend}[3]{{#1},{#2}: {#3}}
 \newcommand*{\cxtLookup}[2]{{#1}[{x}]}
-\newcommand*{\cxtUpdate}[3]{[{#2}:{#3}]{#1}}
-\newcommand*{\cxtConcat}{\plusplus}
 
 % Environments.
 \newcommand*{\subst}[3]{{#1}[{#2}/{#3}]} % still needed for recursive types..
 \newcommand*{\envEmpty}{\varepsilon}
-\newcommand*{\envType}[2]{\vdash {#2}: {#1}}
 \newcommand*{\envExtend}[3]{{#1}[{#2} \mapsto {#3}]}
 \newcommand*{\envLookup}[3]{{#2}: {#3} \in {#1}}
 \newcommand*{\envUpdate}[3]{{#1}\{{#2} \mapsto {#3}\}}
-\newcommand*{\envBot}{\bot}
-\newcommand*{\recEnvEntry}[3]{(#1,#2,#3)}
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
