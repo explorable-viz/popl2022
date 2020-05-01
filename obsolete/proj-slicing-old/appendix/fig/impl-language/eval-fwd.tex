@@ -1,0 +1,250 @@
+\begin{figure}[p]
+\flushleft \shadebox{$\rho, e, T, \alpha \fwdSlice v$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-bot}},
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, \bot, T, \alpha \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-var}},
+      right={\textnormal{$x: v \in \rho$}}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, x, x, \alpha \fwdSlice v
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-true}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exTrue, \trTrue, \top \fwdSlice \exTrue
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-true-bot}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exTrue, \trTrue, \bot \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-false}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exFalse, \trFalse, \top \fwdSlice \exFalse
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-false-bot}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exFalse, \trFalse, \bot \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-int}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exInt{n}, \trInt{n}, \top \fwdSlice \exInt{n}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-int-bot}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exInt{n}, \trInt{n}, \bot \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
+   {
+      \rho, e, T, \top \fwdSlice u
+      \\
+      \rho, e', U, \top \fwdSlice v
+   }
+   {
+      \rho, \exPair{e}{e'}, \trPair{T}{U}, \top \fwdSlice \exPair{u}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-pair-botl}},
+      right={$u \proj \bot$}
+   ]
+   {
+      \rho, e, T, \bot \fwdSlice u
+      \\
+      \rho, e', U, \bot \fwdSlice v
+   }
+   {
+      \rho, \exPair{e}{e'}, \trPair{T}{U}, \bot \fwdSlice \exPairProjR{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-pair-botr}},
+      right={$v \proj \bot$}
+   ]
+   {
+      \rho, e, T, \bot \fwdSlice u
+      \\
+      \rho, e', U, \bot \fwdSlice v
+   }
+   {
+      \rho, \exPair{e}{e'}, \trPair{T}{U}, \bot \fwdSlice \exPairProjL{u}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-projl}}]
+   {
+      \rho, e, T, \alpha \fwdSlice v
+   }
+   {
+      \rho, \exPairProjL{e}, \trPair{T}{U}, \alpha \fwdSlice \exPairProjL{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-projr}}]
+   {
+      \rho, e, U, \alpha \fwdSlice v
+   }
+   {
+      \rho, \exPairProjR{e}, \trPair{T}{U}, \alpha \fwdSlice \exPairProjR{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-fun}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exRec{f}{\sigma}, \trRec{f}{\sigma'}, \top \fwdSlice \exClosureRec{\rho}{f}{\sigma}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
+   {
+      \rho, e, T, \alpha \fwdSlice \exClosureRec{\rho'}{f}{\sigma}
+      \\
+      \rho, e', T', \alpha \fwdSlice u
+      \\
+      u, \sigma, \xi \matchFwd \rho^\twoPrime, e^\twoPrime, \alpha'
+      \\
+      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime, U, \alpha' \fwdSlice v
+   }
+   {
+      \rho, \exApp{e}{e'}, \trApp{T}{T'}{\matchPlug{U}{\xi}}, \alpha \fwdSlice v
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add}}
+   ]
+   {
+      \rho, e, T, \top \fwdSlice m
+      \\
+      \rho, e', U, \top \fwdSlice n
+   }
+   {
+      \rho, \exAdd{e}{e'}, \trAdd{T}{m}{U}{n}, \top \fwdSlice m \mathbin{\hat{+}} n
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add-bot}}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, \exAdd{e}{e'}, \trAdd{T}{m}{U}{n}, \bot \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add-bot-1}}
+   ]
+   {
+      \rho, e, T, \alpha \fwdSlice \bot
+   }
+   {
+      \rho, \exAdd{e}{e'}, \trAdd{T}{m}{U}{n}, \alpha \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add-bot-2}}
+   ]
+   {
+      \rho, e, T, \alpha \fwdSlice m
+      \\
+      \rho, e', U, \alpha \fwdSlice \bot
+   }
+   {
+      \rho, \exAdd{e}{e'}, \trAdd{T}{m}{U}{n}, \alpha \fwdSlice \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
+   {
+      \rho, e, T, \alpha \fwdSlice u
+      \\
+      \envExtend{\rho}{x}{u}, e', U, \alpha \fwdSlice v
+   }
+   {
+      \rho, \exLet{x}{e}{e'}, \trLet{x}{T}{U}, \alpha \fwdSlice v
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-let-proj}}]
+   {
+      \envExtend{\rho}{x}{\bot}, e', U, \alpha \fwdSlice v
+   }
+   {
+      \rho, \exLetProj{x}{e'}, \trLet{x}{T}{U}, \alpha \fwdSlice v
+   }
+\end{smathpar}
+\caption{Forward slicing; \kw{Cons} and \kw{Nil} rules omitted}
+\end{figure}

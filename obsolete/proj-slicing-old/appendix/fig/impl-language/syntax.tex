@@ -1,6 +1,6 @@
 \begin{figure}
 \begin{syntaxfig}
-\mbox{Selection}
+\mbox{Availability/demand}
 &
 \alpha
 &
@@ -8,12 +8,12 @@
 &
 \top
 &
-\text{selected}
+\text{present}
 \\
 &&&
 \bot
 &
-\text{not selected}
+\text{absent}
 \\[2mm]
 \mbox{Type}
 &
@@ -21,6 +21,11 @@ A, B
 &
 ::=
 &
+\bot
+&
+\text{absent}
+\\
+&&&
 \tyBool
 &
 \text{Booleans}
@@ -36,9 +41,18 @@ A, B
 \text{pairs}
 \\
 &&&
+\tyProdProjL{A}
+\\
+&&&
+\tyProdProjR{A}
+\\
+&&&
 \tyList{\tyInt}
 &
 \text{lists of integers}
+\\
+&&&
+\tyListProj{\tyInt}
 \\
 &&&
 \tyFun{A}{B}

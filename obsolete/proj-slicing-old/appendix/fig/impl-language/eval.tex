@@ -1,0 +1,146 @@
+\begin{figure}[p]
+\flushleft \shadebox{$\explVal{T}{\rho, e \eval v}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\eval$-bot}},
+   ]
+   {
+      \strut
+   }
+   {
+      \explVal{\bot}{\rho, \bot \eval \bot}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-var}},
+      right={\textnormal{$x: v \in \rho$}}
+   ]
+   {
+      \strut
+   }
+   {
+      \explVal{x}{\rho, x \eval v}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-true}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\trTrue}{\rho, \exTrue \eval \exTrue}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-false}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\trFalse}{\rho, \exFalse \eval \exFalse}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-int}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\trInt{n}}{\rho, \exInt{n} \eval \exInt{n}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-pair}}]
+   {
+      \explVal{T}{\rho, e \eval u}
+      \\
+      \explVal{U}{\rho, e' \eval v}
+   }
+   {
+      \explVal{\trPair{T}{U}}{\rho, \exPair{e}{e'} \eval \exPair{u}{v}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-nil}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\trNil}{\rho, \exNil \eval \exNil}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-cons}}]
+   {
+      \explVal{T}{\rho, e \eval u}
+      \\
+      \explVal{U}{\rho, e' \eval v}
+   }
+   {
+      \explVal{\trCons{T}{U}}{\rho, \exCons{e}{e'} \eval \exCons{u}{v}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-fun}}]
+   {
+      \strut
+   }
+   {
+      \explVal
+         {\trRec{f}{\sigma}}
+         {\rho, \exRec{f}{\sigma} \eval \exClosureRec{\rho}{f}{\sigma}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-apply}}]
+   {
+      \explVal{T}{\rho, e \eval \exClosureRec{\rho'}{f}{\sigma}}
+      \\
+      \explVal{T'}{\rho, e' \eval u}
+      \\
+      \explVal{\xi}{u, \sigma \match \rho^\twoPrime, e^\twoPrime}
+      \\
+      \explVal{U}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v}
+   }
+   {
+      \explVal{\trApp{T}{T'}{\matchPlug{\xi}{U}}}{\rho, \exApp{e}{e'} \eval v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-add}}
+   ]
+   {
+      \explVal{T}{\rho, e \eval m}
+      \\
+      \explVal{U}{\rho, e' \eval n}
+   }
+   {
+      \explVal{\trAdd{T}{m}{U}{n}}{\rho, \exAdd{e}{e'} \eval m \mathbin{\hat{+}} n}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-let}}]
+   {
+      \explVal{T}{\rho, e \eval u}
+      \\
+      \explVal{U}{\envExtend{\rho}{x}{u}, e' \eval v}
+   }
+   {
+      \explVal{\trLet{x}{T}{U}}{\rho, \exLet{x}{e}{e'} \eval v}
+   }
+\end{smathpar}
+\caption{Evaluation}
+\end{figure}

@@ -1,0 +1,214 @@
+\begin{figure}
+\flushleft \shadebox{$T, u \bwdSlice \rho, e$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\bwdSlice$-var}}]
+   {
+      \strut
+   }
+   {
+      v, \trVarTwo{x}{\rho}
+      \bwdSlice
+      \envUpdate{(\envErase{\rho})}{x}{v},
+      \exVar{x}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-unit}}]
+   {
+      \strut
+   }
+   {
+      \exUnit, \trUnit{\rho}
+      \bwdSlice
+      \envErase{\rho},
+      \exUnit
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-inl}}]
+   {
+      v, T \bwdSlice \rho, e
+   }
+   {
+      \exInl{v}, \trInl{T}
+      \bwdSlice
+      \rho,
+      \exInl{e}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, T \bwdSlice \rho, e
+   }
+   {
+      \exInlProj{v}, \trInl{T}
+      \bwdSlice
+      \rho,
+      \exInlProj{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-inr}}]
+   {
+      v, T \bwdSlice \rho', e
+   }
+   {
+      \exInr{v}, \trInr{T}
+      \bwdSlice
+      \rho',
+      \exInr{e}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, T \bwdSlice \rho', e
+   }
+   {
+      \exInrProj{v}, \trInr{T}
+      \bwdSlice
+      \rho',
+      \exInrProj{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-pair}}]
+   {
+      T_2, v \bwdSlice \rho_2, e_2
+      \\
+      T_1, u \bwdSlice \rho_1, e_1
+   }
+   {
+      \exPair{u}{v}, \trPair{T_1}{T_2}
+      \bwdSlice
+      \rho_1 \vee \rho_2,
+      \exPair{e_1}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      T_1, u \bwdSlice \rho, e_1
+   }
+   {
+      \exPairProjL{u}{v}, \trPair{T_1}{T_2}
+      \bwdSlice
+      \rho,
+      \exPairProjL{e_1}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      T_2, v \bwdSlice \rho, e_2
+   }
+   {
+      \exPairProjR{u}{v}, \trPair{T_1}{T_2}
+      \bwdSlice
+      \rho,
+      \exPairProjR{e_1}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-fun}}]
+   {
+      \strut
+   }
+   {
+      \exClosure{\rho}{\exFun{\sigma'}}, \trFun{\sigma}
+      \bwdSlice
+      \rho,
+      \exFun{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \exClosure{\rho}{\exFunProj{\elimSingletonProj{\sigma'}{\exFun{\tau}}}}, \trFun{\sigma}
+      \bwdSlice
+      \rho,
+      \exFunProj{\elimSingletonProj{\sigma'}{\exFun{\tau}}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-app}}]
+   {
+      v, U \bwdSlice \rho_1' \concat \rho_2, e^\twoPrime
+      \\
+      \rho_2, e^\twoPrime, \xi \matchBwd u, \sigma
+      \\
+      u, T' \bwdSlice \rho, e'
+      \\
+      \exClosure{\rho_1'}{\exFun{\sigma}}, T \bwdSlice \rho', e
+   }
+   {
+      v,
+      \trApp{T}
+            {T'}
+            {\matchPlug{\xi}{U}},
+      \bwdSlice
+      \rho \vee \rho',
+      \exApp{e}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, U \bwdSlice \concatProjL{\rho_1'}{\rho_2}, \exFun{\tau}
+      \\
+      \exClosure{\rho_1'}{\exFunProj{\elimSingletonProj{\sigma}{\exFun{\tau}}}}, T \bwdSlice \rho, e
+   }
+   {
+      v,
+      \trApp{T}
+            {T'}
+            {\matchPlug{\xi}{U}},
+      \bwdSlice
+      \rho,
+      \exAppProjFun{e}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-roll}}]
+   {
+      u, T \bwdSlice \rho', e
+   }
+   {
+      \exRoll{u}, \trRoll{T}
+      \bwdSlice
+      \rho',
+      \exRoll{e}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      u, T \bwdSlice \rho', e
+   }
+   {
+      \exRollProj{u}, \trRoll{T}
+      \bwdSlice
+      \rho',
+      \exRollProj{e}
+   }
+\end{smathpar}
+\caption{Backward slicing}
+\end{figure}

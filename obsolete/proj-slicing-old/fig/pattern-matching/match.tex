@@ -1,0 +1,94 @@
+\begin{figure}
+\flushleft \shadebox{$v, \sigma \lookupR \rho, \kappa$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\lookupR$-var}}]
+   {
+      \strut
+   }
+   {
+      \explVal
+         {\matchVar{x}{\matchHole{}}}
+         {v, \elimVar{x}{\kappa} \lookupR \envExtend{\envEmpty}{x}{v}, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-unit}}]
+   {
+      \strut
+   }
+   {
+      \explVal
+         {\matchUnit{\matchHole{}}}
+         {\exUnit, \elimUnit{\kappa} \lookupR \envEmpty, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-inl}}]
+   {
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+   }
+   {
+      \explVal
+         {\matchSumL{\xi}}
+         {\exInl{v}, \elimSum{\sigma}{\tau} \lookupR \rho, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+   }
+   {
+      \explVal
+         {\matchSumL{\xi}}
+         {\exInl{v}, \elimSumL{\sigma} \lookupR \rho, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-inr}}]
+   {
+      \explVal{\xi}{v, \tau \lookupR \rho, \kappa}
+   }
+   {
+      \explVal{\matchSumR{\xi}}{\exInr{v}, \elimSum{\sigma}{\tau} \lookupR \rho, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+   }
+   {
+      \explVal{\matchSumR{\xi}}{\exInr{v}, \elimSumR{\sigma} \lookupR \rho, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-pair}}]
+   {
+      \explVal{\xi}{u, \sigma \lookupR \rho_1, \tau}
+      \\
+      \explVal{\xi'}{v, \tau \lookupR \rho_2, \kappa}
+   }
+   {
+      \explVal{\matchProd{\xi}{\xi'}}{\exPair{u}{v}, \elimProd{\sigma} \lookupR \rho_1 \concat \rho_2, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\lookupR$-roll}}]
+   {
+      \explVal{\xi}{v, \sigma \lookupR \rho, \kappa}
+   }
+   {
+      \explVal{\matchRoll{\xi}}{\exRoll{v}, \elimRoll{\sigma} \lookupR \rho, \kappa}
+   }
+\end{smathpar}
+\caption{Pattern-matching}
+\label{fig:pattern-matching:match}
+\end{figure}

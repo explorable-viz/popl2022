@@ -1,0 +1,159 @@
+\begin{figure}
+\flushleft \shadebox{$v, \sigma \matchFwd \rho, \kappa$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
+   {
+      \strut
+   }
+   {
+         v, \elimVar{x}{\kappa} \matchFwd \envExtend{\envEmpty}{x}{v}, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-unit}}]
+   {
+      \strut
+   }
+   {
+      \exUnit, \elimUnit{\kappa} \matchFwd \envEmpty, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-inl}}]
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInl{v}, \elimSum{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInl{v}, \elimSumL{\sigma} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInl{v}, \elimSumOnlyL{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInlProj{v}, \elimSumProjL{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-inr}}]
+   {
+      v, \tau \matchFwd \rho, \kappa
+   }
+   {
+      \exInr{v}, \elimSum{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exInr{v}, \elimSumR{\sigma} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \tau \matchFwd \rho, \kappa
+   }
+   {
+      \exInr{v}, \elimSumOnlyR{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \tau \matchFwd \rho, \kappa
+   }
+   {
+      \exInrProj{v}, \elimSumProjR{\sigma}{\tau} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   {
+      u, \sigma \matchFwd \rho_1, \tau
+      \\
+      v, \tau \matchFwd \rho_2, \kappa
+   }
+   {
+      \exPair{u}{v}, \elimProd{\sigma} \matchFwd \rho_1 \concat \rho_2, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      u, \sigma \matchFwd \rho_1, \tau
+   }
+   {
+      \exPairProjL{u}{v}, \elimProd{\elimSingleton{\sigma}{\elimSingletonProj{\tau}{\kappa}}}
+      \matchFwd
+      \concatProjL{\rho_1}{\rho_2}, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \tau \matchFwd \rho_2, \kappa
+   }
+   {
+      \exPairProjR{u}{v}, \elimProd{\elimSingletonProj{\sigma}{\elimSingleton{\tau}{\kappa}}}
+      \matchFwd
+      \concatProjR{\rho_1}{\rho_2}, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-roll}}]
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exRoll{v}, \elimRoll{\sigma} \matchFwd \rho, \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v, \sigma \matchFwd \rho, \kappa
+   }
+   {
+      \exRollProj{v}, \elimRollProj{\sigma} \matchFwd \rho, \kappa
+   }
+\end{smathpar}
+\caption{Pattern-matching: forward slicing}
+\end{figure}

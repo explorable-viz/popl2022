@@ -1,0 +1,164 @@
+\begin{figure}
+\flushleft \shadebox{$\rho \proj \rho'$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \cxtEmpty \proj \cxtEmpty
+   }
+   %
+   \and
+   %
+   \inferrule*[right={$v' \neq \bot$}]
+   {
+      \Gamma \proj \Gamma'
+      \\
+      v \proj v'
+   }
+   {
+      \cxtExtend{\Gamma}{x}{v} \proj \cxtExtend{\Gamma'}{x}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \proj \Gamma'
+      \\
+      v \proj \bot
+   }
+   {
+      \cxtExtend{\Gamma}{x}{v} \proj \Gamma'
+   }
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$v \proj v'$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \bot \proj \bot
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \exTrue \proj \exTrue
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \exFalse \proj \exFalse
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      n \proj n
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      u \proj u'
+      \\
+      v \proj v'
+   }
+   {
+      \exPair{u}{v} \proj \exPair{u'}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v \proj v'
+   }
+   {
+      \exPairProjL{v} \proj v'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v \proj v'
+   }
+   {
+      \exPairProjR{v} \proj v'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \rho \proj \rho'
+      \\
+      \sigma \proj \sigma'
+   }
+   {
+      \exClosureRec{\rho}{f}{\sigma} \proj \exClosureRec{\rho'}{f}{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \exNil \proj \exNil
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      u \proj u'
+      \\
+      v \proj v'
+   }
+   {
+      \exCons{u}{v} \proj \exCons{u'}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v \proj v'
+   }
+   {
+      \exConsProjL{v} \proj v'
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      v \proj v'
+   }
+   {
+      \exConsProjR{v} \proj v'
+   }
+\end{smathpar}
+\caption{Projection for environments and values}
+\end{figure}

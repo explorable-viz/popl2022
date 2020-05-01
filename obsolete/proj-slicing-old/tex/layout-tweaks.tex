@@ -1,0 +1,18 @@
+\everymath{\displaystyle}
+
+\allowdisplaybreaks
+
+% I find the align environments use a bit too much vertical spacing.
+\addtolength{\jot}{-0.25em}
+
+\raggedbottom % sane vertical paragraph justification
+
+\hypersetup{ % not using recent enough version of hyperref for [hidelinks] option
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+
+% Put section and chapter numbering in margins, and color red.
+% \makeatletter
+% \def\@seccntformat#1{\protect\makebox[0pt][r]{\textcolor{red}{\csname
+%      the#1\endcsname}\hspace{6pt}}} \makeatother
