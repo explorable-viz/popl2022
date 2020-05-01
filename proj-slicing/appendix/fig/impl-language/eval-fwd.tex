@@ -26,52 +26,32 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-true}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-nil-sel}}]
    {
       \strut
    }
    {
-      \rho, \exTrue, \trTrue, \top \fwdSlice \exTrue
+      \rho, \exNilSel, \trNil, \top \fwdSlice \exNilSel
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-true-bot}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-nil-bot}}]
    {
       \strut
    }
    {
-      \rho, \exTrue, \trTrue, \bot \fwdSlice \bot
+      \rho, \exNilSel, \trNil, \bot \fwdSlice \bot
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-false}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-int-sel}}]
    {
       \strut
    }
    {
-      \rho, \exFalse, \trFalse, \top \fwdSlice \exFalse
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-false-bot}}]
-   {
-      \strut
-   }
-   {
-      \rho, \exFalse, \trFalse, \bot \fwdSlice \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-int}}]
-   {
-      \strut
-   }
-   {
-      \rho, \exInt{n}, \trInt{n}, \top \fwdSlice \exInt{n}
+      \rho, \exIntSel{n}, \trInt{n}, \top \fwdSlice \exIntSel{n}
    }
    %
    \and
@@ -81,34 +61,33 @@
       \strut
    }
    {
-      \rho, \exInt{n}, \trInt{n}, \bot \fwdSlice \bot
+      \rho, \exIntSel{n}, \trInt{n}, \bot \fwdSlice \bot
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-sel}}]
    {
       \rho, e, T, \top \fwdSlice u
       \\
       \rho, e', U, \top \fwdSlice v
    }
    {
-      \rho, \exPair{e}{e'}, \trPair{T}{U}, \top \fwdSlice \exPair{u}{v}
+      \rho, \exPairSel{e}{e'}, \trPair{T}{U}, \top \fwdSlice \exPairSel{u}{v}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-pair-botl}},
-      right={$u \proj \bot$}
+      lab={\ruleName{$\fwdSlice$-pair}},
    ]
    {
-      \rho, e, T, \bot \fwdSlice u
+      \rho, e, T, \alpha \fwdSlice u
       \\
-      \rho, e', U, \bot \fwdSlice v
+      \rho, e', U, \alpha \fwdSlice v
    }
    {
-      \rho, \exPair{e}{e'}, \trPair{T}{U}, \bot \fwdSlice \exPairProjR{v}
+      \rho, \exPair{e}{e'}, \trPair{T}{U}, \alpha \fwdSlice \exPair{u}{v}
    }
    %
    \and
@@ -246,5 +225,5 @@
       \rho, \exLetProj{x}{e'}, \trLet{x}{T}{U}, \alpha \fwdSlice v
    }
 \end{smathpar}
-\caption{Forward slicing; \kw{Cons} and \kw{Nil} rules omitted}
+\caption{Forward slicing; Boolean and pair cases omitted}
 \end{figure}
