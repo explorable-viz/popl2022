@@ -28,31 +28,43 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil-sel}}
+      lab={\ruleName{$\bwdSlice$-true}}
    ]
    {
       \strut
    }
    {
-      \exNilSel, \trNil \bwdSlice \bot_{\Gamma}, \exNilSel, \top
+      \exTrue, \trTrue \bwdSlice \bot_{\Gamma}, \exTrue, \top
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-int-sel}}
+      lab={\ruleName{$\bwdSlice$-false}}
    ]
    {
       \strut
    }
    {
-      \exIntSel{n}, \trInt{n} \bwdSlice \bot_{\Gamma}, \exIntSel{n}, \top
+      \exFalse, \trFalse \bwdSlice \bot_{\Gamma}, \exFalse, \top
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-cons-sel}}
+      lab={\ruleName{$\bwdSlice$-int}}
+   ]
+   {
+      \strut
+   }
+   {
+      \exInt{n}, \trInt{n} \bwdSlice \bot_{\Gamma}, \exInt{n}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-pair}}
    ]
    {
       u, T \bwdSlice \rho, e, \alpha
@@ -60,21 +72,31 @@
       v, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \exPairSel{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exPairSel{e}{e'}, \top
+      \exPair{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exPair{e}{e'}, \top
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-cons}}
+      lab={\ruleName{$\bwdSlice$-pair-projl}}
    ]
    {
-      u, T \bwdSlice \rho, e, \alpha
-      \\
-      v, U \bwdSlice \rho', e', \alpha'
+      v, T \bwdSlice \rho, e, \alpha
    }
    {
-      \exPair{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exPair{e}{e'}, \alpha \vee \alpha'
+      \exPairProjL{v}, \trPair{T}{U} \bwdSlice \rho, \exPairProjL{e}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-pair-projr}}
+   ]
+   {
+      v, U \bwdSlice \rho, e, \alpha
+   }
+   {
+      \exPairProjR{v}, \trPair{T}{U} \bwdSlice \rho, \exPairProjR{e}, \alpha
    }
    %
    \and
@@ -115,18 +137,19 @@
       lab={\ruleName{$\bwdSlice$-add}}
    ]
    {
-      \exIntSel{n'}, T \bwdSlice \rho, e, \alpha
+      n', T \bwdSlice \rho, e, \alpha
       \\
-      \exIntSel{m}, U \bwdSlice \rho', e', \alpha'
+      m, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \exIntSel{n}, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e'}{e}, \top
+      n, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e'}{e}, \top
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let}}
+      lab={\ruleName{$\bwdSlice$-let}},
+      right={$v' \nproj \bot$}
    ]
    {
       v, U, \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
@@ -135,6 +158,19 @@
    }
    {
       v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-let-proj}},
+      right={$v' \proj \bot$}
+   ]
+   {
+      v, U, \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+   }
+   {
+      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLetProj{x}{e}, \alpha
    }
 \end{smathpar}
 \caption{Backward slicing; \kw{Cons} and \kw{Nil} rules omitted}

@@ -1,0 +1,106 @@
+\begin{figure}
+\flushleft \shadebox{$v, \sigma, \xi \matchFwd \rho, \kappa, \alpha$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
+   {
+      \strut
+   }
+   {
+      v, \elimVar{x}{\kappa}, \matchVarNew{x}
+      \matchFwd
+      \envExtend{\envEmpty}{x}{v}, \kappa, \top
+   }
+   \\
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \exTrue, \elimBool{\kappa}{\kappa'}, \matchTrueNew
+      \matchFwd
+      \envEmpty, \kappa, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true-del}}]
+   {
+      \strut
+   }
+   {
+      \bot, \elimBool{\kappa}{\kappa'}, \matchTrueNew
+      \matchFwd
+      \envEmpty, \kappa, \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \exFalse, \elimBool{\kappa}{\kappa'}, \matchFalseNew
+      \matchFwd
+      \envEmpty, \kappa', \top
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false-del}}]
+   {
+      \strut
+   }
+   {
+      \bot, \elimBool{\kappa}{\kappa'}, \matchFalseNew
+      \matchFwd
+      \envEmpty, \kappa', \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   {
+      u, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      \\
+      v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
+   }
+   {
+      \exPair{u}{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
+      \matchFwd
+      \rho_1 \concat \rho_2, e, \alpha \meet \alpha'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-projl}}]
+   {
+      v, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      \\
+      \bot, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
+   }
+   {
+      \exPairProjL{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
+      \matchFwd
+      \rho_1 \concat \rho_2, \kappa, \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-projr}}]
+   {
+      \bot, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      \\
+      v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
+   }
+   {
+      \exPairProjR{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
+      \matchFwd
+      \rho_1 \concat \rho_2, \kappa, \bot
+   }
+\end{smathpar}
+\caption{Pattern-matching (forward slicing); \kw{Cons} and \kw{Nil} cases omitted}
+\end{figure}

@@ -8,7 +8,7 @@ u, v
 &
 \bot
 &
-\text{unselected}
+\text{absent}
 \\
 &&&
 \exTrue \mid \exFalse
@@ -16,13 +16,7 @@ u, v
 \text{Boolean}
 \\
 &&&
-\exTrueSel \mid \exFalseSel
-\\
-&&&
 \exInt{n}
-\\
-&&&
-\exIntSel{n}
 &
 \text{integer}
 \\
@@ -37,13 +31,13 @@ u, v
 \text{pair}
 \\
 &&&
-\exPairSel{u}{v}
+\exPairProjL{v}
+\\
+&&&
+\exPairProjR{v}
 \\
 &&&
 \exNil
-\\
-&&&
-\exNilSel
 &
 \text{nil}
 \\
@@ -53,7 +47,10 @@ u, v
 \text{cons}
 \\
 &&&
-\exConsSel{u}{v}
+\exConsProjL{v}
+\\
+&&&
+\exConsProjR{v}
 \\[2mm]
 \mbox{Environment}
 &

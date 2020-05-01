@@ -1,0 +1,129 @@
+\begin{figure}
+\flushleft \shadebox{$\rho, \kappa, \alpha, \xi \matchBwd v, \sigma$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchBwd$-var}}]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVarNew{x}
+      \matchBwd
+      v, \elimVar{x}{\kappa}
+   }
+   \\
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \top, \matchTrueNew
+      \matchBwd
+      \exTrue, \elimBool{\kappa}{\bot}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-true-del}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \bot, \matchTrueNew
+      \matchBwd
+      \bot, \elimBool{\kappa}{\bot}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \top, \matchFalseNew
+      \matchBwd
+      \exFalse, \elimBool{\bot}{\kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false-del}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \bot, \matchFalseNew
+      \matchBwd
+      \bot, \elimBool{\bot}{\kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
+   {
+      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
+   }
+   {
+      \rho_1 \concat \rho_2, \kappa, \top, \matchPairNew{\xi}{\xi'}
+      \matchBwd
+      \exPair{u}{v}, \elimProd{\tau}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-del}},
+      right={\textnormal{$u \nproj \bot$ and $v \nproj \bot$}}
+   ]
+   {
+      \rho_2, \kappa, \bot, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \bot, \xi \matchBwd u, \tau
+   }
+   {
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
+      \matchBwd
+      \exPair{u}{v}, \elimProd{\tau}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-projl}},
+      right={$v \proj \bot$}
+   ]
+   {
+      \rho_2, \kappa, \bot, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \bot, \xi \matchBwd u, \tau
+   }
+   {
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
+      \matchBwd
+      \exPairProjL{u}, \elimProd{\tau}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchBwd$-pair-projr}},
+      right={$u \proj \bot$}
+   ]
+   {
+      \rho_2, \kappa, \bot, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \bot, \xi \matchBwd u, \tau
+   }
+   {
+      \rho_1 \concat \rho_2, \kappa, \bot, \matchPairNew{\xi}{\xi'}
+      \matchBwd
+      \exPairProjR{v}, \elimProd{\tau}
+   }
+\end{smathpar}
+\caption{Pattern-matching (backward slicing); \kw{Cons} and \kw{Nil} cases omitted}
+\end{figure}
