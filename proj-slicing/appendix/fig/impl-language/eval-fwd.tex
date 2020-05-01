@@ -66,20 +66,20 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-sel}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-cons-sel}}]
    {
       \rho, e, T, \top \fwdSlice u
       \\
       \rho, e', U, \top \fwdSlice v
    }
    {
-      \rho, \exPairSel{e}{e'}, \trPair{T}{U}, \top \fwdSlice \exPairSel{u}{v}
+      \rho, \exConsSel{e}{e'}, \trPair{T}{U}, \top \fwdSlice \exConsSel{u}{v}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-pair}},
+      lab={\ruleName{$\fwdSlice$-cons}},
    ]
    {
       \rho, e, T, \alpha \fwdSlice u
@@ -87,42 +87,7 @@
       \rho, e', U, \alpha \fwdSlice v
    }
    {
-      \rho, \exPair{e}{e'}, \trPair{T}{U}, \alpha \fwdSlice \exPair{u}{v}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-pair-botr}},
-      right={$v \proj \bot$}
-   ]
-   {
-      \rho, e, T, \bot \fwdSlice u
-      \\
-      \rho, e', U, \bot \fwdSlice v
-   }
-   {
-      \rho, \exPair{e}{e'}, \trPair{T}{U}, \bot \fwdSlice \exPairProjL{u}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-projl}}]
-   {
-      \rho, e, T, \alpha \fwdSlice v
-   }
-   {
-      \rho, \exPairProjL{e}, \trPair{T}{U}, \alpha \fwdSlice \exPairProjL{v}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-pair-projr}}]
-   {
-      \rho, e, U, \alpha \fwdSlice v
-   }
-   {
-      \rho, \exPairProjR{e}, \trPair{T}{U}, \alpha \fwdSlice \exPairProjR{v}
+      \rho, \exCons{e}{e'}, \trPair{T}{U}, \alpha \fwdSlice \exCons{u}{v}
    }
    %
    \and
