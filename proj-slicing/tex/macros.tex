@@ -55,6 +55,7 @@
 \newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
+\newcommand*{\exConsSel}[2]{\sel{\kw{Cons}(}#1,#2\sel{)}}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exInt}[1]{#1}
@@ -63,6 +64,7 @@
 \newcommand*{\exLetrec}[2]{\kw{letrec}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{Nil}}
+\newcommand*{\exNilSel}{\sel{\kw{Nil}}}
 \newcommand*{\exPair}[2]{\langle#1,#2\rangle}
 \newcommand*{\exPairSel}[2]{\sel{\langle}#1,#2\sel{\rangle}}
 \newcommand*{\exRec}[2]{\kw{fun}\,{#1}{#2}}
