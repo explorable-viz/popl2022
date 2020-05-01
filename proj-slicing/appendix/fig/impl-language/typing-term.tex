@@ -65,26 +65,6 @@
 %
 \inferrule*
 {
-   \Gamma \vdash u: A
-}
-{
-   \Gamma \vdash \exPairProjL{v}: \tyProdProjL{A}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash u: A
-}
-{
-   \Gamma \vdash \exPairProjR{v}: \tyProdProjR{A}
-}
-%
-\and
-%
-\inferrule*
-{
    \Gamma \vdash e: \tyInt
    \\
    \Gamma \vdash e': \tyInt
@@ -131,16 +111,6 @@
 %
 \inferrule*
 {
-   \cxtExtend{\Gamma}{x}{\bot} \vdash e: A
-}
-{
-   \Gamma \vdash \exLetProj{x}{e}: A
-}
-%
-\and
-%
-\inferrule*
-{
    \strut
 }
 {
@@ -157,26 +127,6 @@
 }
 {
    \vdash \exCons{u}{v}: \tyList{\tyInt}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash v: \tyInt
-}
-{
-   \Gamma \vdash \exConsProjL{v}: \tyListProj{\tyInt}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash v: \tyList{\tyInt}
-}
-{
-   \Gamma \vdash \exConsProjR{v}: \tyList{\tyInt}
 }
 \end{smathpar}
 \caption{Typing rules for terms}

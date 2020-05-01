@@ -1,6 +1,7 @@
 \newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 % \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
 \newcommand*{\del}[1]{\textcolor{red}{#1}}
+\newcommand*{\sel}[1]{\textcolor{blue}{#1}}
 
 \renewcommand*{\ldots}{...} % \ldots sucks with acmart
 \renewcommand*{\ruleName}[1]{\textcolor{gray}{\textnormal{\textsf{#1}}}}
@@ -53,43 +54,21 @@
 % Expressions.
 \newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
-\newcommand*{\exBot}{\bot}
-\newcommand*{\exBranch}[2]{{#1}.{#2}}
 \newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
-\newcommand*{\exConst}[1]{#1}
-\newcommand*{\exConstr}[2]{#1(#2)}
-\newcommand*{\exClosure}[2]{(#1,#2)}
-\newcommand*{\exClosureNew}[3]{(#1,#2,#3)}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
-\newcommand*{\exDefs}[2]{{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exFalse}{\kw{false}}
-\newcommand*{\exFst}[1]{\kw{fst}\;#1}
-\newcommand*{\exFun}[1]{\uplambda{#1}}
-\newcommand*{\exInl}[1]{\kw{inl}\;{#1}}
-\newcommand*{\exInr}[1]{\kw{inr}\;{#1}}
 \newcommand*{\exInt}[1]{#1}
+\newcommand*{\exIntSel}[1]{\sel{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
-\newcommand*{\exLetDef}[2]{\kw{let}\;{#1}={#2}}
 \newcommand*{\exLetrec}[2]{\kw{letrec}\;{#1}\;\kw{in}\;{#2}}
-\newcommand*{\exLetrecDef}[1]{\kw{letrec}\;{#1}}
-\newcommand*{\exLambda}[2]{\uplambda{#1}.{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
-\newcommand*{\exNat}[1]{#1}
 \newcommand*{\exNil}{\kw{Nil}}
-\newcommand*{\exOp}[2]{{#1}\primOp{#2}}
 \newcommand*{\exPair}[2]{\langle#1,#2\rangle}
-\newcommand*{\exPrimApp}[3]{{#1} #2 {#3}}
-\newcommand*{\exPrimDef}[1]{\kw{primitive}\;{#1}}
-\newcommand*{\exPrimOp}{\primOp}
+\newcommand*{\exPairSel}[2]{\sel{\langle}#1,#2\sel{\rangle}}
 \newcommand*{\exRec}[2]{\kw{fun}\,{#1}{#2}}
-\newcommand*{\exRoll}[1]{\kw{roll}\;{#1}}
-\newcommand*{\exSnd}[1]{\kw{snd}\;#1}
 \newcommand*{\exTrue}{\kw{true}}
-\newcommand*{\exUnit}{\langle\rangle}
-\newcommand*{\exUnroll}[1]{\kw{unroll}\;{#1}}
+\newcommand*{\exTrueSel}{\sel{true}}
 \newcommand*{\exVar}[1]{#1}
-\newcommand*{\exThunkVar}[2]{{#1}: {#2}}
-\newcommand*{\exTop}{\top}
 
 \newcommand*{\branchCons}[3]{\exCons{#1}{#2}\mapsto{#3}}
 \newcommand*{\branchConsNew}[1]{\kw{Cons}\;{#1}}
@@ -155,15 +134,6 @@
 \newcommand*{\tyRec}[2]{\mu{#1}.{#2}}
 \newcommand*{\tyVar}[1]{#1}
 
-\newcommand*{\tyListProj}[1]{\del{\kw{List}}\;{#1}}
-\newcommand*{\tySumProjR}[2]{\del{{#1}\:+}\:{#2}}
-\newcommand*{\tySumProjL}[2]{{#1}\:\del{+\:{#2}}}
-\newcommand*{\tyProdProjR}[1]{\bot\mathbin{\del{\times}}{#1}}
-\newcommand*{\tyProdProjL}[1]{{#1}\mathbin{\del{\times}}\bot}
-\newcommand*{\tyFunProjR}[2]{\del{{#1}\rightarrow}\:{#2}}
-\newcommand*{\tyFunProjL}[2]{{#1}\;\del{\rightarrow{#2}}}
-\newcommand*{\tyRecProj}[2]{\del{\mu{#1}.}{#2}}
-
 \newcommand*{\cxtExtendProj}[3]{{#1}\del{,{#2}: {#3}}}
 \newcommand*{\envExtendProj}[3]{{#1}\del{[{#2} \mapsto {#3}]}}
 \newcommand*{\envErase}[1]{\sub{\bot}{#1}}
@@ -183,18 +153,6 @@
 \newcommand*{\exPairProjL}[1]{\del{\langle}#1,\bot\del{\rangle}}
 \newcommand*{\exPairProjR}[1]{\del{\langle}\bot,#1\del{\rangle}}
 \newcommand*{\exRollProj}[1]{\del{\kw{roll}}\;{#1}}
-
-\newcommand*{\elimVarProj}[2]{\del{\elimVarNoRHS{#1}\mapsto}\;{#2}}
-\newcommand*{\elimProdProj}[1]{{\del{\langle}#1\del{\rangle}}}
-\newcommand*{\elimRollProj}[1]{\del{\kw{roll}}\;{#1}}
-\newcommand*{\elimSingletonProj}[2]{\del{#1[}#2\del{]}}
-\newcommand*{\elimSumOnlyL}[2]{[\exInl{#1}\del{,\exInr{#2}}]}
-\newcommand*{\elimSumOnlyR}[2]{[\del{\exInl{#1},}\,\exInr{#2}]}
-\newcommand*{\elimSumProjL}[2]{\del{[\kw{inl}}\;{#1}\del{,\exInr{#2}]}}
-\newcommand*{\elimSumProjR}[2]{\del{[\exInl{#1},\kw{inr}}\;{#2}\del{]}}
-\newcommand*{\elimSumLProj}[1]{\del{[\kw{inl}}\;{#1}\del{]}}
-\newcommand*{\elimSumRProj}[1]{\del{[\kw{inr}}\;{#1}\del{]}}
-\newcommand*{\elimUnitProj}[1]{\del{\exUnit\mapsto}\;{#1}}
 
 % Sets
 \newcommand*{\Ann}[1]{\Set{Ann}(#1)}
