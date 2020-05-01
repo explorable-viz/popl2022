@@ -51,6 +51,7 @@
 \newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
 \newcommand*{\exConsSel}[2]{\sel{\kw{Cons}(}#1,#2\sel{)}}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
+\newcommand*{\exClosureRecSel}[3]{\sel{(}#1,\exRec{#2}{#3}\sel{)}}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFalseSel}{\sel{\exFalse}}
 \newcommand*{\exInt}[1]{#1}
@@ -146,7 +147,6 @@
 % \newcommand*{\bwdSlice}{\searrow}
 \newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
 \newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
-\newcommand*{\uneval}{\Leftarrow}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
@@ -174,9 +174,4 @@
 \newcommand*{\trVarOne}[1]{#1}
 \newcommand*{\trVarTwo}[2]{{#1}_{\lowlight{#2}}}
 
-% Self-explaining computation
-\newcommand*{\expl}[1]{#1}
-\newcommand*{\TrVal}[1]{\mleft\llbracket{#1}\mright\rrbracket}
-\newcommand*{\Tr}[1]{{\mathsf{Tr}\TrVal{#1}}}
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
-\newcommand*{\exprTr}[1]{\mathsf{T}(#1)}
