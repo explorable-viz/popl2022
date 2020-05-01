@@ -197,24 +197,11 @@
 \newcommand*{\recEnvEntry}[3]{(#1,#2,#3)}
 
 % Typing judgements.
-\newcommand*{\contType}[3]{{#3} \vdash {#1} : {#2}}
-\newcommand*{\elimArrow}{\to}
-\newcommand*{\elimTypePartial}[2]{{{#2}\elimArrow{#1}}}
-\newcommand*{\elimType}[4]{{#4} \vdash {#1} : \elimTypePartial{#2}{#3}}
-\newcommand*{\elimTypeJudge}[3]{{#3} \vdash \elimTypePartial{#1}{#2}}
-\newcommand*{\matchArrow}{\rightbarharpoon}
-\newcommand*{\matchTypePartial}[2]{{{#2}\matchArrow{#1}}}
-\newcommand*{\matchType}[5]{{#1} \vdash {#2} : \matchTypePartial{#3}{#4} \dashv {#5}}
-\newcommand*{\explMatchType}[5]{{#1} \vdash {#2} : \Expl{(\matchTypePartial{#3}{#4})} \dashv {#5}}
-\newcommand*{\pattTrie}[4]{{#2},{#3} \vdash {#4} \rightsquigarrow {#1}}
 \newcommand*{\exprType}[3]{{#2} \vdash {#1} : {#3}}
 \newcommand*{\exprTypeJudge}[2]{{#1} \vdash {#2}}
-\newcommand*{\pattType}[2]{\vdash {#1} : {#2}}
 \newcommand*{\explValType}[3]{{#1} \vdash {#2} : \ExplVal{#3}}
 \newcommand*{\explType}[3]{{#1} \vdash {#2} : \Expl{#3}}
 \newcommand*{\valType}[2]{\vdash {#1} : {#2}}
-\newcommand*{\valExplType}[3]{{#1} \vdash {#2} : {#3}}
-\newcommand*{\valExplTypeNew}[2]{\vdash {#1} : {#2}}
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
