@@ -14,92 +14,54 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
    {
       \strut
    }
    {
-      \exTrue, \elimBool{\kappa}{\kappa'}, \matchTrueNew
-      \matchFwd
-      \envEmpty, \kappa, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-true-del}}]
-   {
-      \strut
-   }
-   {
-      \bot, \elimBool{\kappa}{\kappa'}, \matchTrueNew
+      \bot, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchNilNew
       \matchFwd
       \envEmpty, \kappa, \bot
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-nil-sel}}]
    {
       \strut
    }
    {
-      \exFalse, \elimBool{\kappa}{\kappa'}, \matchFalseNew
+      \exTrueSel, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchNilNew
       \matchFwd
-      \envEmpty, \kappa', \top
+      \envEmpty, \kappa, \top
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-false-del}}]
-   {
-      \strut
-   }
-   {
-      \bot, \elimBool{\kappa}{\kappa'}, \matchFalseNew
-      \matchFwd
-      \envEmpty, \kappa', \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
    {
       u, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
       \\
       v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exPair{u}{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
+      \exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchConsNewNew{\xi}{\xi'}
       \matchFwd
-      \rho_1 \concat \rho_2, e, \alpha \meet \alpha'
+      \rho_1 \concat \rho_2, e, \bot
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair-projl}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons-sel}}]
    {
-      v, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
-      \\
-      \bot, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
-   }
-   {
-      \exPairProjL{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
-      \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair-projr}}]
-   {
-      \bot, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      u, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
       \\
       v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exPairProjR{v}, \elimProd{\sigma}, \matchPairNew{\xi}{\xi'}
+      \exConsSel{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchConsNewNew{\xi}{\xi'}
       \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \bot
+      \rho_1 \concat \rho_2, e, \alpha \wedge \alpha'
    }
 \end{smathpar}
 \caption{Pattern-matching (forward slicing); \kw{Cons} and \kw{Nil} cases omitted}
