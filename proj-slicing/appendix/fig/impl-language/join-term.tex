@@ -9,19 +9,19 @@
    \\
    \exTrue \join \exTrue &= \exTrue
    \\
+   \exTrue \join \exTrueSel &= \exTrueSel
+   \\
    \exFalse \join \exFalse &= \exFalse
+   \\
+   \exFalse \join \exFalseSel &= \exFalseSel
    \\
    \exInt{n} \join \exInt{n} &= \exInt{n}
    \\
+   \exInt{n} \join \exIntSel{n} &= \exIntSel{n}
+   \\
    \exPair{e_1}{e_2} \join \exPair{e_1'}{e_2'} &= \exPair{e_1 \join e_1'}{e_2 \join e_2'}
    \\
-   \exPairProjL{e} \join \exPairProjL{e'} &= \exPairProjL{e \join e'}
-   \\
-   \exPairProjR{e} \join \exPairProjR{e'} &= \exPairProjR{e \join e'}
-   \\
-   \exPairProjL{e} \join \exPairProjR{e'} &= \exPair{e}{e'}
-   \\
-   \exPairProjR{e} \join \exPairProjL{e'} &= \exPair{e'}{e}
+   \exPair{e_1}{e_2} \join \exPairSel{e_1'}{e_2'} &= \exPairSel{e_1 \join e_1'}{e_2 \join e_2'}
    \\
    (\exRec{f}{\sigma}) \join (\exRec{f}{\sigma'}) &= \exRec{f}{(\sigma \join \sigma')}
    \\
@@ -29,15 +29,11 @@
    \\
    \exNil \join \exNil &= \exNil
    \\
+   \exNil \join \exNilSel &= \exNilSel
+   \\
    \exCons{e_1}{e_2} \join \exCons{e_1'}{e_2'} &= \exCons{e_1 \join e_1'}{e_2 \join e_2'}
    \\
-   \exConsProjL{e} \join \exConsProjL{e'} &= \exConsProjL{e \join e'}
-   \\
-   \exConsProjR{e} \join \exConsProjR{e'} &= \exConsProjR{e \join e'}
-   \\
-   \exConsProjL{e} \join \exConsProjR{e'} &= \exCons{e}{e'}
-   \\
-   \exConsProjR{e} \join \exConsProjL{e'} &= \exCons{e'}{e}
+   \exCons{e_1}{e_2} \join \exConsSel{e_1'}{e_2'} &= \exConsSel{e_1 \join e_1'}{e_2 \join e_2'}
 \end{salign}
-\caption{Join of term slices}
+\caption{Join of term slices (symmetric cases omitted)}
 \end{figure}

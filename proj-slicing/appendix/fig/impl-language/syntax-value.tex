@@ -16,7 +16,13 @@ u, v
 \text{Boolean}
 \\
 &&&
+\exTrueSel \mid \exFalseSel
+\\
+&&&
 \exInt{n}
+\\
+&&&
+\exIntSel{n}
 &
 \text{integer}
 \\
@@ -31,13 +37,13 @@ u, v
 \text{pair}
 \\
 &&&
-\exPairProjL{v}
-\\
-&&&
-\exPairProjR{v}
+\exPairSel{u}{v}
 \\
 &&&
 \exNil
+\\
+&&&
+\exNilSel
 &
 \text{nil}
 \\
@@ -47,10 +53,7 @@ u, v
 \text{cons}
 \\
 &&&
-\exConsProjL{v}
-\\
-&&&
-\exConsProjR{v}
+\exConsSel{u}{v}
 \\[2mm]
 \mbox{Environment}
 &

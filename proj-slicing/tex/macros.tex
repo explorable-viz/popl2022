@@ -58,6 +58,7 @@
 \newcommand*{\exConsSel}[2]{\sel{\kw{Cons}(}#1,#2\sel{)}}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exFalse}{\kw{false}}
+\newcommand*{\exFalseSel}{\sel{\exFalse}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exIntSel}[1]{\sel{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
@@ -69,7 +70,7 @@
 \newcommand*{\exPairSel}[2]{\sel{\langle}#1,#2\sel{\rangle}}
 \newcommand*{\exRec}[2]{\kw{fun}\,{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
-\newcommand*{\exTrueSel}{\sel{true}}
+\newcommand*{\exTrueSel}{\sel{\exTrue}}
 \newcommand*{\exVar}[1]{#1}
 
 \newcommand*{\branchCons}[3]{\exCons{#1}{#2}\mapsto{#3}}
