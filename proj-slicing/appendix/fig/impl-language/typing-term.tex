@@ -87,12 +87,12 @@
 %
 \inferrule*
 {
-   \exprType{e}{\Gamma}{\tyFun{A}{B}}
+   \Gamma \vdash e: \tyFun{A}{B}
    \\
-   \exprType{e'}{\Gamma}{A}
+   \Gamma \vdash e' A
 }
 {
-   \exprType{\exApp{e}{e'}}{\Gamma}{B}
+   \Gamma \vdash \exApp{e}{e'}: B
 }
 %
 \and
