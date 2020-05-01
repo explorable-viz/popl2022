@@ -14,26 +14,26 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-true}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-nil-sel}}]
    {
       \strut
    }
    {
-      \envEmpty, \kappa, \top, \matchTrueNew
+      \envEmpty, \kappa, \top, \matchNilNew
       \matchBwd
-      \exTrue, \elimBool{\kappa}{\bot}
+      \exNilSel, \elimList{\branchNil{\kappa}}{\branchConsNew{\bot}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-true-del}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-nil}}]
    {
       \strut
    }
    {
-      \envEmpty, \kappa, \bot, \matchTrueNew
+      \envEmpty, \kappa, \bot, \matchNilNew
       \matchBwd
-      \bot, \elimBool{\kappa}{\bot}
+      \bot, \elimList{\branchNil{\kappa}}{\branchConsNew{\bot}}
    }
    %
    \and

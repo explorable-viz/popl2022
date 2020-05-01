@@ -2,6 +2,8 @@
 % \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
 \newcommand*{\del}[1]{\textcolor{red}{#1}}
 \newcommand*{\sel}[1]{\textcolor{blue}{#1}}
+\let\oldtop\top
+\renewcommand{\top}{\sel{\oldtop}}
 
 \renewcommand*{\ldots}{...} % \ldots sucks with acmart
 \renewcommand*{\ruleName}[1]{\textcolor{gray}{\textnormal{\textsf{#1}}}}
