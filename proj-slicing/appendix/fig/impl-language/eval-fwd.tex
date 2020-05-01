@@ -119,15 +119,15 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add}}
+      lab={\ruleName{$\fwdSlice$-add-sel}}
    ]
    {
-      \rho, e, T, \top \fwdSlice m
+      \rho, e, T, \top \fwdSlice \exIntSel{m}
       \\
-      \rho, e', U, \top \fwdSlice n
+      \rho, e', U, \top \fwdSlice \exIntSel{n}
    }
    {
-      \rho, \exAdd{e}{e'}, \trAdd{T}{m}{U}{n}, \top \fwdSlice m \mathbin{\hat{+}} n
+      \rho, \exAdd{e}{e'}, \trAdd{T}{m}{U}{n}, \top \fwdSlice \exIntSel{m \mathbin{\hat{+}} n}
    }
    %
    \and
@@ -160,8 +160,6 @@
       lab={\ruleName{$\fwdSlice$-add-bot-2}}
    ]
    {
-      \rho, e, T, \alpha \fwdSlice m
-      \\
       \rho, e', U, \alpha \fwdSlice \bot
    }
    {
@@ -178,16 +176,6 @@
    }
    {
       \rho, \exLet{x}{e}{e'}, \trLet{x}{T}{U}, \alpha \fwdSlice v
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-let-proj}}]
-   {
-      \envExtend{\rho}{x}{\bot}, e', U, \alpha \fwdSlice v
-   }
-   {
-      \rho, \exLetProj{x}{e'}, \trLet{x}{T}{U}, \alpha \fwdSlice v
    }
 \end{smathpar}
 \caption{Forward slicing; Boolean and pair cases omitted}
