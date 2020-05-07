@@ -9,31 +9,33 @@
       \strut
    }
    {
-      v, \trVarOne{x} \bwdSlice \envUpdate{\bot_{\Gamma}}{x}{v}, \bot
+      v, \trVarOne{x} \bwdSlice \envUpdate{\bot_{\rho}}{x}{v}, \bot
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil-sel}}
+      lab={\ruleName{$\bwdSlice$-nil-sel}},
+      right={$\env{T} = \rho$}
    ]
    {
       \strut
    }
    {
-      \exNilSel, \trNil \bwdSlice \bot_{\Gamma}, \exNilSel, \top
+      \exNilSel, \trNil \bwdSlice \bot_{\rho}, \exNilSel, \top
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-int-sel}}
+      lab={\ruleName{$\bwdSlice$-int-sel}},
+      right={$\env{T} = \rho$}
    ]
    {
       \strut
    }
    {
-      \exIntSel{n}, \trInt{n} \bwdSlice \bot_{\Gamma}, \exIntSel{n}, \top
+      \exIntSel{n}, \trInt{n} \bwdSlice \bot_{\rho}, \exIntSel{n}, \top
    }
    %
    \and
