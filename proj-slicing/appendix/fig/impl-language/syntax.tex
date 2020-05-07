@@ -91,6 +91,12 @@ e
 \text{Boolean}
 \\
 &&&
+\{\exTrue \mapsto \kappa\}
+\\
+&&&
+\{\exFalse \mapsto \kappa\}
+\\
+&&&
 \elimProd{\sigma}
 &
 \text{pair}
@@ -99,6 +105,12 @@ e
 \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
 &
 \text{list}
+\\
+&&&
+\{\branchNil{\kappa}\}
+\\
+&&&
+\{\branchConsNew{\sigma}\}
 \\[2mm]
 \mbox{Term}
 &
