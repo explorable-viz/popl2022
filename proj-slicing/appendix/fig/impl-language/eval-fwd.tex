@@ -124,34 +124,40 @@
       lab={\ruleName{$\fwdSlice$-add-bot}}
    ]
    {
-      \strut
+      \rho, e, \alpha \fwdSlice m_?
+      \\
+      \rho, e', \alpha \fwdSlice n_?
    }
    {
-      \rho, \exAdd{e}{e'}, \bot \fwdSlice \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-bot-1}}
-   ]
-   {
-      \rho, e, \alpha \fwdSlice \bot
-   }
-   {
-      \rho, \exAdd{e}{e'}, \alpha \fwdSlice \bot
+      \rho, \exAdd{e}{e'}, \bot \fwdSlice m \mathbin{\hat{+}} n
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-bot-2}}
+      lab={\ruleName{$\fwdSlice$-add-del-1}}
    ]
    {
-      \rho, e', \alpha \fwdSlice \bot
+      \rho, e, \alpha \fwdSlice m
+      \\
+      \rho, e', \alpha \fwdSlice n_?
    }
    {
-      \rho, \exAdd{e}{e'}, \alpha \fwdSlice \bot
+      \rho, \exAdd{e}{e'}, \alpha \fwdSlice m \mathbin{\hat{+}} n
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-add-del-2}}
+   ]
+   {
+      \rho, e, \alpha \fwdSlice m_?
+      \\
+      \rho, e', \alpha \fwdSlice n
+   }
+   {
+      \rho, \exAdd{e}{e'}, \alpha \fwdSlice m \mathbin{\hat{+}} n
    }
    %
    \and
