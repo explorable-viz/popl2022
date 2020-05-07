@@ -60,7 +60,7 @@
       v, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \exPairSel{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exPairSel{e}{e'}, \top
+      \exConsSel{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exConsSel{e}{e'}, \top
    }
    %
    \and
@@ -74,7 +74,7 @@
       v, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \exPair{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exPair{e}{e'}, \alpha \vee \alpha'
+      \exCons{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exCons{e}{e'}, \alpha \vee \alpha'
    }
    %
    \and
@@ -137,5 +137,5 @@
       v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
    }
 \end{smathpar}
-\caption{Backward slicing; \kw{Cons} and \kw{Nil} rules omitted}
+\caption{Backward slicing; Boolean and pair cases omitted}
 \end{figure}
