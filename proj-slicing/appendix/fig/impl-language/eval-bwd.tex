@@ -89,12 +89,14 @@
       lab={\ruleName{$\bwdSlice$-add-sel}}
    ]
    {
-      \exIntSel{n'}, T \bwdSlice \rho, e, \alpha
+      \annot{\exInt{n'}}{\top}, T \bwdSlice \rho, e, \alpha'
       \\
-      \exIntSel{m}, U \bwdSlice \rho', e', \alpha'
+      \annot{\exInt{m}}{\top}, U \bwdSlice \rho', e', \alpha^\twoPrime
    }
    {
-      \exIntSel{n}, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e}{e'}, \top
+      \annot{\exInt{n}}{\top}, \trAdd{T}{\smash{n'}}{U}{m}
+      \bwdSlice
+      \rho \join \rho', \exAdd{e}{e'}, \top
    }
    %
    \and
@@ -103,12 +105,12 @@
       lab={\ruleName{$\bwdSlice$-add}}
    ]
    {
-      n', T \bwdSlice \rho, e, \alpha
+      \annot{\exInt{n'}}{\bot}, T \bwdSlice \rho, e, \alpha
       \\
-      m, U \bwdSlice \rho', e', \alpha'
+      \annot{\exInt{m}}{\bot}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      n, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e}{e'}, \bot
+      \annot{\exInt{n}}{\bot}, \trAdd{T}{\smash{n'}}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e}{e'}, \bot
    }
    %
    \and
