@@ -19,49 +19,23 @@
       \strut
    }
    {
-      \exNil, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \matchFwd
-      \envEmpty, \kappa, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil-sel}}]
-   {
-      \strut
-   }
-   {
-      \Sel{\exNil}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
-      \matchFwd
-      \envEmpty, \kappa, \top
+      \envEmpty, \kappa, \alpha
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
    {
-      u, \sigma \matchFwd \rho_1, \tau, \alpha
+      u, \sigma \matchFwd \rho_1, \tau, \alpha'
       \\
-      v, \tau \matchFwd \rho_2, \kappa, \alpha'
+      v, \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
    }
    {
-      \exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
+      \annot{\exCons{u}{v}}{\alpha}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \matchFwd
-      \rho_1 \concat \rho_2, e, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-sel}}]
-   {
-      u, \sigma \matchFwd \rho_1, \tau, \alpha
-      \\
-      v, \tau \matchFwd \rho_2, \kappa, \alpha'
-   }
-   {
-      \Sel{\exCons{u}{v}}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
-      \matchFwd
-      \rho_1 \concat \rho_2, e, \alpha \wedge \alpha'
+      \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
    }
 \end{smathpar}
 \caption{Pattern-matching (forward slicing); Boolean and pair cases omitted}
