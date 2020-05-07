@@ -2,21 +2,8 @@
 \flushleft \shadebox{$v, T \bwdSlice \rho, e, \alpha$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-bot}},
-      right={$\Gamma \vdash T$}
-   ]
-   {
-      \strut
-   }
-   {
-      \bot, T \bwdSlice \bot_{\Gamma}, \bot, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\bwdSlice$-var}},
-      right={$\Gamma \vdash x$}
+      right={$\env{T} = \rho$}
    ]
    {
       \strut
