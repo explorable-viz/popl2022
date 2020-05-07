@@ -10,7 +10,44 @@
       \matchBwd
       v, \elimVar{x}{\kappa}
    }
-   \\
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \alpha, \matchTrueNew
+      \matchBwd
+      \annot{\exTrue}{\alpha}, \{\exTrue \mapsto \kappa\}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \alpha, \matchFalseNew
+      \matchBwd
+      \annot{\exFalse}{\alpha}, \{\exFalse \mapsto \kappa\}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
+   {
+      \rho_2, \kappa, \alpha, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \alpha, \xi \matchBwd u, \tau
+   }
+   {
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchPairNew{\xi}{\xi'}
+      \matchBwd
+      \annot{\exPair{u}{v}}{\alpha}, \elimProd{\tau}
+   }
    %
    \and
    %
@@ -38,5 +75,5 @@
       \annot{\exCons{u}{v}}{\alpha}, \{\branchConsNew{\tau}\}
    }
 \end{smathpar}
-\caption{Pattern-matching (backward slicing); Boolean and pair cases omitted}
+\caption{Pattern-matching (backward slicing)}
 \end{figure}
