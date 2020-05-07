@@ -19,27 +19,7 @@
       \strut
    }
    {
-      \rho, \Sel{\exNil}, \top \fwdSlice \Sel{\exNil}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-nil-bot}}]
-   {
-      \strut
-   }
-   {
-      \rho, \exNil_?, \bot \fwdSlice \exNil
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-nil-bot}}]
-   {
-      \strut
-   }
-   {
-      \rho, \exNil, \alpha \fwdSlice \exNil
+      \rho, \exNil_\alpha, \alpha' \fwdSlice \exNil_{\alpha \wedge \alpha'}
    }
    %
    \and
