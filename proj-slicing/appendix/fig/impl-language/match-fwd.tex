@@ -1,12 +1,12 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma, \xi \matchFwd \rho, \kappa, \alpha$}
+\flushleft \shadebox{$v, \sigma \matchFwd \rho, \kappa, \alpha$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{\kappa}, \matchVarNew{x}
+      v, \elimVar{x}{\kappa}
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, \kappa, \top
    }
@@ -19,7 +19,7 @@
       \strut
    }
    {
-      \exNil, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchNilNew
+      \exNil, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \matchFwd
       \envEmpty, \kappa, \bot
    }
@@ -31,7 +31,7 @@
       \strut
    }
    {
-      \exNilSel, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchNilNew
+      \exNilSel, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \matchFwd
       \envEmpty, \kappa, \top
    }
@@ -40,12 +40,12 @@
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
    {
-      u, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      u, \sigma \matchFwd \rho_1, \tau, \alpha
       \\
-      v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
+      v, \tau \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchConsNewNew{\xi}{\xi'}
+      \exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \matchFwd
       \rho_1 \concat \rho_2, e, \bot
    }
@@ -54,12 +54,12 @@
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-cons-sel}}]
    {
-      u, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      u, \sigma \matchFwd \rho_1, \tau, \alpha
       \\
-      v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
+      v, \tau \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exConsSel{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchConsNewNew{\xi}{\xi'}
+      \exConsSel{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \matchFwd
       \rho_1 \concat \rho_2, e, \alpha \wedge \alpha'
    }
