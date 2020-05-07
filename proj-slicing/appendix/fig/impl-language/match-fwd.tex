@@ -10,7 +10,44 @@
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, \kappa, \top
    }
-   \\
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\kappa'}
+      \matchFwd
+      \envEmpty, \kappa, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exFalse}{\alpha}, \elimBool{\kappa}{\kappa'}
+      \matchFwd
+      \envEmpty, \kappa', \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   {
+      u, \sigma \matchFwd \rho_1, \tau, \alpha'
+      \\
+      v, \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+   }
+   {
+      \annot{\exPair{u}{v}}{\alpha}, \elimProd{\sigma}
+      \matchFwd
+      \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
+   }
    %
    \and
    %
@@ -38,5 +75,5 @@
       \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
    }
 \end{smathpar}
-\caption{Pattern-matching (forward slicing); Boolean and pair cases omitted}
+\caption{Pattern-matching (forward slicing)}
 \end{figure}
