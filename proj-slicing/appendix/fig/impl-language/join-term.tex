@@ -3,33 +3,22 @@
 \begin{salign}
    \exVar{x} \join \exVar{x} &= \exVar{x}
    \\
-   \exTrue \join \exTrue &= \exTrue
+   \annot{\exTrue}{\alpha} \join \annot{\exTrue}{\alpha'} &= \annot{\exTrue}{\alpha \join \alpha'}
    \\
-   \exTrue \join \exTrueSel &= \exTrueSel
+   \annot{\exFalse}{\alpha} \join \annot{\exFalse}{\alpha'} &= \annot{\exFalse}{\alpha \join \alpha'}
    \\
-   \exFalse \join \exFalse &= \exFalse
+   \annot{\exInt{n}}{\alpha} \join \annot{\exInt{n}}{\alpha'} &= \annot{\exInt{n}}{\alpha \join \alpha'}
    \\
-   \exFalse \join \exFalseSel &= \exFalseSel
-   \\
-   \exInt{n} \join \exInt{n} &= \exInt{n}
-   \\
-   \exInt{n} \join \exIntSel{n} &= \exIntSel{n}
-   \\
-   \exPair{e_1}{e_2} \join \exPair{e_1'}{e_2'} &= \exPair{e_1 \join e_1'}{e_2 \join e_2'}
-   \\
-   \exPair{e_1}{e_2} \join \exPairSel{e_1'}{e_2'} &= \exPairSel{e_1 \join e_1'}{e_2 \join e_2'}
+   \annot{\exPair{e_1}{e_2}}{\alpha} \join \annot{\exPair{e_1'}{e_2'}}{\alpha'} &=
+   \annot{\exPair{e_1 \join e_1'}{e_2 \join e_2'}}{\alpha \join \alpha'}
    \\
    (\exRec{f}{\sigma}) \join (\exRec{f}{\sigma'}) &= \exRec{f}{(\sigma \join \sigma')}
    \\
    (\exApp{e_1}{e_2}) \join (\exApp{e_1'}{e_2'}) &= \exApp{(e_1 \join e_1')}{(e_2 \join e_2')}
    \\
-   \exNil \join \exNil &= \exNil
+   \annot{\exNil}{\alpha} \join \annot{\exNil}{\alpha} &= \annot{\exNil}{\alpha \join \alpha'}
    \\
-   \exNil \join \exNilSel &= \exNilSel
-   \\
-   \exCons{e_1}{e_2} \join \exCons{e_1'}{e_2'} &= \exCons{e_1 \join e_1'}{e_2 \join e_2'}
-   \\
-   \exCons{e_1}{e_2} \join \exConsSel{e_1'}{e_2'} &= \exConsSel{e_1 \join e_1'}{e_2 \join e_2'}
+   \annot{\exCons{e_1}{e_2}}{\alpha} \join \annot{\exCons{e_1'}{e_2'}}{\alpha'} &= \annot{\exCons{e_1 \join e_1'}{e_2 \join e_2'}}{\alpha \join \alpha'}
 \end{salign}
 \caption{Join of term slices (symmetric cases omitted)}
 \end{figure}
