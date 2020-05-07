@@ -14,56 +14,28 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-nil-sel}}]
-   {
-      \strut
-   }
-   {
-      \envEmpty, \kappa, \top, \matchNilNew
-      \matchBwd
-      \Sel{\exNil}, \{\branchNil{\kappa}\}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\matchBwd$-nil}}]
    {
       \strut
    }
    {
-      \envEmpty, \kappa, \bot, \matchNilNew
+      \envEmpty, \kappa, \alpha, \matchNilNew
       \matchBwd
-      \bot, \{\branchNil{\kappa}\}
+      \annot{\exNil}{\alpha}, \{\branchNil{\kappa}\}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-cons-sel}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-cons}}]
    {
-      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \rho_2, \kappa, \alpha, \xi' \matchBwd v, \sigma
       \\
-      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
+      \rho_1, \sigma, \alpha, \xi \matchBwd u, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \top, \matchConsNewNew{\xi}{\xi'}
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchConsNewNew{\xi}{\xi'}
       \matchBwd
-      \Sel{\exCons{u}{v}}, \{\branchConsNew{\tau}\}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\matchBwd$-cons}}
-   ]
-   {
-      \rho_2, \kappa, \bot, \xi' \matchBwd v, \sigma
-      \\
-      \rho_1, \sigma, \bot, \xi \matchBwd u, \tau
-   }
-   {
-      \rho_1 \concat \rho_2, \kappa, \bot, \matchConsNewNew{\xi}{\xi'}
-      \matchBwd
-      \exCons{u}{v}, \{\branchConsNew{\tau}\}
+      \annot{\exCons{u}{v}}{\alpha}, \{\branchConsNew{\tau}\}
    }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); Boolean and pair cases omitted}
