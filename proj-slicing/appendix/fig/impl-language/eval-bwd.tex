@@ -2,54 +2,37 @@
 \flushleft \shadebox{$v, T \bwdSlice \rho, e, \alpha$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-var}},
-      right={$\env{T} = \rho$}
+      lab={\ruleName{$\bwdSlice$-var}}
    ]
    {
       \strut
    }
    {
-      v, \trVarOne{x} \bwdSlice \envUpdate{\bot_{\rho}}{x}{v}, \bot
+      v, \sub{\trVarOne{x}}{\rho} \bwdSlice \envUpdate{\bot_{\rho}}{x}{v}, \bot
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil-sel}},
-      right={$\env{T} = \rho$}
+      lab={\ruleName{$\bwdSlice$-nil}}
    ]
    {
       \strut
    }
    {
-      \exNilSel, \trNil \bwdSlice \bot_{\rho}, \exNilSel, \top
+      \annot{\exNil}{\alpha}, \sub{\trNil}{\rho} \bwdSlice \bot_{\rho}, \annot{\exNil}{\alpha}, \alpha
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-int-sel}},
-      right={$\env{T} = \rho$}
+      lab={\ruleName{$\bwdSlice$-int}}
    ]
    {
       \strut
    }
    {
-      \exIntSel{n}, \trInt{n} \bwdSlice \bot_{\rho}, \exIntSel{n}, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-cons-sel}}
-   ]
-   {
-      u, T \bwdSlice \rho, e, \alpha
-      \\
-      v, U \bwdSlice \rho', e', \alpha'
-   }
-   {
-      \exConsSel{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exConsSel{e}{e'}, \top
+      \annot{\exInt{n}}{\alpha}, \sub{\trInt{n}}{\rho} \bwdSlice \bot_{\rho}, \annot{\exInt{n}}{\alpha}, \alpha
    }
    %
    \and
@@ -58,12 +41,14 @@
       lab={\ruleName{$\bwdSlice$-cons}}
    ]
    {
-      u, T \bwdSlice \rho, e, \alpha
+      u, T \bwdSlice \rho, e, \alpha'
       \\
-      v, U \bwdSlice \rho', e', \alpha'
+      v, U \bwdSlice \rho', e', \alpha^\twoPrime
    }
    {
-      \exCons{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exCons{e}{e'}, \alpha \vee \alpha'
+      \annot{\exCons{u}{v}}{\alpha}, \trPair{T}{U}
+      \bwdSlice
+      \rho \join \rho', \annot{\exCons{e}{e'}}{\alpha}, \alpha \vee \alpha' \vee \alpha^\twoPrime
    }
    %
    \and
