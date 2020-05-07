@@ -29,7 +29,17 @@
       \strut
    }
    {
-      \rho, \Sel{\exNil}, \bot \fwdSlice \exNil
+      \rho, \exNil_?, \bot \fwdSlice \exNil
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-nil-bot}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exNil, \alpha \fwdSlice \exNil
    }
    %
    \and
