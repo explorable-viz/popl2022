@@ -14,44 +14,22 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-nil-sel}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
    {
       \strut
    }
    {
-      \rho, \exNil_\alpha, \alpha' \fwdSlice \exNil_{\alpha \wedge \alpha'}
+      \rho, \annot{\exNil}{\alpha}, \alpha' \fwdSlice \annot{\exNil}{\alpha \wedge \alpha'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-int-sel}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-int}}]
    {
       \strut
    }
    {
-      \rho, \Sel{\exInt{n}}, \top \fwdSlice \Sel{\exInt{n}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-int-bot}}]
-   {
-      \strut
-   }
-   {
-      \rho, \Sel{\exInt{n}}, \bot \fwdSlice \exInt{n}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-cons-sel}}]
-   {
-      \rho, e, \top \fwdSlice u
-      \\
-      \rho, e', \top \fwdSlice v
-   }
-   {
-      \rho, \Sel{\exCons{e}{e'}}, \top \fwdSlice \Sel{\exCons{u}{v}}
+      \rho, \annot{\exInt{n}}{\alpha}, \alpha' \fwdSlice \annot{\exInt{n}}{\alpha \wedge \alpha'}
    }
    %
    \and
@@ -60,12 +38,12 @@
       lab={\ruleName{$\fwdSlice$-cons}},
    ]
    {
-      \rho, e, \alpha \fwdSlice u
+      \rho, e, \alpha' \fwdSlice u
       \\
-      \rho, e', \alpha \fwdSlice v
+      \rho, e', \alpha' \fwdSlice v
    }
    {
-      \rho, \exCons{e}{e'}, \alpha \fwdSlice \exCons{u}{v}
+      \rho, \annot{\exCons{e}{e'}}{\alpha}, \alpha' \fwdSlice \annot{\exCons{u}{v}}{\alpha \wedge \alpha'}
    }
    %
    \and
@@ -75,7 +53,7 @@
       \strut
    }
    {
-      \rho, \exRec{f}{\sigma}, \top \fwdSlice \exClosureRec{\rho}{f}{\sigma}
+      \rho, \exRec{f}{\sigma}, \alpha \fwdSlice \annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha}
    }
    %
    \and
@@ -97,57 +75,17 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-sel}}
+      lab={\ruleName{$\fwdSlice$-add}}
    ]
    {
-      \rho, e, \top \fwdSlice \exIntSel{m}
+      \rho, e, \top \fwdSlice \annot{\exInt{m}}{\alpha}
       \\
-      \rho, e', \top \fwdSlice \exIntSel{n}
+      \rho, e', \top \fwdSlice \annot{\exInt{n}}{\alpha'}
    }
    {
-      \rho, \exAdd{e}{e'}, \top \fwdSlice \exIntSel{m \mathbin{\hat{+}} n}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-bot}}
-   ]
-   {
-      \rho, e, \alpha \fwdSlice m_?
-      \\
-      \rho, e', \alpha \fwdSlice n_?
-   }
-   {
-      \rho, \exAdd{e}{e'}, \bot \fwdSlice m \mathbin{\hat{+}} n
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-del-1}}
-   ]
-   {
-      \rho, e, \alpha \fwdSlice m
-      \\
-      \rho, e', \alpha \fwdSlice n_?
-   }
-   {
-      \rho, \exAdd{e}{e'}, \alpha \fwdSlice m \mathbin{\hat{+}} n
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add-del-2}}
-   ]
-   {
-      \rho, e, \alpha \fwdSlice m_?
-      \\
-      \rho, e', \alpha \fwdSlice n
-   }
-   {
-      \rho, \exAdd{e}{e'}, \alpha \fwdSlice m \mathbin{\hat{+}} n
+      \rho, \exAdd{e}{e'}, \alpha^\twoPrime
+      \fwdSlice
+      \annot{(\exInt{m \mathbin{\hat{+}} n})}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
    }
    %
    \and
