@@ -1,16 +1,24 @@
 \begin{figure}
 \flushleft\shadebox{$\sigma \join \sigma'$}
 \begin{salign}
-   \bot \join \sigma &= \sigma
-   \\
-   \sigma \join \bot &= \sigma
-   \\
    (\elimVar{x}{\kappa}) \join (\elimVar{x}{\kappa'}) &= \elimVar{x}{\kappa \join \kappa'}
    \\
    \elimBool{\kappa_1}{\kappa_2} \join \elimBool{\kappa_1'}{\kappa_2'} &=
    \elimBool{\kappa_1 \join \kappa_1'}{\kappa_2 \join \kappa_2'}
    \\
    \elimProd{\sigma} \join \elimProd{\sigma'} &= \elimProd{\sigma \join \sigma'}
+   \\
+   \{\branchNil{\kappa}\} \join \{\branchNil{\kappa'}\} &=
+   \{\branchNil{\kappa \join \kappa'}\}
+   \\
+   \{\branchConsNew{\sigma}\} \join \{\branchConsNew{\sigma'}\} &=
+   \{\branchConsNew{\sigma \join \sigma'}\}
+   \\
+   \{\branchNil{\kappa}\} \join \{\branchConsNew{\sigma}\} &=
+   \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
+   \\
+   \{\branchConsNew{\sigma}\} \join \{\branchNil{\kappa}\} &=
+   \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
    \\
    \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}} \join \elimList{\branchNil{\kappa'}}{\branchConsNew{\sigma'}} &=
    \elimList{\branchNil{\kappa \join \kappa'}}{\branchConsNew{\sigma \join \sigma'}}
