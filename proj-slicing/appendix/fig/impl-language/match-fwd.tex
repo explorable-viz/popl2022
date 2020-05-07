@@ -31,7 +31,7 @@
       \strut
    }
    {
-      \exNilSel, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
+      \Sel{\exNil}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \matchFwd
       \envEmpty, \kappa, \top
    }
@@ -59,7 +59,7 @@
       v, \tau \matchFwd \rho_2, \kappa, \alpha'
    }
    {
-      \exConsSel{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
+      \Sel{\exCons{u}{v}}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
       \matchFwd
       \rho_1 \concat \rho_2, e, \alpha \wedge \alpha'
    }
