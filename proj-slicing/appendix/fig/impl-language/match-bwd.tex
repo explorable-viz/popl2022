@@ -21,7 +21,7 @@
    {
       \envEmpty, \kappa, \top, \matchNilNew
       \matchBwd
-      \exNilSel, \elimList{\branchNil{\kappa}}{\branchConsNew{\bot}}
+      \exNilSel, \{\branchNil{\kappa}\}
    }
    %
    \and
@@ -33,7 +33,7 @@
    {
       \envEmpty, \kappa, \bot, \matchNilNew
       \matchBwd
-      \bot, \elimList{\branchNil{\kappa}}{\branchConsNew{\bot}}
+      \bot, \{\branchNil{\kappa}\}
    }
    %
    \and
@@ -47,7 +47,7 @@
    {
       \rho_1 \concat \rho_2, \kappa, \top, \matchConsNewNew{\xi}{\xi'}
       \matchBwd
-      \exConsSel{u}{v}, \elimList{\branchNil{\bot}}{\branchConsNew{\tau}}
+      \exConsSel{u}{v}, \{\branchConsNew{\tau}\}
    }
    %
    \and
@@ -63,7 +63,7 @@
    {
       \rho_1 \concat \rho_2, \kappa, \bot, \matchConsNewNew{\xi}{\xi'}
       \matchBwd
-      \exCons{u}{v}, \elimList{\branchNil{\bot}}{\branchConsNew{\tau}}
+      \exCons{u}{v}, \{\branchConsNew{\tau}\}
    }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing); Boolean and pair cases omitted}
