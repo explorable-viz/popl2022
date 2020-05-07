@@ -1,9 +1,9 @@
 \begin{figure}
-\flushleft \shadebox{$\bot_{\Gamma}$}
+\flushleft \shadebox{$\bot_{\rho}$}
 \begin{salign}
-   \bot_{\cxtEmpty} &= \envEmpty
+   \bot_{\envEmpty} &= \envEmpty
    \\
-   \bot_{\cxtExtend{\Gamma}{x}{A}} &= \envExtend{\bot_{\Gamma}}{x}{\bot}
+   \bot_{\envExtend{\rho}{x}{v}} &= \envExtend{\bot_{\rho}}{x}{\bot_v}
 \end{salign}
 \\[2mm]
 \flushleft \shadebox{$\envUpdate{\rho}{x}{v}$}
