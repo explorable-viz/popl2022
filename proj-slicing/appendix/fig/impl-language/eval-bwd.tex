@@ -101,7 +101,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-add}}
+      lab={\ruleName{$\bwdSlice$-add-sel}}
    ]
    {
       \exIntSel{n'}, T \bwdSlice \rho, e, \alpha
@@ -110,6 +110,20 @@
    }
    {
       \exIntSel{n}, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e}{e'}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-add}}
+   ]
+   {
+      n', T \bwdSlice \rho, e, \alpha
+      \\
+      m, U \bwdSlice \rho', e', \alpha'
+   }
+   {
+      n, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e}{e'}, \bot
    }
    %
    \and
