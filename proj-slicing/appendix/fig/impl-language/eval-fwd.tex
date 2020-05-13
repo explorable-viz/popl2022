@@ -60,13 +60,13 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
    {
-      \rho, e, \alpha \fwdSlice \exClosureRec{\rho'}{f}{\sigma}
+      \rho, e, \alpha \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}
       \\
       \rho, e', \alpha \fwdSlice v
       \\
-      v, \sigma \matchFwd \rho^\twoPrime, e^\twoPrime, \alpha'
+      v, \sigma \matchFwd \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
       \\
-      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime, \alpha' \fwdSlice v'
+      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime, \alpha' \wedge \alpha^\twoPrime \fwdSlice v'
    }
    {
       \rho, \exApp{e}{e'}, \alpha \fwdSlice v'
