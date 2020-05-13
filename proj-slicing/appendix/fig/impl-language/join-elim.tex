@@ -3,23 +3,6 @@
 \begin{salign}
    (\elimVar{x}{\kappa}) \join (\elimVar{x}{\kappa'}) &= \elimVar{x}{\kappa \join \kappa'}
    \\
-   \{\exTrue \mapsto \kappa\} \join \{\exTrue \mapsto \kappa'\} &=
-   \{\exTrue \mapsto \kappa \join \kappa'\}
-   \\
-   \{\exFalse \mapsto \kappa\} \join \{\exFalse \mapsto \kappa'\} &=
-   \{\exFalse \mapsto \kappa \join \kappa'\}
-   \\
-   \{\exTrue \mapsto \kappa\} \join \{\exFalse \mapsto \kappa'\} &=
-   \elimBool{\kappa'}{\kappa'}
-   \\
-   \{\exFalse \mapsto \kappa\} \join \{\exTrue \mapsto \kappa'\} &=
-   \elimBool{\kappa'}{\kappa}
-   \\
-   \elimBool{\kappa_1}{\kappa_2} \join \elimBool{\kappa_1'}{\kappa_2'} &=
-   \elimBool{\kappa_1 \join \kappa_1'}{\kappa_2 \join \kappa_2'}
-   \\
-   \elimProd{\sigma} \join \elimProd{\sigma'} &= \elimProd{\sigma \join \sigma'}
-   \\
    \{\branchNil{\kappa}\} \join \{\branchNil{\kappa'}\} &=
    \{\branchNil{\kappa \join \kappa'}\}
    \\
@@ -35,5 +18,5 @@
    \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}} \join \elimList{\branchNil{\kappa'}}{\branchConsNew{\sigma'}} &=
    \elimList{\branchNil{\kappa \join \kappa'}}{\branchConsNew{\sigma \join \sigma'}}
 \end{salign}
-\caption{Join of eliminator slices}
+\caption{Join of eliminator slices; Boolean and pair cases omitted}
 \end{figure}
