@@ -85,6 +85,15 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
+   {
+   }
+   {
+      n, \trAppPrim{T}{T'} \bwdSlice \rho \join \rho', \exApp{e'}{e}
+   }
+   %
+   \and
+   %
    \inferrule*[
       lab={\ruleName{$\bwdSlice$-binary-apply-$\top$}}
    ]
