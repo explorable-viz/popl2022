@@ -14,6 +14,19 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\eval$-op}},
+      right={$\primOp: v \in \rho$}
+   ]
+   {
+      \strut
+   }
+   {
+      \explVal{\trOp{\primOp}}{\rho, \exOp{\primOp} \eval v}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\eval$-true}}]
    {
       \strut
@@ -86,19 +99,6 @@
       \explVal
          {\trRec{f}{\sigma}}
          {\rho, \exRec{f}{\sigma} \eval \exClosureRec{\rho}{f}{\sigma}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\eval$-op}},
-      right={$\primOp: \phi \in \rho$}
-   ]
-   {
-      \strut
-   }
-   {
-      \explVal{\trOp{\primOp}}{\rho, \exOp{\primOp} \eval \phi}
    }
    %
    \and
