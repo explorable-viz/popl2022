@@ -30,6 +30,14 @@ A, B
 &
 \text{functions}
 \\[2mm]
+\mbox{Identifier}
+&
+x
+\\[2mm]
+\mbox{Primitive name}
+&
+\primOp
+\\[2mm]
 \mbox{Context}
 &
 \Gamma
@@ -148,9 +156,9 @@ x
 \text{apply}
 \\
 &&&
-\exAdd{e}{e'}
+\exBinaryApp{e}{\primOp}{e'}
 &
-\text{add}
+\text{infix primitive}
 \\
 &&&
 \exNil

@@ -39,7 +39,17 @@
    \strut
 }
 {
-   \vdash n: \tyInt
+   \vdash \exInt{n}: \tyInt
+}
+%
+\and
+%
+\inferrule*[right={$\primOp \in \tyInt \times \tyInt \to \tyInt$}]
+{
+   \strut
+}
+{
+   \vdash \exPrim{\primOp}: \tyFun{\tyProd{\tyInt}{\tyInt}}{\tyInt}
 }
 %
 \and
