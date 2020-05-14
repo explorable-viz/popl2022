@@ -44,7 +44,21 @@
 %
 \and
 %
-\inferrule*
+\inferrule*[
+   right={$\phi \in \tyFun{\tyInt}{\tyInt}$}
+]
+{
+   \strut
+}
+{
+   \vdash \exPrim{\phi}: \tyFun{\tyInt}{\tyInt}
+}
+%
+\and
+%
+\inferrule*[
+   right={$\phi \in \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}}$}
+]
 {
    \strut
 }
