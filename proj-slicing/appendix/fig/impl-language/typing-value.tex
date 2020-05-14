@@ -18,7 +18,7 @@
    \vdash v: A
 }
 {
-   \vdash \envExtend{\rho}{x}{v}: \cxtExtend{\Gamma}{x}{A}
+   \vdash \envExtend{\rho}{k}{v}: \cxtExtend{\Gamma}{k}{A}
 }
 \end{smathpar}
 \\[2mm]
@@ -29,27 +29,31 @@
    \strut
 }
 {
-   \vdash \bot: \bot
-}
-%
-\and
-%
-\inferrule*
-{
-   \strut
-}
-{
    \vdash \exInt{n}: \tyInt
 }
 %
 \and
 %
-\inferrule*
+\inferrule*[
+   right={$\phi \in \tyFun{\tyInt}{\tyInt}$}
+]
 {
    \strut
 }
 {
-   \vdash \exPrim{\phi}: \tyFun{\tyProd{\tyInt}{\tyInt}}{\tyInt}
+   \vdash \exPrim{\phi}: \tyFun{\tyInt}{\tyInt}
+}
+%
+\and
+%
+\inferrule*[
+   right={$\phi \in \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}}$}
+]
+{
+   \strut
+}
+{
+   \vdash \exPrim{\phi}: \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}}
 }
 %
 \and

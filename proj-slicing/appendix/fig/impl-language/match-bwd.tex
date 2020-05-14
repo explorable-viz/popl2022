@@ -39,14 +39,14 @@
    %
    \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
    {
-      \rho_2, \kappa, \alpha, \xi' \matchBwd v, \sigma
+      \rho_2, \kappa, \alpha, \xi' \matchBwd v', \sigma
       \\
-      \rho_1, \sigma, \alpha, \xi \matchBwd u, \tau
+      \rho_1, \sigma, \alpha, \xi \matchBwd v, \tau
    }
    {
       \rho_1 \concat \rho_2, \kappa, \alpha, \matchPairNew{\xi}{\xi'}
       \matchBwd
-      \annot{\exPair{u}{v}}{\alpha}, \elimProd{\tau}
+      \annot{\exPair{v}{v'}}{\alpha}, \elimProd{\tau}
    }
    %
    \and
@@ -65,14 +65,14 @@
    %
    \inferrule*[lab={\ruleName{$\matchBwd$-cons}}]
    {
-      \rho_2, \kappa, \alpha, \xi' \matchBwd v, \sigma
+      \rho_2, \kappa, \alpha, \xi' \matchBwd v', \sigma
       \\
-      \rho_1, \sigma, \alpha, \xi \matchBwd u, \tau
+      \rho_1, \sigma, \alpha, \xi \matchBwd v, \tau
    }
    {
       \rho_1 \concat \rho_2, \kappa, \alpha, \matchConsNewNew{\xi}{\xi'}
       \matchBwd
-      \annot{\exCons{u}{v}}{\alpha}, \{\branchCons{\tau}\}
+      \annot{\exCons{v}{v'}}{\alpha}, \{\branchCons{\tau}\}
    }
 \end{smathpar}
 \caption{Pattern-matching (backward slicing)}

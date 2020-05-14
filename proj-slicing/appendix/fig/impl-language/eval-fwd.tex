@@ -14,6 +14,19 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-op}},
+      right={$\primOp: v \in \rho$}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, \exOp{\primOp}, \alpha \fwdSlice v
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
    {
       \strut
@@ -74,6 +87,18 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
+   {
+      \rho, e, \alpha \fwdSlice \annot{\phi}{\alpha'}
+      \\
+      \rho, e', \alpha \fwdSlice \annot{m}{\alpha^\twoPrime}
+   }
+   {
+      \rho, \exApp{e}{e'}, \alpha \fwdSlice \annot{\phi(m)}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+   }
+   %
+   \and
+   %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-binary-apply}},
       right={$\primOp: \phi \in \rho$}
@@ -86,7 +111,7 @@
    {
       \rho, \exBinaryApp{e}{\primOp}{e'}, \alpha
       \fwdSlice
-      \annot{\exInt{\phi(m, n)}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+      \annot{\exInt{\phi(m)(n)}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
    }
    %
    \and

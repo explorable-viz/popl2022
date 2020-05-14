@@ -32,11 +32,18 @@ A, B
 \\[2mm]
 \mbox{Identifier}
 &
-x
-\\[2mm]
-\mbox{Primitive name}
+k
 &
+::=
+&
+x
+&
+\text{variable}
+\\
+&&&
 \primOp
+&
+\text{operator name}
 \\[2mm]
 \mbox{Context}
 &
@@ -49,7 +56,7 @@ x
 \text{empty}
 \\
 &&&
-\cxtExtend{\Gamma}{x}{A}
+\cxtExtend{\Gamma}{k}{A}
 &
 \text{extend}
 \\[2mm]
@@ -131,6 +138,11 @@ x
 \text{variable}
 \\
 &&&
+\exOp{\primOp}
+&
+\text{first-class operator}
+\\
+&&&
 \exTrue \mid \exFalse
 &
 \text{Boolean}
@@ -153,12 +165,12 @@ x
 &&&
 \exApp{e}{e'}
 &
-\text{apply}
+\text{application}
 \\
 &&&
 \exBinaryApp{e}{\primOp}{e'}
 &
-\text{binary apply}
+\text{binary application}
 \\
 &&&
 \exNil

@@ -3,6 +3,8 @@
 \begin{salign}
    \exVar{x} \join \exVar{x} &= \exVar{x}
    \\
+   \exOp{\primOp} \join \exOp{\primOp} &= \exOp{\primOp}
+   \\
    \annot{\exTrue}{\alpha} \join \annot{\exTrue}{\alpha'} &= \annot{\exTrue}{\alpha \join \alpha'}
    \\
    \annot{\exFalse}{\alpha} \join \annot{\exFalse}{\alpha'} &= \annot{\exFalse}{\alpha \join \alpha'}
@@ -16,9 +18,13 @@
    \\
    (\exApp{e_1}{e_2}) \join (\exApp{e_1'}{e_2'}) &= \exApp{(e_1 \join e_1')}{(e_2 \join e_2')}
    \\
+   (\exBinaryApp{e_1}{\primOp}{e_2}) \join (\exBinaryApp{e_1'}{\primOp}{e_2'})
+   &=
+   \exBinaryApp{(e_1 \join e_1')}{\primOp}{(e_2 \join e_2')}
+   \\
    \annot{\exNil}{\alpha} \join \annot{\exNil}{\alpha} &= \annot{\exNil}{\alpha \join \alpha'}
    \\
    \annot{\exCons{e_1}{e_2}}{\alpha} \join \annot{\exCons{e_1'}{e_2'}}{\alpha'} &= \annot{\exCons{e_1 \join e_1'}{e_2 \join e_2'}}{\alpha \join \alpha'}
 \end{salign}
-\caption{Join of term slices (symmetric cases omitted)}
+\caption{Join of term slices}
 \end{figure}

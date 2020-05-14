@@ -8,7 +8,21 @@
       \strut
    }
    {
-      v, \sub{\trVar{x}}{\rho} \bwdSlice \envUpdate{\bot_{\rho}}{x}{v}, \bot
+      v, \sub{\trVar{x}}{\rho} \bwdSlice \envUpdate{\bot_{\rho}}{x}{v}, \exVar{x}, \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-op}}
+   ]
+   {
+      \strut
+   }
+   {
+      v, \sub{\trOp{\primOp}}{\rho}
+      \bwdSlice
+      \envUpdate{\bot_{\rho}}{\primOp}{v}, \exOp{\primOp}, \bot
    }
    %
    \and
@@ -69,50 +83,46 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, U \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_2}{f}{\sigma}}, e, \alpha
+      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_2}{f}{\sigma}}, e, \alpha
       \\
       \rho, e, \alpha, \xi, \matchBwd v', \sigma'
       \\
-      v', T' \bwdSlice \rho', e', \alpha'
+      v', U \bwdSlice \rho', e', \alpha'
       \\
       \exClosureRec{\rho_1 \join \rho_2}{f}{(\sigma \join \sigma')}, T
       \bwdSlice
       \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
    }
    {
-      v, \trApp{T}{T'}{\matchPlug{\xi}{U}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+      v, \trApp{T}{U}{\matchPlug{\xi}{T'}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
+   {
+      \annot{\phi}{\alpha}, T \bwdSlice \rho, e, \alpha'
+      \\
+      \annot{m}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
+   }
+   {
+      \annot{n}{\alpha}, \trAppPrim{T}{\phi}{U}{m} \bwdSlice \rho \join \rho', \exApp{e}{e'}, \alpha
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-add-sel}}
+      lab={\ruleName{$\bwdSlice$-binary-apply}}
    ]
    {
-      \annot{\exInt{n'}}{\top}, T \bwdSlice \rho, e, \alpha
+      \annot{\exInt{n'}}{\alpha}, T \bwdSlice \rho, e, \alpha'
       \\
-      \annot{\exInt{m}}{\top}, U \bwdSlice \rho', e', \alpha'
+      \annot{\exInt{m}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
    }
    {
-      \annot{\exInt{n}}{\top}, \trBinaryApp{T}{\smash{n'}}{\primOp}{U}{m}
+      \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\smash{n'}}{\primOp}{U}{m}
       \bwdSlice
-      \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-add}}
-   ]
-   {
-      \annot{\exInt{n'}}{\bot}, T \bwdSlice \rho, e, \alpha
-      \\
-      \annot{\exInt{m}}{\bot}, U \bwdSlice \rho', e', \alpha'
-   }
-   {
-      \annot{\exInt{n}}{\bot}, \trBinaryApp{T}{\smash{n'}}{\primOp}{U}{m}
-      \bwdSlice
-      \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \bot
+      \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \alpha
    }
    %
    \and

@@ -1,22 +1,22 @@
 \begin{figure}
 \flushleft \shadebox{$\Gamma \vdash e: A$}
 \begin{smathpar}
-\inferrule*
-{
-   \strut
-}
-{
-   \Gamma \vdash \bot: \bot
-}
-%
-\and
-%
 \inferrule*[right={$x : A \in \Gamma$}]
 {
    \strut
 }
 {
    \Gamma \vdash \exVar{x}: A
+}
+%
+\and
+%
+\inferrule*[right={$\primOp: A \in \Gamma$}]
+{
+   \strut
+}
+{
+   \Gamma \vdash \exOp{\primOp}: A
 }
 %
 \and
@@ -63,7 +63,7 @@
 %
 \and
 %
-\inferrule*[right={$\primOp: \tyFun{\tyInt}{\tyInt} \in \Gamma$}]
+\inferrule*[right={$\primOp: \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}} \in \Gamma$}]
 {
    \Gamma \vdash e: \tyInt
    \\
@@ -89,7 +89,7 @@
 {
    \Gamma \vdash e: \tyFun{A}{B}
    \\
-   \Gamma \vdash e' A
+   \Gamma \vdash e': A
 }
 {
    \Gamma \vdash \exApp{e}{e'}: B

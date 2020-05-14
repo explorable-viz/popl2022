@@ -14,6 +14,19 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\eval$-op}},
+      right={$\primOp: v \in \rho$}
+   ]
+   {
+      \strut
+   }
+   {
+      \explVal{\trOp{\primOp}}{\rho, \exOp{\primOp} \eval v}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\eval$-true}}]
    {
       \strut
@@ -46,12 +59,12 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-pair}}]
    {
-      \explVal{T}{\rho, e \eval u}
+      \explVal{T}{\rho, e \eval v}
       \\
-      \explVal{U}{\rho, e' \eval v}
+      \explVal{U}{\rho, e' \eval v'}
    }
    {
-      \explVal{\trPair{T}{U}}{\rho, \exPair{e}{e'} \eval \exPair{u}{v}}
+      \explVal{\trPair{T}{U}}{\rho, \exPair{e}{e'} \eval \exPair{v}{v'}}
    }
    %
    \and
@@ -68,12 +81,12 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-cons}}]
    {
-      \explVal{T}{\rho, e \eval u}
+      \explVal{T}{\rho, e \eval v}
       \\
-      \explVal{U}{\rho, e' \eval v}
+      \explVal{U}{\rho, e' \eval v'}
    }
    {
-      \explVal{\trCons{T}{U}}{\rho, \exCons{e}{e'} \eval \exCons{u}{v}}
+      \explVal{\trCons{T}{U}}{\rho, \exCons{e}{e'} \eval \exCons{v}{v'}}
    }
    %
    \and
@@ -94,14 +107,26 @@
    {
       \explVal{T}{\rho, e \eval \exClosureRec{\rho'}{f}{\sigma}}
       \\
-      \explVal{T'}{\rho, e' \eval u}
+      \explVal{U}{\rho, e' \eval v}
       \\
-      \explVal{\xi}{u, \sigma \match \rho^\twoPrime, e^\twoPrime}
+      \explVal{\xi}{v, \sigma \match \rho^\twoPrime, e^\twoPrime}
       \\
-      \explVal{U}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v}
+      \explVal{T'}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v'}
    }
    {
-      \explVal{\trApp{T}{T'}{\matchPlug{\xi}{U}}}{\rho, \exApp{e}{e'} \eval v}
+      \explVal{\trApp{T}{U}{\matchPlug{\xi}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-apply-prim}}]
+   {
+      \explVal{T}{\rho, e \eval \phi}
+      \\
+      \explVal{U}{\rho, e' \eval m}
+   }
+   {
+      \explVal{\trAppPrim{T}{\phi}{U}{m}}{\rho, \exApp{e}{e'} \eval \phi(m)}
    }
    %
    \and
@@ -116,19 +141,19 @@
       \explVal{U}{\rho, e' \eval n}
    }
    {
-      \explVal{\trBinaryApp{T}{m}{\primOp}{U}{n}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(m, n)}
+      \explVal{\trBinaryApp{T}{m}{\primOp}{U}{n}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(m)(n)}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\eval$-let}}]
    {
-      \explVal{T}{\rho, e \eval u}
+      \explVal{T}{\rho, e \eval v}
       \\
-      \explVal{U}{\envExtend{\rho}{x}{u}, e' \eval v}
+      \explVal{U}{\envExtend{\rho}{x}{v}, e' \eval v'}
    }
    {
-      \explVal{\trLet{x}{T}{U}}{\rho, \exLet{x}{e}{e'} \eval v}
+      \explVal{\trLet{x}{T}{U}}{\rho, \exLet{x}{e}{e'} \eval v'}
    }
 \end{smathpar}
 \caption{Evaluation}
