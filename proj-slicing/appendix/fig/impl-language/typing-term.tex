@@ -11,6 +11,16 @@
 %
 \and
 %
+\inferrule*[right={$\primOp: A \in \Gamma$}]
+{
+   \strut
+}
+{
+   \Gamma \vdash \exOp{\primOp}: A
+}
+%
+\and
+%
 \inferrule*
 {
    \strut
@@ -71,16 +81,6 @@
 }
 {
    \Gamma \vdash \exRec{f}{\sigma}: \tyFun{A}{B}
-}
-%
-\and
-%
-\inferrule*[right={$\primOp: A \in \Gamma$}]
-{
-   \strut
-}
-{
-   \Gamma \vdash \exOp{\primOp}: A
 }
 %
 \and
