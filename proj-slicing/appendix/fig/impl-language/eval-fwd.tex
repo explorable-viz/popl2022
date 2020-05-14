@@ -58,6 +58,19 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-op}},
+      right={$\primOp: \phi \in \rho$}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, \exOp{\primOp}, \alpha \fwdSlice \annot{\phi}{\alpha}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
    {
       \rho, e, \alpha \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}
