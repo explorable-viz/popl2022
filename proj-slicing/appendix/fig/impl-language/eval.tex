@@ -106,6 +106,18 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\eval$-apply-prim}}]
+   {
+      \explVal{T}{\rho, e \eval \phi}
+      \\
+      \explVal{T'}{\rho, e' \eval m}
+   }
+   {
+      \explVal{\trAppPrim{T}{T'}}{\rho, \exApp{e}{e'} \eval \phi(m)}
+   }
+   %
+   \and
+   %
    \inferrule*[
       lab={\ruleName{$\eval$-binary-apply}},
       right={$\primOp: \phi \in \rho$}

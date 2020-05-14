@@ -49,7 +49,7 @@
 % Expressions.
 %\newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
-\newcommand*{\exBinaryApp}[3]{{#1} \mathop{#2} {#3}}
+\newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
 \newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exClosureRecSel}[3]{\sel{(}#1,\exRec{#2}{#3}\sel{)}}
@@ -154,6 +154,7 @@
 
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
+\newcommand*{\trAppPrim}[2]{\exApp{#1}{#2}}
 \newcommand*{\trBinaryApp}[5]{\exBinaryApp{#1_{#2}}{#3}{#4_{#5}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
