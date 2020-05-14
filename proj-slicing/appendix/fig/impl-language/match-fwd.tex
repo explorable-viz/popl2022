@@ -56,7 +56,7 @@
       \strut
    }
    {
-      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
@@ -70,7 +70,7 @@
       v, \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
    }
    {
-      \annot{\exCons{u}{v}}{\alpha}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}
+      \annot{\exCons{u}{v}}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
       \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
    }

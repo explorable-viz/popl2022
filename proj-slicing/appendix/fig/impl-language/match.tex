@@ -49,7 +49,7 @@
       \strut
    }
    {
-      \explVal{\matchNilNew}{\exNil, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}} \match \envEmpty, \kappa}
+      \explVal{\matchNilNew}{\exNil, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \match \envEmpty, \kappa}
    }
    %
    \and
@@ -63,7 +63,7 @@
    {
       \explVal
          {\matchConsNewNew{\xi}{\xi'}}
-         {\exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}} \match \rho_1 \concat \rho_2, \kappa'}
+         {\exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \match \rho_1 \concat \rho_2, \kappa'}
    }
 \end{smathpar}
 \caption{Pattern-matching}
