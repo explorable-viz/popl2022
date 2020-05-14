@@ -34,12 +34,12 @@
    %
    \inferrule*[lab={\ruleName{$\match$-pair}}]
    {
-      \explVal{\xi}{u, \sigma \match \rho_1, \tau}
+      \explVal{\xi}{v, \sigma \match \rho_1, \tau}
       \\
-      \explVal{\xi'}{v, \tau \match, \rho_2, \kappa}
+      \explVal{\xi'}{v', \tau \match, \rho_2, \kappa}
    }
    {
-      \explVal{\matchPairNew{\xi}{\xi'}}{\exPair{u}{v}, \elimProd{\sigma} \match \rho_1 \concat \rho_2, \kappa}
+      \explVal{\matchPairNew{\xi}{\xi'}}{\exPair{v}{v'}, \elimProd{\sigma} \match \rho_1 \concat \rho_2, \kappa}
    }
    %
    \and
@@ -56,14 +56,16 @@
    %
    \inferrule*[lab={\ruleName{$\match$-cons}}]
    {
-      \explVal{\xi}{u, \sigma \match \rho_1, \tau}
+      \explVal{\xi}{v, \sigma \match \rho_1, \tau}
       \\
-      \explVal{\xi'}{v, \tau \match \rho_2, \kappa'}
+      \explVal{\xi'}{v', \tau \match \rho_2, \kappa'}
    }
    {
       \explVal
          {\matchConsNewNew{\xi}{\xi'}}
-         {\exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \match \rho_1 \concat \rho_2, \kappa'}
+         {\exCons{v}{v'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+         \match
+         \rho_1 \concat \rho_2, \kappa'}
    }
 \end{smathpar}
 \caption{Pattern-matching}
