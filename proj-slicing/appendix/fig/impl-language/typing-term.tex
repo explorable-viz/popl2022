@@ -85,11 +85,21 @@
 %
 \and
 %
+\inferrule*[right={$\primOp: A \in \Gamma$}]
+{
+   \strut
+}
+{
+   \Gamma \vdash \exOp{\primOp}: A
+}
+%
+\and
+%
 \inferrule*
 {
    \Gamma \vdash e: \tyFun{A}{B}
    \\
-   \Gamma \vdash e' A
+   \Gamma \vdash e': A
 }
 {
    \Gamma \vdash \exApp{e}{e'}: B
