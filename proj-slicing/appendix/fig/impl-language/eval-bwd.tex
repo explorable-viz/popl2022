@@ -14,6 +14,20 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\bwdSlice$-op}}
+   ]
+   {
+      \strut
+   }
+   {
+      v, \sub{\trOp{\primOp}}{\rho}
+      \bwdSlice
+      \envUpdate{\bot_{\rho}}{\primOp}{v}, \exOp{\primOp}, \bot
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\bwdSlice$-nil}}
    ]
    {
@@ -61,20 +75,6 @@
    }
    {
       \exClosureRec{\rho}{f}{\sigma}, \trRec{f}{\sigma'} \bwdSlice \rho, \exRec{f}{\sigma}, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-op}}
-   ]
-   {
-      \strut
-   }
-   {
-      \annot{\phi}{\alpha}, \sub{\trOp{\primOp}}{\rho}
-      \bwdSlice
-      \envUpdate{\bot_{\rho}}{\primOp}{\annot{\phi}{\alpha}}, \exOp{\primOp}, \bot
    }
    %
    \and
