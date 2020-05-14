@@ -87,9 +87,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
+      \annot{\phi}{\bot}, T \bwdSlice \rho, e, \alpha
+      \\
+      \annot{m}{\bot}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{n}{\bot}, \trAppPrim{T}{U} \bwdSlice \rho \join \rho', \exApp{e'}{e}
+      \annot{n}{\bot}, \trAppPrim{T}{\phi}{U}{m} \bwdSlice \rho \join \rho', \exApp{e}{e'}, \bot
    }
    %
    \and
