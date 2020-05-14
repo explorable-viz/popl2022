@@ -47,7 +47,7 @@
 \newcommand{\annot}[2]{#1_{#2}}
 
 % Expressions.
-\newcommand*{\exAdd}[2]{{#1} + {#2}}
+%\newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathop{#2} {#3}}
 \newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
@@ -153,10 +153,8 @@
 \newcommand*{\seq}{\mathrel{\smalltriangleright}}
 
 % Traces.
-\newcommand*{\trAdd}[4]{\exAdd{#1_{#2}}{#3_{#4}}}
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
 \newcommand*{\trBinaryApp}[5]{\exBinaryApp{#1_{#2}}{#3}{#4_{#5}}}
-%\newcommand*{\trBot}{\exBot}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
 \newcommand*{\trFun}[1]{\exFun{#1}}
@@ -168,8 +166,6 @@
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\trRec}[2]{\kw{fun}\,{#1}{#2}}
 \newcommand*{\trTrue}{\exTrue}
-\newcommand*{\trVar}[3]{{#1}\seq_{\lowlight{#2}}{#3}}
 \newcommand*{\trVarOne}[1]{#1}
-\newcommand*{\trVarTwo}[2]{{#1}_{\lowlight{#2}}}
 
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
