@@ -69,18 +69,18 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, U \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_2}{f}{\sigma}}, e, \alpha
+      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_2}{f}{\sigma}}, e, \alpha
       \\
       \rho, e, \alpha, \xi, \matchBwd v', \sigma'
       \\
-      v', T' \bwdSlice \rho', e', \alpha'
+      v', U \bwdSlice \rho', e', \alpha'
       \\
       \exClosureRec{\rho_1 \join \rho_2}{f}{(\sigma \join \sigma')}, T
       \bwdSlice
       \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
    }
    {
-      v, \trApp{T}{T'}{\matchPlug{\xi}{U}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+      v, \trApp{T}{U}{\matchPlug{\xi}{T'}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
    }
    %
    \and
@@ -89,7 +89,7 @@
    {
    }
    {
-      \annot{n}{\bot}, \trAppPrim{T}{T'} \bwdSlice \rho \join \rho', \exApp{e'}{e}
+      \annot{n}{\bot}, \trAppPrim{T}{U} \bwdSlice \rho \join \rho', \exApp{e'}{e}
    }
    %
    \and
