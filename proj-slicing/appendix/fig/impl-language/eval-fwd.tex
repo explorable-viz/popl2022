@@ -14,6 +14,19 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-op}},
+      right={$\primOp: v \in \rho$}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, \exOp{\primOp}, \alpha \fwdSlice v
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
    {
       \strut
@@ -54,19 +67,6 @@
    }
    {
       \rho, \exRec{f}{\sigma}, \alpha \fwdSlice \annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-op}},
-      right={$\primOp: \annot{\phi}{\alpha'} \in \rho$}
-   ]
-   {
-      \strut
-   }
-   {
-      \rho, \exOp{\primOp}, \alpha \fwdSlice \annot{\phi}{\alpha'}
    }
    %
    \and
