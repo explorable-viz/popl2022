@@ -3,17 +3,17 @@
 \begin{salign}
    \bot_{\envEmpty} &= \envEmpty
    \\
-   \bot_{\envExtend{\rho}{x}{v}} &= \envExtend{\bot_{\rho}}{x}{\bot_v}
+   \bot_{\envExtend{\rho}{k}{v}} &= \envExtend{\bot_{\rho}}{k}{\bot_v}
 \end{salign}
 \\[2mm]
-\flushleft \shadebox{$\envUpdate{\rho}{x}{v}$}
+\flushleft \shadebox{$\envUpdate{\rho}{k}{v}$}
 \begin{salign}
-   \envUpdate{\envEmpty}{x}{v} &= \envEmpty
+   \envUpdate{\envEmpty}{k}{v} &= \envEmpty
    \\
-   \envUpdate{(\envExtend{\rho}{x}{u})}{x}{v} &= \envExtend{\rho}{x}{v}
+   \envUpdate{(\envExtend{\rho}{k}{v})}{k}{v'} &= \envExtend{\rho}{k}{v'}
    \\
-   \envUpdate{(\envExtend{\rho}{y}{u})}{x}{v} &= \envExtend{(\envUpdate{\rho}{x}{v})}{y}{u}
-   \quad (x \neq y)
+   \envUpdate{(\envExtend{\rho}{k}{v})}{k'}{v'} &= \envExtend{(\envUpdate{\rho}{k'}{v'})}{k}{v}
+   \quad (k \neq k')
 \end{salign}
 \caption{Least slice of an environment; environment update}
 \end{figure}
