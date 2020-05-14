@@ -76,12 +76,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
-      \rho, e \fwdSlice \phi
+      \rho, e, \alpha \fwdSlice \annot{\phi}{\alpha'}
       \\
-      \rho, e' \fwdSlice m
+      \rho, e', \alpha \fwdSlice \annot{m}{\alpha^\twoPrime}
    }
    {
-      \rho, \exApp{e}{e'} \fwdSlice \phi(m)
+      \rho, \exApp{e}{e'}, \alpha \fwdSlice \annot{\phi(m)}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
    }
    %
    \and
