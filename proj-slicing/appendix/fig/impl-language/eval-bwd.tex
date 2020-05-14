@@ -89,14 +89,14 @@
       lab={\ruleName{$\bwdSlice$-add-sel}}
    ]
    {
-      \annot{\exInt{n'}}{\top}, T \bwdSlice \rho, e, \alpha'
+      \annot{\exInt{n'}}{\top}, T \bwdSlice \rho, e, \alpha
       \\
-      \annot{\exInt{m}}{\top}, U \bwdSlice \rho', e', \alpha^\twoPrime
+      \annot{\exInt{m}}{\top}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{\exInt{n}}{\top}, \trAdd{T}{\smash{n'}}{U}{m}
+      \annot{\exInt{n}}{\top}, \trBinaryApp{T}{\smash{n'}}{\primOp}{U}{m}
       \bwdSlice
-      \rho \join \rho', \exAdd{e}{e'}, \top
+      \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \top
    }
    %
    \and
@@ -110,7 +110,9 @@
       \annot{\exInt{m}}{\bot}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{\exInt{n}}{\bot}, \trAdd{T}{\smash{n'}}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e}{e'}, \bot
+      \annot{\exInt{n}}{\bot}, \trBinaryApp{T}{\smash{n'}}{\primOp}{U}{m}
+      \bwdSlice
+      \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \bot
    }
    %
    \and
