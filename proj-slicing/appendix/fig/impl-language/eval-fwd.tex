@@ -74,6 +74,18 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
+   {
+      \rho, e \fwdSlice \phi
+      \\
+      \rho, e' \fwdSlice m
+   }
+   {
+      \rho, \exApp{e}{e'} \fwdSlice \phi(m)
+   }
+   %
+   \and
+   %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-binary-apply}},
       right={$\primOp: \phi \in \rho$}
