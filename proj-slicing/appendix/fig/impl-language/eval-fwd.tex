@@ -60,13 +60,13 @@
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-op}},
-      right={$\primOp: \phi \in \rho$}
+      right={$\primOp: \annot{\phi}{\alpha'} \in \rho$}
    ]
    {
       \strut
    }
    {
-      \rho, \exOp{\primOp}, \alpha \fwdSlice \annot{\phi}{\alpha}
+      \rho, \exOp{\primOp}, \alpha \fwdSlice \annot{\phi}{\alpha'}
    }
    %
    \and
