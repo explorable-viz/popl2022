@@ -90,6 +90,19 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\eval$-op}},
+      right={$\primOp: \phi \in \rho$}
+   ]
+   {
+      \strut
+   }
+   {
+      \explVal{\trOp{\primOp}}{\rho, \exOp{\primOp} \eval \phi}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
       \explVal{T}{\rho, e \eval \exClosureRec{\rho'}{f}{\sigma}}
