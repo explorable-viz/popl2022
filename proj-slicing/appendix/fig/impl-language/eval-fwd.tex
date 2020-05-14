@@ -75,7 +75,8 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-add}}
+      lab={\ruleName{$\fwdSlice$-binary-apply}},
+      right={$\primOp: \phi \in \rho$}
    ]
    {
       \rho, e, \alpha \fwdSlice \annot{\exInt{m}}{\alpha'}
@@ -83,9 +84,9 @@
       \rho, e', \alpha \fwdSlice \annot{\exInt{n}}{\alpha^\twoPrime}
    }
    {
-      \rho, \exAdd{e}{e'}, \alpha
+      \rho, \exBinaryApp{e}{\primOp}{e'}, \alpha
       \fwdSlice
-      \annot{(\exInt{m \mathbin{\hat{+}} n})}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
+      \annot{\exInt{\phi(m, n)}}{\alpha \wedge \alpha' \wedge \alpha^\twoPrime}
    }
    %
    \and
