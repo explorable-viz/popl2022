@@ -39,7 +39,17 @@
    \strut
 }
 {
-   \vdash n: \tyInt
+   \vdash \exInt{n}: \tyInt
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exPrim{\phi}: \tyFun{\tyProd{\tyInt}{\tyInt}}{\tyInt}
 }
 %
 \and

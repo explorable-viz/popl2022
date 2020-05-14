@@ -1,16 +1,53 @@
 \begin{figure}
-\flushleft \shadebox{$v, \sigma, \xi \matchFwd \rho, \kappa, \alpha$}
+\flushleft \shadebox{$v, \sigma \matchFwd \rho, \kappa, \alpha$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{\kappa}, \matchVar
+      v, \elimVar{x}{\kappa}
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, \kappa, \top
    }
-   \\
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\kappa'}
+      \matchFwd
+      \envEmpty, \kappa, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exFalse}{\alpha}, \elimBool{\kappa}{\kappa'}
+      \matchFwd
+      \envEmpty, \kappa', \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   {
+      u, \sigma \matchFwd \rho_1, \tau, \alpha'
+      \\
+      v, \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+   }
+   {
+      \annot{\exPair{u}{v}}{\alpha}, \elimProd{\sigma}
+      \matchFwd
+      \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
+   }
    %
    \and
    %
@@ -19,50 +56,24 @@
       \strut
    }
    {
-      \bot, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchNilNew
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
-      \envEmpty, \kappa, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil-sel}}]
-   {
-      \strut
-   }
-   {
-      \exNilSel, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchNilNew
-      \matchFwd
-      \envEmpty, \kappa, \top
+      \envEmpty, \kappa, \alpha
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
    {
-      u, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
+      u, \sigma \matchFwd \rho_1, \tau, \alpha'
       \\
-      v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
+      v, \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
    }
    {
-      \exCons{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchConsNewNew{\xi}{\xi'}
+      \annot{\exCons{u}{v}}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
-      \rho_1 \concat \rho_2, e, \bot
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-sel}}]
-   {
-      u, \sigma, \xi \matchFwd \rho_1, \tau, \alpha
-      \\
-      v, \tau, \xi' \matchFwd \rho_2, \kappa, \alpha'
-   }
-   {
-      \exConsSel{u}{v}, \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}, \matchConsNewNew{\xi}{\xi'}
-      \matchFwd
-      \rho_1 \concat \rho_2, e, \alpha \wedge \alpha'
+      \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
    }
 \end{smathpar}
-\caption{Pattern-matching (forward slicing); Boolean and pair cases omitted}
+\caption{Pattern-matching (forward slicing)}
 \end{figure}

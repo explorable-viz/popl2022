@@ -2,65 +2,37 @@
 \flushleft \shadebox{$v, T \bwdSlice \rho, e, \alpha$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-bot}},
-      right={$\Gamma \vdash T$}
+      lab={\ruleName{$\bwdSlice$-var}}
    ]
    {
       \strut
    }
    {
-      \bot, T \bwdSlice \bot_{\Gamma}, \bot, \bot
+      v, \sub{\trVar{x}}{\rho} \bwdSlice \envUpdate{\bot_{\rho}}{x}{v}, \bot
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-var}},
-      right={$\Gamma \vdash x$}
+      lab={\ruleName{$\bwdSlice$-nil}}
    ]
    {
       \strut
    }
    {
-      v, \trVarOne{x} \bwdSlice \envUpdate{\bot_{\Gamma}}{x}{v}, \bot
+      \annot{\exNil}{\alpha}, \sub{\trNil}{\rho} \bwdSlice \bot_{\rho}, \annot{\exNil}{\alpha}, \alpha
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil-sel}}
+      lab={\ruleName{$\bwdSlice$-int}}
    ]
    {
       \strut
    }
    {
-      \exNilSel, \trNil \bwdSlice \bot_{\Gamma}, \exNilSel, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-int-sel}}
-   ]
-   {
-      \strut
-   }
-   {
-      \exIntSel{n}, \trInt{n} \bwdSlice \bot_{\Gamma}, \exIntSel{n}, \top
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-cons-sel}}
-   ]
-   {
-      u, T \bwdSlice \rho, e, \alpha
-      \\
-      v, U \bwdSlice \rho', e', \alpha'
-   }
-   {
-      \exConsSel{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exConsSel{e}{e'}, \top
+      \annot{\exInt{n}}{\alpha}, \sub{\trInt{n}}{\rho} \bwdSlice \bot_{\rho}, \annot{\exInt{n}}{\alpha}, \alpha
    }
    %
    \and
@@ -69,12 +41,14 @@
       lab={\ruleName{$\bwdSlice$-cons}}
    ]
    {
-      u, T \bwdSlice \rho, e, \alpha
+      u, T \bwdSlice \rho, e, \alpha'
       \\
-      v, U \bwdSlice \rho', e', \alpha'
+      v, U \bwdSlice \rho', e', \alpha^\twoPrime
    }
    {
-      \exCons{u}{v}, \trPair{T}{U} \bwdSlice \rho \join \rho', \exCons{e}{e'}, \alpha \vee \alpha'
+      \annot{\exCons{u}{v}}{\alpha}, \trPair{T}{U}
+      \bwdSlice
+      \rho \join \rho', \annot{\exCons{e}{e'}}{\alpha}, \alpha \vee \alpha' \vee \alpha^\twoPrime
    }
    %
    \and
@@ -112,15 +86,33 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\bwdSlice$-add-sel}}
+   ]
+   {
+      \annot{\exInt{n'}}{\top}, T \bwdSlice \rho, e, \alpha
+      \\
+      \annot{\exInt{m}}{\top}, U \bwdSlice \rho', e', \alpha'
+   }
+   {
+      \annot{\exInt{n}}{\top}, \trBinaryApp{T}{\smash{n'}}{\primOp}{U}{m}
+      \bwdSlice
+      \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \top
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\bwdSlice$-add}}
    ]
    {
-      \exIntSel{n'}, T \bwdSlice \rho, e, \alpha
+      \annot{\exInt{n'}}{\bot}, T \bwdSlice \rho, e, \alpha
       \\
-      \exIntSel{m}, U \bwdSlice \rho', e', \alpha'
+      \annot{\exInt{m}}{\bot}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \exIntSel{n}, \trAdd{T}{n'}{U}{m} \bwdSlice \rho \join \rho', \exAdd{e}{e'}, \top
+      \annot{\exInt{n}}{\bot}, \trBinaryApp{T}{\smash{n'}}{\primOp}{U}{m}
+      \bwdSlice
+      \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \bot
    }
    %
    \and

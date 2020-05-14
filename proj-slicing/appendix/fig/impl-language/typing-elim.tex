@@ -40,7 +40,7 @@
    \Gamma \vdash \sigma: \tyFun{\tyInt}{\tyFun{\tyList{\tyInt}}{A}}
 }
 {
-   \Gamma \vdash \elimList{\branchNil{\kappa}}{\branchConsNew{\sigma}}: \tyFun{\tyList{\tyInt}}{A}
+   \Gamma \vdash \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}: \tyFun{\tyList{\tyInt}}{A}
 }
 \end{smathpar}
 \caption{Typing rules for eliminators}

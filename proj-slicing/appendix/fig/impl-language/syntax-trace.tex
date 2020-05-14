@@ -6,9 +6,9 @@
 &
 ::=
 &
-\matchVar
+\matchVarNew{x}
 &
-\text{discarded}
+\text{variable}
 \\
 &&&
 \matchTrueNew
@@ -41,7 +41,7 @@ T, U
 &
 ::=
 &
-\trVarOne{x}
+\trVar{x}
 &
 \text{variable}
 \\
@@ -71,7 +71,7 @@ T, U
 \text{apply}
 \\
 &&&
-\trAdd{T}{m}{U}{n}
+\trBinaryApp{T}{m}{\primOp}{U}{n}
 &
 \text{add}
 \\

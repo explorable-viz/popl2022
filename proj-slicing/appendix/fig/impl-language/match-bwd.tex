@@ -6,22 +6,47 @@
       \strut
    }
    {
-      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVar
+      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVarNew{x}
       \matchBwd
       v, \elimVar{x}{\kappa}
    }
-   \\
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-nil-sel}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-true}}]
    {
       \strut
    }
    {
-      \envEmpty, \kappa, \top, \matchNilNew
+      \envEmpty, \kappa, \alpha, \matchTrueNew
       \matchBwd
-      \exNilSel, \elimList{\branchNil{\kappa}}{\branchConsNew{\bot}}
+      \annot{\exTrue}{\alpha}, \{\exTrue \mapsto \kappa\}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \alpha, \matchFalseNew
+      \matchBwd
+      \annot{\exFalse}{\alpha}, \{\exFalse \mapsto \kappa\}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
+   {
+      \rho_2, \kappa, \alpha, \xi' \matchBwd v, \sigma
+      \\
+      \rho_1, \sigma, \alpha, \xi \matchBwd u, \tau
+   }
+   {
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchPairNew{\xi}{\xi'}
+      \matchBwd
+      \annot{\exPair{u}{v}}{\alpha}, \elimProd{\tau}
    }
    %
    \and
@@ -31,40 +56,24 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \bot, \matchNilNew
+      \envEmpty, \kappa, \alpha, \matchNilNew
       \matchBwd
-      \bot, \elimList{\branchNil{\kappa}}{\branchConsNew{\bot}}
+      \annot{\exNil}{\alpha}, \{\branchNil{\kappa}\}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-cons-sel}}]
+   \inferrule*[lab={\ruleName{$\matchBwd$-cons}}]
    {
-      \rho_2, \kappa, \top, \xi' \matchBwd v, \sigma
+      \rho_2, \kappa, \alpha, \xi' \matchBwd v, \sigma
       \\
-      \rho_1, \sigma, \top, \xi \matchBwd u, \tau
+      \rho_1, \sigma, \alpha, \xi \matchBwd u, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \top, \matchConsNewNew{\xi}{\xi'}
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchConsNewNew{\xi}{\xi'}
       \matchBwd
-      \exConsSel{u}{v}, \elimList{\branchNil{\bot}}{\branchConsNew{\tau}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\matchBwd$-cons}}
-   ]
-   {
-      \rho_2, \kappa, \bot, \xi' \matchBwd v, \sigma
-      \\
-      \rho_1, \sigma, \bot, \xi \matchBwd u, \tau
-   }
-   {
-      \rho_1 \concat \rho_2, \kappa, \bot, \matchConsNewNew{\xi}{\xi'}
-      \matchBwd
-      \exCons{u}{v}, \elimList{\branchNil{\bot}}{\branchConsNew{\tau}}
+      \annot{\exCons{u}{v}}{\alpha}, \{\branchCons{\tau}\}
    }
 \end{smathpar}
-\caption{Pattern-matching (backward slicing); Boolean and pair cases omitted}
+\caption{Pattern-matching (backward slicing)}
 \end{figure}

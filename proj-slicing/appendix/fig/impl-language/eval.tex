@@ -107,7 +107,8 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-add}}
+      lab={\ruleName{$\eval$-binary-apply}},
+      right={$\primOp: \phi \in \rho$}
    ]
    {
       \explVal{T}{\rho, e \eval m}
@@ -115,7 +116,7 @@
       \explVal{U}{\rho, e' \eval n}
    }
    {
-      \explVal{\trAdd{T}{m}{U}{n}}{\rho, \exAdd{e}{e'} \eval m \mathbin{\hat{+}} n}
+      \explVal{\trBinaryApp{T}{m}{\primOp}{U}{n}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(m, n)}
    }
    %
    \and
