@@ -101,12 +101,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
-      \annot{\phi}{\alpha}, T \bwdSlice \rho, e, \alpha'
+      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \alpha'
       \\
-      \annot{m}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
+      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
    }
    {
-      \annot{n}{\alpha}, \trAppPrim{T}{\phi}{U}{m} \bwdSlice \rho \join \rho', \exApp{e}{e'}, \alpha
+      \annot{n}{\alpha}, \trAppPrim{T}{U} \bwdSlice \rho \join \rho', \exApp{e}{e'}, \alpha
    }
    %
    \and
@@ -115,12 +115,12 @@
       lab={\ruleName{$\bwdSlice$-binary-apply}}
    ]
    {
-      \annot{\exInt{n'}}{\alpha}, T \bwdSlice \rho, e, \alpha'
+      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \alpha'
       \\
-      \annot{\exInt{m}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
+      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
    }
    {
-      \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\smash{n'}}{\primOp}{U}{m}
+      \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\primOp}{U}
       \bwdSlice
       \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \alpha
    }
