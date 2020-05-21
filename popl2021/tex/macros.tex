@@ -82,10 +82,11 @@
 \renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
 
 % Matches.
-\newcommand*{\matchConsNewNew}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
 \newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole{}}}
 \newcommand*{\matchFalseNew}{\exFalse}
 \newcommand*{\matchHole}[1]{[#1]}
+\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole{}}}{\branchCons{#1}}}
 \newcommand*{\matchNilNew}{\exNil}
 \newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
