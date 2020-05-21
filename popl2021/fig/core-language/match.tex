@@ -6,7 +6,7 @@
       \strut
    }
    {
-      \explVal{\matchVarNew{x}}{v, \elimVar{x}{\kappa} \match \envExtend{\envEmpty}{x}{v}, \kappa}
+      \explVal{\matchVar{x}}{v, \elimVar{x}{\kappa} \match \envExtend{\envEmpty}{x}{v}, \kappa}
    }
    \\
    %
@@ -17,7 +17,7 @@
       \strut
    }
    {
-      \explVal{\matchTrueNew}{\exTrue, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa}
+      \explVal{\matchTrue{\kappa'}}{\exTrue, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa}
    }
    %
    \and
@@ -27,7 +27,7 @@
       \strut
    }
    {
-      \explVal{\matchFalseNew}{\exFalse, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa'}
+      \explVal{\matchFalse{\kappa}}{\exFalse, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa'}
    }
    %
    \and

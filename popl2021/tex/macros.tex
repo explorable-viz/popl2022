@@ -83,12 +83,15 @@
 
 % Matches.
 \newcommand*{\matchConsNewNew}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole{}}}
 \newcommand*{\matchFalseNew}{\exFalse}
 \newcommand*{\matchHole}[1]{[#1]}
 \newcommand*{\matchNilNew}{\exNil}
 \newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
 \newcommand*{\matchTrueNew}{\exTrue}
+\newcommand*{\matchTrue}[1]{\elimBool{\matchHole{}}{#1}}
+\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole{}}}
 \newcommand*{\matchVarNew}[1]{#1}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
