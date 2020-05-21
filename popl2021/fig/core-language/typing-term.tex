@@ -77,34 +77,12 @@
 %
 \inferrule*
 {
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
-}
-{
-   \Gamma \vdash \exRec{f}{\sigma}: \tyFun{A}{B}
-}
-%
-\and
-%
-\inferrule*
-{
    \Gamma \vdash e: \tyFun{A}{B}
    \\
    \Gamma \vdash e': A
 }
 {
    \Gamma \vdash \exApp{e}{e'}: B
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash e: A
-   \\
-   \cxtExtend{\Gamma}{x}{A} \vdash e': B
-}
-{
-   \Gamma \vdash \exLet{x}{e}{e'}: B
 }
 %
 \and
@@ -127,6 +105,30 @@
 }
 {
    \vdash \exCons{u}{v}: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: A
+   \\
+   \cxtExtend{\Gamma}{x}{A} \vdash e': B
+}
+{
+   \Gamma \vdash \exLet{x}{e}{e'}: B
+}
+%
+\and
+%
+\inferrule*
+{
+   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
+   \\
+   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash e: B'
+}
+{
+   \Gamma \vdash \exLetRec{f}{\sigma}{e}: B'
 }
 \end{smathpar}
 \caption{Typing rules for terms}
