@@ -69,7 +69,9 @@
       \\
       v, \sigma \matchFwd \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
       \\
-      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime, \alpha' \wedge \alpha^\twoPrime \fwdSlice v'
+      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\alpha'}}, e^\twoPrime,
+      \alpha' \wedge \alpha^\twoPrime
+      \fwdSlice v'
    }
    {
       \rho, \exApp{e}{e'}, \alpha \fwdSlice v'
