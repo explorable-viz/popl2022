@@ -49,7 +49,9 @@
       \strut
    }
    {
-      \explVal{\matchNilNew}{\exNil, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \match \envEmpty, \kappa}
+      \explVal
+         {\matchNil{\sigma}}
+         {\exNil, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \match \envEmpty, \kappa}
    }
    %
    \and
@@ -62,7 +64,7 @@
    }
    {
       \explVal
-         {\matchConsNew{\xi}{\xi'}}
+         {\matchCons{\kappa}{\xi}{\xi'}}
          {\exCons{v}{v'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
          \match
          \rho_1 \concat \rho_2, \kappa'}
