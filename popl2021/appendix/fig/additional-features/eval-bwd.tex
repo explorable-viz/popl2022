@@ -68,6 +68,20 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\bwdSlice$-fun}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha}, \trRec{f}{\sigma'}
+      \bwdSlice
+      \rho, \exRec{f}{\sigma}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
@@ -125,18 +139,6 @@
    }
    {
       v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let-rec}}
-   ]
-   {
-      v, T, \bwdSlice \envExtend{\rho}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma'}}{\alpha'}}, e, \alpha
-   }
-   {
-      v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha \join \alpha'
    }
 \end{smathpar}
 \caption{Backward slicing; Boolean and pair cases omitted}

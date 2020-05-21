@@ -122,7 +122,7 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let-rec}}]
    {
-      \envExtend{\rho}{f}{\exClosureRec{\rho}{f}{\sigma}}, e, \alpha \fwdSlice v
+      \envExtend{\rho}{f}{\annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha}}, e, \alpha \fwdSlice v
    }
    {
       \rho, \exLetRec{f}{\sigma}{e}, \alpha \fwdSlice v
