@@ -1,0 +1,37 @@
+\begin{figure}
+\flushleft \shadebox{$v, T \bwdSlice \rho, e, \alpha$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-lambda}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annot{\exClosure{\rho}{\sigma}}{\alpha}, \trLambda{\sigma'}
+      \bwdSlice
+      \rho, \exLambda{\sigma}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-apply-lambda}}
+   ]
+   {
+      v, T' \bwdSlice \rho_1 \concat \rho, e, \alpha
+      \\
+      \rho, e, \alpha, \xi, \matchBwd v', \sigma
+      \\
+      v', U \bwdSlice \rho', e', \alpha'
+      \\
+      \exClosure{\rho_1}{\sigma}, T
+      \bwdSlice
+      \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
+   }
+   {
+      v, \trApp{T}{U}{\matchPlug{\xi}{T'}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+   }
+\end{smathpar}
+\caption{Additional backward slicing rules}
+\end{figure}

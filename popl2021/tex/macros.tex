@@ -5,6 +5,8 @@
 % \let\oldtop\top
 % \renewcommand{\top}{\sel{\oldtop}}
 \newcommand*{\Sel}[1]{[#1]}
+\newcommand*{\TT}{\mathsf{tt}}
+\newcommand*{\FF}{\mathsf{ff}}
 
 \renewcommand*{\ldots}{...} % \ldots sucks with acmart
 \renewcommand*{\ruleName}[1]{\textcolor{gray}{\textnormal{\textsf{#1}}}}
@@ -51,18 +53,20 @@
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
 \newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
+\newcommand*{\exClosure}[2]{(#1,\exLambda{#2})}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
-\newcommand*{\exClosureRecSel}[3]{\sel{(}#1,\exRec{#2}{#3}\sel{)}}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exInt}[1]{#1}
+\newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
-\newcommand*{\exLetrec}[2]{\kw{letrec}\;{#1}\;\kw{in}\;{#2}}
+\newcommand*{\exLetFun}[3]{\kw{let}\;{#1}{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{Nil}}
 \newcommand*{\exOp}[1]{(#1)}
 \newcommand*{\exPair}[2]{\langle#1,#2\rangle}
 \newcommand*{\exPrim}[1]{#1}
-\newcommand*{\exRec}[2]{\kw{fun}\,{#1}{#2}}
+\newcommand*{\exRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
 
@@ -80,13 +84,18 @@
 \renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
 
 % Matches.
-\newcommand*{\matchConsNewNew}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchCons}[3]{\elimList{\branchNil{#1}}{\exCons{#2}{#3}}}
+\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole{}}}
 \newcommand*{\matchFalseNew}{\exFalse}
 \newcommand*{\matchHole}[1]{[#1]}
+\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole{}}}{\branchCons{#1}}}
 \newcommand*{\matchNilNew}{\exNil}
 \newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
 \newcommand*{\matchTrueNew}{\exTrue}
+\newcommand*{\matchTrue}[1]{\elimBool{\matchHole{}}{#1}}
+\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole{}}}
 \newcommand*{\matchVarNew}[1]{#1}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
@@ -160,15 +169,16 @@
 \newcommand*{\trBinaryApp}[3]{\exBinaryApp{#1}{#2}{#3}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
-\newcommand*{\trFun}[1]{\exFun{#1}}
 \newcommand*{\trInt}[1]{\exInt{#1}}
-\newcommand*{\trLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
-\newcommand*{\trLetrec}[2]{{\kw{letrec}\;{#1}}\;\kw{in}\;{#2}}
-\newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}%\seq_{\lowlight{#3}}{#4}}
+\newcommand*{\trLambda}[1]{\exLambda{#1}}
+\newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
+\newcommand*{\trLetFun}[3]{\exLetFun{#1}{#2}{#3}}
+\newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
+\newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
 \newcommand*{\trNil}{\exNil}
 \newcommand*{\trOp}[1]{\exOp{#1}}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
-\newcommand*{\trRec}[2]{\kw{fun}\,{#1}{#2}}
+\newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\trTrue}{\exTrue}
 \newcommand*{\trVar}[1]{#1}
 

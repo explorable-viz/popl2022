@@ -1,0 +1,135 @@
+\begin{figure}
+\flushleft \shadebox{$\Gamma \vdash e: A$}
+\begin{smathpar}
+\inferrule*[right={$x : A \in \Gamma$}]
+{
+   \strut
+}
+{
+   \Gamma \vdash \exVar{x}: A
+}
+%
+\and
+%
+\inferrule*[right={$\primOp: A \in \Gamma$}]
+{
+   \strut
+}
+{
+   \Gamma \vdash \exOp{\primOp}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash n: \tyInt
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exTrue: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exFalse: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash u: A
+   \\
+   \Gamma \vdash v: B
+}
+{
+   \Gamma \vdash \exPair{u}{v}: \tyProd{A}{B}
+}
+%
+\and
+%
+\inferrule*[right={$\primOp: \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}} \in \Gamma$}]
+{
+   \Gamma \vdash e: \tyInt
+   \\
+   \Gamma \vdash e': \tyInt
+}
+{
+   \Gamma \vdash \exBinaryApp{e}{\primOp}{e'}: \tyInt
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: \tyFun{A}{B}
+   \\
+   \Gamma \vdash e': A
+}
+{
+   \Gamma \vdash \exApp{e}{e'}: B
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exNil: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash u: \tyInt
+   \\
+   \Gamma \vdash v: \tyList{\tyInt}
+}
+{
+   \vdash \exCons{u}{v}: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: A
+   \\
+   \cxtExtend{\Gamma}{x}{A} \vdash e': B
+}
+{
+   \Gamma \vdash \exLet{x}{e}{e'}: B
+}
+%
+\and
+%
+\inferrule*
+{
+   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
+   \\
+   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash e: B'
+}
+{
+   \Gamma \vdash \exLetRec{f}{\sigma}{e}: B'
+}
+\end{smathpar}
+\caption{Typing rules for terms}
+\end{figure}

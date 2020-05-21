@@ -1,0 +1,13 @@
+\begin{figure}
+\flushleft \shadebox{$\Gamma \vdash e: A$}
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exLambda{\sigma}: \tyFun{A}{B}
+}
+\end{smathpar}
+\caption{Additional typing rules for terms}
+\end{figure}

@@ -1,0 +1,79 @@
+\begin{figure}
+\flushleft \shadebox{$\rho, \kappa, \alpha, \xi \matchBwd v, \sigma$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchBwd$-var}}]
+   {
+      \strut
+   }
+   {
+      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVar{x}
+      \matchBwd
+      v, \elimVar{x}{\kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \alpha, \matchTrue{\kappa'}
+      \matchBwd
+      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\bot_{\kappa'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \alpha, \matchFalse{\kappa'}
+      \matchBwd
+      \annot{\exFalse}{\alpha}, \elimBool{\bot_{\kappa'}}{\kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
+   {
+      \rho_2, \kappa, \alpha, \xi' \matchBwd v', \sigma
+      \\
+      \rho_1, \sigma, \alpha, \xi \matchBwd v, \tau
+   }
+   {
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchPairNew{\xi}{\xi'}
+      \matchBwd
+      \annot{\exPair{v}{v'}}{\alpha}, \elimProd{\tau}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-nil}}]
+   {
+      \strut
+   }
+   {
+      \envEmpty, \kappa, \alpha, \matchNil{\sigma}
+      \matchBwd
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\bot_{\sigma}}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwd$-cons}}]
+   {
+      \rho_2, \kappa, \alpha, \xi' \matchBwd v', \sigma
+      \\
+      \rho_1, \sigma, \alpha, \xi \matchBwd v, \tau
+   }
+   {
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchCons{\kappa}{\xi}{\xi'}
+      \matchBwd
+      \annot{\exCons{v}{v'}}{\alpha}, \elimList{\branchNil{\bot_{\kappa}}}{\branchCons{\tau}}
+   }
+\end{smathpar}
+\caption{Pattern-matching: backward slicing}
+\end{figure}

@@ -1,0 +1,74 @@
+\begin{figure}
+\flushleft \shadebox{$\explVal{\xi}{v, \sigma \match \rho, \kappa}$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\match$-var}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\matchVar{x}}{v, \elimVar{x}{\kappa} \match \envExtend{\envEmpty}{x}{v}, \kappa}
+   }
+   \\
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\match$-true}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\matchTrue{\kappa'}}{\exTrue, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\match$-false}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\matchFalse{\kappa}}{\exFalse, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\match$-pair}}]
+   {
+      \explVal{\xi}{v, \sigma \match \rho_1, \tau}
+      \\
+      \explVal{\xi'}{v', \tau \match, \rho_2, \kappa}
+   }
+   {
+      \explVal{\matchPairNew{\xi}{\xi'}}{\exPair{v}{v'}, \elimProd{\sigma} \match \rho_1 \concat \rho_2, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\match$-nil}}]
+   {
+      \strut
+   }
+   {
+      \explVal
+         {\matchNil{\sigma}}
+         {\exNil, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \match \envEmpty, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\match$-cons}}]
+   {
+      \explVal{\xi}{v, \sigma \match \rho_1, \tau}
+      \\
+      \explVal{\xi'}{v', \tau \match \rho_2, \kappa'}
+   }
+   {
+      \explVal
+         {\matchCons{\kappa}{\xi}{\xi'}}
+         {\exCons{v}{v'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+         \match
+         \rho_1 \concat \rho_2, \kappa'}
+   }
+\end{smathpar}
+\caption{Pattern-matching}
+\end{figure}
