@@ -8,18 +8,6 @@
 {
    \Gamma \vdash \exLambda{\sigma}: \tyFun{A}{B}
 }
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \sigma: \tyFun{A}{B}
-   \\
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash e: B'
-}
-{
-   \Gamma \vdash \exLetFun{f}{\sigma}{e}: B'
-}
 \end{smathpar}
 \caption{Additional typing rules for terms}
 \end{figure}

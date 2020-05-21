@@ -26,16 +26,6 @@
    {
       \explVal{\trApp{T}{U}{\matchPlug{\xi}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
    }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-let-fun}}]
-   {
-      \explVal{T}{\envExtend{\rho}{f}{\exClosure{\rho}{\sigma}}, e \eval v}
-   }
-   {
-      \explVal{\trLetFun{f}{\sigma}{T}}{\rho, \exLetFun{f}{\sigma}{e} \eval v}
-   }
 \end{smathpar}
 \caption{Additional evaluation rules}
 \end{figure}
