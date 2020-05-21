@@ -1,0 +1,79 @@
+\begin{figure}
+\flushleft \shadebox{$v, \sigma \matchFwd \rho, \kappa, \alpha$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
+   {
+      \strut
+   }
+   {
+      v, \elimVar{x}{\kappa}
+      \matchFwd
+      \envExtend{\envEmpty}{x}{v}, \kappa, \TT
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\kappa'}
+      \matchFwd
+      \envEmpty, \kappa, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exFalse}{\alpha}, \elimBool{\kappa}{\kappa'}
+      \matchFwd
+      \envEmpty, \kappa', \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   {
+      v, \sigma \matchFwd \rho_1, \tau, \alpha'
+      \\
+      v', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+   }
+   {
+      \annot{\exPair{v}{v'}}{\alpha}, \elimProd{\sigma}
+      \matchFwd
+      \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
+   {
+      \strut
+   }
+   {
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \matchFwd
+      \envEmpty, \kappa, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
+   {
+      v, \sigma \matchFwd \rho_1, \tau, \alpha'
+      \\
+      v', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+   }
+   {
+      \annot{\exCons{v}{v'}}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \matchFwd
+      \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
+   }
+\end{smathpar}
+\caption{Pattern-matching (forward slicing)}
+\end{figure}
