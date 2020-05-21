@@ -1,0 +1,29 @@
+\begin{figure}
+\flushleft \shadebox{$\rho, e, \alpha \fwdSlice v$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\fwdSlice$-lambda}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exLambda{\sigma}, \alpha \fwdSlice \annot{\exClosure{\rho}{\sigma}}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-apply-lambda}}]
+   {
+      \rho, e, \alpha \fwdSlice \annot{\exClosure{\rho'}{\sigma}}{\alpha'}
+      \\
+      \rho, e', \alpha \fwdSlice v
+      \\
+      v, \sigma \matchFwd \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
+      \\
+      \rho' \concat \rho^\twoPrime, e^\twoPrime, \alpha' \wedge \alpha^\twoPrime \fwdSlice v'
+   }
+   {
+      \rho, \exApp{e}{e'}, \alpha \fwdSlice v'
+   }
+\end{smathpar}
+\caption{Additional forward slicing rules}
+\end{figure}
