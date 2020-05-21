@@ -3,20 +3,14 @@
 \begin{salign}
    (\elimVar{x}{\kappa}) \join (\elimVar{x}{\kappa'}) &= \elimVar{x}{\kappa \join \kappa'}
    \\
-   \{\branchNil{\kappa}\} \join \{\branchNil{\kappa'}\} &=
-   \{\branchNil{\kappa \join \kappa'}\}
+   \elimBool{\kappa_1}{\kappa_2} \join \elimBool{\kappa_1'}{\kappa_2'}
+   &=
+   \elimBool{\kappa_1 \join \kappa_1'}{\kappa_2 \join \kappa_2'}
    \\
-   \{\branchCons{\sigma}\} \join \{\branchCons{\sigma'}\} &=
-   \{\branchCons{\sigma \join \sigma'}\}
-   \\
-   \{\branchNil{\kappa}\} \join \{\branchCons{\sigma}\} &=
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
-   \\
-   \{\branchCons{\sigma}\} \join \{\branchNil{\kappa}\} &=
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+   \elimProd{\sigma} \join \elimProd{\sigma'} &= \elimProd{\sigma \join \sigma'}
    \\
    \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \join \elimList{\branchNil{\kappa'}}{\branchCons{\sigma'}} &=
    \elimList{\branchNil{\kappa \join \kappa'}}{\branchCons{\sigma \join \sigma'}}
 \end{salign}
-\caption{Join of eliminator slices; Boolean and pair cases omitted}
+\caption{Join of eliminator slices}
 \end{figure}
