@@ -6,7 +6,7 @@
       \strut
    }
    {
-      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVarNew{x}
+      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVar{x}
       \matchBwd
       v, \elimVar{x}{\kappa}
    }
@@ -18,9 +18,9 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \alpha, \matchTrueNew
+      \envEmpty, \kappa, \alpha, \matchTrue{\kappa'}
       \matchBwd
-      \annot{\exTrue}{\alpha}, \{\exTrue \mapsto \kappa\}
+      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\bot_{\kappa'}}
    }
    %
    \and
@@ -30,9 +30,9 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \alpha, \matchFalseNew
+      \envEmpty, \kappa, \alpha, \matchFalse{\kappa'}
       \matchBwd
-      \annot{\exFalse}{\alpha}, \{\exFalse \mapsto \kappa\}
+      \annot{\exFalse}{\alpha}, \elimBool{\bot_{\kappa'}}{\kappa}
    }
    %
    \and
