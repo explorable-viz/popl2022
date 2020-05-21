@@ -115,6 +115,16 @@
    {
       \rho, \exLet{x}{e}{e'}, \alpha \fwdSlice v'
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-let-rec}}]
+   {
+      \envExtend{\rho}{f}{\exClosureRec{\rho}{f}{\sigma}}, e, \alpha \fwdSlice v
+   }
+   {
+      \rho, \exLetRec{f}{\sigma}{e}, \alpha \fwdSlice v
+   }
 \end{smathpar}
 \caption{Forward slicing; Boolean and pair cases omitted}
 \end{figure}
