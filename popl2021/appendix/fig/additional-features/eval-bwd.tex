@@ -19,13 +19,13 @@
       lab={\ruleName{$\bwdSlice$-apply-lambda}}
    ]
    {
-      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_2}{f}{\sigma}}, e, \alpha
+      v, T' \bwdSlice \rho_1 \concat \rho, e, \alpha
       \\
-      \rho, e, \alpha, \xi, \matchBwd v', \sigma'
+      \rho, e, \alpha, \xi, \matchBwd v', \sigma
       \\
       v', U \bwdSlice \rho', e', \alpha'
       \\
-      \exClosureRec{\rho_1 \join \rho_2}{f}{(\sigma \join \sigma')}, T
+      \exClosure{\rho_1}{\sigma}, T
       \bwdSlice
       \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
    }
