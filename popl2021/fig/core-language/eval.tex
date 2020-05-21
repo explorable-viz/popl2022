@@ -155,6 +155,16 @@
    {
       \explVal{\trLet{x}{T}{U}}{\rho, \exLet{x}{e}{e'} \eval v'}
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-let-rec}}]
+   {
+      \explVal{T}{\envExtend{\rho}{f}{\exClosureRec{\rho}{f}{\sigma}}, e \eval v}
+   }
+   {
+      \explVal{\trLetRec{f}{\sigma}{T}}{\rho, \exLetRec{f}{\sigma}{e} \eval v}
+   }
 \end{smathpar}
 \caption{Evaluation}
 \end{figure}

@@ -58,7 +58,7 @@
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
-\newcommand*{\exLetRec}[3]{\kw{let}\,\kw{rec}\,{#1}\,{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{Nil}}
 \newcommand*{\exOp}[1]{(#1)}
@@ -169,13 +169,13 @@
 \newcommand*{\trFalse}{\exFalse}
 \newcommand*{\trFun}[1]{\exFun{#1}}
 \newcommand*{\trInt}[1]{\exInt{#1}}
-\newcommand*{\trLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
-\newcommand*{\trLetrec}[2]{{\kw{letrec}\;{#1}}\;\kw{in}\;{#2}}
+\newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
+\newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}%\seq_{\lowlight{#3}}{#4}}
 \newcommand*{\trNil}{\exNil}
 \newcommand*{\trOp}[1]{\exOp{#1}}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
-\newcommand*{\trRec}[2]{\kw{fun}\,{#1}{#2}}
+\newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\trTrue}{\exTrue}
 \newcommand*{\trVar}[1]{#1}
 
