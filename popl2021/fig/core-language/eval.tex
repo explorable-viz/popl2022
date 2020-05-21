@@ -91,18 +91,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-fun}}]
-   {
-      \strut
-   }
-   {
-      \explVal
-         {\trRec{f}{\sigma}}
-         {\rho, \exRec{f}{\sigma} \eval \exClosureRec{\rho}{f}{\sigma}}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
       \explVal{T}{\rho, e \eval \exClosureRec{\rho'}{f}{\sigma}}
