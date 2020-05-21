@@ -56,9 +56,9 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \alpha, \matchNilNew
+      \envEmpty, \kappa, \alpha, \matchNil{\sigma}
       \matchBwd
-      \annot{\exNil}{\alpha}, \{\branchNil{\kappa}\}
+      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\bot_{\sigma}}}
    }
    %
    \and
@@ -70,10 +70,10 @@
       \rho_1, \sigma, \alpha, \xi \matchBwd v, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \alpha, \matchConsNew{\xi}{\xi'}
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchCons{\kappa}{\xi}{\xi'}
       \matchBwd
-      \annot{\exCons{v}{v'}}{\alpha}, \{\branchCons{\tau}\}
+      \annot{\exCons{v}{v'}}{\alpha}, \elimList{\branchNil{\bot_{\kappa}}}{\branchCons{\tau}}
    }
 \end{smathpar}
-\caption{Pattern-matching (backward slicing)}
+\caption{Pattern-matching: backward slicing}
 \end{figure}
