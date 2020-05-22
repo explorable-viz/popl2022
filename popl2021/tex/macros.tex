@@ -148,9 +148,9 @@
 % Environments.
 \newcommand*{\subst}[3]{{#1}[{#2}/{#3}]} % still needed for recursive types..
 \newcommand*{\envEmpty}{\varepsilon}
-\newcommand*{\envExtend}[3]{{#1}[{#2} \mapsto {#3}]}
+\newcommand*{\envExtend}[3]{{#1}[{#2}: {#3}]}
 \newcommand*{\envLookup}[3]{{#2}: {#3} \in {#1}}
-\newcommand*{\envUpdate}[3]{{#1}\{{#2} \mapsto {#3}\}}
+\newcommand*{\envUpdate}[3]{{#1}\{{#2}: {#3}\}}
 \newcommand*{\env}[1]{\mathsf{env}(#1)}
 
 % Evaluation.
