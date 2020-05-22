@@ -75,11 +75,16 @@
 
 % Tries.
 \newcommand*{\elimBool}[2]{\{\exTrue \mapsto {#1}, \exFalse \mapsto {#2}\}}
+\newcommand*{\elimBoolTrue}[1]{\{\exTrue \mapsto {#1}\}}
+\newcommand*{\elimBoolFalse}[1]{\{\exFalse \mapsto {#1}\}}
+\newcommand*{\elimListSingleton}[1]{\{{#1}\}}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
 \newcommand*{\elimPair}[3]{\exPair{#1}{#2}\mapsto{#3}}
 \newcommand*{\elimProd}[1]{{\langle#1\rangle}}
 \newcommand*{\elimVar}[2]{{#1} \mapsto {#2}}
+
+\newcommand*{\singleton}[2]{#1[#2]}
 
 \renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
 
