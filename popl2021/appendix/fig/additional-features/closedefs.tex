@@ -3,17 +3,17 @@
 \begin{salign}
    \rho, \delta
    &\closeDefs
-   [f: \exClosure{\rho}{\delta}{\exLambda{\sigma}} \mid \exFun{f}{\sigma} \in \delta]
+   [f: \exClosure{\rho}{\delta}{\sigma} \mid \exFun{f}{\sigma} \in \delta]
 \end{salign}
 \flushleft\shadebox{$\rho, \delta, \alpha \closeDefsFwd \rho'$}
 \begin{salign}
    \rho, \delta, \alpha
    &\closeDefsFwd
-   [f : \annot{\exClosure{\rho}{\delta}{\exLambda{\sigma}}}{\alpha} \mid \exFun{f}{\sigma} \in \delta]
+   [f : \annot{\exClosure{\rho}{\delta}{\sigma}}{\alpha} \mid \exFun{f}{\sigma} \in \delta]
 \end{salign}
 \flushleft\shadebox{$\rho \closeDefsBwd \rho', \delta, \alpha$}
 \begin{salign}
-   [f : \annot{\exClosure{\rho_f}{\delta_f}{\exLambda{\sigma_f}}}{\alpha_f} \mid f \in F]
+   [f : \annot{\exClosure{\rho_f}{\delta_f}{\sigma_f}}{\alpha_f} \mid f \in F]
    &\closeDefsFwd
    {\textstyle{\bigvee}\rho}, [
    \exFun{f}{\sigma_f} \mid f \in F] \join {\textstyle{\bigvee}\delta},
