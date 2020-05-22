@@ -32,8 +32,7 @@
 \newcommand*{\envExtendTwo}[2]{{#1}[#2]}
 \newcommand*{\Dagger}[1]{\smash{#1^\dagger}}
 \newcommand*{\DDagger}[1]{\smash{#1^\ddagger}}
-\newcommand*{\closeDefs}{\mathrel{\smalltriangleright}}
-\newcommand*{\uncloseDefs}{\mathrel{\smalltriangleleft}}
+\newcommand*{\closeDefs}{\mathrel{\rightharpoonup}}
 
 % Misc. syntax.
 \newcommand*{\asMap}[1]{\underline{#1}}
@@ -60,6 +59,7 @@
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRecMutual}[2]{\kw{let}\,\kw{rec}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exLetStructured}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{Nil}}
@@ -150,7 +150,7 @@
 \newcommand*{\envEmpty}{\varepsilon}
 \newcommand*{\envExtend}[3]{{#1}[{#2}: {#3}]}
 \newcommand*{\envLookup}[3]{{#2}: {#3} \in {#1}}
-\newcommand*{\envUpdate}[3]{{#1}\{{#2}: {#3}\}}
+\newcommand*{\envUpdate}[3]{{#1}\smalltriangleleft[{#2}: {#3}]}
 \newcommand*{\env}[1]{\mathsf{env}(#1)}
 
 % Evaluation.
