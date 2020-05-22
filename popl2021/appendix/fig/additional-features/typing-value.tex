@@ -2,15 +2,15 @@
 \flushleft \shadebox{$\Gamma \vdash \delta: \Delta$}
 \begin{smathpar}
    \inferrule*[right={
-      \textnormal{$\Delta = [f : A_f \mid \exFun{f}{\sigma} \in \delta]$}
+      \textnormal{$\Delta = [f : \tyFun{A_f}{B_f} \mid f \in F]$}
    }]
    {
-      \Gamma \concat \Delta \vdash \exFun{\sigma_f}: A_f
+      \Gamma \concat \Delta \vdash \exFun{\sigma_f}: \tyFun{A_f}{B_f}
       \quad
-      (\forall \exFun{f}{\sigma_f} \in \delta)
+      (\forall f \in F)
    }
    {
-      \Gamma \vdash \delta: \Delta
+      \Gamma \vdash [\exFun{f}{\sigma_f} \mid f \in F]: \Delta
    }
 \end{smathpar}
 \\[5mm]
