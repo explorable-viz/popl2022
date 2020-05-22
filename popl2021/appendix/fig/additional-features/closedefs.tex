@@ -3,20 +3,20 @@
 \begin{salign}
    \rho, \delta
    &\closeDefs
-   [f: \exClosureRecMutual{\rho}{\delta}{\exLambda{\sigma}} \mid f\,\sigma \in \delta]
+   [f: \exClosureRecMutual{\rho}{\delta}{\exLambda{\sigma}} \mid \exFun{f}{\sigma} \in \delta]
 \end{salign}
 \flushleft\shadebox{$\rho, \delta, \alpha \closeDefsFwd \rho'$}
 \begin{salign}
    \rho, \delta, \alpha
    &\closeDefsFwd
-   [f: \annot{\exClosureRecMutual{\rho}{\delta}{\exLambda{\sigma}}}{\alpha} \mid f\,\sigma \in \delta]
+   [f : \annot{\exClosureRecMutual{\rho}{\delta}{\exLambda{\sigma}}}{\alpha} \mid \exFun{f}{\sigma} \in \delta]
 \end{salign}
 \flushleft\shadebox{$\rho \closeDefsBwd \rho', \delta, \alpha$}
 \begin{salign}
-   [f: \annot{\exClosureRecMutual{\rho_f}{\delta_f}{\exLambda{\sigma_f}}}{\alpha_f} \mid f \in F]
+   [f : \annot{\exClosureRecMutual{\rho_f}{\delta_f}{\exLambda{\sigma_f}}}{\alpha_f} \mid f \in F]
    &\closeDefsFwd
    {\textstyle{\bigvee}\rho}, [
-   f\,\sigma_f \mid f \in F] \join {\textstyle{\bigvee}\delta},
+   \exFun{f}{\sigma_f} \mid f \in F] \join {\textstyle{\bigvee}\delta},
    {\textstyle{\bigvee}\alpha}
 \end{salign}
 \caption{Mutually recursive functions $\delta$ close to $\rho'$ in $\rho$}
