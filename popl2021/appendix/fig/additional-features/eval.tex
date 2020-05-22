@@ -26,6 +26,22 @@
    {
       \explVal{\trApp{T}{U}{\matchPlug{\xi}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-let-struct}}]
+   {
+      \explVal{T}{\rho, e \eval v}
+      \\
+      \explVal{\xi}{v, \sigma \match \rho', e'}
+      \\
+      \explVal{U}{\rho \concat \rho', e' \eval v'}
+   }
+   {
+      \explVal
+         {\trLetStructured{\singleton{\xi}{T}}{U}}
+         {\rho, \exLetStructured{\singleton{\sigma}{e}}{e'} \eval v'}
+   }
 \end{smathpar}
 \caption{Additional evaluation rules}
 \end{figure}
