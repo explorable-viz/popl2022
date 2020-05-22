@@ -19,18 +19,22 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, T' \bwdSlice \rho_1 \concat \rho, e, \alpha
+      v, T' \bwdSlice \rho_1 \concat \rho_2 \concat \rho_3, e, \alpha
       \\
-      \rho, e, \alpha, \xi \matchBwd v', \sigma
+      \rho_3, e, \alpha, \xi \matchBwd v', \sigma
       \\
       v', U \bwdSlice \rho', e', \alpha'
       \\
-      \exClosure{\rho_1}{\delta}{\sigma}, T
+      \rho_2 \closeDefsBwd \rho_1', \delta, \alpha^\dagger
+      \\
+      \exClosure{\rho_1 \join \rho_1'}{\delta}{\sigma}, T
       \bwdSlice
       \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
    }
    {
-      v, \trApp{T}{U}{\matchPlug{\xi}{T'}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+      v, \trApp{T}{U}{\matchPlug{\xi}{T'}}
+      \bwdSlice
+      \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
    }
    %
    \and
