@@ -1,5 +1,25 @@
 \begin{figure}
 \begin{syntaxfig}
+\mbox{Eliminator}
+&
+\sigma, \tau
+&
+::=
+&
+\ldots
+\\
+&&&
+\elimBoolTrue{\kappa}
+\\
+&&&
+\elimBoolFalse{\kappa}
+\\
+&&&
+\elimListSingleton{\branchNil{\kappa}}
+\\
+&&&
+\elimListSingleton{\branchCons{\sigma}}
+\\[2mm]
 \mbox{Raw term}
 &
 r
@@ -12,6 +32,11 @@ r
 \exLambda{\sigma}
 &
 \text{anonymous function}
+\\
+&&&
+\exLetStructured{\sigma}{e}
+&
+\text{structured let}
 \end{syntaxfig}
 \caption{Additional syntax}
 \end{figure}

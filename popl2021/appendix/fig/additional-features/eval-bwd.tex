@@ -21,7 +21,7 @@
    {
       v, T' \bwdSlice \rho_1 \concat \rho, e, \alpha
       \\
-      \rho, e, \alpha, \xi, \matchBwd v', \sigma
+      \rho, e, \alpha, \xi \matchBwd v', \sigma
       \\
       v', U \bwdSlice \rho', e', \alpha'
       \\
@@ -31,6 +31,24 @@
    }
    {
       v, \trApp{T}{U}{\matchPlug{\xi}{T'}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-let-struct}}
+   ]
+   {
+      v, U, \bwdSlice \rho \concat \rho', e, \alpha
+      \\
+      \rho', e, \alpha, \xi \matchBwd v', \sigma
+      \\
+      v', T \bwdSlice \rho^\twoPrime, e', \alpha'
+   }
+   {
+      v, \trLetStructured{\singleton{\xi}{T}}{U}
+      \bwdSlice
+      \rho \join \rho^\twoPrime, \exLetStructured{\singleton{\sigma}{e}}{e'}, \alpha \join \alpha'
    }
 \end{smathpar}
 \caption{Additional backward slicing rules}
