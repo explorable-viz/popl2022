@@ -33,6 +33,8 @@
 \newcommand*{\Dagger}[1]{\smash{#1^\dagger}}
 \newcommand*{\DDagger}[1]{\smash{#1^\ddagger}}
 \newcommand*{\closeDefs}{\mathrel{\rightharpoonup}}
+\newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}
+\newcommand*{\closeDefsBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}
 
 % Misc. syntax.
 \newcommand*{\asMap}[1]{\underline{#1}}
@@ -54,6 +56,7 @@
 \newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
 \newcommand*{\exClosure}[2]{(#1,\exLambda{#2})}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
+\newcommand*{\exClosureRecMutual}[3]{(#1,#2,\exLambda{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
