@@ -1,13 +1,25 @@
 \begin{figure}
 \flushleft \shadebox{$\Gamma \vdash e: A$}
 \begin{smathpar}
-\inferrule*
-{
-   \Gamma \vdash \sigma: \tyFun{A}{B}
-}
-{
-   \Gamma \vdash \exLambda{\sigma}: \tyFun{A}{B}
-}
+   \inferrule*
+   {
+      \Gamma \vdash \sigma : \tyFun{A}{B}
+   }
+   {
+      \Gamma \vdash \exLambda{\sigma} : \tyFun{A}{B}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash \singleton{\sigma}{e'} : \tyFun{A}{B}
+      \\
+      \Gamma \vdash e : A
+   }
+   {
+      \Gamma \vdash \exLetStructured{\singleton{\sigma}{e}}{e'} : B
+   }
 \end{smathpar}
 \caption{Additional typing rules for terms}
 \end{figure}

@@ -59,8 +59,8 @@
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
-\newcommand*{\exLetFun}[3]{\kw{let}\;{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetStructured}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{Nil}}
 \newcommand*{\exOp}[1]{(#1)}
@@ -177,8 +177,8 @@
 \newcommand*{\trInt}[1]{\exInt{#1}}
 \newcommand*{\trLambda}[1]{\exLambda{#1}}
 \newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
-\newcommand*{\trLetFun}[3]{\exLetFun{#1}{#2}{#3}}
 \newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
+\newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
 \newcommand*{\trNil}{\exNil}
 \newcommand*{\trOp}[1]{\exOp{#1}}
