@@ -6,14 +6,14 @@
       \strut
    }
    {
-      \rho, \exLambda{\sigma}, \alpha \fwdSlice \annot{\exClosureRecMutual{\rho}{\seqEmpty}{\sigma}}{\alpha}
+      \rho, \exLambda{\sigma}, \alpha \fwdSlice \annot{\exClosure{\rho}{\seqEmpty}{\sigma}}{\alpha}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-lambda}}]
    {
-      \rho, e, \alpha \fwdSlice \annot{\exClosureRecMutual{\rho'}{\delta}{\sigma}}{\alpha'}
+      \rho, e, \alpha \fwdSlice \annot{\exClosure{\rho'}{\delta}{\sigma}}{\alpha'}
       \\
       \rho, e', \alpha \fwdSlice v
       \\
