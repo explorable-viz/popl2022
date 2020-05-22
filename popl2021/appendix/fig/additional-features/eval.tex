@@ -13,15 +13,17 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-apply-lambda}}]
+   \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
-      \explVal{T}{\rho, e \eval \exClosure{\rho'}{\sigma}}
+      \explVal{T}{\rho, e \eval \exClosureRecMutual{\rho_1}{\delta}{\sigma}}
+      \\
+      \rho_1, \delta \closeDefs \rho_2
       \\
       \explVal{U}{\rho, e' \eval v}
       \\
-      \explVal{\xi}{v, \sigma \match \rho^\twoPrime, e^\twoPrime}
+      \explVal{\xi}{v, \sigma \match \rho^\threePrime, e^\twoPrime}
       \\
-      \explVal{T'}{\rho' \concat \rho^\twoPrime, e^\twoPrime \eval v'}
+      \explVal{T'}{\rho' \concat \rho^\twoPrime \concat \rho^\threePrime, e^\twoPrime \eval v'}
    }
    {
       \explVal{\trApp{T}{U}{\matchPlug{\xi}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
