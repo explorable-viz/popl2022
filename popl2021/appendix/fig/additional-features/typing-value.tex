@@ -1,0 +1,32 @@
+\begin{figure}
+\flushleft \shadebox{$\Gamma \vdash \delta: \Delta$}
+\begin{smathpar}
+   \inferrule*[right={
+      \textnormal{$\Delta = [f : \tyFun{A_f}{B_f} \mid f \in F]$}
+   }]
+   {
+      \Gamma \concat \Delta \vdash \exFun{\sigma_f}: \tyFun{A_f}{B_f}
+      \quad
+      (\forall f \in F)
+   }
+   {
+      \Gamma \vdash [\exFun{f}{\sigma_f} \mid f \in F]: \Delta
+   }
+\end{smathpar}
+\\[5mm]
+\flushleft \shadebox{$\vdash v: A$}
+\begin{smathpar}
+\inferrule*
+{
+   \vdash \rho: \Gamma
+   \\
+   \Gamma \vdash \delta: \Delta
+   \\
+   \Gamma \concat \Delta \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \vdash \exClosure{\rho}{\delta}{\sigma}: \tyFun{A}{B}
+}
+\end{smathpar}
+\caption{Additional typing rules for values}
+\end{figure}

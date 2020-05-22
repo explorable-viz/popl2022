@@ -10,9 +10,9 @@
 \begin{salign}
    \envUpdate{\envEmpty}{k}{v} &= \envEmpty
    \\
-   \envUpdate{(\envExtend{\rho}{k}{v})}{k}{v'} &= \envExtend{\rho}{k}{v'}
+   \envUpdate{\envExtend{\rho}{k}{v}}{k}{v'} &= \envExtend{\rho}{k}{v'}
    \\
-   \envUpdate{(\envExtend{\rho}{k}{v})}{k'}{v'} &= \envExtend{(\envUpdate{\rho}{k'}{v'})}{k}{v}
+   \envUpdate{\envExtend{\rho}{k}{v}}{k'}{v'} &= \envExtend{\envUpdate{\rho}{k'}{v'}}{k}{v}
    \quad (k \neq k')
 \end{salign}
 \caption{Least slice of an environment; environment update}
