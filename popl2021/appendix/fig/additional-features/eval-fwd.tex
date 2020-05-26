@@ -52,12 +52,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let-rec}}]
    {
-      \rho, \delta \closeDefsFwd \rho'
+      \rho, \delta, \alpha \closeDefsFwd \rho'
       \\
-      \rho \concat \rho', e \fwdSlice v
+      \rho \concat \rho', e, \alpha \fwdSlice v
    }
    {
-      \rho, \exLetRecMutual{\delta}{e} \fwdSlice v
+      \rho, \exLetRecMutual{\delta}{e}, \alpha \fwdSlice v
    }
 \end{smathpar}
 \caption{Additional/modified forward slicing rules}
