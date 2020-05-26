@@ -51,6 +51,18 @@
          {\trLetStructured{\singleton{\xi}{T}}{U}}
          {\rho, \exLetStructured{\singleton{\sigma}{e}}{e'} \eval v'}
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-let-rec}}]
+   {
+      \rho, \delta \closeDefs \rho'
+      \\
+      \explVal{T}{\rho \concat \rho', e \eval v}
+   }
+   {
+      \explVal{\trLetRecMutual{\delta}{T}}{\rho, \exLetRecMutual{\delta}{e} \eval v}
+   }
 \end{smathpar}
 \caption{Additional/modified evaluation rules}
 \end{figure}
