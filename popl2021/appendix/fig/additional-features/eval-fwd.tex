@@ -47,6 +47,18 @@
    {
       \rho, \exLetStructured{\singleton{\sigma}{e}}{e'}, \alpha \fwdSlice v'
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-let-rec}}]
+   {
+      \rho, \delta \closeDefsFwd \rho'
+      \\
+      \rho \concat \rho', e \fwdSlice v
+   }
+   {
+      \rho, \exLetRecMutual{\delta}{e} \fwdSlice v
+   }
 \end{smathpar}
 \caption{Additional/modified forward slicing rules}
 \end{figure}
