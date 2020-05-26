@@ -1,4 +1,11 @@
 \begin{figure}
+\flushleft\shadebox{$\rho, \delta, \alpha \closeDefsFwd \rho'$}
+\begin{salign}
+   \rho, \delta, \alpha
+   &\closeDefsFwd
+   [f : \annot{\exClosure{\rho}{\delta}{\sigma}}{\alpha} \mid \exFun{f}{\sigma} \in \delta]
+\end{salign}
+\\[5mm]
 \flushleft \shadebox{$\rho, e, \alpha \fwdSlice v$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\fwdSlice$-lambda}}]
@@ -40,6 +47,18 @@
    {
       \rho, \exLetStructured{\singleton{\sigma}{e}}{e'}, \alpha \fwdSlice v'
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-let-rec}}]
+   {
+      \rho, \delta, \alpha \closeDefsFwd \rho'
+      \\
+      \rho \concat \rho', e, \alpha \fwdSlice v
+   }
+   {
+      \rho, \exLetRecMutual{\delta}{e}, \alpha \fwdSlice v
+   }
 \end{smathpar}
-\caption{Additional forward slicing rules}
+\caption{Additional/modified forward slicing rules}
 \end{figure}
