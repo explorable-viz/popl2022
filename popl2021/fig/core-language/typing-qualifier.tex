@@ -1,0 +1,37 @@
+\begin{figure}
+\flushleft \shadebox{$\Gamma \vdash q \dashv \Delta $}
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \vdash e: \tyBool
+}
+{
+   \Gamma \vdash e \dashv \envEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: \tyList{A}
+   \\
+   p: A \dashv \Delta
+}
+{
+   \Gamma \vdash \qualGenerator{p}{e} \dashv \Delta
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: A
+   \\
+   p: A \dashv \envEmpty, p: A
+}
+{
+   \Gamma \vdash \qualDeclaration{p}{e} \dashv \envEmpty, p: A
+}
+\end{smathpar}
+\caption{Typing rules for qualifiers}
+\end{figure}

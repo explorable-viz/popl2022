@@ -1,0 +1,25 @@
+\begin{figure}
+\flushleft \shadebox{$\Gamma \vdash \overrightarrow{q} \dashv \Delta $}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \envEmpty \dashv \envEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash q \dashv \Gamma'
+   \\
+   \Gamma \concat \Gamma' \vdash \overrightarrow{q} \dashv \Delta
+}
+{
+   \Gamma \vdash q \concat \overrightarrow{q} \dashv \Delta
+}
+\end{smathpar}
+\caption{Typing rules for list of qualifiers}
+\end{figure}

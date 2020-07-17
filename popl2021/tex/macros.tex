@@ -59,11 +59,14 @@
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
+\newcommand*{\exListSeq}[2]{\kw{\lbrack}\;{#1}\;\kw{\ldots}\;{#2}\;\kw{\rbrack}}
+\newcommand*{\exListComp}[2]{\kw{\lbrack}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{\rbrack}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\,\kw{rec}\;{#1}\;\kw{in}\;{#2}}
+\newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
 \newcommand*{\exLetStructured}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{Nil}}
@@ -73,9 +76,19 @@
 \newcommand*{\exRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
-
 \newcommand*{\branchCons}[1]{\kw{Cons}\;{#1}}
 \newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
+
+%Qualifiers
+\newcommand*{\qualGuard}[1]{#1}
+\newcommand*{\qualDeclaration}[2]{\kw{let}\;{#1}={#2}}
+\newcommand*{\qualGenerator}[2]{{#1}\;\kw{$\leftarrow$}\;{#2}}
+
+%Patterns
+\newcommand*{\pattVar}[1]{#1}
+\newcommand*{\pattCons}[2]{\kw{Cons}(#1,#2)}
+\newcommand*{\pattNil}{\kw{Nil}}
+\newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
 
 % Tries.
 \newcommand*{\elimBool}[2]{\{\exTrue \mapsto {#1}, \exFalse \mapsto {#2}\}}
@@ -193,3 +206,6 @@
 \newcommand*{\trVar}[1]{#1}
 
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
+
+% Desugaring.
+\newcommand*{\desugar}{\mathrel{\overset{d}{\longrightarrow}}}

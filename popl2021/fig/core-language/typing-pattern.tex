@@ -1,0 +1,47 @@
+\begin{figure}
+\flushleft \shadebox{$p: A \dashv \Gamma $}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \exVar{x}: A \dashv \envEmpty, \exVar{x}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   p: A \dashv \Gamma
+   \\
+   p': B \dashv \Gamma'
+}
+{
+   \exPair{p}{p'}: \tyProd{A}{B} \dashv \Gamma \concat \Gamma'
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \exNil: \tyList{A} \dashv \envEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   p: A \dashv \Gamma
+   \\
+   p': \tyList{A} \dashv \Gamma'
+}
+{
+   \exCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
+}
+\end{smathpar}
+\caption{Typing rules for patterns}
+\end{figure}

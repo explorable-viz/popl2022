@@ -28,7 +28,7 @@ e
 &&&
 \elimBool{\kappa}{\kappa'}
 &
-\text{Boolean}
+\text{boolean}
 \\
 &&&
 \elimProd{\sigma}
@@ -73,7 +73,7 @@ x
 &&&
 \exTrue \mid \exFalse
 &
-\text{Boolean}
+\text{boolean}
 \\
 &&&
 \exInt{n}
@@ -114,7 +114,69 @@ x
 \exLetRec{f}{\sigma}{e}
 &
 \text{recursive function}
+\\
+&&&
+\exIfThenElse{e}{e'}{e''}
+&
+\text{if then else}
+\\
+&&&
+\exListSeq{e}{e'}
+&
+\text{list sequence}
+\\
+&&&
+\exListComp{e}{\overrightarrow{q}}
+&
+\text{list comprehension}
 \\[2mm]
+\mbox{Qualifier}
+&
+q
+&
+::=
+&
+\qualGuard{e}
+&
+\text{guard}
+\\
+&&&
+\qualDeclaration{p}{e}
+&
+\text{declaration}
+\\
+&&&
+\qualGenerator{p}{e}
+&
+\text{generator}
+\\[2mm]
+
+\mbox{Pattern}
+&
+p
+&
+::=
+&
+\pattVar{x}
+&
+\text{variable}
+\\
+&&&
+\pattCons{p}{p'}
+&
+\text{cons}
+\\
+&&&
+\pattNil
+&
+\text{nil}
+\\
+&&&
+\pattPair{p}{p'}
+&
+\text{pair}
+\\[2mm]
+
 \mbox{Term}
 &
 e
