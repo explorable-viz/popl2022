@@ -108,9 +108,9 @@
       \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
    }
    {
-      \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\primOp}{U}
+      \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\primOp}{\phi}{U}
       \bwdSlice
-      \rho \join \rho', \exBinaryApp{e}{\primOp}{e'}, \alpha
+      \rho \join \envUpdate{\rho'}{\primOp}{\annot{\phi}{\alpha}}, \exBinaryApp{e}{\primOp}{e'}, \alpha
    }
    %
    \and
