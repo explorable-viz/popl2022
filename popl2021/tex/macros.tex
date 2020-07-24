@@ -155,6 +155,8 @@
 \renewcommand*{\meet}{\wedge}
 \newcommand*{\joinWith}[1]{\join_{#1}}
 \newcommand*{\eqJoin}{\mathbin{!}}
+\newcommand*{\enumFromTo}[2]{\kw{enumFromTo}\;({#1},{#2})}
+\newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 
 % Variable contexts.
 \newcommand*{\cxtBot}{\exBot}
@@ -208,4 +210,7 @@
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 
 % Desugaring.
-\newcommand*{\desugar}{\mathrel{\overset{d}{\longrightarrow}}}
+\newcommand*{\darrow}{\mathrel{\overset{d}{\longrightarrow}}}
+
+% Totalizing.
+\newcommand*{\tarrow}{\mathrel{\overset{t}{\longrightarrow}}}

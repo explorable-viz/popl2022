@@ -1,0 +1,84 @@
+\begin{figure}
+\flushleft \shadebox{$s \darrow e$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\darrow$-if-then-else}}
+]
+{
+   s \darrow e
+   \\
+   s' \darrow e'
+   \\
+   s'' \darrow e''
+}
+{
+   \exIfThenElse{s}{s'}{s''} \darrow \exMatch{e}{\elimBool{e'}{e''}}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\darrow$-list-seq}},
+]
+{
+   s \darrow e
+   \\
+   s' \darrow e'
+}
+{
+   \exListSeq{s}{s'} \darrow \enumFromTo{e}{e'}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-1}}]
+{
+   s \darrow e
+}
+{
+   \exListComp{s}{\exTrue} \darrow \exCons{e}{\exNil}
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-2}}]
+{
+  \exListComp{s}{q, \exTrue} \darrow e
+}
+{
+   \exListComp{s}{q} \darrow e
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-3}}]
+{
+   \exIfThenElse{e}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   \darrow e'
+}
+{
+   \exListComp{s}{e, \overrightarrow{q}}
+   \darrow e'
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-4}}]
+{
+   \exListComp{s}{Q} \darrow e
+   \\
+   s' \darrow e'
+}
+{
+   \exListComp{s}{\qualDeclaration{p}{s'}, Q}
+   \darrow \exLet{p}{e'}{e}
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-5}}]
+{
+   \strut
+}
+{
+   \exListComp{s}{\qualGenerator{p}{xs}, Q}
+}
+\end{smathpar}
+\caption{Desugaring}
+\end{figure}

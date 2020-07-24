@@ -1,0 +1,43 @@
+\begin{figure}
+\flushleft \shadebox{$\sigma, e \tarrow \sigma$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\tarrow$-true}}]
+   {
+      \strut
+   }
+   {
+      \{{\exTrue \mapsto \kappa}\}, e \tarrow \{{\exTrue \mapsto \kappa, \exFalse \mapsto e}\}
+   }
+   %
+   \and
+   \inferrule*[lab={\ruleName{$\tarrow$-false}}]
+   {
+      \strut
+   }
+   {
+      \{{\exFalse \mapsto \kappa}\}, e \tarrow \{{\exTrue \mapsto e, \exFalse \mapsto \kappa}\}
+   }
+   \\
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\tarrow$-Cons}}]
+   {
+      \strut
+   }
+   {
+      \{{\kw{Cons} \ \sigma}\}, e \tarrow \{{\kw{Nil} \mapsto e, \kw{Cons} \ \sigma}\}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\tarrow$-Nil}}]
+   {
+      \strut
+   }
+   {
+      \{{\kw{Nil} \mapsto \kappa}\}, e \tarrow \{{\kw{Nil} \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto e)}\}
+   }
+\end{smathpar}
+\caption{Totalizing}
+\end{figure}
