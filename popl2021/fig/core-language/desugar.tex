@@ -1,4 +1,4 @@
-\begin{figure}
+\begin{figure}[H]
 \flushleft \shadebox{$s \darrow e$}
 \begin{smathpar}
 \inferrule*[
@@ -26,12 +26,12 @@
    s' \darrow e'
 }
 {
-   \exListSeq{s}{s'} \darrow \enumFromTo{e}{e'}
+   \exListSeq{s}{s'} \darrow \range{e}{e'}
 }
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-1}}]
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-true}}]
 {
    s \darrow e
 }
@@ -40,7 +40,7 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-2}}]
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-qual}}]
 {
   \exListComp{s}{q, \exTrue} \darrow e
 }
@@ -49,35 +49,35 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-3}}]
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-guard}}]
 {
-   \exIfThenElse{e}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
-   \darrow e'
+   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   \darrow e
 }
 {
-   \exListComp{s}{e, \overrightarrow{q}}
-   \darrow e'
+   \exListComp{s}{s', \overrightarrow{q}}
+   \darrow e
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-4}}]
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-decl}}]
 {
-   \exListComp{s}{Q} \darrow e
-   \\
    s' \darrow e'
+   \\
+   \exListComp{s}{\overrightarrow{q}} \darrow e
 }
 {
-   \exListComp{s}{\qualDeclaration{p}{s'}, Q}
+   \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
    \darrow \exLet{p}{e'}{e}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-5}}]
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-gen}}]
 {
    \strut
 }
 {
-   \exListComp{s}{\qualGenerator{p}{xs}, Q}
+   \exListComp{s}{\qualGenerator{p}{xs}, \overrightarrow{q}}
 }
 \end{smathpar}
 \caption{Desugaring}

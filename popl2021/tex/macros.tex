@@ -155,7 +155,7 @@
 \renewcommand*{\meet}{\wedge}
 \newcommand*{\joinWith}[1]{\join_{#1}}
 \newcommand*{\eqJoin}{\mathbin{!}}
-\newcommand*{\enumFromTo}[2]{\kw{enumFromTo}\;({#1},{#2})}
+\newcommand*{\range}[2]{\kw{range}\;({#1},{#2})}
 \newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 
 % Variable contexts.
@@ -210,7 +210,7 @@
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 
 % Desugaring.
-\newcommand*{\darrow}{\mathrel{\overset{d}{\longrightarrow}}}
+\newcommand*{\darrow}{\mathrel{\twoheadrightarrow}}
 
 % Totalizing.
-\newcommand*{\tarrow}{\mathrel{\overset{t}{\longrightarrow}}}
+\newcommand*{\tarrow}{\mathrel{\overset{\cup_{\sigma}}{\longrightarrow}}}
