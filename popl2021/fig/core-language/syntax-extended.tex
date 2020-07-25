@@ -29,6 +29,42 @@ s
 \exListComp{s}{\overrightarrow{q}}
 &
 \text{list comprehension}
+\\
+&&&
+\exLambda{\sigma}
+&
+\text{lambda}
+\\[2mm]
+
+\mbox{Eliminator}
+&
+\sigma, \tau
+&
+::=
+&
+\ldots
+\\
+&&&
+\elimBoolTrue{\kappa}
+&
+\text{true}
+\\
+&&&
+\elimBoolFalse{\kappa}
+&
+\text{false}
+\\
+&&&
+\elimListSingleton{\branchNil{\kappa}}
+&
+\text{nil}
+\\
+&&&
+\elimListSingleton{\branchCons{\sigma}}
+&
+\text{cons}
+\\
+&&&
 \\[2mm]
 
 \mbox{Qualifier}

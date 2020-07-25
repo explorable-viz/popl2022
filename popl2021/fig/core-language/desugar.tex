@@ -74,10 +74,16 @@
 %
 \inferrule*[lab={\ruleName{$\darrow$-list-comp-gen}}]
 {
-   \strut
+   \exListComp{s}{\overrightarrow{q}} \darrow e
+   \\
+   \{ p \mapsto e \}, \kw{Nil} \tarrow \sigma
+   \\
+   s' \darrow e'
 }
 {
-   \exListComp{s}{\qualGenerator{p}{xs}, \overrightarrow{q}}
+   \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
+   \darrow
+   \exLet{f}{\exLambda{\sigma}}{\kw{concatMap} \ \kw{f} \ e'}
 }
 \end{smathpar}
 \caption{Desugaring}
