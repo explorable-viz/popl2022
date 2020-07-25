@@ -1,6 +1,26 @@
-\begin{figure}
+\begin{figure}[H]
 \flushleft \shadebox{$\sigma, e \tarrow \sigma$}
 \begin{smathpar}
+   \inferrule*[lab={\ruleName{$\tarrow$-var-elim}}]
+   {
+      \sigma, e \tarrow \sigma'
+   }
+   {
+      x \mapsto \sigma, e \tarrow x \mapsto \sigma'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\tarrow$-var-expr}}]
+   {
+      \strut
+   }
+   {
+      x \mapsto e, e' \tarrow x \mapsto e
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\tarrow$-true}}]
    {
       \strut
@@ -17,27 +37,36 @@
    {
       \{{\exFalse \mapsto \kappa}\}, e \tarrow \{{\exTrue \mapsto e, \exFalse \mapsto \kappa}\}
    }
-   \\
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\tarrow$-Cons}}]
+   \inferrule*[lab={\ruleName{$\tarrow$-cons}}]
    {
-      \strut
+      \sigma, e \tarrow \sigma'
    }
    {
-      \{{\kw{Cons} \ \sigma}\}, e \tarrow \{{\kw{Nil} \mapsto e, \kw{Cons} \ \sigma}\}
+      \{{\kw{Cons} \ \sigma}\}, e \tarrow \{{\kw{Nil} \mapsto e, \kw{Cons} \ \sigma'}\}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\tarrow$-Nil}}]
+   \inferrule*[lab={\ruleName{$\tarrow$-nil}}]
    {
       \strut
    }
    {
       \{{\kw{Nil} \mapsto \kappa}\}, e \tarrow \{{\kw{Nil} \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto e)}\}
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\tarrow$-pair}}]
+   {
+      \sigma, e \tarrow \sigma'
+   }
+   {
+      \langle \sigma \rangle, e \tarrow \langle \sigma' \rangle
+   }
 \end{smathpar}
-\caption{Totalizing}
+\caption{Totalizing Eliminators}
 \end{figure}

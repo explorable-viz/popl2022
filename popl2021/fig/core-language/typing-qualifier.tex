@@ -1,36 +1,36 @@
-\begin{figure}
+\begin{figure}[H]
 \flushleft \shadebox{$\Gamma \vdash q \dashv \Delta $}
 \begin{smathpar}
 \inferrule*
 {
-   \Gamma \vdash e: \tyBool
+   \Gamma \vdash s: \tyBool
 }
 {
-   \Gamma \vdash e \dashv \envEmpty
+   \Gamma \vdash s \dashv \envEmpty
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash e: \tyList{A}
+   \Gamma \vdash s: \tyList{A}
    \\
    p: A \dashv \Delta
 }
 {
-   \Gamma \vdash \qualGenerator{p}{e} \dashv \Delta
+   \Gamma \vdash \qualGenerator{p}{s} \dashv \Delta
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash e: A
+   \Gamma \vdash s: A
    \\
-   p: A \dashv \envEmpty, p: A
+   p: A \dashv \Delta
 }
 {
-   \Gamma \vdash \qualDeclaration{p}{e} \dashv \envEmpty, p: A
+   \Gamma \vdash \qualDeclaration{p}{s} \dashv \Delta
 }
 \end{smathpar}
 \caption{Typing rules for qualifiers}
