@@ -1,0 +1,88 @@
+\begin{figure}[H]
+\flushleft \shadebox{$e, s \dbwdarrow s'$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-if-then-else}}
+]
+{
+   e, s \dbwdarrow s'
+   \\
+   e1, s1 \dbwdarrow s1'
+   \\
+   e2, s2 \dbwdarrow s2'
+}
+{
+   \exMatch{e}{\elimBool{e1}{e2}}, \exIfThenElse{s}{s1}{s2} \dbwdarrow \exIfThenElse{s'}{s1'}{s2'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-seq}},
+]
+{
+   e1, s1 \dbwdarrow s1'
+   \\
+   e2, s2 \dbwdarrow s2'
+}
+{
+   \range{e1}{e2}, \exListSeq{s1}{s2} \dbwdarrow \exListSeq{s1'}{s2'}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-true}}]
+{
+   e, s \dbwdarrow s'
+}
+{
+   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  s'
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
+{
+  e, \exListComp{s}{q, \exTrue} \dbwdarrow s'
+}
+{
+   e, \exListComp{s}{q} \dbwdarrow s'
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
+{
+   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   \dbwdarrow s''
+}
+{
+   e, \exListComp{s}{s', \overrightarrow{q}}
+   \dbwdarrow s''
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
+{
+   e', s' \dbwdarrow s''
+   \\
+   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s'''
+}
+{
+   \exLet{p}{e'}{e}, \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
+   \dbwdarrow \exListComp{s'''}{\qualDeclaration{p}{s''}, \overrightarrow{q}}
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
+{
+   e', s' \dbwdarrow s''
+   \\
+   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s'''
+}
+{
+   \exLet{f}{\exLambda{\sigma}}{\kw{concatMap} \ \kw{f} \ e'}, \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
+   \dbwdarrow
+   \exListComp{s'''}{\qualGenerator{p}{s''}, \overrightarrow{q}}
+}
+\end{smathpar}
+\caption{Desugaring - Backward Slicing}
+\end{figure}
