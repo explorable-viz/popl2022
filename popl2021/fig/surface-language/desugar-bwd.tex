@@ -5,14 +5,14 @@
    lab={\ruleName{$\dbwdarrow$-if-then-else}}
 ]
 {
-   e, s \dbwdarrow s'
-   \\
    e1, s1 \dbwdarrow s1'
    \\
    e2, s2 \dbwdarrow s2'
+   \\
+   e3, s3 \dbwdarrow s3'
 }
 {
-   \exMatch{e}{\elimBool{e1}{e2}}, \exIfThenElse{s}{s1}{s2} \dbwdarrow \exIfThenElse{s'}{s1'}{s2'}
+   \exMatch{e1}{\elimBool{e2}{e3}}, \exIfThenElse{s1}{s2}{s3} \dbwdarrow \exIfThenElse{s1'}{s2'}{s3'}
 }
 %
 \and
