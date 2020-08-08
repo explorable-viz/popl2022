@@ -5,14 +5,14 @@
 {
    \exListComp{s}{\overrightarrow{q}} \dfwdarrow e
    \\
-   \{ p \mapsto e \}, \kw{Nil} \tarrow \sigma_{p e}
+   \{ p \mapsto e \}, \kw{Nil} \tarrow \sigma
    \\
    s' \dfwdarrow e'
 }
 {
    \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
    \dfwdarrow
-   \exLet{f}{\exLambda{\sigma_{p e}}}{\kw{concatMap} \ \kw{f} \ e'}, \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
+   \exLet{f}{\exLambda{\sigma}}{\kw{concatMap} \ \kw{f} \ e'}, \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
 }
 \end{smathpar}
 \caption{Desugaring - Forward Slicing}

@@ -1,0 +1,79 @@
+\begin{figure}[H]
+\flushleft \shadebox{$p, \sigma \matchp \kappa$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchp$-var}}]
+   {
+      \strut
+   }
+   {
+      x, \elimVar{x}{\kappa}
+      \matchp
+      \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchp$-true}}]
+   {
+      \strut
+   }
+   {
+      \exTrue, \elimBool{\kappa}{\kappa'}
+      \matchp
+      \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchp$-false}}]
+   {
+      \strut
+   }
+   {
+      \exFalse, \elimBool{\kappa}{\kappa'}
+      \matchp
+      \kappa'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchp$-pair}}]
+   {
+      p_1, \sigma \matchp, \tau
+      \\
+      p_2, \tau \matchp \kappa
+   }
+   {
+      \exPair{p_1}{p_2}, \elimProd{\sigma}
+      \matchp
+      \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchp$-nil}}]
+   {
+      \strut
+   }
+   {
+      \exNil, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \matchp
+      \kappa
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchp$-cons}}]
+   {
+      p_1, \sigma \matchp \tau
+      \\
+      p_2, \tau \matchp \kappa'
+   }
+   {
+      \exCons{p_1}{p_2}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \matchp
+      \kappa'
+   }
+\end{smathpar}
+\caption{Pattern-matching (by pattern)}
+\end{figure}

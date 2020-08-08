@@ -5,14 +5,16 @@
    lab={\ruleName{$\dbwdarrow$-if-then-else}}
 ]
 {
-   e1, s1 \dbwdarrow s1'
+   e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
-   e2, s2 \dbwdarrow s2'
+   e_{2}, s_{2} \dbwdarrow s_{2}'
    \\
-   e3, s3 \dbwdarrow s3'
+   e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \exMatch{e1}{\elimBool{e2}{e3}}, \exIfThenElse{s1}{s2}{s3} \dbwdarrow \exIfThenElse{s1'}{s2'}{s3'}
+   \exMatch{e_{1}}{\elimBool{e_{2}}{e_{3}}}, \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   \dbwdarrow
+   \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
 }
 %
 \and
@@ -21,12 +23,12 @@
    lab={\ruleName{$\dbwdarrow$-list-seq}},
 ]
 {
-   e1, s1 \dbwdarrow s1'
+   e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
-   e2, s2 \dbwdarrow s2'
+   e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \range{e1}{e2}, \exListSeq{s1}{s2} \dbwdarrow \exListSeq{s1'}{s2'}
+   \range{e_{1}}{e_{2}}, \exListSeq{s_{1}}{s_{2}} \dbwdarrow \exListSeq{s_{1}'}{s_{2}'}
 }
 %
 \and
@@ -74,14 +76,16 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
 {
-   e', s' \dbwdarrow s''
+   e_{2}, s_{2} \dbwdarrow s_{2}'
    \\
-   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s'''
+   p, \sigma \matchp e_{1}
+   \\
+   e_{1}, \exListComp{s1}{\overrightarrow{q}} \dbwdarrow s_{1}'
 }
 {
-   \exLet{f}{\exLambda{\sigma_{p e}}}{\kw{concatMap} \ \kw{f} \ e'}, \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
+   \exLet{f}{\exLambda{\sigma}}{\kw{concatMap} \ \kw{f} \ e_{2}}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \overrightarrow{q}}
    \dbwdarrow
-   \exListComp{s'''}{\qualGenerator{p}{s''}, \overrightarrow{q}}
+   \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \overrightarrow{q}}
 }
 \end{smathpar}
 \caption{Desugaring - Backward Slicing}
