@@ -1,19 +1,7 @@
 \begin{figure}[H]
 \flushleft \shadebox{$s \dfwdarrow e, s'$}
 \begin{smathpar}
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}}]
-{
-   \exListComp{s}{\overrightarrow{q}} \dfwdarrow e
-   \\
-   \{ p \mapsto e \}, \kw{Nil} \tarrow \sigma
-   \\
-   s' \dfwdarrow e'
-}
-{
-   \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
-   \dfwdarrow
-   \exLet{f}{\exLambda{\sigma}}{\kw{concatMap} \ \kw{f} \ e'}, \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
-}
+
 \end{smathpar}
 \caption{Desugaring - Forward Slicing}
 \end{figure}
