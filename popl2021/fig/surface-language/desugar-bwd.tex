@@ -1,0 +1,92 @@
+\begin{figure}[H]
+\flushleft \shadebox{$e, s \dbwdarrow s'$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-if-then-else}}
+]
+{
+   e_{1}, s_{1} \dbwdarrow s_{1}'
+   \\
+   e_{2}, s_{2} \dbwdarrow s_{2}'
+   \\
+   e_{3}, s_{3} \dbwdarrow s_{3}'
+}
+{
+   \exMatch{e_{1}}{\elimBool{e_{2}}{e_{3}}}, \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   \dbwdarrow
+   \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-seq}},
+]
+{
+   e_{1}, s_{1} \dbwdarrow s_{1}'
+   \\
+   e_{2}, s_{2} \dbwdarrow s_{2}'
+}
+{
+   \range{e_{1}}{e_{2}}, \exListSeq{s_{1}}{s_{2}} \dbwdarrow \exListSeq{s_{1}'}{s_{2}'}
+}
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-true}}]
+{
+   e, s \dbwdarrow s'
+}
+{
+   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  s'
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
+{
+  e, \exListComp{s}{q, \exTrue} \dbwdarrow s'
+}
+{
+   e, \exListComp{s}{q} \dbwdarrow s'
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
+{
+   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   \dbwdarrow s''
+}
+{
+   e, \exListComp{s}{s', \overrightarrow{q}}
+   \dbwdarrow s''
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
+{
+   e', s' \dbwdarrow s''
+   \\
+   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s'''
+}
+{
+   \exLet{p}{e'}{e}, \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
+   \dbwdarrow \exListComp{s'''}{\qualDeclaration{p}{s''}, \overrightarrow{q}}
+}
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
+{
+   e_{2}, s_{2} \dbwdarrow s_{2}'
+   \\
+   p, \sigma \matchp e_{1}
+   \\
+   e_{1}, \exListComp{s1}{\overrightarrow{q}} \dbwdarrow s_{1}'
+}
+{
+   \exLet{f}{\exLambda{\sigma}}{\kw{concatMap} \ \kw{f} \ e_{2}}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \overrightarrow{q}}
+   \dbwdarrow
+   \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \overrightarrow{q}}
+}
+\end{smathpar}
+\caption{Desugaring - Backward Slicing}
+\end{figure}
