@@ -54,23 +54,23 @@
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
    e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
-   \dbwdarrow s''
+   \dbwdarrow s^{\twoPrime}
 }
 {
    e, \exListComp{s}{s', \overrightarrow{q}}
-   \dbwdarrow s''
+   \dbwdarrow s^{\twoPrime}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
 {
-   e', s' \dbwdarrow s''
+   e', s' \dbwdarrow s^{\twoPrime}
    \\
-   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s'''
+   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s^{\threePrime}
 }
 {
    \exLet{p}{e'}{e}, \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
-   \dbwdarrow \exListComp{s'''}{\qualDeclaration{p}{s''}, \overrightarrow{q}}
+   \dbwdarrow \exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \overrightarrow{q}}
 }
 \and
 %

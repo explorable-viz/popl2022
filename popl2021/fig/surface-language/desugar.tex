@@ -2,6 +2,32 @@
 \flushleft \shadebox{$s \darrow e$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\darrow$-nil}}
+]
+{
+   \strut
+}
+{
+   \sExNil \darrow \exNil
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\darrow$-cons}}
+]
+{
+   s \darrow e
+   \\
+   \overrightarrow{s} \darrow e'
+}
+{
+   \sExCons{s}{\overrightarrow{s}} \darrow \exCons{e}{e'}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\darrow$-if-then-else}}
 ]
 {
@@ -9,10 +35,10 @@
    \\
    s' \darrow e'
    \\
-   s'' \darrow e''
+   s^{\twoPrime} \darrow e^{\twoPrime}
 }
 {
-   \exIfThenElse{s}{s'}{s''} \darrow \exMatch{e}{\elimBool{e'}{e''}}
+   \exIfThenElse{s}{s'}{s^{\twoPrime}} \darrow \exMatch{e}{\elimBool{e'}{e^{\twoPrime}}}
 }
 %
 \and

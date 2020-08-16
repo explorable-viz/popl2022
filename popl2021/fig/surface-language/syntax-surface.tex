@@ -16,9 +16,19 @@ s
 \text{match as}
 \\
 &&&
-\exIfThenElse{s}{s'}{s''}
+\exIfThenElse{s}{s'}{s^{\twoPrime}}
 &
 \text{if then else}
+\\
+&&&
+\sExNil
+&
+\text{nil}
+\\
+&&&
+\sExCons{s}{\overrightarrow{s}}
+&
+\text{cons}
 \\
 &&&
 \exListSeq{s}{s'}
@@ -29,11 +39,6 @@ s
 \exListComp{s}{\overrightarrow{q}}
 &
 \text{list comprehension}
-\\
-&&&
-\exLambda{\sigma}
-&
-\text{lambda}
 \\[2mm]
 
 \mbox{Eliminator}
