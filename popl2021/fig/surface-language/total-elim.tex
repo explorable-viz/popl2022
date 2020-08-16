@@ -40,22 +40,22 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\tarrow$-cons}}]
-   {
-      \sigma, e \tarrow \sigma'
-   }
-   {
-      \{{\kw{Cons} \ \sigma}\}, e \tarrow \{{\kw{Nil} \mapsto e, \kw{Cons} \ \sigma'}\}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\tarrow$-nil}}]
    {
       \strut
    }
    {
       \{{\kw{Nil} \mapsto \kappa}\}, e \tarrow \{{\kw{Nil} \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto e)}\}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\tarrow$-cons}}]
+   {
+      \sigma, e \tarrow \sigma'
+   }
+   {
+      \{{\kw{Cons} \ \sigma}\}, e \tarrow \{{\kw{Nil} \mapsto e, \kw{Cons} \ \sigma'}\}
    }
    %
    \and
@@ -68,5 +68,5 @@
       \langle \sigma \rangle, e \tarrow \langle \sigma' \rangle
    }
 \end{smathpar}
-\caption{Totalizing Eliminators}
+\caption{Totalising Eliminators}
 \end{figure}

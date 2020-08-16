@@ -1,6 +1,6 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Extended raw terms}
+\mbox{Raw surface terms}
 &
 s
 &
@@ -23,7 +23,7 @@ s
 &&&
 \exListSeq{s}{s'}
 &
-\text{list sequence}
+\text{list range}
 \\
 &&&
 \exListComp{s}{\overrightarrow{q}}
@@ -100,14 +100,14 @@ p
 \text{variable}
 \\
 &&&
-\pattCons{p}{p'}
-&
-\text{cons}
-\\
-&&&
 \pattNil
 &
 \text{nil}
+\\
+&&&
+\pattCons{p}{p'}
+&
+\text{cons}
 \\
 &&&
 \pattPair{p}{p'}
@@ -115,5 +115,5 @@ p
 \text{pair}
 \\[2mm]
 \end{syntaxfig}
-\caption{Syntax of extended terms}
+\caption{Syntax of surface-language terms}
 \end{figure}

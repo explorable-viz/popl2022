@@ -1,0 +1,41 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\Gamma \vdash s: A$}
+\begin{smathpar}
+\inferrule*[right={$x : A \in \Gamma$}]
+{
+   \Gamma \vdash s: \tyBool
+   \\
+   \Gamma \vdash s': A
+   \\
+   \Gamma \vdash s'': A
+}
+{
+   \Gamma \vdash \exIfThenElse{s}{s'}{s''}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s: \tyInt
+   \\
+   \Gamma \vdash s': \tyInt
+}
+{
+   \Gamma \vdash \exListSeq{s}{s'}: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \overrightarrow{q} \dashv \Delta
+   \\
+   \Gamma \concat \Delta \vdash s: A
+}
+{
+   \Gamma \vdash \exListComp{s}{\overrightarrow{q}}: \tyList{A}
+}
+\end{smathpar}
+\caption{Typing rules for surface terms}
+\end{figure}
