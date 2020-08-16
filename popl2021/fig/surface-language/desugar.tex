@@ -76,14 +76,12 @@
 {
    \exListComp{s}{\overrightarrow{q}} \darrow e
    \\
-   \{ p \mapsto e \}, \kw{Nil} \tarrow \sigma
-   \\
    s' \darrow e'
 }
 {
    \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
    \darrow
-   \kw{concatMap} \ \exLambda{\sigma} \ e'
+   \kw{concatMap} \ \exLambda{(\kw{totalise} \ \{ p \mapsto e \} \ \kw{Nil})} \ e'
 }
 \end{smathpar}
 \caption{Desugaring}
