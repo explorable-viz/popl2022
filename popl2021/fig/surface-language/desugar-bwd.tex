@@ -38,7 +38,7 @@
    e, s \dbwdarrow s'
 }
 {
-   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  s'
+   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  \exListComp{s'}{\exTrue}
 }
 \and
 %
@@ -53,7 +53,7 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
-   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
    \dbwdarrow s^{\twoPrime}
 }
 {
