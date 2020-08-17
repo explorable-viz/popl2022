@@ -20,7 +20,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-seq}},
+   lab={\ruleName{$\dbwdarrow$-list-range}},
 ]
 {
    e_{1}, s_{1} \dbwdarrow s_{1}'
@@ -38,7 +38,7 @@
    e, s \dbwdarrow s'
 }
 {
-   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  s'
+   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  \exListComp{s'}{\exTrue}
 }
 \and
 %
@@ -53,24 +53,24 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
-   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
-   \dbwdarrow s''
+   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
+   \dbwdarrow s^{\twoPrime}
 }
 {
    e, \exListComp{s}{s', \overrightarrow{q}}
-   \dbwdarrow s''
+   \dbwdarrow s^{\twoPrime}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
 {
-   e', s' \dbwdarrow s''
+   e', s' \dbwdarrow s^{\twoPrime}
    \\
-   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s'''
+   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s^{\threePrime}
 }
 {
    \exLet{p}{e'}{e}, \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
-   \dbwdarrow \exListComp{s'''}{\qualDeclaration{p}{s''}, \overrightarrow{q}}
+   \dbwdarrow \exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \overrightarrow{q}}
 }
 \and
 %
@@ -83,7 +83,7 @@
    e_{1}, \exListComp{s1}{\overrightarrow{q}} \dbwdarrow s_{1}'
 }
 {
-   \exLet{f}{\exLambda{\sigma}}{\kw{concatMap} \ \kw{f} \ e_{2}}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \overrightarrow{q}}
+   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \overrightarrow{q}}
    \dbwdarrow
    \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \overrightarrow{q}}
 }

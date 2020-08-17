@@ -59,6 +59,8 @@
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
+\newcommand*{\sExCons}[2]{\kw{\lbrack}\;{#1}\;\cdot\;{#2}\;\kw{\rbrack}}
+\newcommand*{\sExNil}{\kw{\lbrack}\;\kw{\rbrack}}
 \newcommand*{\exListSeq}[2]{\kw{\lbrack}\;{#1}\;\kw{\ldots}\;{#2}\;\kw{\rbrack}}
 \newcommand*{\exListComp}[2]{\kw{\lbrack}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{\rbrack}}
 \newcommand*{\exInt}[1]{#1}
@@ -155,7 +157,7 @@
 \renewcommand*{\meet}{\wedge}
 \newcommand*{\joinWith}[1]{\join_{#1}}
 \newcommand*{\eqJoin}{\mathbin{!}}
-\newcommand*{\range}[2]{\kw{range}\;({#1},{#2})}
+\newcommand*{\range}[2]{\kw{range}\,{#1}\,{#2}}
 \newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 
 % Variable contexts.
@@ -210,10 +212,9 @@
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 
 % Desugaring.
+\newcommand*{\tarrow}{\mathrel{\Rightarrow}}
 \newcommand*{\darrow}{\mathrel{\twoheadrightarrow}}
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
 \newcommand*{\matchp}{\overset{p}{\rightsquigarrow}}
-
-% Totalizing.
-\newcommand*{\tarrow}{\mathrel{\overset{\cup_{\sigma e}}{\longrightarrow}}}
+\newcommand*{\totalise}[2]{\kw{totalise}({#1}, {#2})}

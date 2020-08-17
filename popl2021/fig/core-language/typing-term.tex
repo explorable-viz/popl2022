@@ -135,38 +135,10 @@
 %
 \inferrule*
 {
-   \Gamma \vdash e: \tyBool
-   \\
-   \Gamma \vdash e': A
-   \\
-   \Gamma \vdash e'': A
+   \Gamma \vdash \sigma: \tyFun{A}{B}
 }
 {
-   \Gamma \vdash \exIfThenElse{e}{e'}{e''}: A
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash e: \tyInt
-   \\
-   \Gamma \vdash e': \tyInt
-}
-{
-   \Gamma \vdash \exListSeq{e}{e'}: \tyList{\tyInt}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \overrightarrow{q} \dashv \Delta
-   \\
-   \Gamma \concat \Delta \vdash e: A
-}
-{
-   \Gamma \vdash \exListComp{e}{\overrightarrow{q}}: \tyList{A}
+   \Gamma \vdash \exLambda{\sigma}: \tyFun{A}{B}
 }
 \end{smathpar}
 \caption{Typing rules for terms}

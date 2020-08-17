@@ -2,6 +2,44 @@
 \flushleft \shadebox{$s \darrow e$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\darrow$-nil}}
+]
+{
+   \strut
+}
+{
+   \sExNil \darrow \exNil
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\darrow$-cons}}
+]
+{
+   s \darrow e
+   \\
+   \overrightarrow{s} \darrow e'
+}
+{
+   \sExCons{s}{\overrightarrow{s}} \darrow \exCons{e}{e'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\darrow$-match-as}}
+]
+{
+   s \darrow e
+}
+{
+   \exMatch{s}{\sigma} \darrow \exLambda{\sigma} \ e
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\darrow$-if-then-else}}
 ]
 {
@@ -9,16 +47,16 @@
    \\
    s' \darrow e'
    \\
-   s'' \darrow e''
+   s^{\twoPrime} \darrow e^{\twoPrime}
 }
 {
-   \exIfThenElse{s}{s'}{s''} \darrow \exMatch{e}{\elimBool{e'}{e''}}
+   \exIfThenElse{s}{s'}{s^{\twoPrime}} \darrow \exMatch{e}{\elimBool{e'}{e^{\twoPrime}}}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\darrow$-list-seq}},
+   lab={\ruleName{$\darrow$-list-range}},
 ]
 {
    s \darrow e
@@ -40,7 +78,9 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-qual}}]
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-qual}},
+   right={$q \neq \kw{true}$}
+]
 {
   \exListComp{s}{q, \exTrue} \darrow e
 }
@@ -51,7 +91,7 @@
 %
 \inferrule*[lab={\ruleName{$\darrow$-list-comp-guard}}]
 {
-   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
    \darrow e
 }
 {
@@ -65,10 +105,13 @@
    s' \darrow e'
    \\
    \exListComp{s}{\overrightarrow{q}} \darrow e
+   \\
+   \sigma = \kw{branch} \ p \ e
 }
 {
    \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
-   \darrow \exLet{p}{e'}{e}
+   \darrow
+   \exLambda{\sigma} \ e'
 }
 \and
 %
@@ -76,14 +119,14 @@
 {
    \exListComp{s}{\overrightarrow{q}} \darrow e
    \\
-   \{ p \mapsto e \}, \kw{Nil} \tarrow \sigma
+   \sigma = \kw{totalise}(\kw{branch} \ p \ e, \kw{Nil})
    \\
    s' \darrow e'
 }
 {
    \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
    \darrow
-   \exLet{f}{\exLambda{\sigma}}{\kw{concatMap} \ \kw{f} \ e'}
+   \kw{concatMap} \ \exLambda{\sigma} \ e'
 }
 \end{smathpar}
 \caption{Desugaring}

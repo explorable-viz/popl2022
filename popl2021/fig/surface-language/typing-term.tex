@@ -1,0 +1,75 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\Gamma \vdash s: A$}
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \vdash s: A
+   \\
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exMatch{s}{\sigma}: B
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s: \tyBool
+   \\
+   \Gamma \vdash s': A
+   \\
+   \Gamma \vdash s^{\twoPrime}: A
+}
+{
+   \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \sExNil : \kw{List Int}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s : \kw{Int}
+   \\
+   \Gamma \vdash \overrightarrow{s} : \kw{List Int}
+}
+{
+   \Gamma \vdash \sExCons{s}{\overrightarrow{s}} : \kw{List Int}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s: \tyInt
+   \\
+   \Gamma \vdash s': \tyInt
+}
+{
+   \Gamma \vdash \exListSeq{s}{s'}: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \overrightarrow{q} \dashv \Delta
+   \\
+   \Gamma \concat \Delta \vdash s: A
+}
+{
+   \Gamma \vdash \exListComp{s}{\overrightarrow{q}}: \tyList{A}
+}
+\end{smathpar}
+\caption{Typing rules for surface terms}
+\end{figure}

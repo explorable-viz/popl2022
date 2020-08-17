@@ -1,0 +1,23 @@
+\begin{figure}[H]
+\flushleft\shadebox{$\totalise \sigma e$}
+\begin{salign}
+   \totalise{\{x \mapsto e\}}{e'} &= \{ x \mapsto e \}
+   \\
+   \totalise{\{x \mapsto \sigma\}}{e} &= \{ x \mapsto \totalise{\sigma}{e} \}
+   \\
+   \totalise{\{\exTrue \mapsto e\}}{e'} &= \{\exTrue \mapsto e, \exFalse \mapsto e'\}
+   \\
+   \totalise{\{\exTrue \mapsto \sigma\}}{e} &= \{\exTrue \mapsto \kappa, \exFalse \mapsto \totalise{\sigma}{e}\}
+   \\
+   \totalise{\{\exFalse \mapsto e\}}{e'} &= \{\exTrue \mapsto e, \exFalse \mapsto e'\}
+   \\
+   \totalise{\{\exFalse \mapsto \sigma\}}{e} &= \{\exTrue \mapsto e, \exFalse \mapsto \totalise{\sigma}{e}\}
+   \\
+   \totalise{\{\exNil \mapsto e\}}{e'} &= \{\exNil \mapsto e, \kw{Cons}(x \mapsto xs \mapsto e') \}
+   \\
+   \totalise{\{\exNil \mapsto \sigma\}}{e} &= \{\exNil \mapsto \totalise{\sigma}{e}, \kw{Cons}(x \mapsto xs \mapsto e) \}
+   \\
+   \totalise{\langle \sigma \rangle}{e} &= \langle \totalise{\sigma}{e} \rangle
+\end{salign}
+\caption{Totalising (partial) eliminators}
+\end{figure}
