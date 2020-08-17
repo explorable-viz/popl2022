@@ -130,6 +130,16 @@
 {
    \Gamma \vdash \exLetRec{f}{\sigma}{e}: B'
 }
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exLambda{\sigma}: \tyFun{A}{B}
+}
 \end{smathpar}
 \caption{Typing rules for terms}
 \end{figure}

@@ -28,6 +28,18 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\darrow$-match-as}}
+]
+{
+   s \darrow e
+}
+{
+   \exMatch{s}{\sigma} \darrow \exLambda{\sigma} \ e
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\darrow$-if-then-else}}
 ]
 {
@@ -66,7 +78,9 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-qual}}]
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-qual}},
+   right={$q \neq \kw{true}$}
+]
 {
   \exListComp{s}{q, \exTrue} \darrow e
 }
@@ -77,7 +91,7 @@
 %
 \inferrule*[lab={\ruleName{$\darrow$-list-comp-guard}}]
 {
-   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
    \darrow e
 }
 {
@@ -91,10 +105,13 @@
    s' \darrow e'
    \\
    \exListComp{s}{\overrightarrow{q}} \darrow e
+   \\
+   \sigma = \kw{branch} \ p \ e
 }
 {
    \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
-   \darrow \exLet{p}{e'}{e}
+   \darrow
+   \exLambda{\sigma} \ e'
 }
 \and
 %
@@ -102,12 +119,14 @@
 {
    \exListComp{s}{\overrightarrow{q}} \darrow e
    \\
+   \sigma = \kw{totalise}(\kw{branch} \ p \ e, \kw{Nil})
+   \\
    s' \darrow e'
 }
 {
    \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
    \darrow
-   \kw{concatMap} \ \exLambda{(\kw{totalise} \ \{ p \mapsto e \} \ \kw{Nil})} \ e'
+   \kw{concatMap} \ \exLambda{\sigma} \ e'
 }
 \end{smathpar}
 \caption{Desugaring}

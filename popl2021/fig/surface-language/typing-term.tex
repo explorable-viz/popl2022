@@ -1,7 +1,19 @@
 \begin{figure}[H]
 \flushleft \shadebox{$\Gamma \vdash s: A$}
 \begin{smathpar}
-\inferrule*[right={$x : A \in \Gamma$}]
+\inferrule*
+{
+   \Gamma \vdash s: A
+   \\
+   \Gamma \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exMatch{s}{\sigma}: B
+}
+%
+\and
+%
+\inferrule*
 {
    \Gamma \vdash s: \tyBool
    \\
@@ -11,6 +23,28 @@
 }
 {
    \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \sExNil : \kw{List Int}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s : \kw{Int}
+   \\
+   \Gamma \vdash \overrightarrow{s} : \kw{List Int}
+}
+{
+   \Gamma \vdash \sExCons{s}{\overrightarrow{s}} : \kw{List Int}
 }
 %
 \and
