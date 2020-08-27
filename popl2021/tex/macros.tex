@@ -60,7 +60,7 @@
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
 \newcommand*{\sExCons}[2]{\kw{\lbrack}\;{#1}\;\cdot\;{#2}\;\kw{\rbrack}}
-\newcommand*{\sExNil}{\kw{\lbrack}\;\kw{\rbrack}}
+\newcommand*{\sExNil}{\kw{\lbrack}\kw{\rbrack}}
 \newcommand*{\exList}[1]{\kw{\lbrack}\;{#1}\;\kw{\rbrack}}
 \newcommand*{\exListSeq}[2]{\kw{\lbrack}\;{#1}\;\kw{\ldots}\;{#2}\;\kw{\rbrack}}
 \newcommand*{\exListComp}[2]{\kw{\lbrack}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{\rbrack}}
@@ -91,6 +91,8 @@
 \newcommand*{\pattVar}[1]{#1}
 \newcommand*{\pattCons}[2]{\kw{Cons}(#1,#2)}
 \newcommand*{\pattNil}{\kw{Nil}}
+\newcommand*{\pattSCons}[2]{\lbrack {#1} \cdot {#2} \rbrack}
+\newcommand*{\pattSNil}{\lbrack\rbrack}
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
 
 % Tries.
@@ -219,3 +221,4 @@
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
 \newcommand*{\matchp}{\overset{p}{\rightsquigarrow}}
 \newcommand*{\totalise}[2]{\kw{totalise}({#1}, {#2})}
+\newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}

@@ -23,12 +23,12 @@ s
 &&&
 \sExNil
 &
-\text{nil}
+\text{empty list}
 \\
 &&&
 \sExCons{s}{\overrightarrow{s}}
 &
-\text{cons}
+\text{non-empty list}
 \\
 &&&
 \exListSeq{s}{s'}
@@ -113,6 +113,16 @@ p
 \pattCons{p}{p'}
 &
 \text{cons}
+\\
+&&&
+\pattSNil
+&
+\text{empty list}
+\\
+&&&
+\pattSCons{p}{p'}
+&
+\text{non-empty list}
 \\
 &&&
 \pattPair{p}{p'}

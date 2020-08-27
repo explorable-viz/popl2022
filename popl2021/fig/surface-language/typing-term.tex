@@ -3,6 +3,16 @@
 \begin{smathpar}
 \inferrule*
 {
+   \strut
+}
+{
+   \Gamma \vdash \overrightarrow{s} : \kw{List A}
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash s: A
    \\
    \Gamma \vdash \sigma: \tyFun{A}{B}
@@ -32,19 +42,19 @@
    \strut
 }
 {
-   \Gamma \vdash \sExNil : \kw{List Int}
+   \Gamma \vdash \sExNil : \kw{List A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash s : \kw{Int}
+   \Gamma \vdash s : \kw{A}
    \\
-   \Gamma \vdash \overrightarrow{s} : \kw{List Int}
+   \Gamma \vdash \overrightarrow{s} : \kw{List A}
 }
 {
-   \Gamma \vdash \sExCons{s}{\overrightarrow{s}} : \kw{List Int}
+   \Gamma \vdash \sExCons{s}{\overrightarrow{s}} : \kw{List A}
 }
 %
 \and
