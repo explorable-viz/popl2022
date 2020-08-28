@@ -1,20 +1,46 @@
 \begin{figure}[H]
-\flushleft \shadebox{$e, s \dbwdarrow s'$}
+\flushleft \shadebox{$e, t \dbwdarrow t'$}
 \begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-empty-list}}
+]
+{
+   \strut
+}
+{
+   \exNil, \sExNil \dbwdarrow \sExNil
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+]
+{
+   e, t \dbwdarrow t'
+   \\
+   e', \overrightarrow{t} \dbwdarrow t^{\twoPrime}
+}
+{
+   \exCons{e}{e'}, \sExCons{t}{\overrightarrow{t}} \dbwdarrow \sExCons{t'}{\overrightarrow{t^{\twoPrime}}}
+}
+%
+\and
+%
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-if-then-else}}
 ]
 {
-   e_{1}, s_{1} \dbwdarrow s_{1}'
+   e_{1}, t_{1} \dbwdarrow t_{1}'
    \\
-   e_{2}, s_{2} \dbwdarrow s_{2}'
+   e_{2}, t_{2} \dbwdarrow t_{2}'
    \\
-   e_{3}, s_{3} \dbwdarrow s_{3}'
+   e_{3}, t_{3} \dbwdarrow t_{3}'
 }
 {
-   \exMatch{e_{1}}{\elimBool{e_{2}}{e_{3}}}, \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   \exLambda{(\elimBool{e_2}{e_{3}^{\twoPrime}})} \ e_{1}, \exIfThenElse{t_{1}}{t_{2}}{t_{3}}
    \dbwdarrow
-   \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+   \exIfThenElse{t_{1}'}{t_{2}'}{t_{3}'}
 }
 %
 \and
@@ -23,69 +49,72 @@
    lab={\ruleName{$\dbwdarrow$-list-range}},
 ]
 {
-   e_{1}, s_{1} \dbwdarrow s_{1}'
+   e_{1}, t_{1} \dbwdarrow t_{1}'
    \\
-   e_{2}, s_{2} \dbwdarrow s_{2}'
+   e_{2}, t_{2} \dbwdarrow t_{2}'
 }
 {
-   \range{e_{1}}{e_{2}}, \exListSeq{s_{1}}{s_{2}} \dbwdarrow \exListSeq{s_{1}'}{s_{2}'}
+   \range{e_{1}}{e_{2}}, \exListSeq{t_{1}}{t_{2}} \dbwdarrow \exListSeq{t_{1}'}{t_{2}'}
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-true}}]
 {
-   e, s \dbwdarrow s'
+   e, t \dbwdarrow t'
 }
 {
-   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  \exList{s'}
+   \exCons{e}{\exNil}, \exListComp{t}{\exTrue} \dbwdarrow  \exList{t'}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
 {
-  e, \exListComp{s}{q, \exTrue} \dbwdarrow s'
+  e, \exListComp{t}{q, \exTrue} \dbwdarrow t'
 }
 {
-   e, \exListComp{s}{q} \dbwdarrow s'
+   e, \exListComp{t}{q} \dbwdarrow t'
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
+   right={$t' \in Bool$} ]
 {
-   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
-   \dbwdarrow s^{\twoPrime}
+   e, \exIfThenElse{t'}{\exListComp{t}{\overrightarrow{q}}}{\sExNil}
+   \dbwdarrow t^{\twoPrime}
 }
 {
-   e, \exListComp{s}{s', \overrightarrow{q}}
-   \dbwdarrow s^{\twoPrime}
+   e, \exListComp{t}{t', \overrightarrow{q}}
+   \dbwdarrow t^{\twoPrime}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
 {
-   e', s' \dbwdarrow s^{\twoPrime}
+   e', t' \dbwdarrow t^{\twoPrime}
    \\
-   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s^{\threePrime}
+   e = \untotalise{p}{\sigma}
+   \\
+   e, \exListComp{t}{\overrightarrow{q}} \dbwdarrow t^{\threePrime}
 }
 {
-   \exLet{p}{e'}{e}, \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
-   \dbwdarrow \exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \overrightarrow{q}}
+   \exLambda{\sigma} \ e', \exListComp{t}{\qualDeclaration{p}{t'}, \overrightarrow{q}}
+   \dbwdarrow \exListComp{t^{\threePrime}}{\qualDeclaration{p}{t^{\twoPrime}}, \overrightarrow{q}}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
 {
-   e_{2}, s_{2} \dbwdarrow s_{2}'
+   e_{2}, t_{2} \dbwdarrow t_{2}'
    \\
-   p, \sigma \matchp e_{1}
+   e_{1} = \untotalise{p}{\sigma}
    \\
-   e_{1}, \exListComp{s1}{\overrightarrow{q}} \dbwdarrow s_{1}'
+   e_{1}, \exListComp{t_1}{\overrightarrow{q}} \dbwdarrow t_{1}'
 }
 {
-   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \overrightarrow{q}}
+   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{t_{1}}{\qualGenerator{p}{t_{2}}, \overrightarrow{q}}
    \dbwdarrow
-   \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \overrightarrow{q}}
+   \exListComp{t_{1}'}{\qualGenerator{p}{t_{2}'}, \overrightarrow{q}}
 }
 \end{smathpar}
 \caption{Desugaring - Backward Slicing}

@@ -107,19 +107,19 @@
    \strut
 }
 {
-   \vdash \exNil: \tyList{\tyInt}
+   \vdash \exNil: \tyList{A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \vdash u: \tyInt
+   \vdash u: A
    \\
-   \vdash v: \tyList{\tyInt}
+   \vdash v: \tyList{A}
 }
 {
-   \vdash \exCons{u}{v}: \tyList{\tyInt}
+   \vdash \exCons{u}{v}: \tyList{A}
 }
 \end{smathpar}
 \caption{Typing rules for environments and values}

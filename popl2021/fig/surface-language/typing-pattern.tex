@@ -42,6 +42,28 @@
 {
    \exCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
 }
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \sExNil: \tyList{A} \dashv \envEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   p: A \dashv \Gamma
+   \\
+   p': \tyList{A} \dashv \Gamma'
+}
+{
+   \sExCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
+}
 \end{smathpar}
 \caption{Typing rules for patterns}
 \end{figure}

@@ -35,12 +35,12 @@
 %
 \inferrule*
 {
-   \Gamma \vdash \kappa: A
+   \Gamma \vdash \kappa: B
    \\
-   \Gamma \vdash \sigma: \tyFun{\tyInt}{\tyFun{\tyList{\tyInt}}{A}}
+   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{\tyList{A}}{B}}
 }
 {
-   \Gamma \vdash \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}: \tyFun{\tyList{\tyInt}}{A}
+   \Gamma \vdash \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}: \tyFun{\tyList{A}}{B}
 }
 \end{smathpar}
 \caption{Typing rules for eliminators}

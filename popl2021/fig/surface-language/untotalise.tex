@@ -1,0 +1,21 @@
+\begin{figure}[H]
+\flushleft\shadebox{\kw{untotalise} :: $p \times \sigma  \rightarrow  \kappa$ }
+\begin{salign}
+   \untotalise{x}{\{ x \mapsto \kappa \}} &= \kappa
+   \\
+   \untotalise{\exTrue}{\{\exTrue \mapsto \kappa, \exFalse \mapsto \tau\}} &= \kappa
+   \\
+   \untotalise{\exFalse}{\{\exTrue \mapsto \kappa, \exFalse \mapsto \tau\}} &= \tau
+   \\
+   \untotalise{\pattPair{p_1}{p_2}}{\langle (p_1 \mapsto p_2 \mapsto \kappa) \rangle} &= \kappa
+   \\
+   \untotalise{\pattNil}{\elimList{\exNil \mapsto \kappa}{\kw{Cons} \ \sigma}} &= \kappa
+   \\
+   \untotalise{\pattCons{p}{p'}}{\elimList{\exNil \mapsto \kappa}{\kw{Cons} \ (t \mapsto t' \mapsto \tau)}} &= \tau
+   \\
+   \untotalise{\sExNil}{\{\kw{Nil} \mapsto \kappa, \kw{Cons} \ \sigma \} } &= \kappa
+   \\
+   \untotalise{\sExCons{p}{p'}}{\kw{Nil} \mapsto \kappa, \kw{Cons} \ (t \mapsto t' \mapsto \tau)} &= \tau
+\end{salign}
+\caption{Extract branch body from eliminator}
+\end{figure}

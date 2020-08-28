@@ -1,6 +1,6 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Raw surface terms}
+\mbox{Raw surface term}
 &
 s
 &
@@ -11,34 +11,43 @@ s
 \text{raw terms}
 \\
 &&&
-\exMatch{s}{\sigma}
+\exMatch{t}{\sigma}
 &
 \text{match as}
 \\
 &&&
-\exIfThenElse{s}{s'}{s^{\twoPrime}}
+\exIfThenElse{t}{t'}{t^{\twoPrime}}
 &
 \text{if then else}
 \\
 &&&
 \sExNil
 &
-\text{nil}
+\text{empty list}
 \\
 &&&
-\sExCons{s}{\overrightarrow{s}}
+\sExCons{t}{\overrightarrow{t}}
 &
-\text{cons}
+\text{non-empty list}
 \\
 &&&
-\exListSeq{s}{s'}
+\exListSeq{t}{t'}
 &
 \text{list range}
 \\
 &&&
-\exListComp{s}{\overrightarrow{q}}
+\exListComp{t}{\overrightarrow{q}}
 &
 \text{list comprehension}
+\\[2mm]
+
+\mbox{Surface term}
+&
+t
+&
+::=
+&
+s_{\alpha}
 \\[2mm]
 
 \mbox{Eliminator}
@@ -70,6 +79,19 @@ s
 \text{cons}
 \\
 &&&
+\branchEList{\sigma}
+&
+\text{empty list}
+\\
+&&&
+\branchNEList{\sigma}
+&
+\text{non-empty list}
+\\
+&&&
+\elimList{\pattSNil \mapsto \kappa}{\lbrack p \cdot p' \rbrack \mapsto \sigma}
+&
+\text{list}
 \\[2mm]
 
 \mbox{Qualifier}
@@ -78,17 +100,17 @@ q
 &
 ::=
 &
-\qualGuard{s}
+\qualGuard{t}
 &
 \text{guard}
 \\
 &&&
-\qualDeclaration{p}{s}
+\qualDeclaration{p}{t}
 &
 \text{declaration}
 \\
 &&&
-\qualGenerator{p}{s}
+\qualGenerator{p}{t}
 &
 \text{generator}
 \\[2mm]
@@ -113,6 +135,16 @@ p
 \pattCons{p}{p'}
 &
 \text{cons}
+\\
+&&&
+\pattSNil
+&
+\text{empty list}
+\\
+&&&
+\pattSCons{p}{p'}
+&
+\text{non-empty list}
 \\
 &&&
 \pattPair{p}{p'}
