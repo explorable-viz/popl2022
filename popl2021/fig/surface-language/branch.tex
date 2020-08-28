@@ -3,7 +3,19 @@
 \begin{salign}
    \branch{x}{\kappa} &= \{ x \mapsto \kappa \}
    \\
-   \branch{x}{\kappa} &= \{ x \mapsto \kappa \}
+   \branch{\exTrue}{\kappa} &= \{ \exTrue \mapsto \kappa \}
+   \\
+   \branch{\exFalse}{\kappa} &= \{ \exFalse \mapsto \kappa \}
+   \\
+   \branch{\pattPair{p}{p'}}{\kappa} &= \langle p \mapsto p' \mapsto \kappa \rangle
+   \\
+   \branch{\exNil}{\kappa} &= \{ \exNil \mapsto \kappa \}
+   \\
+   \branch{\exCons{p}{p'}}{\kappa} &= \{ \kw{Cons} \mapsto p \mapsto p' \mapsto \kappa \}
+   \\
+   \branch{\sExNil}{\kappa} &= \{ \exNil \mapsto \kappa \}
+   \\
+   \branch{\sExCons{p}{p'}}{\kappa} &= \{ \kw{Cons} \mapsto p \mapsto p' \mapsto \kappa \}
    \\
 \end{salign}
 \caption{Constructing branches}

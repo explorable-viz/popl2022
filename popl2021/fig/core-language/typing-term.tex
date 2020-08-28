@@ -92,19 +92,19 @@
    \strut
 }
 {
-   \Gamma \vdash \exNil: \tyList{\tyInt}
+   \Gamma \vdash \exNil: \tyList{A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash u: \tyInt
+   \Gamma \vdash u: A
    \\
-   \Gamma \vdash v: \tyList{\tyInt}
+   \Gamma \vdash v: \tyList{A}
 }
 {
-   \vdash \exCons{u}{v}: \tyList{\tyInt}
+   \vdash \exCons{u}{v}: \tyList{A}
 }
 %
 \and

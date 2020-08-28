@@ -32,9 +32,11 @@
 ]
 {
    s \darrow e
+   \\
+   \sigma \darrow \sigma'
 }
 {
-   \exMatch{s}{\sigma} \darrow \exLambda{\sigma} \ e
+   \exMatch{s}{\sigma} \darrow \exLambda{\sigma'} \ e
 }
 %
 \and
@@ -48,9 +50,13 @@
    s' \darrow e'
    \\
    s^{\twoPrime} \darrow e^{\twoPrime}
+   \\
+   \sigma = \elimBool{e'}{e^{\twoPrime}}
 }
 {
-   \exIfThenElse{s}{s'}{s^{\twoPrime}} \darrow \exMatch{e}{\elimBool{e'}{e^{\twoPrime}}}
+   \exIfThenElse{s}{s'}{s^{\twoPrime}}
+   \darrow
+   \exLambda{\sigma} \ e
 }
 %
 \and
@@ -129,5 +135,30 @@
    \kw{concatMap} \ \exLambda{\sigma} \ e'
 }
 \end{smathpar}
-\caption{Desugaring}
+\caption{Desugaring Terms}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft \shadebox{$\sigma \darrow \tau$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\darrow$-surface-list}}
+]
+{
+   s_0 \darrow e_0
+   \\
+   \sigma_0 \darrow \sigma_{0}'
+   \\
+   ...
+   \\
+   s_n \darrow e_{n}
+   \\
+   e_n \darrow \sigma_{n}'
+}
+{
+   \{ s_0 \mapsto \sigma_0, \ .. \ , s_n \mapsto \sigma_n \} \darrow
+   \{ e_0 \mapsto \sigma_{0}', \ .. \ , e_n \mapsto \sigma_{n}' \}
+}
+\end{smathpar}
+\caption{Desugaring Eliminators}
 \end{figure}
