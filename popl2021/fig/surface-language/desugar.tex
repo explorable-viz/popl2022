@@ -125,7 +125,7 @@
 {
    \exListComp{s}{\overrightarrow{q}} \darrow e
    \\
-   \sigma = \kw{totalise}(\kw{branch} \ p \ e, \kw{Nil})
+   \sigma = \totalise{p}{e}
    \\
    s' \darrow e'
 }
@@ -142,7 +142,7 @@
 \flushleft \shadebox{$\sigma \darrow \tau$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\darrow$-surface-list}}
+   lab={\ruleName{$\darrow$-general-eliminator}}
 ]
 {
    s_0 \darrow e_0

@@ -3,10 +3,12 @@
 \begin{smathpar}
 \inferrule*
 {
-   \strut
+   \Gamma \vdash s : A
+   \\
+   \Gamma \vdash \overrightarrow{s} : \tyList{A}
 }
 {
-   \Gamma \vdash \overrightarrow{s} : \kw{List A}
+   \Gamma \vdash s \concat \overrightarrow{s} : \tyList{A}
 }
 %
 \and
