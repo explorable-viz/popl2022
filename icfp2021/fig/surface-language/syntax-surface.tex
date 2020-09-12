@@ -2,7 +2,7 @@
 \begin{syntaxfig}
 \mbox{Raw surface term}
 &
-s
+t
 &
 ::=
 &
@@ -11,12 +11,12 @@ s
 \text{raw terms}
 \\
 &&&
-\exMatch{t}{\sigma}
+\exMatch{s}{\sigma}
 &
 \text{match as}
 \\
 &&&
-\exIfThenElse{t}{t'}{t^{\twoPrime}}
+\exIfThenElse{s}{s'}{s^{\twoPrime}}
 &
 \text{if then else}
 \\
@@ -26,28 +26,28 @@ s
 \text{empty list}
 \\
 &&&
-\sExCons{t}{\overrightarrow{t}}
+\sExCons{s}{\overrightarrow{s}}
 &
 \text{non-empty list}
 \\
 &&&
-\exListSeq{t}{t'}
+\exListSeq{s}{s'}
 &
 \text{list range}
 \\
 &&&
-\exListComp{t}{\overrightarrow{q}}
+\exListComp{s}{\overrightarrow{q}}
 &
 \text{list comprehension}
 \\[2mm]
 
 \mbox{Surface term}
 &
-t
+s
 &
 ::=
 &
-s_{\alpha}
+t_{\alpha}
 \\[2mm]
 
 \mbox{Eliminator}
@@ -100,17 +100,17 @@ q
 &
 ::=
 &
-\qualGuard{t}
+\qualGuard{s}
 &
 \text{guard}
 \\
 &&&
-\qualDeclaration{p}{t}
+\qualDeclaration{p}{s}
 &
 \text{declaration}
 \\
 &&&
-\qualGenerator{p}{t}
+\qualGenerator{p}{s}
 &
 \text{generator}
 \\[2mm]

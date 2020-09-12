@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$t \darrow e$}
+\flushleft \shadebox{$s \darrow e$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\darrow$-nil}}
@@ -17,12 +17,12 @@
    lab={\ruleName{$\darrow$-cons}}
 ]
 {
-   t \darrow e
+   s \darrow e
    \\
-   \overrightarrow{t} \darrow e'
+   \overrightarrow{s} \darrow e'
 }
 {
-   \sExCons{t}{\overrightarrow{t}} \darrow \exCons{e}{e'}
+   \sExCons{s}{\overrightarrow{s}} \darrow \exCons{e}{e'}
 }
 %
 \and
@@ -31,12 +31,12 @@
    lab={\ruleName{$\darrow$-match-as}}
 ]
 {
-   t \darrow e
+   s \darrow e
    \\
    \sigma \darrow \sigma'
 }
 {
-   \exMatch{t}{\sigma} \darrow \exLambda{\sigma'} \ e
+   \exMatch{s}{\sigma} \darrow \exLambda{\sigma'} \ e
 }
 %
 \and
@@ -45,16 +45,16 @@
    lab={\ruleName{$\darrow$-if-then-else}}
 ]
 {
-   t \darrow e
+   s \darrow e
    \\
-   t' \darrow e'
+   s' \darrow e'
    \\
-   t^{\twoPrime} \darrow e^{\twoPrime}
+   s^{\twoPrime} \darrow e^{\twoPrime}
    \\
    \sigma = \elimBool{e'}{e^{\twoPrime}}
 }
 {
-   \exIfThenElse{t}{t'}{t^{\twoPrime}}
+   \exIfThenElse{s}{s'}{s^{\twoPrime}}
    \darrow
    \exLambda{\sigma} \ e
 }
@@ -65,22 +65,22 @@
    lab={\ruleName{$\darrow$-list-range}},
 ]
 {
-   t \darrow e
+   s \darrow e
    \\
-   t' \darrow e'
+   s' \darrow e'
 }
 {
-   \exListSeq{t}{t'} \darrow \range{e}{e'}
+   \exListSeq{s}{s'} \darrow \range{e}{e'}
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\darrow$-list-comp-true}}]
 {
-   t \darrow e
+   s \darrow e
 }
 {
-   \exListComp{t}{\exTrue} \darrow \exCons{e}{\exNil}
+   \exListComp{s}{\exTrue} \darrow \exCons{e}{\exNil}
 }
 \and
 %
@@ -88,35 +88,35 @@
    right={$q \neq \kw{true}$}
 ]
 {
-  \exListComp{t}{q, \exTrue} \darrow e
+  \exListComp{s}{q, \exTrue} \darrow e
 }
 {
-   \exListComp{t}{q} \darrow e
+   \exListComp{s}{q} \darrow e
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\darrow$-list-comp-guard}},
-   right={$t' \in Bool$} ]
+   right={$s' \in Bool$} ]
 {
-   \exIfThenElse{t'}{\exListComp{t}{\overrightarrow{q}}}{\sExNil}
+   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
    \darrow e
 }
 {
-   \exListComp{t}{t', \overrightarrow{q}}
+   \exListComp{s}{s', \overrightarrow{q}}
    \darrow e
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\darrow$-list-comp-decl}}]
 {
-   t' \darrow e'
+   s' \darrow e'
    \\
-   \exListComp{t}{\overrightarrow{q}} \darrow e
+   \exListComp{s}{\overrightarrow{q}} \darrow e
    \\
    \sigma = \totalise{p}{e}
 }
 {
-   \exListComp{t}{\qualDeclaration{p}{t'}, \overrightarrow{q}}
+   \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
    \darrow
    \exLambda{\sigma} \ e'
 }
@@ -124,14 +124,14 @@
 %
 \inferrule*[lab={\ruleName{$\darrow$-list-comp-gen}}]
 {
-   \exListComp{t}{\overrightarrow{q}} \darrow e
+   \exListComp{s}{\overrightarrow{q}} \darrow e
    \\
    \sigma = \totalise{p}{e}
    \\
-   t' \darrow e'
+   s' \darrow e'
 }
 {
-   \exListComp{t}{\qualGenerator{p}{t'}, \overrightarrow{q}}
+   \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
    \darrow
    \kw{concatMap} \ \exLambda{\sigma} \ e'
 }

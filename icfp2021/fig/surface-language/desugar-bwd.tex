@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$e, t \dbwdarrow t'$}
+\flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-empty-list}}
@@ -17,12 +17,12 @@
    lab={\ruleName{$\dbwdarrow$-non-empty-list}}
 ]
 {
-   e, t \dbwdarrow t'
+   e, s \dbwdarrow s'
    \\
-   e', \overrightarrow{t} \dbwdarrow t^{\twoPrime}
+   e', \overrightarrow{s} \dbwdarrow s^{\twoPrime}
 }
 {
-   \exCons{e}{e'}, \sExCons{t}{\overrightarrow{t}} \dbwdarrow \sExCons{t'}{\overrightarrow{t^{\twoPrime}}}
+   \exCons{e}{e'}, \sExCons{s}{\overrightarrow{s}} \dbwdarrow \sExCons{s'}{\overrightarrow{s^{\twoPrime}}}
 }
 %
 \and
@@ -61,45 +61,45 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-true}}]
 {
-   e, t \dbwdarrow t'
+   e, s \dbwdarrow s'
 }
 {
-   \exCons{e}{\exNil}, \exListComp{t}{\exTrue} \dbwdarrow  \exList{t'}
+   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  \exList{s'}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
 {
-  e, \exListComp{t}{q, \exTrue} \dbwdarrow t'
+  e, \exListComp{s}{q, \exTrue} \dbwdarrow s'
 }
 {
-   e, \exListComp{t}{q} \dbwdarrow t'
+   e, \exListComp{s}{q} \dbwdarrow s'
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
-   right={$t' \in Bool$} ]
+   right={$s' \in Bool$} ]
 {
-   e, \exIfThenElse{t'}{\exListComp{t}{\overrightarrow{q}}}{\sExNil}
-   \dbwdarrow t^{\twoPrime}
+   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
+   \dbwdarrow s^{\twoPrime}
 }
 {
-   e, \exListComp{t}{t', \overrightarrow{q}}
-   \dbwdarrow t^{\twoPrime}
+   e, \exListComp{s}{s', \overrightarrow{q}}
+   \dbwdarrow s^{\twoPrime}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
 {
-   e', t' \dbwdarrow t^{\twoPrime}
+   e', s' \dbwdarrow s^{\twoPrime}
    \\
    e = \untotalise{p}{\sigma}
    \\
-   e, \exListComp{t}{\overrightarrow{q}} \dbwdarrow t^{\threePrime}
+   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s^{\threePrime}
 }
 {
-   \exLambda{\sigma} \ e', \exListComp{t}{\qualDeclaration{p}{t'}, \overrightarrow{q}}
-   \dbwdarrow \exListComp{t^{\threePrime}}{\qualDeclaration{p}{t^{\twoPrime}}, \overrightarrow{q}}
+   \exLambda{\sigma} \ e', \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
+   \dbwdarrow \exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \overrightarrow{q}}
 }
 \and
 %

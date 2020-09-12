@@ -1,40 +1,40 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\Gamma \vdash t: A$}
+\flushleft \shadebox{$\Gamma \vdash s: A$}
 \begin{smathpar}
 \inferrule*
 {
-   \Gamma \vdash t : A
+   \Gamma \vdash s : A
    \\
-   \Gamma \vdash \overrightarrow{t} : \tyList{A}
+   \Gamma \vdash \overrightarrow{s} : \tyList{A}
 }
 {
-   \Gamma \vdash t \concat \overrightarrow{t} : \tyList{A}
+   \Gamma \vdash s \concat \overrightarrow{s} : \tyList{A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash t: A
+   \Gamma \vdash s: A
    \\
    \Gamma \vdash \sigma: \tyFun{A}{B}
 }
 {
-   \Gamma \vdash \exMatch{t}{\sigma}: B
+   \Gamma \vdash \exMatch{s}{\sigma}: B
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash t: \tyBool
+   \Gamma \vdash s: \tyBool
    \\
-   \Gamma \vdash t': A
+   \Gamma \vdash s': A
    \\
-   \Gamma \vdash t^{\twoPrime}: A
+   \Gamma \vdash s^{\twoPrime}: A
 }
 {
-   \Gamma \vdash \exIfThenElse{t}{t'}{t^{\twoPrime}}: A
+   \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
 }
 %
 \and
@@ -51,24 +51,24 @@
 %
 \inferrule*
 {
-   \Gamma \vdash t : \kw{A}
+   \Gamma \vdash s : \kw{A}
    \\
-   \Gamma \vdash \overrightarrow{t} : \kw{List A}
+   \Gamma \vdash \overrightarrow{s} : \kw{List A}
 }
 {
-   \Gamma \vdash \sExCons{t}{\overrightarrow{t}} : \kw{List A}
+   \Gamma \vdash \sExCons{s}{\overrightarrow{s}} : \kw{List A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash t: \tyInt
+   \Gamma \vdash s: \tyInt
    \\
-   \Gamma \vdash t': \tyInt
+   \Gamma \vdash s': \tyInt
 }
 {
-   \Gamma \vdash \exListSeq{t}{t'}: \tyList{\tyInt}
+   \Gamma \vdash \exListSeq{s}{s'}: \tyList{\tyInt}
 }
 %
 \and
@@ -77,10 +77,10 @@
 {
    \Gamma \vdash \overrightarrow{q} \dashv \Delta
    \\
-   \Gamma \concat \Delta \vdash t: A
+   \Gamma \concat \Delta \vdash s: A
 }
 {
-   \Gamma \vdash \exListComp{t}{\overrightarrow{q}}: \tyList{A}
+   \Gamma \vdash \exListComp{s}{\overrightarrow{q}}: \tyList{A}
 }
 \end{smathpar}
 \caption{Typing rules for surface terms}
