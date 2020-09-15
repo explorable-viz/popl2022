@@ -66,49 +66,6 @@ s
 t_{\alpha}
 \\[2mm]
 
-\mbox{Eliminator}
-&
-\sigma, \tau
-&
-::=
-&
-\ldots
-\\
-&&&
-\elimBoolTrue{\kappa}
-&
-\text{true}
-\\
-&&&
-\elimBoolFalse{\kappa}
-&
-\text{false}
-\\
-&&&
-\elimListSingleton{\branchNil{\kappa}}
-&
-\text{nil}
-\\
-&&&
-\elimListSingleton{\branchCons{\sigma}}
-&
-\text{cons}
-\\
-&&&
-\branchEList{\sigma}
-&
-\text{empty list}
-\\
-&&&
-\{ \lbrack p \ o \mapsto \sigma \}
-&
-\text{non-empty list}
-\\
-&&&
-\elimList{\pattSNil \mapsto \kappa}{\lbrack p \ o \mapsto \sigma}
-&
-\text{list}
-\\[2mm]
 
 \mbox{Qualifier}
 &
