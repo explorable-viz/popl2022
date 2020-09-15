@@ -2,7 +2,7 @@
 \flushleft \shadebox{$s \darrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\darrow$-nil}}
+   lab={\ruleName{$\darrow$-empty-list}}
 ]
 {
    \strut
@@ -14,15 +14,15 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\darrow$-cons}}
+   lab={\ruleName{$\darrow$-non-empty-list}}
 ]
 {
    s \darrow e
    \\
-   \overrightarrow{s} \darrow e'
+   l \darrow e'
 }
 {
-   \sExCons{s}{\overrightarrow{s}} \darrow \exCons{e}{e'}
+   \lbrack s \ l \darrow \exCons{e}{e'}
 }
 %
 \and
@@ -140,24 +140,54 @@
 \end{figure}
 
 \begin{figure}[H]
+\flushleft \shadebox{$\l \darrow e$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\darrow$-end}}
+]
+{
+   \strut
+}
+{
+   \rbrack \darrow \exNil
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\darrow$-cons}}
+]
+{
+   s \darrow e
+   \\
+   l \darrow e'
+}
+{
+   \lbrack s \ l \darrow \exCons{e}{e'}
+}
+\end{smathpar}
+\caption{Desugaring List Rest}
+\end{figure}
+
+
+\begin{figure}[H]
 \flushleft \shadebox{$\sigma \darrow \tau$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\darrow$-general-eliminator}}
 ]
 {
-   t_0 \darrow e_0
+   s_0 \darrow e_0
    \\
    \kappa_0 \darrow \kappa_{0}'
    \\
    ...
    \\
-   t_n \darrow e_{n}
+   s_n \darrow e_{n}
    \\
    \kappa_n \darrow \kappa_{n}'
 }
 {
-   \{ t_0 \mapsto \kappa_0, \ .. \ , t_n \mapsto \kappa_n \} \darrow
+   \{ s_0 \mapsto \kappa_0, \ .. \ , s_n \mapsto \kappa_n \} \darrow
    \{ e_0 \mapsto \kappa_{0}', \ .. \ , e_n \mapsto \kappa_{n}' \}
 }
 \end{smathpar}

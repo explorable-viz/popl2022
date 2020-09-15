@@ -26,7 +26,7 @@ t
 \text{empty list}
 \\
 &&&
-\sExCons{s}{\overrightarrow{s}}
+\kw{\lbrack}s \ l
 &
 \text{non-empty list}
 \\
@@ -39,6 +39,22 @@ t
 \exListComp{s}{\overrightarrow{q}}
 &
 \text{list comprehension}
+\\[2mm]
+
+\mbox{List rest}
+&
+l
+&
+::=
+&
+\rbrack
+&
+\text{end}
+\\
+&&&
+, s \ l
+&
+\text{cons}
 \\[2mm]
 
 \mbox{Surface term}

@@ -31,16 +31,16 @@
    lab={\ruleName{$\dbwdarrow$-if-then-else}}
 ]
 {
-   e_{1}, t_{1} \dbwdarrow t_{1}'
+   e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
-   e_{2}, t_{2} \dbwdarrow t_{2}'
+   e_{2}, s_{2} \dbwdarrow s_{2}'
    \\
-   e_{3}, t_{3} \dbwdarrow t_{3}'
+   e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \exLambda{(\elimBool{e_2}{e_{3}^{\twoPrime}})} \ e_{1}, \exIfThenElse{t_{1}}{t_{2}}{t_{3}}
+   \exLambda{(\elimBool{e_2}{e_{3}^{\twoPrime}})} \ e_{1}, \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \exIfThenElse{t_{1}'}{t_{2}'}{t_{3}'}
+   \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
 }
 %
 \and
@@ -49,12 +49,12 @@
    lab={\ruleName{$\dbwdarrow$-list-range}},
 ]
 {
-   e_{1}, t_{1} \dbwdarrow t_{1}'
+   e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
-   e_{2}, t_{2} \dbwdarrow t_{2}'
+   e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \range{e_{1}}{e_{2}}, \exListSeq{t_{1}}{t_{2}} \dbwdarrow \exListSeq{t_{1}'}{t_{2}'}
+   \range{e_{1}}{e_{2}}, \exListSeq{s_{1}}{s_{2}} \dbwdarrow \exListSeq{s_{1}'}{s_{2}'}
 }
 %
 \and
@@ -105,16 +105,16 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
 {
-   e_{2}, t_{2} \dbwdarrow t_{2}'
+   e_{2}, s_{2} \dbwdarrow s_{2}'
    \\
    e_{1} = \untotalise{p}{\sigma}
    \\
-   e_{1}, \exListComp{t_1}{\overrightarrow{q}} \dbwdarrow t_{1}'
+   e_{1}, \exListComp{s_1}{\overrightarrow{q}} \dbwdarrow s_{1}'
 }
 {
-   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{t_{1}}{\qualGenerator{p}{t_{2}}, \overrightarrow{q}}
+   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \overrightarrow{q}}
    \dbwdarrow
-   \exListComp{t_{1}'}{\qualGenerator{p}{t_{2}'}, \overrightarrow{q}}
+   \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \overrightarrow{q}}
 }
 \end{smathpar}
 \caption{Desugaring - Backward Slicing}

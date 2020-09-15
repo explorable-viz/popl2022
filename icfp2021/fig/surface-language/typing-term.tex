@@ -53,10 +53,10 @@
 {
    \Gamma \vdash s : \kw{A}
    \\
-   \Gamma \vdash \overrightarrow{s} : \kw{List A}
+   \Gamma \vdash l : \kw{List A}
 }
 {
-   \Gamma \vdash \sExCons{s}{\overrightarrow{s}} : \kw{List A}
+   \Gamma \vdash s \ l : \kw{List A}
 }
 %
 \and
@@ -84,4 +84,30 @@
 }
 \end{smathpar}
 \caption{Typing rules for surface terms}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft \shadebox{$\Gamma \vdash l: \kw{List} \ A$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \ \rbrack : \kw{List A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s : \kw{A}
+   \\
+   \Gamma \vdash l : \kw{List A}
+}
+{
+   \Gamma \vdash s \ l : \kw{List A}
+}
+\end{smathpar}
+\caption{Typing rules for list rest}
 \end{figure}
