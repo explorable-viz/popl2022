@@ -59,11 +59,37 @@
 {
    p: A \dashv \Gamma
    \\
-   p': \tyList{A} \dashv \Gamma'
+   o: \tyList{A} \dashv \Gamma'
 }
 {
-   \sExCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
+   \lbrack p \ o: \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
 \caption{Typing rules for patterns}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft \shadebox{$p: \kw{List} \ A \dashv \Gamma $}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \rbrack : \kw{List A} \dashv \envEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   p : A \dashv \Gamma
+   \\
+   o : \kw{List A} \dashv \Gamma'
+}
+{
+   , p \ o : \kw{List A} \dashv \Gamma \concat \Gamma'
+}
+\end{smathpar}
+\caption{Typing rules for pattern list rest}
 \end{figure}

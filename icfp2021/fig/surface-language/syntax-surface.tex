@@ -100,12 +100,12 @@ t_{\alpha}
 \text{empty list}
 \\
 &&&
-\branchNEList{\sigma}
+\{ \lbrack p \ o \mapsto \sigma \}
 &
 \text{non-empty list}
 \\
 &&&
-\elimList{\pattSNil \mapsto \kappa}{\lbrack p \cdot p' \rbrack \mapsto \sigma}
+\elimList{\pattSNil \mapsto \kappa}{\lbrack p \ o \mapsto \sigma}
 &
 \text{list}
 \\[2mm]
@@ -158,7 +158,7 @@ p
 \text{empty list}
 \\
 &&&
-\pattSCons{p}{p'}
+\lbrack p \ o
 &
 \text{non-empty list}
 \\
@@ -167,6 +167,24 @@ p
 &
 \text{pair}
 \\[2mm]
+
+\mbox{Pattern List Rest}
+&
+o
+&
+::=
+&
+\rbrack
+&
+\text{end}
+\\
+&&&
+, p \ o
+&
+\text{cons}
+\\[2mm]
 \end{syntaxfig}
 \caption{Syntax of surface-language terms}
 \end{figure}
+
+
