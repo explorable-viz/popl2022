@@ -119,3 +119,34 @@
 \end{smathpar}
 \caption{Desugaring - Backward Slicing}
 \end{figure}
+
+\begin{figure}[H]
+\flushleft \shadebox{$e, l \dbwdarrow l$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\darrow$-end}}
+]
+{
+   \strut
+}
+{
+   \exNil, \rbrack \dbwdarrow \rbrack
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\darrow$-cons}}
+]
+{
+   e, s \dbwdarrow s'
+   \\
+   e', l \dbwdarrow l'
+}
+{
+   \exCons{e}{e'}, \lbrack s \ l \darrow \lbrack s' l'
+}
+\end{smathpar}
+\caption{Desugaring List Rest - Backward Slicing}
+\end{figure}
+
+
