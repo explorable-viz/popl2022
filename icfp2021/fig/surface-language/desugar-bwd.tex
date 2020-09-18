@@ -77,8 +77,7 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
-   right={$s' \in Bool$} ]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
    e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
    \dbwdarrow s^{\twoPrime}

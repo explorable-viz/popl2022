@@ -81,8 +81,7 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-guard}},
-   right={$s' \in Bool$} ]
+\inferrule*[lab={\ruleName{$\darrow$-list-comp-guard}}]
 {
    \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
    \darrow e
