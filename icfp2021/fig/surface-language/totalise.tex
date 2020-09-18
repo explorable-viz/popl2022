@@ -9,11 +9,11 @@
    \\
    \totalise{\pattPair{p_1}{p_2}}{\kappa} &= \langle \totalise{p_1}{\totalise{p_2}{\kappa}} \rangle
    \\
-   \totalise{\exNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \mapsto x \mapsto xs \mapsto \kappa\}
+   \totalise{\exNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto \kappa)\}
    \\
    \totalise{\pattCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ (\totalise{p}{\totalise{p'}{\kappa}}) \}
    \\
-   \totalise{\sExNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \mapsto x \mapsto xs \mapsto \kappa\}
+   \totalise{\sExNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto \kappa)\}
    \\
    \totalise{\sExCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ (\totalise{p}{\totalise{p'}{\kappa}}) \}
 \end{salign}
