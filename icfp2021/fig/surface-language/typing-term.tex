@@ -15,18 +15,6 @@
 %
 \inferrule*
 {
-   \Gamma \vdash s: A
-   \\
-   \Gamma \vdash \sigma: \tyFun{A}{B}
-}
-{
-   \Gamma \vdash \exMatch{s}{\sigma}: B
-}
-%
-\and
-%
-\inferrule*
-{
    \Gamma \vdash s: \tyBool
    \\
    \Gamma \vdash s': A
