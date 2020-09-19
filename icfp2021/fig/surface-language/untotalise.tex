@@ -1,5 +1,5 @@
-\begin{figure}[H]
-\flushleft\shadebox{untotalise \ p \ $\sigma =  \kappa$ }
+\begin{figure}
+\flushleft\shadebox{untotalise p $\sigma = \kappa$}
 \begin{salign}
    \untotalise{x}{\{ x \mapsto \kappa \}} &= \kappa
    \\
@@ -12,8 +12,6 @@
    \untotalise{\pattNil}{\elimList{\exNil \mapsto \kappa}{\kw{Cons} \ \sigma}} &= \kappa
    \\
    \untotalise{\pattCons{p}{p'}}{\elimList{\exNil \mapsto \kappa}{\kw{Cons} \ (s \mapsto s' \mapsto \tau)}} &= \tau
-   \\
-   \untotalise{\sExNil}{\{\kw{Nil} \mapsto \kappa, \kw{Cons} \ \sigma \} } &= \kappa
    \\
    \untotalise{\sExCons{p}{p'}}{\kw{Nil} \mapsto \kappa, \kw{Cons} \ (s \mapsto s' \mapsto \tau)} &= \tau
 \end{salign}

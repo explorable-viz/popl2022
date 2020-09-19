@@ -62,7 +62,6 @@
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
 \newcommand*{\sExCons}[2]{\kw{\lbrack}\;{#1}\;\cdot\;{#2}\kw{\rbrack}}
-\newcommand*{\sExNil}{\kw{\lbrack}\kw{\rbrack}}
 \newcommand*{\exList}[1]{\kw{\lbrack}\;{#1}\;\kw{\rbrack}}
 \newcommand*{\exListSeq}[2]{\kw{\lbrack}\;{#1}\;\kw{..}\;{#2}\;\kw{\rbrack}}
 \newcommand*{\exListComp}[2]{\kw{\lbrack}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{\rbrack}}
@@ -94,9 +93,8 @@
 % Patterns
 \newcommand*{\pattVar}[1]{#1}
 \newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
-\newcommand*{\pattNil}{\kw{Nil}}
+\newcommand*{\pattNil}{\exNil}
 \newcommand*{\pattSCons}[2]{\lbrack {#1} \cdot {#2} \rbrack}
-\newcommand*{\pattSNil}{\lbrack\rbrack}
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
 
 % Eliminators.
@@ -106,7 +104,6 @@
 \newcommand*{\elimListSingleton}[1]{\{{#1}\}}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
-\newcommand*{\elimSList}[2]{ \{ \sExNil \mapsto {#1}, \sExCons{s}{s'} \ {#2}\}}
 \newcommand*{\elimProd}[1]{{\langle#1\rangle}}
 \newcommand*{\elimVar}[2]{{#1} \mapsto {#2}}
 
