@@ -80,12 +80,12 @@
 %
 \inferrule*
 {
-   \vdash u: A
+   \vdash v: A
    \\
-   \vdash v: B
+   \vdash v': B
 }
 {
-   \vdash \exPair{u}{v}: \tyProd{A}{B}
+   \vdash \exPair{v}{v'}: \tyProd{A}{B}
 }
 %
 \and
@@ -114,12 +114,12 @@
 %
 \inferrule*
 {
-   \vdash u: A
+   \vdash v: A
    \\
-   \vdash v: \tyList{A}
+   \vdash v': \tyList{A}
 }
 {
-   \vdash \exCons{u}{v}: \tyList{A}
+   \vdash \exCons{v}{v'}: \tyList{A}
 }
 \end{smathpar}
 \caption{Typing rules for environments and values}
