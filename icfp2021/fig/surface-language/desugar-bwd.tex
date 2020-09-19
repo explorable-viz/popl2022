@@ -2,18 +2,6 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-empty-list}}
-]
-{
-   \strut
-}
-{
-   \exNil, \sExNil \dbwdarrow \sExNil
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\dbwdarrow$-non-empty-list}}
 ]
 {
@@ -79,7 +67,7 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
-   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
+   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
    \dbwdarrow s^{\twoPrime}
 }
 {
@@ -116,7 +104,7 @@
    \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \overrightarrow{q}}
 }
 \end{smathpar}
-\caption{Desugaring - Backward Slicing}
+\caption{Desugaring - backward slicing (additional forms only)}
 \end{figure}
 
 \begin{figure}[H]
@@ -145,7 +133,5 @@
    \exCons{e}{e'}, \lbrack s \ l \darrow \lbrack s' \ l'
 }
 \end{smathpar}
-\caption{Desugaring List Rest - Backward Slicing}
+\caption{Desugaring list rest - backward slicing}
 \end{figure}
-
-

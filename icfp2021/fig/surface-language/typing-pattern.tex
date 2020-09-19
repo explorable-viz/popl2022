@@ -47,16 +47,6 @@
 %
 \inferrule*
 {
-   \strut
-}
-{
-   \sExNil: \tyList{A} \dashv \envEmpty
-}
-%
-\and
-%
-\inferrule*
-{
    p: A \dashv \Gamma
    \\
    o: \tyList{A} \dashv \Gamma'
@@ -91,5 +81,5 @@
    , p \ o : \kw{List A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
-\caption{Typing rules for pattern list rest}
+\caption{Typing rules for list pattern rest}
 \end{figure}
