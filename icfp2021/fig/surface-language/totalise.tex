@@ -1,5 +1,5 @@
-\begin{figure}[H]
-\flushleft\shadebox{totalise \ p \ $\kappa =  \sigma$ }
+\begin{figure}
+\flushleft\shadebox{totalise p $\kappa = \sigma$ }
 \begin{salign}
    \totalise{x}{\kappa} &= \{ x \mapsto \kappa \}
    \\
@@ -12,8 +12,6 @@
    \totalise{\exNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto \kappa)\}
    \\
    \totalise{\pattCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ (\totalise{p}{\totalise{p'}{\kappa}}) \}
-   \\
-   \totalise{\sExNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto \kappa)\}
    \\
    \totalise{\sExCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ (\totalise{p}{\totalise{p'}{\kappa}}) \}
 \end{salign}
