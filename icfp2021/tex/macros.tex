@@ -76,7 +76,7 @@
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{[]}}
 \newcommand*{\exOp}[1]{(#1)}
-\newcommand*{\exPair}[2]{(#1,#2)}
+\newcommand*{\exPair}[2]{\langle#1,#2\rangle}
 \newcommand*{\exPrim}[1]{#1}
 \newcommand*{\exRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
@@ -107,7 +107,6 @@
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
 \newcommand*{\elimSList}[2]{ \{ \sExNil \mapsto {#1}, \sExCons{s}{s'} \ {#2}\}}
-\newcommand*{\elimPair}[3]{\exPair{#1}{#2}\mapsto{#3}}
 \newcommand*{\elimProd}[1]{{\langle#1\rangle}}
 \newcommand*{\elimVar}[2]{{#1} \mapsto {#2}}
 
