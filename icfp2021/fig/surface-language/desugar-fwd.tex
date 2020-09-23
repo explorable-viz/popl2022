@@ -2,18 +2,6 @@
 \flushleft \shadebox{$s \darrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\darrow$-empty-list}}
-]
-{
-   \strut
-}
-{
-   \sExNil \darrow \exNil
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\darrow$-non-empty-list}}
 ]
 {
@@ -83,7 +71,7 @@
 %
 \inferrule*[lab={\ruleName{$\darrow$-list-comp-guard}}]
 {
-   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\sExNil}
+   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
    \darrow e
 }
 {
@@ -121,7 +109,7 @@
    \kw{concatMap} \ \exLambda{\sigma} \ e'
 }
 \end{smathpar}
-\caption{Desugaring - Forward Slicing}
+\caption{Desugaring -- forward slicing (additional forms only)}
 \end{figure}
 
 \begin{figure}[H]
@@ -150,7 +138,5 @@
    \lbrack s \ l \darrow \exCons{e}{e'}
 }
 \end{smathpar}
-\caption{Desugaring List Rest - Forward Slicing}
+\caption{Desugaring list rest - forward slicing}
 \end{figure}
-
-
