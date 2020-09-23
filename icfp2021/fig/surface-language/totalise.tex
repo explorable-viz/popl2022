@@ -11,11 +11,12 @@
    \\
    \totalise{\exNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto \kappa)\}
    \\
-   \totalise{\pattCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ (\totalise{p}{\totalise{p'}{\kappa}}) \}
+   \totalise{\pattCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ \totalise{p}{\totalise{p'}{\kappa}} \}
    \\
    \totalise{\sExNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \ (x \mapsto xs \mapsto \kappa)\}
    \\
-   \totalise{\sExCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ (\totalise{p}{\totalise{p'}{\kappa}}) \}
+   \totalise{\lbrack p \ o}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ \totalise{p}{\totalise{o}{\kappa}} \}
 \end{salign}
 \caption{Construct total eliminator (from branch)}
 \end{figure}
+
