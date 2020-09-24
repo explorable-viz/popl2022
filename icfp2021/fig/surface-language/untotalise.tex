@@ -3,17 +3,17 @@
 \begin{salign}
    \untotalise{x}{\{ x \mapsto \kappa \}} &= \kappa
    \\
-   \untotalise{\exTrue}{\{\exTrue \mapsto \kappa, \exFalse \mapsto \tau\}} &= \kappa
+   \untotalise{\exTrue}{\{\exTrue \mapsto \kappa, \exFalse \mapsto \kappa'\}} &= \kappa
    \\
-   \untotalise{\exFalse}{\{\exTrue \mapsto \kappa, \exFalse \mapsto \tau\}} &= \tau
+   \untotalise{\exFalse}{\{\exTrue \mapsto \kappa, \exFalse \mapsto \kappa'\}} &= \kappa'
    \\
-   \untotalise{\pattPair{p_1}{p_2}}{\langle (p_1 \mapsto p_2 \mapsto \kappa) \rangle} &= \kappa
+   \untotalise{\pattPair{p_1}{p_2}}{\langle p_1 \mapsto p_2 \mapsto \kappa \rangle} &= \kappa
    \\
    \untotalise{\pattNil}{\elimList{\exNil \mapsto \kappa}{\kw{(:)} \ \sigma}} &= \kappa
    \\
-   \untotalise{\pattCons{p}{p'}}{\elimList{\exNil \mapsto \kappa}{\kw{(:)} \ \{s \mapsto s' \mapsto \tau\}}} &= \tau
+   \untotalise{\pattCons{p}{p'}}{\elimList{\exNil \mapsto \kappa}{\kw{(:)} \ \{s \mapsto s' \mapsto \kappa'\}}} &= \kappa'
    \\
-   \untotalise{\lbrack p \ o}{\{\exNil \mapsto \kappa, \kw{(:)} \ \{s \mapsto s' \mapsto \tau\}\}} &= \tau
+   \untotalise{\lbrack p \ o}{\{\exNil \mapsto \kappa, \kw{(:)} \ \{s \mapsto s' \mapsto \kappa'\}\}} &= \kappa'
 \end{salign}
 
 \caption{Extract branch body from eliminator}
