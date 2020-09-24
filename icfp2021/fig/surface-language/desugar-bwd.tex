@@ -10,7 +10,7 @@
    e', l \dbwdarrow l'
 }
 {
-   \exCons{e}{e'}, \lbrack s \ l \dbwdarrow \lbrack s' \ l'
+   \exCons{e}{e'}, \sExList{s}{l} \dbwdarrow \sExList{s'}{l'}
 }
 %
 \and
@@ -117,7 +117,7 @@
    \strut
 }
 {
-   \exNil, \rbrack \dbwdarrow \rbrack
+   \exNil, \sExNil \dbwdarrow \sExNil
 }
 \and
 %
@@ -130,7 +130,7 @@
    e', l \dbwdarrow l'
 }
 {
-   \exCons{e}{e'}, \ (, s \ l) \darrow , s' \ l'
+   \exCons{e}{e'}, \ (\sExCons{s}{l}) \darrow \sExNil{s'}{l'}
 }
 \end{smathpar}
 \caption{Desugaring list rest - backward slicing}

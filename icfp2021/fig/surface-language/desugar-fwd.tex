@@ -10,7 +10,7 @@
    l \darrow e'
 }
 {
-   \lbrack s \ l \darrow \exCons{e}{e'}
+   \sExList{s}{l} \darrow \exCons{e}{e'}
 }
 %
 \and
@@ -122,7 +122,7 @@
    \strut
 }
 {
-   \rbrack \darrow \exNil
+   \sExNil \darrow \exNil
 }
 \and
 %
@@ -135,7 +135,7 @@
    l \darrow e'
 }
 {
-   , s \ l \darrow \exCons{e}{e'}
+   \sExCons{s}{l} \darrow \exCons{e}{e'}
 }
 \end{smathpar}
 \caption{Desugaring list rest - forward slicing}

@@ -34,7 +34,7 @@
    \Gamma \vdash l : \kw{List A}
 }
 {
-   \Gamma \vdash \lbrack s \ l : \kw{List A}
+   \Gamma \vdash \sExList{s}{l} : \kw{List A}
 }
 %
 \and
@@ -72,7 +72,7 @@
    \strut
 }
 {
-   \Gamma \vdash \ \rbrack : \kw{List A}
+   \Gamma \vdash \ \sExNil : \kw{List A}
 }
 %
 \and
@@ -84,7 +84,7 @@
    \Gamma \vdash l : \kw{List A}
 }
 {
-   \Gamma \vdash , s \ l : \kw{List A}
+   \Gamma \vdash \sExCons{s}{l} : \kw{List A}
 }
 \end{smathpar}
 \caption{Typing rules for list rest}
