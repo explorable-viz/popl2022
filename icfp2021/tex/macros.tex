@@ -97,9 +97,13 @@
 
 % Patterns
 \newcommand*{\pattVar}[1]{#1}
+\newcommand*{\pattTrue}{\exTrue}
+\newcommand*{\pattFalse}{\exFalse}
 \newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\pattNil}{\exNil}
-\newcommand*{\pattSCons}[2]{\lbrack {#1} \cdot {#2} \rbrack}
+\newcommand*{\pattList}[2]{\sExList{#1}{#2}}
+\newcommand*{\pattSCons}[2]{\sExCons{#1}{#2}}
+\newcommand*{\pattSNil}{\sExNil}
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
 
 % Eliminators.

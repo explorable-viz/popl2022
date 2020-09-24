@@ -6,7 +6,7 @@
    \strut
 }
 {
-   \exVar{x}: A \dashv \envEmpty, \exVar{x}: A
+   \pattVar{x}: A \dashv \envEmpty, \exVar{x}: A
 }
 %
 \and
@@ -18,7 +18,7 @@
    p': B \dashv \Gamma'
 }
 {
-   \exPair{p}{p'}: \tyProd{A}{B} \dashv \Gamma \concat \Gamma'
+   \pattPair{p}{p'}: \tyProd{A}{B} \dashv \Gamma \concat \Gamma'
 }
 %
 \and
@@ -28,7 +28,7 @@
    \strut
 }
 {
-   \exNil: \tyList{A} \dashv \envEmpty
+   \pattNil: \tyList{A} \dashv \envEmpty
 }
 %
 \and
@@ -40,7 +40,7 @@
    p': \tyList{A} \dashv \Gamma'
 }
 {
-   \exCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
+   \pattCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 %
 \and
@@ -52,7 +52,7 @@
    o: \tyList{A} \dashv \Gamma'
 }
 {
-   \lbrack p \ o: \tyList{A} \dashv \Gamma \concat \Gamma'
+   \pattList{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
 \caption{Typing rules for patterns}
@@ -66,7 +66,7 @@
    \strut
 }
 {
-   \rbrack : \kw{List A} \dashv \envEmpty
+   \pattSNil : \kw{List A} \dashv \envEmpty
 }
 %
 \and
@@ -78,7 +78,7 @@
    o : \kw{List A} \dashv \Gamma'
 }
 {
-   , p \ o : \kw{List A} \dashv \Gamma \concat \Gamma'
+   \pattSCons{p}{o} : \kw{List A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
 \caption{Typing rules for list pattern rest}

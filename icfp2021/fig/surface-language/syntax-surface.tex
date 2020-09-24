@@ -100,7 +100,7 @@ p
 \text{cons}
 \\
 &&&
-\lbrack p \ o
+\pattList{p}{o}
 &
 \text{non-empty list}
 \\
@@ -116,12 +116,12 @@ o
 &
 ::=
 &
-\rbrack
+\pattSNil
 &
 \text{end}
 \\
 &&&
-, p \ o
+\pattSCons{p}{o}
 &
 \text{cons}
 \\[2mm]

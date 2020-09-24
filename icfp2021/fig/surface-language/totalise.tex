@@ -3,25 +3,25 @@
 \begin{salign}
    \totalise{x}{\kappa} &= \{ x \mapsto \kappa \}
    \\
-   \totalise{\exTrue}{\kappa} &= \{\exTrue \mapsto \kappa, \exFalse \mapsto \exNil\}
+   \totalise{\pattTrue}{\kappa} &= \{\exTrue \mapsto \kappa, \exFalse \mapsto \exNil\}
    \\
-   \totalise{\exFalse}{\kappa} &= \{\exTrue \mapsto \exNil, \exFalse \mapsto \kappa\}
+   \totalise{\pattFalse}{\kappa} &= \{\exTrue \mapsto \exNil, \exFalse \mapsto \kappa\}
    \\
    \totalise{\pattPair{p_1}{p_2}}{\kappa} &= \langle \totalise{p_1}{\totalise{p_2}{\kappa}} \rangle
    \\
-   \totalise{\exNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{(:)} \ \{x \mapsto xs \mapsto \kw{[]}\}\}
+   \totalise{\pattNil}{\kappa} &= \{\exNil \mapsto \kappa, (\symCons) \ \{x \mapsto xs \mapsto \kw{[]}\}\}
    \\
-   \totalise{\pattCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{(:)} \ \totalise{p}{\totalise{p'}{\kappa}} \}
+   \totalise{\pattCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, (\symCons) \ \totalise{p}{\totalise{p'}{\kappa}} \}
    \\
-   \totalise{\lbrack p \ o}{\kappa} &= \{\exNil \mapsto \exNil, \kw{(:)} \ \totalise{p}{\totaliseRest{o}{\kappa}} \}
+   \totalise{\pattList{p}{o}}{\kappa} &= \{\exNil \mapsto \exNil, (\symCons) \ \totalise{p}{\totaliseRest{o}{\kappa}} \}
    \\
 \end{salign}
 
 \flushleft\shadebox{totaliseRest o $\kappa = \sigma$ }
 \begin{salign}
-   \totaliseRest{\rbrack}{\kappa} &= \{\exNil \mapsto \kappa, \kw{(:)} \ \{x \mapsto xs \mapsto \kw{[]}\} \}
+   \totaliseRest{\pattSNil}{\kappa} &= \{\exNil \mapsto \kappa, (\symCons) \ \{x \mapsto xs \mapsto \kw{[]}\} \}
    \\
-   \totaliseRest{, p \ o}{\kappa} &= \{\exNil \mapsto \exNil, \kw{(:)} \ \totalise{p}{\totaliseRest{o}{\kappa}} \}
+   \totaliseRest{\pattSCons{p}{o}}{\kappa} &= \{\exNil \mapsto \exNil, (\symCons) \ \totalise{p}{\totaliseRest{o}{\kappa}} \}
 \end{salign}
 \caption{Construct total eliminator (from branch)}
 \end{figure}
