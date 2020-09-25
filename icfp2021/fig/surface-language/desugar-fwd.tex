@@ -10,7 +10,7 @@
    l \dfwdarrow e'
 }
 {
-   \sExList{s}{l} \dfwdarrow \exCons{e}{e'}
+   \annot{\sExList{s}{l}}{\alpha} \dfwdarrow \annot{\exCons{e}{e'}}{\alpha}
 }
 %
 \and
@@ -28,9 +28,9 @@
    \sigma = \elimBool{e'}{e^{\twoPrime}}
 }
 {
-   \exIfThenElse{s}{s'}{s^{\twoPrime}}
+   \annot{\exIfThenElse{s}{s'}{s^{\twoPrime}}}{\alpha}
    \dfwdarrow
-   \exLambda{\sigma} \ e
+   \annot{\exLambda{\sigma \ e}}{\alpha}
 }
 %
 \and
@@ -44,7 +44,7 @@
    s' \dfwdarrow e'
 }
 {
-   \exListSeq{s}{s'} \dfwdarrow \range{e}{e'}
+   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{\range{e}{e'}}{\alpha}
 }
 %
 \and
@@ -54,7 +54,7 @@
    s \dfwdarrow e
 }
 {
-   \exListComp{s}{\exTrue} \dfwdarrow \exCons{e}{\exNil}
+   \annot{\exListComp{s}{\exTrue}}{\alpha} \dfwdarrow \annot{\exCons{e}{\exNil}}{\alpha}
 }
 \and
 %
@@ -65,7 +65,7 @@
   \exListComp{s}{q, \exTrue} \dfwdarrow e
 }
 {
-   \exListComp{s}{q} \dfwdarrow e
+  \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow \annot{e}{\alpha}
 }
 \and
 %
@@ -75,8 +75,8 @@
    \dfwdarrow e
 }
 {
-   \exListComp{s}{s', \vec{q}}
-   \dfwdarrow e
+   \annot{\exListComp{s}{s', \vec{q}}}{\alpha}
+   \dfwdarrow \annot{e}{\alpha}
 }
 \and
 %
@@ -89,9 +89,9 @@
    \sigma = \totalise{p}{e}
 }
 {
-   \exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}
+   \annot{\exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}}{\alpha}
    \dfwdarrow
-   \exLambda{\sigma} \ e'
+   \annot{\exLambda{\sigma} \ e'}{\alpha}
 }
 \and
 %
@@ -104,9 +104,9 @@
    s' \dfwdarrow e'
 }
 {
-   \exListComp{s}{\qualGenerator{p}{s'}, \vec{q}}
+   \annot{\exListComp{s}{\qualGenerator{p}{s'}, \vec{q}}}{\alpha}
    \dfwdarrow
-   \kw{concatMap} \ \exLambda{\sigma} \ e'
+   \annot{\kw{concatMap} \ \exLambda{\sigma} \ e'}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (additional forms only)}
