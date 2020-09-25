@@ -29,12 +29,12 @@
 %
 \inferrule*
 {
-   \Gamma \vdash s : \kw{A}
+   \Gamma \vdash s : A
    \\
-   \Gamma \vdash l : \kw{List A}
+   \Gamma \vdash l : \tyList{A}
 }
 {
-   \Gamma \vdash \sExList{s}{l} : \kw{List A}
+   \Gamma \vdash \sExList{s}{l} : \tyList{A}
 }
 %
 \and
@@ -65,14 +65,14 @@
 \end{figure}
 
 \begin{figure}[H]
-\flushleft \shadebox{$\Gamma \vdash l: \kw{List} \ A$}
+\flushleft \shadebox{$\Gamma \vdash l: \tyList{A}$}
 \begin{smathpar}
 \inferrule*
 {
    \strut
 }
 {
-   \Gamma \vdash \ \sExNil : \kw{List A}
+   \Gamma \vdash \ \sExNil : \tyList{A}
 }
 %
 \and
@@ -81,10 +81,10 @@
 {
    \Gamma \vdash s : \kw{A}
    \\
-   \Gamma \vdash l : \kw{List A}
+   \Gamma \vdash l : \tyList{A}
 }
 {
-   \Gamma \vdash \sExCons{s}{l} : \kw{List A}
+   \Gamma \vdash \sExCons{s}{l} : \tyList{A}
 }
 \end{smathpar}
 \caption{Typing rules for list rest}

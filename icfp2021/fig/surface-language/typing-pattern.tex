@@ -59,14 +59,14 @@
 \end{figure}
 
 \begin{figure}[H]
-\flushleft \shadebox{$p: \kw{List} \ A \dashv \Gamma $}
+\flushleft \shadebox{$p: \tyList{A} \dashv \Gamma $}
 \begin{smathpar}
 \inferrule*
 {
    \strut
 }
 {
-   \pattSNil : \kw{List A} \dashv \envEmpty
+   \pattSNil : \tyList{A} \dashv \envEmpty
 }
 %
 \and
@@ -75,10 +75,10 @@
 {
    p : A \dashv \Gamma
    \\
-   o : \kw{List A} \dashv \Gamma'
+   o : \tyList{A} \dashv \Gamma'
 }
 {
-   \pattSCons{p}{o} : \kw{List A} \dashv \Gamma \concat \Gamma'
+   \pattSCons{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
 \caption{Typing rules for list pattern rest}
