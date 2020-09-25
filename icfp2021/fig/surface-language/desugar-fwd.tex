@@ -1,111 +1,111 @@
 \begin{figure}[H]
-\flushleft \shadebox{$s \darrow e$}
+\flushleft \shadebox{$s \dfwdarrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\darrow$-non-empty-list}}
+   lab={\ruleName{$\dfwdarrow$-non-empty-list}}
 ]
 {
-   s \darrow e
+   s \dfwdarrow e
    \\
-   l \darrow e'
+   l \dfwdarrow e'
 }
 {
-   \sExList{s}{l} \darrow \exCons{e}{e'}
+   \sExList{s}{l} \dfwdarrow \exCons{e}{e'}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\darrow$-if-then-else}}
+   lab={\ruleName{$\dfwdarrow$-if-then-else}}
 ]
 {
-   s \darrow e
+   s \dfwdarrow e
    \\
-   s' \darrow e'
+   s' \dfwdarrow e'
    \\
-   s^{\twoPrime} \darrow e^{\twoPrime}
+   s^{\twoPrime} \dfwdarrow e^{\twoPrime}
    \\
    \sigma = \elimBool{e'}{e^{\twoPrime}}
 }
 {
    \exIfThenElse{s}{s'}{s^{\twoPrime}}
-   \darrow
+   \dfwdarrow
    \exLambda{\sigma} \ e
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\darrow$-list-range}},
+   lab={\ruleName{$\dfwdarrow$-list-range}},
 ]
 {
-   s \darrow e
+   s \dfwdarrow e
    \\
-   s' \darrow e'
+   s' \dfwdarrow e'
 }
 {
-   \exListSeq{s}{s'} \darrow \range{e}{e'}
+   \exListSeq{s}{s'} \dfwdarrow \range{e}{e'}
 }
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-done}}]
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
 {
-   s \darrow e
+   s \dfwdarrow e
 }
 {
-   \exListComp{s}{\exTrue} \darrow \exCons{e}{\exNil}
+   \exListComp{s}{\exTrue} \dfwdarrow \exCons{e}{\exNil}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-qual}},
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-qual}},
    right={$q \neq \kw{true}$}
 ]
 {
-  \exListComp{s}{q, \exTrue} \darrow e
+  \exListComp{s}{q, \exTrue} \dfwdarrow e
 }
 {
-   \exListComp{s}{q} \darrow e
+   \exListComp{s}{q} \dfwdarrow e
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-guard}}]
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}}]
 {
    \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
-   \darrow e
+   \dfwdarrow e
 }
 {
    \exListComp{s}{s', \overrightarrow{q}}
-   \darrow e
+   \dfwdarrow e
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-decl}}]
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-decl}}]
 {
-   s' \darrow e'
+   s' \dfwdarrow e'
    \\
-   \exListComp{s}{\overrightarrow{q}} \darrow e
+   \exListComp{s}{\overrightarrow{q}} \dfwdarrow e
    \\
    \sigma = \totalise{p}{e}
 }
 {
    \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
-   \darrow
+   \dfwdarrow
    \exLambda{\sigma} \ e'
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\darrow$-list-comp-gen}}]
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}}]
 {
-   \exListComp{s}{\overrightarrow{q}} \darrow e
+   \exListComp{s}{\overrightarrow{q}} \dfwdarrow e
    \\
    \sigma = \totalise{p}{e}
    \\
-   s' \darrow e'
+   s' \dfwdarrow e'
 }
 {
    \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
-   \darrow
+   \dfwdarrow
    \kw{concatMap} \ \exLambda{\sigma} \ e'
 }
 \end{smathpar}
@@ -113,29 +113,29 @@
 \end{figure}
 
 \begin{figure}[H]
-\flushleft \shadebox{$l \darrow e$}
+\flushleft \shadebox{$l \dfwdarrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\darrow$-end}}
+   lab={\ruleName{$\dfwdarrow$-end}}
 ]
 {
    \strut
 }
 {
-   \sExNil \darrow \exNil
+   \sExNil \dfwdarrow \exNil
 }
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\darrow$-cons}}
+   lab={\ruleName{$\dfwdarrow$-cons}}
 ]
 {
-   s \darrow e
+   s \dfwdarrow e
    \\
-   l \darrow e'
+   l \dfwdarrow e'
 }
 {
-   \sExCons{s}{l} \darrow \exCons{e}{e'}
+   \sExCons{s}{l} \dfwdarrow \exCons{e}{e'}
 }
 \end{smathpar}
 \caption{Desugaring list rest - forward slicing}
