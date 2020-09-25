@@ -71,11 +71,11 @@
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}}]
 {
-   \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
    \dfwdarrow e
 }
 {
-   \exListComp{s}{s', \overrightarrow{q}}
+   \exListComp{s}{s', \vec{q}}
    \dfwdarrow e
 }
 \and
@@ -84,12 +84,12 @@
 {
    s' \dfwdarrow e'
    \\
-   \exListComp{s}{\overrightarrow{q}} \dfwdarrow e
+   \exListComp{s}{\vec{q}} \dfwdarrow e
    \\
    \sigma = \totalise{p}{e}
 }
 {
-   \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
+   \exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}
    \dfwdarrow
    \exLambda{\sigma} \ e'
 }
@@ -97,14 +97,14 @@
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}}]
 {
-   \exListComp{s}{\overrightarrow{q}} \dfwdarrow e
+   \exListComp{s}{\vec{q}} \dfwdarrow e
    \\
    \sigma = \totalise{p}{e}
    \\
    s' \dfwdarrow e'
 }
 {
-   \exListComp{s}{\qualGenerator{p}{s'}, \overrightarrow{q}}
+   \exListComp{s}{\qualGenerator{p}{s'}, \vec{q}}
    \dfwdarrow
    \kw{concatMap} \ \exLambda{\sigma} \ e'
 }

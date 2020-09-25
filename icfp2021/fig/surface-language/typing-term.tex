@@ -5,10 +5,10 @@
 {
    \Gamma \vdash s : A
    \\
-   \Gamma \vdash \overrightarrow{s} : \tyList{A}
+   \Gamma \vdash \vec{s} : \tyList{A}
 }
 {
-   \Gamma \vdash s \concat \overrightarrow{s} : \tyList{A}
+   \Gamma \vdash s \concat \vec{s} : \tyList{A}
 }
 %
 \and
@@ -53,12 +53,12 @@
 %
 \inferrule*
 {
-   \Gamma \vdash \overrightarrow{q} \dashv \Delta
+   \Gamma \vdash \vec{q} \dashv \Delta
    \\
    \Gamma \concat \Delta \vdash s: A
 }
 {
-   \Gamma \vdash \exListComp{s}{\overrightarrow{q}}: \tyList{A}
+   \Gamma \vdash \exListComp{s}{\vec{q}}: \tyList{A}
 }
 \end{smathpar}
 \caption{Typing rules for surface terms}

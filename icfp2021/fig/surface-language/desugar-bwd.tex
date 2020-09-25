@@ -67,11 +67,11 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
-   e, \exIfThenElse{s'}{\exListComp{s}{\overrightarrow{q}}}{\exNil}
+   e, \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
    \dbwdarrow s^{\twoPrime}
 }
 {
-   e, \exListComp{s}{s', \overrightarrow{q}}
+   e, \exListComp{s}{s', \vec{q}}
    \dbwdarrow s^{\twoPrime}
 }
 \and
@@ -82,11 +82,11 @@
    \\
    e = \untotalise{p}{\sigma}
    \\
-   e, \exListComp{s}{\overrightarrow{q}} \dbwdarrow s^{\threePrime}
+   e, \exListComp{s}{\vec{q}} \dbwdarrow s^{\threePrime}
 }
 {
-   \exLambda{\sigma} \ e', \exListComp{s}{\qualDeclaration{p}{s'}, \overrightarrow{q}}
-   \dbwdarrow \exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \overrightarrow{q}}
+   \exLambda{\sigma} \ e', \exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}
+   \dbwdarrow \exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \vec{q}}
 }
 \and
 %
@@ -96,12 +96,12 @@
    \\
    e_{1} = \untotalise{p}{\sigma}
    \\
-   e_{1}, \exListComp{s_1}{\overrightarrow{q}} \dbwdarrow s_{1}'
+   e_{1}, \exListComp{s_1}{\vec{q}} \dbwdarrow s_{1}'
 }
 {
-   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \overrightarrow{q}}
+   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \vec{q}}
    \dbwdarrow
-   \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \overrightarrow{q}}
+   \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \vec{q}}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}
