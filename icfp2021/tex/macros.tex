@@ -61,10 +61,10 @@
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
-\newcommand*{\sExList}[2]{\kw{\lbrack}#1 \ #2}
-\newcommand*{\exList}[1]{\kw{\lbrack}\;{#1}\;\kw{\rbrack}}
-\newcommand*{\exListSeq}[2]{\kw{\lbrack}\;{#1}\;\kw{..}\;{#2}\;\kw{\rbrack}}
-\newcommand*{\exListComp}[2]{\kw{\lbrack}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{\rbrack}}
+\newcommand*{\sExList}[2]{\kw{[}#1 \ #2}
+\newcommand*{\exList}[1]{\kw{[}\;{#1}\;\kw{]}}
+\newcommand*{\exListSeq}[2]{\kw{[}\;{#1}\;\kw{..}\;{#2}\;\kw{]}}
+\newcommand*{\exListComp}[2]{\kw{[}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{]}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
@@ -80,13 +80,15 @@
 \newcommand*{\exRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
+
+% Branches
 \newcommand*{\branchCons}[1]{(\symCons)\mapsto{#1}}
 \newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
-\newcommand*{\branchEList}[1]{\{\lbrack\rbrack\mapsto{#1}\}}
-\newcommand*{\branchNEList}[1]{\{ \lbrack p \cdot p' \rbrack \mapsto{#1}\}  }
+\newcommand*{\branchEList}[1]{\{\exNil\mapsto{#1}\}}
+\newcommand*{\branchNEList}[1]{\{ \kw{[} p \cdot p' \kw{]} \mapsto{#1}\}  }
 
 % List rest
-\newcommand*{\sExNil}{\kw{\rbrack}}
+\newcommand*{\sExNil}{\kw{]}}
 \newcommand*{\sExCons}[2]{, #1 \ #2}
 
 
