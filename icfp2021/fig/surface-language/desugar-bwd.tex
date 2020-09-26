@@ -28,9 +28,11 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \exLambda{(\elimBool{e_2}{e_{3}^{\twoPrime}})} \ e_{1}, \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   \annot{(\exLambda{(\elimBool{e_{2}}{e_{3}^{\twoPrime}})} \ e_{1})}{\alpha}
+   ,
+   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+   \annot{\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}}{\alpha}
 }
 %
 \and
@@ -44,7 +46,11 @@
    e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \range{e_{1}}{e_{2}}, \exListSeq{s_{1}}{s_{2}} \dbwdarrow \exListSeq{s_{1}'}{s_{2}'}
+   \annot{\range{e_{1}}{e_{2}}}{\alpha}
+   ,
+   \exListSeq{s_{1}}{s_{2}}
+   \dbwdarrow
+   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha}
 }
 %
 \and
@@ -54,27 +60,38 @@
    e, s \dbwdarrow s'
 }
 {
-   \exCons{e}{\exNil}, \exListComp{s}{\exTrue} \dbwdarrow  \exList{s'}
+   \annot{\exCons{e}{\exNil}}{\alpha}
+   ,
+   \exListComp{s}{\exTrue}
+   \dbwdarrow
+   \annot{\exList{s'}}{\alpha}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
 {
-  e, \exListComp{s}{q, \exTrue} \dbwdarrow s'
+   \annot{e}{\alpha}, \exListComp{s}{q, \exTrue} \dbwdarrow \annot{s'}{\alpha}
 }
 {
-   e, \exListComp{s}{q} \dbwdarrow s'
+   \annot{e}{\alpha}
+   ,
+   \exListComp{s}{q}
+   \dbwdarrow
+   \annot{s'}{\alpha}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
-   e, \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
-   \dbwdarrow s^{\twoPrime}
+   \annot{e}{\alpha}, \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
+   \dbwdarrow \annot{s^{\twoPrime}}{\alpha}
 }
 {
-   e, \exListComp{s}{s', \vec{q}}
-   \dbwdarrow s^{\twoPrime}
+   \annot{e}{\alpha}
+   ,
+   \exListComp{s}{s', \vec{q}}
+   \dbwdarrow
+   \annot{s^{\twoPrime}}{\alpha}
 }
 \and
 %
@@ -87,8 +104,11 @@
    e, \exListComp{s}{\vec{q}} \dbwdarrow s^{\threePrime}
 }
 {
-   \exLambda{\sigma} \ e', \exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}
-   \dbwdarrow \exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \vec{q}}
+   \annot{\exLambda{\sigma} \ e'}{\alpha}
+   ,
+   \exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}
+   \dbwdarrow
+   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \vec{q}}}{\alpha}
 }
 \and
 %
@@ -101,9 +121,11 @@
    e_{1}, \exListComp{s_1}{\vec{q}} \dbwdarrow s_{1}'
 }
 {
-   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \vec{q}}
+   \annot{(\kw{concatMap} \ \exLambda{\sigma} \ e_{2})}{\alpha}
+   ,
+   \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \vec{q}}
    \dbwdarrow
-   \exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \vec{q}}
+   \annot{\exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \vec{q}}}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}
@@ -119,7 +141,11 @@
    \strut
 }
 {
-   \exNil, \sExNil \dbwdarrow \sExNil
+   \exNil
+   ,
+   \sExNil
+   \dbwdarrow
+   \sExNil
 }
 \and
 %
@@ -132,7 +158,11 @@
    e', l \dbwdarrow l'
 }
 {
-   \exCons{e}{e'}, \ \sExCons{s}{l} \darrow \sExCons{s'}{l'}
+   \exCons{e}{e'}
+   ,
+   \ \sExCons{s}{l}
+   \darrow
+   \sExCons{s'}{l'}
 }
 \end{smathpar}
 \caption{Desugaring list rest - backward slicing}
