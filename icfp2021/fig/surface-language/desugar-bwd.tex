@@ -70,7 +70,7 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
 {
-   e, \exListComp{s}{q, \exTrue} \dbwdarrow s'
+   e, \exListComp{s}{q \comma \exTrue} \dbwdarrow s'
 }
 {
    e
@@ -89,7 +89,7 @@
 {
    e
    ,
-   \exListComp{s}{s', \vec{q}}
+   \exListComp{s}{s' \comma \vec{q}}
    \dbwdarrow
    s^{\twoPrime}
 }
@@ -106,9 +106,9 @@
 {
    \annot{(\exLambda{\sigma} \ e')}{\alpha}
    ,
-   \exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}
+   \exListComp{s}{\qualDeclaration{p}{s'} \comma \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}}, \vec{q}}}{\alpha}
+   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}} \comma \vec{q}}}{\alpha}
 }
 \and
 %
@@ -123,9 +123,9 @@
 {
    \annot{(\kw{concatMap} \ \exLambda{\sigma} \ e_{2})}{\alpha}
    ,
-   \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \vec{q}}
+   \exListComp{s_{1}}{\qualGenerator{p}{s_{2}} \comma \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \vec{q}}}{\alpha}
+   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \comma \vec{q}}}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}

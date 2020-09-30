@@ -62,7 +62,7 @@
    right={$q \neq \kw{true}$}
 ]
 {
-  \annot{\exListComp{s}{q, \exTrue}}{\alpha} \dfwdarrow \annot{e}{\alpha}
+  \annot{\exListComp{s}{q \comma \exTrue}}{\alpha} \dfwdarrow \annot{e}{\alpha}
 }
 {
   \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow \annot{e}{\alpha}
@@ -75,7 +75,7 @@
    \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{s', \vec{q}}}{\alpha}
+   \annot{\exListComp{s}{s' \comma \vec{q}}}{\alpha}
    \dfwdarrow \annot{e}{\alpha}
 }
 \and
@@ -89,7 +89,7 @@
    \sigma = \totalise{p}{e}
 }
 {
-   \annot{\exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}}{\alpha}
+   \annot{\exListComp{s}{\qualDeclaration{p}{s'} \comma \vec{q}}}{\alpha}
    \dfwdarrow
    \annot{(\exLambda{\sigma} \ e')}{\alpha}
 }
@@ -104,7 +104,7 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListComp{s}{\qualGenerator{p}{s'}, \vec{q}}}{\alpha}
+   \annot{\exListComp{s}{\qualGenerator{p}{s'} \comma \vec{q}}}{\alpha}
    \dfwdarrow
    \annot{(\kw{concatMap} \ \exLambda{\sigma} \ e')}{\alpha}
 }
