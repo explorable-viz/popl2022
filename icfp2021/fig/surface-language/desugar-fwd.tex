@@ -10,7 +10,7 @@
    l \dfwdarrow e'
 }
 {
-   \annot{\sExList{s}{l}}{\alpha} \dfwdarrow \annot{\exCons{e}{e'}}{\alpha}
+   \annot{(\sExList{s}{l} \ )}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
 }
 %
 \and
@@ -28,9 +28,9 @@
    \sigma = \elimBool{e'}{e^{\twoPrime}}
 }
 {
-   \annot{\exIfThenElse{s}{s'}{s^{\twoPrime}}}{\alpha}
+   \annot{(\exIfThenElse{s}{s'}{s^{\twoPrime}})}{\alpha}
    \dfwdarrow
-   \annot{\exLambda{\sigma \ e}}{\alpha}
+   \annot{(\exLambda{\sigma \ e})}{\alpha}
 }
 %
 \and
@@ -44,7 +44,7 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{\range{e}{e'}}{\alpha}
+   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\range{e}{e'})}{\alpha}
 }
 %
 \and
@@ -54,7 +54,7 @@
    s \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\exTrue}}{\alpha} \dfwdarrow \annot{\exCons{e}{\exNil}}{\alpha}
+   \annot{\exListComp{s}{\exTrue}}{\alpha} \dfwdarrow \annot{(\exCons{e}{\exNil})}{\alpha}
 }
 \and
 %
@@ -71,7 +71,7 @@
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}}]
 {
-   \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
+   \annot{\exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}}{\alpha}
    \dfwdarrow e
 }
 {
@@ -91,7 +91,7 @@
 {
    \annot{\exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}}{\alpha}
    \dfwdarrow
-   \annot{\exLambda{\sigma} \ e'}{\alpha}
+   \annot{(\exLambda{\sigma} \ e')}{\alpha}
 }
 \and
 %
@@ -106,7 +106,7 @@
 {
    \annot{\exListComp{s}{\qualGenerator{p}{s'}, \vec{q}}}{\alpha}
    \dfwdarrow
-   \annot{\kw{concatMap} \ \exLambda{\sigma} \ e'}{\alpha}
+   \annot{(\kw{concatMap} \ \exLambda{\sigma} \ e')}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (additional forms only)}

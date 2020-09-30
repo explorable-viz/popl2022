@@ -10,9 +10,9 @@
    e', l \dbwdarrow l'
 }
 {
-   \annot{\exCons{e}{e'}}{\alpha}, \sExList{s}{l}
+   \annot{(\exCons{e}{e'})}{\alpha}, \sExList{s}{l}
    \dbwdarrow
-   \annot{\sExList{s'}{l'}}{\alpha}
+   \annot{(\sExList{s'}{l'})}{\alpha}
 }
 %
 \and
@@ -28,11 +28,11 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \annot{(\exLambda{(\elimBool{e_{2}}{e_{3}^{\twoPrime}})} \ e_{1})}{\alpha}
+   \annot{(\exLambda{\elimBool{e_{2}}{e_{3}^{\twoPrime}}} \ e_{1})}{\alpha}
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \annot{\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}}{\alpha}
+   \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{\alpha}
 }
 %
 \and
@@ -46,7 +46,7 @@
    e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \annot{\range{e_{1}}{e_{2}}}{\alpha}
+   \annot{(\range{e_{1}}{e_{2}})}{\alpha}
    ,
    \exListSeq{s_{1}}{s_{2}}
    \dbwdarrow
@@ -60,7 +60,7 @@
    e, s \dbwdarrow s'
 }
 {
-   \annot{\exCons{e}{\exNil}}{\alpha}
+   \annot{(\exCons{e}{\exNil})}{\alpha}
    ,
    \exListComp{s}{\exTrue}
    \dbwdarrow
@@ -70,28 +70,28 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
 {
-   \annot{e}{\alpha}, \exListComp{s}{q, \exTrue} \dbwdarrow \annot{s'}{\alpha}
+   e, \exListComp{s}{q, \exTrue} \dbwdarrow s'
 }
 {
-   \annot{e}{\alpha}
+   e
    ,
    \exListComp{s}{q}
    \dbwdarrow
-   \annot{s'}{\alpha}
+   s'
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
-   \annot{e}{\alpha}, \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
-   \dbwdarrow \annot{s^{\twoPrime}}{\alpha}
+   e, \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
+   \dbwdarrow s^{\twoPrime}
 }
 {
-   \annot{e}{\alpha}
+   e
    ,
    \exListComp{s}{s', \vec{q}}
    \dbwdarrow
-   \annot{s^{\twoPrime}}{\alpha}
+   s^{\twoPrime}
 }
 \and
 %
@@ -104,7 +104,7 @@
    e, \exListComp{s}{\vec{q}} \dbwdarrow s^{\threePrime}
 }
 {
-   \annot{\exLambda{\sigma} \ e'}{\alpha}
+   \annot{(\exLambda{\sigma} \ e')}{\alpha}
    ,
    \exListComp{s}{\qualDeclaration{p}{s'}, \vec{q}}
    \dbwdarrow
@@ -125,7 +125,7 @@
    ,
    \exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}}{\qualGenerator{p}{s_{2}}, \vec{q}}}{\alpha}
+   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'}, \vec{q}}}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}
