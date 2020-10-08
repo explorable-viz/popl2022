@@ -46,11 +46,11 @@
    e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \annot{(\range{e_{1}}{e_{2}})}{\alpha}
+   \annot{(\annot{(\kw{range} \ e_1)}{\alpha_1}{e_2})}{\alpha_2}
    ,
    \exListSeq{s_{1}}{s_{2}}
    \dbwdarrow
-   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha}
+   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha_1 \meet \alpha_2}
 }
 %
 \and
@@ -89,7 +89,7 @@
 {
    e
    ,
-   \exListComp{s}{s' \comma \vec{q}}
+   \exListComp{s}{\qualGuard{s'} \comma \vec{q}}
    \dbwdarrow
    s^{\twoPrime}
 }
@@ -121,11 +121,11 @@
    e_{1}, \exListComp{s_1}{\vec{q}} \dbwdarrow s_{1}'
 }
 {
-   \annot{(\kw{concatMap} \ \exLambda{\sigma} \ e_{2})}{\alpha}
+   \annot{(\annot{(\kw{concatMap} \ \exLambda{\sigma})}{\alpha_1} \ e_2)}{\alpha_2}
    ,
    \exListComp{s_{1}}{\qualGenerator{p}{s_{2}} \comma \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \comma \vec{q}}}{\alpha}
+   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \comma \vec{q}}}{\alpha_1 \meet \alpha_2}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}
@@ -141,11 +141,11 @@
    \strut
 }
 {
-   \exNil
+   \annot{\exNil}{\alpha}
    ,
    \sExNil
    \dbwdarrow
-   \sExNil
+   \annot{\sExNil}{\alpha}
 }
 \and
 %
@@ -158,11 +158,11 @@
    e', l \dbwdarrow l'
 }
 {
-   \exCons{e}{e'}
+   \annot{(\exCons{e}{e'})}{\alpha}
    ,
    \ \sExCons{s}{l}
    \darrow
-   \sExCons{s'}{l'}
+   \sExConsAnnot{\alpha}{s'}{l'}
 }
 \end{smathpar}
 \caption{Desugaring list rest - backward slicing}

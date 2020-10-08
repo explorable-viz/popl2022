@@ -88,10 +88,11 @@
 % List rest
 \newcommand*{\sExNil}{\kw{]}}
 \newcommand*{\sExCons}[2]{\kw{,} \ #1 \ #2}
+\newcommand*{\sExConsAnnot}[3]{\annot{\kw{,}}{#1} \ #2 \ #3}
 
 
 % Qualifiers
-\newcommand*{\qualGuard}[1]{#1}
+\newcommand*{\qualGuard}[1]{\kw{if}\;{#1}}
 \newcommand*{\qualDeclaration}[2]{\kw{let}\;{#1}={#2}}
 \newcommand*{\qualGenerator}[2]{{#1}\;\kw{$\leftarrow$}\;{#2}}
 

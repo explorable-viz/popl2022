@@ -44,7 +44,7 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\range{e}{e'})}{\alpha}
+   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\annot{(\kw{range} \ e)}{\alpha}{e'})}{\alpha}
 }
 %
 \and
@@ -54,7 +54,9 @@
    s \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\exTrue}}{\alpha} \dfwdarrow \annot{(\exCons{e}{\exNil})}{\alpha}
+   \annot{\exListComp{s}{\annot{\exTrue}{\alpha_1}}}{\alpha_2}
+   \dfwdarrow
+   \annot{(\exCons{e}{\exNil})}{\alpha_1 \meet \alpha_2}
 }
 \and
 %
@@ -62,21 +64,21 @@
    right={$q \neq \kw{true}$}
 ]
 {
-  \annot{\exListComp{s}{q \comma \exTrue}}{\alpha} \dfwdarrow \annot{e}{\alpha}
+  \annot{\exListComp{s}{q \comma \exTrue}}{\alpha} \dfwdarrow e
 }
 {
-  \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow \annot{e}{\alpha}
+  \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}}]
 {
-   \annot{\exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}}{\alpha}
+   \annot{(\exIfThenElse{s'}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}}{\annot{\exNil}{\alpha_1 \join \alpha_2}})}{\alpha_2}
    \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{s' \comma \vec{q}}}{\alpha}
-   \dfwdarrow \annot{e}{\alpha}
+   \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \ \vec{q}}}{\alpha_2}
+   \dfwdarrow e
 }
 \and
 %
@@ -84,29 +86,29 @@
 {
    s' \dfwdarrow e'
    \\
-   \exListComp{s}{\vec{q}} \dfwdarrow e
+   \annot{\exListComp{s}{\vec{q}}}{\alpha_2} \dfwdarrow e
    \\
    \sigma = \totalise{p}{e}
 }
 {
-   \annot{\exListComp{s}{\qualDeclaration{p}{s'} \comma \vec{q}}}{\alpha}
+   \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \comma \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exLambda{\sigma} \ e')}{\alpha}
+   \annot{(\exLambda{\sigma} \ e')}{\alpha_1 \join \alpha_2}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}}]
 {
-   \exListComp{s}{\vec{q}} \dfwdarrow e
+   \annot{\exListComp{s}{\vec{q}}}{\alpha_2} \dfwdarrow e
    \\
    \sigma = \totalise{p}{e}
    \\
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListComp{s}{\qualGenerator{p}{s'} \comma \vec{q}}}{\alpha}
+   \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \comma \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\kw{concatMap} \ \exLambda{\sigma} \ e')}{\alpha}
+   \annot{(\annot{(\kw{concatMap} \ \exLambda{\sigma})}{\alpha_1 \join \alpha_2} \ e')}{\alpha_1 \join \alpha_2}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (additional forms only)}
@@ -122,7 +124,7 @@
    \strut
 }
 {
-   \sExNil \dfwdarrow \exNil
+   \annot{\sExNil}{\alpha} \dfwdarrow \annot{\exNil}{\alpha}
 }
 \and
 %
@@ -135,7 +137,7 @@
    l \dfwdarrow e'
 }
 {
-   \sExCons{s}{l} \dfwdarrow \exCons{e}{e'}
+   \sExConsAnnot{\alpha}{s}{l} \dfwdarrow \annot{{\exCons{e}{e'}}}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring list rest - forward slicing}
