@@ -11,6 +11,11 @@ t
 \text{raw terms}
 \\
 &&&
+\sExLet{f}{c}{s}
+&
+\text{recursive function}
+\\
+&&&
 \exIfThenElse{s}{s'}{s^{\twoPrime}}
 &
 \text{if}
@@ -124,6 +129,17 @@ o
 \pattSCons{p}{o}
 &
 \text{cons}
+\\[2mm]
+
+\mbox{Clause}
+&
+c
+&
+::=
+&
+\clause{p}{s}
+&
+\text{clause (non-empty $\vec{p}$)}
 \\[2mm]
 \end{syntaxfig}
 \caption{Syntax of surface-language terms}

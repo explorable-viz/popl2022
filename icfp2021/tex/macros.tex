@@ -68,6 +68,7 @@
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
+\newcommand*{\sExLet}[3]{\kw{let}\;{#1}\;{\vec{#2}}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\,\kw{rec}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
@@ -90,6 +91,8 @@
 \newcommand*{\sExCons}[2]{\kw{,} \ #1 \ #2}
 \newcommand*{\sExConsAnnot}[3]{\annot{\kw{,}}{#1} \ #2 \ #3}
 
+% Clause
+\newcommand*{\clause}[2]{\vec{{#1}}={#2}}
 
 % Qualifiers
 \newcommand*{\qualGuard}[1]{\kw{if}\;{#1}}
