@@ -89,7 +89,7 @@
    \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \ \comma \vec{q}}}{\alpha_2}
+   \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow e
 }
 \and
@@ -103,7 +103,7 @@
    \sigma = \totalise{p}{e}
 }
 {
-   \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \comma \vec{q}}}{\alpha_2}
+   \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
    \annot{(\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
 }
@@ -118,7 +118,7 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \comma \vec{q}}}{\alpha_2}
+   \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
    \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2})}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
 }

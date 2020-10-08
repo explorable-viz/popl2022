@@ -101,7 +101,7 @@
 {
    e
    ,
-   \exListComp{s}{\qualGuard{s'} \comma \vec{q}}
+   \exListComp{s}{\qualGuard{s'} \cdot \vec{q}}
    \dbwdarrow
    s^{\twoPrime}
 }
@@ -118,9 +118,9 @@
 {
    \annot{(\annot{\exLambda{\sigma}}{\alpha_1} \ e')}{\alpha_2}
    ,
-   \exListComp{s}{\qualDeclaration{p}{s'} \comma \vec{q}}
+   \exListComp{s}{\qualDeclaration{p}{s'} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}} \comma \vec{q}}}{\alpha_1 \join \alpha_2}
+   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}} \cdot \vec{q}}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
@@ -135,9 +135,9 @@
 {
    \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1})}{\alpha_2} \ e_2)}{\alpha_3}
    ,
-   \exListComp{s_{1}}{\qualGenerator{p}{s_{2}} \comma \vec{q}}
+   \exListComp{s_{1}}{\qualGenerator{p}{s_{2}} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \comma \vec{q}}}{\alpha_1 \join \alpha_2 \join \alpha_3}
+   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \cdot \vec{q}}}{\alpha_1 \join \alpha_2 \join \alpha_3}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}
