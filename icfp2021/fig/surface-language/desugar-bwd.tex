@@ -2,6 +2,18 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-empty-list}}
+]
+{
+   \strut
+}
+{
+   \annot{\exNil}{\alpha}, \exNil \dbwdarrow \annot{\exNil}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-non-empty-list}}
 ]
 {
@@ -28,11 +40,11 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \annot{(\exLambda{\elimBool{e_{2}}{e_{3}^{\twoPrime}}} \ e_{1})}{\alpha}
+   \annot{( \annot{\exLambda{\elimBool{e_{2}}{e_{3}^{\twoPrime}}}}{\alpha_1} \ e_{1})}{\alpha_2}
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{\alpha}
+   \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{\alpha_1 \join \alpha_2}
 }
 %
 \and
@@ -50,7 +62,7 @@
    ,
    \exListSeq{s_{1}}{s_{2}}
    \dbwdarrow
-   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha_1 \meet \alpha_2}
+   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha_1 \join \alpha_2}
 }
 %
 \and
@@ -60,11 +72,11 @@
    e, s \dbwdarrow s'
 }
 {
-   \annot{(\exCons{e}{\exNil})}{\alpha}
+   \annot{(\exCons{e}{\annot{\exNil}{\alpha_1}})}{\alpha_2}
    ,
    \exListComp{s}{\exTrue}
    \dbwdarrow
-   \annot{\exList{s'}}{\alpha}
+   \annot{\exList{s'}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
@@ -104,11 +116,11 @@
    e, \exListComp{s}{\vec{q}} \dbwdarrow s^{\threePrime}
 }
 {
-   \annot{(\exLambda{\sigma} \ e')}{\alpha}
+   \annot{(\annot{\exLambda{\sigma}}{\alpha_1} \ e')}{\alpha_2}
    ,
    \exListComp{s}{\qualDeclaration{p}{s'} \comma \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}} \comma \vec{q}}}{\alpha}
+   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}} \comma \vec{q}}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
@@ -121,11 +133,11 @@
    e_{1}, \exListComp{s_1}{\vec{q}} \dbwdarrow s_{1}'
 }
 {
-   \annot{(\annot{(\kw{concatMap} \ \exLambda{\sigma})}{\alpha_1} \ e_2)}{\alpha_2}
+   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1})}{\alpha_2} \ e_2)}{\alpha_3}
    ,
    \exListComp{s_{1}}{\qualGenerator{p}{s_{2}} \comma \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \comma \vec{q}}}{\alpha_1 \meet \alpha_2}
+   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \comma \vec{q}}}{\alpha_1 \join \alpha_2 \join \alpha_3}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}

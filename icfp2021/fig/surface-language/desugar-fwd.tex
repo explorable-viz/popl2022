@@ -2,6 +2,18 @@
 \flushleft \shadebox{$s \dfwdarrow e$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\dfwdarrow$-empty-list}}
+]
+{
+   \strut
+}
+{
+   \annot{\exNil}{\alpha} \dfwdarrow \annot{\exNil}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dfwdarrow$-non-empty-list}}
 ]
 {
@@ -30,7 +42,7 @@
 {
    \annot{(\exIfThenElse{s}{s'}{s^{\twoPrime}})}{\alpha}
    \dfwdarrow
-   \annot{(\exLambda{\sigma \ e})}{\alpha}
+   \annot{(\annot{\exLambda{\sigma}}{\alpha} \ e)}{\alpha}
 }
 %
 \and
@@ -56,7 +68,7 @@
 {
    \annot{\exListComp{s}{\annot{\exTrue}{\alpha_1}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exCons{e}{\exNil})}{\alpha_1 \meet \alpha_2}
+   \annot{(\exCons{e}{\annot{\exNil}{\alpha_1 \meet \alpha_2}})}{\alpha_1 \meet \alpha_2}
 }
 \and
 %
@@ -73,11 +85,11 @@
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}}]
 {
-   \annot{(\exIfThenElse{s'}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}}{\annot{\exNil}{\alpha_1 \join \alpha_2}})}{\alpha_2}
+   \annot{(\exIfThenElse{s'}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}}{\annot{\exNil}{\alpha_1 \meet \alpha_2}})}{\alpha_2}
    \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \ \vec{q}}}{\alpha_2}
+   \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \ \comma \vec{q}}}{\alpha_2}
    \dfwdarrow e
 }
 \and
@@ -93,7 +105,7 @@
 {
    \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \comma \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exLambda{\sigma} \ e')}{\alpha_1 \join \alpha_2}
+   \annot{(\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
 }
 \and
 %
@@ -108,7 +120,7 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \comma \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{(\kw{concatMap} \ \exLambda{\sigma})}{\alpha_1 \join \alpha_2} \ e')}{\alpha_1 \join \alpha_2}
+   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2})}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (additional forms only)}
