@@ -15,14 +15,14 @@
 %
 \inferrule*
 {
-   \Gamma \vdash s: \tyBool
+   \forall c \in \vec{c}.
    \\
-   \Gamma \vdash s': A
+   \Gamma , f : \tyFun{A}{B} \vdash c \dashv \Delta
    \\
-   \Gamma \vdash s^{\twoPrime}: A
+   \Gamma , f : \tyFun{A}{B} \vdash s: B'
 }
 {
-   \Gamma \vdash \sExLet{f}{c}{s}: A
+   \Gamma \vdash \sExLet{f}{c}{s}: B'
 }
 %
 \and
