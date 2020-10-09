@@ -41,7 +41,19 @@
 %
 \and
 %
-
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-cons}}
+]
+{
+   s \dfwdarrow e
+   \\
+   s' \dfwdarrow e'
+}
+{
+   \annot{(\exCons{s}{s'})}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
+}
+%
+\and
 %TODO
 \inferrule*[
    lab={\ruleName{$\dfwdarrow$-recursive-function}}

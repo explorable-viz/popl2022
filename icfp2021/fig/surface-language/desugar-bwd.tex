@@ -46,6 +46,22 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-cons}}
+]
+{
+   e \dbwdarrow s
+   \\
+   e' \dbwdarrow s'
+}
+{
+   \annot{(\exCons{e}{e'})}{\alpha}, (\exCons{s}{s'})
+   \dbwdarrow
+   \annot{(\exCons{s}{s'})}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-if-then-else}}
 ]
 {
