@@ -2,6 +2,22 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-application}}
+]
+{
+   e \dfwdarrow s
+   \\
+   e' \dfwdarrow s'
+}
+{
+   \annot{(e \ e')}{\alpha}, (s \ s')
+   \dbwdarrow
+   \annot{(s \ s')}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-empty-list}}
 ]
 {
@@ -40,7 +56,7 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \annot{( \annot{\exLambda{\elimBool{e_{2}}{e_{3}^{\twoPrime}}}}{\alpha_1} \ e_{1})}{\alpha_2}
+   \annot{( \annot{\exLambda{\elimBool{e_{2}}{e_{3}}}}{\alpha_1} \ e_{1})}{\alpha_2}
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow

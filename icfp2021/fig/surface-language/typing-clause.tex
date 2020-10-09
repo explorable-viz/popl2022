@@ -1,14 +1,14 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\Gamma \vdash c \dashv \Delta $}
+\flushleft \shadebox{$\Gamma \vdash c $}
 \begin{smathpar}
 \inferrule*
 {
-   \Gamma \vdash \vec{p}: \tyList{A} \dashv \Delta
+   \vec{p}: A \dashv \Gamma'
    \\
-   \Gamma \vdash s: A
+   \Gamma \cdot \Gamma' \vdash s: B
 }
 {
-   \Gamma \vdash \clause{p}{s} \dashv \Delta,  s: A
+   \Gamma \vdash \clause{p}{s} : \tyFun{A}{B}
 }
 \end{smathpar}
 \caption{Typing rules for clauses}
