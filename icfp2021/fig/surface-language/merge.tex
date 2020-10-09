@@ -18,16 +18,17 @@
    \\
    \elim{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\matchHole}}{\branchCons{s \mapsto s' \mapsto \kappa}}
    \\
-   \elim{\pattList{p}{o}}{\kappa} &=
+   \elim{\pattList{p}{o}}{\kappa} &= \elim{\pattSCons{p}{o}}{\kappa}
    \\
-   \elim{\pattPair{p}{p'}}{\kappa} &=
+   \elim{\pattPair{p}{p'}}{\kappa} &= \elimProd{\elim{p}{\elim{p'}{\kappa}}}
    \\
 \end{salign}
 
 \flushleft\shadebox{elim $o \ \kappa = \sigma$ }
 \begin{salign}
-   \elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}
+   \elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}  ???
    \\
+   \elim{\pattSCons{p}{o}}{\kappa} &= \elimList{\elim{p}{\kappa}}{\elim{o}{\kappa}}
 \end{salign}
 
 \caption{Elim}
