@@ -1,0 +1,15 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\Gamma \vdash c \dashv \Delta $}
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \vdash \vec{p}: \tyList{A} \dashv \Delta
+   \\
+   \Gamma \vdash s: A
+}
+{
+   \Gamma \vdash \clause{p}{s} \dashv \Delta,  s: A
+}
+\end{smathpar}
+\caption{Typing rules for clauses}
+\end{figure}

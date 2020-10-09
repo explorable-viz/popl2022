@@ -3,34 +3,34 @@
 \begin{smathpar}
 \inferrule*
 {
-   \Gamma \vdash t: \tyBool
+   \Gamma \vdash s: \tyBool
 }
 {
-   \Gamma \vdash t \dashv \envEmpty
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash t: \tyList{A}
-   \\
-   p: A \dashv \Delta
-}
-{
-   \Gamma \vdash \qualGenerator{p}{t} \dashv \Delta
+   \Gamma \vdash \qualGuard{s} \dashv \envEmpty
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash t: A
+   \Gamma \vdash s: \tyList{A}
    \\
    p: A \dashv \Delta
 }
 {
-   \Gamma \vdash \qualDeclaration{p}{t} \dashv \Delta
+   \Gamma \vdash \qualGenerator{p}{s} \dashv \Delta
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s: A
+   \\
+   p: A \dashv \Delta
+}
+{
+   \Gamma \vdash \qualDeclaration{p}{s} \dashv \Delta
 }
 \end{smathpar}
 \caption{Typing rules for qualifiers}

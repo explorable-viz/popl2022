@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$e, t \dbwdarrow t'$}
+\flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-empty-list}}
@@ -8,7 +8,7 @@
    \strut
 }
 {
-   \exNil, \sExNil \dbwdarrow \sExNil
+   \annot{\exNil}{\alpha}, \exNil \dbwdarrow \annot{\exNil}{\alpha}
 }
 %
 \and
@@ -17,12 +17,14 @@
    lab={\ruleName{$\dbwdarrow$-non-empty-list}}
 ]
 {
-   e, t \dbwdarrow t'
+   e, s \dbwdarrow s'
    \\
-   e', \overrightarrow{t} \dbwdarrow t^{\twoPrime}
+   e', l \dbwdarrow l'
 }
 {
-   \exCons{e}{e'}, \sExCons{t}{\overrightarrow{t}} \dbwdarrow \sExCons{t'}{\overrightarrow{t^{\twoPrime}}}
+   \annot{(\exCons{e}{e'})}{\alpha}, \sExList{s}{l}
+   \dbwdarrow
+   \annot{(\sExList{s'}{l'})}{\alpha}
 }
 %
 \and
@@ -31,16 +33,18 @@
    lab={\ruleName{$\dbwdarrow$-if-then-else}}
 ]
 {
-   e_{1}, t_{1} \dbwdarrow t_{1}'
+   e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
-   e_{2}, t_{2} \dbwdarrow t_{2}'
+   e_{2}, s_{2} \dbwdarrow s_{2}'
    \\
-   e_{3}, t_{3} \dbwdarrow t_{3}'
+   e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \exLambda{(\elimBool{e_2}{e_{3}^{\twoPrime}})} \ e_{1}, \exIfThenElse{t_{1}}{t_{2}}{t_{3}}
+   \annot{( \annot{\exLambda{\elimBool{e_{2}}{e_{3}^{\twoPrime}}}}{\alpha_1} \ e_{1})}{\alpha_2}
+   ,
+   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \exIfThenElse{t_{1}'}{t_{2}'}{t_{3}'}
+   \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{\alpha_1 \join \alpha_2}
 }
 %
 \and
@@ -49,73 +53,129 @@
    lab={\ruleName{$\dbwdarrow$-list-range}},
 ]
 {
-   e_{1}, t_{1} \dbwdarrow t_{1}'
+   e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
-   e_{2}, t_{2} \dbwdarrow t_{2}'
+   e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \range{e_{1}}{e_{2}}, \exListSeq{t_{1}}{t_{2}} \dbwdarrow \exListSeq{t_{1}'}{t_{2}'}
+   \annot{(\annot{(\kw{range} \ e_1)}{\alpha_1}{e_2})}{\alpha_2}
+   ,
+   \exListSeq{s_{1}}{s_{2}}
+   \dbwdarrow
+   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha_1 \join \alpha_2}
 }
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-true}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done}}]
 {
-   e, t \dbwdarrow t'
+   e, s \dbwdarrow s'
 }
 {
-   \exCons{e}{\exNil}, \exListComp{t}{\exTrue} \dbwdarrow  \exList{t'}
+   \annot{(\exCons{e}{\annot{\exNil}{\alpha_1}})}{\alpha_2}
+   ,
+   \exListComp{s}{\exTrue}
+   \dbwdarrow
+   \annot{\exList{s'}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
 {
-  e, \exListComp{t}{q, \exTrue} \dbwdarrow t'
+   e, \exListComp{s}{q \comma \exTrue} \dbwdarrow s'
 }
 {
-   e, \exListComp{t}{q} \dbwdarrow t'
+   e
+   ,
+   \exListComp{s}{q}
+   \dbwdarrow
+   s'
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
-   right={$t' \in Bool$} ]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
 {
-   e, \exIfThenElse{t'}{\exListComp{t}{\overrightarrow{q}}}{\sExNil}
-   \dbwdarrow t^{\twoPrime}
+   e, \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
+   \dbwdarrow s^{\twoPrime}
 }
 {
-   e, \exListComp{t}{t', \overrightarrow{q}}
-   \dbwdarrow t^{\twoPrime}
+   e
+   ,
+   \exListComp{s}{\qualGuard{s'} \cdot \vec{q}}
+   \dbwdarrow
+   s^{\twoPrime}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
 {
-   e', t' \dbwdarrow t^{\twoPrime}
+   e', s' \dbwdarrow s^{\twoPrime}
    \\
    e = \untotalise{p}{\sigma}
    \\
-   e, \exListComp{t}{\overrightarrow{q}} \dbwdarrow t^{\threePrime}
+   e, \exListComp{s}{\vec{q}} \dbwdarrow s^{\threePrime}
 }
 {
-   \exLambda{\sigma} \ e', \exListComp{t}{\qualDeclaration{p}{t'}, \overrightarrow{q}}
-   \dbwdarrow \exListComp{t^{\threePrime}}{\qualDeclaration{p}{t^{\twoPrime}}, \overrightarrow{q}}
+   \annot{(\annot{\exLambda{\sigma}}{\alpha_1} \ e')}{\alpha_2}
+   ,
+   \exListComp{s}{\qualDeclaration{p}{s'} \cdot \vec{q}}
+   \dbwdarrow
+   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}} \cdot \vec{q}}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
 {
-   e_{2}, t_{2} \dbwdarrow t_{2}'
+   e_{2}, s_{2} \dbwdarrow s_{2}'
    \\
    e_{1} = \untotalise{p}{\sigma}
    \\
-   e_{1}, \exListComp{t_1}{\overrightarrow{q}} \dbwdarrow t_{1}'
+   e_{1}, \exListComp{s_1}{\vec{q}} \dbwdarrow s_{1}'
 }
 {
-   \kw{concatMap} \ \exLambda{\sigma} \ e_{2}, \exListComp{t_{1}}{\qualGenerator{p}{t_{2}}, \overrightarrow{q}}
+   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1})}{\alpha_2} \ e_2)}{\alpha_3}
+   ,
+   \exListComp{s_{1}}{\qualGenerator{p}{s_{2}} \cdot \vec{q}}
    \dbwdarrow
-   \exListComp{t_{1}'}{\qualGenerator{p}{t_{2}'}, \overrightarrow{q}}
+   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \cdot \vec{q}}}{\alpha_1 \join \alpha_2 \join \alpha_3}
 }
 \end{smathpar}
-\caption{Desugaring - Backward Slicing}
+\caption{Desugaring - backward slicing (additional forms only)}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft \shadebox{$e, l \dbwdarrow l$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\darrow$-end}}
+]
+{
+   \strut
+}
+{
+   \annot{\exNil}{\alpha}
+   ,
+   \sExNil
+   \dbwdarrow
+   \annot{\sExNil}{\alpha}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\darrow$-cons}}
+]
+{
+   e, s \dbwdarrow s'
+   \\
+   e', l \dbwdarrow l'
+}
+{
+   \annot{(\exCons{e}{e'})}{\alpha}
+   ,
+   \ \sExCons{s}{l}
+   \darrow
+   \sExConsAnnot{\alpha}{s'}{l'}
+}
+\end{smathpar}
+\caption{Desugaring list rest - backward slicing}
 \end{figure}

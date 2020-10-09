@@ -1,21 +1,19 @@
 \begin{figure}[H]
-\flushleft\shadebox{\kw{untotalise} :: $p \times \sigma  \rightarrow  \kappa$ }
+\flushleft\shadebox{untotalise p $\sigma = \kappa$}
 \begin{salign}
-   \untotalise{x}{\{ x \mapsto \kappa \}} &= \kappa
+   \untotalise{x}{\elimVar{x}{\kappa}} &= \kappa
    \\
-   \untotalise{\exTrue}{\{\exTrue \mapsto \kappa, \exFalse \mapsto \tau\}} &= \kappa
+   \untotalise{\pattTrue}{\elimBool{\kappa}{\kappa'}} &= \kappa
    \\
-   \untotalise{\exFalse}{\{\exTrue \mapsto \kappa, \exFalse \mapsto \tau\}} &= \tau
+   \untotalise{\pattFalse}{\elimBool{\kappa}{\kappa'}} &= \kappa'
    \\
-   \untotalise{\pattPair{p_1}{p_2}}{\langle (p_1 \mapsto p_2 \mapsto \kappa) \rangle} &= \kappa
+   \untotalise{\pattPair{p_1}{p_2}}{\elimProd{p_1 \mapsto p_2 \mapsto \kappa}} &= \kappa
    \\
-   \untotalise{\pattNil}{\elimList{\exNil \mapsto \kappa}{\kw{Cons} \ \sigma}} &= \kappa
+   \untotalise{\pattNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \kappa
    \\
-   \untotalise{\pattCons{p}{p'}}{\elimList{\exNil \mapsto \kappa}{\kw{Cons} \ (t \mapsto t' \mapsto \tau)}} &= \tau
+   \untotalise{\pattCons{p}{p'}}{\elimList{\branchNil{\kappa}}{\branchCons{s \mapsto s' \mapsto \kappa'}}} &= \kappa'
    \\
-   \untotalise{\sExNil}{\{\kw{Nil} \mapsto \kappa, \kw{Cons} \ \sigma \} } &= \kappa
-   \\
-   \untotalise{\sExCons{p}{p'}}{\kw{Nil} \mapsto \kappa, \kw{Cons} \ (t \mapsto t' \mapsto \tau)} &= \tau
+   \untotalise{\pattList{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{s \mapsto s' \mapsto \kappa'}}} &= \kappa'
 \end{salign}
 \caption{Extract branch body from eliminator}
 \end{figure}

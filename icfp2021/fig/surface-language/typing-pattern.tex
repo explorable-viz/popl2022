@@ -6,7 +6,7 @@
    \strut
 }
 {
-   \exVar{x}: A \dashv \envEmpty, \exVar{x}: A
+   \pattVar{x}: A \dashv \envEmpty, \exVar{x}: A
 }
 %
 \and
@@ -18,7 +18,7 @@
    p': B \dashv \Gamma'
 }
 {
-   \exPair{p}{p'}: \tyProd{A}{B} \dashv \Gamma \concat \Gamma'
+   \pattPair{p}{p'}: \tyProd{A}{B} \dashv \Gamma \concat \Gamma'
 }
 %
 \and
@@ -28,7 +28,7 @@
    \strut
 }
 {
-   \exNil: \tyList{A} \dashv \envEmpty
+   \pattNil: \tyList{A} \dashv \envEmpty
 }
 %
 \and
@@ -40,17 +40,7 @@
    p': \tyList{A} \dashv \Gamma'
 }
 {
-   \exCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
-}
-%
-\and
-%
-\inferrule*
-{
-   \strut
-}
-{
-   \sExNil: \tyList{A} \dashv \envEmpty
+   \pattCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 %
 \and
@@ -59,11 +49,37 @@
 {
    p: A \dashv \Gamma
    \\
-   p': \tyList{A} \dashv \Gamma'
+   o: \tyList{A} \dashv \Gamma'
 }
 {
-   \sExCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
+   \pattList{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
 \caption{Typing rules for patterns}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft \shadebox{$o: \tyList{A} \dashv \Gamma $}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \pattSNil : \tyList{A} \dashv \envEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   p : A \dashv \Gamma
+   \\
+   o : \tyList{A} \dashv \Gamma'
+}
+{
+   \pattSCons{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
+}
+\end{smathpar}
+\caption{Typing rules for list pattern rest}
 \end{figure}

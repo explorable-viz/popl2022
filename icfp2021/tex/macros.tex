@@ -48,64 +48,75 @@
 \newcommand*{\primOp}{\oplus}
 
 % Annotations.
-\newcommand{\annot}[2]{#1_{#2}}
+\newcommand*{\annot}[2]{#1_{#2}}
+
+\newcommand*{\symCons}{\textbf{\kw{:}}}
 
 % Expressions.
 %\newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
-\newcommand*{\exCons}[2]{\kw{Cons}(#1,#2)}
+\newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
 \newcommand*{\exClosure}[3]{(#1,#2,\exLambda{#3})}
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
-\newcommand*{\sExCons}[2]{\kw{\lbrack}\;{#1}\;\cdot\;{#2}\kw{\rbrack}}
-\newcommand*{\sExNil}{\kw{\lbrack}\kw{\rbrack}}
-\newcommand*{\exList}[1]{\kw{\lbrack}\;{#1}\;\kw{\rbrack}}
-\newcommand*{\exListSeq}[2]{\kw{\lbrack}\;{#1}\;\kw{..}\;{#2}\;\kw{\rbrack}}
-\newcommand*{\exListComp}[2]{\kw{\lbrack}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{\rbrack}}
+\newcommand*{\sExList}[2]{\kw{[}#1 \ #2}
+\newcommand*{\exList}[1]{\kw{[}\;{#1}\;\kw{]}}
+\newcommand*{\exListSeq}[2]{\kw{[}\;{#1}\;\kw{..}\;{#2}\;\kw{]}}
+\newcommand*{\exListComp}[2]{\kw{[}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{]}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
+\newcommand*{\sExLet}[3]{\kw{let}\;{#1}\;{\vec{#2}}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\,\kw{rec}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
 \newcommand*{\exLetStructured}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
-\newcommand*{\exNil}{\kw{Nil}}
+\newcommand*{\exNil}{\kw{[]}}
 \newcommand*{\exOp}[1]{(#1)}
 \newcommand*{\exPair}[2]{\langle#1,#2\rangle}
 \newcommand*{\exPrim}[1]{#1}
 \newcommand*{\exRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
-\newcommand*{\branchCons}[1]{\kw{Cons}\;{#1}}
-\newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
-\newcommand*{\branchEList}[1]{\{\lbrack\rbrack\mapsto{#1}\}}
-\newcommand*{\branchNEList}[1]{\{ \lbrack p \cdot p' \rbrack \mapsto{#1}\}  }
 
-%Qualifiers
-\newcommand*{\qualGuard}[1]{#1}
+% Branches
+\newcommand*{\branchCons}[1]{(\symCons)\mapsto{#1}}
+\newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
+
+% List rest
+\newcommand*{\sExNil}{\kw{]}}
+\newcommand*{\sExCons}[2]{\kw{,} \ #1 \ #2}
+\newcommand*{\sExConsAnnot}[3]{\annot{\kw{,}}{#1} \ #2 \ #3}
+
+% Clause
+\newcommand*{\clause}[2]{\vec{{#1}}={#2}}
+
+% Qualifiers
+\newcommand*{\qualGuard}[1]{\kw{if}\;{#1}}
 \newcommand*{\qualDeclaration}[2]{\kw{let}\;{#1}={#2}}
 \newcommand*{\qualGenerator}[2]{{#1}\;\kw{$\leftarrow$}\;{#2}}
 
-%Patterns
+% Patterns
 \newcommand*{\pattVar}[1]{#1}
-\newcommand*{\pattCons}[2]{\kw{Cons}(#1,#2)}
-\newcommand*{\pattNil}{\kw{Nil}}
-\newcommand*{\pattSCons}[2]{\lbrack {#1} \cdot {#2} \rbrack}
-\newcommand*{\pattSNil}{\lbrack\rbrack}
+\newcommand*{\pattTrue}{\exTrue}
+\newcommand*{\pattFalse}{\exFalse}
+\newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\pattNil}{\exNil}
+\newcommand*{\pattList}[2]{\sExList{#1}{#2}}
+\newcommand*{\pattSCons}[2]{\sExCons{#1}{#2}}
+\newcommand*{\pattSNil}{\sExNil}
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
 
-% Tries.
+% Eliminators.
 \newcommand*{\elimBool}[2]{\{\exTrue \mapsto {#1}, \exFalse \mapsto {#2}\}}
 \newcommand*{\elimBoolTrue}[1]{\{\exTrue \mapsto {#1}\}}
 \newcommand*{\elimBoolFalse}[1]{\{\exFalse \mapsto {#1}\}}
 \newcommand*{\elimListSingleton}[1]{\{{#1}\}}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
-\newcommand*{\elimSList}[2]{ \{ \sExNil \mapsto {#1}, \sExCons{s}{s'} \ {#2}\}}
-\newcommand*{\elimPair}[3]{\exPair{#1}{#2}\mapsto{#3}}
 \newcommand*{\elimProd}[1]{{\langle#1\rangle}}
 \newcommand*{\elimVar}[2]{{#1} \mapsto {#2}}
 
@@ -116,16 +127,16 @@
 % Matches.
 \newcommand*{\matchCons}[3]{\elimList{\branchNil{#1}}{\exCons{#2}{#3}}}
 \newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
-\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole{}}}
+\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
 \newcommand*{\matchFalseNew}{\exFalse}
-\newcommand*{\matchHole}[1]{[#1]}
-\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole{}}}{\branchCons{#1}}}
+\newcommand*{\matchHole}{\square}
+\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
 \newcommand*{\matchNilNew}{\exNil}
 \newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
 \newcommand*{\matchTrueNew}{\exTrue}
-\newcommand*{\matchTrue}[1]{\elimBool{\matchHole{}}{#1}}
-\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole{}}}
+\newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
+\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
 \newcommand*{\matchVarNew}[1]{#1}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
@@ -163,8 +174,9 @@
 \renewcommand*{\meet}{\wedge}
 \newcommand*{\joinWith}[1]{\join_{#1}}
 \newcommand*{\eqJoin}{\mathbin{!}}
-\newcommand*{\range}[2]{\kw{range}\,{#1}\,{#2}}
+\newcommand*{\range}[2]{\kw{range} \ {#1}\,{#2}}
 \newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
+\newcommand*{\comma}{\kw{,}\;}
 
 % Variable contexts.
 \newcommand*{\cxtBot}{\exBot}
@@ -223,6 +235,10 @@
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
 \newcommand*{\matchp}{\overset{p}{\rightsquigarrow}}
-\newcommand*{\totalise}[2]{\kw{totalise}({#1}, {#2})}
-\newcommand*{\untotalise}[2]{\kw{untotalise}({#1}, {#2})}
+\newcommand*{\totalise}[2]{\mathsf{totalise}({#1}, {#2})}
+\newcommand*{\totaliseRest}[2]{\mathsf{totaliseRest}({#1}, {#2})}
+\newcommand*{\untotalise}[2]{\mathsf{untotalise}({#1}, {#2})}
+\newcommand*{\untotaliseRest}[2]{\mathsf{untotaliseRest}({#1}, {#2})}
 \newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}
+\newcommand*{\elim}[2]{\mathsf{elim}({#1}, {#2})}
+\newcommand*{\merge}[1]{\mathsf{merge}\;{#1}}

@@ -1,87 +1,105 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\Gamma \vdash t: A$}
+\flushleft \shadebox{$\Gamma \vdash s: A$}
 \begin{smathpar}
 \inferrule*
 {
-   \Gamma \vdash t : A
+   \Gamma \vdash s : A
    \\
-   \Gamma \vdash \overrightarrow{t} : \tyList{A}
+   \Gamma \vdash \vec{s} : \tyList{A}
 }
 {
-   \Gamma \vdash t \concat \overrightarrow{t} : \tyList{A}
+   \Gamma \vdash s \concat \vec{s} : \tyList{A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash t: A
+   \forall c \in \vec{c}.
    \\
-   \Gamma \vdash \sigma: \tyFun{A}{B}
+   \Gamma , f : \tyFun{A}{B} \vdash c \dashv \Delta
+   \\
+   \Gamma , f : \tyFun{A}{B} \vdash s: B'
 }
 {
-   \Gamma \vdash \exMatch{t}{\sigma}: B
+   \Gamma \vdash \sExLet{f}{c}{s}: B'
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash t: \tyBool
+   \Gamma \vdash s: \tyBool
    \\
-   \Gamma \vdash t': A
+   \Gamma \vdash s': A
    \\
-   \Gamma \vdash t^{\twoPrime}: A
+   \Gamma \vdash s^{\twoPrime}: A
 }
 {
-   \Gamma \vdash \exIfThenElse{t}{t'}{t^{\twoPrime}}: A
+   \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
 }
 %
 \and
 %
+\inferrule*
+{
+   \Gamma \vdash s : A
+   \\
+   \Gamma \vdash l : \tyList{A}
+}
+{
+   \Gamma \vdash \sExList{s}{l} : \tyList{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s: \tyInt
+   \\
+   \Gamma \vdash s': \tyInt
+}
+{
+   \Gamma \vdash \exListSeq{s}{s'}: \tyList{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \vec{q} \dashv \Delta
+   \\
+   \Gamma \concat \Delta \vdash s: A
+}
+{
+   \Gamma \vdash \exListComp{s}{\vec{q}}: \tyList{A}
+}
+\end{smathpar}
+\caption{Typing rules for surface terms}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft \shadebox{$\Gamma \vdash l: \tyList{A}$}
+\begin{smathpar}
 \inferrule*
 {
    \strut
 }
 {
-   \Gamma \vdash \sExNil : \kw{List A}
+   \Gamma \vdash \ \sExNil : \tyList{A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash t : \kw{A}
+   \Gamma \vdash s : \kw{A}
    \\
-   \Gamma \vdash \overrightarrow{t} : \kw{List A}
+   \Gamma \vdash l : \tyList{A}
 }
 {
-   \Gamma \vdash \sExCons{t}{\overrightarrow{t}} : \kw{List A}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash t: \tyInt
-   \\
-   \Gamma \vdash t': \tyInt
-}
-{
-   \Gamma \vdash \exListSeq{t}{t'}: \tyList{\tyInt}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \overrightarrow{q} \dashv \Delta
-   \\
-   \Gamma \concat \Delta \vdash t: A
-}
-{
-   \Gamma \vdash \exListComp{t}{\overrightarrow{q}}: \tyList{A}
+   \Gamma \vdash \sExCons{s}{l} : \tyList{A}
 }
 \end{smathpar}
-\caption{Typing rules for surface terms}
+\caption{Typing rules for list rest}
 \end{figure}

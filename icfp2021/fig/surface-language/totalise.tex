@@ -1,21 +1,28 @@
 \begin{figure}[H]
-\flushleft\shadebox{\kw{totalise} :: p $\times \ \kappa  \rightarrow  \sigma$ }
+\flushleft\shadebox{totalise p $\kappa = \sigma$ }
 \begin{salign}
-   \totalise{x}{\kappa} &= \{ x \mapsto \kappa \}
+   \totalise{x}{\kappa} &= \elimVar{x}{\kappa}
    \\
-   \totalise{\exTrue}{\kappa} &= \{\exTrue \mapsto \kappa, \exFalse \mapsto \exNil\}
+   \totalise{\pattTrue}{\kappa} &= \elimBool{\kappa}{\exNil}
    \\
-   \totalise{\exFalse}{\kappa} &= \{\exTrue \mapsto \exNil, \exFalse \mapsto \kappa\}
+   \totalise{\pattFalse}{\kappa} &= \elimBool{\exNil}{\kappa}
    \\
-   \totalise{\pattPair{p_1}{p_2}}{\kappa} &= \langle \totalise{p_1}{\totalise{p_2}{\kappa}} \rangle
+   \totalise{\pattPair{p_1}{p_2}}{\kappa} &= \elimProd{\totalise{p_1}{\totalise{p_2}{\kappa}}}
    \\
-   \totalise{\exNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \mapsto x \mapsto xs \mapsto \kappa\}
+   \totalise{\pattNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{x \mapsto xs \mapsto \exNil}}
    \\
-   \totalise{\pattCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ (\totalise{p}{\totalise{p'}{\kappa}}) \}
+   \totalise{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{p}{\totalise{p'}{\kappa}}}}
    \\
-   \totalise{\sExNil}{\kappa} &= \{\exNil \mapsto \kappa, \kw{Cons} \mapsto x \mapsto xs \mapsto \kappa\}
+   \totalise{\pattList{p}{o}}{\kappa} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{p}{\totaliseRest{o}{\kappa}}}}
    \\
-   \totalise{\sExCons{p}{p'}}{\kappa} &= \{\exNil \mapsto \exNil, \kw{Cons} \ (\totalise{p}{\totalise{p'}{\kappa}}) \}
+\end{salign}
+
+\flushleft\shadebox{totaliseRest o $\kappa = \sigma$ }
+\begin{salign}
+   \totaliseRest{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{x \mapsto xs \mapsto \exNil}}
+   \\
+   \totaliseRest{\pattSCons{p}{o}}{\kappa} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{p}{\totaliseRest{o}{\kappa}}}}
 \end{salign}
 \caption{Construct total eliminator (from branch)}
 \end{figure}
+

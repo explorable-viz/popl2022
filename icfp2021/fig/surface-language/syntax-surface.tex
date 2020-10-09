@@ -2,7 +2,7 @@
 \begin{syntaxfig}
 \mbox{Raw surface term}
 &
-s
+t
 &
 ::=
 &
@@ -11,88 +11,56 @@ s
 \text{raw terms}
 \\
 &&&
-\exMatch{t}{\sigma}
+\sExLet{f}{c}{s}
 &
-\text{match as}
+\text{recursive function}
 \\
 &&&
-\exIfThenElse{t}{t'}{t^{\twoPrime}}
+\exIfThenElse{s}{s'}{s^{\twoPrime}}
 &
-\text{if then else}
+\text{if}
 \\
 &&&
-\sExNil
-&
-\text{empty list}
-\\
-&&&
-\sExCons{t}{\overrightarrow{t}}
+\sExList{s}{l}
 &
 \text{non-empty list}
 \\
 &&&
-\exListSeq{t}{t'}
+\exListSeq{s}{s'}
 &
 \text{list range}
 \\
 &&&
-\exListComp{t}{\overrightarrow{q}}
+\exListComp{s}{\vec{q}}
 &
 \text{list comprehension}
 \\[2mm]
 
-\mbox{Surface term}
+\mbox{List rest}
 &
-t
-&
-::=
-&
-s_{\alpha}
-\\[2mm]
-
-\mbox{Eliminator}
-&
-\sigma, \tau
+l
 &
 ::=
 &
-\ldots
-\\
-&&&
-\elimBoolTrue{\kappa}
+\annot{\sExNil}{\alpha}
 &
-\text{true}
+\text{end}
 \\
 &&&
-\elimBoolFalse{\kappa}
-&
-\text{false}
-\\
-&&&
-\elimListSingleton{\branchNil{\kappa}}
-&
-\text{nil}
-\\
-&&&
-\elimListSingleton{\branchCons{\sigma}}
+\sExConsAnnot{\alpha}{s}{l}
 &
 \text{cons}
-\\
-&&&
-\branchEList{\sigma}
-&
-\text{empty list}
-\\
-&&&
-\branchNEList{\sigma}
-&
-\text{non-empty list}
-\\
-&&&
-\elimList{\pattSNil \mapsto \kappa}{\lbrack p \cdot p' \rbrack \mapsto \sigma}
-&
-\text{list}
 \\[2mm]
+
+\mbox{Surface term}
+&
+s
+&
+::=
+&
+t_{\alpha}
+\\[2mm]
+
 
 \mbox{Qualifier}
 &
@@ -100,17 +68,17 @@ q
 &
 ::=
 &
-\qualGuard{t}
+\annot{(\qualGuard{s})}{\alpha}
 &
 \text{guard}
 \\
 &&&
-\qualDeclaration{p}{t}
+\annot{(\qualDeclaration{p}{s})}{\alpha}
 &
 \text{declaration}
 \\
 &&&
-\qualGenerator{p}{t}
+\annot{(\qualGenerator{p}{s})}{\alpha}
 &
 \text{generator}
 \\[2mm]
@@ -137,12 +105,7 @@ p
 \text{cons}
 \\
 &&&
-\pattSNil
-&
-\text{empty list}
-\\
-&&&
-\pattSCons{p}{p'}
+\pattList{p}{o}
 &
 \text{non-empty list}
 \\
@@ -150,6 +113,33 @@ p
 \pattPair{p}{p'}
 &
 \text{pair}
+\\[2mm]
+
+\mbox{List pattern rest}
+&
+o
+&
+::=
+&
+\pattSNil
+&
+\text{end}
+\\
+&&&
+\pattSCons{p}{o}
+&
+\text{cons}
+\\[2mm]
+
+\mbox{Clause}
+&
+c
+&
+::=
+&
+\clause{p}{s}
+&
+\text{clause (non-empty $\vec{p}$)}
 \\[2mm]
 \end{syntaxfig}
 \caption{Syntax of surface-language terms}
