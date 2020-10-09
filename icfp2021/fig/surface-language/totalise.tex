@@ -9,7 +9,7 @@
    \\
    \totalise{\pattPair{p_1}{p_2}}{\kappa} &= \elimProd{\totalise{p_1}{\totalise{p_2}{\kappa}}}
    \\
-   \totalise{\pattNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{x \mapsto xs \mapsto \exNil}}
+   \totalise{\pattNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
    \\
    \totalise{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{p}{\totalise{p'}{\kappa}}}}
    \\
@@ -19,7 +19,7 @@
 
 \flushleft\shadebox{totaliseRest o $\kappa = \sigma$ }
 \begin{salign}
-   \totaliseRest{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{x \mapsto xs \mapsto \exNil}}
+   \totaliseRest{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
    \\
    \totaliseRest{\pattSCons{p}{o}}{\kappa} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{p}{\totaliseRest{o}{\kappa}}}}
 \end{salign}

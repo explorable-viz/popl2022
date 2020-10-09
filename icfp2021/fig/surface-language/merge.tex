@@ -16,7 +16,7 @@
    \\
    \elim{\pattNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}
    \\
-   \elim{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\matchHole}}{\branchCons{s \mapsto s' \mapsto \kappa}}
+   \elim{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\matchHole}}{\branchCons{\_ \mapsto \_ \mapsto \kappa}}
    \\
    \elim{\pattList{p}{o}}{\kappa} &= \elim{\pattSCons{p}{o}}{\kappa}
    \\
