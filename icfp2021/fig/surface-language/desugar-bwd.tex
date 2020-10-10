@@ -60,6 +60,22 @@
 }
 %
 \and
+%TODO
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-recursive-function : TODO}}
+]
+{
+   \vec{c} = \unmerge{\sigma}
+   \\
+   e \dbwdarrow s
+}
+{
+   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, (\sExLet{f}{c}{s})
+   \dbwdarrow
+   \annot{(\sExLet{f}{c}{s})}{\alpha}
+}
+%
+\and
 %
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-if-then-else}}
