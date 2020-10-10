@@ -29,7 +29,7 @@
 \begin{salign}
    \elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}
    \\
-   \elim{\pattSCons{p}{o}}{\kappa} &= \elim{p}{\kappa} \join \elim{o}{\kappa}
+   \elim{\pattSCons{p}{o}}{\kappa} &= \elim{p}{\elim{o}{\kappa}}
 \end{salign}
 
 \flushleft\shadebox{elim $\vec{p} \ \kappa = \sigma$ }
