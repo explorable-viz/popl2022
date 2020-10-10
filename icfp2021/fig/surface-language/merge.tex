@@ -1,7 +1,8 @@
 \begin{figure}[H]
 \flushleft\shadebox{merge $\vec{c} = \sigma$ }
 \begin{salign}
-   \merge{c} &=
+   \merge{\vec{c}} &=
+      \kw{fold} \ (\join) \ (\kw{map} \ (\lambda (\clause{p}{s}) \rightarrow \elim{\vec{p}}{s}) \ \vec{c})
    \\
 \end{salign}
 
@@ -26,10 +27,15 @@
 
 \flushleft\shadebox{elim $o \ \kappa = \sigma$ }
 \begin{salign}
-   \elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}  ???
+   \elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}
    \\
-   \elim{\pattSCons{p}{o}}{\kappa} &= \elimList{\elim{p}{\kappa}}{\elim{o}{\kappa}}
+   \elim{\pattSCons{p}{o}}{\kappa} &= \elim{p}{\kappa} \join \elim{o}{\kappa}
 \end{salign}
 
+\flushleft\shadebox{elim $\vec{p} \ \kappa = \sigma$ }
+\begin{salign}
+   \elim{p \cdot \vec{p}}{\kappa} &= \elim{p}{\elim{\vec{p}}{\kappa}}
+   \\
+\end{salign}
 \caption{Elim}
 \end{figure}
