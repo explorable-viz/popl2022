@@ -54,15 +54,17 @@
 }
 %
 \and
-%TODO
+%
 \inferrule*[
    lab={\ruleName{$\dfwdarrow$-recursive-function}}
 ]
 {
-   \strut
+   \sigma = \merge{\vec{c}}
+   \\
+   s \dfwdarrow e
 }
 {
-   \sExLet{f}{c}{s} \dfwdarrow
+   \annot{(\sExLet{f}{c}{s})}{\alpha} \dfwdarrow \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}
 }
 %
 \and
