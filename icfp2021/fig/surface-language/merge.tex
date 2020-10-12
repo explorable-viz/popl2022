@@ -5,19 +5,28 @@
       \kw{fold} \ (\join) \ (\kw{map} \ (\lambda (\clause{p}{s}) \rightarrow \elim{\vec{p}}{s}) \ \vec{c})
    \\
 \end{salign}
-
-
 \caption{Merge}
 \end{figure}
+
+
+\begin{figure}[H]
+\flushleft\shadebox{unmerge $\sigma = \vec{c}$ }
+\begin{salign}
+   \unmerge{\sigma} &=
+   \\
+\end{salign}
+\caption{Merge}
+\end{figure}
+
 
 \begin{figure}[H]
 \flushleft\shadebox{elim $p \ \kappa = \sigma$ }
 \begin{salign}
    \elim{x}{\kappa} &= \elimVar{x}{\kappa}
    \\
-   \elim{\pattNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}
+   \elim{\pattNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}
    \\
-   \elim{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\matchHole}}{\branchCons{\_ \mapsto \_ \mapsto \kappa}}
+   \elim{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\matchHole}}{\branchCons{\elim{p}{\elim{p'}{\kappa}}}}
    \\
    \elim{\pattList{p}{o}}{\kappa} &= \elim{\pattSCons{p}{o}}{\kappa}
    \\
@@ -27,15 +36,49 @@
 
 \flushleft\shadebox{elim $o \ \kappa = \sigma$ }
 \begin{salign}
-   \elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}
+   \elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}
    \\
    \elim{\pattSCons{p}{o}}{\kappa} &= \elim{p}{\elim{o}{\kappa}}
 \end{salign}
 
 \flushleft\shadebox{elim $\vec{p} \ \kappa = \sigma$ }
 \begin{salign}
-   \elim{p \cdot \vec{p}}{\kappa} &= \elim{p}{\elim{\vec{p}}{\kappa}}
+   \elim{p \cdot \vec{p}}{\kappa} &= \elim{p}{\lambda \vec{p} \rightarrow \elim{\vec{p}}{\kappa}}
    \\
 \end{salign}
 \caption{Elim}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft\shadebox{unelim $\sigma = p \ \kappa$ }
+\begin{salign}
+   \unelim{\elimVar{x}{\kappa}}
+   &= (x, \kappa)
+   \\
+   \unelim{\elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}}
+   &= (\pattNil, \kappa)
+   \\
+   \unelim{\elimList{\branchNil{\matchHole}}{\branchCons{s \mapsto s' \mapsto \kappa}}}
+   &= \kw{let} \ p \ = \kw{fst} \ (\unelim{\{\elimVar{s}{\kappa}}\})  \\
+               \ & \hspace{0.85cm} p'  = \kw{fst} \ (\unelim{\{\elimVar{s'}{\kappa}}\}) \\
+   &\hspace{0.35cm}  \kw{in} \ \ (\pattCons{p}{p'}, \kappa)
+   \\
+   \unelim{\elimProd{p \mapsto p' \mapsto \kappa}}
+   &= (\pattPair{p}{p'}, \kappa)
+   \\
+\end{salign}
+
+\flushleft\shadebox{unelim $\sigma = o \ \kappa$ }
+\begin{salign}
+   %\elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}
+   \\
+   %\elim{\pattSCons{p}{o}}{\kappa} &= \elim{p}{\elim{o}{\kappa}}
+\end{salign}
+
+\flushleft\shadebox{unelim $\sigma = \vec{p} \ \kappa$ }
+\begin{salign}
+   %\elim{p \cdot \vec{p}}{\kappa} &= \elim{p}{\lambda \vec{p} \rightarrow \elim{\vec{p}}{\kappa}}
+   \\
+\end{salign}
+\caption{Unelim}
 \end{figure}
