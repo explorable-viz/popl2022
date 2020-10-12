@@ -10,9 +10,9 @@
 
 
 \begin{figure}[H]
-\flushleft\shadebox{unmerge $\sigma = \vec{c}$ }
+\flushleft\shadebox{unmerge $\sigma \ \vec{c} = \vec{c}'$ }
 \begin{salign}
-   \unmerge{\sigma} &=
+   \unmerge{\sigma}{\vec{c}} &=
    \\
 \end{salign}
 \caption{Merge}
@@ -31,7 +31,6 @@
    \elim{\pattList{p}{o}}{\kappa} &= \elim{\pattSCons{p}{o}}{\kappa}
    \\
    \elim{\pattPair{p}{p'}}{\kappa} &= \elimProd{\elim{p}{\elim{p'}{\kappa}}}
-   \\
 \end{salign}
 
 \flushleft\shadebox{elim $o \ \kappa = \sigma$ }
@@ -44,41 +43,24 @@
 \flushleft\shadebox{elim $\vec{p} \ \kappa = \sigma$ }
 \begin{salign}
    \elim{p \cdot \vec{p}}{\kappa} &= \elim{p}{\lambda \vec{p} \rightarrow \elim{\vec{p}}{\kappa}}
-   \\
 \end{salign}
 \caption{Elim}
 \end{figure}
 
 \begin{figure}[H]
-\flushleft\shadebox{unelim $\sigma = p \ \kappa$ }
+\flushleft\shadebox{unelim $\sigma \ c = c'$ }
 \begin{salign}
-   \unelim{\elimVar{x}{\kappa}}
-   &= (x, \kappa)
+   \unelim{\elimVar{x}{\kappa}}{\clause{p}{s}}
+   &= \clause{p}{\kappa}
    \\
-   \unelim{\elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}}
-   &= (\pattNil, \kappa)
+   \unelim{\elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}}{\clause{p}{s}}
+   &= \clause{p}{\kappa}
    \\
-   \unelim{\elimList{\branchNil{\matchHole}}{\branchCons{s \mapsto s' \mapsto \kappa}}}
-   &= \kw{let} \ p \ = \kw{fst} \ (\unelim{\{\elimVar{s}{\kappa}}\})  \\
-               \ & \hspace{0.85cm} p'  = \kw{fst} \ (\unelim{\{\elimVar{s'}{\kappa}}\}) \\
-   &\hspace{0.35cm}  \kw{in} \ \ (\pattCons{p}{p'}, \kappa)
+   \unelim{\elimList{\branchNil{\matchHole}}{\branchCons{s \mapsto s' \mapsto \kappa}}}{\clause{p}{s^{\twoPrime}}}
+   &= \clause{p}{\kappa}
    \\
-   \unelim{\elimProd{p \mapsto p' \mapsto \kappa}}
-   &= (\pattPair{p}{p'}, \kappa)
-   \\
-\end{salign}
-
-\flushleft\shadebox{unelim $\sigma = o \ \kappa$ }
-\begin{salign}
-   %\elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\matchHole}}
-   \\
-   %\elim{\pattSCons{p}{o}}{\kappa} &= \elim{p}{\elim{o}{\kappa}}
-\end{salign}
-
-\flushleft\shadebox{unelim $\sigma = \vec{p} \ \kappa$ }
-\begin{salign}
-   %\elim{p \cdot \vec{p}}{\kappa} &= \elim{p}{\lambda \vec{p} \rightarrow \elim{\vec{p}}{\kappa}}
-   \\
+   \unelim{\elimProd{s \mapsto s' \mapsto \kappa}}{\clause{p}{s^{\twoPrime}}}
+   &= \clause{p}{\kappa}
 \end{salign}
 \caption{Unelim}
 \end{figure}
