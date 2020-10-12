@@ -3,7 +3,6 @@
 \begin{salign}
    \merge{\vec{c}} &=
       \kw{fold} \ (\join) \ (\kw{map} \ (\lambda (\clause{p}{s}) \rightarrow \elim{\vec{p}}{s}) \ \vec{c})
-   \\
 \end{salign}
 \caption{Merge}
 \end{figure}
@@ -13,9 +12,8 @@
 \flushleft\shadebox{unmerge $\sigma \ \vec{c} = \vec{c}'$ }
 \begin{salign}
    \unmerge{\sigma}{\vec{c}} &=
-   \\
 \end{salign}
-\caption{Merge}
+\caption{Unmerge}
 \end{figure}
 
 
@@ -63,4 +61,12 @@
    &= \clause{p}{\kappa}
 \end{salign}
 \caption{Unelim}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft\shadebox{branches $\sigma = \vec{\sigma}$}
+\begin{salign}
+   \branches{s}
+\end{salign}
+\caption{Branches}
 \end{figure}
