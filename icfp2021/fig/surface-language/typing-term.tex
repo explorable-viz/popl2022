@@ -3,26 +3,13 @@
 \begin{smathpar}
 \inferrule*
 {
-   \Gamma \vdash s : A
-   \\
-   \Gamma \vdash \vec{s} : \tyList{A}
-}
-{
-   \Gamma \vdash s \concat \vec{s} : \tyList{A}
-}
-%
-\and
-%
-\inferrule*
-{
-   \forall c \in \vec{c}.
-   \\
-   \Gamma , f : \tyFun{A}{B} \vdash c \dashv \Delta
+   \forall c \in \vec{c}. \
+   \Gamma , f : \tyFun{A}{B} \vdash c : \tyFun{A}{B}
    \\
    \Gamma , f : \tyFun{A}{B} \vdash s: B'
 }
 {
-   \Gamma \vdash \sExLet{f}{c}{s}: B'
+   \Gamma \vdash \sExLet{f}{\vec{c}}{s}: B'
 }
 %
 \and
@@ -37,6 +24,19 @@
 }
 {
    \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s: A
+   \\
+   \forall c \in \vec{c}. \
+   \Gamma \vdash c : \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exMatch{s}{\vec{c}}: B
 }
 %
 \and

@@ -11,7 +11,7 @@ t
 \text{raw terms}
 \\
 &&&
-\sExLet{f}{c}{s}
+\sExLet{f}{\vec{c}}{s}
 &
 \text{recursive function}
 \\
@@ -19,6 +19,11 @@ t
 \exIfThenElse{s}{s'}{s^{\twoPrime}}
 &
 \text{if}
+\\
+&&&
+\exMatch{s}{\vec{c}}
+&
+\text{match-as}
 \\
 &&&
 \sExList{s}{l}

@@ -2,6 +2,22 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-application}}
+]
+{
+   e \dfwdarrow s
+   \\
+   e' \dfwdarrow s'
+}
+{
+   \annot{(e \ e')}{\alpha}, (s \ s')
+   \dbwdarrow
+   \annot{(s \ s')}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-empty-list}}
 ]
 {
@@ -30,6 +46,38 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-cons}}
+]
+{
+   e \dbwdarrow s
+   \\
+   e' \dbwdarrow s'
+}
+{
+   \annot{(\exCons{e}{e'})}{\alpha}, (\exCons{s}{s'})
+   \dbwdarrow
+   \annot{(\exCons{s}{s'})}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-recursive-function}}
+]
+{
+   \vec{c}' = \unmerge{\sigma}{\vec{c}}
+   \\
+   e \dbwdarrow s
+}
+{
+   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, (\sExLet{f}{\vec{c}}{s})
+   \dbwdarrow
+   \annot{(\sExLet{f}{\vec{c}'}{s})}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-if-then-else}}
 ]
 {
@@ -40,11 +88,29 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \annot{( \annot{\exLambda{\elimBool{e_{2}}{e_{3}^{\twoPrime}}}}{\alpha_1} \ e_{1})}{\alpha_2}
+   \annot{( \annot{\exLambda{\elimBool{e_{2}}{e_{3}}}}{\alpha_1} \ e_{1})}{\alpha_2}
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
    \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{\alpha_1 \join \alpha_2}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-match-as}}
+]
+{
+   \vec{c}' = \unmerge{\sigma}{\vec{c}}
+   \\
+   e \dbwdarrow s
+}
+{
+   \annot{(\lambda \sigma \ e)}{\alpha}
+   ,
+   \exMatch{s}{\vec{c}}
+   \dbwdarrow
+   \annot{(\exMatch{s}{\vec{c}})}{\alpha}
 }
 %
 \and
@@ -74,9 +140,9 @@
 {
    \annot{(\exCons{e}{\annot{\exNil}{\alpha_1}})}{\alpha_2}
    ,
-   \exListComp{s}{\exTrue}
+   \exList{s}
    \dbwdarrow
-   \annot{\exList{s'}}{\alpha_1 \join \alpha_2}
+   \annot{\exListComp{s'}{\annot{\exTrue}{\alpha_1 \join \alpha_2}}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
@@ -107,37 +173,37 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl - (Unsure about outer RHS annot)}}]
 {
-   e', s' \dbwdarrow s^{\twoPrime}
+   e, s \dbwdarrow s^{\twoPrime}
    \\
-   e = \untotalise{p}{\sigma}
+   e' = \untotalise{p}{\sigma}
    \\
-   e, \exListComp{s}{\vec{q}} \dbwdarrow s^{\threePrime}
+   e', \exListComp{s'}{\vec{q}} \dbwdarrow s^{\threePrime}
 }
 {
-   \annot{(\annot{\exLambda{\sigma}}{\alpha_1} \ e')}{\alpha_2}
+   \annot{(\annot{\exLambda{\sigma}}{\alpha_1} \ e)}{\alpha_2}
    ,
-   \exListComp{s}{\qualDeclaration{p}{s'} \cdot \vec{q}}
+   \exListComp{s'}{\qualDeclaration{p}{s} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s^{\threePrime}}{\qualDeclaration{p}{s^{\twoPrime}} \cdot \vec{q}}}{\alpha_1 \join \alpha_2}
+   \annot{\exListComp{s^{\threePrime}}{\annot{(\qualDeclaration{p}{s^{\twoPrime}})}{\alpha_1 \join \alpha_2} \cdot \vec{q}}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen - (Unsure about outer RHS annot)}}]
 {
-   e_{2}, s_{2} \dbwdarrow s_{2}'
+   e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
-   e_{1} = \untotalise{p}{\sigma}
+   e_{2} = \untotalise{p}{\sigma}
    \\
-   e_{1}, \exListComp{s_1}{\vec{q}} \dbwdarrow s_{1}'
+   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow s_{2}'
 }
 {
-   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1})}{\alpha_2} \ e_2)}{\alpha_3}
+   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1})}{\alpha_2} \ e_1)}{\alpha_3}
    ,
-   \exListComp{s_{1}}{\qualGenerator{p}{s_{2}} \cdot \vec{q}}
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\qualGenerator{p}{s_{2}'} \cdot \vec{q}}}{\alpha_1 \join \alpha_2 \join \alpha_3}
+   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \cdot \vec{q}}}{\alpha_1 \join \alpha_2 \join \alpha_3}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}

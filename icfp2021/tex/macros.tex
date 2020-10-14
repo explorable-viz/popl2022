@@ -61,14 +61,14 @@
 \newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
-\newcommand*{\sExList}[2]{\kw{[}#1 \ #2}
+\newcommand*{\sExList}[2]{\kw{[}\;#1 \ #2}
 \newcommand*{\exList}[1]{\kw{[}\;{#1}\;\kw{]}}
 \newcommand*{\exListSeq}[2]{\kw{[}\;{#1}\;\kw{..}\;{#2}\;\kw{]}}
 \newcommand*{\exListComp}[2]{\kw{[}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{]}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}={#2}\;\kw{in}\;{#3}}
-\newcommand*{\sExLet}[3]{\kw{let}\;{#1}\;{\vec{#2}}\;\kw{in}\;{#3}}
+\newcommand*{\sExLet}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\,\kw{rec}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
@@ -89,7 +89,7 @@
 % List rest
 \newcommand*{\sExNil}{\kw{]}}
 \newcommand*{\sExCons}[2]{\kw{,} \ #1 \ #2}
-\newcommand*{\sExConsAnnot}[3]{\annot{\kw{,}}{#1} \ #2 \ #3}
+\newcommand*{\sExConsAnnot}[3]{(\annot{\kw{,}}{#1}) \ #2 \ #3}
 
 % Clause
 \newcommand*{\clause}[2]{\vec{{#1}}={#2}}
@@ -177,6 +177,8 @@
 \newcommand*{\range}[2]{\kw{range} \ {#1}\,{#2}}
 \newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 \newcommand*{\comma}{\kw{,}\;}
+\newcommand*{\zipWith}[3]{\kw{zipWith}\;\;{#1}\;\;{#2}\;\;{#3}}
+\newcommand*{\where}{\kw{where}}
 
 % Variable contexts.
 \newcommand*{\cxtBot}{\exBot}
@@ -241,4 +243,7 @@
 \newcommand*{\untotaliseRest}[2]{\mathsf{untotaliseRest}({#1}, {#2})}
 \newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}
 \newcommand*{\elim}[2]{\mathsf{elim}({#1}, {#2})}
+\newcommand*{\unelim}[2]{\mathsf{unelim}({#1}, {#2})}
 \newcommand*{\merge}[1]{\mathsf{merge}\;{#1}}
+\newcommand*{\unmerge}[2]{\mathsf{unmerge}({#1}, {#2})}
+\newcommand*{\conts}[1]{\mathsf{conts}\;{#1}}
