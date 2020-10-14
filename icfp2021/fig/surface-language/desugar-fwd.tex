@@ -69,6 +69,26 @@
 %
 \and
 %
+
+
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-match-as}}
+]
+{
+   s \dfwdarrow e
+   \\
+   \sigma = \merge{\vec{c}}
+}
+{
+   \annot{(\exMatch{s}{\vec{c}})}{\alpha}
+   \dfwdarrow
+   \annot{(\lambda \sigma \ e)}{\alpha}
+}
+%
+\and
+%
+
+
 \inferrule*[
    lab={\ruleName{$\dfwdarrow$-if-then-else}}
 ]

@@ -30,6 +30,19 @@
 %
 \inferrule*
 {
+   \Gamma \vdash s: A
+   \\
+   \forall c \in \vec{c}. \
+   \Gamma \vdash c : \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exMatch{s}{\vec{c}}: B
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash s : A
    \\
    \Gamma \vdash l : \tyList{A}

@@ -60,7 +60,7 @@
 }
 %
 \and
-%TODO
+%
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-recursive-function}}
 ]
@@ -93,6 +93,24 @@
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
    \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{\alpha_1 \join \alpha_2}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-match-as}}
+]
+{
+   \vec{c}' = \unmerge{\sigma}{\vec{c}}
+   \\
+   e \dbwdarrow s
+}
+{
+   \annot{(\lambda \sigma \ e)}{\alpha}
+   ,
+   \exMatch{s}{\vec{c}}
+   \dbwdarrow
+   \annot{(\exMatch{s}{\vec{c}})}{\alpha}
 }
 %
 \and
