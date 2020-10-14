@@ -62,7 +62,7 @@
 \and
 %TODO
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-recursive-function : TODO}}
+   lab={\ruleName{$\dbwdarrow$-recursive-function}}
 ]
 {
    \vec{c}' = \unmerge{\sigma}{\vec{c}}
@@ -70,9 +70,9 @@
    e \dbwdarrow s
 }
 {
-   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, (\sExLet{f}{c}{s})
+   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, (\sExLet{f}{\vec{c}}{s})
    \dbwdarrow
-   \annot{(\sExLet{f}{c}{s})}{\alpha}
+   \annot{(\sExLet{f}{\vec{c}'}{s})}{\alpha}
 }
 %
 \and
