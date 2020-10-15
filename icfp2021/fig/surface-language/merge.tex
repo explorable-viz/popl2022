@@ -73,13 +73,13 @@
    &= \kappa
    \\
    \conts{\elimList{\branchCons{\_ \mapsto \_ \mapsto \kappa}}{\branchNil{\kappa'}}}
-   &= \kappa \cdot \kappa'
+   &= \conts{\kappa} \cdot \conts{\kappa'}
    \\
    \conts{\elimList{\branchCons{\_ \mapsto \_ \mapsto \kappa}}{\branchNil{\matchHole}}}
-   &= \kappa
+   &= \conts{\kappa}
    \\
    \conts{\elimList{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}{\branchNil{\kappa}}}
-   &= \kappa
+   &= \conts{\kappa}
    \\
    \conts{\elimProd{\sigma}}
    &= \conts{\sigma}
