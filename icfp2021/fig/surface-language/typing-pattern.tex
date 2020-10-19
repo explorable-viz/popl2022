@@ -3,18 +3,6 @@
 \begin{smathpar}
 \inferrule*
 {
-   p : A \dashv \Gamma
-   \\
-   \vec{p} : B \dashv \Gamma'
-}
-{
-   p \cdot \vec{p} : \tyFun{A}{B} \dashv \Gamma \cdot \Gamma'
-}
-%
-\and
-%
-\inferrule*
-{
    \strut
 }
 {
@@ -94,4 +82,21 @@
 }
 \end{smathpar}
 \caption{Typing rules for list pattern rest}
+\end{figure}
+
+
+\begin{figure}[H]
+\flushleft \shadebox{$\vec{p} : A \dashv \Gamma $}
+\begin{smathpar}
+\inferrule*
+{
+   p : A \dashv \Gamma
+   \\
+   \vec{p} : B \dashv \Gamma'
+}
+{
+   p \cdot \vec{p} : \tyFun{A}{B} \dashv \Gamma \cdot \Gamma'
+}
+\end{smathpar}
+\caption{Typing rules for sequence of patterns}
 \end{figure}

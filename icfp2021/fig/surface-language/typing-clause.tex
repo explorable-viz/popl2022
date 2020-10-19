@@ -1,6 +1,18 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\Gamma \vdash c $}
+\flushleft \shadebox{$\Gamma \vdash c : A $}
 \begin{smathpar}
+\inferrule*
+{
+   p: A \dashv \Gamma'
+   \\
+   \Gamma \cdot \Gamma' \vdash s: A
+}
+{
+   \Gamma \vdash p \equal s : A
+}
+%
+\and
+%
 \inferrule*
 {
    \vec{p}: A \dashv \Gamma'
@@ -13,3 +25,19 @@
 \end{smathpar}
 \caption{Typing rules for clauses}
 \end{figure}
+
+%\begin{figure}[H]
+%\flushleft \shadebox{$\vec{p} : A \dashv \Gamma $}
+%\begin{smathpar}
+%\inferrule*
+%{
+%   \Gamma \dashv c : A
+%   \\
+%   \Gamma \vec{c} : B
+%}
+%{
+%   c \cdot \vec{c} : \tyFun{A}{B} \dashv \Gamma \cdot \Gamma'
+%}
+%\end{smathpar}
+%\caption{Typing rules for sequence of clauses}
+%\end{figure}
