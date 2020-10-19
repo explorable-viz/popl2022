@@ -173,7 +173,7 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl - (Unsure about outer RHS annot)}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
 {
    e, s \dbwdarrow s^{\twoPrime}
    \\
@@ -190,7 +190,7 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen - (Unsure about outer RHS annot)}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
 {
    e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
@@ -240,7 +240,7 @@
    ,
    \ \sExCons{s}{l}
    \darrow
-   \sExConsAnnot{\alpha}{s'}{l'}
+   \annot{(\sExCons{s'}{l'})}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring list rest - backward slicing}
