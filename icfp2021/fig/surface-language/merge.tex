@@ -20,29 +20,25 @@
 
 
 \begin{figure}[H]
-\flushleft\shadebox{elim $p \ \kappa = \sigma$ }
+\flushleft\shadebox{elim $c = \sigma$}
 \begin{salign}
-   \elim{x}{\kappa} &= \elimVar{x}{\kappa}
+   \elim{\clausenv{p \cdot \vec{p}}{\kappa}} &= \elim{\clausenv{p}{\lambda \vec{p} \rightarrow \elim{\clause{p}{\kappa}}}}
    \\
-   \elim{\pattNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}
    \\
-   \elim{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\matchHole}}{\branchCons{\elim{p}{\elim{p'}{\kappa}}}}
+   \elim{\clausenv{x}{\kappa}} &= \elimVar{x}{\kappa}
    \\
-   \elim{\pattList{p}{o}}{\kappa} &= \elim{\pattSCons{p}{o}}{\kappa}
+   \elim{\clausenv{\pattNil}{\kappa}} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}
    \\
-   \elim{\pattPair{p}{p'}}{\kappa} &= \elimProd{\elim{p}{\elim{p'}{\kappa}}}
-\end{salign}
-
-\flushleft\shadebox{elim $o \ \kappa = \sigma$ }
-\begin{salign}
-   \elim{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}
+   \elim{\clausenv{\pattCons{p}{p'}}{\kappa}} &= \elimList{\branchNil{\matchHole}}{\branchCons{\elim{\clausenv{p}{\elim{\clausenv{p'}{\kappa}}}}}}
    \\
-   \elim{\pattSCons{p}{o}}{\kappa} &= \elim{p}{\elim{o}{\kappa}}
-\end{salign}
-
-\flushleft\shadebox{elim $\vec{p} \ \kappa = \sigma$ }
-\begin{salign}
-   \elim{p \cdot \vec{p}}{\kappa} &= \elim{p}{\lambda \vec{p} \rightarrow \elim{\vec{p}}{\kappa}}
+   \elim{\clausenv{\pattList{p}{o}}{\kappa}} &= \elim{\clausenv{\pattSCons{p}{o}}{\kappa}}
+   \\
+   \elim{\clausenv{\pattPair{p}{p'}}{\kappa}} &= \elimProd{\elim{\clausenv{p}{\elim{\clausenv{p'}{\kappa}}}}}
+   \\
+   \\
+   \elim{\clausenv{\pattSNil}{\kappa}} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}
+   \\
+   \elim{\clausenv{\pattSCons{p}{o}}{\kappa}} &= \elim{\clausenv{p}{\elim{\clausenv{o}{\kappa}}}}
 \end{salign}
 \caption{Elim - Create eliminator from pattern and continuation}
 \end{figure}

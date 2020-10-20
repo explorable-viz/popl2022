@@ -92,6 +92,7 @@
 
 % Clause
 \newcommand*{\clause}[2]{\vec{{#1}}\equal{#2}}
+\newcommand*{\clausenv}[2]{{#1}\equal{#2}}
 
 % Qualifiers
 \newcommand*{\qualGuard}[1]{\kw{if}\;{#1}}
@@ -242,7 +243,8 @@
 \newcommand*{\untotalise}[2]{\mathsf{untotalise}({#1}, {#2})}
 \newcommand*{\untotaliseRest}[2]{\mathsf{untotaliseRest}({#1}, {#2})}
 \newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}
-\newcommand*{\elim}[2]{\mathsf{elim}({#1}, {#2})}
+\newcommand*{\elim}[1]{\mathsf{elim}({#1})}
+\newcommand*{\elimRest}[2]{\mathsf{elimRest}({#1}, {#2})}
 \newcommand*{\unelim}[2]{\mathsf{unelim}({#1}, {#2})}
 \newcommand*{\merge}[1]{\mathsf{merge}\;{#1}}
 \newcommand*{\unmerge}[2]{\mathsf{unmerge}({#1}, {#2})}
