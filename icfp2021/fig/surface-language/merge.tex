@@ -11,11 +11,11 @@
 \begin{figure}[H]
 \flushleft\shadebox{unmerge $\sigma \ \vec{c} = \vec{c}'$ }
 \begin{salign}
-   \unmerge{\sigma}{\vec{c}} &= \zipWith{\kw{updateClause}}{\vec{c}}{\vec{\kappa}}\\
+   \unmerge{\sigma}{\vec{c}} &= \zipWith{\mathsf{updateClause}}{\vec{c}}{\vec{\kappa}}\\
    &\where \ \vec{\kappa} = \conts{\sigma}\\
-   &\hspace{0.8cm} \kw{updateClause} \;\ (\clause{p}{s}) \;\ \kappa \;\ = \;\ (\clause{p}{\kappa})
+   &\hspace{0.8cm} \mathsf{updateClause} \;\ (\clause{p}{s}) \;\ \kappa \;\ = \;\ (\clause{p}{\kappa})
 \end{salign}
-\caption{Unmerge}
+\caption{Unmerge - to check}
 \end{figure}
 
 
@@ -40,7 +40,7 @@
    \\
    \elim{\clausenv{\pattSCons{p}{o}}{\kappa}} &= \elim{\clausenv{p}{\elim{\clausenv{o}{\kappa}}}}
 \end{salign}
-\caption{Elim - Create eliminator from pattern and continuation}
+\caption{Elim - Create eliminator from pattern and continuation - to check}
 \end{figure}
 
 
