@@ -67,12 +67,12 @@
 {
    \vec{c}' = \unmerge{\sigma}{\vec{c}}
    \\
-   e \dbwdarrow s
+   e \dbwdarrow s'
 }
 {
    \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, (\sExLet{f}{\vec{c}}{s})
    \dbwdarrow
-   \annot{(\sExLet{f}{\vec{c}'}{s})}{\alpha}
+   \annot{(\sExLet{f}{\vec{c}'}{s'})}{\alpha}
 }
 %
 \and
@@ -106,11 +106,11 @@
    e \dbwdarrow s
 }
 {
-   \annot{(\lambda \sigma \ e)}{\alpha}
+   \annot{(\annot{(\lambda \sigma)}{\alpha_1} \ e)}{\alpha_2}
    ,
    \exMatch{s}{\vec{c}}
    \dbwdarrow
-   \annot{(\exMatch{s}{\vec{c}})}{\alpha}
+   \annot{(\exMatch{s}{\vec{c}})}{\alpha_1 \join \alpha_2}
 }
 %
 \and
@@ -133,77 +133,76 @@
 %
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done  - to check}}]
 {
    e, s \dbwdarrow s'
 }
 {
    \annot{(\exCons{e}{\annot{\exNil}{\alpha_1}})}{\alpha_2}
    ,
-   \exList{s}
+   \exListComp{s}{\exTrue}
    \dbwdarrow
    \annot{\exListComp{s'}{\annot{\exTrue}{\alpha_1 \join \alpha_2}}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual  - to check}}]
 {
-   e, \exListComp{s}{q \comma \exTrue} \dbwdarrow s'
+   e, \exListComp{s}{q \comma \exTrue}
+   \dbwdarrow
+   \annot{\exListComp{s'}{q' \comma \annot{\exTrue}{\alpha_1}}}{\alpha_2}
 }
 {
-   e
-   ,
-   \exListComp{s}{q}
+   e, \exListComp{s}{q}
    \dbwdarrow
-   s'
+   \annot{\exListComp{s'}{q'}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard  - to check}}]
 {
-   e, \exIfThenElse{s'}{\exListComp{s}{\vec{q}}}{\exNil}
-   \dbwdarrow s^{\twoPrime}
+   e, \exIfThenElse{s_2}{\exListComp{s_1}{\vec{q}}}{\exNil}
+   \dbwdarrow
+   \annot{(\exIfThenElse{s_{2}'}{\annot{\exListComp{s_{1}'}{\vec{q}'}}{\alpha_1}}{\annot{\exNil}{\alpha_2}})}{\alpha_1 \join \alpha_2}
 }
 {
-   e
-   ,
-   \exListComp{s}{\qualGuard{s'} \cdot \vec{q}}
+   e, \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
    \dbwdarrow
-   s^{\twoPrime}
+   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{\alpha_1 \join \alpha_2} \cdot \vec{q}'}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl  - to check}}]
 {
-   e, s \dbwdarrow s^{\twoPrime}
+   e, s_1 \dbwdarrow s_{1}'
    \\
    e' = \untotalise{p}{\sigma}
    \\
-   e', \exListComp{s'}{\vec{q}} \dbwdarrow s^{\threePrime}
+   e', \exListComp{s_{2}}{\vec{q}} \dbwdarrow \exListComp{s_{2}'}{\vec{q}'}
 }
 {
-   \annot{(\annot{\exLambda{\sigma}}{\alpha_1} \ e)}{\alpha_2}
+   \annot{(\annot{(\exLambda{\sigma})}{\alpha_1} \ e)}{\alpha_2}
    ,
-   \exListComp{s'}{\qualDeclaration{p}{s} \cdot \vec{q}}
+   \exListComp{s_2}{\qualDeclaration{p}{s_1} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s^{\threePrime}}{\annot{(\qualDeclaration{p}{s^{\twoPrime}})}{\alpha_1 \join \alpha_2} \cdot \vec{q}}}{\alpha_1 \join \alpha_2}
+   \annot{\exListComp{s_{2}'}{\annot{(\qualDeclaration{p}{s_{1}'})}{\alpha_1 \join \alpha_2} \cdot \vec{q}'}}{\alpha_1 \join \alpha_2}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen - to check}}]
 {
    e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
    e_{2} = \untotalise{p}{\sigma}
    \\
-   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow s_{2}'
+   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha_4}
 }
 {
    \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1})}{\alpha_2} \ e_1)}{\alpha_3}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \cdot \vec{q}}}{\alpha_1 \join \alpha_2 \join \alpha_3}
+   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \cdot \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3 \join \alpha_4}
 }
 \end{smathpar}
 \caption{Desugaring - backward slicing (additional forms only)}

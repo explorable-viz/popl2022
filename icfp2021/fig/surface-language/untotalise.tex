@@ -7,13 +7,23 @@
    \\
    \untotalise{\pattFalse}{\elimBool{\kappa}{\kappa'}} &= \kappa'
    \\
-   \untotalise{\pattPair{p_1}{p_2}}{\elimProd{\_ \mapsto \_ \mapsto \kappa}} &= \kappa
+   \untotalise{\pattPair{p_1}{p_2}}{\elimProd{\sigma}} &= \untotalise{p_2}{\untotalise{p_1}{\sigma}}
    \\
    \untotalise{\pattNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \kappa
    \\
-   \untotalise{\pattCons{p}{p'}}{\elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \kappa'}}} &= \kappa'
+   \untotalise{\pattCons{p}{p'}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \untotalise{p'}{\untotalise{p}{\sigma}}
    \\
-   \untotalise{\pattList{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \kappa'}}} &= \kappa'
+   \untotalise{\pattList{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \untotaliseRest{o}{\untotalise{p}{\sigma}}
+   \\
+\end{salign}
+
+\flushleft\shadebox{untotaliseRest o $\sigma = \kappa$}
+\begin{salign}
+   \untotaliseRest{\sExNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}
+      &= \kappa
+   \\
+   \untotaliseRest{\sExCons{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}
+      &= \untotaliseRest{o}{\untotalise{p}{\sigma}}
 \end{salign}
 \caption{Extract branch body from eliminator}
 \end{figure}

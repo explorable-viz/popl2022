@@ -69,8 +69,6 @@
 %
 \and
 %
-
-
 \inferrule*[
    lab={\ruleName{$\dfwdarrow$-match-as}}
 ]
@@ -82,13 +80,11 @@
 {
    \annot{(\exMatch{s}{\vec{c}})}{\alpha}
    \dfwdarrow
-   \annot{(\lambda \sigma \ e)}{\alpha}
+   \annot{(\annot{(\lambda \sigma)}{\alpha} \ e)}{\alpha}
 }
 %
 \and
 %
-
-
 \inferrule*[
    lab={\ruleName{$\dfwdarrow$-if-then-else}}
 ]
@@ -104,7 +100,7 @@
 {
    \annot{(\exIfThenElse{s}{s'}{s^{\twoPrime}})}{\alpha}
    \dfwdarrow
-   \annot{(\annot{\exLambda{\sigma}}{\alpha} \ e)}{\alpha}
+   \annot{(\annot{(\exLambda{\sigma})}{\alpha} \ e)}{\alpha}
 }
 %
 \and
