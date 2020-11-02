@@ -17,10 +17,10 @@
 {
    \vec{p}: A \dashv \Gamma'
    \\
-   \Gamma \cdot \Gamma' \vdash s: B
+   \Gamma \cdot \Gamma' \vdash \clause{p}{s} : \tyFun{B}{C}
 }
 {
-   \Gamma \vdash \clause{p}{s} : \tyFun{A}{B}
+   \Gamma \vdash \clausenv{p \cdot \vec{p}}{s} : \tyFun{A}{\tyFun{B}{C}}
 }
 \end{smathpar}
 \caption{Typing rules for clauses - to check}

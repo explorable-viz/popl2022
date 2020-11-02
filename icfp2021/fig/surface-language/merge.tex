@@ -1,26 +1,34 @@
 \begin{figure}[H]
-\flushleft\shadebox{merge $\vec{c} = \sigma$ }
-\begin{salign}
-   \merge{\vec{c}} &=
-      \kw{fold} \ (\join) \ (\kw{map} \ (\lambda (\clause{p}{s}) \rightarrow \elim{\vec{p}}{s}) \ \vec{c})
-\end{salign}
+\flushleft\shadebox{$\vec{c} \dfwdarrow \sigma$ }
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-merge}}
+]
+{
+   s \dfwdarrow e
+}
+{
+   \vec{c} \dfwdarrow
+      \kw{fold} \ (\join) \ (\kw{map} \ (\lambda (\clause{p}{e}) \rightarrow \elim{\clause{p}{e}}) \ \vec{c})
+}
+\end{smathpar}
 \caption{Merge}
 \end{figure}
 
 
 \begin{figure}[H]
-\flushleft\shadebox{unmerge $\sigma \ \vec{c} = \vec{c}'$ }
+\flushleft\shadebox{$\sigma \ \vec{c} \dbwdarrow \vec{c}'$ }
 \begin{salign}
    \unmerge{\sigma}{\vec{c}} &= \zipWith{\mathsf{updateClause}}{\vec{c}}{\vec{\kappa}}\\
    &\where \ \vec{\kappa} = \conts{\sigma}\\
    &\hspace{0.8cm} \mathsf{updateClause} \;\ (\clause{p}{s}) \;\ \kappa \;\ = \;\ (\clause{p}{\kappa})
 \end{salign}
-\caption{Unmerge - to check}
+\caption{Unmerge}
 \end{figure}
 
 
 \begin{figure}[H]
-\flushleft\shadebox{elim $c = \sigma$}
+\flushleft\shadebox{$c \dfwdarrow \sigma$}
 \begin{salign}
    \elim{\clausenv{p \cdot \vec{p}}{\kappa}} &= \elim{\clausenv{p}{\lambda \vec{p} \rightarrow \elim{\clause{p}{\kappa}}}}
    \\
@@ -63,7 +71,7 @@
 %\end{figure}
 
 \begin{figure}[H]
-\flushleft\shadebox{conts $\sigma = \vec{\kappa}$}
+\flushleft\shadebox{$\sigma \dbwdarrow \vec{\kappa}$}
 \begin{salign}
    \conts{\{\elimVar{x}{\kappa}\}}
    &= \kappa

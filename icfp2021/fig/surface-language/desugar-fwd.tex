@@ -59,7 +59,7 @@
    lab={\ruleName{$\dfwdarrow$-recursive-function}}
 ]
 {
-   \sigma = \merge{\vec{c}}
+   \vec{c} \dfwdarrow \sigma
    \\
    s \dfwdarrow e
 }
@@ -75,7 +75,7 @@
 {
    s \dfwdarrow e
    \\
-   \sigma = \merge{\vec{c}}
+   \vec{c} \dfwdarrow \sigma
 }
 {
    \annot{(\exMatch{s}{\vec{c}})}{\alpha}
@@ -158,20 +158,20 @@
    \\
    \annot{\exListComp{s}{\vec{q}}}{\alpha_2} \dfwdarrow e
    \\
-   \sigma = \totalise{p}{e}
+   \clausenv{p}{s'} \dfwdarrow \sigma
 }
 {
    \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
+   \annot{(\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}}]
 {
-   \annot{\exListComp{s}{\vec{q}}}{\alpha_2} \dfwdarrow e
+   \annot{\clausenv{p}{\exListComp{s}{\vec{q}}}}{\alpha_2} \dfwdarrow \sigma
    \\
-   \sigma = \totalise{p}{e}
+   \sigma' = \totalise{p}{e}
    \\
    s' \dfwdarrow e'
 }
@@ -211,4 +211,130 @@
 }
 \end{smathpar}
 \caption{Desugaring list rest - forward slicing}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft\shadebox{$\vec{p}, e \dfwdarrow \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-pattern-seq}}
+]
+{
+   \vec{p}, e \dfwdarrow \sigma
+   \\
+   p, \lambda \vec{p} \rightarrow \sigma \dfwdarrow \sigma'
+}
+{
+   p \cdot \vec{p}, e
+   \dfwdarrow
+   \sigma'
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-var}}
+]
+{
+   \strut
+}
+{
+   x, e
+   \dfwdarrow
+   \elimVar{x}{e}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-nil}}
+]
+{
+   \strut
+}
+{
+   \pattNil, e
+   \dfwdarrow
+   \elimList{\branchNil{e}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-cons}}
+]
+{
+   p', e \dfwdarrow \sigma
+   \\
+   p, \sigma \dfwdarrow \sigma'
+}
+{
+   \pattCons{p}{p'}, e
+   \dfwdarrow
+   \elimList{\branchNil{\matchHole}}{\branchCons{\sigma'}}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+]
+{
+   \pattSCons{p}{o}, e
+   \dfwdarrow
+   \sigma
+}
+{
+   \pattList{p}{o}, e
+   \dfwdarrow
+   \sigma
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-pair}}
+]
+{
+   p', e \dfwdarrow \sigma
+   \\
+   p, \sigma \dfwdarrow \sigma'
+}
+{
+   \pattPair{p}{p'}, e
+   \dfwdarrow
+   \elimProd{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-end}}
+]
+{
+   \strut
+}
+{
+   \pattSNil, e
+   \dfwdarrow
+   \elimList{\branchNil{e}}{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-rest}}
+]
+{
+   o, e \dfwdarrow \sigma
+   \\
+   p, \sigma \dfwdarrow \sigma'
+}
+{
+   \pattSCons{p}{o}, e
+   \dfwdarrow
+   \sigma'
+}
+\end{smathpar}
+\caption{Desugaring clauses - (Elim) Create eliminator from pattern and continuation}
 \end{figure}
