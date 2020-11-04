@@ -1,0 +1,21 @@
+\begin{figure}[H]
+\flushleft\shadebox{$\vec{c} \dfwdarrow \sigma$ }
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-clause-seq}}
+]
+{
+   s \dfwdarrow e
+   \\
+   \vec{p}, e \dfwdarrow \sigma
+   \\
+   \vec{c} \dfwdarrow \sigma'
+}
+{
+   (\clause{p}{s}) \cdot \vec{c}
+   \dfwdarrow
+   \sigma \join \sigma'
+}
+\end{smathpar}
+\caption{Desugaring clauses (Merge) - Create eliminator from clause seq}
+\end{figure}

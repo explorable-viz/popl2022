@@ -1,27 +1,17 @@
 \begin{figure}[H]
-\flushleft\shadebox{totalise p $\kappa = \sigma$ }
+\flushleft\shadebox{totalise $\sigma = \sigma'$ }
 \begin{salign}
-   \totalise{x}{\kappa} &= \elimVar{x}{\kappa}
+   \totalise{\elimVar{x}{\kappa}} &= \elimVar{x}{\kappa}
    \\
-   \totalise{\pattTrue}{\kappa} &= \elimBool{\kappa}{\exNil}
+   \totalise{\elimBoolTrue{\kappa}} &= \elimBool{\kappa}{\exNil}
    \\
-   \totalise{\pattFalse}{\kappa} &= \elimBool{\exNil}{\kappa}
+   \totalise{\elimBoolFalse{\kappa}} &= \elimBool{\exNil}{\kappa}
    \\
-   \totalise{\pattPair{p_1}{p_2}}{\kappa} &= \elimProd{\totalise{p_1}{\totalise{p_2}{\kappa}}}
+   \totalise{\elimProd{\sigma}} &= \elimProd{\sigma}
    \\
-   \totalise{\pattNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
+   \totalise{\branchNil{\kappa}} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
    \\
-   \totalise{\pattCons{p}{p'}}{\kappa} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{p}{\totalise{p'}{\kappa}}}}
-   \\
-   \totalise{\pattList{p}{o}}{\kappa} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{p}{\totaliseRest{o}{\kappa}}}}
-   \\
-\end{salign}
-
-\flushleft\shadebox{totaliseRest o $\kappa = \sigma$ }
-\begin{salign}
-   \totaliseRest{\pattSNil}{\kappa} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
-   \\
-   \totaliseRest{\pattSCons{p}{o}}{\kappa} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{p}{\totaliseRest{o}{\kappa}}}}
+   \totalise{\branchCons{\sigma}} &= \elimList{\branchNil{\exNil}}{\branchCons{\sigma}}
 \end{salign}
 \caption{Totalise - Construct total eliminator (from branch)}
 \end{figure}

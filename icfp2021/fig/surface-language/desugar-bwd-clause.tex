@@ -1,0 +1,135 @@
+
+%\begin{figure}[H]
+%\flushleft\shadebox{$\vec{p}, \kappa \dbwdarrow \sigma$}
+%\begin{smathpar}
+%\inferrule*[
+%   lab={\ruleName{$\dbwdarrow$-pattern-seq}}
+%]
+%{
+ %  \vec{p}, \kappa \dbwdarrow \sigma
+ %  \\
+ %  p, \lambda \vec{p} \rightarrow \sigma \dbwdarrow \sigma'
+%}
+%{
+%   p \cdot \vec{p}, \kappa
+%   \dbwdarrow
+%   \sigma'
+%}
+%\end{smathpar}
+%\caption{Desugaring clause (Elim) - Create eliminator from pattern seq and cont}
+%\end{figure}
+
+
+\begin{figure}[H]
+\flushleft\shadebox{$\sigma \dbwdarrow p, \kappa$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-var}}
+]
+{
+   \strut
+}
+{
+   \elimVar{x}{\kappa}
+   \dbwdarrow
+   x, \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-nil}}
+]
+{
+   \strut
+}
+{
+   \branchNil{\kappa}
+   \dbwdarrow
+   \pattNil, \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-cons}}
+]
+{
+   \sigma \dbwdarrow p, \sigma'
+   \\
+   \sigma' \dbwdarrow p', \kappa
+}
+{
+   \branchCons{\sigma}
+   \dbwdarrow
+   \pattCons{p}{p'}, \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+]
+{
+   \sigma \dbwdarrow p, \sigma'
+   \\
+   \sigma' \dbwdarrow o, \kappa
+}
+{
+   \sigma
+   \dbwdarrow
+   \pattList{p}{o}, \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-pair}}
+]
+{
+   \sigma \dbwdarrow p, \sigma'
+   \\
+   \sigma' \dbwdarrow p', \kappa
+}
+{
+   \elimProd{\sigma'}
+   \dbwdarrow
+   \pattPair{p}{p'}, \kappa
+}
+\end{smathpar}
+\caption{Resugaring clause (Unelim) - Deconstruct eliminator into pattern and cont}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft\shadebox{$\sigma \dbwdarrow o, \kappa$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-end -- must be distinguishable from nil}}
+]
+{
+   \strut
+}
+{
+   \branchNil{\kappa}
+   \dbwdarrow
+   \pattSNil, \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest -- must be distinguishable from non-empty-list}}
+]
+{
+   \sigma \dbwdarrow p, \sigma'
+   \\
+   \sigma' \dbwdarrow o, \kappa
+}
+{
+   \sigma
+   \dbwdarrow
+   \pattSCons{p}{o}, \kappa
+}
+\end{smathpar}
+\caption{Resugaring clause (Unelim) - Deconstruct eliminator into list-pattern-rest and cont}
+\end{figure}

@@ -1,29 +1,17 @@
 \begin{figure}[H]
-\flushleft\shadebox{untotalise p $\sigma = \kappa$}
+\flushleft\shadebox{untotalise $\sigma \ \sigma' = \sigma''$}
 \begin{salign}
-   \untotalise{x}{\elimVar{x}{\kappa}} &= \kappa
+   \untotalise{\elimVar{x}{\kappa}}{\elimVar{x}{\kappa'}} &= \elimVar{x}{\kappa'}
    \\
-   \untotalise{\pattTrue}{\elimBool{\kappa}{\kappa'}} &= \kappa
+   \untotalise{\elimBoolTrue{\kappa}}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolTrue{\kappa_1}
    \\
-   \untotalise{\pattFalse}{\elimBool{\kappa}{\kappa'}} &= \kappa'
+   \untotalise{\elimBoolFalse{\kappa}}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolFalse{\kappa_2}
    \\
-   \untotalise{\pattPair{p_1}{p_2}}{\elimProd{\sigma}} &= \untotalise{p_2}{\untotalise{p_1}{\sigma}}
+   \untotalise{\elimProd{\sigma}}{\elimProd{\sigma'}} &= \elimProd{\sigma'}
    \\
-   \untotalise{\pattNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \kappa
+   \untotalise{\branchNil{\kappa}}{\elimList{\branchNil{\kappa'}}{\branchCons{\sigma}}} &= \branchNil{\kappa'}
    \\
-   \untotalise{\pattCons{p}{p'}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \untotalise{p'}{\untotalise{p}{\sigma}}
-   \\
-   \untotalise{\pattList{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \untotaliseRest{o}{\untotalise{p}{\sigma}}
-   \\
+   \untotalise{\branchCons{\sigma}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma'}}} &= \branchCons{\sigma'}
 \end{salign}
-
-\flushleft\shadebox{untotaliseRest o $\sigma = \kappa$}
-\begin{salign}
-   \untotaliseRest{\sExNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}
-      &= \kappa
-   \\
-   \untotaliseRest{\sExCons{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}
-      &= \untotaliseRest{o}{\untotalise{p}{\sigma}}
-\end{salign}
-\caption{Untotalise - Extract branch body from eliminator - to check}
+\caption{Untotalise - Match partial eliminator against total eliminator}
 \end{figure}

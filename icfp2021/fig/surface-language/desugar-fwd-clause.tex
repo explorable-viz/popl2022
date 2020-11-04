@@ -1,0 +1,135 @@
+
+\begin{figure}[H]
+\flushleft\shadebox{$\vec{p}, \kappa \dfwdarrow \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-pattern-seq}}
+]
+{
+   \vec{p}, \kappa \dfwdarrow \sigma
+   \\
+   p, \lambda \vec{p} \rightarrow \sigma \dfwdarrow \sigma'
+}
+{
+   p \cdot \vec{p}, \kappa
+   \dfwdarrow
+   \sigma'
+}
+\end{smathpar}
+\caption{Desugaring clause (Elim) - Create singleton eliminator from pattern seq and cont}
+\end{figure}
+
+
+\begin{figure}[H]
+\flushleft\shadebox{$p, \kappa \dfwdarrow \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-var}}
+]
+{
+   \strut
+}
+{
+   x, \kappa
+   \dfwdarrow
+   \elimVar{x}{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-nil}}
+]
+{
+   \strut
+}
+{
+   \pattNil, \kappa
+   \dfwdarrow
+   \branchNil{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-cons}}
+]
+{
+   p', \kappa \dfwdarrow \sigma
+   \\
+   p, \sigma \dfwdarrow \sigma'
+}
+{
+   \pattCons{p}{p'}, \kappa
+   \dfwdarrow
+   \branchCons{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+]
+{
+   o, \kappa \dfwdarrow \sigma
+   \\
+   p, \sigma \dfwdarrow \sigma'
+}
+{
+   \pattList{p}{o}, \kappa
+   \dfwdarrow
+   \sigma'
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-pair}}
+]
+{
+   p', \kappa \dfwdarrow \sigma
+   \\
+   p, \sigma \dfwdarrow \sigma'
+}
+{
+   \pattPair{p}{p'}, \kappa
+   \dfwdarrow
+   \elimProd{\sigma'}
+}
+\end{smathpar}
+\caption{Desugaring clause (Elim) - Create singleton eliminator from pattern and cont}
+\end{figure}
+
+\begin{figure}[H]
+\flushleft\shadebox{$o, \kappa \dfwdarrow \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-end}}
+]
+{
+   \strut
+}
+{
+   \pattSNil, \kappa
+   \dfwdarrow
+   \branchNil{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-rest}}
+]
+{
+   o, \kappa \dfwdarrow \sigma
+   \\
+   p, \sigma \dfwdarrow \sigma'
+}
+{
+   \pattSCons{p}{o}, \kappa
+   \dfwdarrow
+   \sigma'
+}
+\end{smathpar}
+\caption{Desugaring clause (Elim) - Create singleton eliminator from list-pattern-rest and cont}
+\end{figure}

@@ -1,0 +1,20 @@
+\begin{figure}[H]
+\flushleft\shadebox{$\sigma \dbwdarrow \kappa$}
+\begin{salign}
+   \cont{\{\elimVar{x}{\kappa}\}}
+   &= \kappa
+   \\
+   \cont{\elimList{\branchCons{\_ \mapsto \_ \mapsto \kappa}}{\branchNil{\kappa'}}}
+   &= \cont{\kappa} \cdot \cont{\kappa'}
+   \\
+   \cont{\elimList{\branchCons{\_ \mapsto \_ \mapsto \kappa}}{\branchNil{\matchHole}}}
+   &= \cont{\kappa}
+   \\
+   \cont{\elimList{\branchCons{\_ \mapsto \_ \mapsto \matchHole}}{\branchNil{\kappa}}}
+   &= \cont{\kappa}
+   \\
+   \cont{\elimProd{\sigma}}
+   &= \cont{\sigma}
+\end{salign}
+\caption{Continuation - extract branch body from singleton eliminator}
+\end{figure}
