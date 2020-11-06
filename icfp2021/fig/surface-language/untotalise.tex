@@ -1,17 +1,26 @@
 \begin{figure}[H]
-\flushleft\shadebox{untotalise $\sigma \ \sigma' = \sigma''$}
+\flushleft\shadebox{untotalise $(p, \sigma) = \sigma'$}
 \begin{salign}
-   \untotalise{\elimVar{x}{\kappa}}{\elimVar{x}{\kappa'}} &= \elimVar{x}{\kappa'}
+   \untotalise{x}{\elimVar{x}{\kappa}} &= \elimVar{x}{\kappa}
    \\
-   \untotalise{\elimBoolTrue{\kappa}}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolTrue{\kappa_1}
+   \untotalise{\pattTrue}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolTrue{\kappa_1}
    \\
-   \untotalise{\elimBoolFalse{\kappa}}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolFalse{\kappa_2}
+   \untotalise{\pattFalse}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolFalse{\kappa_2}
    \\
-   \untotalise{\elimProd{\sigma}}{\elimProd{\sigma'}} &= \elimProd{\sigma'}
+   \untotalise{\pattPair{p}{p'}}{\elimProd{\sigma}} &= \elimProd{\untotalise{p}{\untotalise{p'}{\sigma}}}
    \\
-   \untotalise{\branchNil{\kappa}}{\elimList{\branchNil{\kappa'}}{\branchCons{\sigma}}} &= \branchNil{\kappa'}
+   \untotalise{\pattNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchNil{\kappa}}
    \\
-   \untotalise{\branchCons{\sigma}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma'}}} &= \branchCons{\sigma'}
+   \untotalise{\pattCons{p}{p'}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{p'}{\sigma}}}}
+   \\
+   \untotalise{\pattList{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &=  \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{o}{\sigma}}}}
 \end{salign}
-\caption{Untotalise - Match partial eliminator against total eliminator}
+
+\flushleft\shadebox{untotalise $(o, \sigma) = \sigma'$}
+\begin{salign}
+   \untotalise{\pattSNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchNil{\kappa}}
+   \\
+   \untotalise{\pattSCons{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &=  \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{o}{\sigma}}}}
+\end{salign}
+\caption{Untotalise}
 \end{figure}

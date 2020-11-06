@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft\shadebox{totalise $\sigma = \sigma'$ }
+\flushleft\shadebox{totalise $\sigma = \sigma'$}
 \begin{salign}
    \totalise{\elimVar{x}{\kappa}} &= \elimVar{x}{\kappa}
    \\
@@ -7,12 +7,12 @@
    \\
    \totalise{\elimBoolFalse{\kappa}} &= \elimBool{\exNil}{\kappa}
    \\
-   \totalise{\elimProd{\sigma}} &= \elimProd{\sigma}
+   \totalise{\elimProd{\sigma}} &= \elimProd{\totalise{\sigma}}
    \\
    \totalise{\branchNil{\kappa}} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
    \\
-   \totalise{\branchCons{\sigma}} &= \elimList{\branchNil{\exNil}}{\branchCons{\sigma}}
+   \totalise{\branchCons{\sigma}} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{\sigma}}}
 \end{salign}
-\caption{Totalise - Construct total eliminator (from branch)}
+\caption{Totalise}
 \end{figure}
 
