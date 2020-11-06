@@ -1,0 +1,144 @@
+\begin{figure}[H]
+\flushleft\shadebox{$\sigma, p \dbwdarrow \kappa$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-var}}
+]
+{
+   \strut
+}
+{
+   \elimVar{x}{\kappa}, x
+   \dbwdarrow
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-nil}}
+]
+{
+   \strut
+}
+{
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \exNil
+   \dbwdarrow
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-cons}}
+]
+{
+   \sigma, p \dbwdarrow \sigma'
+   \\
+   \sigma', p' \dbwdarrow \kappa
+}
+{
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattCons{p}{p'}
+   \dbwdarrow
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+]
+{
+   \sigma, p \dbwdarrow \sigma'
+   \\
+   \sigma', o \dbwdarrow \kappa
+}
+{
+   \sigma, \pattList{p}{o}
+   \dbwdarrow
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-pair}}
+]
+{
+   \sigma, p \dbwdarrow \sigma'
+   \\
+   \sigma', p' \dbwdarrow \kappa
+}
+{
+   \elimProd{\sigma'}, \pattPair{p}{p'}
+   \dbwdarrow
+   \kappa
+}
+\end{smathpar}
+
+\flushleft\shadebox{$\sigma, o \dbwdarrow \kappa$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-end}}
+]
+{
+   \strut
+}
+{
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattSNil
+   \dbwdarrow
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest}}
+]
+{
+   \sigma, p \dbwdarrow \sigma'
+   \\
+   \sigma', o \dbwdarrow \kappa'
+}
+{
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattSCons{p}{o}
+   \dbwdarrow
+   \kappa'
+}
+\end{smathpar}
+
+\flushleft\shadebox{$\sigma, \vec{c} \dbwdarrow \vec{c}$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-clause}}
+]
+{
+   \sigma, p \dbwdarrow e
+   \\
+   e, s \dbwdarrow s'
+}
+{
+   \sigma, \clausenv{p}{s}
+   \dbwdarrow
+   \clausenv{p}{s'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-clause-seq}},
+   right={ \ $\mathit{non}$-$\mathit{empty} \; \vec{c}$}
+]
+{
+   \sigma, c \dbwdarrow c'
+   \\
+   \sigma, \vec{c} \dbwdarrow \vec{c}'
+}
+{
+   \sigma, c \cdot \vec{c}
+   \dbwdarrow
+   c' \cdot \vec{c}'
+}
+\end{smathpar}
+\caption{Desugaring clauses and patterns -- backward slicing}
+\end{figure}

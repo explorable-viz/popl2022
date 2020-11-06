@@ -1,19 +1,26 @@
 \begin{figure}[H]
-\flushleft\shadebox{untotalise p $\sigma = \kappa$}
+\flushleft\shadebox{untotalise $(p, \sigma) = \sigma'$}
 \begin{salign}
-   \untotalise{x}{\elimVar{x}{\kappa}} &= \kappa
+   \untotalise{x}{\elimVar{x}{\kappa}} &= \elimVar{x}{\kappa}
    \\
-   \untotalise{\pattTrue}{\elimBool{\kappa}{\kappa'}} &= \kappa
+   \untotalise{\pattTrue}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolTrue{\kappa_1}
    \\
-   \untotalise{\pattFalse}{\elimBool{\kappa}{\kappa'}} &= \kappa'
+   \untotalise{\pattFalse}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolFalse{\kappa_2}
    \\
-   \untotalise{\pattPair{p_1}{p_2}}{\elimProd{\_ \mapsto \_ \mapsto \kappa}} &= \kappa
+   \untotalise{\pattPair{p}{p'}}{\elimProd{\sigma}} &= \elimProd{\untotalise{p}{\untotalise{p'}{\sigma}}}
    \\
-   \untotalise{\pattNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \kappa
+   \untotalise{\pattNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchNil{\kappa}}
    \\
-   \untotalise{\pattCons{p}{p'}}{\elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \kappa'}}} &= \kappa'
+   \untotalise{\pattCons{p}{p'}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{p'}{\sigma}}}}
    \\
-   \untotalise{\pattList{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \kappa'}}} &= \kappa'
+   \untotalise{\pattList{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &=  \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{o}{\sigma}}}}
 \end{salign}
-\caption{Extract branch body from eliminator}
+
+\flushleft\shadebox{untotalise $(o, \sigma) = \sigma'$}
+\begin{salign}
+   \untotalise{\pattSNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchNil{\kappa}}
+   \\
+   \untotalise{\pattSCons{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &=  \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{o}{\sigma}}}}
+\end{salign}
+\caption{Untotalise}
 \end{figure}
