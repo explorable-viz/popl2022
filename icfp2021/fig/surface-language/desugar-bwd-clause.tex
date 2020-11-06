@@ -1,27 +1,5 @@
-
-%\begin{figure}[H]
-%\flushleft\shadebox{$\vec{p}, \kappa \dbwdarrow \sigma$}
-%\begin{smathpar}
-%\inferrule*[
-%   lab={\ruleName{$\dbwdarrow$-pattern-seq}}
-%]
-%{
- %  \vec{p}, \kappa \dbwdarrow \sigma
- %  \\
- %  p, \lambda \vec{p} \rightarrow \sigma \dbwdarrow \sigma'
-%}
-%{
-%   p \cdot \vec{p}, \kappa
-%   \dbwdarrow
-%   \sigma'
-%}
-%\end{smathpar}
-%\caption{Desugaring clause (Elim) - Create eliminator from pattern seq and cont}
-%\end{figure}
-
-
 \begin{figure}[H]
-\flushleft\shadebox{$\sigma \dbwdarrow p, \kappa$}
+\flushleft\shadebox{$\sigma, p \dbwdarrow \kappa$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-var}}
@@ -30,9 +8,9 @@
    \strut
 }
 {
-   \elimVar{x}{\kappa}
+   \elimVar{x}{\kappa}, x
    \dbwdarrow
-   x, \kappa
+   \kappa
 }
 %
 \and
@@ -44,9 +22,9 @@
    \strut
 }
 {
-   \branchNil{\kappa}
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \exNil
    \dbwdarrow
-   \pattNil, \kappa
+   \kappa
 }
 %
 \and
@@ -55,14 +33,14 @@
    lab={\ruleName{$\dbwdarrow$-cons}}
 ]
 {
-   \sigma \dbwdarrow p, \sigma'
+   \sigma, p \dbwdarrow \sigma'
    \\
-   \sigma' \dbwdarrow p', \kappa
+   \sigma', p' \dbwdarrow \kappa
 }
 {
-   \branchCons{\sigma}
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattCons{p}{p'}
    \dbwdarrow
-   \pattCons{p}{p'}, \kappa
+   \kappa
 }
 %
 \and
@@ -71,14 +49,14 @@
    lab={\ruleName{$\dbwdarrow$-non-empty-list}}
 ]
 {
-   \sigma \dbwdarrow p, \sigma'
+   \sigma, p \dbwdarrow \sigma'
    \\
-   \sigma' \dbwdarrow o, \kappa
+   \sigma', o \dbwdarrow \kappa
 }
 {
-   \sigma
+   \sigma, \pattList{p}{o}
    \dbwdarrow
-   \pattList{p}{o}, \kappa
+   \kappa
 }
 %
 \and
@@ -87,49 +65,80 @@
    lab={\ruleName{$\dbwdarrow$-pair}}
 ]
 {
-   \sigma \dbwdarrow p, \sigma'
+   \sigma, p \dbwdarrow \sigma'
    \\
-   \sigma' \dbwdarrow p', \kappa
+   \sigma', p' \dbwdarrow \kappa
 }
 {
-   \elimProd{\sigma'}
+   \elimProd{\sigma'}, \pattPair{p}{p'}
    \dbwdarrow
-   \pattPair{p}{p'}, \kappa
+   \kappa
 }
 \end{smathpar}
-\caption{Resugaring clause (Unelim) - Deconstruct eliminator into pattern and cont}
-\end{figure}
 
-\begin{figure}[H]
-\flushleft\shadebox{$\sigma \dbwdarrow o, \kappa$}
+\flushleft\shadebox{$\sigma, o \dbwdarrow \kappa$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-end -- must be distinguishable from nil}}
+   lab={\ruleName{$\dbwdarrow$-list-end}}
 ]
 {
    \strut
 }
 {
-   \branchNil{\kappa}
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattSNil
    \dbwdarrow
-   \pattSNil, \kappa
+   \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-rest -- must be distinguishable from non-empty-list}}
+   lab={\ruleName{$\dbwdarrow$-list-rest}}
 ]
 {
-   \sigma \dbwdarrow p, \sigma'
+   \sigma, p \dbwdarrow \sigma'
    \\
-   \sigma' \dbwdarrow o, \kappa
+   \sigma', o \dbwdarrow \kappa'
 }
 {
-   \sigma
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattSCons{p}{o}
    \dbwdarrow
-   \pattSCons{p}{o}, \kappa
+   \kappa'
 }
 \end{smathpar}
-\caption{Resugaring clause (Unelim) - Deconstruct eliminator into list-pattern-rest and cont}
+
+\flushleft\shadebox{$\sigma, \vec{c} \dbwdarrow \vec{c}$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-clause}}
+]
+{
+   \sigma, p \dbwdarrow e
+   \\
+   e, s \dbwdarrow s'
+}
+{
+   \sigma, \clausenv{p}{s}
+   \dbwdarrow
+   \clausenv{p}{s'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-clause-seq}},
+   right={ \ $\mathit{non}$-$\mathit{empty} \; \vec{c}$}
+]
+{
+   \sigma, c \dbwdarrow c'
+   \\
+   \sigma, \vec{c} \dbwdarrow \vec{c}'
+}
+{
+   \sigma, c \cdot \vec{c}
+   \dbwdarrow
+   c' \cdot \vec{c}'
+}
+\end{smathpar}
+\caption{Desugaring clauses and patterns -- backward slicing}
 \end{figure}

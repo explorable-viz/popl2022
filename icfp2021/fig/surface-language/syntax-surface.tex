@@ -13,7 +13,7 @@ t
 &&&
 \sExLet{f}{\vec{c}}{s}
 &
-\text{recursive function}
+\text{recursive function \hspace{0.14cm} (non-empty $\vec{c}$)}
 \\
 &&&
 \exIfThenElse{s}{s'}{s^{\twoPrime}}
@@ -23,7 +23,7 @@ t
 &&&
 \exMatch{s}{\vec{c}}
 &
-\text{match-as}
+\text{match-as \hspace{1.32cm} (non-empty $\vec{c}$)}
 \\
 &&&
 \sExList{s}{l}
@@ -38,23 +38,7 @@ t
 &&&
 \exListComp{s}{\vec{q}}
 &
-\text{list comprehension}
-\\[2mm]
-
-\mbox{List rest}
-&
-l
-&
-::=
-&
-\annot{\sExNil}{\alpha}
-&
-\text{end}
-\\
-&&&
-\annot{(\sExCons{s}{l})}{\alpha}
-&
-\text{cons}
+\text{list comprehension \hspace{0.03cm} (non-empty $\vec{q}$)}
 \\[2mm]
 
 \mbox{Surface term}
@@ -66,28 +50,16 @@ s
 t_{\alpha}
 \\[2mm]
 
-
-\mbox{Qualifier}
+\mbox{Clause}
 &
-q
+c
 &
 ::=
 &
-\annot{(\qualGuard{s})}{\alpha}
+\clause{p}{s}
 &
-\text{guard}
-\\
-&&&
-\annot{(\qualDeclaration{p}{s})}{\alpha}
-&
-\text{declaration}
-\\
-&&&
-\annot{(\qualGenerator{p}{s})}{\alpha}
-&
-\text{generator}
+\text{clause \hspace{1.7cm} (non-empty $\vec{p}$)}
 \\[2mm]
-
 
 \mbox{Pattern}
 &
@@ -136,16 +108,43 @@ o
 \text{cons}
 \\[2mm]
 
-\mbox{Clause}
+\mbox{List rest}
 &
-c
+l
 &
 ::=
 &
-\clause{p}{s}
+\annot{\sExNil}{\alpha}
 &
-\text{clause (non-empty $\vec{p}$)}
+\text{end}
+\\
+&&&
+\annot{(\sExCons{s}{l})}{\alpha}
+&
+\text{cons}
 \\[2mm]
+
+\mbox{Qualifier}
+&
+q
+&
+::=
+&
+\annot{(\qualGuard{s})}{\alpha}
+&
+\text{guard}
+\\
+&&&
+\annot{(\qualDeclaration{p}{s})}{\alpha}
+&
+\text{declaration}
+\\
+&&&
+\annot{(\qualGenerator{p}{s})}{\alpha}
+&
+\text{generator}
+\\[2mm]
+
 \end{syntaxfig}
 \caption{Syntax of surface-language terms}
 \end{figure}

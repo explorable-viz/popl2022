@@ -154,18 +154,14 @@
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-decl}}]
 {
-   s' \dfwdarrow e'
-   \\
-   \annot{\exListComp{s}{\vec{q}}}{\alpha_2} \dfwdarrow e
-   \\
    \clausenv{p}{s'} \dfwdarrow \sigma
    \\
-   \sigma' = \totalise{\sigma}
+   \annot{\exListComp{s}{\vec{q}}}{\alpha_2} \dfwdarrow e
 }
 {
    \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{\exLambda{\sigma'}}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
+   \annot{(\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
 }
 \and
 %
@@ -183,7 +179,7 @@
    \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma'}}{\alpha_1 \meet \alpha_2})}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
 }
 \end{smathpar}
-\caption{Desugaring -- forward slicing (additional forms only)}
+\caption{Desugaring -- forward slicing (selected rules only)}
 \end{figure}
 
 \begin{figure}[H]

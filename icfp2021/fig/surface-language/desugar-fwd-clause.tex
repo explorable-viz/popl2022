@@ -3,12 +3,13 @@
 \flushleft\shadebox{$\vec{p}, \kappa \dfwdarrow \sigma$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-pattern-seq}}
+   lab={\ruleName{$\dfwdarrow$-pattern-seq}},
+   right={ \ $\mathit{non}$-$\mathit{empty} \; \vec{p}$}
 ]
 {
    \vec{p}, \kappa \dfwdarrow \sigma
    \\
-   p, \lambda \vec{p} \rightarrow \sigma \dfwdarrow \sigma'
+   p, \exLambda{\sigma} \dfwdarrow \sigma'
 }
 {
    p \cdot \vec{p}, \kappa
@@ -16,11 +17,7 @@
    \sigma'
 }
 \end{smathpar}
-\caption{Desugaring clause (Elim) - Create singleton eliminator from pattern seq and cont}
-\end{figure}
 
-
-\begin{figure}[H]
 \flushleft\shadebox{$p, \kappa \dfwdarrow \sigma$}
 \begin{smathpar}
 \inferrule*[
@@ -97,10 +94,7 @@
    \elimProd{\sigma'}
 }
 \end{smathpar}
-\caption{Desugaring clause (Elim) - Create singleton eliminator from pattern and cont}
-\end{figure}
 
-\begin{figure}[H]
 \flushleft\shadebox{$o, \kappa \dfwdarrow \sigma$}
 \begin{smathpar}
 \inferrule*[
@@ -131,5 +125,39 @@
    \sigma'
 }
 \end{smathpar}
-\caption{Desugaring clause (Elim) - Create singleton eliminator from list-pattern-rest and cont}
+
+\flushleft\shadebox{$\vec{c} \dfwdarrow \sigma$ }
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-clause}}
+]
+{
+   s \dfwdarrow e
+   \\
+   \vec{p}, e \dfwdarrow \sigma
+}
+{
+   \clause{p}{s}
+   \dfwdarrow
+   \sigma
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-clause-seq}},
+   right={ \ $\mathit{non}$-$\mathit{empty} \; \vec{c}$}
+]
+{
+   c \dfwdarrow \sigma
+   \\
+   \vec{c} \dfwdarrow \sigma'
+}
+{
+   c \cdot \vec{c}
+   \dfwdarrow
+   \sigma \join \sigma'
+}
+\end{smathpar}
+\caption{Desugaring clauses and patterns -- forward slicing}
 \end{figure}
