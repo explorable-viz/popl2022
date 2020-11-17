@@ -1,15 +1,17 @@
 \begin{figure}[H]
-\flushleft\shadebox{totalise $\sigma = \sigma'$}
+\flushleft\shadebox{totalise $\kappa = \kappa'$}
 \begin{salign}
-   \totalise{\elimVar{x}{\kappa}} &= \elimVar{x}{\kappa}
+   \totalise{e} &= e
    \\
-   \totalise{\elimBoolTrue{\kappa}} &= \elimBool{\kappa}{\exNil}
+   \totalise{\elimVar{x}{\kappa}} &= \elimVar{x}{\totalise{\kappa}}
    \\
-   \totalise{\elimBoolFalse{\kappa}} &= \elimBool{\exNil}{\kappa}
+   \totalise{\elimBoolTrue{\kappa}} &= \elimBool{\totalise{\kappa}}{\exNil}
+   \\
+   \totalise{\elimBoolFalse{\kappa}} &= \elimBool{\exNil}{\totalise{\kappa}}
    \\
    \totalise{\elimProd{\sigma}} &= \elimProd{\totalise{\sigma}}
    \\
-   \totalise{\branchNil{\kappa}} &= \elimList{\branchNil{\kappa}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
+   \totalise{\branchNil{\kappa}} &= \elimList{\branchNil{\totalise{\kappa}}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
    \\
    \totalise{\branchCons{\sigma}} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{\sigma}}}
 \end{salign}

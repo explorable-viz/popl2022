@@ -141,7 +141,8 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}}]
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}},
+            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
    \annot{(\exIfThenElse{s'}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}}{\annot{\exNil}{\alpha_1 \meet \alpha_2}})}{\alpha_1 \meet \alpha_2}
    \dfwdarrow e
@@ -152,7 +153,8 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-decl}}]
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-decl}},
+            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
    \clausenv{p}{s'} \dfwdarrow \sigma
    \\
@@ -165,7 +167,8 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}}]
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}},
+            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
    \annot{\clausenv{p}{\exListComp{s}{\vec{q}}}}{\alpha_2} \dfwdarrow \sigma
    \\

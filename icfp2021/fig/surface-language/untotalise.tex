@@ -1,26 +1,26 @@
 \begin{figure}[H]
-\flushleft\shadebox{untotalise $(p, \sigma) = \sigma'$}
+\flushleft\shadebox{untotalise $(\sigma, p) = \sigma'$}
 \begin{salign}
-   \untotalise{x}{\elimVar{x}{\kappa}} &= \elimVar{x}{\kappa}
+   \untotalise{\elimVar{x}{\kappa}}{x} &= \elimVar{x}{\kappa}
    \\
-   \untotalise{\pattTrue}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolTrue{\kappa_1}
+   \untotalise{\elimBool{\kappa_1}{\kappa_2}}{\pattTrue} &= \elimBoolTrue{\kappa_1}
    \\
-   \untotalise{\pattFalse}{\elimBool{\kappa_1}{\kappa_2}} &= \elimBoolFalse{\kappa_2}
+   \untotalise{\elimBool{\kappa_1}{\kappa_2}}{\pattFalse} &= \elimBoolFalse{\kappa_2}
    \\
-   \untotalise{\pattPair{p}{p'}}{\elimProd{\sigma}} &= \elimProd{\untotalise{p}{\untotalise{p'}{\sigma}}}
+   \untotalise{\elimProd{\sigma}}{\pattPair{p}{p'}} &= \elimProd{\untotalise{\untotalise{\sigma}{p}}{p'}}
    \\
-   \untotalise{\pattNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchNil{\kappa}}
+   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{\pattNil} &= \elimListSingleton{\branchNil{\kappa}}
    \\
-   \untotalise{\pattCons{p}{p'}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{p'}{\sigma}}}}
+   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{\pattCons{p}{p'}} &= \elimListSingleton{\branchCons{\untotalise{\untotalise{\sigma}{p}}{p'}}}
    \\
-   \untotalise{\pattList{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &=  \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{o}{\sigma}}}}
+   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{\pattList{p}{o}} &=  \elimListSingleton{\branchCons{\untotalise{\untotalise{\sigma}{p}}{o}}}
 \end{salign}
 
-\flushleft\shadebox{untotalise $(o, \sigma) = \sigma'$}
+\flushleft\shadebox{untotalise $(\sigma, o) = \sigma'$}
 \begin{salign}
-   \untotalise{\pattSNil}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &= \elimListSingleton{\branchNil{\kappa}}
+   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{\pattSNil} &= \elimListSingleton{\branchNil{\kappa}}
    \\
-   \untotalise{\pattSCons{p}{o}}{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}} &=  \elimListSingleton{\branchCons{\untotalise{p}{\untotalise{o}{\sigma}}}}
+   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{\pattSCons{p}{o}} &=  \elimListSingleton{\branchCons{\untotalise{\untotalise{\sigma}{p}}{o}}}
 \end{salign}
 \caption{Untotalise}
 \end{figure}

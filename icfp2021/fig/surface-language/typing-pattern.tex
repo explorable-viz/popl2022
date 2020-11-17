@@ -1,4 +1,7 @@
 \begin{figure}[H]
+
+%% Patterns
+
 \flushleft \shadebox{$p: A \dashv \Gamma $}
 \begin{smathpar}
 \inferrule*
@@ -55,10 +58,9 @@
    \pattList{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
-\caption{Typing rules for patterns}
-\end{figure}
 
-\begin{figure}[H]
+%% List pattern rest
+
 \flushleft \shadebox{$o: \tyList{A} \dashv \Gamma $}
 \begin{smathpar}
 \inferrule*
@@ -81,5 +83,34 @@
    \pattSCons{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
-\caption{Typing rules for list pattern rest}
+
+%% Clauses
+
+\flushleft \shadebox{$\Gamma \vdash c : A $}
+\begin{smathpar}
+\inferrule*
+{
+   p: A \dashv \Gamma'
+   \\
+   \Gamma \cdot \Gamma' \vdash s: B
+}
+{
+   \Gamma \vdash p \equal s : \tyFun{A}{B}
+}
+%
+\and
+%
+\inferrule*[right={ \ $\vec{p} \; \textnormal{non-empty}$}]
+{
+   p : A \dashv \Gamma'
+   \\
+   \Gamma \cdot \Gamma' \vdash \clause{p}{s} : B
+}
+{
+   \Gamma \vdash \clausenv{p \cdot \vec{p}}{s} : \tyFun{A}{B}
+}
+\end{smathpar}
+
+
+\caption{Typing rules for patterns and clauses}
 \end{figure}

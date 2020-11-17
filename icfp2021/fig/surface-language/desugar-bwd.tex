@@ -160,7 +160,7 @@
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
-   right={ \ $\mathit{non}$-$\mathit{empty} \; \vec{q}$}]
+   right={ \ $ \vec{q} \; \textnormal{non-empty}$}]
 {
    e, \exIfThenElse{s_2}{\exListComp{s_1}{\vec{q}}}{\exNil}
    \dbwdarrow
@@ -174,7 +174,7 @@
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
-   right={ \ $\mathit{non}$-$\mathit{empty} \; \vec{q}$}]
+   right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
    \sigma, \clausenv{p}{s_1} \dbwdarrow \clausenv{p}{s_{1}'}
    \\
@@ -190,11 +190,13 @@
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}},
-   right={ \ $\mathit{non}$-$\mathit{empty} \; \vec{q}$}]
+   right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
    e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
    \sigma' = \untotalise{p}{\sigma}
+   \\
+   \sigma', p \dbwdarrow e_{2}
    \\
    e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha_4}
 }
@@ -239,7 +241,7 @@
    \annot{(\exCons{e}{e'})}{\alpha}
    ,
    \ \sExCons{s}{l}
-   \darrow
+   \dbwdarrow
    \annot{(\sExCons{s'}{l'})}{\alpha}
 }
 \end{smathpar}
