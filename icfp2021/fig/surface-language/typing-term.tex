@@ -1,4 +1,7 @@
 \begin{figure}[H]
+
+%% Surface terms
+
 \flushleft \shadebox{$\Gamma \vdash s: A$}
 \begin{smathpar}
 \inferrule*
@@ -75,10 +78,10 @@
    \Gamma \vdash \exListComp{s}{\vec{q}}: \tyList{A}
 }
 \end{smathpar}
-\caption{Typing rules for surface terms (additional forms only)}
-\end{figure}
 
-\begin{figure}[H]
+\vspace{0.1em}
+%% List rest
+
 \flushleft \shadebox{$\Gamma \vdash l: \tyList{A}$}
 \begin{smathpar}
 \inferrule*
@@ -101,5 +104,60 @@
    \Gamma \vdash \sExCons{s}{l} : \tyList{A}
 }
 \end{smathpar}
-\caption{Typing rules for list rest}
+
+\vspace{0.1em}
+%% Qualifiers
+
+\flushleft \shadebox{$\Gamma \vdash q \dashv \Delta $}
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \vdash s: \tyBool
+}
+{
+   \Gamma \vdash \qualGuard{s} \dashv \envEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s: \tyList{A}
+   \\
+   p: A \dashv \Delta
+}
+{
+   \Gamma \vdash \qualGenerator{p}{s} \dashv \Delta
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash s: A
+   \\
+   p: A \dashv \Delta
+}
+{
+   \Gamma \vdash \qualDeclaration{p}{s} \dashv \Delta
+}
+\end{smathpar}
+
+\vspace{0.1em}
+%% Qualifier sequence
+
+\flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
+\begin{smathpar}
+\inferrule*[right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+{
+   \Gamma \vdash q \dashv \Gamma'
+   \\
+   \Gamma \concat \Gamma' \vdash \vec{q} \dashv \Delta
+}
+{
+   \Gamma \vdash q \concat \vec{q} \dashv \Delta
+}
+\end{smathpar}
+
+\caption{Typing rules for surface terms (additional forms only) and qualifiers}
 \end{figure}
