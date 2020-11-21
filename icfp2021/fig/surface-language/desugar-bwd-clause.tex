@@ -1,4 +1,21 @@
 \begin{figure}[H]
+\flushleft\shadebox{$\sigma, \vec{p} \dbwdarrow \kappa$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-pattern-seq}}
+]
+{
+   \sigma, p \dbwdarrow \sigma'
+   \\
+   \sigma', \vec{p} \dbwdarrow \kappa'
+}
+{
+   \sigma, p \cdot \vec{p}
+   \dbwdarrow
+   \kappa'
+}
+\end{smathpar}
+
 \flushleft\shadebox{$\sigma, p \dbwdarrow \kappa$}
 \begin{smathpar}
 \inferrule*[
@@ -113,14 +130,14 @@
    lab={\ruleName{$\dbwdarrow$-clause}}
 ]
 {
-   \sigma, p \dbwdarrow e
+   \sigma, \vec{p} \dbwdarrow e
    \\
    e, s \dbwdarrow s'
 }
 {
-   \sigma, \clausenv{p}{s}
+   \sigma, \clause{p}{s}
    \dbwdarrow
-   \clausenv{p}{s'}
+   \clause{p}{s'}
 }
 %
 \and
