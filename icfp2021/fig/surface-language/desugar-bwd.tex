@@ -162,14 +162,15 @@
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
    right={ \ $ \vec{q} \; \textnormal{non-empty}$}]
 {
-   e, \exIfThenElse{s_2}{\exListComp{s_1}{\vec{q}}}{\exNil}
-   \dbwdarrow
-   \annot{(\exIfThenElse{s_{2}'}{\annot{\exListComp{s_{1}'}{\vec{q}'}}{\alpha_1}}{\annot{\exNil}{\alpha_2}})}{\alpha_3}
+   e_2, s_2 \dbwdarrow s_2'
+   \\
+   e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{1}'}{\vec{q}'}}{\alpha_4}
 }
 {
-   e, \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
+   \annot{( \annot{\exLambda{\elimBool{e_{2}}{\annot{\exNil}{\alpha_{1}}}}}{\alpha_2} \ e_{1})}{\alpha_3}
+   , \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \cdot \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3}
+   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \cdot \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3 \join \alpha_4}
 }
 \and
 %
