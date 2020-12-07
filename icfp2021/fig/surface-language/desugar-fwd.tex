@@ -161,9 +161,9 @@
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-decl}},
             right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
-   \clausenv{p}{s'} \dfwdarrow \sigma
+   \clausenv{p}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}} \dfwdarrow \sigma
    \\
-   \annot{\exListComp{s}{\vec{q}}}{\alpha_2} \dfwdarrow e
+   s' \dfwdarrow e
 }
 {
    \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
@@ -179,12 +179,12 @@
    \\
    \sigma' = \totalise{\sigma}
    \\
-   s' \dfwdarrow e'
+   s' \dfwdarrow e
 }
 {
    \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma'}}{\alpha_1 \meet \alpha_2})}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
+   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma'}}{\alpha_1 \meet \alpha_2})}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules only)}
