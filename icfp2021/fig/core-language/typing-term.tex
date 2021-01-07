@@ -104,7 +104,19 @@
    \Gamma \vdash v: \tyList{A}
 }
 {
-   \vdash (\exCons{u}{v}): \tyList{A}
+   \Gamma \vdash (\exCons{u}{v}): \tyList{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e': \tyProd{\tyInt}{\tyInt}
+   \\
+   \cxtExtend{\cxtExtend{\Gamma}{x}{\tyInt}}{y}{\tyInt} \vdash e: A
+}
+{
+   \Gamma \vdash \exArray{e'}{x}{y}{e}: \tyArray{A}
 }
 %
 \and
