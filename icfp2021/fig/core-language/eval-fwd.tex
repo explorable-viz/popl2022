@@ -61,6 +61,20 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-array}}]
+   {
+      \rho, e', \alpha' \fwdSlice \exPair{i'}{j'}
+      \\
+      \forall (i,j) \leq (i',j').\envExtend{\envExtend{\rho}{x}{i}}{y}{j}, e, \alpha' \fwdSlice v_{i,j}
+   }
+   {
+      \rho, \annot{\exArray{e'}{x}{y}{e}}{\alpha}, \alpha'
+      \fwdSlice
+      \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha \meet \alpha'}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
    {
       \rho, e, \alpha' \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\beta}
