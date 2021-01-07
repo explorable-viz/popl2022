@@ -123,6 +123,28 @@
 %
 \inferrule*
 {
+   \Gamma \vdash e: \tyArray{A}
+   \\
+   \Gamma \vdash e': \tyProd{\tyInt}{\tyInt}
+}
+{
+   \Gamma \vdash \exArrayAccess{e}{e'}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: \tyArray{A}
+}
+{
+   \Gamma \vdash \exArraySize{e}: \tyProd{\tyInt}{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash e: A
    \\
    \cxtExtend{\Gamma}{x}{A} \vdash e': B
