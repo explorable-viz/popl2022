@@ -90,6 +90,18 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-array-size}}]
+   {
+      \rho, e, \alpha' \fwdSlice \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\beta}
+   }
+   {
+      \rho, \annot{(\exArraySize{e})}{\alpha}, \alpha'
+      \fwdSlice
+      \annot{\exPair{\annot{i'}{\alpha \meet \beta}}{\annot{j'}{\alpha \meet \beta}}}{\alpha'}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
    {
       \rho, e, \alpha' \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\beta}
