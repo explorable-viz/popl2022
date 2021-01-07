@@ -91,15 +91,43 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-array}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-array}},
+      right={$(0,0) \leq (m,n)$}
+   ]
    {
       \explVal{T}{\rho, e' \eval \exPair{m}{n}}
       \\
-      \forall (i,j) \leq (m,n).\explVal{U_{i,j}}{\envExtend{\envExtend{\rho}{x}{m}}{y}{n}, e \eval v_{i,j}}
+      \forall (i,j) \leq (m,n).\explVal{U_{i,j}}{\envExtend{\envExtend{\rho}{x}{i}}{y}{j}, e \eval v_{i,j}}
    }
    {
       \explVal{\trArray{U_{i,j}}{x}{y}{i}{j}{T}}
               {\rho, \exArray{e'}{x}{y}{e} \eval \exArray{\exPair{m}{n}}{i}{j}{v_{i,j}}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-array-access}},
+      right={$(0,0) \leq (m,n) \leq (i',j')$}
+   ]
+   {
+      \explVal{T}{\rho, e \eval \exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+      \\
+      \explVal{U}{\rho, e' \eval \exPair{m}{n}}
+   }
+   {
+      \explVal{\trArrayAccess{T}{U}}{\rho, \exArrayAccess{e}{e'} \eval v_{m,n}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-array-size}}]
+   {
+      \explVal{T}{\rho, e \eval \exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+   }
+   {
+      \explVal{\trArraySize{T}}{\rho, \exArraySize{e} \eval \exPair{i'}{j'}}
    }
    %
    \and
