@@ -62,7 +62,23 @@
    {
       \annot{(\exCons{u}{v})}{\alpha}, \trCons{T}{U}
       \bwdSlice
-      \rho \join \rho', \annot{(\exCons{e}{e'})}{\alpha}, \alpha \vee \alpha' \vee \alpha^\twoPrime
+      \rho \join \rho', \annot{(\exCons{e}{e'})}{\alpha}, \alpha \join \alpha' \join \alpha^\twoPrime
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-array}}]
+   {
+      \exPair{i'}{j'}, T \bwdSlice \rho, e, \beta
+      \\
+      \forall (i,j) \leq (i',j').
+      v_{i,j}, U_{i,j} \bwdSlice \envExtend{\envExtend{\rho'}{x}{i}}{y}{j}, e', \beta'
+   }
+   {
+      \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
+      \trArray{U_{i,j}}{x}{y}{i}{j}{T}
+      \bwdSlice
+      \rho \join \rho', \annot{\exArray{e}{x}{y}{e'}}{\alpha}, \beta \join \beta'
    }
    %
    \and
