@@ -171,7 +171,6 @@
 \newcommand*{\Match}[4]{\Set{Match}\,#1\,#2\,#3\,#4}
 \newcommand*{\Prim}[3]{\Set{Prim}\,#1\,#2\,#3}
 \newcommand*{\BinaryOp}[3]{\Set{BinaryOp}\,#1\,#2\,#3}
-\newcommand*{\Trie}[3]{\Set{Trie}\,#1\,#2\,#3}
 \newcommand*{\UnaryOp}[2]{\Set{UnaryOp}\,#1\,#2}
 \newcommand*{\Val}[1]{\Set{Val}\,#1}
 \newcommand*{\ValExpl}[2]{\Set{Val}\,#1\:#2}
@@ -217,6 +216,7 @@
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
 \newcommand*{\trAppPrim}[2]{\exApp{#1}{#2}}
+\newcommand*{\trArray}[6]{\exArray{{#6}}{#2:#4}{#3:#5}{#1}}
 \newcommand*{\trBinaryApp}[4]{\exBinaryApp{#1}{#2_{#3}}{#4}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
