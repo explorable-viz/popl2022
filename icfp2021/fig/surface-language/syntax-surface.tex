@@ -13,7 +13,7 @@ t
 &&&
 \sExLet{f}{\vec{c}}{s}
 &
-\text{recursive function ($\vec{c}$ non-empty)}
+\text{recursive function}
 \\
 &&&
 \exIfThenElse{s}{s'}{s^{\twoPrime}}
@@ -23,7 +23,7 @@ t
 &&&
 \exMatch{s}{\vec{c}}
 &
-\text{match-as ($\vec{c}$ non-empty)}
+\text{match}
 \\
 &&&
 \sExList{s}{l}
@@ -38,7 +38,7 @@ t
 &&&
 \exListComp{s}{\vec{q}}
 &
-\text{list comprehension ($\vec{q}$ non-empty)}
+\text{list comprehension}
 \\[2mm]
 
 \mbox{Surface term}
@@ -57,8 +57,6 @@ c
 ::=
 &
 \clause{p}{s}
-&
-\text{clause ($\vec{p}$ non-empty)}
 \\[2mm]
 
 \mbox{Pattern}
@@ -146,5 +144,5 @@ q
 \\[2mm]
 
 \end{syntaxfig}
-\caption{Syntax of surface-language terms}
+\caption{Syntax of surface-language terms ($\vec{\param}$ denotes non-empty sequence)}
 \end{figure}
