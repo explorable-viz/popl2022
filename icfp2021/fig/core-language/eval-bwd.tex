@@ -62,7 +62,54 @@
    {
       \annot{(\exCons{u}{v})}{\alpha}, \trCons{T}{U}
       \bwdSlice
-      \rho \join \rho', \annot{(\exCons{e}{e'})}{\alpha}, \alpha \vee \alpha' \vee \alpha^\twoPrime
+      \rho \join \rho', \annot{(\exCons{e}{e'})}{\alpha}, \alpha \join \alpha' \join \alpha^\twoPrime
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-array}}]
+   {
+      \annot{\exPair{\annot{i'}{\alpha}}{\annot{j'}{\alpha}}}{\FF}, T \bwdSlice \rho, e, \beta
+      \\
+      \forall (i,j) \leq (i',j').
+      v_{i,j}, U_{i,j} \bwdSlice \envExtend{\envExtend{\rho'}{x}{i}}{y}{j}, e', \beta'
+   }
+   {
+      \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
+      \trArray{U_{i,j}}{x}{y}{i}{j}{T}
+      \bwdSlice
+      \rho \join \rho', \annot{\exArray{e}{x}{y}{e'}}{\alpha}, \alpha \join \beta \join \beta'
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-array-access}},
+      right={$\val{U} = \exPair{i}{j}$}
+   ]
+   {
+      \annot{(\val{T} \reloverrideleft \arrayLBrack\exPair{i}{j} \mapsto \annot{u}{\alpha}\arrayRBrack)}{\FF}, T
+      \bwdSlice
+      \rho, e, \beta
+      \\
+      \annot{\exPair{\annot{i}{\alpha}}{\annot{j}{\alpha}}}{\FF}, U \bwdSlice \rho', e', \beta'
+   }
+   {
+       \annot{u}{\alpha}, \trArrayAccess{T}{U}
+       \bwdSlice
+       \rho \join \rho', \annot{(\exArrayAccess{e}{e'})}{\alpha}, \beta \join \beta'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\bwdSlice$-array-size}}]
+   {
+      \annot{\val{T}}{\alpha_1 \join \alpha_2}, T \bwdSlice \rho, e, \alpha'
+   }
+   {
+      \annot{\exPair{\annot{i'}{\alpha_1}}{\annot{j'}{\alpha_2}}}{\alpha}, \trArraySize{T}
+      \bwdSlice
+      \rho, \annot{(\exArraySize{e})}{\alpha \join \alpha_1 \join \alpha_2}, \alpha \join \alpha'
    }
    %
    \and
@@ -82,7 +129,9 @@
       \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
    }
    {
-      v, \trApp{T}{U}{\matchPlug{\xi}{T'}} \bwdSlice \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+      v, \trApp{T}{U}{\matchPlug{\xi}{T'}}
+      \bwdSlice
+      \rho' \join \rho^\twoPrime, \annot{(\exApp{e^\twoPrime}{e'})}{\alpha}, \alpha' \join \alpha^\twoPrime
    }
    %
    \and
@@ -94,7 +143,9 @@
       \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
    }
    {
-      \annot{n}{\alpha}, \trAppPrim{T}{U} \bwdSlice \rho \join \rho', \exApp{e}{e'}, \FF
+      \annot{n}{\alpha}, \trAppPrim{T}{U}
+      \bwdSlice
+      \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
    %
    \and

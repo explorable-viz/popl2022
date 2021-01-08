@@ -121,6 +121,17 @@
 {
    \vdash (\exCons{v}{v'}): \tyList{A}
 }
+%
+\and
+%
+\inferrule*
+{
+   \forall (i,j) \leq (i',j').
+   \vdash v_{i,j}: A
+}
+{
+   \vdash \exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}: \tyArray{A}
+}
 \end{smathpar}
 \caption{Typing rules for environments and values}
 \end{figure}

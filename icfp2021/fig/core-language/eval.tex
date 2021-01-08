@@ -91,6 +91,44 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\eval$-array}}]
+   {
+      \explVal{T}{\rho, e' \eval \exPair{i'}{j'}}
+      \\
+      \forall (i,j) \leq (i',j').\explVal{U_{i,j}}{\envExtend{\envExtend{\rho}{x}{i}}{y}{j}, e \eval v_{i,j}}
+   }
+   {
+      \explVal{\trArray{U_{i,j}}{x}{y}{i}{j}{T}}
+              {\rho, \exArray{e'}{x}{y}{e} \eval \exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-array-access}},
+      right={$(i,j) \leq (i',j')$}
+   ]
+   {
+      \explVal{T}{\rho, e \eval \exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+      \\
+      \explVal{U}{\rho, e' \eval \exPair{i}{j}}
+   }
+   {
+      \explVal{\trArrayAccess{T}{U}}{\rho, \exArrayAccess{e}{e'} \eval v_{i,j}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-array-size}}]
+   {
+      \explVal{T}{\rho, e \eval \exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+   }
+   {
+      \explVal{\trArraySize{T}}{\rho, \exArraySize{e} \eval \exPair{i'}{j'}}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
       \explVal{T}{\rho, e \eval \exClosureRec{\rho'}{f}{\sigma}}

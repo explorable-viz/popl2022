@@ -50,33 +50,40 @@
 % Annotations.
 \newcommand*{\annot}[2]{#1_{#2}}
 
-\newcommand*{\symCons}{\textbf{\kw{:}}}
+\newcommand*{\sym}[1]{\textbf{\kw{#1}}}
+\newcommand*{\symCons}{\sym{:}}
+
+\newcommand*{\arrayLBrack}{\langle}
+\newcommand*{\arrayRBrack}{\rangle}
 
 % Expressions.
 %\newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
+\newcommand*{\exArray}[4]{\arrayLBrack{#4}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#1}\arrayRBrack}
+\newcommand*{\exArrayAccess}[2]{{#1}\,\sym{!}\,{#2}}
+\newcommand*{\exArraySize}[1]{\kw{size}\;{#1}}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
 \newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
-\newcommand*{\exClosure}[3]{(#1,#2,\exLambda{#3})}
-\newcommand*{\exClosureRec}[3]{(#1,\exRec{#2}{#3})}
+\newcommand*{\exClosure}[3]{\kw{cls}({#1},{#2},{#3})}
+\newcommand*{\exClosureRec}[3]{\kw{cls}({#1},{#2},{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
 \newcommand*{\sExList}[2]{\kw{[}\;#1 \ #2}
 \newcommand*{\exList}[1]{\kw{[}\;{#1}\;\kw{]}}
 \newcommand*{\exListSeq}[2]{\kw{[}\;{#1}\;\kw{..}\;{#2}\;\kw{]}}
-\newcommand*{\exListComp}[2]{\kw{[}\;{#1}\;\kw{$\vert$}\;{#2}\;\kw{]}}
+\newcommand*{\exListComp}[2]{\kw{[}\;{#1}\;\sym{$\vert$}\;{#2}\;\kw{]}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
 \newcommand*{\sExLet}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
-\newcommand*{\exLetRecMutual}[2]{\kw{let}\,\kw{rec}\;{#1}\;\kw{in}\;{#2}}
+\newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
 \newcommand*{\exLetStructured}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{[]}}
 \newcommand*{\exOp}[1]{(#1)}
-\newcommand*{\exPair}[2]{\langle#1,#2\rangle}
+\newcommand*{\exPair}[2]{(#1,#2)}
 \newcommand*{\exPrim}[1]{#1}
 \newcommand*{\exRec}[2]{{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
@@ -119,7 +126,7 @@
 \newcommand*{\elimListSingleton}[1]{\{{#1}\}}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
-\newcommand*{\elimProd}[1]{{\langle#1\rangle}}
+\newcommand*{\elimProd}[1]{\kw{prod}\;#1}
 \newcommand*{\elimVar}[2]{{#1} \mapsto {#2}}
 
 \newcommand*{\singleton}[2]{#1[#2]}
@@ -144,6 +151,7 @@
 \newcommand*{\interpret}[1]{\hat{#1}}
 
 % Types.
+\newcommand*{\tyArray}[1]{\kw{Array}\;{#1}}
 \newcommand*{\tyBool}[0]{\kw{Bool}}
 \newcommand*{\tyInt}[0]{\kw{Int}}
 \newcommand*{\tyList}[1]{\kw{List}\;{#1}}
@@ -163,7 +171,6 @@
 \newcommand*{\Match}[4]{\Set{Match}\,#1\,#2\,#3\,#4}
 \newcommand*{\Prim}[3]{\Set{Prim}\,#1\,#2\,#3}
 \newcommand*{\BinaryOp}[3]{\Set{BinaryOp}\,#1\,#2\,#3}
-\newcommand*{\Trie}[3]{\Set{Trie}\,#1\,#2\,#3}
 \newcommand*{\UnaryOp}[2]{\Set{UnaryOp}\,#1\,#2}
 \newcommand*{\Val}[1]{\Set{Val}\,#1}
 \newcommand*{\ValExpl}[2]{\Set{Val}\,#1\:#2}
@@ -209,6 +216,9 @@
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
 \newcommand*{\trAppPrim}[2]{\exApp{#1}{#2}}
+\newcommand*{\trArray}[6]{\exArray{{#6}}{#2:#4}{#3:#5}{#1}}
+\newcommand*{\trArrayAccess}[2]{\exArrayAccess{#1}{#2}}
+\newcommand*{\trArraySize}[1]{\exArraySize{#1}}
 \newcommand*{\trBinaryApp}[4]{\exBinaryApp{#1}{#2_{#3}}{#4}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
