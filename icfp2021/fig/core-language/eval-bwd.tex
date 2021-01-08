@@ -84,17 +84,20 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-array-access}}
+      lab={\ruleName{$\bwdSlice$-array-access}},
+      right={$\val{U} = \exPair{i}{j}$}
    ]
    {
-      \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\beta} \bwdSlice \rho, e, \alpha'
+      \annot{(\val{T} \reloverrideleft \arrayLBrack\exPair{i}{j} \mapsto \annot{u}{\alpha}\arrayRBrack)}{\FF}, T
+      \bwdSlice
+      \rho, e, \beta
       \\
-      \annot{\exPair{\annot{i}{\beta_1}}{\annot{j}{\beta_2}}}{\beta'} \bwdSlice \rho, e', \alpha'
+      \annot{\exPair{\annot{i}{\alpha}}{\annot{j}{\alpha}}}{\FF}, U \bwdSlice \rho, e', \beta'
    }
    {
-       v_{i,j}, \trArrayAccess{T}{U}
+       \annot{u}{\alpha}, \trArrayAccess{T}{U}
        \bwdSlice
-       \rho, \annot{(\exArrayAccess{e}{e'})}{\alpha}, \alpha'
+       \rho, \annot{(\exArrayAccess{e}{e'})}{\alpha}, \beta \join \beta'
    }
    %
    \and
