@@ -84,6 +84,22 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\bwdSlice$-array-access}}
+   ]
+   {
+      \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\beta} \bwdSlice \rho, e, \alpha'
+      \\
+      \annot{\exPair{\annot{i}{\beta_1}}{\annot{j}{\beta_2}}}{\beta'} \bwdSlice \rho, e', \alpha'
+   }
+   {
+       v_{i,j}, \trArrayAccess{T}{U}
+       \bwdSlice
+       \rho, \annot{(\exArrayAccess{e}{e'})}{\alpha}, \alpha'
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
