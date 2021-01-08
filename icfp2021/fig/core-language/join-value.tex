@@ -18,7 +18,15 @@
    \\
    \annot{\exNil}{\alpha} \join \annot{\exNil}{\alpha} &= \annot{\exNil}{\alpha \join \alpha'}
    \\
-   \annot{(\exCons{v_1}{v_2})}{\alpha} \join \annot{(\exCons{v_1'}{v_2'})}{\alpha'} &= \annot{(\exCons{(v_1 \join v_1')}{(v_2 \join v_2')})}{\alpha \join \alpha'}
+   \annot{(\exCons{v_1}{v_2})}{\alpha} \join \annot{(\exCons{v_1'}{v_2'})}{\alpha'}
+   &=
+   \annot{(\exCons{(v_1 \join v_1')}{(v_2 \join v_2')})}{\alpha \join \alpha'}
+   \\
+   \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha}
+   \join
+   \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v'_{i,j}}}{\alpha'}
+   &=
+   \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j} \join v'_{i,j}}}{\alpha \join \alpha'}
 \end{salign}
 \caption{Join of value slices}
 \end{figure}
