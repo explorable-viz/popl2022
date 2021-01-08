@@ -82,10 +82,14 @@
    {
       \rho, e, \alpha' \fwdSlice \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\beta}
       \\
+      v_{i,j} = \annot{u}{\alpha^\twoPrime}
+      \\
       \rho, e', \alpha' \fwdSlice \annot{\exPair{\annot{i}{\beta_1}}{\annot{j}{\beta_2}}}{\beta'}
    }
    {
-      \rho, \annot{(\exArrayAccess{e}{e'})}{\alpha}, \alpha' \fwdSlice v_{i,j}
+      \rho, \annot{(\exArrayAccess{e}{e'})}{\alpha}, \alpha'
+      \fwdSlice
+      \annot{u}{\alpha^\twoPrime \meet \alpha \meet \beta_1 \meet \beta_2}
    }
    %
    \and
