@@ -46,6 +46,20 @@
 %
 \inferrule*
 {
+   p: A \dashv \Gamma'
+   \\
+   \Gamma \vdash s: A
+   \\
+   \Gamma \concat \Gamma' \vdash s': B
+}
+{
+   \Gamma \vdash \exLet{p}{s}{s'}: B
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash s : A
    \\
    \Gamma \vdash l : \tyList{A}
