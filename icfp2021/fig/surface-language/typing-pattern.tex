@@ -95,7 +95,7 @@
    \Gamma \cdot \Gamma' \vdash s: B
 }
 {
-   \Gamma \vdash p \equal s : \tyFun{A}{B}
+   \Gamma \vdash \clauseUncurried{p}{s} : \tyFun{A}{B}
 }
 %
 \and
@@ -107,7 +107,7 @@
    \Gamma \cdot \Gamma' \vdash \clause{p}{s} : B
 }
 {
-   \Gamma \vdash \clausenv{p \cdot \vec{p}}{s} : \tyFun{A}{B}
+   \Gamma \vdash \clauseUncurried{p \cdot \vec{p}}{s} : \tyFun{A}{B}
 }
 \end{smathpar}
 

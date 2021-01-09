@@ -177,7 +177,7 @@
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
    right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
-   \sigma, \clausenv{p}{s_1} \dbwdarrow \clausenv{p}{s_{1}'}
+   \sigma, \clauseUncurried{p}{s_1} \dbwdarrow \clauseUncurried{p}{s_{1}'}
    \\
    e, \exListComp{s_{2}}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha_3}
 }
