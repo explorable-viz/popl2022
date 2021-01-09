@@ -38,22 +38,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-let-struct}}]
-   {
-      \explVal{T}{\rho, e \eval v}
-      \\
-      \explVal{\xi}{v, \singleton{\sigma}{e'} \match \rho', e'}
-      \\
-      \explVal{U}{\rho \concat \rho', e' \eval v'}
-   }
-   {
-      \explVal
-         {\trLetStructured{\singleton{\xi}{T}}{U}}
-         {\rho, \exLetStructured{\singleton{\sigma}{e}}{e'} \eval v'}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\eval$-let-rec}}]
    {
       \rho, \delta \closeDefs \rho'

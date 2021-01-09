@@ -38,9 +38,9 @@
    e', l \dbwdarrow l'
 }
 {
-   \annot{(\exCons{e}{e'})}{\alpha}, \sExList{s}{l}
+   \annot{(\exCons{e}{e'})}{\alpha}, \exList{s}{l}
    \dbwdarrow
-   \annot{(\sExList{s'}{l'})}{\alpha}
+   \annot{(\exList{s'}{l'})}{\alpha}
 }
 %
 \and
@@ -70,9 +70,9 @@
    e \dbwdarrow s'
 }
 {
-   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, (\sExLet{f}{\vec{c}}{s})
+   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, (\exLetRecEquational{f}{\vec{c}}{s})
    \dbwdarrow
-   \annot{(\sExLet{f}{\vec{c}'}{s'})}{\alpha}
+   \annot{(\exLetRecEquational{f}{\vec{c}'}{s'})}{\alpha}
 }
 %
 \and
@@ -116,7 +116,25 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-range}},
+   lab={\ruleName{$\dbwdarrow$-let}}
+]
+{
+   \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2'
+   \\
+   e, s_1 \dbwdarrow s_1'
+}
+{
+   \annot{(\annot{(\lambda \sigma)}{\alpha_1} \ e)}{\alpha_2}
+   ,
+   \exLet{p}{s_1}{s_2}
+   \dbwdarrow
+   \annot{(\exLet{p}{s_1'}{s_2'})}{\alpha_1 \join \alpha_2}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-enum}},
 ]
 {
    e_{1}, s_{1} \dbwdarrow s_{1}'
@@ -124,7 +142,7 @@
    e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \annot{(\annot{(\kw{range} \ e_1)}{\alpha_1}{e_2})}{\alpha_2}
+   \annot{(\annot{(\kw{enumFromTo} \ e_1)}{\alpha_1}{e_2})}{\alpha_2}
    ,
    \exListSeq{s_{1}}{s_{2}}
    \dbwdarrow
@@ -177,7 +195,7 @@
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
    right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
-   \sigma, \clausenv{p}{s_1} \dbwdarrow \clausenv{p}{s_{1}'}
+   \sigma, \clauseUncurried{p}{s_1} \dbwdarrow \clauseUncurried{p}{s_{1}'}
    \\
    e, \exListComp{s_{2}}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha_3}
 }

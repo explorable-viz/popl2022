@@ -36,7 +36,7 @@
    l \dfwdarrow e'
 }
 {
-   \annot{(\sExList{s}{l} \ )}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
+   \annot{(\exList{s}{l} \ )}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
 }
 %
 \and
@@ -64,7 +64,7 @@
    s \dfwdarrow e
 }
 {
-   \annot{(\sExLet{f}{\vec{c}}{s})}{\alpha} \dfwdarrow \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}
+   \annot{(\exLetRecEquational{f}{\vec{c}}{s})}{\alpha} \dfwdarrow \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}
 }
 %
 \and
@@ -79,6 +79,22 @@
 }
 {
    \annot{(\exMatch{s}{\vec{c}})}{\alpha}
+   \dfwdarrow
+   \annot{(\annot{(\lambda \sigma)}{\alpha} \ e)}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-let}}
+]
+{
+   s \dfwdarrow e
+   \\
+   \clauseUncurried{p}{s'} \dfwdarrow \sigma
+}
+{
+   \annot{(\exLet{p}{s}{s'})}{\alpha}
    \dfwdarrow
    \annot{(\annot{(\lambda \sigma)}{\alpha} \ e)}{\alpha}
 }
@@ -106,7 +122,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-range}},
+   lab={\ruleName{$\dfwdarrow$-list-enum}},
 ]
 {
    s \dfwdarrow e
@@ -114,7 +130,7 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\annot{(\kw{range} \ e)}{\alpha}{e'})}{\alpha}
+   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\annot{(\kw{enumFromTo} \ e)}{\alpha}{e'})}{\alpha}
 }
 %
 \and
@@ -161,7 +177,7 @@
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-decl}},
             right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
-   \clausenv{p}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}} \dfwdarrow \sigma
+   \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}} \dfwdarrow \sigma
    \\
    s' \dfwdarrow e
 }
@@ -175,7 +191,7 @@
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}},
             right={ \ $\vec{q} \; \textnormal{non-empty}$}]
 {
-   \annot{\clausenv{p}{\exListComp{s}{\vec{q}}}}{\alpha_2} \dfwdarrow \sigma
+   \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha_2} \dfwdarrow \sigma
    \\
    \sigma' = \totalise{\sigma}
    \\

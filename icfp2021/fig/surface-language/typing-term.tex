@@ -12,7 +12,7 @@
    \Gamma , f : \tyFun{A}{B} \vdash s: B'
 }
 {
-   \Gamma \vdash \sExLet{f}{\vec{c}}{s}: B'
+   \Gamma \vdash \exLetRecEquational{f}{\vec{c}}{s}: B'
 }
 %
 \and
@@ -46,12 +46,26 @@
 %
 \inferrule*
 {
+   p: A \dashv \Gamma'
+   \\
+   \Gamma \vdash s: A
+   \\
+   \Gamma \concat \Gamma' \vdash s': B
+}
+{
+   \Gamma \vdash \exLet{p}{s}{s'}: B
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash s : A
    \\
    \Gamma \vdash l : \tyList{A}
 }
 {
-   \Gamma \vdash \sExList{s}{l} : \tyList{A}
+   \Gamma \vdash \exList{s}{l} : \tyList{A}
 }
 %
 \and

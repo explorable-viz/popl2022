@@ -68,18 +68,16 @@
 \newcommand*{\exClosureRec}[3]{\kw{cls}({#1},{#2},{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
-\newcommand*{\sExList}[2]{\kw{[}\;#1 \ #2}
-\newcommand*{\exList}[1]{\kw{[}\;{#1}\;\kw{]}}
+\newcommand*{\exList}[2]{\kw{[}\;#1 \ #2}
 \newcommand*{\exListSeq}[2]{\kw{[}\;{#1}\;\kw{..}\;{#2}\;\kw{]}}
 \newcommand*{\exListComp}[2]{\kw{[}\;{#1}\;\sym{$\vert$}\;{#2}\;\kw{]}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
-\newcommand*{\sExLet}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRecEquational}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
-\newcommand*{\exLetStructured}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{[]}}
 \newcommand*{\exOp}[1]{(#1)}
@@ -101,7 +99,7 @@
 
 % Clause
 \newcommand*{\clause}[2]{\vec{{#1}}\equal{#2}}
-\newcommand*{\clausenv}[2]{{#1}\equal{#2}}
+\newcommand*{\clauseUncurried}[2]{{#1}\equal{#2}}
 
 % Qualifiers
 \newcommand*{\qualGuard}[1]{\kw{if}\;{#1}}
@@ -114,7 +112,7 @@
 \newcommand*{\pattFalse}{\exFalse}
 \newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\pattNil}{\exNil}
-\newcommand*{\pattList}[2]{\sExList{#1}{#2}}
+\newcommand*{\pattList}[2]{\exList{#1}{#2}}
 \newcommand*{\pattSCons}[2]{\sExCons{#1}{#2}}
 \newcommand*{\pattSNil}{\sExNil}
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
@@ -246,7 +244,6 @@
 \newcommand*{\totalise}[1]{\mathsf{totalise}({#1})}
 \newcommand*{\untotalise}[2]{\mathsf{untotalise}({#1}, {#2})}
 \newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}
-\newcommand*{\range}[2]{\kw{range} \ {#1}\,{#2}}
 \newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 \newcommand*{\comma}{\textbf{\kw{,}}\;}
 \newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}

@@ -28,18 +28,6 @@
    %
    \inferrule*
    {
-      \Gamma \vdash \singleton{\sigma}{e'} : \tyFun{A}{B}
-      \\
-      \Gamma \vdash e : A
-   }
-   {
-      \Gamma \vdash \exLetStructured{\singleton{\sigma}{e}}{e'} : B
-   }
-   %
-   \and
-   %
-   \inferrule*
-   {
       \Gamma \vdash \delta: \Delta
       \\
       \Gamma \concat \Delta \vdash e : A
