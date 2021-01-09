@@ -68,8 +68,7 @@
 \newcommand*{\exClosureRec}[3]{\kw{cls}({#1},{#2},{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
-\newcommand*{\sExList}[2]{\kw{[}\;#1 \ #2}
-\newcommand*{\exList}[1]{\kw{[}\;{#1}\;\kw{]}}
+\newcommand*{\exList}[2]{\kw{[}\;#1 \ #2}
 \newcommand*{\exListSeq}[2]{\kw{[}\;{#1}\;\kw{..}\;{#2}\;\kw{]}}
 \newcommand*{\exListComp}[2]{\kw{[}\;{#1}\;\sym{$\vert$}\;{#2}\;\kw{]}}
 \newcommand*{\exInt}[1]{#1}
@@ -113,7 +112,7 @@
 \newcommand*{\pattFalse}{\exFalse}
 \newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\pattNil}{\exNil}
-\newcommand*{\pattList}[2]{\sExList{#1}{#2}}
+\newcommand*{\pattList}[2]{\exList{#1}{#2}}
 \newcommand*{\pattSCons}[2]{\sExCons{#1}{#2}}
 \newcommand*{\pattSNil}{\sExNil}
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
