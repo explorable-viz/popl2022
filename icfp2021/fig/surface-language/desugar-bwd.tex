@@ -116,6 +116,24 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-let}}
+]
+{
+   \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2'
+   \\
+   e, s_1 \dbwdarrow s_1'
+}
+{
+   \annot{(\annot{(\lambda \sigma)}{\alpha_1} \ e)}{\alpha_2}
+   ,
+   \exLet{p}{s_1}{s_2}
+   \dbwdarrow
+   \annot{(\exLet{p}{s_1'}{s_2'})}{\alpha_1 \join \alpha_2}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-list-range}},
 ]
 {
