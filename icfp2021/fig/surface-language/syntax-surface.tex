@@ -16,12 +16,12 @@ t
 \text{recursive function}
 \\
 &&&
-\exIfThenElse{s}{s'}{s^{\twoPrime}}
+\exIfThenElse{s}{s}{s}
 &
 \text{if}
 \\
 &&&
-\exMatch{s}{\vec{c}}
+\exMatch{s}{\smash{\overrightarrow{\clauseUncurried{p}{\smash{s}}}}}
 &
 \text{match}
 \\
@@ -31,7 +31,7 @@ t
 \text{non-empty list}
 \\
 &&&
-\exListSeq{s}{s'}
+\exListSeq{s}{s}
 &
 \text{list range}
 \\
@@ -75,7 +75,7 @@ p
 \text{nil}
 \\
 &&&
-\pattCons{p}{p'}
+\pattCons{p}{p}
 &
 \text{cons}
 \\
@@ -85,7 +85,7 @@ p
 \text{non-empty list}
 \\
 &&&
-\pattPair{p}{p'}
+\pattPair{p}{p}
 &
 \text{pair}
 \\[2mm]
