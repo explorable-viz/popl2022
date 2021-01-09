@@ -36,20 +36,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-let-struct}}]
-   {
-      \rho, e, \alpha \fwdSlice v
-      \\
-      v, \sigma \matchFwd \rho', e', \alpha'
-      \\
-      \rho \concat \rho', e', \alpha \wedge \alpha' \fwdSlice v'
-   }
-   {
-      \rho, \exLetStructured{\singleton{\sigma}{e}}{e'}, \alpha \fwdSlice v'
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let-rec}}]
    {
       \rho, \delta, \alpha \closeDefsFwd \rho'
