@@ -122,7 +122,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-range}},
+   lab={\ruleName{$\dfwdarrow$-list-enum}},
 ]
 {
    s \dfwdarrow e
@@ -130,7 +130,7 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\annot{(\kw{range} \ e)}{\alpha}{e'})}{\alpha}
+   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\annot{(\kw{enumFromTo} \ e)}{\alpha}{e'})}{\alpha}
 }
 %
 \and
