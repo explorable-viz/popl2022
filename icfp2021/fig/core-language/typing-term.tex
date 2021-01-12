@@ -116,29 +116,29 @@
    \cxtExtend{\cxtExtend{\Gamma}{x}{\tyInt}}{y}{\tyInt} \vdash e: A
 }
 {
-   \Gamma \vdash \exArray{e'}{x}{y}{e}: \tyArray{A}
+   \Gamma \vdash \exMatrix{e'}{x}{y}{e}: \tyMatrix{A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash e: \tyArray{A}
+   \Gamma \vdash e: \tyMatrix{A}
    \\
    \Gamma \vdash e': \tyProd{\tyInt}{\tyInt}
 }
 {
-   \Gamma \vdash \exArrayAccess{e}{e'}: A
+   \Gamma \vdash \exMatrixAccess{e}{e'}: A
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash e: \tyArray{A}
+   \Gamma \vdash e: \tyMatrix{A}
 }
 {
-   \Gamma \vdash \exArraySize{e}: \tyProd{\tyInt}{\tyInt}
+   \Gamma \vdash \exMatrixSize{e}: \tyProd{\tyInt}{\tyInt}
 }
 %
 \and

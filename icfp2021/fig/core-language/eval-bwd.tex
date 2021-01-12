@@ -67,7 +67,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\bwdSlice$-array}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-matrix}}]
    {
       \annot{\exPair{\annot{i'}{\alpha}}{\annot{j'}{\alpha}}}{\FF}, T \bwdSlice \rho, e, \beta
       \\
@@ -75,41 +75,41 @@
       v_{i,j}, U_{i,j} \bwdSlice \envExtend{\envExtend{\rho'}{x}{i}}{y}{j}, e', \beta'
    }
    {
-      \annot{\exArray{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
-      \trArray{U_{i,j}}{x}{y}{i}{j}{T}
+      \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
+      \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
       \bwdSlice
-      \rho \join \rho', \annot{\exArray{e}{x}{y}{e'}}{\alpha}, \alpha \join \beta \join \beta'
+      \rho \join \rho', \annot{\exMatrix{e}{x}{y}{e'}}{\alpha}, \alpha \join \beta \join \beta'
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-array-access}},
+      lab={\ruleName{$\bwdSlice$-matrix-lookup}},
       right={$\val{U} = \exPair{i}{j}$}
    ]
    {
-      \annot{(\val{T} \reloverrideleft \arrayLBrack\exPair{i}{j} \mapsto \annot{u}{\alpha}\arrayRBrack)}{\FF}, T
+      \annot{(\val{T} \reloverrideleft \matrixLBrack\exPair{i}{j} \mapsto \annot{u}{\alpha}\matrixRBrack)}{\FF}, T
       \bwdSlice
       \rho, e, \beta
       \\
       \annot{\exPair{\annot{i}{\alpha}}{\annot{j}{\alpha}}}{\FF}, U \bwdSlice \rho', e', \beta'
    }
    {
-       \annot{u}{\alpha}, \trArrayAccess{T}{U}
+       \annot{u}{\alpha}, \trMatrixAccess{T}{U}
        \bwdSlice
-       \rho \join \rho', \annot{(\exArrayAccess{e}{e'})}{\alpha}, \beta \join \beta'
+       \rho \join \rho', \annot{(\exMatrixAccess{e}{e'})}{\alpha}, \beta \join \beta'
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\bwdSlice$-array-size}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-matrix-dimensions}}]
    {
       \annot{\val{T}}{\alpha_1 \join \alpha_2}, T \bwdSlice \rho, e, \alpha'
    }
    {
-      \annot{\exPair{\annot{i'}{\alpha_1}}{\annot{j'}{\alpha_2}}}{\alpha}, \trArraySize{T}
+      \annot{\exPair{\annot{i'}{\alpha_1}}{\annot{j'}{\alpha_2}}}{\alpha}, \trMatrixSize{T}
       \bwdSlice
-      \rho, \annot{(\exArraySize{e})}{\alpha \join \alpha_1 \join \alpha_2}, \alpha \join \alpha'
+      \rho, \annot{(\exMatrixSize{e})}{\alpha \join \alpha_1 \join \alpha_2}, \alpha \join \alpha'
    }
    %
    \and

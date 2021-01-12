@@ -53,15 +53,15 @@
 \newcommand*{\sym}[1]{\textbf{\kw{#1}}}
 \newcommand*{\symCons}{\sym{:}}
 
-\newcommand*{\arrayLBrack}{\langle}
-\newcommand*{\arrayRBrack}{\rangle}
+\newcommand*{\matrixLBrack}{\langle}
+\newcommand*{\matrixRBrack}{\rangle}
 
 % Expressions.
 %\newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
-\newcommand*{\exArray}[4]{\arrayLBrack{#4}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#1}\arrayRBrack}
-\newcommand*{\exArrayAccess}[2]{{#1}\,\sym{!}\,{#2}}
-\newcommand*{\exArraySize}[1]{\kw{size}\;{#1}}
+\newcommand*{\exMatrix}[4]{\matrixLBrack{#4}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#1}\matrixRBrack}
+\newcommand*{\exMatrixAccess}[2]{{#1}\,\sym{!}\,{#2}}
+\newcommand*{\exMatrixSize}[1]{\kw{size}\;{#1}}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
 \newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
 \newcommand*{\exClosure}[3]{\kw{cls}({#1},{#2},{#3})}
@@ -149,7 +149,7 @@
 \newcommand*{\interpret}[1]{\hat{#1}}
 
 % Types.
-\newcommand*{\tyArray}[1]{\kw{Array}\;{#1}}
+\newcommand*{\tyMatrix}[1]{\kw{Matrix}\;{#1}}
 \newcommand*{\tyBool}[0]{\kw{Bool}}
 \newcommand*{\tyInt}[0]{\kw{Int}}
 \newcommand*{\tyList}[1]{\kw{List}\;{#1}}
@@ -214,9 +214,9 @@
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
 \newcommand*{\trAppPrim}[2]{\exApp{#1}{#2}}
-\newcommand*{\trArray}[6]{\exArray{{#6}}{#2:#4}{#3:#5}{#1}}
-\newcommand*{\trArrayAccess}[2]{\exArrayAccess{#1}{#2}}
-\newcommand*{\trArraySize}[1]{\exArraySize{#1}}
+\newcommand*{\trMatrix}[6]{\exMatrix{{#6}}{#2:#4}{#3:#5}{#1}}
+\newcommand*{\trMatrixAccess}[2]{\exMatrixAccess{#1}{#2}}
+\newcommand*{\trMatrixSize}[1]{\exMatrixSize{#1}}
 \newcommand*{\trBinaryApp}[4]{\exBinaryApp{#1}{#2_{#3}}{#4}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
