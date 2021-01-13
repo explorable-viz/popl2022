@@ -1,20 +1,83 @@
+
+
 \begin{figure}[H]
-\flushleft\shadebox{totalise $\kappa = \kappa'$}
-\begin{salign}
-   \totalise{e} &= e
-   \\
-   \totalise{\elimVar{x}{\kappa}} &= \elimVar{x}{\totalise{\kappa}}
-   \\
-   \totalise{\elimBoolTrue{\kappa}} &= \elimBool{\totalise{\kappa}}{\exNil}
-   \\
-   \totalise{\elimBoolFalse{\kappa}} &= \elimBool{\exNil}{\totalise{\kappa}}
-   \\
-   \totalise{\elimProd{\sigma}} &= \elimProd{\totalise{\sigma}}
-   \\
-   \totalise{\branchNil{\kappa}} &= \elimList{\branchNil{\totalise{\kappa}}}{\branchCons{\_ \mapsto \_ \mapsto \exNil}}
-   \\
-   \totalise{\branchCons{\sigma}} &= \elimList{\branchNil{\exNil}}{\branchCons{\totalise{\sigma}}}
-\end{salign}
+\flushleft \shadebox{totalise $\kappa \ \kappa'$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{expression}}
+]
+{
+   \strut
+}
+{
+   \totalise{e}{e}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{elim-var}}
+]
+{
+   \totalise{\kappa}{\kappa'}
+}
+{
+   \totalise{\elimVar{x}{\kappa}}{\elimVar{x}{\kappa'}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{elim-true}}
+]
+{
+   \totalise{\kappa}{\kappa'}
+}
+{
+   \totalise{\elimBoolTrue{\kappa}}{\elimBool{\kappa'}{\exNil}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{elim-false}}
+]
+{
+   \totalise{\kappa}{\kappa'}
+}
+{
+   \totalise{\elimBoolFalse{\kappa}}{\elimBool{\exNil}{\kappa'}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{elim-prod}}
+]
+{
+   \totalise{\sigma}{\sigma'}
+}
+{
+   \totalise{(\elimProd{\sigma})}{(\elimProd{\sigma'})}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{elim-nil}}
+]
+{
+   \totalise{\kappa}{\kappa'}
+}
+{
+   \totalise{\elimNil{\kappa}}{\elimList{\branchNil{\kappa'}}{\branchCons{x \mapsto y \mapsto \exNil}}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{elim-cons}}
+]
+{
+   \totalise{\sigma}{\sigma'}
+}
+{
+   \totalise{\elimCons{\sigma}}{\elimList{\branchNil{\exNil}}{\branchCons{\sigma'}}}
+}
+\end{smathpar}
 \caption{Totalise}
 \end{figure}
-
