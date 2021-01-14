@@ -5,14 +5,14 @@
    lab={\ruleName{$\dbwdarrow$-application}}
 ]
 {
-   e \dbwdarrow s
+   e_1, s_1 \dbwdarrow s_1'
    \\
-   e' \dbwdarrow s'
+   e_2, s_2 \dbwdarrow s_2'
 }
 {
-   \annot{(e \ e')}{\alpha}, (s \ s')
+   \annot{(\exApp{e_1}{e_2})}{\alpha}, \exApp{s_1}{s_2}
    \dbwdarrow
-   \annot{(s \ s')}{\alpha}
+   \annot{(\exApp{s_1'}{s_2'})}{\alpha}
 }
 %
 \and
@@ -33,12 +33,12 @@
    lab={\ruleName{$\dbwdarrow$-non-empty-list}}
 ]
 {
-   e, s \dbwdarrow s'
+   e_1, s \dbwdarrow s'
    \\
-   e', l \dbwdarrow l'
+   e_2, l \dbwdarrow l'
 }
 {
-   \annot{(\exCons{e}{e'})}{\alpha}, \exList{s}{l}
+   \annot{(\exCons{e_1}{e_2})}{\alpha}, \exList{s}{l}
    \dbwdarrow
    \annot{(\exList{s'}{l'})}{\alpha}
 }
@@ -49,14 +49,14 @@
    lab={\ruleName{$\dbwdarrow$-cons}}
 ]
 {
-   e \dbwdarrow s
+   e_1, s_1 \dbwdarrow s_1'
    \\
-   e' \dbwdarrow s'
+   e_2, s_2 \dbwdarrow s_2'
 }
 {
-   \annot{(\exCons{e}{e'})}{\alpha}, (\exCons{s}{s'})
+   \annot{(\exCons{e_1}{e_2})}{\alpha}, \exCons{s_1}{s_2}
    \dbwdarrow
-   \annot{(\exCons{s}{s'})}{\alpha}
+   \annot{(\exCons{s_1'}{s_2'})}{\alpha}
 }
 %
 \and
@@ -67,10 +67,10 @@
 {
    \sigma, \vec{c} \dbwdarrow \vec{c}'
    \\
-   e \dbwdarrow s'
+   e, s \dbwdarrow s'
 }
 {
-   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, (\exLetRecEquational{f}{\vec{c}}{s})
+   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, \exLetRecEquational{f}{\vec{c}}{s}
    \dbwdarrow
    \annot{(\exLetRecEquational{f}{\vec{c}'}{s'})}{\alpha}
 }
