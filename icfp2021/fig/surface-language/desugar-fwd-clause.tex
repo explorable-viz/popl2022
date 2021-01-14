@@ -1,18 +1,18 @@
 
 \begin{figure}[H]
-\flushleft\shadebox{$\vec{p}, \kappa \dfwdarrow \sigma$}
+\flushleft\shadebox{$\vec{p}, e \dfwdarrow \sigma$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\dfwdarrow$-pattern-seq}},
    right={ \ $\vec{p} \; \textnormal{non-empty}$}
 ]
 {
-   \vec{p}, \kappa \dfwdarrow \sigma
+   \vec{p}, e \dfwdarrow \sigma
    \\
-   p, \sigma \dfwdarrow \sigma'
+   p, \exLambda{\sigma} \dfwdarrow \sigma'
 }
 {
-   p \cdot \vec{p}, \kappa
+   p \cdot \vec{p}, e
    \dfwdarrow
    \sigma'
 }
