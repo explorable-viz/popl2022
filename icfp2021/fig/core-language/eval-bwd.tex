@@ -69,19 +69,19 @@
    %
    \inferrule*[
       lab={\ruleName{$\bwdSlice$-matrix}},
-      right={$\textstyle\beta^\twoPrime = \bigvee_{(i,j)}(\beta_{i,j} \join \beta'_{i,j})$}
+      right={$\textstyle\beta^\twoPrime = \bigvee_{i,j}(\beta_{i,j} \join \beta'_{i,j})$}
    ]
    {
       \annot{\exPair{\annot{i'}{\alpha}}{\annot{j'}{\alpha}}}{\FF}, T \bwdSlice \rho, e, \beta
       \\
       \forall (i,j) \leq (i',j').
-      v_{i,j}, U_{i,j} \bwdSlice \envExtend{\envExtend{\rho'}{x}{i_{\beta_{i,j}}}}{y}{j_{\beta'_{i,j}}}, e', \beta'
+      v_{i,j}, U_{i,j} \bwdSlice \envExtend{\envExtend{\rho'}{x}{i_{\beta_{i,j}}}}{y}{j_{\beta'_{i,j}}}, e'_{i,j}, \beta'
    }
    {
       \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
       \bwdSlice
-      \rho \join \rho', \annot{\exMatrix{e}{x}{y}{e'}}{\alpha \join \beta^{\twoPrime}}, \alpha \join \beta \join \beta'
+      \rho \join \rho', \annot{\exMatrix{e}{x}{y}{{\textstyle\bigvee_{i,j}e'_{i,j}}}}{\alpha \join \beta^{\twoPrime}}, \alpha \join \beta \join \beta'
    }
    %
    \and
