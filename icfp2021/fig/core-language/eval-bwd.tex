@@ -76,15 +76,15 @@
       \forall (i,j) \leq (i',j').
       v_{i,j}, U_{i,j}
       \bwdSlice
-      \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e'_{i,j}, \beta'
+      \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e'_{i,j}, \beta'_{i,j}
    }
    {
       \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
       \bwdSlice
-      \rho \join {\textstyle\bigvee\rho'},
-      \annot{\exMatrix{e}{x}{y}{{\textstyle\bigvee e'}}}{\alpha \join {\textstyle\bigvee\gamma \join \bigvee\gamma'}},
-      \alpha \join \beta \join \beta'
+      \rho \join {\textstyle{\bigvee}\rho'},
+      \annot{\exMatrix{e}{x}{y}{{\textstyle{\bigvee} e'}}}{\alpha \join {\textstyle{\bigvee}\gamma \join {\bigvee}\gamma'}},
+      \alpha \join \beta \join {\textstyle{\bigvee}\beta'}
    }
    %
    \and
