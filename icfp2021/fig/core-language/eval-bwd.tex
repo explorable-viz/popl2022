@@ -126,7 +126,7 @@
    {
       v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_1'}{f}{\sigma}}, e, \alpha
       \\
-      \rho, e, \alpha, \xi, \matchBwd v', \sigma'
+      \rho, e, \alpha, w, \matchBwd v', \sigma'
       \\
       v', U \bwdSlice \rho', e', \alpha'
       \\
@@ -135,7 +135,7 @@
       \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
    }
    {
-      v, \trApp{T}{U}{\matchPlug{\xi}{T'}}
+      v, \trApp{T}{U}{\matchPlug{w}{T'}}
       \bwdSlice
       \rho' \join \rho^\twoPrime, \annot{(\exApp{e^\twoPrime}{e'})}{\alpha}, \alpha' \join \alpha^\twoPrime
    }

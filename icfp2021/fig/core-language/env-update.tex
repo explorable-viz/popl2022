@@ -1,11 +1,4 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\bot_{\rho}$}
-\begin{salign}
-   \bot_{\envEmpty} &= \envEmpty
-   \\
-   \bot_{\envExtend{\rho}{k}{v}} &= \envExtend{\bot_{\rho}}{k}{\bot_v}
-\end{salign}
-\\[2mm]
 \flushleft \shadebox{$\envUpdate{\rho}{k}{v}$}
 \begin{salign}
    \envUpdate{\envEmpty}{k}{v} &= \envEmpty
@@ -15,5 +8,5 @@
    \envUpdate{\envExtend{\rho}{k}{v}}{k'}{v'} &= \envExtend{\envUpdate{\rho}{k'}{v'}}{k}{v}
    \quad (k \neq k')
 \end{salign}
-\caption{Least slice of an environment; environment update}
+\caption{Environment update}
 \end{figure}
