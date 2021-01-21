@@ -7,7 +7,7 @@
    &=
    \elimBool{\kappa_1 \join \kappa_1'}{\kappa_2 \join \kappa_2'}
    \\
-   \elimProd{\sigma} \join \elimProd{\sigma'} &= \elimProd{\sigma \join \sigma'}
+   (\elimProd{\sigma}) \join (\elimProd{\sigma'}) &= \elimProd{(\sigma \join \sigma')}
    \\
    \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \join \elimList{\branchNil{\kappa'}}{\branchCons{\sigma'}} &=
    \elimList{\branchNil{\kappa \join \kappa'}}{\branchCons{\sigma \join \sigma'}}
