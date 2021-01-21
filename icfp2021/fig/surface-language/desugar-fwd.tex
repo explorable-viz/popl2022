@@ -222,7 +222,18 @@
 \flushleft \shadebox{$l \dfwdarrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-end}}
+   lab={\ruleName{$\dfwdarrow$-list-rest-hole}}
+]
+{
+   \strut
+}
+{
+   \hole \dfwdarrow \hole
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-rest-end}}
 ]
 {
    \strut
@@ -233,7 +244,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-cons}}
+   lab={\ruleName{$\dfwdarrow$-list-rest-cons}}
 ]
 {
    s \dfwdarrow e

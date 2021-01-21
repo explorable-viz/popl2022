@@ -2,6 +2,20 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-hole}}
+]
+{
+   \strut
+}
+{
+   \hole, s
+   \dbwdarrow
+   \hole
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-apply}}
 ]
 {
@@ -234,7 +248,22 @@
 \flushleft \shadebox{$e, l \dbwdarrow l$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\darrow$-end}}
+   lab={\ruleName{$\dbwdarrow$-list-rest-end}}
+]
+{
+   \strut
+}
+{
+   \hole
+   ,
+   l
+   \dbwdarrow
+   \hole
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-end}}
 ]
 {
    \strut
@@ -249,7 +278,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\darrow$-cons}}
+   lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
 ]
 {
    e, s \dbwdarrow s'
