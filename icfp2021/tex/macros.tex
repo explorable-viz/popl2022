@@ -1,3 +1,4 @@
+\newcommand*{\hole}{\square}
 \newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 % \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
 \newcommand*{\del}[1]{\textcolor{red}{#1}}
@@ -57,7 +58,6 @@
 \newcommand*{\matrixRBrack}{\rangle}
 
 % Expressions.
-%\newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exMatrix}[4]{\matrixLBrack{#4}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#1}\matrixRBrack}
 \newcommand*{\exMatrixAccess}[2]{{#1}\,\sym{!}\,{#2}}
@@ -138,7 +138,7 @@
 \newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
 \newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
 \newcommand*{\matchFalseNew}{\exFalse}
-\newcommand*{\matchHole}{\square}
+\newcommand*{\matchHole}{\hole}
 \newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
 \newcommand*{\matchNilNew}{\exNil}
 \newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
@@ -185,7 +185,7 @@
 \newcommand*{\eqJoin}{\mathbin{!}}
 
 % Variable contexts.
-\newcommand*{\cxtBot}{\exBot}
+% \newcommand*{\cxtBot}{\exBot}
 \newcommand*{\cxtEmpty}{\varepsilon}
 \newcommand*{\cxtExtend}[3]{{#1},{#2}: {#3}}
 \newcommand*{\cxtLookup}[2]{{#1}[{x}]}
@@ -200,8 +200,6 @@
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
-% \newcommand*{\fwdSlice}{\nearrow}
-% \newcommand*{\bwdSlice}{\searrow}
 \newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
 \newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\match}{\rightsquigarrow}
