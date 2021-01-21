@@ -120,7 +120,7 @@
    e, s \dbwdarrow s'
 }
 {
-   \annot{(\annot{(\lambda \sigma)}{\alpha_1} \ e)}{\alpha_2}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha_1}}{e})}{\alpha_2}
    ,
    \exMatch{s}{\vec{c}}
    \dbwdarrow
@@ -138,7 +138,7 @@
    e, s_1 \dbwdarrow s_1'
 }
 {
-   \annot{(\annot{(\lambda \sigma)}{\alpha_1} \ e)}{\alpha_2}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha_1}}{e})}{\alpha_2}
    ,
    \exLet{p}{s_1}{s_2}
    \dbwdarrow
@@ -151,16 +151,14 @@
    lab={\ruleName{$\dbwdarrow$-list-enum-$\hole$}},
 ]
 {
-   e_{1}, s_{1} \dbwdarrow s_{1}'
-   \\
-   e_{2}, s_{2} \dbwdarrow s_{2}'
+   e, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \annot{(\exApp{\hole}{e_2})}{\alpha_2}
+   \annot{(\exApp{\hole}{e})}{\alpha}
    ,
    \exListSeq{s_{1}}{s_{2}}
    \dbwdarrow
-   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha_1 \join \alpha_2}
+   \annot{\exListSeq{\hole}{s_{2}'}}{\alpha}
 }
 %
 \and
