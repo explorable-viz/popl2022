@@ -135,12 +135,12 @@
       \\
       \explVal{U}{\rho, e' \eval v}
       \\
-      \explVal{\xi}{v, \sigma \match \rho^\twoPrime, e^\twoPrime}
+      \explVal{w}{v, \sigma \match \rho^\twoPrime, e^\twoPrime}
       \\
       \explVal{T'}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v'}
    }
    {
-      \explVal{\trApp{T}{U}{\matchPlug{\xi}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
+      \explVal{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
    }
    %
    \and
