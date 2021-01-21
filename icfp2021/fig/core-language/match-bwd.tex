@@ -1,12 +1,12 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\rho, \kappa, \alpha, \xi \matchBwd v, \sigma$}
+\flushleft \shadebox{$\rho, \kappa, \alpha, w \matchBwd v, \sigma$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchBwd$-var}}]
    {
       \strut
    }
    {
-      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVar{x}
+      \envExtend{\envEmpty}{x}{v}, \kappa, \alpha, \matchVarNew{x}
       \matchBwd
       v, \elimVar{x}{\kappa}
    }
@@ -18,9 +18,9 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \alpha, \matchTrue{\kappa'}
+      \envEmpty, \kappa, \alpha, \matchTrueNew
       \matchBwd
-      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\bot_{\kappa'}}
+      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\hole}
    }
    %
    \and
@@ -30,21 +30,21 @@
       \strut
    }
    {
-      \envEmpty, \kappa, \alpha, \matchFalse{\kappa'}
+      \envEmpty, \kappa, \alpha, \matchFalseNew
       \matchBwd
-      \annot{\exFalse}{\alpha}, \elimBool{\bot_{\kappa'}}{\kappa}
+      \annot{\exFalse}{\alpha}, \elimBool{\hole}{\kappa}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
    {
-      \rho_2, \kappa, \alpha, \xi' \matchBwd v', \sigma
+      \rho_2, \kappa, \alpha, w' \matchBwd v', \sigma
       \\
-      \rho_1, \sigma, \alpha, \xi \matchBwd v, \tau
+      \rho_1, \sigma, \alpha, w \matchBwd v, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \alpha, \matchPair{\xi}{\xi'}
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchPair{w}{w'}
       \matchBwd
       \annot{\exPair{v}{v'}}{\alpha}, \elimProd{\tau}
    }
@@ -65,12 +65,12 @@
    %
    \inferrule*[lab={\ruleName{$\matchBwd$-cons}}]
    {
-      \rho_2, \kappa, \alpha, \xi' \matchBwd v', \sigma
+      \rho_2, \kappa, \alpha, w' \matchBwd v', \sigma
       \\
-      \rho_1, \sigma, \alpha, \xi \matchBwd v, \tau
+      \rho_1, \sigma, \alpha, w \matchBwd v, \tau
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \alpha, \matchCons{\kappa}{\xi}{\xi'}
+      \rho_1 \concat \rho_2, \kappa, \alpha, \matchCons{\kappa}{w}{w'}
       \matchBwd
       \annot{(\exCons{v}{v'})}{\alpha}, \elimList{\branchNil{\bot_{\kappa}}}{\branchCons{\tau}}
    }
