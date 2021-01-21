@@ -2,7 +2,7 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-hole}}
+   lab={\ruleName{$\dbwdarrow$-$\hole$}}
 ]
 {
    \strut
@@ -148,6 +148,24 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-enum-$\hole$}},
+]
+{
+   e_{1}, s_{1} \dbwdarrow s_{1}'
+   \\
+   e_{2}, s_{2} \dbwdarrow s_{2}'
+}
+{
+   \annot{(\exApp{\hole}{e_2})}{\alpha_2}
+   ,
+   \exListSeq{s_{1}}{s_{2}}
+   \dbwdarrow
+   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha_1 \join \alpha_2}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-list-enum}},
 ]
 {
@@ -156,7 +174,7 @@
    e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \annot{(\annot{(\kw{enumFromTo} \ e_1)}{\alpha_1}{e_2})}{\alpha_2}
+   \annot{(\exApp{\annot{(\exApp{\kw{enumFromTo}}{e_1})}{\alpha_1}}{e_2})}{\alpha_2}
    ,
    \exListSeq{s_{1}}{s_{2}}
    \dbwdarrow
@@ -248,7 +266,7 @@
 \flushleft \shadebox{$e, l \dbwdarrow l$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-rest-end}}
+   lab={\ruleName{$\dbwdarrow$-list-rest-$\hole$}}
 ]
 {
    \strut
