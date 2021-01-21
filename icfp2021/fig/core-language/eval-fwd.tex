@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\rho, e, \alpha \fwdSlice v$}
+\flushleft \shadebox{$\rho, e, \alpha, T \fwdSlice v$}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-var}},
@@ -9,7 +9,7 @@
       \strut
    }
    {
-      \rho, \annot{x}{\alpha}, \alpha' \fwdSlice v
+      \rho, \annot{x}{\alpha}, \alpha', x \fwdSlice v
    }
    %
    \and
@@ -22,7 +22,7 @@
       \strut
    }
    {
-      \rho, \annot{\exOp{\primOp}}{\alpha}, \alpha' \fwdSlice v
+      \rho, \annot{\exOp{\primOp}}{\alpha}, \alpha', \trOp{\primOp} \fwdSlice v
    }
    %
    \and
@@ -32,7 +32,7 @@
       \strut
    }
    {
-      \rho, \annot{\exNil}{\alpha}, \alpha' \fwdSlice \annot{\exNil}{\alpha \meet \alpha'}
+      \rho, \annot{\exNil}{\alpha}, \alpha', \trNil \fwdSlice \annot{\exNil}{\alpha \meet \alpha'}
    }
    %
    \and
@@ -42,7 +42,7 @@
       \strut
    }
    {
-      \rho, \annot{\exInt{n}}{\alpha}, \alpha' \fwdSlice \annot{\exInt{n}}{\alpha \meet \alpha'}
+      \rho, \annot{\exInt{n}}{\alpha}, \alpha', \trInt{n} \fwdSlice \annot{\exInt{n}}{\alpha \meet \alpha'}
    }
    %
    \and
@@ -51,24 +51,27 @@
       lab={\ruleName{$\fwdSlice$-cons}},
    ]
    {
-      \rho, e, \alpha' \fwdSlice v
+      \rho, e, \alpha', T \fwdSlice v
       \\
-      \rho, e', \alpha' \fwdSlice v'
+      \rho, e', \alpha', U \fwdSlice v'
    }
    {
-      \rho, \annot{(\exCons{e}{e'})}{\alpha}, \alpha' \fwdSlice \annot{(\exCons{v}{v'})}{\alpha \meet \alpha'}
+      \rho, \annot{(\exCons{e}{e'})}{\alpha}, \alpha', \trCons{T}{U}
+      \fwdSlice
+      \annot{(\exCons{v}{v'})}{\alpha \meet \alpha'}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-matrix}}]
    {
-      \rho, e', \alpha' \fwdSlice \annot{\exPair{\annot{i'}{\beta_1}}{\annot{j'}{\beta_2}}}{\beta}
+      \rho, e', \alpha', T \fwdSlice \annot{\exPair{\annot{i'}{\beta_1}}{\annot{j'}{\beta_2}}}{\beta}
       \\
-      \forall (i,j) \leq (i',j').\envExtend{\envExtend{\rho}{x}{i_\alpha}}{y}{j_\alpha}, e, \alpha' \fwdSlice v_{i,j}
+      \forall (i,j) \leq (i',j').
+      \envExtend{\envExtend{\rho}{x}{i_\alpha}}{y}{j_\alpha}, e, \alpha', U_{i,j} \fwdSlice v_{i,j}
    }
    {
-      \rho, \annot{\exMatrix{e'}{x}{y}{e}}{\alpha}, \alpha'
+      \rho, \annot{\exMatrix{e'}{x}{y}{e}}{\alpha}, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
       \fwdSlice
       \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha \meet \alpha' \meet \beta_1 \meet \beta_2}
    }
@@ -108,19 +111,20 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
    {
-      \rho, e, \alpha' \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\beta}
+      \rho, e, \alpha', T \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\beta}
       \\
-      \rho, e', \alpha' \fwdSlice v
+      \rho, e', \alpha', U \fwdSlice v
       \\
-      v, \sigma \matchFwd \rho^\twoPrime, e^\twoPrime, \beta'
+      v, w, \sigma \matchFwd \rho^\twoPrime, e^\twoPrime, \beta'
       \\
       \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\beta}},
       e^\twoPrime,
-      \alpha \meet \beta \meet \beta'
+      \alpha \meet \beta \meet \beta',
+      T'
       \fwdSlice v'
    }
    {
-      \rho, \annot{(\exApp{e}{e'})}{\alpha}, \alpha' \fwdSlice v'
+      \rho, \annot{(\exApp{e}{e'})}{\alpha}, \alpha', \trApp{T}{U}{\matchPlug{w}{T'}} \fwdSlice v'
    }
    %
    \and
