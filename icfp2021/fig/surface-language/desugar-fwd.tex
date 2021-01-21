@@ -2,7 +2,19 @@
 \flushleft \shadebox{$s \dfwdarrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-application}}
+   lab={\ruleName{$\dfwdarrow$-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole \dfwdarrow \hole
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-apply}}
 ]
 {
    s \dfwdarrow e
