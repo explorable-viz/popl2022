@@ -138,7 +138,7 @@
 \newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
 \newcommand*{\matchHole}{\hole}
 \newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
-\newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
+\newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
 \newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
 \newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
