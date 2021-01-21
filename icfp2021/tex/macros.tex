@@ -143,6 +143,12 @@
 \newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
 \newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
 
+\newcommand*{\matchVarNew}[1]{#1}
+\newcommand*{\matchTrueNew}{\exTrue}
+\newcommand*{\matchFalseNew}{\exFalse}
+\newcommand*{\matchNilNew}{\exNil}
+\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
+
 \newcommand*{\interpret}[1]{\hat{#1}}
 
 % Types.
