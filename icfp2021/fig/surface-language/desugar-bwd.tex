@@ -131,8 +131,6 @@
    lab={\ruleName{$\dbwdarrow$-match-$\hole$}}
 ]
 {
-   \sigma, \vec{c} \dbwdarrow \vec{c}'
-   \\
    e, s \dbwdarrow s'
 }
 {
@@ -140,7 +138,7 @@
    ,
    \exMatch{s}{\vec{c}}
    \dbwdarrow
-   \annot{(\exMatch{s'}{\vec{c}})}{\alpha}
+   \annot{(\exMatch{s'}{\hole_{\vec{c}}})}{\alpha}
 }
 %
 \and
@@ -158,7 +156,7 @@
    ,
    \exMatch{s}{\vec{c}}
    \dbwdarrow
-   \annot{(\exMatch{s'}{\vec{c}})}{\alpha_1 \join \alpha_2}
+   \annot{(\exMatch{s'}{\vec{c}'})}{\alpha_1 \join \alpha_2}
 }
 %
 \and
