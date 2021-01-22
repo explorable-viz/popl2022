@@ -1,4 +1,11 @@
 \begin{figure}[H]
+\flushleft \shadebox{$\hole_{\rho}$}
+\begin{salign}
+   \hole_{\envEmpty} &= \envEmpty
+   \\
+   \hole_{\envExtend{\rho}{k}{v}} &= \envExtend{\hole_{\rho}}{k}{\bot_v}
+\end{salign}
+\\[2mm]
 \flushleft \shadebox{$\envUpdate{\rho}{k}{v}$}
 \begin{salign}
    \envUpdate{\envEmpty}{k}{v} &= \envEmpty
@@ -8,5 +15,5 @@
    \envUpdate{\envExtend{\rho}{k}{v}}{k'}{v'} &= \envExtend{\envUpdate{\rho}{k'}{v'}}{k}{v}
    \quad (k \neq k')
 \end{salign}
-\caption{Environment update}
+\caption{Hole environment; environment update}
 \end{figure}
