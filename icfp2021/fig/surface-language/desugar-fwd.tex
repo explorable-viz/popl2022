@@ -22,13 +22,13 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{(s \ s')}{\alpha} \dfwdarrow \annot{(e \ e')}{\alpha}
+   \annot{(\exApp{s}{s'})}{\alpha} \dfwdarrow \annot{(\exApp{e}{e'})}{\alpha}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-empty-list}}
+   lab={\ruleName{$\dfwdarrow$-nil}}
 ]
 {
    \strut
@@ -48,7 +48,7 @@
    l \dfwdarrow e'
 }
 {
-   \annot{(\exList{s}{l} \ )}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
+   \annot{(\exList{s}{l})}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
 }
 %
 \and
@@ -68,7 +68,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-recursive-function}}
+   lab={\ruleName{$\dfwdarrow$-let-rec}}
 ]
 {
    \vec{c} \dfwdarrow \sigma
@@ -82,7 +82,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-match-as}}
+   lab={\ruleName{$\dfwdarrow$-match}}
 ]
 {
    s \dfwdarrow e
@@ -114,7 +114,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-if-then-else}}
+   lab={\ruleName{$\dfwdarrow$-if}}
 ]
 {
    s \dfwdarrow e
