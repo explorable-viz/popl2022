@@ -32,7 +32,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-empty-list}}
+   lab={\ruleName{$\dbwdarrow$-nil}}
 ]
 {
    \strut
@@ -76,7 +76,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-recursive-function}}
+   lab={\ruleName{$\dbwdarrow$-let-rec}}
 ]
 {
    \sigma, \vec{c} \dbwdarrow \vec{c}'
@@ -92,7 +92,23 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-if-then-else}}
+   lab={\ruleName{$\dbwdarrow$-if-$\hole$}}
+]
+{
+   e_{1}, s_{1} \dbwdarrow s_{1}'
+}
+{
+   \annot{(\exApp{\hole}{e_{1}})}{\alpha}
+   ,
+   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   \dbwdarrow
+   \annot{(\exIfThenElse{s_{1}'}{\hole}{\hole})}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-if}}
 ]
 {
    e_{1}, s_{1} \dbwdarrow s_{1}'
@@ -102,7 +118,7 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \annot{( \annot{\exLambda{\elimBool{e_{2}}{e_{3}}}}{\alpha_1} \ e_{1})}{\alpha_2}
+   \annot{(\exApp{\annot{\exLambda{\elimBool{e_{2}}{e_{3}}}}{\alpha_1}}{e_{1}})}{\alpha_2}
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
@@ -112,7 +128,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-match-as}}
+   lab={\ruleName{$\dbwdarrow$-match}}
 ]
 {
    \sigma, \vec{c} \dbwdarrow \vec{c}'
