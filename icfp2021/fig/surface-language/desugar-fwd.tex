@@ -162,7 +162,8 @@
    right={$q \neq \kw{true}$}
 ]
 {
-  \annot{\exListComp{s}{q \comma \annot{\exTrue}{\alpha}}}{\alpha} \dfwdarrow e
+  \annot{\exListComp{s}{q \concat \annot{(\qualGuard{\annot{\exTrue}{\alpha}})}{\alpha}}}
+        {\alpha} \dfwdarrow e
 }
 {
   \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
