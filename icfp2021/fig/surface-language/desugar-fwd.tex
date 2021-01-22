@@ -92,7 +92,7 @@
 {
    \annot{(\exMatch{s}{\vec{c}})}{\alpha}
    \dfwdarrow
-   \annot{(\annot{(\lambda \sigma)}{\alpha} \ e)}{\alpha}
+   \annot{(\exApp{\annot{(\exLambda{ \sigma})}{\alpha}}{e})}{\alpha}
 }
 %
 \and
@@ -108,7 +108,7 @@
 {
    \annot{(\exLet{p}{s}{s'})}{\alpha}
    \dfwdarrow
-   \annot{(\annot{(\lambda \sigma)}{\alpha} \ e)}{\alpha}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha}}{e})}{\alpha}
 }
 %
 \and
@@ -128,7 +128,7 @@
 {
    \annot{(\exIfThenElse{s}{s'}{s^{\twoPrime}})}{\alpha}
    \dfwdarrow
-   \annot{(\annot{(\exLambda{\sigma})}{\alpha} \ e)}{\alpha}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha}}{e})}{\alpha}
 }
 %
 \and
@@ -142,7 +142,9 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\annot{(\kw{enumFromTo} \ e)}{\alpha}{e'})}{\alpha}
+   \annot{\exListSeq{s}{s'}}{\alpha}
+   \dfwdarrow
+   \annot{(\exApp{\annot{(\exApp{\kw{enumFromTo}}{e})}{\alpha}}{e'})}{\alpha}
 }
 %
 \and
@@ -185,7 +187,7 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{(\exLambda{\sigma})}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha_1 \meet \alpha_2}}{e'})}{\alpha_1 \meet \alpha_2}
 }
 \and
 %
