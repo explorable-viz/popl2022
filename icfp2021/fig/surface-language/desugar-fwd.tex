@@ -152,14 +152,14 @@
    s \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\annot{\exTrue}{\alpha_1}}}{\alpha_2}
+   \annot{\exListComp{s}{\annot{(\qualGuard{\annot{\exTrue}{\alpha_1}})}{\alpha_2}}}{\alpha_3}
    \dfwdarrow
-   \annot{(\exCons{e}{\annot{\exNil}{\alpha_1 \meet \alpha_2}})}{\alpha_1 \meet \alpha_2}
+   \annot{(\exCons{e}{\annot{\exNil}{\alpha_1 \meet \alpha_2 \meet \alpha_3}})}{\alpha_1 \meet \alpha_2 \meet \alpha_3}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-qual}},
-   right={$q \neq \kw{true}$}
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
+   right={$q \neq \exTrue$}
 ]
 {
   \annot{\exListComp{s}{q \concat \annot{(\qualGuard{\annot{\exTrue}{\alpha}})}{\alpha}}}
@@ -170,8 +170,10 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}},
-            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-comp-guard}},
+   right={\textnormal{$\vec{q}$ non-empty}}
+]
 {
    \annot{\exListComp{s}{\vec{q}}}{\alpha_2}
    \dfwdarrow e
@@ -187,8 +189,10 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-decl}},
-            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-comp-decl}},
+   right={\textnormal{$\vec{q}$ non-empty}}
+]
 {
    \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}} \dfwdarrow \sigma
    \\
@@ -197,12 +201,14 @@
 {
    \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
+   \annot{(\exApp{\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2}}{e})}{\alpha_1 \meet \alpha_2}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}},
-            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-comp-gen}},
+   right={\textnormal{$\vec{q}$ non-empty}}
+]
 {
    \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha_2} \dfwdarrow \sigma
    \\
@@ -213,7 +219,7 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma'}}{\alpha_1 \meet \alpha_2})}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
+   \annot{(\annot{(\exApp{\kw{concatMap}}{\annot{(\exLambda{\sigma'})}{\alpha_1 \meet \alpha_2}})}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules only)}
