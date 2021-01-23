@@ -156,7 +156,7 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGuard{\annot{\exTrue}{\alpha_1}})}{\alpha_2}}}{\alpha_3}
    \dfwdarrow
-   \annot{(\exCons{e}{\annot{\exNil}{{\bigwedge}\alpha}})}{{\bigwedge}\alpha}
+   \annot{(\exCons{e}{\annot{\exNil}{{\meet}\alpha}})}{{\meet}\alpha}
 }
 \and
 %
@@ -173,8 +173,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-comp-guard}},
-   right={\textnormal{$\vec{q}$ non-empty}}
+   lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
 ]
 {
    \annot{\exListComp{s}{\vec{q}}}{\alpha_2}
@@ -187,13 +186,12 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exLambda{\sigma})}{{\bigwedge}\alpha}}{e'})}{{\bigwedge}\alpha}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{{\meet}\alpha}}{e'})}{{\meet}\alpha}
 }
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-comp-decl}},
-   right={\textnormal{$\vec{q}$ non-empty}}
+   lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
 ]
 {
    \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}} \dfwdarrow \sigma
@@ -203,13 +201,12 @@
 {
    \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exApp{\annot{\exLambda{\sigma}}{{\bigwedge}\alpha}}{e})}{{\bigwedge}\alpha}
+   \annot{(\exApp{\annot{\exLambda{\sigma}}{{\meet}\alpha}}{e})}{{\meet}\alpha}
 }
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-comp-gen}},
-   right={\textnormal{$\vec{q}$ non-empty}}
+   lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
 ]
 {
    \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha_2} \dfwdarrow \sigma
@@ -221,10 +218,10 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{{\bigwedge}\alpha}}
-                                {\annot{(\exLambda{\sigma'})}{{\bigwedge}\alpha}})}
-                        {{\bigwedge}\alpha}}{e})}
-         {{\bigwedge}\alpha}
+   \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{{\meet}\alpha}}
+                                {\annot{(\exLambda{\sigma'})}{{\meet}\alpha}})}
+                        {{\meet}\alpha}}{e})}
+         {{\meet}\alpha}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules only)}
