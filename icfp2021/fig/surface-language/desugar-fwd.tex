@@ -221,7 +221,10 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{(\exApp{\kw{concatMap}}{\annot{(\exLambda{\sigma'})}{\alpha_1 \meet \alpha_2}})}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
+   \annot{(\annot{(\exApp{\annot{\kw{concatMap}}{\alpha_1 \meet \alpha_2}}
+                         {\annot{(\exLambda{\sigma'})}{\alpha_1 \meet \alpha_2}})}
+                 {\alpha_1 \meet \alpha_2} \ e)}
+         {\alpha_1 \meet \alpha_2}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules only)}
