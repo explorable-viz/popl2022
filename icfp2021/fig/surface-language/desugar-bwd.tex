@@ -166,9 +166,9 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
 {
-   e, \exListComp{s}{q \comma \exTrue}
+   e, \exListComp{s}{q \concat \exTrue}
    \dbwdarrow
-   \annot{\exListComp{s'}{q' \comma \annot{\exTrue}{\alpha_1}}}{\alpha_2}
+   \annot{\exListComp{s'}{q' \concat \annot{\exTrue}{\alpha_1}}}{\alpha_2}
 }
 {
    e, \exListComp{s}{q}
@@ -223,17 +223,15 @@
    e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}
 }
 {
-   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1})}{\alpha_2} \ e_1)}{\alpha_3}
+   \annot{(\exApp{\annot{(\exApp{\kw{concatMap}}{\annot{\exLambda{\sigma}}{\alpha_1}})}{\alpha_2}}{e_1})}{\alpha_3}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \cdot \vec{q}}
    \dbwdarrow
    \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{{\join}\alpha} \concat \vec{q}'}}{({\join}\alpha) \join \beta}
 }
 \end{smathpar}
-\caption{Desugaring -- backward slicing (selected rules only)}
-\end{figure}
 
-\begin{figure}[H]
+\vspace{5pt}
 \flushleft \shadebox{$e, l \dbwdarrow l$}
 \begin{smathpar}
 \inferrule*[
@@ -268,5 +266,5 @@
    \annot{(\sExCons{s'}{l'})}{\alpha}
 }
 \end{smathpar}
-\caption{Desugaring list rest -- backward slicing}
+\caption{Desugaring -- backward slicing}
 \end{figure}
