@@ -42,7 +42,7 @@
    ,
    \exMatch{s}{\vec{c}}
    \dbwdarrow
-   \annot{(\exMatch{s'}{\hole_{\vec{c}}})}{\FF}
+   \annot{(\exMatch{s'}{\hole_{\vec{c}}})}{\alpha}
 }
 %
 \and
@@ -58,7 +58,7 @@
    ,
    \exLet{p}{s_1}{s_2}
    \dbwdarrow
-   \annot{(\exLet{p}{s_1'}{\hole})}{\FF}
+   \annot{(\exLet{p}{s_1'}{\hole})}{\alpha}
 }
 %
 \and
@@ -74,7 +74,7 @@
    ,
    \exListSeq{s_{1}}{s_{2}}
    \dbwdarrow
-   \annot{\exListSeq{\hole}{s_{2}'}}{\FF}
+   \annot{\exListSeq{\hole}{s_{2}'}}{\alpha}
 }
 %
 \and
@@ -94,8 +94,21 @@
    \dbwdarrow
    \annot{\exListSeq{s_{1}'}{s_{2}'}}{{\join}{\alpha}}
 }
+%
+\and
+%
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done-$\hole$}}]
+{
+   e, s \dbwdarrow s'
+}
+{
+   \annot{(\exCons{e}{\hole})}{\alpha}
+   ,
+   \exListComp{s}{\qualGuard{\exTrue}}
+   \dbwdarrow
+   \annot{\exListComp{s'}{\annot{(\qualGuard{\annot{\exTrue}{\alpha}})}{\alpha}}}{\alpha}
+}
 \end{smathpar}
-
 
 \vspace{5pt}
 \flushleft \shadebox{$e, l \dbwdarrow l$}
