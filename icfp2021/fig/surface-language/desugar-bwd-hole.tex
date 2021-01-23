@@ -159,6 +159,30 @@
    \annot{\exListComp{s_{2}'}{\annot{(\qualDeclaration{p}{s_{1}'})}{\alpha} \concat \vec{q}'}}
          {\alpha \join \beta}
 }
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-4}},
+]
+{
+   e_{1}, s_{1} \dbwdarrow s_{1}'
+   \\
+   \untotalise{\sigma}{p}{\sigma'}
+   \\
+   \sigma', p \dbwdarrow e_{2}
+   \\
+   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}
+}
+{
+   \annot{(\exApp{\annot{(\exApp{\hole}{\annot{(\exLambda{\sigma})}{\alpha_1}})}{\alpha_2}}
+                 {e_1})}
+         {\alpha_3}
+   ,
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+   \dbwdarrow
+   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{{\join}\alpha} \concat \vec{q}'}}{({\join}\alpha) \join \beta}
+}
 \end{smathpar}
 
 \vspace{5pt}
