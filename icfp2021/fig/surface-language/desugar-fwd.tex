@@ -156,7 +156,7 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGuard{\annot{\exTrue}{\alpha_1}})}{\alpha_2}}}{\alpha_3}
    \dfwdarrow
-   \annot{(\exCons{e}{\annot{\exNil}{\alpha_1 \meet \alpha_2 \meet \alpha_3}})}{\alpha_1 \meet \alpha_2 \meet \alpha_3}
+   \annot{(\exCons{e}{\annot{\exNil}{{\bigwedge}\alpha}})}{{\bigwedge}\alpha}
 }
 \and
 %
@@ -187,7 +187,7 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha_1 \meet \alpha_2}}{e'})}{\alpha_1 \meet \alpha_2}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{{\bigwedge}\alpha}}{e'})}{{\bigwedge}\alpha}
 }
 \and
 %
@@ -203,7 +203,7 @@
 {
    \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exApp{\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2}}{e})}{\alpha_1 \meet \alpha_2}
+   \annot{(\exApp{\annot{\exLambda{\sigma}}{{\bigwedge}\alpha}}{e})}{{\bigwedge}\alpha}
 }
 \and
 %
@@ -221,10 +221,10 @@
 {
    \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{\alpha_1 \meet \alpha_2}}
-                                {\annot{(\exLambda{\sigma'})}{\alpha_1 \meet \alpha_2}})}
-                        {\alpha_1 \meet \alpha_2}}{e})}
-         {\alpha_1 \meet \alpha_2}
+   \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{{\bigwedge}\alpha}}
+                                {\annot{(\exLambda{\sigma'})}{{\bigwedge}\alpha}})}
+                        {{\bigwedge}\alpha}}{e})}
+         {{\bigwedge}\alpha}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules only)}
