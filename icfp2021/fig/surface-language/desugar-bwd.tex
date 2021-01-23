@@ -235,6 +235,22 @@
 \flushleft \shadebox{$e, l \dbwdarrow l$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole
+   ,
+   l
+   \dbwdarrow
+   \hole
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-list-rest-end}}
 ]
 {
