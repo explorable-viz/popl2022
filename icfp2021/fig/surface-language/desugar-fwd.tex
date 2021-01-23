@@ -126,7 +126,7 @@
 {
    \annot{(\exIfThenElse{s}{s'}{s^{\twoPrime}})}{\alpha}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exLambda{\elimBool{e'}{e^{\twoPrime}}})}{\alpha}}{e})}{\alpha}
+   \annot{(\exApp{\annot{\exLambda{\elimBool{e'}{e^{\twoPrime}}}}{\alpha}}{e})}{\alpha}
 }
 %
 \and
@@ -177,14 +177,12 @@
    \annot{\exListComp{s}{\vec{q}}}{\alpha_2}
    \dfwdarrow e
    \\
-   \sigma = \elimBool{e}{\exNil}
-   \\
    s' \dfwdarrow e'
 }
 {
    \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exLambda{\sigma})}{{\meet}\alpha}}{e'})}{{\meet}\alpha}
+   \annot{(\exApp{\annot{\exLambda{\elimBool{e}{\exNil}}}{{\meet}\alpha}}{e'})}{{\meet}\alpha}
 }
 \and
 %
