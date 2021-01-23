@@ -77,5 +77,58 @@
    \annot{\exListSeq{\hole}{s_{2}'}}{\alpha}
 }
 \end{smathpar}
-\caption{Desugaring -- backward slicing (hole rules)}
+
+
+\vspace{5pt}
+\flushleft \shadebox{$e, l \dbwdarrow l$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole
+   ,
+   l
+   \dbwdarrow
+   \hole
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-end}}
+]
+{
+   \strut
+}
+{
+   \annot{\exNil}{\alpha}
+   ,
+   \sExNil
+   \dbwdarrow
+   \annot{\sExNil}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
+]
+{
+   e, s \dbwdarrow s'
+   \\
+   e', l \dbwdarrow l'
+}
+{
+   \annot{(\exCons{e}{e'})}{\alpha}
+   ,
+   \ \sExCons{s}{l}
+   \dbwdarrow
+   \annot{(\sExCons{s'}{l'})}{\alpha}
+}
+\end{smathpar}
+\caption{Desugaring -- backward slicing (hole and list rest rules)}
 \end{figure}
