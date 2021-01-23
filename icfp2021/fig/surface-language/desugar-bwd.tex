@@ -220,14 +220,14 @@
    \\
    \sigma', p \dbwdarrow e_{2}
    \\
-   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha_4}
+   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}
 }
 {
    \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma}}{\alpha_1})}{\alpha_2} \ e_1)}{\alpha_3}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \cdot \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3 \join \alpha_4}
+   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{{\join}\alpha} \concat \vec{q}'}}{({\join}\alpha) \join \beta}
 }
 \end{smathpar}
 \caption{Desugaring -- backward slicing (selected rules only)}
