@@ -76,6 +76,24 @@
    \dbwdarrow
    \annot{\exListSeq{\hole}{s_{2}'}}{\FF}
 }
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-enum-$\hole$-2}},
+]
+{
+   e_1, s_{1} \dbwdarrow s_{1}'
+   \\
+   e_2, s_{2} \dbwdarrow s_{2}'
+}
+{
+   \annot{(\exApp{\annot{(\exApp{\hole}{e_1})}{\alpha_1}}{e_2})}{\alpha_2}
+   ,
+   \exListSeq{s_{1}}{s_{2}}
+   \dbwdarrow
+   \annot{\exListSeq{s_{1}'}{s_{2}'}}{{\join}{\alpha}}
+}
 \end{smathpar}
 
 
