@@ -164,11 +164,11 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-qual}}]
+\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
 {
-   e, \exListComp{s}{q \concat \exTrue}
+   e, \exListComp{s}{q \concat \qualGuard{\exTrue}}
    \dbwdarrow
-   \annot{\exListComp{s'}{q' \concat \annot{\exTrue}{\alpha_1}}}{\alpha_2}
+   \annot{\exListComp{s'}{q' \concat \qualGuard{\annot{\exTrue}{\alpha_1}}}}{\alpha_2}
 }
 {
    e, \exListComp{s}{q}
