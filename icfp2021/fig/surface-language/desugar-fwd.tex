@@ -92,7 +92,7 @@
 {
    \annot{(\exMatch{s}{\vec{c}})}{\alpha}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exLambda{ \sigma})}{\alpha}}{e})}{\alpha}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha}}{e})}{\alpha}
 }
 %
 \and
@@ -122,13 +122,11 @@
    s' \dfwdarrow e'
    \\
    s^{\twoPrime} \dfwdarrow e^{\twoPrime}
-   \\
-   \sigma = \elimBool{e'}{e^{\twoPrime}}
 }
 {
    \annot{(\exIfThenElse{s}{s'}{s^{\twoPrime}})}{\alpha}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha}}{e})}{\alpha}
+   \annot{(\exApp{\annot{(\exLambda{\elimBool{e'}{e^{\twoPrime}}})}{\alpha}}{e})}{\alpha}
 }
 %
 \and
