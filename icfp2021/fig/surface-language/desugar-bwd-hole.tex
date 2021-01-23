@@ -112,6 +112,21 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-comp-guard-$\hole$}},
+]
+{
+   e, \exListComp{s_1}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{1}'}{\vec{q}'}}{\beta}
+}
+{
+   \annot{(\exApp{\hole}{e})}{\alpha}
+   , \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
+   \dbwdarrow
+   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{\hole})}{\alpha} \cdot \vec{q}'}}{\alpha \join \beta}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-list-comp-guard-$\hole$-2}},
 ]
 {
@@ -124,6 +139,24 @@
    , \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
    \dbwdarrow
    \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{{\join}\alpha} \cdot \vec{q}'}}{({\join}\alpha) \join \beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-comp-decl-$\hole$}},
+]
+{
+   \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}} \dbwdarrow \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+   \\
+   e, s_{1} \dbwdarrow s_{1}'
+}
+{
+   \annot{(\exApp{\hole}{e})}{\alpha}
+   ,
+   \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
+   \dbwdarrow
+   \annot{\exListComp{s_{2}'}{\annot{(\qualDeclaration{p}{s_{1}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \concat \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3}
 }
 \end{smathpar}
 

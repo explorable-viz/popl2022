@@ -200,16 +200,17 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
 ]
 {
-   \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}} \dbwdarrow \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha_3}}
+   \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}} \dbwdarrow \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
    \\
    e, s_{1} \dbwdarrow s_{1}'
 }
 {
-   \annot{(\annot{(\exLambda{\sigma})}{\alpha_1} \ e)}{\alpha_2}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha_1}}{e})}{\alpha_2}
    ,
    \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{2}'}{\annot{(\qualDeclaration{p}{s_{1}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \concat \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3}
+   \annot{\exListComp{s_{2}'}{\annot{(\qualDeclaration{p}{s_{1}'})}{{\join}\alpha} \concat \vec{q}'}}
+         {({\join}\alpha) \join \beta}
 }
 %
 \and
