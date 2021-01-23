@@ -92,7 +92,7 @@
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{\alpha_1 \join \alpha_2}
+   \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{{\join}\alpha}
 }
 %
 \and
@@ -110,7 +110,7 @@
    ,
    \exMatch{s}{\vec{c}}
    \dbwdarrow
-   \annot{(\exMatch{s'}{\vec{c}'})}{\alpha_1 \join \alpha_2}
+   \annot{(\exMatch{s'}{\vec{c}'})}{{\join}\alpha}
 }
 %
 \and
@@ -128,7 +128,7 @@
    ,
    \exLet{p}{s_1}{s_2}
    \dbwdarrow
-   \annot{(\exLet{p}{s_1'}{s_2'})}{\alpha_1 \join \alpha_2}
+   \annot{(\exLet{p}{s_1'}{s_2'})}{{\join}\alpha}
 }
 %
 \and
@@ -146,7 +146,7 @@
    ,
    \exListSeq{s_{1}}{s_{2}}
    \dbwdarrow
-   \annot{\exListSeq{s_{1}'}{s_{2}'}}{\alpha_1 \join \alpha_2}
+   \annot{\exListSeq{s_{1}'}{s_{2}'}}{{\join}\alpha}
 }
 %
 \and
@@ -160,7 +160,7 @@
    ,
    \exListComp{s}{\exTrue}
    \dbwdarrow
-   \annot{\exListComp{s'}{\annot{\exTrue}{\alpha_1 \join \alpha_2}}}{\alpha_1 \join \alpha_2}
+   \annot{\exListComp{s'}{\annot{\exTrue}{{\join}\alpha}}}{{\join}\alpha}
 }
 \and
 %
@@ -173,27 +173,29 @@
 {
    e, \exListComp{s}{q}
    \dbwdarrow
-   \annot{\exListComp{s'}{q'}}{\alpha_1 \join \alpha_2}
+   \annot{\exListComp{s'}{q'}}{{\join}\alpha}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
-   right={ \ $ \vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
+]
 {
    e_2, s_2 \dbwdarrow s_2'
    \\
-   e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{1}'}{\vec{q}'}}{\alpha_4}
+   e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{1}'}{\vec{q}'}}{\beta}
 }
 {
-   \annot{( \annot{\exLambda{\elimBool{e_{2}}{\annot{\exNil}{\alpha_{1}}}}}{\alpha_2} \ e_{1})}{\alpha_3}
+   \annot{(\exApp{\annot{\smash{\exLambda{\elimBool{e_{2}}{\annot{\exNil}{\alpha_{1}}}}}}{\alpha_2}}{e_{1}})}{\alpha_3}
    , \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \cdot \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3 \join \alpha_4}
+   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{{\join}\alpha} \cdot \vec{q}'}}{({\join}\alpha) \join \beta}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
-   right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
+]
 {
    \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}} \dbwdarrow \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha_3}}
    \\
@@ -208,8 +210,9 @@
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-gen}},
-   right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-comp-gen}},
+]
 {
    e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
