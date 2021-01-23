@@ -162,6 +162,7 @@
    \dbwdarrow
    \annot{\exListComp{s'}{\annot{(\qualGuard{\annot{\exTrue}{{\join}\alpha}})}{{\join}\alpha}}}{{\join}\alpha}
 }
+%
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
@@ -175,6 +176,7 @@
    \dbwdarrow
    \annot{\exListComp{s'}{q'}}{{\join}\beta}
 }
+%
 \and
 %
 \inferrule*[
@@ -187,10 +189,11 @@
 }
 {
    \annot{(\exApp{\annot{\smash{\exLambda{\elimBool{e_{2}}{\annot{\exNil}{\alpha_{1}}}}}}{\alpha_2}}{e_{1}})}{\alpha_3}
-   , \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
+   , \exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{{\join}\alpha} \cdot \vec{q}'}}{({\join}\alpha) \join \beta}
+   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{{\join}\alpha} \concat \vec{q}'}}{({\join}\alpha) \join \beta}
 }
+%
 \and
 %
 \inferrule*[
@@ -204,10 +207,11 @@
 {
    \annot{(\annot{(\exLambda{\sigma})}{\alpha_1} \ e)}{\alpha_2}
    ,
-   \exListComp{s_2}{\qualDeclaration{p}{s_1} \cdot \vec{q}}
+   \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{2}'}{\annot{(\qualDeclaration{p}{s_{1}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \cdot \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3}
+   \annot{\exListComp{s_{2}'}{\annot{(\qualDeclaration{p}{s_{1}'})}{\alpha_1 \join \alpha_2 \join \alpha_3} \concat \vec{q}'}}{\alpha_1 \join \alpha_2 \join \alpha_3}
 }
+%
 \and
 %
 \inferrule*[
@@ -227,7 +231,7 @@
                  {e_1})}
          {\alpha_4}
    ,
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \cdot \vec{q}}
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
    \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{{\join}\alpha} \concat \vec{q}'}}{({\join}\alpha) \join \beta}
 }
