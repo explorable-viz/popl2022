@@ -1,0 +1,95 @@
+\begin{figure}[H]
+\flushleft \shadebox{$e, s \dbwdarrow s'$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole, s
+   \dbwdarrow
+   \hole
+}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-if-$\hole$}}
+]
+{
+   e, s_{1} \dbwdarrow s_{1}'
+}
+{
+   \annot{(\exApp{\hole}{e})}{\alpha}
+   ,
+   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   \dbwdarrow
+   \annot{(\exIfThenElse{s_{1}'}{\hole}{\hole})}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-match-$\hole$}}
+]
+{
+   e, s \dbwdarrow s'
+}
+{
+   \annot{(\exApp{\hole}{e})}{\alpha}
+   ,
+   \exMatch{s}{\vec{c}}
+   \dbwdarrow
+   \annot{(\exMatch{s'}{\hole_{\vec{c}}})}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-let-$\hole$}}
+]
+{
+   e, s_1 \dbwdarrow s_1'
+}
+{
+   \annot{(\exApp{\hole}{e})}{\alpha}
+   ,
+   \exLet{p}{s_1}{s_2}
+   \dbwdarrow
+   \annot{(\exLet{p}{s_1'}{\hole})}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-enum-$\hole$}},
+]
+{
+   e, s_{2} \dbwdarrow s_{2}'
+}
+{
+   \annot{(\exApp{\hole}{e})}{\alpha}
+   ,
+   \exListSeq{s_{1}}{s_{2}}
+   \dbwdarrow
+   \annot{\exListSeq{\hole}{s_{2}'}}{\alpha}
+}
+\end{smathpar}
+
+\flushleft \shadebox{$e, l \dbwdarrow l$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole
+   ,
+   l
+   \dbwdarrow
+   \hole
+}
+\end{smathpar}
+\caption{Desugaring -- backward slicing (hole rules)}
+\end{figure}
