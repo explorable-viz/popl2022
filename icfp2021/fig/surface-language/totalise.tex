@@ -1,7 +1,7 @@
 
 
 \begin{figure}[H]
-\flushleft \shadebox{totalise $\kappa \ \kappa'$}
+\flushleft \shadebox{$\totalise{\kappa}{\alpha}{\kappa}'$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{expression}}
@@ -10,7 +10,7 @@
    \strut
 }
 {
-   \totalise{e}{e}
+   \totalise{e}{\alpha}{e}
 }
 \and
 %
@@ -18,10 +18,10 @@
    lab={\ruleName{elim-var}}
 ]
 {
-   \totalise{\kappa}{\kappa'}
+   \totalise{\kappa}{\alpha}{\kappa'}
 }
 {
-   \totalise{\elimVar{x}{\kappa}}{\elimVar{x}{\kappa'}}
+   \totalise{\elimVar{x}{\kappa}}{\alpha}{\elimVar{x}{\kappa'}}
 }
 \and
 %
@@ -29,10 +29,10 @@
    lab={\ruleName{elim-true}}
 ]
 {
-   \totalise{\kappa}{\kappa'}
+   \totalise{\kappa}{\alpha}{\kappa'}
 }
 {
-   \totalise{\elimBoolTrue{\kappa}}{\elimBool{\kappa'}{\exNil}}
+   \totalise{\elimBoolTrue{\kappa}}{\alpha}{\elimBool{\kappa'}{\annot{\exNil}{\alpha}}}
 }
 \and
 %
@@ -40,10 +40,10 @@
    lab={\ruleName{elim-false}}
 ]
 {
-   \totalise{\kappa}{\kappa'}
+   \totalise{\kappa}{\alpha}{\kappa'}
 }
 {
-   \totalise{\elimBoolFalse{\kappa}}{\elimBool{\exNil}{\kappa'}}
+   \totalise{\elimBoolFalse{\kappa}}{\alpha}{\elimBool{\annot{\exNil}{\alpha}}{\kappa'}}
 }
 \and
 %
@@ -51,10 +51,10 @@
    lab={\ruleName{elim-prod}}
 ]
 {
-   \totalise{\sigma}{\sigma'}
+   \totalise{\sigma}{\alpha}{\sigma'}
 }
 {
-   \totalise{(\elimProd{\sigma})}{(\elimProd{\sigma'})}
+   \totalise{(\elimProd{\sigma})}{\alpha}{\elimProd{\sigma'}}
 }
 \and
 %
@@ -62,10 +62,12 @@
    lab={\ruleName{elim-nil}}
 ]
 {
-   \totalise{\kappa}{\kappa'}
+   \totalise{\kappa}{\alpha}{\kappa'}
 }
 {
-   \totalise{\elimNil{\kappa}}{\elimList{\branchNil{\kappa'}}{\branchCons{x \mapsto y \mapsto \exNil}}}
+   \totalise{\elimNil{\kappa}}
+            {\alpha}
+            {\elimList{\branchNil{\kappa'}}{\branchCons{x \mapsto y \mapsto \annot{\exNil}{\alpha}}}}
 }
 \and
 %
@@ -73,11 +75,11 @@
    lab={\ruleName{elim-cons}}
 ]
 {
-   \totalise{\sigma}{\sigma'}
+   \totalise{\sigma}{\alpha}{\sigma'}
 }
 {
-   \totalise{\elimCons{\sigma}}{\elimList{\branchNil{\exNil}}{\branchCons{\sigma'}}}
+   \totalise{\elimCons{\sigma}}{\alpha}{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma'}}}
 }
 \end{smathpar}
-\caption{Totalise}
+\caption{$\kappa$ totalises to $\kappa'$ -- forward slicing}
 \end{figure}

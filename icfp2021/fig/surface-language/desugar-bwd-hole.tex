@@ -166,17 +166,15 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-1}},
 ]
 {
-   e_{1}, s_{1} \dbwdarrow s_{1}'
+   e, s_{1} \dbwdarrow s_{1}'
 }
 {
-   \annot{(\exApp{\annot{(\exApp{\hole}{\hole})}{\alpha_1}}
-                 {e_1})}
-         {\alpha_2}
+   \annot{(\exApp{\hole}{e})}{\alpha}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{{\join}\alpha} \concat \hole_{\vec{q}}}}
-         {({\join}\alpha) \join \beta}
+   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{\alpha} \concat \hole_{\vec{q}}}}
+         {\alpha \join \beta}
 }
 %
 \and
@@ -185,11 +183,10 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-2}},
 ]
 {
-   e_{1}, s_{1} \dbwdarrow s_{1}'
+   e, s_{1} \dbwdarrow s_{1}'
 }
 {
-   \annot{(\exApp{\annot{(\exApp{\hole}{\hole})}{\alpha_1}}
-                 {e_1})}
+   \annot{(\exApp{\annot{(\exApp{\hole}{\hole})}{\alpha_1}}{e})}
          {\alpha_2}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
@@ -204,11 +201,11 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-3}},
 ]
 {
-   e_{1}, s_{1} \dbwdarrow s_{1}'
+   e, s_{1} \dbwdarrow s_{1}'
 }
 {
    \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{\alpha_1}}{\hole})}{\alpha_2}}
-                 {e_1})}
+                 {e})}
          {\alpha_3}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
