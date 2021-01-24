@@ -19,7 +19,7 @@
    \untotalise{\kappa}{\vec{p}}{\kappa'}{\alpha}
 }
 {
-   \untotalise{\elimVar{x}{\kappa}}{(x \concat \vec{p})}{\elimVar{x}{\kappa'}}{\alpha}
+   \untotalise{\elimVar{x}{\kappa}}{x \concat \vec{p}}{\elimVar{x}{\kappa'}}{\alpha}
 }
 %
 \and
@@ -32,7 +32,7 @@
 }
 {
    \untotalise{\elimBool{\kappa_1}{\annot{\exNil}{\alpha}}}
-              {(\pattTrue \concat \vec{p})}
+              {\pattTrue \concat \vec{p}}
               {\elimBoolTrue{\kappa_1'}}
               {\alpha \join \beta}
 }
@@ -47,7 +47,7 @@
 }
 {
    \untotalise{\elimBool{\annot{\exNil}{\alpha}}{\kappa_2}}
-              {(\pattFalse \concat \vec{p})}
+              {\pattFalse \concat \vec{p}}
               {\elimBoolFalse{\kappa_2'}}
               {\alpha \join \beta}
 }
@@ -61,7 +61,7 @@
    \untotalise{\sigma}{(p \concat p' \concat \vec{p})}{\sigma'}{\beta}
 }
 {
-   \untotalise{(\elimProd{\sigma})}{(\pattPair{p}{p'} \concat \vec{p})}{(\elimProd{\sigma'})}{\beta}
+   \untotalise{(\elimProd{\sigma})}{\pattPair{p}{p'} \concat \vec{p}}{(\elimProd{\sigma'})}{\beta}
 }
 %
 \and
