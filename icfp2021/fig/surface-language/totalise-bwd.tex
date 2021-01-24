@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\untotalise{\kappa}{\pi}{\kappa'}$}
+\flushleft \shadebox{$\untotalise{\kappa}{\pi}{\kappa'}{\alpha}$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{empty}}
@@ -8,7 +8,7 @@
    \strut
 }
 {
-   \untotalise{\kappa}{\seqEmpty}{\kappa}
+   \untotalise{\kappa}{\seqEmpty}{\kappa}{\FF}
 }
 \and
 %
@@ -16,10 +16,10 @@
    lab={\ruleName{var}}
 ]
 {
-   \untotalise{\kappa}{\vec{p}}{\kappa'}
+   \untotalise{\kappa}{\vec{p}}{\kappa'}{\alpha}
 }
 {
-   \untotalise{\elimVar{x}{\kappa}}{(x \cdot \vec{p})}{\elimVar{x}{\kappa'}}
+   \untotalise{\elimVar{x}{\kappa}}{(x \concat \vec{p})}{\elimVar{x}{\kappa'}}{\alpha}
 }
 %
 \and
@@ -28,10 +28,13 @@
    lab={\ruleName{true}}
 ]
 {
-   \untotalise{\kappa_1}{\vec{p}}{\kappa_1'}
+   \untotalise{\kappa_1}{\vec{p}}{\kappa_1'}{\beta}
 }
 {
-   \untotalise{\elimBool{\kappa_1}{\kappa_2}}{(\pattTrue \cdot \vec{p})}{\elimBoolTrue{\kappa_1'}}
+   \untotalise{\elimBool{\kappa_1}{\annot{\exNil}{\alpha}}}
+              {(\pattTrue \concat \vec{p})}
+              {\elimBoolTrue{\kappa_1'}}
+              {\alpha \join \beta}
 }
 %
 \and
@@ -40,10 +43,13 @@
    lab={\ruleName{false}}
 ]
 {
-   \untotalise{\kappa_2}{\vec{p}}{\kappa_2'}
+   \untotalise{\kappa_2}{\vec{p}}{\kappa_2'}{\beta}
 }
 {
-   \untotalise{\elimBool{\kappa_1}{\kappa_2}}{(\pattFalse \cdot \vec{p})}{\elimBoolFalse{\kappa_2'}}
+   \untotalise{\elimBool{\annot{\exNil}{\alpha}}{\kappa_2}}
+              {(\pattFalse \concat \vec{p})}
+              {\elimBoolFalse{\kappa_2'}}
+              {\alpha \join \beta}
 }
 %
 \and
@@ -52,10 +58,10 @@
    lab={\ruleName{prod}}
 ]
 {
-   \untotalise{\sigma}{(p \cdot p' \cdot \vec{p})}{\sigma'}
+   \untotalise{\sigma}{(p \concat p' \concat \vec{p})}{\sigma'}{\beta}
 }
 {
-   \untotalise{(\elimProd{\sigma})}{(\pattPair{p}{p'} \cdot \vec{p})}{(\elimProd{\sigma'})}
+   \untotalise{(\elimProd{\sigma})}{(\pattPair{p}{p'} \concat \vec{p})}{(\elimProd{\sigma'})}{\beta}
 }
 %
 \and
@@ -64,10 +70,13 @@
    lab={\ruleName{nil}}
 ]
 {
-   \untotalise{\kappa}{\vec{p}}{\kappa'}
+   \untotalise{\kappa}{\vec{p}}{\kappa'}{\beta}
 }
 {
-   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{(\pattNil \cdot \vec{p})}{\elimNil{\kappa'}}
+   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
+              {(\pattNil \concat \vec{p})}
+              {\elimNil{\kappa'}}
+              {\alpha \join \beta}
 }
 %
 \and
@@ -76,10 +85,13 @@
    lab={\ruleName{cons}}
 ]
 {
-   \untotalise{\sigma}{(p \cdot p' \cdot \vec{p})}{\sigma'}
+   \untotalise{\sigma}{(p \concat p' \concat \vec{p})}{\sigma'}{\beta}
 }
 {
-   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{(\pattCons{p}{p'} \cdot \vec{p})}{\elimCons{\sigma'}}
+   \untotalise{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
+              {(\pattCons{p}{p'} \concat \vec{p})}
+              {\elimCons{\sigma'}}
+              {\alpha \join \beta}
 }
 %
 \and
@@ -88,34 +100,43 @@
    lab={\ruleName{non-empty list}}
 ]
 {
-   \untotalise{\sigma}{(p \cdot o \cdot \vec{p})}{\sigma'}
+   \untotalise{\sigma}{(p \concat o \concat \vec{p})}{\sigma'}{\beta}
 }
 {
-   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{(\pattList{p}{o} \cdot \vec{p})}{\elimCons{\sigma'}}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{list rest (end)}}
-]
-{
-   \untotalise{\kappa}{\vec{p}}{\kappa'}
-}
-{
-   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{(\pattSNil \cdot \vec{p})}{\elimNil{\kappa'}}
+   \untotalise{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
+              {(\pattList{p}{o} \concat \vec{p})}
+              {\elimCons{\sigma'}}
+              {\alpha \join \beta}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{list rest (cons)}}
+   lab={\ruleName{list-rest-end}}
 ]
 {
-   \untotalise{\sigma}{(p \cdot o \cdot \vec{p})}{\sigma'}
+   \untotalise{\kappa}{\vec{p}}{\kappa'}{\beta}
 }
 {
-   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}}{(\pattSCons{p}{o} \cdot \vec{p})}{\elimCons{\sigma'}}
+   \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
+              {(\pattSNil \concat \vec{p})}
+              {\elimNil{\kappa'}}
+              {\alpha \join \beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{list-rest-cons}}
+]
+{
+   \untotalise{\sigma}{(p \concat o \concat \vec{p})}{\sigma'}{\beta}
+}
+{
+   \untotalise{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
+              {(\pattSCons{p}{o} \concat \vec{p})}
+              {\elimCons{\sigma'}}
+              {\alpha \join \beta}
 }
 \end{smathpar}
 \caption{Totalise -- backward slicing}
