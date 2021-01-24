@@ -174,7 +174,7 @@
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
    \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{\alpha} \concat \hole_{\vec{q}}}}
-         {\alpha \join \beta}
+         {\alpha}
 }
 %
 \and
@@ -192,7 +192,7 @@
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
    \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{{\join}\alpha} \concat \hole_{\vec{q}}}}
-         {({\join}\alpha) \join \beta}
+         {{\join}\alpha}
 }
 %
 \and
@@ -226,7 +226,7 @@
    \\
    \sigma', p \dbwdarrow e_{2}
    \\
-   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}
+   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
 }
 {
    \annot{(\exApp{\annot{(\exApp{\hole}{\annot{(\exLambda{\sigma})}{\alpha_1}})}{\alpha_2}}
@@ -235,7 +235,8 @@
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{{\join}\alpha} \concat \vec{q}'}}{({\join}\alpha) \join \beta}
+   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{({\join}\alpha) \join \beta} \concat \vec{q}'}}
+         {({\join}\alpha) \join \beta'}
 }
 \end{smathpar}
 \caption{Desugaring -- backward slicing (hole rules)}
