@@ -58,7 +58,7 @@
    lab={\ruleName{prod}}
 ]
 {
-   \untotalise{\sigma}{(p \concat p' \concat \vec{p})}{\sigma'}{\beta}
+   \untotalise{\sigma}{p \concat p' \concat \vec{p}}{\sigma'}{\beta}
 }
 {
    \untotalise{\elimProd{\sigma}}{\pattPair{p}{p'} \concat \vec{p}}{\elimProd{\sigma'}}{\beta}
@@ -74,7 +74,7 @@
 }
 {
    \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {(\pattNil \concat \vec{p})}
+              {\pattNil \concat \vec{p}}
               {\elimNil{\kappa'}}
               {\alpha \join \beta}
 }
@@ -85,11 +85,11 @@
    lab={\ruleName{cons}}
 ]
 {
-   \untotalise{\sigma}{(p \concat p' \concat \vec{p})}{\sigma'}{\beta}
+   \untotalise{\sigma}{p \concat p' \concat \vec{p}}{\sigma'}{\beta}
 }
 {
    \untotalise{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattCons{p}{p'} \concat \vec{p})}
+              {(\pattCons{p}{p'}) \concat \vec{p}}
               {\elimCons{\sigma'}}
               {\alpha \join \beta}
 }
@@ -97,14 +97,14 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{non-empty list}}
+   lab={\ruleName{non-empty-list}}
 ]
 {
-   \untotalise{\sigma}{(p \concat o \concat \vec{p})}{\sigma'}{\beta}
+   \untotalise{\sigma}{p \concat o \concat \vec{p}}{\sigma'}{\beta}
 }
 {
    \untotalise{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattList{p}{o} \concat \vec{p})}
+              {(\pattList{p}{o}) \concat \vec{p}}
               {\elimCons{\sigma'}}
               {\alpha \join \beta}
 }
@@ -119,7 +119,7 @@
 }
 {
    \untotalise{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {(\pattSNil \concat \vec{p})}
+              {\pattSNil \concat \vec{p}}
               {\elimNil{\kappa'}}
               {\alpha \join \beta}
 }
@@ -130,11 +130,11 @@
    lab={\ruleName{list-rest-cons}}
 ]
 {
-   \untotalise{\sigma}{(p \concat o \concat \vec{p})}{\sigma'}{\beta}
+   \untotalise{\sigma}{p \concat o \concat \vec{p}}{\sigma'}{\beta}
 }
 {
    \untotalise{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattSCons{p}{o} \concat \vec{p})}
+              {(\pattSCons{p}{o}) \concat \vec{p}}
               {\elimCons{\sigma'}}
               {\alpha \join \beta}
 }

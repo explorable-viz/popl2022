@@ -120,9 +120,9 @@
 % Eliminators.
 \newcommand*{\elimNil}[1]{\{\exNil\mapsto{#1}\}}
 \newcommand*{\elimCons}[1]{\{(\symCons)\mapsto{#1}\}}
-\newcommand*{\elimBool}[2]{\{\exTrue \mapsto {#1}, \exFalse \mapsto {#2}\}}
-\newcommand*{\elimBoolTrue}[1]{\{\exTrue \mapsto {#1}\}}
-\newcommand*{\elimBoolFalse}[1]{\{\exFalse \mapsto {#1}\}}
+\newcommand*{\elimBool}[2]{\{\branchTrue{#1}, \branchFalse{#2}\}}
+\newcommand*{\elimBoolTrue}[1]{\{\branchTrue{#1}\}}
+\newcommand*{\elimBoolFalse}[1]{\{\branchFalse{#1}\}}
 \newcommand*{\elimListSingleton}[1]{\{{#1}\}}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
