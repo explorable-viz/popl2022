@@ -118,12 +118,11 @@
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
 
 % Eliminators.
-\newcommand*{\elimNil}[1]{\{\branchNil{#1}\}}
-\newcommand*{\elimCons}[1]{\{\branchCons{#1}\}}
+\newcommand*{\elimNil}[1]{\branchNil{#1}} % omit squigglies for now
+\newcommand*{\elimCons}[1]{\branchCons{#1}}
 \newcommand*{\elimBool}[2]{\{\branchTrue{#1}, \branchFalse{#2}\}}
 \newcommand*{\elimBoolTrue}[1]{\branchTrue{#1}} % omit squigglies for now
 \newcommand*{\elimBoolFalse}[1]{\branchFalse{#1}}
-\newcommand*{\elimListSingleton}[1]{\{{#1}\}}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
 \newcommand*{\elimProd}[1]{\kw{prod}\;#1}
