@@ -21,20 +21,20 @@
       \strut
    }
    {
-      \rho, \annot{x}{\alpha}, \alpha', x \fwdSlice v
+      \rho, \exVar{x}, \alpha, \trVar{x} \fwdSlice v
    }
    %
    \and
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-op}},
-      right={$\primOp: \annot{\phi}{\beta} \in \rho$}
+      right={$\primOp: \phi \in \rho$}
    ]
    {
       \strut
    }
    {
-      \rho, \annot{\exOp{\primOp}}{\alpha}, \alpha', \trOp{\primOp} \fwdSlice \annot{\phi}{\beta}
+      \rho, \exOp{\primOp}, \alpha, \trOp{\primOp} \fwdSlice \phi
    }
    %
    \and
@@ -44,7 +44,7 @@
       \strut
    }
    {
-      \rho, \annot{\exNil}{\alpha}, \alpha', \trNil \fwdSlice \annot{\exNil}{\alpha \meet \alpha'}
+      \rho, \annNil{\alpha}, \alpha', \trNil \fwdSlice \annNil{\alpha \meet \alpha'}
    }
    %
    \and
@@ -54,7 +54,7 @@
       \strut
    }
    {
-      \rho, \annot{\exInt{n}}{\alpha}, \alpha', \trInt{n} \fwdSlice \annot{\exInt{n}}{\alpha \meet \alpha'}
+      \rho, \annInt{n}{\alpha}, \alpha', \trInt{n} \fwdSlice \annInt{n}{\alpha \meet \alpha'}
    }
    %
    \and
@@ -68,24 +68,24 @@
       \rho, e', \alpha', U \fwdSlice v'
    }
    {
-      \rho, \annot{(\exCons{e}{e'})}{\alpha}, \alpha', \trCons{T}{U}
+      \rho, \annCons{e}{e'}{\alpha}, \alpha', \trCons{T}{U}
       \fwdSlice
-      \annot{(\exCons{v}{v'})}{\alpha \meet \alpha'}
+      \annCons{v}{v'}{\alpha \meet \alpha'}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-matrix}}]
    {
-      \rho, e', \alpha', T \fwdSlice \annot{\exPair{\annot{i'}{\gamma}}{\annot{j'}{\gamma'}}}{\beta}
+      \rho, e', \alpha', T \fwdSlice \annPair{\annInt{i'}{\gamma}}{\annInt{j'}{\gamma'}}{\beta}
       \\
       \forall (i,j) \leq (i',j').
       \envExtend{\envExtend{\rho}{x}{i_\alpha}}{y}{j_\alpha}, e, \alpha', U_{i,j} \fwdSlice v_{i,j}
    }
    {
-      \rho, \annot{\exMatrix{e'}{x}{y}{e}}{\alpha}, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
+      \rho, \annMatrix{e'}{x}{y}{e}{\alpha}, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
       \fwdSlice
-      \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
+      \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
    }
    %
    \and
