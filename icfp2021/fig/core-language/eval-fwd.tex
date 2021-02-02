@@ -77,7 +77,7 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-matrix}}]
    {
-      \rho, e', \alpha', T \fwdSlice \annot{\exPair{\annot{i'}{\beta_1}}{\annot{j'}{\beta_2}}}{\beta}
+      \rho, e', \alpha', T \fwdSlice \annot{\exPair{\annot{i'}{\gamma}}{\annot{j'}{\gamma'}}}{\beta}
       \\
       \forall (i,j) \leq (i',j').
       \envExtend{\envExtend{\rho}{x}{i_\alpha}}{y}{j_\alpha}, e, \alpha', U_{i,j} \fwdSlice v_{i,j}
@@ -85,7 +85,7 @@
    {
       \rho, \annot{\exMatrix{e'}{x}{y}{e}}{\alpha}, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
       \fwdSlice
-      \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha \meet \alpha' \meet \beta_1 \meet \beta_2}
+      \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
    }
    %
    \and
@@ -97,7 +97,7 @@
    {
       \rho, e, \alpha, T \fwdSlice \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\beta}
       \\
-      \rho, e', \alpha, U \fwdSlice \annPair{\annInt{i}{\beta_1}}{\annInt{j}{\beta_2}}{\beta'}
+      \rho, e', \alpha, U \fwdSlice \annPair{\annInt{i}{\gamma}}{\annInt{j}{\gamma'}}{\beta'}
    }
    {
       \rho, \exMatrixAccess{e}{e'}, \alpha, \trMatrixAccess{T}{U}
