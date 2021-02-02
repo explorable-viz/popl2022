@@ -174,12 +174,12 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
    {
-      \rho, e, \alpha', T \fwdSlice v
+      \rho, e, \alpha, T \fwdSlice v
       \\
-      \envExtend{\rho}{x}{v}, e', \alpha', U \fwdSlice v'
+      \envExtend{\rho}{x}{v}, e', \alpha, U \fwdSlice v'
    }
    {
-      \rho, \annot{(\exLet{x}{e}{e'})}{\alpha}, \alpha', \trLet{x}{T}{U} \fwdSlice v'
+      \rho, \exLet{x}{e}{e'}, \alpha, \trLet{x}{T}{U} \fwdSlice v'
    }
    %
    \and
