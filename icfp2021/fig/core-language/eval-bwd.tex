@@ -124,34 +124,34 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_1'}{f}{\sigma}}, e, \alpha
+      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{u}, e^\twoPrime, \beta
       \\
-      \rho, e, \alpha, w, \matchBwd v', \sigma'
+      \rho, e, \beta, w, \matchBwd v', \sigma'
       \\
-      v', U \bwdSlice \rho', e', \alpha'
+      v', U \bwdSlice \rho', e', \alpha
       \\
-      \annot{\exClosureRec{\rho_1 \join \rho_1'}{f}{(\sigma \join \sigma')}}{\alpha}, T
+      u \join \exClosureRec{\rho_1}{f}{\sigma'}, T
       \bwdSlice
-      \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
+      \rho^\twoPrime, e, \alpha'
    }
    {
       v, \trApp{T}{U}{\matchPlug{w}{T'}}
       \bwdSlice
-      \rho' \join \rho^\twoPrime, \annot{(\exApp{e^\twoPrime}{e'})}{\alpha}, \alpha' \join \alpha^\twoPrime
+      \rho' \join \rho^\twoPrime, \exApp{e}{e'}, \alpha \join \alpha'
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
-      \val{T}, T \bwdSlice \rho, e, \beta
+      \val{T}, T \bwdSlice \rho, e, \alpha
       \\
-      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \beta'
+      \annot{\val{U}}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{n}{\alpha}, \trAppPrim{T}{U}
+      \annInt{n}{\beta}, \trAppPrim{T}{U}
       \bwdSlice
-      \rho \join \rho', \exApp{e}{e'}, \beta \join \beta'
+      \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
    %
    \and
@@ -160,14 +160,14 @@
       lab={\ruleName{$\bwdSlice$-binary-apply}}
    ]
    {
-      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \beta
+      \annot{\val{T}}{\beta}, T \bwdSlice \rho, e, \alpha
       \\
-      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \beta'
+      \annot{\val{U}}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\primOp}{\phi}{U}
+      \annInt{n}{\beta}, \trBinaryApp{T}{\primOp}{\phi}{U}
       \bwdSlice
-      \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \beta \join \beta'
+      \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \alpha \join \alpha'
    }
    %
    \and
