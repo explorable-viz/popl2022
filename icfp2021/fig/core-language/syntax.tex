@@ -66,16 +66,6 @@ r
 \text{hole}
 \\
 &&&
-x
-&
-\text{variable}
-\\
-&&&
-\exOp{\primOp}
-&
-\text{first-class operator}
-\\
-&&&
 \annTrue{\alpha} \mid \annFalse{\alpha}
 &
 \text{Boolean}
@@ -91,16 +81,6 @@ x
 \text{pair}
 \\
 &&&
-\exApp{e}{e'}
-&
-\text{application}
-\\
-&&&
-\exBinaryApp{e}{\primOp}{e'}
-&
-\text{binary application}
-\\
-&&&
 \annNil{\alpha}
 &
 \text{nil}
@@ -114,6 +94,26 @@ x
 \annMatrix{e'}{x}{y}{e}{\alpha}
 &
 \text{matrix}
+\\
+&&&
+x
+&
+\text{variable}
+\\
+&&&
+\exOp{\primOp}
+&
+\text{first-class operator}
+\\
+&&&
+\exApp{e}{e'}
+&
+\text{application}
+\\
+&&&
+\exBinaryApp{e}{\primOp}{e'}
+&
+\text{binary application}
 \\
 &&&
 \exMatrixAccess{e}{e}

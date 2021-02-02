@@ -4,18 +4,23 @@
 &
 i, j
 \\[2mm]
-\mbox{Raw value}
+\mbox{Value}
 &
 u
 &
 ::=
 &
-\exTrue \mid \exFalse
+\hole
+&
+\text{hole}
+\\
+&&&
+\annTrue{\alpha} \mid \annFalse{\alpha}
 &
 \text{Boolean}
 \\
 &&&
-\exInt{n}
+\annInt{n}{\alpha}
 &
 \text{integer}
 \\
