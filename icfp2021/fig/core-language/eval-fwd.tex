@@ -186,10 +186,10 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let-rec}}]
    {
-      \envExtend{\rho}{f}{\annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha'}}, e, \alpha', T \fwdSlice v
+      \envExtend{\rho}{f}{\exClosureRec{\rho}{f}{\sigma}}, e, \alpha, T \fwdSlice v
    }
    {
-      \rho, \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, \alpha', \trLetRec{f}{\sigma}{T} \fwdSlice v
+      \rho, \exLetRec{f}{\sigma}{e}, \alpha, \trLetRec{f}{\sigma}{T} \fwdSlice v
    }
 \end{smathpar}
 \caption{Forward slicing; Boolean and pair cases omitted}
