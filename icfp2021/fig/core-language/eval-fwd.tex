@@ -143,31 +143,31 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
-      \rho, e, \alpha', T \fwdSlice \annot{\phi}{\beta}
+      \rho, e, \alpha, T \fwdSlice \phi
       \\
-      \rho, e', \alpha', U \fwdSlice \annot{m}{\beta'}
+      \rho, e', \alpha, U \fwdSlice \annot{m}{\beta}
    }
    {
-      \rho, \annot{(\exApp{e}{e'})}{\alpha}, \alpha', \trAppPrim{T}{U}
+      \rho, \exApp{e}{e'}, \alpha, \trAppPrim{T}{U}
       \fwdSlice
-      \annot{\phi(m)}{\alpha \meet \beta \meet \beta'}
+      \annot{\phi(m)}{\beta}
    }
    %
    \and
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-binary-apply}},
-      right={$\primOp: \annot{\phi}{\beta^\twoPrime} \in \rho$}
+      right={$\primOp: \phi \in \rho$}
    ]
    {
-      \rho, e, \alpha', T \fwdSlice \annot{\exInt{m}}{\beta}
+      \rho, e, \alpha, T \fwdSlice \annInt{n}{\beta}
       \\
-      \rho, e', \alpha', U \fwdSlice \annot{\exInt{n}}{\beta'}
+      \rho, e', \alpha, U \fwdSlice \annInt{m}{\beta'}
    }
    {
-      \rho, \annot{(\exBinaryApp{e}{\primOp}{e'})}{\alpha}, \alpha', \trBinaryApp{T}{\primOp}{\phi}{U}
+      \rho, \exBinaryApp{e}{\primOp}{e'}, \alpha, \trBinaryApp{T}{\primOp}{\phi}{U}
       \fwdSlice
-      \annot{\exInt{\phi(m)(n)}}{\alpha \meet \beta \meet \beta' \meet \beta^\twoPrime}
+      \annot{\exInt{\phi(n)(m)}}{\beta \meet \beta'}
    }
    %
    \and
