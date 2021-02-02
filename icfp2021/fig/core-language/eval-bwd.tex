@@ -34,7 +34,7 @@
       \strut
    }
    {
-      \annot{\exNil}{\alpha}, \sub{\trNil}{\rho} \bwdSlice \hole_{\rho}, \annot{\exNil}{\alpha}, \alpha
+      \annNil{\alpha}, \sub{\trNil}{\rho} \bwdSlice \hole_{\rho}, \annNil{\alpha}, \alpha
    }
    %
    \and
@@ -46,7 +46,7 @@
       \strut
    }
    {
-      \annot{\exInt{n}}{\alpha}, \sub{\trInt{n}}{\rho} \bwdSlice \hole_{\rho}, \annot{\exInt{n}}{\alpha}, \alpha
+      \annInt{n}{\alpha}, \sub{\trInt{n}}{\rho} \bwdSlice \hole_{\rho}, \annInt{n}{\alpha}, \alpha
    }
    %
    \and
@@ -55,14 +55,14 @@
       lab={\ruleName{$\bwdSlice$-cons}}
    ]
    {
-      u, T \bwdSlice \rho, e, \alpha'
+      u, T \bwdSlice \rho, e, \alpha
       \\
-      v, U \bwdSlice \rho', e', \alpha^\twoPrime
+      v, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{(\exCons{u}{v})}{\alpha}, \trCons{T}{U}
+      \annCons{u}{v}{\beta}, \trCons{T}{U}
       \bwdSlice
-      \rho \join \rho', \annot{(\exCons{e}{e'})}{\alpha}, \alpha \join \alpha' \join \alpha^\twoPrime
+      \rho \join \rho', \annCons{e}{e'}{\beta}, \beta \join \alpha \join \alpha'
    }
    %
    \and
