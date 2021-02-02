@@ -20,7 +20,7 @@
    {
       \envEmpty, \kappa, \alpha, \matchTrueNew
       \matchBwd
-      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\hole}
+      \annTrue{\alpha}, \elimBool{\kappa}{\hole}
    }
    %
    \and
@@ -32,7 +32,7 @@
    {
       \envEmpty, \kappa, \alpha, \matchFalseNew
       \matchBwd
-      \annot{\exFalse}{\alpha}, \elimBool{\hole}{\kappa}
+      \annFalse{\alpha}, \elimBool{\hole}{\kappa}
    }
    %
    \and
@@ -46,7 +46,7 @@
    {
       \rho_1 \concat \rho_2, \kappa, \alpha, \matchPair{w}{w'}
       \matchBwd
-      \annot{\exPair{v}{v'}}{\alpha}, \elimProd{\tau}
+      \annPair{v}{v'}{\alpha}, \elimProd{\tau}
    }
    %
    \and
@@ -58,7 +58,7 @@
    {
       \envEmpty, \kappa, \alpha, \matchNilNew
       \matchBwd
-      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\hole}}
+      \annNil{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\hole}}
    }
    %
    \and
@@ -72,7 +72,7 @@
    {
       \rho_1 \concat \rho_2, \kappa, \alpha, \matchConsNew{w}{w'}
       \matchBwd
-      \annot{(\exCons{v}{v'})}{\alpha}, \elimList{\branchNil{\hole}}{\branchCons{\tau}}
+      \annCons{v}{v'}{\alpha}, \elimList{\branchNil{\hole}}{\branchCons{\tau}}
    }
 \end{smathpar}
 \caption{Pattern-matching: backward slicing}

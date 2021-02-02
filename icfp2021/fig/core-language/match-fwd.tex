@@ -18,7 +18,7 @@
       \strut
    }
    {
-      \annot{\exTrue}{\alpha}, \matchTrueNew, \elimBool{\kappa}{\kappa'}
+      \annTrue{\alpha}, \matchTrueNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
@@ -42,7 +42,7 @@
       \strut
    }
    {
-      \annot{\exFalse}{\alpha}, \matchFalseNew, \elimBool{\kappa}{\kappa'}
+      \annFalse{\alpha}, \matchFalseNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
       \envEmpty, \kappa', \alpha
    }
@@ -68,7 +68,7 @@
       v', w', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
    }
    {
-      \annot{\exPair{v}{v'}}{\alpha}, \matchPair{w}{w'}, \elimProd{\sigma}
+      \annPair{v}{v'}{\alpha}, \matchPair{w}{w'}, \elimProd{\sigma}
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \alpha' \meet \alpha^\twoPrime
    }
@@ -94,7 +94,7 @@
       \strut
    }
    {
-      \annot{\exNil}{\alpha}, \matchNilNew, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \annNil{\alpha}, \matchNilNew, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
@@ -120,7 +120,7 @@
       v', w', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
    }
    {
-      \annot{(\exCons{v}{v'})}{\alpha}, \matchConsNew{w}{w'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \annCons{v}{v'}{\alpha}, \matchConsNew{w}{w'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \alpha' \meet \alpha^\twoPrime
    }
