@@ -42,7 +42,7 @@ e
 \\[2mm]
 \mbox{Selection state}
 &
-\alpha, \beta
+\alpha, \beta, \gamma
 &
 ::=
 &
@@ -71,17 +71,17 @@ x
 \text{first-class operator}
 \\
 &&&
-\exTrue \mid \exFalse
+\annTrue{\alpha} \mid \annFalse{\alpha}
 &
 \text{Boolean}
 \\
 &&&
-\exInt{n}
+\annInt{n}{\alpha}
 &
 \text{integer}
 \\
 &&&
-\exPair{e}{e'}
+\annPair{e}{e'}{\alpha}
 &
 \text{pair}
 \\
@@ -96,17 +96,17 @@ x
 \text{binary application}
 \\
 &&&
-\exNil
+\annNil{\alpha}
 &
 \text{nil}
 \\
 &&&
-\exCons{e}{e'}
+\annCons{e}{e'}{\alpha}
 &
 \text{cons}
 \\
 &&&
-\exMatrix{e'}{x}{y}{e}
+\annMatrix{e'}{x}{y}{e}{\alpha}
 &
 \text{matrix}
 \\
