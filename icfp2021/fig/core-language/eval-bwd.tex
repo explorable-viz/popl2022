@@ -144,7 +144,7 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
-      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \beta
+      \val{T}, T \bwdSlice \rho, e, \beta
       \\
       \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \beta'
    }
@@ -167,7 +167,7 @@
    {
       \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\primOp}{\phi}{U}
       \bwdSlice
-      \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \FF
+      \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \beta \join \beta'
    }
    %
    \and
