@@ -1,11 +1,6 @@
 \newcommand*{\hole}{\square}
 \newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 % \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
-\newcommand*{\del}[1]{\textcolor{red}{#1}}
-\newcommand*{\sel}[1]{\textcolor{blue}{#1}}
-% \let\oldtop\top
-% \renewcommand{\top}{\sel{\oldtop}}
-\newcommand*{\Sel}[1]{[#1]}
 \newcommand*{\TT}{\mathsf{tt}}
 \newcommand*{\FF}{\mathsf{ff}}
 
@@ -24,7 +19,6 @@
 \newcommand*{\Pow}[1]{\MnSymbolpowerset({#1})}
 \newcommand*{\id}{\textsf{id}}
 \newcommand*{\adjoint}{\dashv}
-\newcommand*{\inj}{\hookrightarrow}
 
 % Vectors.
 \newcommand*{\override}{\reloverrideleft}
@@ -32,18 +26,12 @@
 
 % Misc.
 \newcommand*{\envExtendTwo}[2]{{#1}[#2]}
-\newcommand*{\Dagger}[1]{\smash{#1^\dagger}}
-\newcommand*{\DDagger}[1]{\smash{#1^\ddagger}}
 \newcommand*{\closeDefs}{\mathrel{\rightharpoonup}}
 \newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}
 \newcommand*{\closeDefsBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}
 
 % Misc. syntax.
-\newcommand*{\asMap}[1]{\underline{#1}}
 \newcommand*{\trace}[2]{\textcolor{gray}{#1}\mathrel{\textcolor{gray}{::}}{#2}}
-
-% Relations.
-\newcommand*{\numLabel}[1]{\textcolor{blue}{\mathSf{#1}}}
 
 % Primitives.
 \newcommand*{\primOp}{\oplus}
@@ -68,10 +56,10 @@
 \newcommand*{\exClosureRec}[3]{\kw{cls}({#1},{#2},{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
+\newcommand*{\exInt}[1]{#1}
 \newcommand*{\exList}[2]{\kw{[}\;#1 \ #2}
 \newcommand*{\exListSeq}[2]{\kw{[}\,{#1}\;\kw{..}\;{#2}\,\kw{]}}
 \newcommand*{\exListComp}[2]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}}
-\newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecEquational}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
@@ -159,46 +147,24 @@
 \newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
 
 % Sets
-\newcommand*{\Ann}[1]{\Set{Ann}(#1)}
 \newcommand*{\Below}[1]{{\downarrow{#1}}}
-\newcommand*{\Cxt}{\Set{Cxt}}
-\newcommand*{\Env}[1]{\Set{Env}\,#1}
-\newcommand*{\Expl}[1]{\Set{Expl}\,#1}
-\newcommand*{\ExplVal}[2]{\ExplValPartial{#1}\:#2}
-\newcommand*{\ExplValPartial}[1]{\Set{ExplVal}\,#1}
-\newcommand*{\Expr}[2]{\ExprPartial{#1}\,#2}
-\newcommand*{\ExprPartial}[1]{\Set{Term}\,#1}
-\newcommand*{\Match}[4]{\Set{Match}\,#1\,#2\,#3\,#4}
-\newcommand*{\Prim}[3]{\Set{Prim}\,#1\,#2\,#3}
-\newcommand*{\BinaryOp}[3]{\Set{BinaryOp}\,#1\,#2\,#3}
-\newcommand*{\UnaryOp}[2]{\Set{UnaryOp}\,#1\,#2}
-\newcommand*{\Val}[1]{\Set{Val}\,#1}
-\newcommand*{\ValExpl}[2]{\Set{Val}\,#1\:#2}
 
 % Misc.
-\newcommand*{\rcons}{\cdot} % can't use \snoc as a macro name inside mathpar
-\newcommand*{\cons}{::}
-\newcommand*{\unionWith}[1]{\cup_{#1}}
 \renewcommand*{\join}{\vee}
 \renewcommand*{\meet}{\wedge}
 \newcommand*{\Bigjoin}[1]{\textstyle{\bigvee}#1}
 \newcommand*{\Bigmeet}[1]{\textstyle{\bigwedge}#1}
-\newcommand*{\joinWith}[1]{\join_{#1}}
-\newcommand*{\eqJoin}{\mathbin{!}}
 
 % Variable contexts.
-% \newcommand*{\cxtBot}{\exBot}
 \newcommand*{\cxtEmpty}{\varepsilon}
 \newcommand*{\cxtExtend}[3]{{#1},{#2}: {#3}}
 \newcommand*{\cxtLookup}[2]{{#1}[{x}]}
 
 % Environments.
-\newcommand*{\subst}[3]{{#1}[{#2}/{#3}]} % still needed for recursive types..
 \newcommand*{\envEmpty}{\varepsilon}
 \newcommand*{\envExtend}[3]{{#1}[{#2}: {#3}]}
 \newcommand*{\envLookup}[3]{{#2}: {#3} \in {#1}}
 \newcommand*{\envUpdate}[3]{{#1}\smalltriangleleft[{#2}: {#3}]}
-\newcommand*{\env}[1]{\mathsf{env}(#1)}
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
@@ -207,8 +173,6 @@
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
-\newcommand*{\proj}{\downarrow}
-\newcommand*{\nproj}{\not\downarrow}
 \newcommand*{\val}[1]{\mathsf{val}(#1)}
 
 \newcommand*{\seq}{\mathrel{\smalltriangleright}}
@@ -239,18 +203,11 @@
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 
 % Desugaring.
-\newcommand*{\tarrow}{\mathrel{\Rightarrow}}
-\newcommand*{\darrow}{\mathrel{\twoheadrightarrow}}
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
 \newcommand*{\totalisebwd}[4]{{#1}, {#2} \totalisebwdarrow {#3}, {#4}}
-\newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}
-\newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 \newcommand*{\comma}{\textbf{\kw{,}}\;}
 \newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}
-\newcommand*{\zipWith}[3]{\mathsf{zipWith}\;\;{#1}\;\;{#2}\;\;{#3}}
-\newcommand*{\where}{\kw{where}}
-\newcommand*{\lambdasyn}{\mathrel{\textbf{\kw{\lambda}}}}
