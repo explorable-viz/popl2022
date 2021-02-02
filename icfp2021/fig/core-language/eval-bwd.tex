@@ -160,14 +160,14 @@
       lab={\ruleName{$\bwdSlice$-binary-apply}}
    ]
    {
-      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \alpha'
+      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \beta
       \\
-      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
+      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \beta'
    }
    {
       \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\primOp}{\phi}{U}
       \bwdSlice
-      \rho \join \envUpdate{\rho'}{\primOp}{\annot{\phi}{\alpha}}, \exBinaryApp{e}{\primOp}{e'}, \FF
+      \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \FF
    }
    %
    \and
