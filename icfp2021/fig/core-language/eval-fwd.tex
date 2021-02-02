@@ -28,13 +28,13 @@
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-op}},
-      right={$\primOp: v \in \rho$}
+      right={$\primOp: \annot{\phi}{\beta} \in \rho$}
    ]
    {
       \strut
    }
    {
-      \rho, \annot{\exOp{\primOp}}{\alpha}, \alpha', \trOp{\primOp} \fwdSlice v
+      \rho, \annot{\exOp{\primOp}}{\alpha}, \alpha', \trOp{\primOp} \fwdSlice \annot{\phi}{\beta}
    }
    %
    \and
@@ -143,9 +143,9 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
-      \rho, e, \alpha, T \fwdSlice \annot{\phi}{\beta}
+      \rho, e, \alpha', T \fwdSlice \annot{\phi}{\beta}
       \\
-      \rho, e', \alpha, U \fwdSlice \annot{m}{\beta'}
+      \rho, e', \alpha', U \fwdSlice \annot{m}{\beta'}
    }
    {
       \rho, \annot{(\exApp{e}{e'})}{\alpha}, \alpha', \trAppPrim{T}{U}
@@ -160,9 +160,9 @@
       right={$\primOp: \annot{\phi}{\beta^\twoPrime} \in \rho$}
    ]
    {
-      \rho, e, \alpha, T \fwdSlice \annot{\exInt{m}}{\beta}
+      \rho, e, \alpha', T \fwdSlice \annot{\exInt{m}}{\beta}
       \\
-      \rho, e', \alpha, U \fwdSlice \annot{\exInt{n}}{\beta'}
+      \rho, e', \alpha', U \fwdSlice \annot{\exInt{n}}{\beta'}
    }
    {
       \rho, \annot{(\exBinaryApp{e}{\primOp}{e'})}{\alpha}, \alpha', \trBinaryApp{T}{\primOp}{\phi}{U}
