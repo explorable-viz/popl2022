@@ -71,20 +71,20 @@
       lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
-      \annot{\exPair{\annot{i'}{\alpha}}{\annot{j'}{\alpha}}}{\FF}, T \bwdSlice \rho, e, \beta
+      \annot{\exPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta}}}{\FF}, T \bwdSlice \rho, e, \alpha
       \\
       \forall (i,j) \leq (i',j').
       v_{i,j}, U_{i,j}
       \bwdSlice
-      \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e'_{i,j}, \beta'_{i,j}
+      \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e'_{i,j}, \alpha'_{i,j}
    }
    {
-      \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
+      \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\beta},
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
-      \annot{\exMatrix{e}{x}{y}{{\Bigjoin{e'}}}}{\alpha \join {\Bigjoin{\gamma} \join \Bigjoin{\gamma'}}},
-      \alpha \join \beta \join \Bigjoin{\beta'}
+      \annMatrix{e}{x}{y}{{\Bigjoin{e'}}}{\beta \join {\Bigjoin{\gamma} \join \Bigjoin{\gamma'}}},
+      \beta \join \alpha \join \Bigjoin{\alpha'}
    }
    %
    \and
