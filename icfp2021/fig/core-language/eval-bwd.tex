@@ -110,12 +110,12 @@
    %
    \inferrule*[lab={\ruleName{$\bwdSlice$-matrix-dimensions}}]
    {
-      \annot{\val{T}}{\alpha_1 \join \alpha_2}, T \bwdSlice \rho, e, \alpha'
+      \annot{\val{T}}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
    }
    {
-      \annot{\exPair{\annot{i'}{\alpha_1}}{\annot{j'}{\alpha_2}}}{\alpha}, \trMatrixSize{T}
+      \annot{\exPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}}{\alpha}, \trMatrixSize{T}
       \bwdSlice
-      \rho, \annot{(\exMatrixSize{e})}{\alpha \join \alpha_1 \join \alpha_2}, \alpha \join \alpha'
+      \rho, \exMatrixSize{e}, \alpha \join \alpha'
    }
    %
    \and
