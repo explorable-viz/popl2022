@@ -243,9 +243,10 @@
 \newcommand*{\darrow}{\mathrel{\twoheadrightarrow}}
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
-%\newcommand*{\totalise}[2]{\mathsf{totalise}\;{#1}\;{#2}}
-\newcommand*{\totalise}[3]{{#1},{#2} \nearrow {#3}}
-\newcommand*{\untotalise}[4]{{#1}, {#2} \searrow {#3}, {#4}}
+\newcommand*{\totalisefwdarrow}{\nearrow}
+\newcommand*{\totalisebwdarrow}{\searrow}
+\newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
+\newcommand*{\untotalise}[4]{{#1}, {#2} \totalisebwdarrow {#3}, {#4}}
 \newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}
 \newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 \newcommand*{\comma}{\textbf{\kw{,}}\;}
