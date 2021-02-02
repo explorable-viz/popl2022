@@ -144,14 +144,14 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
-      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \alpha'
+      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \beta
       \\
-      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
+      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \beta'
    }
    {
       \annot{n}{\alpha}, \trAppPrim{T}{U}
       \bwdSlice
-      \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
+      \rho \join \rho', \exApp{e}{e'}, \beta \join \beta'
    }
    %
    \and
