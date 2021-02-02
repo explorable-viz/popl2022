@@ -121,22 +121,21 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
+   \inferrule*[
+      lab={\ruleName{$\fwdSlice$-apply}},
+      right={$u = \exClosureRec{\rho'}{f}{\sigma}$}
+   ]
    {
-      \rho, e, \alpha', T \fwdSlice \annot{\exClosureRec{\rho'}{f}{\sigma}}{\beta}
+      \rho, e, \alpha, T \fwdSlice u
       \\
-      \rho, e', \alpha', U \fwdSlice v
+      \rho, e', \alpha, U \fwdSlice v
       \\
-      v, w, \sigma \matchFwd \rho^\twoPrime, e^\twoPrime, \beta'
+      v, w, \sigma \matchFwd \rho^\twoPrime, e^\twoPrime, \beta
       \\
-      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma}}{\beta}},
-      e^\twoPrime,
-      \alpha \meet \beta \meet \beta',
-      T'
-      \fwdSlice v'
+      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{u}, e^\twoPrime, \beta, T' \fwdSlice v'
    }
    {
-      \rho, \annot{(\exApp{e}{e'})}{\alpha}, \alpha', \trApp{T}{U}{\matchPlug{w}{T'}} \fwdSlice v'
+      \rho, \exApp{e}{e'}, \alpha, \trApp{T}{U}{\matchPlug{w}{T'}} \fwdSlice v'
    }
    %
    \and
