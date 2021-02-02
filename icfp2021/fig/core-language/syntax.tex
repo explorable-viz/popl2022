@@ -55,12 +55,17 @@ e
 &
 \text{unselected}
 \\[2mm]
-\mbox{Raw term}
+\mbox{Term}
 &
 r
 &
 ::=
 &
+\hole
+&
+\text{hole}
+\\
+&&&
 x
 &
 \text{variable}
@@ -129,20 +134,6 @@ x
 \exLetRec{f}{\sigma}{e}
 &
 \text{recursive function}
-\\[2mm]
-
-\mbox{Term}
-&
-e
-&
-::=
-&
-\hole
-&
-\text{hole}
-\\
-&&&
-\annot{r}{\alpha}
 \end{syntaxfig}
 \caption{Syntax of terms}
 \end{figure}
