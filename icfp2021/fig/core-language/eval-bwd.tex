@@ -124,20 +124,20 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{u}, e^\twoPrime, \beta
+      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho_2)}{f}{u}, e^\twoPrime, \beta
       \\
-      \rho, e, \beta, w, \matchBwd v', \sigma'
+      \rho_2, e^\twoPrime, \beta, w, \matchBwd v', \sigma'
       \\
       v', U \bwdSlice \rho', e', \alpha
       \\
       u \join \exClosureRec{\rho_1}{f}{\sigma'}, T
       \bwdSlice
-      \rho^\twoPrime, e, \alpha'
+      \rho, e, \alpha'
    }
    {
       v, \trApp{T}{U}{\matchPlug{w}{T'}}
       \bwdSlice
-      \rho' \join \rho^\twoPrime, \exApp{e}{e'}, \alpha \join \alpha'
+      \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
    %
    \and
