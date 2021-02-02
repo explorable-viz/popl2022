@@ -5,32 +5,32 @@
    \\
    v \join \hole &= \hole
    \\
-   \annot{\exPrim{\phi}}{\alpha} \join \annot{\exPrim{\phi}}{\alpha'} &= \annot{\exPrim{\phi}}{\alpha \join \alpha'}
+   \annTrue{\alpha} \join \annTrue{\alpha'} &= \annTrue{\alpha \join \alpha'}
    \\
-   \annot{\exTrue}{\alpha} \join \annot{\exTrue}{\alpha'} &= \annot{\exTrue}{\alpha \join \alpha'}
+   \annFalse{\alpha} \join \annFalse{\alpha'} &= \annFalse{\alpha \join \alpha'}
    \\
-   \annot{\exFalse}{\alpha} \join \annot{\exFalse}{\alpha'} &= \annot{\exFalse}{\alpha \join \alpha'}
+   \annInt{n}{\alpha} \join \annInt{n}{\alpha'} &= \annInt{n}{\alpha \join \alpha'}
    \\
-   \annot{\exInt{n}}{\alpha} \join \annot{\exInt{n}}{\alpha'} &= \annot{\exInt{n}}{\alpha \join \alpha'}
+   \annPair{v_1}{v_2}{\alpha} \join \annPair{v_1'}{v_2'}{\alpha'} &=
+   \annPair{v_1 \join v_1'}{v_2 \join v_2'}{\alpha \join \alpha'}
    \\
-   \annot{\exPair{v_1}{v_2}}{\alpha} \join \annot{\exPair{v_1'}{v_2'}}{\alpha'} &=
-   \annot{\exPair{v_1 \join v_1'}{v_2 \join v_2'}}{\alpha \join \alpha'}
+   \annNil{\alpha} \join \annNil{\alpha} &= \annNil{\alpha \join \alpha'}
    \\
-   \annot{\exClosureRec{\rho}{f}{\sigma}}{\alpha} \join \annot{\exClosureRec{\rho'}{f}{\sigma'}}{\alpha'}
+   (\annCons{u}{v}{\alpha}) \join (\annCons{u'}{v'}{\alpha'})
    &=
-   \annot{\exClosureRec{\rho \join \rho'}{f}{(\sigma \join \sigma')}}{\alpha \join \alpha'}
+   \annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}
    \\
-   \annot{\exNil}{\alpha} \join \annot{\exNil}{\alpha} &= \annot{\exNil}{\alpha \join \alpha'}
-   \\
-   \annot{(\exCons{v_1}{v_2})}{\alpha} \join \annot{(\exCons{v_1'}{v_2'})}{\alpha'}
-   &=
-   \annot{(\exCons{(v_1 \join v_1')}{(v_2 \join v_2')})}{\alpha \join \alpha'}
-   \\
-   \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha}
+   \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\alpha}
    \join
-   \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v'_{i,j}}}{\alpha'}
+   \annMatrix{\exPair{i'}{j'}}{i}{j}{v'_{i,j}}{\alpha'}
    &=
-   \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j} \join v'_{i,j}}}{\alpha \join \alpha'}
+   \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j} \join v'_{i,j}}{\alpha \join \alpha'}
+   \\
+   \exPrim{\phi} \join \exPrim{\phi} &= \exPrim{\phi}
+   \\
+   \exClosureRec{\rho}{f}{\sigma} \join \exClosureRec{\rho'}{f}{\sigma'}
+   &=
+   \exClosureRec{\rho \join \rho'}{f}{\sigma \join \sigma'}
 \end{salign}
 \caption{Join of value slices}
 \end{figure}
