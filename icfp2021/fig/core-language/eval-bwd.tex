@@ -94,16 +94,16 @@
       right={$\val{U} = \exPair{i}{j}$}
    ]
    {
-      \annot{(\val{T} \reloverrideleft \matrixLBrack\exPair{i}{j} \mapsto \annot{u}{\alpha}\matrixRBrack)}{\FF}, T
+      \annot{(\val{T} \reloverrideleft \matrixLBrack\exPair{i}{j} \mapsto v\matrixRBrack)}{\FF}, T
       \bwdSlice
-      \rho, e, \beta
+      \rho, e, \alpha
       \\
-      \annot{\exPair{\annot{i}{\alpha}}{\annot{j}{\alpha}}}{\FF}, U \bwdSlice \rho', e', \beta'
+      \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}, U \bwdSlice \rho', e', \alpha'
    }
    {
-       \annot{u}{\alpha}, \trMatrixAccess{T}{U}
+       v, \trMatrixAccess{T}{U}
        \bwdSlice
-       \rho \join \rho', \annot{(\exMatrixAccess{e}{e'})}{\alpha}, \beta \join \beta'
+       \rho \join \rho', \exMatrixAccess{e}{e'}, \alpha \join \alpha'
    }
    %
    \and
