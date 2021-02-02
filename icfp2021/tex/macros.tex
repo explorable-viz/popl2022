@@ -150,27 +150,21 @@
 \newcommand*{\Below}[1]{{\downarrow{#1}}}
 
 % Misc.
-\newcommand*{\unionWith}[1]{\cup_{#1}}
 \renewcommand*{\join}{\vee}
 \renewcommand*{\meet}{\wedge}
 \newcommand*{\Bigjoin}[1]{\textstyle{\bigvee}#1}
 \newcommand*{\Bigmeet}[1]{\textstyle{\bigwedge}#1}
-\newcommand*{\joinWith}[1]{\join_{#1}}
-\newcommand*{\eqJoin}{\mathbin{!}}
 
 % Variable contexts.
-% \newcommand*{\cxtBot}{\exBot}
 \newcommand*{\cxtEmpty}{\varepsilon}
 \newcommand*{\cxtExtend}[3]{{#1},{#2}: {#3}}
 \newcommand*{\cxtLookup}[2]{{#1}[{x}]}
 
 % Environments.
-\newcommand*{\subst}[3]{{#1}[{#2}/{#3}]} % still needed for recursive types..
 \newcommand*{\envEmpty}{\varepsilon}
 \newcommand*{\envExtend}[3]{{#1}[{#2}: {#3}]}
 \newcommand*{\envLookup}[3]{{#2}: {#3} \in {#1}}
 \newcommand*{\envUpdate}[3]{{#1}\smalltriangleleft[{#2}: {#3}]}
-\newcommand*{\env}[1]{\mathsf{env}(#1)}
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
@@ -209,18 +203,11 @@
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 
 % Desugaring.
-\newcommand*{\tarrow}{\mathrel{\Rightarrow}}
-\newcommand*{\darrow}{\mathrel{\twoheadrightarrow}}
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
 \newcommand*{\totalisebwd}[4]{{#1}, {#2} \totalisebwdarrow {#3}, {#4}}
-\newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}
-\newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 \newcommand*{\comma}{\textbf{\kw{,}}\;}
 \newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}
-\newcommand*{\zipWith}[3]{\mathsf{zipWith}\;\;{#1}\;\;{#2}\;\;{#3}}
-\newcommand*{\where}{\kw{where}}
-\newcommand*{\lambdasyn}{\mathrel{\textbf{\kw{\lambda}}}}
