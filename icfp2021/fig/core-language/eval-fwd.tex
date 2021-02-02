@@ -95,16 +95,14 @@
       right={$(i,j) \leq (i',j')$}
    ]
    {
-      \rho, e, \alpha', T \fwdSlice \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\beta}
+      \rho, e, \alpha, T \fwdSlice \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\beta}
       \\
-      \rho, e', \alpha', U \fwdSlice \annot{\exPair{\annot{i}{\beta_1}}{\annot{j}{\beta_2}}}{\beta'}
-      \\
-      v_{i,j} = \annot{u}{\alpha^\twoPrime}
+      \rho, e', \alpha, U \fwdSlice \annPair{\annInt{i}{\beta_1}}{\annInt{j}{\beta_2}}{\beta'}
    }
    {
-      \rho, \annot{(\exMatrixAccess{e}{e'})}{\alpha}, \alpha', \trMatrixAccess{T}{U}
+      \rho, \exMatrixAccess{e}{e'}, \alpha, \trMatrixAccess{T}{U}
       \fwdSlice
-      \annot{u}{\alpha^\twoPrime \meet \alpha \meet \beta_1 \meet \beta_2}
+      v_{i,j}
    }
    %
    \and
