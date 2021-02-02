@@ -1,9 +1,9 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\bot_{\rho}$}
+\flushleft \shadebox{$\hole_{\rho}$}
 \begin{salign}
-   \bot_{\envEmpty} &= \envEmpty
+   \hole_{\envEmpty} &= \envEmpty
    \\
-   \bot_{\envExtend{\rho}{k}{v}} &= \envExtend{\bot_{\rho}}{k}{\bot_v}
+   \hole_{\envExtend{\rho}{k}{v}} &= \envExtend{\hole_{\rho}}{k}{\hole}
 \end{salign}
 \\[2mm]
 \flushleft \shadebox{$\envUpdate{\rho}{k}{v}$}
@@ -15,5 +15,5 @@
    \envUpdate{\envExtend{\rho}{k}{v}}{k'}{v'} &= \envExtend{\envUpdate{\rho}{k'}{v'}}{k}{v}
    \quad (k \neq k')
 \end{salign}
-\caption{Least slice of an environment; environment update}
+\caption{Hole environment; environment update}
 \end{figure}

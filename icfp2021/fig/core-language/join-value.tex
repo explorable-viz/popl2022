@@ -1,6 +1,10 @@
 \begin{figure}[H]
 \flushleft\shadebox{$v \join v'$}
 \begin{salign}
+   \hole \join v &= \hole
+   \\
+   v \join \hole &= \hole
+   \\
    \annot{\exPrim{\phi}}{\alpha} \join \annot{\exPrim{\phi}}{\alpha'} &= \annot{\exPrim{\phi}}{\alpha \join \alpha'}
    \\
    \annot{\exTrue}{\alpha} \join \annot{\exTrue}{\alpha'} &= \annot{\exTrue}{\alpha \join \alpha'}

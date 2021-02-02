@@ -2,7 +2,19 @@
 \flushleft \shadebox{$s \dfwdarrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-application}}
+   lab={\ruleName{$\dfwdarrow$-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole \dfwdarrow \hole
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-apply}}
 ]
 {
    s \dfwdarrow e
@@ -10,13 +22,13 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{(s \ s')}{\alpha} \dfwdarrow \annot{(e \ e')}{\alpha}
+   \annot{(\exApp{s}{s'})}{\alpha} \dfwdarrow \annot{(\exApp{e}{e'})}{\alpha}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-empty-list}}
+   lab={\ruleName{$\dfwdarrow$-nil}}
 ]
 {
    \strut
@@ -36,7 +48,7 @@
    l \dfwdarrow e'
 }
 {
-   \annot{(\exList{s}{l} \ )}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
+   \annot{(\exList{s}{l})}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
 }
 %
 \and
@@ -56,7 +68,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-recursive-function}}
+   lab={\ruleName{$\dfwdarrow$-let-rec}}
 ]
 {
    \vec{c} \dfwdarrow \sigma
@@ -70,7 +82,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-match-as}}
+   lab={\ruleName{$\dfwdarrow$-match}}
 ]
 {
    s \dfwdarrow e
@@ -80,7 +92,7 @@
 {
    \annot{(\exMatch{s}{\vec{c}})}{\alpha}
    \dfwdarrow
-   \annot{(\annot{(\lambda \sigma)}{\alpha} \ e)}{\alpha}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha}}{e})}{\alpha}
 }
 %
 \and
@@ -96,13 +108,13 @@
 {
    \annot{(\exLet{p}{s}{s'})}{\alpha}
    \dfwdarrow
-   \annot{(\annot{(\lambda \sigma)}{\alpha} \ e)}{\alpha}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha}}{e})}{\alpha}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-if-then-else}}
+   lab={\ruleName{$\dfwdarrow$-if}}
 ]
 {
    s \dfwdarrow e
@@ -110,13 +122,11 @@
    s' \dfwdarrow e'
    \\
    s^{\twoPrime} \dfwdarrow e^{\twoPrime}
-   \\
-   \sigma = \elimBool{e'}{e^{\twoPrime}}
 }
 {
    \annot{(\exIfThenElse{s}{s'}{s^{\twoPrime}})}{\alpha}
    \dfwdarrow
-   \annot{(\annot{(\exLambda{\sigma})}{\alpha} \ e)}{\alpha}
+   \annot{(\exApp{\annot{\exLambda{\elimBool{e'}{e^{\twoPrime}}}}{\alpha}}{e})}{\alpha}
 }
 %
 \and
@@ -130,7 +140,9 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListSeq{s}{s'}}{\alpha} \dfwdarrow \annot{(\annot{(\kw{enumFromTo} \ e)}{\alpha}{e'})}{\alpha}
+   \annot{\exListSeq{s}{s'}}{\alpha}
+   \dfwdarrow
+   \annot{(\exApp{\annot{(\exApp{\annot{\kw{enumFromTo}}{\alpha}}{e})}{\alpha}}{e'})}{\alpha}
 }
 %
 \and
@@ -140,42 +152,43 @@
    s \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\annot{\exTrue}{\alpha_1}}}{\alpha_2}
+   \annot{\exListComp{s}{\annot{(\qualGuard{\annot{\exTrue}{\alpha_1}})}{\alpha_2}}}{\alpha_3}
    \dfwdarrow
-   \annot{(\exCons{e}{\annot{\exNil}{\alpha_1 \meet \alpha_2}})}{\alpha_1 \meet \alpha_2}
+   \annot{(\exCons{e}{\annot{\exNil}{{\meet}\alpha}})}{{\meet}\alpha}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-qual}},
-   right={$q \neq \kw{true}$}
+\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
+   right={$q \neq \exTrue$}
 ]
 {
-  \annot{\exListComp{s}{q \comma \annot{\exTrue}{\alpha}}}{\alpha} \dfwdarrow e
+  \annot{\exListComp{s}{q \concat \annot{(\qualGuard{\annot{\exTrue}{\alpha}})}{\alpha}}}
+        {\alpha} \dfwdarrow e
 }
 {
   \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-guard}},
-            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
+]
 {
    \annot{\exListComp{s}{\vec{q}}}{\alpha_2}
    \dfwdarrow e
-   \\
-   \sigma = \elimBool{e}{\exNil}
    \\
    s' \dfwdarrow e'
 }
 {
    \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{(\exLambda{\sigma})}{\alpha_1 \meet \alpha_2} \ e')}{\alpha_1 \meet \alpha_2}
+   \annot{(\exApp{\annot{\smash{\exLambda{\elimBool{e}{\annot{\exNil}{{\meet}\alpha}}}}}{{\meet}\alpha}}{e'})}{{\meet}\alpha}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-decl}},
-            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
+]
 {
    \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}}}{\alpha_2}} \dfwdarrow \sigma
    \\
@@ -184,53 +197,28 @@
 {
    \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{\exLambda{\sigma}}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
+   \annot{(\exApp{\annot{(\exLambda{\sigma})}{{\meet}\alpha}}{e})}{{\meet}\alpha}
 }
 \and
 %
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-gen}},
-            right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
+]
 {
    \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha_2} \dfwdarrow \sigma
    \\
-   \totalise{\sigma}{\sigma'}
+   \totalise{\sigma}{\alpha_1}{\sigma'}
    \\
    s' \dfwdarrow e
 }
 {
    \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
    \dfwdarrow
-   \annot{(\annot{(\kw{concatMap} \ \annot{\exLambda{\sigma'}}{\alpha_1 \meet \alpha_2})}{\alpha_1 \meet \alpha_2} \ e)}{\alpha_1 \meet \alpha_2}
+   \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{{\meet}\alpha}}
+                                {\annot{(\exLambda{\sigma'})}{{\meet}\alpha}})}
+                        {{\meet}\alpha}}{e})}
+         {{\meet}\alpha}
 }
 \end{smathpar}
-\caption{Desugaring -- forward slicing (selected rules only)}
-\end{figure}
-
-\begin{figure}[H]
-\flushleft \shadebox{$l \dfwdarrow e$}
-\begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-end}}
-]
-{
-   \strut
-}
-{
-   \annot{\sExNil}{\alpha} \dfwdarrow \annot{\exNil}{\alpha}
-}
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-cons}}
-]
-{
-   s \dfwdarrow e
-   \\
-   l \dfwdarrow e'
-}
-{
-   \annot{(\sExCons{s}{l})}{\alpha} \dfwdarrow \annot{{(\exCons{e}{e'})}}{\alpha}
-}
-\end{smathpar}
-\caption{Desugaring list rest -- forward slicing}
+\caption{Desugaring -- forward slicing (selected rules)}
 \end{figure}

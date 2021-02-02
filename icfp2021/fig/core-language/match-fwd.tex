@@ -1,12 +1,12 @@
 \begin{figure}[H]
-\flushleft \shadebox{$v, \sigma \matchFwd \rho, \kappa, \alpha$}
+\flushleft \shadebox{$v, w, \sigma \matchFwd \rho, \kappa, \alpha$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
    {
       \strut
    }
    {
-      v, \elimVar{x}{\kappa}
+      v, \matchVarNew{x}, \elimVar{x}{\kappa}
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, \kappa, \TT
    }
@@ -18,9 +18,21 @@
       \strut
    }
    {
-      \annot{\exTrue}{\alpha}, \elimBool{\kappa}{\kappa'}
+      \annot{\exTrue}{\alpha}, \matchTrueNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
       \envEmpty, \kappa, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true-$\hole$}}]
+   {
+      \strut
+   }
+   {
+      \hole, \matchTrueNew, \elimBool{\kappa}{\kappa'}
+      \matchFwd
+      \envEmpty, \kappa, \FF
    }
    %
    \and
@@ -30,23 +42,49 @@
       \strut
    }
    {
-      \annot{\exFalse}{\alpha}, \elimBool{\kappa}{\kappa'}
+      \annot{\exFalse}{\alpha}, \matchFalseNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
       \envEmpty, \kappa', \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-false-$\hole$}}]
    {
-      v, \sigma \matchFwd \rho_1, \tau, \alpha'
-      \\
-      v', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+      \strut
    }
    {
-      \annot{\exPair{v}{v'}}{\alpha}, \elimProd{\sigma}
+      \hole, \matchFalseNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
-      \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
+      \envEmpty, \kappa', \FF
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   {
+      v, w, \sigma \matchFwd \rho_1, \tau, \alpha'
+      \\
+      v', w', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+   }
+   {
+      \annot{\exPair{v}{v'}}{\alpha}, \matchPair{w}{w'}, \elimProd{\sigma}
+      \matchFwd
+      \rho_1 \concat \rho_2, \kappa, \alpha \meet \alpha' \meet \alpha^\twoPrime
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-$\hole$}}]
+   {
+      \hole, w, \sigma \matchFwd \rho_1, \tau, \alpha
+      \\
+      \hole, w', \tau \matchFwd \rho_2, \kappa, \alpha'
+   }
+   {
+      \hole, \matchPair{w}{w'}, \elimProd{\sigma}
+      \matchFwd
+      \rho_1 \concat \rho_2, \kappa, \FF
    }
    %
    \and
@@ -56,23 +94,49 @@
       \strut
    }
    {
-      \annot{\exNil}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \annot{\exNil}{\alpha}, \matchNilNew, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-nil-$\hole$}}]
    {
-      v, \sigma \matchFwd \rho_1, \tau, \alpha'
-      \\
-      v', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+      \strut
    }
    {
-      \annot{(\exCons{v}{v'})}{\alpha}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \hole, \matchNilNew, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
-      \rho_1 \concat \rho_2, e, \alpha \meet \alpha' \meet \alpha^\twoPrime
+      \envEmpty, \kappa, \FF
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
+   {
+      v, w, \sigma \matchFwd \rho_1, \tau, \alpha'
+      \\
+      v', w', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+   }
+   {
+      \annot{(\exCons{v}{v'})}{\alpha}, \matchConsNew{w}{w'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \matchFwd
+      \rho_1 \concat \rho_2, \kappa, \alpha \meet \alpha' \meet \alpha^\twoPrime
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons-$\hole$}}]
+   {
+      \hole, w, \sigma \matchFwd \rho_1, \tau, \alpha
+      \\
+      \hole, w', \tau \matchFwd \rho_2, \kappa, \alpha'
+   }
+   {
+      \hole, \matchConsNew{w}{w'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      \matchFwd
+      \rho_1 \concat \rho_2, \kappa, \FF
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}

@@ -1,3 +1,4 @@
+\newcommand*{\hole}{\square}
 \newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 % \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
 \newcommand*{\del}[1]{\textcolor{red}{#1}}
@@ -57,7 +58,6 @@
 \newcommand*{\matrixRBrack}{\rangle}
 
 % Expressions.
-%\newcommand*{\exAdd}[2]{{#1} + {#2}}
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exMatrix}[4]{\matrixLBrack{#4}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#1}\matrixRBrack}
 \newcommand*{\exMatrixAccess}[2]{{#1}\,\sym{!}\,{#2}}
@@ -69,8 +69,8 @@
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
 \newcommand*{\exList}[2]{\kw{[}\;#1 \ #2}
-\newcommand*{\exListSeq}[2]{\kw{[}\;{#1}\;\kw{..}\;{#2}\;\kw{]}}
-\newcommand*{\exListComp}[2]{\kw{[}\;{#1}\;\sym{$\vert$}\;{#2}\;\kw{]}}
+\newcommand*{\exListSeq}[2]{\kw{[}\,{#1}\;\kw{..}\;{#2}\,\kw{]}}
+\newcommand*{\exListComp}[2]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exLambda}[1]{\lambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
@@ -118,16 +118,15 @@
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
 
 % Eliminators.
-\newcommand*{\elimNil}[1]{\{\exNil\mapsto{#1}\}}
-\newcommand*{\elimCons}[1]{\{(\symCons)\mapsto{#1}\}}
-\newcommand*{\elimBool}[2]{\{\exTrue \mapsto {#1}, \exFalse \mapsto {#2}\}}
-\newcommand*{\elimBoolTrue}[1]{\{\exTrue \mapsto {#1}\}}
-\newcommand*{\elimBoolFalse}[1]{\{\exFalse \mapsto {#1}\}}
-\newcommand*{\elimListSingleton}[1]{\{{#1}\}}
+\newcommand*{\elimNil}[1]{\branchNil{#1}} % omit squigglies for now
+\newcommand*{\elimCons}[1]{\branchCons{#1}}
+\newcommand*{\elimBool}[2]{\{\branchTrue{#1}, \branchFalse{#2}\}}
+\newcommand*{\elimBoolTrue}[1]{\branchTrue{#1}} % omit squigglies for now
+\newcommand*{\elimBoolFalse}[1]{\branchFalse{#1}}
 \newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
 \newcommand*{\elimProd}[1]{\kw{prod}\;#1}
-\newcommand*{\elimVar}[2]{\{{#1} \mapsto {#2}\}}
+\newcommand*{\elimVar}[2]{{#1} \mapsto {#2}}
 
 \newcommand*{\singleton}[2]{#1[#2]}
 
@@ -135,18 +134,19 @@
 
 % Matches.
 \newcommand*{\matchCons}[3]{\elimList{\branchNil{#1}}{\exCons{#2}{#3}}}
-\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
 \newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
-\newcommand*{\matchFalseNew}{\exFalse}
-\newcommand*{\matchHole}{\square}
+\newcommand*{\matchHole}{\hole}
 \newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
-\newcommand*{\matchNilNew}{\exNil}
-\newcommand*{\matchPairNew}[2]{\exPair{#1}{#2}}
+\newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
-\newcommand*{\matchTrueNew}{\exTrue}
 \newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
 \newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
+
 \newcommand*{\matchVarNew}[1]{#1}
+\newcommand*{\matchTrueNew}{\exTrue}
+\newcommand*{\matchFalseNew}{\exFalse}
+\newcommand*{\matchNilNew}{\exNil}
+\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
 
@@ -181,11 +181,13 @@
 \newcommand*{\unionWith}[1]{\cup_{#1}}
 \renewcommand*{\join}{\vee}
 \renewcommand*{\meet}{\wedge}
+\newcommand*{\Bigjoin}[1]{\textstyle{\bigvee}#1}
+\newcommand*{\Bigmeet}[1]{\textstyle{\bigwedge}#1}
 \newcommand*{\joinWith}[1]{\join_{#1}}
 \newcommand*{\eqJoin}{\mathbin{!}}
 
 % Variable contexts.
-\newcommand*{\cxtBot}{\exBot}
+% \newcommand*{\cxtBot}{\exBot}
 \newcommand*{\cxtEmpty}{\varepsilon}
 \newcommand*{\cxtExtend}[3]{{#1},{#2}: {#3}}
 \newcommand*{\cxtLookup}[2]{{#1}[{x}]}
@@ -200,8 +202,6 @@
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
-% \newcommand*{\fwdSlice}{\nearrow}
-% \newcommand*{\bwdSlice}{\searrow}
 \newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
 \newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\match}{\rightsquigarrow}
@@ -243,8 +243,10 @@
 \newcommand*{\darrow}{\mathrel{\twoheadrightarrow}}
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
-\newcommand*{\totalise}[2]{\mathsf{totalise}\;{#1}\;{#2}}
-\newcommand*{\untotalise}[3]{\mathsf{untotalise}\;{#1}\;{#2}\;{#3}}
+\newcommand*{\totalisefwdarrow}{\nearrow}
+\newcommand*{\totalisebwdarrow}{\searrow}
+\newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
+\newcommand*{\totalisebwd}[4]{{#1}, {#2} \totalisebwdarrow {#3}, {#4}}
 \newcommand*{\branch}[2]{\kw{branch}({#1}, {#2})}
 \newcommand*{\desugar}[1]{\kw{desugar}\;({#1})}
 \newcommand*{\comma}{\textbf{\kw{,}}\;}

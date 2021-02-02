@@ -8,7 +8,7 @@
       \strut
    }
    {
-      v, \sub{\trVar{x}}{\rho} \bwdSlice \envUpdate{\bot_{\rho}}{x}{v}, \exVar{x}, \FF
+      v, \sub{\trVar{x}}{\rho} \bwdSlice \envUpdate{\hole_{\rho}}{x}{v}, \annot{\exVar{x}}{\FF}, \FF
    }
    %
    \and
@@ -20,9 +20,9 @@
       \strut
    }
    {
-      v, \sub{\trOp{\primOp}}{\rho}
+      \annot{\phi}{\alpha}, \sub{\trOp{\primOp}}{\rho}
       \bwdSlice
-      \envUpdate{\bot_{\rho}}{\primOp}{v}, \exOp{\primOp}, \FF
+      \envUpdate{\hole_{\rho}}{\primOp}{\annot{\phi}{\alpha}}, \annot{\exOp{\primOp}}{\FF}, \FF
    }
    %
    \and
@@ -34,7 +34,7 @@
       \strut
    }
    {
-      \annot{\exNil}{\alpha}, \sub{\trNil}{\rho} \bwdSlice \bot_{\rho}, \annot{\exNil}{\alpha}, \alpha
+      \annot{\exNil}{\alpha}, \sub{\trNil}{\rho} \bwdSlice \hole_{\rho}, \annot{\exNil}{\alpha}, \alpha
    }
    %
    \and
@@ -46,7 +46,7 @@
       \strut
    }
    {
-      \annot{\exInt{n}}{\alpha}, \sub{\trInt{n}}{\rho} \bwdSlice \bot_{\rho}, \annot{\exInt{n}}{\alpha}, \alpha
+      \annot{\exInt{n}}{\alpha}, \sub{\trInt{n}}{\rho} \bwdSlice \hole_{\rho}, \annot{\exInt{n}}{\alpha}, \alpha
    }
    %
    \and
@@ -82,9 +82,9 @@
       \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
       \bwdSlice
-      \rho \join {\textstyle{\bigvee}\rho'},
-      \annot{\exMatrix{e}{x}{y}{{\textstyle{\bigvee} e'}}}{\alpha \join {\textstyle{\bigvee}\gamma \join {\bigvee}\gamma'}},
-      \alpha \join \beta \join {\textstyle{\bigvee}\beta'}
+      \rho \join \Bigjoin{\rho'},
+      \annot{\exMatrix{e}{x}{y}{{\Bigjoin{e'}}}}{\alpha \join {\Bigjoin{\gamma} \join \Bigjoin{\gamma'}}},
+      \alpha \join \beta \join \Bigjoin{\beta'}
    }
    %
    \and
@@ -126,7 +126,7 @@
    {
       v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_1'}{f}{\sigma}}, e, \alpha
       \\
-      \rho, e, \alpha, \xi, \matchBwd v', \sigma'
+      \rho, e, \alpha, w, \matchBwd v', \sigma'
       \\
       v', U \bwdSlice \rho', e', \alpha'
       \\
@@ -135,7 +135,7 @@
       \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
    }
    {
-      v, \trApp{T}{U}{\matchPlug{\xi}{T'}}
+      v, \trApp{T}{U}{\matchPlug{w}{T'}}
       \bwdSlice
       \rho' \join \rho^\twoPrime, \annot{(\exApp{e^\twoPrime}{e'})}{\alpha}, \alpha' \join \alpha^\twoPrime
    }

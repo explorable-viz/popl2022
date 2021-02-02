@@ -1,0 +1,143 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\totalisebwd{\kappa}{\pi}{\kappa'}{\alpha}$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-empty}}
+]
+{
+   \strut
+}
+{
+   \totalisebwd{\kappa}{\seqEmpty}{\kappa}{\FF}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-var}}
+]
+{
+   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\alpha}
+}
+{
+   \totalisebwd{\elimVar{x}{\kappa}}{x \concat \vec{p}}{\elimVar{x}{\kappa'}}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-true}}
+]
+{
+   \totalisebwd{\kappa_1}{\vec{p}}{\kappa_1'}{\beta}
+}
+{
+   \totalisebwd{\elimBool{\kappa_1}{\annot{\exNil}{\alpha}}}
+              {\pattTrue \concat \vec{p}}
+              {\elimBoolTrue{\kappa_1'}}
+              {\alpha \join \beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-false}}
+]
+{
+   \totalisebwd{\kappa_2}{\vec{p}}{\kappa_2'}{\beta}
+}
+{
+   \totalisebwd{\elimBool{\annot{\exNil}{\alpha}}{\kappa_2}}
+              {\pattFalse \concat \vec{p}}
+              {\elimBoolFalse{\kappa_2'}}
+              {\alpha \join \beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-prod}}
+]
+{
+   \totalisebwd{\sigma}{p \concat p' \concat \vec{p}}{\sigma'}{\beta}
+}
+{
+   \totalisebwd{\elimProd{\sigma}}{\pattPair{p}{p'} \concat \vec{p}}{\elimProd{\sigma'}}{\beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-nil}}
+]
+{
+   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\beta}
+}
+{
+   \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
+              {\pattNil \concat \vec{p}}
+              {\elimNil{\kappa'}}
+              {\alpha \join \beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-cons}}
+]
+{
+   \totalisebwd{\sigma}{p \concat p' \concat \vec{p}}{\sigma'}{\beta}
+}
+{
+   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
+              {(\pattCons{p}{p'}) \concat \vec{p}}
+              {\elimCons{\sigma'}}
+              {\alpha \join \beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-non-empty-list}}
+]
+{
+   \totalisebwd{\sigma}{p \concat o \concat \vec{p}}{\sigma'}{\beta}
+}
+{
+   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
+              {(\pattList{p}{o}) \concat \vec{p}}
+              {\elimCons{\sigma'}}
+              {\alpha \join \beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-list-rest-end}}
+]
+{
+   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\beta}
+}
+{
+   \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
+              {\pattSNil \concat \vec{p}}
+              {\elimNil{\kappa'}}
+              {\alpha \join \beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-list-rest-cons}}
+]
+{
+   \totalisebwd{\sigma}{p \concat o \concat \vec{p}}{\sigma'}{\beta}
+}
+{
+   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
+              {(\pattSCons{p}{o}) \concat \vec{p}}
+              {\elimCons{\sigma'}}
+              {\alpha \join \beta}
+}
+\end{smathpar}
+\caption{Totalise -- backward slicing}
+\end{figure}
