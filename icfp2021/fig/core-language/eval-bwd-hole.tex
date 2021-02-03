@@ -1,21 +1,21 @@
 \begin{figure}[H]
 \flushleft \shadebox{$\asVal{T} = v$}
 \begin{salign}
-   \asExpr{\trInt{n}} &= \annInt{n}{\FF}
+   \asVal{\trInt{n}} &= \annInt{n}{\FF}
    \\
-   \asExpr{\trPair{T}{U}} &= \annPair{\hole}{\hole}{\FF}
+   \asVal{\trPair{T}{U}} &= \annPair{\hole}{\hole}{\FF}
    \\
-   \asExpr{\trNil} &= \annNil{\FF}
+   \asVal{\trNil} &= \annNil{\FF}
    \\
-   \asExpr{\trCons{T}{U}} &= \annCons{\hole}{\hole}{\FF}
+   \asVal{\trCons{T}{U}} &= \annCons{\hole}{\hole}{\FF}
    \\
-   \asExpr{\trMatrix{T_{i,j}}{x}{y}{i}{j}{U}} &= \annMatrix{\hole}{x}{y}{\hole}{\FF}
+   \asVal{\trMatrix{T_{i,j}}{x}{y}{i}{j}{U}} &= \annMatrix{\hole}{i}{j}{(i',j')}{\FF}
    \\
-   \asExpr{\trMatrixDimsNew{T}{i,j}} &= \exMatrixDims{\hole}
+   \asVal{\trMatrixDimsNew{T}{i,j}} &= \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}
    \\
-   \asExpr{\trAppPrimNew{T}{\phi}{U}{n}} &= \exApp{\hole}{\hole}
+   \asVal{\trAppPrimNew{T}{\phi}{U}{n}} &= \phi(n)
    \\
-   \asExpr{\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}} &= \exBinaryApp{\hole}{\primOp}{\hole}
+   \asVal{\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}} &= \phi(n)(m)
 \end{salign}
 \caption{Hole expansion for values (partial)}
 \end{figure}
