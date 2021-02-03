@@ -24,5 +24,7 @@
    \asExpr{\trBinaryApp{T}{\primOp}{\phi}{U}} &= \exBinaryApp{\asExpr{T}}{\primOp}{\asExpr{U}}
    \\
    \asExpr{\trLet{x}{T}{U}} &= \exLet{x}{\asExpr{T}}{\asExpr{U}}
+   \\
+   \asExpr{\trLetRec{f}{\sigma}{T}} &= \exLetRec{f}{\asExpr{\sigma}}{\asExpr{T}}
 \end{salign}
 \end{figure}
