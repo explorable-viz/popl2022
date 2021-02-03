@@ -130,20 +130,19 @@
 \renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
 
 % Matches.
-\newcommand*{\matchCons}[3]{\elimList{\branchNil{#1}}{\exCons{#2}{#3}}}
-\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
-\newcommand*{\matchHole}{\hole}
-\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
+%\newcommand*{\matchCons}[3]{\elimList{\branchNil{#1}}{\exCons{#2}{#3}}}
+%\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
+%\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
 \newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
-\newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
-\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
+%\newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
+%\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
 
-\newcommand*{\matchVarNew}[1]{#1}
-\newcommand*{\matchTrueNew}{\exTrue}
+\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
 \newcommand*{\matchFalseNew}{\exFalse}
 \newcommand*{\matchNilNew}{\exNil}
-\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchTrueNew}{\exTrue}
+\newcommand*{\matchVarNew}[1]{#1}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
 
