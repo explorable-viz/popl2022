@@ -166,6 +166,7 @@
    }
 \end{smathpar}
 \vspace{5pt}
+\begin{minipage}{0.5\textwidth}
 \flushleft \shadebox{$\asVal{w} = v$}
 \begin{salign}
    \asVal{\matchVarNew{x}} &= \hole
@@ -180,5 +181,22 @@
    \\
    \asVal{\matchConsNew{w}{w'}} &= \annCons{\asVal{w}}{\asVal{w'}}{\FF}
 \end{salign}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\flushleft \shadebox{$\asElim{w} = \sigma$}
+\begin{salign}
+   \asElim{\matchVarNew{x}} &= \elimVar{x}{\hole}
+   \\
+   \asElim{\matchFalseNew} &= \elimBool{\hole}{\hole}
+   \\
+   \asElim{\matchTrueNew} &= \elimBool{\hole}{\hole}
+   \\
+   \asElim{\matchPair{w}{w'}} &= \elimProd{\hole}
+   \\
+   \asElim{\matchNilNew} &= \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+   \\
+   \asElim{\matchConsNew{w}{w'}} &= \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+\end{salign}
+\end{minipage}
 \caption{Pattern-matching: forward slicing}
 \end{figure}
