@@ -75,9 +75,14 @@
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
 
+% List rest
+\newcommand*{\exListEnd}{\kw{]}}
+\newcommand*{\exListNext}[2]{\comma #1 \ #2}
+
 % Annotated expressions (new)
 \newcommand*{\annCons}[3]{{#1}\,\symCons_{#3}\,{#2}}
 \newcommand*{\annFalse}[1]{\kw{false}_{#1}}
+\newcommand*{\annList}[3]{\kw{[}_{#3}\;#1 \ #2}
 \newcommand*{\annInt}[2]{#1_{#2}}
 \newcommand*{\annMatrix}[5]{\matrixLBrack{#4}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#1}\matrixRBrack_{#5}}
 \newcommand*{\annNil}[1]{\kw{[]}_{#1}}
@@ -89,10 +94,6 @@
 \newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
 \newcommand*{\branchTrue}[1]{\exTrue\mapsto{#1}}
 \newcommand*{\branchFalse}[1]{\exFalse\mapsto{#1}}
-
-% List rest
-\newcommand*{\sExNil}{\kw{]}}
-\newcommand*{\sExCons}[2]{\comma #1 \ #2}
 
 % Clause
 \newcommand*{\clause}[2]{\vec{{#1}}\equal{#2}}
@@ -110,8 +111,8 @@
 \newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\pattNil}{\exNil}
 \newcommand*{\pattList}[2]{\exList{#1}{#2}}
-\newcommand*{\pattSCons}[2]{\sExCons{#1}{#2}}
-\newcommand*{\pattSNil}{\sExNil}
+\newcommand*{\pattSCons}[2]{\exListNext{#1}{#2}}
+\newcommand*{\pattSNil}{\exListEnd}
 \newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
 
 % Eliminators.

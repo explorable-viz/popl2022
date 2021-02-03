@@ -1,14 +1,13 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Raw surface term}
+\mbox{Surface term}
 &
-t
+s
 &
 ::=
 &
 ...
 &
-\text{raw terms}
 \\
 &&&
 \exLetRecEquational{f}{\vec{c}}{s}
@@ -31,7 +30,7 @@ t
 \text{structured let}
 \\
 &&&
-\exList{s}{l}
+\annList{s}{l}{\alpha}
 &
 \text{non-empty list}
 \\
@@ -46,9 +45,9 @@ t
 \text{list comprehension}
 \\[2mm]
 
-\mbox{Surface term}
+\mbox{List rest}
 &
-s
+l
 &
 ::=
 &
@@ -57,7 +56,14 @@ s
 \text{hole}
 \\
 &&&
-t_{\alpha}
+\annot{\exListEnd}{\alpha}
+&
+\text{end}
+\\
+&&&
+\annot{(\exListNext{s}{l})}{\alpha}
+&
+\text{cons}
 \\[2mm]
 
 \mbox{Clause}
@@ -128,27 +134,6 @@ o
 \\
 &&&
 \pattSCons{p}{o}
-&
-\text{cons}
-\\[2mm]
-
-\mbox{List rest}
-&
-l
-&
-::=
-&
-\hole
-&
-\text{hole}
-\\
-&&&
-\annot{\sExNil}{\alpha}
-&
-\text{end}
-\\
-&&&
-\annot{(\sExCons{s}{l})}{\alpha}
 &
 \text{cons}
 \\[2mm]

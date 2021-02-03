@@ -20,7 +20,7 @@
    \strut
 }
 {
-   \annot{\sExNil}{\alpha} \dfwdarrow \annot{\exNil}{\alpha}
+   \annot{\exListEnd}{\alpha} \dfwdarrow \annot{\exNil}{\alpha}
 }
 %
 \and
@@ -34,7 +34,7 @@
    l \dfwdarrow e'
 }
 {
-   \annot{(\sExCons{s}{l})}{\alpha} \dfwdarrow \annot{{(\exCons{e}{e'})}}{\alpha}
+   \annot{(\exListNext{s}{l})}{\alpha} \dfwdarrow \annot{{(\exCons{e}{e'})}}{\alpha}
 }
 \end{smathpar}
 
@@ -66,9 +66,9 @@
 {
    \annot{\exNil}{\alpha}
    ,
-   \sExNil
+   \exListEnd
    \dbwdarrow
-   \annot{\sExNil}{\alpha}
+   \annot{\exListEnd}{\alpha}
 }
 %
 \and
@@ -84,9 +84,9 @@
 {
    \annot{(\exCons{e}{e'})}{\alpha}
    ,
-   \ \sExCons{s}{l}
+   \exListNext{s}{l}
    \dbwdarrow
-   \annot{(\sExCons{s'}{l'})}{\alpha}
+   \annot{(\exListNext{s'}{l'})}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring list rest -- forward and backward slicing rules}
