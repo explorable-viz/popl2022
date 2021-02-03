@@ -90,8 +90,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-matrix-lookup}},
-      right={$\val{U} = \exPair{i}{j}$}
+      lab={\ruleName{$\bwdSlice$-matrix-lookup}}
    ]
    {
       \annot{(\val{T} \reloverrideleft \matrixLBrack\exPair{i}{j} \mapsto v\matrixRBrack)}{\FF}, T
@@ -101,7 +100,7 @@
       \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}, U \bwdSlice \rho', e', \alpha'
    }
    {
-       v, \trMatrixAccessNew{T}{i',j'}{U}
+       v, \trMatrixAccessNew{T}{i',j'}{U}{i,j}
        \bwdSlice
        \rho \join \rho', \exMatrixAccess{e}{e'}, \alpha \join \alpha'
    }
