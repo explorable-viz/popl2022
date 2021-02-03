@@ -146,10 +146,10 @@
    {
       \phi, T \bwdSlice \rho, e, \alpha
       \\
-      \annInt{n}{\beta}, U \bwdSlice \rho', e', \alpha'
+      \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annInt{n}{\beta}, \trAppPrimNew{T}{\phi}{U}{\exInt{n}}
+      \annInt{n}{\beta}, \trAppPrimNew{T}{\phi}{U}{\exInt{m}}
       \bwdSlice
       \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
@@ -160,12 +160,12 @@
       lab={\ruleName{$\bwdSlice$-binary-apply}}
    ]
    {
-      \annot{\val{T}}{\beta}, T \bwdSlice \rho, e, \alpha
+      \annInt{n'}{\beta}, T \bwdSlice \rho, e, \alpha
       \\
-      \annot{\val{U}}{\beta}, U \bwdSlice \rho', e', \alpha'
+      \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annInt{n}{\beta}, \trBinaryApp{T}{\primOp}{\phi}{U}
+      \annInt{n}{\beta}, \trBinaryAppNew{T}{n'}{\primOp}{\phi}{U}{m}
       \bwdSlice
       \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \alpha \join \alpha'
    }
