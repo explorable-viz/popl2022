@@ -139,5 +139,20 @@
       \rho_1 \concat \rho_2, \kappa, \FF
    }
 \end{smathpar}
+\vspace{5pt}
+\flushleft \shadebox{$\asVal{w} = v$}
+\begin{salign}
+   \asVal{\matchVarNew{x}} &= \hole
+   \\
+   \asVal{\matchFalseNew} &= \annFalse{\FF}
+   \\
+   \asVal{\matchTrueNew} &= \annTrue{\FF}
+   \\
+   \asVal{\matchPair{w}{w'}} &= \annPair{\asVal{w}}{\asVal{w'}}{\FF}
+   \\
+   \asVal{\matchNilNew} &= \annNil{\FF}
+   \\
+   \asVal{\matchConsNew{w}{w'}} &= \annCons{\asVal{w}}{\asVal{w'}}{\FF}
+\end{salign}
 \caption{Pattern-matching: forward slicing}
 \end{figure}
