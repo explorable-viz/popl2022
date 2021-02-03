@@ -162,8 +162,7 @@
    right={$q \neq \exTrue$}
 ]
 {
-  \annot{\exListComp{s}{q \concat \annot{(\qualGuard{\annot{\exTrue}{\alpha}})}{\alpha}}}
-        {\alpha} \dfwdarrow e
+  \annListComp{s}{q \concat \qualGuard{\annot{\exTrue}{\alpha}}}{\alpha} \dfwdarrow e
 }
 {
   \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
@@ -174,15 +173,15 @@
    lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
 ]
 {
-   \annot{\exListComp{s}{\vec{q}}}{\alpha_2}
+   \annListComp{s}{\vec{q}}{\alpha}
    \dfwdarrow e
    \\
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListComp{s}{\annot{(\qualGuard{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
+   \annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}
    \dfwdarrow
-   \annot{(\exApp{\annot{\smash{\exLambda{\elimBool{e}{\annot{\exNil}{{\meet}\alpha}}}}}{{\meet}\alpha}}{e'})}{{\meet}\alpha}
+   \annot{(\exApp{\annot{\smash{\exLambda{\elimBool{e}{\annNil{\alpha}}}}}{{\meet}\alpha}}{e'})}{{\meet}\alpha}
 }
 \and
 %
@@ -195,7 +194,7 @@
    s' \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
+   \annot{\exListComp{s}{\annot{(\qualDeclaration{p}{s'})}{\alpha_1} \concat \vec{q}}}{\alpha_2}
    \dfwdarrow
    \annot{(\exApp{\annot{(\exLambda{\sigma})}{{\meet}\alpha}}{e})}{{\meet}\alpha}
 }
@@ -212,7 +211,7 @@
    s' \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \cdot \vec{q}}}{\alpha_2}
+   \annot{\exListComp{s}{\annot{(\qualGenerator{p}{s'})}{\alpha_1} \concat \vec{q}}}{\alpha_2}
    \dfwdarrow
    \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{{\meet}\alpha}}
                                 {\annot{(\exLambda{\sigma'})}{{\meet}\alpha}})}
