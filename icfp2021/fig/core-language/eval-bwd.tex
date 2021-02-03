@@ -107,14 +107,14 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\bwdSlice$-matrix-dimensions}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-matrix-dims}}]
    {
       \annMatrix{\exPair{i'}{j'}}{i}{j}{\hole}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
    }
    {
-      \annot{\exPair{\annInt{i}{\beta}}{\annInt{j}{\beta'}}}{\alpha}, \trMatrixSize{T}
+      \annot{\exPair{\annInt{i}{\beta}}{\annInt{j}{\beta'}}}{\alpha}, \trMatrixDims{T}
       \bwdSlice
-      \rho, \exMatrixSize{e}, \alpha \join \alpha'
+      \rho, \exMatrixDims{e}, \alpha \join \alpha'
    }
    %
    \and

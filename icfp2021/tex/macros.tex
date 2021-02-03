@@ -66,7 +66,7 @@
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exMatrix}[4]{\matrixLBrack{#4}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#1}\matrixRBrack}
 \newcommand*{\exMatrixAccess}[2]{{#1}\,\sym{!}\,{#2}}
-\newcommand*{\exMatrixSize}[1]{\kw{size}\;{#1}}
+\newcommand*{\exMatrixDims}[1]{\kw{dims}\;{#1}}
 \newcommand*{\exNil}{\kw{[]}}
 \newcommand*{\exOp}[1]{(#1)}
 \newcommand*{\exPair}[2]{(#1,#2)}
@@ -196,9 +196,10 @@
 %\newcommand*{\trBinaryApp}[4]{\exBinaryApp{#1}{\sub{#2}{#3}}{#4}}
 \newcommand*{\trBinaryAppNew}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trMatrix}[6]{\exMatrix{#6}{#2:#4}{#3:#5}{#1}}
-\newcommand*{\trMatrixAccess}[2]{\exMatrixAccess{#1}{#2}}
+%\newcommand*{\trMatrixAccess}[2]{\exMatrixAccess{#1}{#2}}
 \newcommand*{\trMatrixAccessNew}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
-\newcommand*{\trMatrixSize}[1]{\exMatrixSize{#1}}
+\newcommand*{\trMatrixDims}[1]{\exMatrixDims{#1}}
+\newcommand*{\trMatrixDimsNew}[2]{\exMatrixDims{\sub{#1}{#2}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
 \newcommand*{\trInt}[1]{\exInt{#1}}

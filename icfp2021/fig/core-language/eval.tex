@@ -119,12 +119,12 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-matrix-dimensions}}]
+   \inferrule*[lab={\ruleName{$\eval$-matrix-dims}}]
    {
       \explVal{T}{\rho, e \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
    }
    {
-      \explVal{\trMatrixSize{T}}{\rho, \exMatrixSize{e} \eval \exPair{i'}{j'}}
+      \explVal{\trMatrixDimsNew{T}{i',j'}}{\rho, \exMatrixDims{e} \eval \exPair{i'}{j'}}
    }
    %
    \and

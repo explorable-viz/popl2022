@@ -107,12 +107,12 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-matrix-dimensions}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-matrix-dims}}]
    {
       \rho, e, \alpha', T \fwdSlice \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\beta}
    }
    {
-      \rho, \exMatrixSize{e}, \alpha, \trMatrixSize{T}
+      \rho, \exMatrixDims{e}, \alpha, \trMatrixDims{T}
       \fwdSlice
       \annPair{\annot{i'}{\beta}}{\annot{j'}{\beta}}{\alpha}
    }
