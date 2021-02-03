@@ -27,6 +27,18 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\matchFwd$-var-$\hole$}}]
+   {
+      \strut
+   }
+   {
+      v, \matchVarNew{x}, \hole
+      \matchFwd
+      \envExtend{\envEmpty}{x}{v}, \hole, \TT
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
    {
       \strut
@@ -35,6 +47,18 @@
       \annTrue{\alpha}, \matchTrueNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
       \envEmpty, \kappa, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-true-$\hole$}}]
+   {
+      \strut
+   }
+   {
+      \annTrue{\alpha}, \matchTrueNew, \hole
+      \matchFwd
+      \envEmpty, \hole, \alpha
    }
    %
    \and
@@ -51,16 +75,42 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\matchFwd$-false-$\hole$}}]
+   {
+      \strut
+   }
+   {
+      \annFalse{\alpha}, \matchFalseNew, \hole
+      \matchFwd
+      \envEmpty, \hole, \alpha
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
    {
-      v, w, \sigma \matchFwd \rho_1, \tau, \alpha'
+      v, w, \sigma \matchFwd \rho_1, \tau, \beta
       \\
-      v', w', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+      v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
       \annPair{v}{v'}{\alpha}, \matchPair{w}{w'}, \elimProd{\sigma}
       \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \alpha \meet \alpha' \meet \alpha^\twoPrime
+      \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-pair-$\hole$}}]
+   {
+      v, w, \hole \matchFwd \rho_1, \hole, \beta
+      \\
+      v', w', \hole \matchFwd \rho_2, \hole, \beta'
+   }
+   {
+      \annPair{v}{v'}{\alpha}, \matchPair{w}{w'}, \hole
+      \matchFwd
+      \rho_1 \concat \rho_2, \hole, \alpha \meet \beta \meet \beta'
    }
    %
    \and
@@ -77,16 +127,42 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\matchFwd$-nil-$\hole$}}]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha}, \matchNilNew, \hole
+      \matchFwd
+      \envEmpty, \hole, \alpha
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
    {
-      v, w, \sigma \matchFwd \rho_1, \tau, \alpha'
+      v, w, \sigma \matchFwd \rho_1, \tau, \beta
       \\
-      v', w', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
+      v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
       \annCons{v}{v'}{\alpha}, \matchConsNew{w}{w'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \alpha \meet \alpha' \meet \alpha^\twoPrime
+      \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchFwd$-cons-$\hole$}}]
+   {
+      v, w, \hole \matchFwd \rho_1, \hole, \beta
+      \\
+      v', w', \hole \matchFwd \rho_2, \hole, \beta'
+   }
+   {
+      \annCons{v}{v'}{\alpha}, \matchConsNew{w}{w'}, \hole
+      \matchFwd
+      \rho_1 \concat \rho_2, \hole, \alpha \meet \beta \meet \beta'
    }
 \end{smathpar}
 \vspace{5pt}
