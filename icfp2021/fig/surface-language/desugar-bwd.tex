@@ -228,8 +228,7 @@
    e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
 }
 {
-   (\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{\alpha_1}}{(\exLambda{\sigma})})}{\alpha_3}}
-                 {e_1})
+   \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma})}}{e_1}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
