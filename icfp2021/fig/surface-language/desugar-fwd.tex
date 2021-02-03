@@ -206,16 +206,14 @@
 {
    \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha} \dfwdarrow \sigma
    \\
-   \totalise{\sigma}{\alpha_1}{\sigma'}
+   \totalise{\sigma}{\alpha}{\sigma'}
    \\
    s' \dfwdarrow e
 }
 {
    \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
    \dfwdarrow
-   (\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{{\meet}\alpha}}
-                                {(\exLambda{\sigma'}})}
-                        {{\meet}\alpha}}{e})
+   \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma'})}}{e}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}
