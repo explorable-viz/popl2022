@@ -71,12 +71,12 @@
       lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
-      \annot{\exPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta}}}{\FF}, T \bwdSlice \rho, e, \alpha
-      \\
       \forall (i,j) \leq (i',j').
       v_{i,j}, U_{i,j}
       \bwdSlice
       \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e'_{i,j}, \alpha'_{i,j}
+      \\
+      \annot{\exPair{\annInt{i'}{\Bigjoin{\gamma}}}{\annInt{j'}{\Bigjoin{\gamma'}}}}{\FF}, T \bwdSlice \rho, e, \alpha
    }
    {
       \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\beta},
