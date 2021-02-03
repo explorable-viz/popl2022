@@ -142,14 +142,14 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
+   \inferrule*[lab={\ruleName{$\bwdSlice$-apply-prim}}]
    {
-      \val{T}, T \bwdSlice \rho, e, \alpha
+      \phi, T \bwdSlice \rho, e, \alpha
       \\
-      \annot{\val{U}}{\beta}, U \bwdSlice \rho', e', \alpha'
+      \annInt{n}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annInt{n}{\beta}, \trAppPrim{T}{U}
+      \annInt{n}{\beta}, \trAppPrimNew{T}{\phi}{U}{\exInt{n}}
       \bwdSlice
       \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
