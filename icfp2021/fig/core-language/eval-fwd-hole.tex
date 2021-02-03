@@ -1,0 +1,28 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\asExpr{T} = e$}
+\begin{salign}
+   \asExpr{\trVar{x}} &= \exVar{x}
+   \\
+   \asExpr{\trInt{n}} &= \annInt{n}{\FF}
+   \\
+   \asExpr{\trPair{T}{U}} &= \annPair{\asExpr{T}}{\asExpr{U}}{\FF}
+   \\
+   \asExpr{\trNil} &= \annNil{\FF}
+   \\
+   \asExpr{\trCons{T}{U}} &= \annCons{\asExpr{T}}{\asExpr{U}}{\FF}
+   \\
+   \asExpr{\trMatrix{T_{i,j}}{x}{y}{i}{j}{U}} &= \annMatrix{\asExpr{U}}{x}{y}{\asExpr{T}}{\FF}
+   \\
+   \asExpr{\trMatrixAccess{T}{U}} &= \exMatrixAccess{\asExpr{T}}{\asExpr{U}}
+   \\
+   \asExpr{\trMatrixSize{T}} &= \exMatrixSize{\asExpr{T}}
+   \\
+   \asExpr{\trApp{T}{U}{\matchPlug{w}{T'}}} &= \exApp{\asExpr{T}}{\asExpr{U}}
+   \\
+   \asExpr{\trAppPrim{T}{U}} &= \exApp{\asExpr{T}}{\asExpr{U}}
+   \\
+   \asExpr{\trBinaryApp{T}{\primOp}{\phi}{U}} &= \exBinaryApp{\asExpr{T}}{\primOp}{\asExpr{U}}
+   \\
+   \asExpr{\trLet{x}{T}{U}} &= \exLet{x}{\asExpr{T}}{\asExpr{U}}
+\end{salign}
+\end{figure}

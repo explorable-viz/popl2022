@@ -181,19 +181,21 @@
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
-\newcommand*{\asVal}[1]{\mathsf{value}({#1})}
-\newcommand*{\asElim}[1]{\mathsf{elim}({#1})}
 \newcommand*{\val}[1]{\mathsf{val}(#1)}
+
+\newcommand*{\asElim}[1]{\mathsf{elim}({#1})}
+\newcommand*{\asExpr}[1]{\mathsf{expr}({#1})}
+\newcommand*{\asVal}[1]{\mathsf{value}({#1})}
 
 \newcommand*{\seq}{\mathrel{\smalltriangleright}}
 
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
 \newcommand*{\trAppPrim}[2]{\exApp{#1}{#2}}
-\newcommand*{\trMatrix}[6]{\exMatrix{{#6}}{#2:#4}{#3:#5}{#1}}
+\newcommand*{\trBinaryApp}[4]{\exBinaryApp{#1}{#2_{#3}}{#4}}
+\newcommand*{\trMatrix}[6]{\exMatrix{#6}{#2:#4}{#3:#5}{#1}}
 \newcommand*{\trMatrixAccess}[2]{\exMatrixAccess{#1}{#2}}
 \newcommand*{\trMatrixSize}[1]{\exMatrixSize{#1}}
-\newcommand*{\trBinaryApp}[4]{\exBinaryApp{#1}{#2_{#3}}{#4}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
 \newcommand*{\trInt}[1]{\exInt{#1}}

@@ -2,6 +2,18 @@
 \flushleft \shadebox{$\rho, e, \alpha, T \fwdSlice v$}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\fwdSlice$-$\hole$}}
+   ]
+   {
+      \rho, \asExpr{T}, \alpha, T \fwdSlice v
+   }
+   {
+      \rho, \hole, \alpha, T \fwdSlice v
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\fwdSlice$-var}},
       right={\textnormal{$x: v \in \rho$}}
    ]
