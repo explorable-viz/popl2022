@@ -10,9 +10,9 @@
    e_2, s_2 \dbwdarrow s_2'
 }
 {
-   \annot{(\exApp{e_1}{e_2})}{\alpha}, \exApp{s_1}{s_2}
+   \exApp{e_1}{e_2}, \exApp{s_1}{s_2}
    \dbwdarrow
-   \annot{(\exApp{s_1'}{s_2'})}{\alpha}
+   \exApp{s_1'}{s_2'}
 }
 %
 \and
@@ -24,7 +24,7 @@
    \strut
 }
 {
-   \annot{\exNil}{\alpha}, \exNil \dbwdarrow \annot{\exNil}{\alpha}
+   \annNil{\alpha}, \exNil \dbwdarrow \annNil{\alpha}
 }
 %
 \and
@@ -38,9 +38,9 @@
    e_2, l \dbwdarrow l'
 }
 {
-   \annot{(\exCons{e_1}{e_2})}{\alpha}, \exList{s}{l}
+   \annCons{e_1}{e_2}{\alpha}, \exList{s}{l}
    \dbwdarrow
-   \annot{(\exList{s'}{l'})}{\alpha}
+   \annList{s'}{l'}{\alpha}
 }
 %
 \and
@@ -54,9 +54,9 @@
    e_2, s_2 \dbwdarrow s_2'
 }
 {
-   \annot{(\exCons{e_1}{e_2})}{\alpha}, \exCons{s_1}{s_2}
+   \annCons{e_1}{e_2}{\alpha}, \exCons{s_1}{s_2}
    \dbwdarrow
-   \annot{(\exCons{s_1'}{s_2'})}{\alpha}
+   \annCons{s_1'}{s_2'}{\alpha}
 }
 %
 \and
@@ -70,9 +70,9 @@
    e, s \dbwdarrow s'
 }
 {
-   \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}, \exLetRecEquational{f}{\vec{c}}{s}
+   \exLetRec{f}{\sigma}{e}, \exLetRecEquational{f}{\vec{c}}{s}
    \dbwdarrow
-   \annot{(\exLetRecEquational{f}{\vec{c}'}{s'})}{\alpha}
+   \exLetRecEquational{f}{\vec{c}'}{s'}
 }
 %
 \and
@@ -88,7 +88,7 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \annot{(\exApp{\annot{\exLambda{\elimBool{e_{2}}{e_{3}}}}{\alpha_1}}{e_{1}})}{\alpha_2}
+   \exApp{\annot{\exLambda{\elimBool{e_{2}}{e_{3}}}}{\alpha_1}}{e_{1}}
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
