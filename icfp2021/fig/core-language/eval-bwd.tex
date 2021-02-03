@@ -2,6 +2,19 @@
 \flushleft \shadebox{$v, T \bwdSlice \rho, e, \alpha$}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\bwdSlice$-$\hole$}},
+      right={$\asVal{T} = v$}
+   ]
+   {
+      v, T \bwdSlice \rho, e, \alpha
+   }
+   {
+      \hole, T \bwdSlice \rho, e, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\bwdSlice$-var}}
    ]
    {
