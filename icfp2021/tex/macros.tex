@@ -77,7 +77,9 @@
 
 % List rest
 \newcommand*{\exListEnd}{\kw{]}}
-\newcommand*{\exListNext}[2]{\comma #1 \ #2}
+\newcommand*{\exListNext}[2]{\comma\;#1 \ #2}
+\newcommand*{\annListEnd}[1]{\kw{]}_{#1}}
+\newcommand*{\annListNext}[3]{\comma_{#3}\;#1 \ #2}
 
 % Annotated expressions (new)
 \newcommand*{\annCons}[3]{{#1}\,\symCons_{#3}\,{#2}}
@@ -131,19 +133,20 @@
 \renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
 
 % Matches.
-%\newcommand*{\matchCons}[3]{\elimList{\branchNil{#1}}{\exCons{#2}{#3}}}
-%\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
-%\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
-\newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
-%\newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
-%\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
 
 \newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
 \newcommand*{\matchFalseNew}{\exFalse}
 \newcommand*{\matchNilNew}{\exNil}
+\newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchTrueNew}{\exTrue}
 \newcommand*{\matchVarNew}[1]{#1}
+
+%\newcommand*{\matchCons}[3]{\elimList{\branchNil{#1}}{\exCons{#2}{#3}}}
+%\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
+%\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
+%\newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
+%\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
 
@@ -227,5 +230,5 @@
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
 \newcommand*{\totalisebwd}[4]{{#1}, {#2} \totalisebwdarrow {#3}, {#4}}
-\newcommand*{\comma}{\textbf{\kw{,}}\;}
+\newcommand*{\comma}{\textbf{\kw{,}}}
 \newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}
