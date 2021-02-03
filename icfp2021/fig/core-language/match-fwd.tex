@@ -1,7 +1,7 @@
 \begin{figure}[H]
 \flushleft \shadebox{$v, w, \sigma \matchFwd \rho, \kappa, \alpha$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchFwd$-$\hole$}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-$\hole$-val}}]
    {
       \asVal{w}, w, \sigma
       \matchFwd
@@ -15,7 +15,24 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
+   \inferrule*[lab={\ruleName{$\matchFwd$-$\hole$-elim}}]
+   {
+      v, w, \asElim{w}
+      \matchFwd
+      \rho, \kappa, \alpha
+   }
+   {
+      v, w, \hole
+      \matchFwd
+      \rho, \kappa, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-var}},
+      right={$v \neq \hole$}
+   ]
    {
       \strut
    }
@@ -23,18 +40,6 @@
       v, \matchVarNew{x}, \elimVar{x}{\kappa}
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, \kappa, \TT
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-var-$\hole$}}]
-   {
-      \strut
-   }
-   {
-      v, \matchVarNew{x}, \hole
-      \matchFwd
-      \envExtend{\envEmpty}{x}{v}, \hole, \TT
    }
    %
    \and
@@ -51,18 +56,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-true-$\hole$}}]
-   {
-      \strut
-   }
-   {
-      \annTrue{\alpha}, \matchTrueNew, \hole
-      \matchFwd
-      \envEmpty, \hole, \alpha
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
    {
       \strut
@@ -71,18 +64,6 @@
       \annFalse{\alpha}, \matchFalseNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
       \envEmpty, \kappa', \alpha
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-false-$\hole$}}]
-   {
-      \strut
-   }
-   {
-      \annFalse{\alpha}, \matchFalseNew, \hole
-      \matchFwd
-      \envEmpty, \hole, \alpha
    }
    %
    \and
@@ -101,20 +82,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair-$\hole$}}]
-   {
-      v, w, \hole \matchFwd \rho_1, \hole, \beta
-      \\
-      v', w', \hole \matchFwd \rho_2, \hole, \beta'
-   }
-   {
-      \annPair{v}{v'}{\alpha}, \matchPair{w}{w'}, \hole
-      \matchFwd
-      \rho_1 \concat \rho_2, \hole, \alpha \meet \beta \meet \beta'
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
    {
       \strut
@@ -123,18 +90,6 @@
       \annNil{\alpha}, \matchNilNew, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
       \envEmpty, \kappa, \alpha
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil-$\hole$}}]
-   {
-      \strut
-   }
-   {
-      \annNil{\alpha}, \matchNilNew, \hole
-      \matchFwd
-      \envEmpty, \hole, \alpha
    }
    %
    \and
@@ -149,20 +104,6 @@
       \annCons{v}{v'}{\alpha}, \matchConsNew{w}{w'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-$\hole$}}]
-   {
-      v, w, \hole \matchFwd \rho_1, \hole, \beta
-      \\
-      v', w', \hole \matchFwd \rho_2, \hole, \beta'
-   }
-   {
-      \annCons{v}{v'}{\alpha}, \matchConsNew{w}{w'}, \hole
-      \matchFwd
-      \rho_1 \concat \rho_2, \hole, \alpha \meet \beta \meet \beta'
    }
 \end{smathpar}
 \vspace{5pt}
