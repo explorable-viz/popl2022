@@ -152,9 +152,9 @@
    s \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{(\qualGuard{\annot{\exTrue}{\alpha_1}}}}{\alpha_3}
+   \annot{\exListComp{s}{\qualGuard{\annot{\exTrue}{\alpha}}}}{\alpha'}
    \dfwdarrow
-   \annot{(\exCons{e}{\annot{\exNil}{{\meet}\alpha}})}{{\meet}\alpha}
+   \annCons{e}{\annot{\exNil}{\alpha \meet \alpha'}}{\alpha \meet \alpha'}
 }
 \and
 %
