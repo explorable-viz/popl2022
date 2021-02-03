@@ -160,7 +160,7 @@
    ,
    \exListComp{s}{\qualGuard{\exTrue}}
    \dbwdarrow
-   \annot{\exListComp{s'}{\qualGuard{\annTrue{\alpha \join \alpha'}}}}{{\join}\alpha}
+   \annot{\exListComp{s'}{\qualGuard{\annTrue{\alpha \join \alpha'}}}}{\alpha \join \alpha'}
 }
 %
 \and
@@ -169,12 +169,12 @@
 {
    e, \exListComp{s}{q \concat \qualGuard{\exTrue}}
    \dbwdarrow
-   \annot{\exListComp{s'}{q' \concat \annot{(\qualGuard{\annot{\exTrue}{\beta_1}})}{\beta_2}}}{\beta_3}
+   \annot{\exListComp{s'}{q' \concat \qualGuard{\annot{\exTrue}{\beta}}}}{\beta'}
 }
 {
    e, \exListComp{s}{q}
    \dbwdarrow
-   \annot{\exListComp{s'}{q'}}{{\join}\beta}
+   \annListComp{s'}{q'}{\beta \join \beta'}
 }
 %
 \and
