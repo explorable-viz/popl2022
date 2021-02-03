@@ -205,12 +205,12 @@
    e, s_{1} \dbwdarrow s_{1}'
 }
 {
-   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha_1}}{e})}{\alpha_2}
+   \exApp{(\exLambda{\sigma})}{e}
    ,
    \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{2}'}{\annot{(\qualDeclaration{p}{s_{1}'})}{{\join}\alpha} \concat \vec{q}'}}
-         {({\join}\alpha) \join \beta}
+   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}
+         {\beta}
 }
 %
 \and
@@ -228,9 +228,8 @@
    e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
 }
 {
-   \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{\alpha_1}}{\annot{(\exLambda{\sigma})}{\alpha_2}})}{\alpha_3}}
-                 {e_1})}
-         {\alpha_4}
+   (\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{\alpha_1}}{\annot{(\exLambda{\sigma})}{\alpha_2}})}{\alpha_3}}
+                 {e_1})
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
