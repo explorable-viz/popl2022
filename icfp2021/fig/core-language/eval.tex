@@ -162,12 +162,12 @@
       right={$\primOp: \phi \in \rho$}
    ]
    {
-      \explVal{T}{\rho, e \eval m}
+      \explVal{T}{\rho, e \eval n}
       \\
-      \explVal{U}{\rho, e' \eval n}
+      \explVal{U}{\rho, e' \eval m}
    }
    {
-      \explVal{\trBinaryApp{T}{\primOp}{\phi}{U}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(m)(n)}
+      \explVal{\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}
    }
    %
    \and
