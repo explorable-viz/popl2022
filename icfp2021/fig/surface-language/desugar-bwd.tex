@@ -142,11 +142,11 @@
    e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \annot{(\exApp{\annot{(\exApp{\annot{\kw{enumFromTo}}{\alpha_1}}{e_1})}{\alpha_2}}{e_2})}{\alpha_3}
+   \exApp{\exApp{\kw{enumFromTo}}{e_1}}{e_2}
    ,
-   \exListSeq{s_{1}}{s_{2}}
+   \exListEnum{s_{1}}{s_{2}}
    \dbwdarrow
-   \annot{\exListSeq{s_{1}'}{s_{2}'}}{{\join}\alpha}
+   \exListEnum{s_{1}'}{s_{2}'}
 }
 %
 \and
@@ -156,11 +156,11 @@
    e, s \dbwdarrow s'
 }
 {
-   \annot{(\exCons{e}{\annot{\exNil}{\alpha_1}})}{\alpha_2}
+   \annCons{e}{\annNil{\alpha}}{\alpha'}
    ,
    \exListComp{s}{\qualGuard{\exTrue}}
    \dbwdarrow
-   \annot{\exListComp{s'}{\annot{(\qualGuard{\annot{\exTrue}{{\join}\alpha}})}{{\join}\alpha}}}{{\join}\alpha}
+   \annot{\exListComp{s'}{\qualGuard{\annTrue{\alpha \join \alpha'}}}}{{\join}\alpha}
 }
 %
 \and
