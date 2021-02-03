@@ -88,11 +88,11 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \exApp{\annot{\exLambda{\elimBool{e_{2}}{e_{3}}}}{\alpha_1}}{e_{1}}
+   \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \annot{(\exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'})}{{\join}\alpha}
+   \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
 }
 %
 \and
@@ -106,11 +106,11 @@
    e, s \dbwdarrow s'
 }
 {
-   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha_1}}{e})}{\alpha_2}
+   \exApp{(\exLambda{\sigma})}{e}
    ,
    \exMatch{s}{\vec{c}}
    \dbwdarrow
-   \annot{(\exMatch{s'}{\vec{c}'})}{{\join}\alpha}
+   \exMatch{s'}{\vec{c}'}
 }
 %
 \and
