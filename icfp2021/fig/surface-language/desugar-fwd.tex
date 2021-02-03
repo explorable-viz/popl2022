@@ -22,7 +22,7 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{(\exApp{s}{s'})}{\alpha} \dfwdarrow \annot{(\exApp{e}{e'})}{\alpha}
+   \exApp{s}{s'} \dfwdarrow \exApp{e}{e'}
 }
 %
 \and
@@ -34,7 +34,7 @@
    \strut
 }
 {
-   \annot{\exNil}{\alpha} \dfwdarrow \annot{\exNil}{\alpha}
+   \annNil{\alpha} \dfwdarrow \annNil{\alpha}
 }
 %
 \and
@@ -48,7 +48,7 @@
    l \dfwdarrow e'
 }
 {
-   \annot{(\exList{s}{l})}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
+   \annList{s}{l}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
 }
 %
 \and
@@ -62,7 +62,7 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{(\exCons{s}{s'})}{\alpha} \dfwdarrow \annot{(\exCons{e}{e'})}{\alpha}
+   \annCons{s}{s'}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
 }
 %
 \and
@@ -76,7 +76,7 @@
    s \dfwdarrow e
 }
 {
-   \annot{(\exLetRecEquational{f}{\vec{c}}{s})}{\alpha} \dfwdarrow \annot{(\exLetRec{f}{\sigma}{e})}{\alpha}
+   \exLetRecEquational{f}{\vec{c}}{s} \dfwdarrow \exLetRec{f}{\sigma}{e}
 }
 %
 \and
@@ -90,9 +90,9 @@
    \vec{c} \dfwdarrow \sigma
 }
 {
-   \annot{(\exMatch{s}{\vec{c}})}{\alpha}
+   \exMatch{s}{\vec{c}}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha}}{e})}{\alpha}
+   \exApp{(\exLambda{\sigma})}{e}
 }
 %
 \and
@@ -106,9 +106,9 @@
    \clauseUncurried{p}{s'} \dfwdarrow \sigma
 }
 {
-   \annot{(\exLet{p}{s}{s'})}{\alpha}
+   \exLet{p}{s}{s'}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exLambda{\sigma})}{\alpha}}{e})}{\alpha}
+   \exApp{(\exLambda{\sigma})}{e}
 }
 %
 \and
@@ -124,9 +124,9 @@
    s^{\twoPrime} \dfwdarrow e^{\twoPrime}
 }
 {
-   \annot{(\exIfThenElse{s}{s'}{s^{\twoPrime}})}{\alpha}
+   \exIfThenElse{s}{s'}{s^{\twoPrime}}
    \dfwdarrow
-   \annot{(\exApp{\annot{\exLambda{\elimBool{e'}{e^{\twoPrime}}}}{\alpha}}{e})}{\alpha}
+   \exApp{\exLambda{\elimBool{e'}{e^{\twoPrime}}}}{e}
 }
 %
 \and
@@ -140,9 +140,9 @@
    s' \dfwdarrow e'
 }
 {
-   \annot{\exListSeq{s}{s'}}{\alpha}
+   \exListSeq{s}{s'}
    \dfwdarrow
-   \annot{(\exApp{\annot{(\exApp{\annot{\kw{enumFromTo}}{\alpha}}{e})}{\alpha}}{e'})}{\alpha}
+   \exApp{\exApp{\kw{enumFromTo}}{e}}{e'}
 }
 %
 \and
@@ -152,7 +152,7 @@
    s \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\annot{(\qualGuard{\annot{\exTrue}{\alpha_1}})}{\alpha_2}}}{\alpha_3}
+   \annot{\exListComp{s}{(\qualGuard{\annot{\exTrue}{\alpha_1}}}}{\alpha_3}
    \dfwdarrow
    \annot{(\exCons{e}{\annot{\exNil}{{\meet}\alpha}})}{{\meet}\alpha}
 }
