@@ -9,13 +9,13 @@
    \\
    \asVal{\trCons{T}{U}} &= \annCons{\hole}{\hole}{\FF}
    \\
-   \asVal{\trMatrix{T_{i,j}}{x}{y}{i}{j}{U}} &= \annMatrix{\hole}{i}{j}{(i',j')}{\FF}
+   \asVal{\trMatrixNew{T_{i,j}}{x}{y}{i}{j}{U}{i',j'}} &= \annMatrix{(i',j')}{i}{j}{\hole}{\FF}
    \\
    \asVal{\trMatrixDimsNew{T}{i,j}} &= \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}
    \\
-   \asVal{\trAppPrimNew{T}{\phi}{U}{n}} &= \phi(n)
+   \asVal{\trAppPrimNew{T}{\phi}{U}{n}} &= \annInt{\phi(n)}{\FF}
    \\
-   \asVal{\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}} &= \phi(n)(m)
+   \asVal{\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}} &= \annInt{\phi(n)(m)}{\FF}
 \end{salign}
 \caption{Hole expansion for values (partial)}
 \end{figure}
