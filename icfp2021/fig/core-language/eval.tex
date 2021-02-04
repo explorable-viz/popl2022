@@ -98,7 +98,7 @@
       \forall (i,j) \leq (i',j').\explVal{U_{i,j}}{\envExtend{\envExtend{\rho}{x}{i}}{y}{j}, e \eval v_{i,j}}
    }
    {
-      \explVal{\trMatrixNew{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}}
+      \explVal{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}}
               {\rho, \exMatrix{e'}{x}{y}{e} \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
    }
    %
@@ -114,7 +114,7 @@
       \explVal{U}{\rho, e' \eval \exPair{i}{j}}
    }
    {
-      \explVal{\trMatrixAccessNew{T}{i',j'}{U}{i,j}}{\rho, \exMatrixAccess{e}{e'} \eval v_{i,j}}
+      \explVal{\trMatrixAccess{T}{i',j'}{U}{i,j}}{\rho, \exMatrixAccess{e}{e'} \eval v_{i,j}}
    }
    %
    \and
@@ -124,7 +124,7 @@
       \explVal{T}{\rho, e \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
    }
    {
-      \explVal{\trMatrixDimsNew{T}{i',j'}}{\rho, \exMatrixDims{e} \eval \exPair{i'}{j'}}
+      \explVal{\trMatrixDims{T}{i',j'}}{\rho, \exMatrixDims{e} \eval \exPair{i'}{j'}}
    }
    %
    \and
@@ -152,7 +152,7 @@
       \explVal{U}{\rho, e' \eval \exInt{n}}
    }
    {
-      \explVal{\trAppPrimNew{T}{\phi}{U}{n}}{\rho, \exApp{e}{e'} \eval \phi(n)}
+      \explVal{\trAppPrim{T}{\phi}{U}{n}}{\rho, \exApp{e}{e'} \eval \phi(n)}
    }
    %
    \and
@@ -167,7 +167,7 @@
       \explVal{U}{\rho, e' \eval m}
    }
    {
-      \explVal{\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}
+      \explVal{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}
    }
    %
    \and

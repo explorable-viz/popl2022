@@ -11,17 +11,17 @@
    \\
    \trCons{T}{U} &\evalFwdHole \annCons{\hole}{\hole}{\FF}
    \\
-   \trMatrixNew{T_{i,j}}{x}{y}{i}{j}{U}{i',j'} &\evalFwdHole \annMatrix{\hole}{x}{y}{\hole}{\FF}
+   \trMatrix{T_{i,j}}{x}{y}{i}{j}{U}{i',j'} &\evalFwdHole \annMatrix{\hole}{x}{y}{\hole}{\FF}
    \\
-   \trMatrixAccessNew{T}{i',j'}{U}{i,j} &\evalFwdHole \exMatrixAccess{\hole}{\hole}
+   \trMatrixAccess{T}{i',j'}{U}{i,j} &\evalFwdHole \exMatrixAccess{\hole}{\hole}
    \\
-   \trMatrixDimsNew{T}{i,j} &\evalFwdHole \exMatrixDims{\hole}
+   \trMatrixDims{T}{i,j} &\evalFwdHole \exMatrixDims{\hole}
    \\
    \trApp{T}{U}{\matchPlug{w}{T'}} &\evalFwdHole \exApp{\hole}{\hole}
    \\
-   \trAppPrimNew{T}{\phi}{U}{n} &\evalFwdHole \exApp{\hole}{\hole}
+   \trAppPrim{T}{\phi}{U}{n} &\evalFwdHole \exApp{\hole}{\hole}
    \\
-   \trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m} &\evalFwdHole \exBinaryApp{\hole}{\primOp}{\hole}
+   \trBinaryApp{T}{n}{\primOp}{\phi}{U}{m} &\evalFwdHole \exBinaryApp{\hole}{\primOp}{\hole}
    \\
    \trLet{x}{T}{U} &\evalFwdHole \exLet{x}{\hole}{\hole}
    \\

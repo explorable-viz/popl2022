@@ -9,13 +9,13 @@
    \\
    \trCons{T}{U} &\evalBwdHole \annCons{\hole}{\hole}{\FF}
    \\
-   \trMatrixNew{T_{i,j}}{x}{y}{i}{j}{U}{i',j'} &\evalBwdHole \annMatrix{(i',j')}{i}{j}{\hole}{\FF}
+   \trMatrix{T_{i,j}}{x}{y}{i}{j}{U}{i',j'} &\evalBwdHole \annMatrix{(i',j')}{i}{j}{\hole}{\FF}
    \\
-   \trMatrixDimsNew{T}{i,j} &\evalBwdHole \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}
+   \trMatrixDims{T}{i,j} &\evalBwdHole \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}
    \\
-   \trAppPrimNew{T}{\phi}{U}{n} &\evalBwdHole \annInt{\phi(n)}{\FF}
+   \trAppPrim{T}{\phi}{U}{n} &\evalBwdHole \annInt{\phi(n)}{\FF}
    \\
-   \trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m} &\evalBwdHole \annInt{\phi(n)(m)}{\FF}
+   \trBinaryApp{T}{n}{\primOp}{\phi}{U}{m} &\evalBwdHole \annInt{\phi(n)(m)}{\FF}
 \end{salign}
 \caption{Hole expansion for values}
 \end{figure}

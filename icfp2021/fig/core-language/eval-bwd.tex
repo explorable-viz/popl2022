@@ -94,7 +94,7 @@
    }
    {
       \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\beta},
-      \trMatrixNew{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
+      \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
       \annMatrix{e'}{x}{y}{{\Bigjoin{e}}}{\beta},
@@ -114,7 +114,7 @@
       \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}, U \bwdSlice \rho', e', \alpha'
    }
    {
-       v, \trMatrixAccessNew{T}{i',j'}{U}{i,j}
+       v, \trMatrixAccess{T}{i',j'}{U}{i,j}
        \bwdSlice
        \rho \join \rho', \exMatrixAccess{e}{e'}, \alpha \join \alpha'
    }
@@ -126,7 +126,7 @@
       \annMatrix{\exPair{i'}{j'}}{i}{j}{\hole}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
    }
    {
-      \annot{\exPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}}{\alpha}, \trMatrixDimsNew{T}{i',j'}
+      \annot{\exPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}}{\alpha}, \trMatrixDims{T}{i',j'}
       \bwdSlice
       \rho, \exMatrixDims{e}, \alpha \join \alpha'
    }
@@ -162,7 +162,7 @@
       \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annInt{n}{\beta}, \trAppPrimNew{T}{\phi}{U}{\exInt{m}}
+      \annInt{n}{\beta}, \trAppPrim{T}{\phi}{U}{\exInt{m}}
       \bwdSlice
       \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
@@ -178,7 +178,7 @@
       \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annInt{n}{\beta}, \trBinaryAppNew{T}{n'}{\primOp}{\phi}{U}{m}
+      \annInt{n}{\beta}, \trBinaryApp{T}{n'}{\primOp}{\phi}{U}{m}
       \bwdSlice
       \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \alpha \join \alpha'
    }

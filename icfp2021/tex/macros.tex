@@ -192,11 +192,11 @@
 
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
-\newcommand*{\trAppPrimNew}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
-\newcommand*{\trBinaryAppNew}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
-\newcommand*{\trMatrixNew}[7]{\exMatrix{\sub{#6}{#7}}{#2:#4}{#3:#5}{#1}}
-\newcommand*{\trMatrixAccessNew}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
-\newcommand*{\trMatrixDimsNew}[2]{\exMatrixDims{\sub{#1}{#2}}}
+\newcommand*{\trAppPrim}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
+\newcommand*{\trMatrix}[7]{\exMatrix{\sub{#6}{#7}}{#2:#4}{#3:#5}{#1}}
+\newcommand*{\trMatrixAccess}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trMatrixDims}[2]{\exMatrixDims{\sub{#1}{#2}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}{\exFalse}
 \newcommand*{\trInt}[1]{\exInt{#1}}
@@ -212,11 +212,6 @@
 \newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\trTrue}{\exTrue}
 \newcommand*{\trVar}[1]{#1}
-%\newcommand*{\trAppPrim}[2]{\exApp{#1}{#2}}
-%\newcommand*{\trBinaryApp}[4]{\exBinaryApp{#1}{\sub{#2}{#3}}{#4}}
-%\newcommand*{\trMatrix}[6]{\exMatrix{#6}{#2:#4}{#3:#5}{#1}}
-%\newcommand*{\trMatrixAccess}[2]{\exMatrixAccess{#1}{#2}}
-%\newcommand*{\trMatrixDims}[1]{\exMatrixDims{#1}}
 
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 

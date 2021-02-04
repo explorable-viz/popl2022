@@ -61,17 +61,17 @@ T, U
 \text{cons}
 \\
 &&&
-\trMatrixNew{T_{i,j}}{x}{y}{i}{j}{U}{i',j'}
+\trMatrix{T_{i,j}}{x}{y}{i}{j}{U}{i',j'}
 &
 \text{matrix}
 \\
 &&&
-\trMatrixAccessNew{T}{i',j'}{U}{i,j}
+\trMatrixAccess{T}{i',j'}{U}{i,j}
 &
 \text{matrix lookup}
 \\
 &&&
-\trMatrixDimsNew{T}{i,j}
+\trMatrixDims{T}{i,j}
 &
 \text{matrix dimensions}
 \\
@@ -81,12 +81,12 @@ T, U
 \text{apply}
 \\
 &&&
-\trAppPrimNew{T}{\phi}{U}{\exInt{n}}
+\trAppPrim{T}{\phi}{U}{\exInt{n}}
 &
 \text{apply primitive}
 \\
 &&&
-\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}
+\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}
 &
 \text{binary application}
 \\
