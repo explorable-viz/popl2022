@@ -105,9 +105,14 @@
 \flushleft \shadebox{$e, l \dbwdhole e$}
 \begin{salign}
    \hole,
-   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   \exListEnd
    &\dbwdhole
-   \exApp{\exLambda{\elimBool{\hole}{\hole}}}{\hole}
+   \annot{\exNil}{\FF}
+   \\
+   \hole,
+   \exListNext{s}{l}
+   &\dbwdhole
+   \annCons{\hole}{\hole}{\FF}
 \end{salign}
 \caption{Desugaring -- backward slicing (hole expansion rules)}
 \end{figure}
