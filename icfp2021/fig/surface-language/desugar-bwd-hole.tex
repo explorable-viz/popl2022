@@ -50,6 +50,21 @@
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    &\dbwdhole
    \exApp{\exApp{\funConcatMap}{(\exLambda{\hole})}}{e}
+   \\
+   \exApp{\exApp{\hole}{\hole}}{e},
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+   &\dbwdhole
+   \exApp{\exApp{\kw{concatMap}}{(\exLambda{\hole})}}{e}
+   \\
+   \exApp{\exApp{\kw{concatMap}}{\hole}}{e},
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+   &\dbwdhole
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\hole})}}{e}
+   \\
+   \exApp{\exApp{\hole}{(\exLambda{\sigma})}}{e_1},
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+   &\dbwdhole
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e_1}
 \end{salign}
 \begin{smathpar}
 \inferrule*[
@@ -62,62 +77,6 @@
    \hole, s
    \dbwdarrow
    \hole
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-2}},
-]
-{
-   \exApp{\exApp{\kw{concatMap}}{(\exLambda{\hole})}}{e},
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\exApp{\hole}{\hole}}{e}
-   ,
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-3}},
-]
-{
-   \exApp{\exApp{\funConcatMap}{(\exLambda{\hole})}}{e},
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-   \dbwdarrow s
-}
-{
-   \exApp{\exApp{\kw{concatMap}}{\hole}}{e}
-   ,
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-4}},
-]
-{
-   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e_1},
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\exApp{\hole}{(\exLambda{\sigma})}}{e_1}
-   ,
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-   \dbwdarrow
-   s
 }
 \end{smathpar}
 \caption{Desugaring -- backward slicing (hole expansion rules)}
