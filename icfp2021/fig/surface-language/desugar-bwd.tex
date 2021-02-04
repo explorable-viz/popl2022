@@ -2,6 +2,36 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole, s
+   \dbwdarrow
+   \hole
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-$\hole$-expand}}
+]
+{
+   e, s \dbwdhole e'
+   \\
+   e', s \dbwdarrow s'
+}
+{
+   e, s
+   \dbwdarrow
+   s'
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-apply}}
 ]
 {
@@ -236,5 +266,5 @@
          {\beta \join \beta'}
 }
 \end{smathpar}
-\caption{Desugaring -- backward slicing (hole rules omitted)}
+\caption{Desugaring -- backward slicing (selected rules)}
 \end{figure}

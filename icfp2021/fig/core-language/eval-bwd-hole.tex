@@ -1,21 +1,21 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\asVal{T} = v$}
+\flushleft \shadebox{$T \evalBwdHole v$}
 \begin{salign}
-   \asVal{\trInt{n}} &= \annInt{n}{\FF}
+   \trInt{n} &\evalBwdHole \annInt{n}{\FF}
    \\
-   \asVal{\trPair{T}{U}} &= \annPair{\hole}{\hole}{\FF}
+   \trPair{T}{U} &\evalBwdHole \annPair{\hole}{\hole}{\FF}
    \\
-   \asVal{\trNil} &= \annNil{\FF}
+   \trNil &\evalBwdHole \annNil{\FF}
    \\
-   \asVal{\trCons{T}{U}} &= \annCons{\hole}{\hole}{\FF}
+   \trCons{T}{U} &\evalBwdHole \annCons{\hole}{\hole}{\FF}
    \\
-   \asVal{\trMatrixNew{T_{i,j}}{x}{y}{i}{j}{U}{i',j'}} &= \annMatrix{(i',j')}{i}{j}{\hole}{\FF}
+   \trMatrixNew{T_{i,j}}{x}{y}{i}{j}{U}{i',j'} &\evalBwdHole \annMatrix{(i',j')}{i}{j}{\hole}{\FF}
    \\
-   \asVal{\trMatrixDimsNew{T}{i,j}} &= \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}
+   \trMatrixDimsNew{T}{i,j} &\evalBwdHole \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}
    \\
-   \asVal{\trAppPrimNew{T}{\phi}{U}{n}} &= \annInt{\phi(n)}{\FF}
+   \trAppPrimNew{T}{\phi}{U}{n} &\evalBwdHole \annInt{\phi(n)}{\FF}
    \\
-   \asVal{\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}} &= \annInt{\phi(n)(m)}{\FF}
+   \trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m} &\evalBwdHole \annInt{\phi(n)(m)}{\FF}
 \end{salign}
-\caption{Hole expansion for values (partial)}
+\caption{Hole expansion for values}
 \end{figure}
