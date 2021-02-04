@@ -1,31 +1,31 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\asExpr{T} = e$}
+\flushleft \shadebox{$T \evalFwdHole e$}
 \begin{salign}
-   \asExpr{\trVar{x}} &= \exVar{x}
+   \trVar{x} &\evalFwdHole \exVar{x}
    \\
-   \asExpr{\trInt{n}} &= \annInt{n}{\FF}
+   \trInt{n} &\evalFwdHole \annInt{n}{\FF}
    \\
-   \asExpr{\trPair{T}{U}} &= \annPair{\hole}{\hole}{\FF}
+   \trPair{T}{U} &\evalFwdHole \annPair{\hole}{\hole}{\FF}
    \\
-   \asExpr{\trNil} &= \annNil{\FF}
+   \trNil &\evalFwdHole \annNil{\FF}
    \\
-   \asExpr{\trCons{T}{U}} &= \annCons{\hole}{\hole}{\FF}
+   \trCons{T}{U} &\evalFwdHole \annCons{\hole}{\hole}{\FF}
    \\
-   \asExpr{\trMatrixNew{T_{i,j}}{x}{y}{i}{j}{U}{i',j'}} &= \annMatrix{\hole}{x}{y}{\hole}{\FF}
+   \trMatrixNew{T_{i,j}}{x}{y}{i}{j}{U}{i',j'} &\evalFwdHole \annMatrix{\hole}{x}{y}{\hole}{\FF}
    \\
-   \asExpr{\trMatrixAccessNew{T}{i',j'}{U}{i,j}} &= \exMatrixAccess{\hole}{\hole}
+   \trMatrixAccessNew{T}{i',j'}{U}{i,j} &\evalFwdHole \exMatrixAccess{\hole}{\hole}
    \\
-   \asExpr{\trMatrixDimsNew{T}{i,j}} &= \exMatrixDims{\hole}
+   \trMatrixDimsNew{T}{i,j} &\evalFwdHole \exMatrixDims{\hole}
    \\
-   \asExpr{\trApp{T}{U}{\matchPlug{w}{T'}}} &= \exApp{\hole}{\hole}
+   \trApp{T}{U}{\matchPlug{w}{T'}} &\evalFwdHole \exApp{\hole}{\hole}
    \\
-   \asExpr{\trAppPrimNew{T}{\phi}{U}{n}} &= \exApp{\hole}{\hole}
+   \trAppPrimNew{T}{\phi}{U}{n} &\evalFwdHole \exApp{\hole}{\hole}
    \\
-   \asExpr{\trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m}} &= \exBinaryApp{\hole}{\primOp}{\hole}
+   \trBinaryAppNew{T}{n}{\primOp}{\phi}{U}{m} &\evalFwdHole \exBinaryApp{\hole}{\primOp}{\hole}
    \\
-   \asExpr{\trLet{x}{T}{U}} &= \exLet{x}{\hole}{\hole}
+   \trLet{x}{T}{U} &\evalFwdHole \exLet{x}{\hole}{\hole}
    \\
-   \asExpr{\trLetRec{f}{\sigma}{T}} &= \exLetRec{f}{\,\hole}{\hole}
+   \trLetRec{f}{\sigma}{T} &\evalFwdHole \exLetRec{f}{\,\hole}{\hole}
 \end{salign}
 \caption{Hole expansion for expressions}
 \end{figure}
