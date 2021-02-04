@@ -199,17 +199,16 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-3}},
 ]
 {
-   e, s_{1} \dbwdarrow s_{1}'
+   \exApp{\exApp{\kw{concatMap}}{(\exLambda{\hole})}}{e},
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+   \dbwdarrow s
 }
 {
-   \annot{(\exApp{\annot{(\exApp{\annot{\kw{concatMap}}{\alpha_1}}{\hole})}{\alpha_2}}
-                 {e})}
-         {\alpha_3}
+   \exApp{\exApp{\kw{concatMap}}{\hole}}{e}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{\hole}{\annot{(\qualGenerator{p}{s_{1}'})}{{\join}\alpha} \concat \hole_{\vec{q}}}}
-         {{\join}\alpha}
+   s
 }
 %
 \and
@@ -218,7 +217,7 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-4}},
 ]
 {
-   \exApp{\exApp{\exVar{\kw{concatMap}}}{(\exLambda{\sigma})}}{e_1}, s_{1},
+   \exApp{\exApp{\exVar{\kw{concatMap}}}{(\exLambda{\sigma})}}{e_1},
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
    s
