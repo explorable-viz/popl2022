@@ -1,20 +1,40 @@
 \begin{figure}[H]
 \flushleft \shadebox{$e, s \dbwdhole e$}
 \begin{salign}
+   \hole,
+   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   &\dbwdhole
+   \exApp{\exLambda{\elimBool{\hole}{\hole}}}{\hole}
+   \\
    \exApp{\hole}{e},
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    &\dbwdhole
    \exApp{\exLambda{\elimBool{\hole}{\hole}}}{e}
+   \\
+   \hole,
+   \exMatch{s}{\vec{c}}
+   &\dbwdhole
+   \exApp{(\exLambda{\hole})}{\hole}
    \\
    \exApp{\hole}{e},
    \exMatch{s}{\vec{c}}
    &\dbwdhole
    \exApp{(\exLambda{\hole})}{e}
    \\
+   \hole,
+   \exLet{p}{s_1}{s_2}
+   &\dbwdhole
+   \exApp{(\exLambda{\hole})}{\hole}
+   \\
    \exApp{\hole}{e},
    \exLet{p}{s_1}{s_2}
    &\dbwdhole
    \exApp{(\exLambda{\hole})}{e}
+   \\
+   \hole,
+   \exListEnum{s_{1}}{s_{2}}
+   &\dbwdhole
+   \exApp{\exApp{\funEnumFromTo}{\hole}}{\hole}
    \\
    \exApp{\hole}{e},
    \exListEnum{s_{1}}{s_{2}}
@@ -25,6 +45,11 @@
    \exListEnum{s_{1}}{s_{2}}
    &\dbwdhole
    \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+   \\
+   \hole,
+   \exListComp{s_1}{\qualGuard{\exTrue}}
+   &\dbwdhole
+   \annCons{\hole}{\annNil{\FF}}{\alpha}
    \\
    \annCons{e}{\hole}{\alpha},
    \exListComp{s_1}{\qualGuard{\exTrue}}
@@ -41,10 +66,20 @@
    &\dbwdhole
    \exApp{\exLambda{\elimBool{e_{2}}{\annNil{\FF}}}}{e_{1}}
    \\
+   \hole,
+   \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
+   &\dbwdhole
+   \exApp{(\exLambda{\hole})}{\hole}
+   \\
    \exApp{\hole}{e},
    \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
    &\dbwdhole
    \exApp{(\exLambda{\hole})}{e}
+   \\
+   \hole,
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+   &\dbwdhole
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\hole})}}{\hole}
    \\
    \exApp{\hole}{e},
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
@@ -61,10 +96,10 @@
    &\dbwdhole
    \exApp{\exApp{\funConcatMap}{(\exLambda{\hole})}}{e}
    \\
-   \exApp{\exApp{\hole}{(\exLambda{\sigma})}}{e_1},
+   \exApp{\exApp{\hole}{(\exLambda{\sigma})}}{e},
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    &\dbwdhole
-   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e_1}
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e}
 \end{salign}
 \caption{Desugaring -- backward slicing (hole expansion rules)}
 \end{figure}
