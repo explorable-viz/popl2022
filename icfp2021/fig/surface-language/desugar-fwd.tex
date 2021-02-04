@@ -204,5 +204,45 @@
    \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
 }
 \end{smathpar}
+
+\vspace{5pt}
+\flushleft \shadebox{$l \dfwdarrow e$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-rest-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole \dfwdarrow \hole
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-rest-end}}
+]
+{
+   \strut
+}
+{
+   \annot{\exListEnd}{\alpha} \dfwdarrow \annot{\exNil}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-list-rest-cons}}
+]
+{
+   s \dfwdarrow e
+   \\
+   l \dfwdarrow e'
+}
+{
+   \annot{(\exListNext{s}{l})}{\alpha} \dfwdarrow \annot{{(\exCons{e}{e'})}}{\alpha}
+}
+\end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}
 \end{figure}
