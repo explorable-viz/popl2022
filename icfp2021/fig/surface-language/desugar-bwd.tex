@@ -252,5 +252,57 @@
          {\beta \join \beta'}
 }
 \end{smathpar}
+
+\vspace{5pt}
+\flushleft \shadebox{$e, l \dbwdarrow l$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-$\hole$}}
+]
+{
+   \strut
+}
+{
+   \hole
+   ,
+   l
+   \dbwdarrow
+   \hole
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-end}}
+]
+{
+   \strut
+}
+{
+   \annot{\exNil}{\alpha}
+   ,
+   \exListEnd
+   \dbwdarrow
+   \annot{\exListEnd}{\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
+]
+{
+   e, s \dbwdarrow s'
+   \\
+   e', l \dbwdarrow l'
+}
+{
+   \annCons{e}{e'}{\alpha}
+   ,
+   \exListNext{s}{l}
+   \dbwdarrow
+   \annListNext{s'}{l'}{\alpha}
+}
+\end{smathpar}
 \caption{Desugaring -- backward slicing (selected rules)}
 \end{figure}
