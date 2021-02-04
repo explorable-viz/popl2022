@@ -209,25 +209,13 @@
 \flushleft \shadebox{$l \dfwdarrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-rest-$\hole$}}
-]
-{
-   \strut
-}
-{
-   \hole \dfwdarrow \hole
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\dfwdarrow$-list-rest-end}}
 ]
 {
    \strut
 }
 {
-   \annot{\exListEnd}{\alpha} \dfwdarrow \annot{\exNil}{\alpha}
+   \annListEnd{\alpha} \dfwdarrow \annNil{\alpha}
 }
 %
 \and
@@ -241,7 +229,7 @@
    l \dfwdarrow e'
 }
 {
-   \annot{(\exListNext{s}{l})}{\alpha} \dfwdarrow \annot{{(\exCons{e}{e'})}}{\alpha}
+   \annListNext{s}{l}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}
