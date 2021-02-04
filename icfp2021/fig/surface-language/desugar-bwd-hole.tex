@@ -1,5 +1,26 @@
 \begin{figure}[H]
-\flushleft \shadebox{$e, s \dbwdarrow s'$}
+\flushleft \shadebox{$e, s \dbwdhole e$}
+\begin{salign}
+   \exApp{\hole}{e},
+   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   &\dbwdhole
+   \exApp{\exLambda{\elimBool{\hole}{\hole}}}{e}
+   \\
+   \exApp{\hole}{e},
+   \exMatch{s}{\vec{c}}
+   &\dbwdhole
+   \exApp{(\exLambda{\hole})}{e}
+   \\
+   \exApp{\hole}{e},
+   \exLet{p}{s_1}{s_2}
+   &\dbwdhole
+   \exApp{(\exLambda{\hole})}{e}
+   \\
+   \exApp{\hole}{e},
+   \exListEnum{s_{1}}{s_{2}}
+   &\dbwdhole
+   \exApp{\exApp{\funEnumFromTo}{\hole}}{e}
+\end{salign}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-$\hole$}}
@@ -11,78 +32,6 @@
    \hole, s
    \dbwdarrow
    \hole
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-if-$\hole$}}
-]
-{
-   \exApp{\exLambda{\elimBool{\hole}{\hole}}}{e},
-   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\hole}{e},
-   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-match-$\hole$}}
-]
-{
-   \exApp{(\exLambda{\hole})}{e},
-   \exMatch{s}{\vec{c}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\hole}{e},
-   \exMatch{s}{\vec{c}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-let-$\hole$}}
-]
-{
-   \exApp{(\exLambda{\hole})}{e},
-   \exLet{p}{s_1}{s_2}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\hole}{e},
-   \exLet{p}{s_1}{s_2}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-enum-$\hole$-1}},
-]
-{
-   \exApp{\exApp{\funEnumFromTo}{\hole}}{e},
-   \exListEnum{s_{1}}{s_{2}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\hole}{e},
-   \exListEnum{s_{1}}{s_{2}}
-   \dbwdarrow
-   s
 }
 %
 \and
