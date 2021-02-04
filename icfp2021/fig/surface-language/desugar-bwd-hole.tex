@@ -35,14 +35,16 @@
    lab={\ruleName{$\dbwdarrow$-match-$\hole$}}
 ]
 {
-   e, s \dbwdarrow s'
-}
-{
-   \annot{(\exApp{\hole}{e})}{\alpha}
-   ,
+   \exApp{(\exLambda{\hole})}{e},
    \exMatch{s}{\vec{c}}
    \dbwdarrow
-   \annot{(\exMatch{s'}{\hole_{\vec{c}}})}{\alpha}
+   s
+}
+{
+   \exApp{\hole}{e},
+   \exMatch{s}{\vec{c}}
+   \dbwdarrow
+   s
 }
 %
 \and
@@ -51,7 +53,7 @@
    lab={\ruleName{$\dbwdarrow$-let-$\hole$}}
 ]
 {
-   \exApp{(\exLambda{\hole})}{e}, 
+   \exApp{(\exLambda{\hole})}{e},
    \exLet{p}{s_1}{s_2}
    \dbwdarrow
    s
