@@ -118,9 +118,9 @@
 \newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\pattNil}{\exNil}
 \newcommand*{\pattList}[2]{\exList{#1}{#2}}
-\newcommand*{\pattSCons}[2]{\exListNext{#1}{#2}}
-\newcommand*{\pattSNil}{\exListEnd}
-\newcommand*{\pattPair}[2]{\langle#1,#2\rangle}
+\newcommand*{\pattListNext}[2]{\exListNext{#1}{#2}}
+\newcommand*{\pattListEnd}{\exListEnd}
+\newcommand*{\pattPair}[2]{\exPair{#1}{#2}}
 
 % Eliminators.
 \newcommand*{\elimNil}[1]{\{\branchNil{#1}\}}
@@ -128,10 +128,9 @@
 \newcommand*{\elimBool}[2]{\{\branchTrue{#1}, \branchFalse{#2}\}}
 \newcommand*{\elimBoolTrue}[1]{\{\branchTrue{#1}\}}
 \newcommand*{\elimBoolFalse}[1]{\{\branchFalse{#1}\}}
-%\newcommand*{\elimFun}[1]{\elimFunNoRHS \mapsto {#1}}
 \newcommand*{\elimList}[2]{\{{#1},{#2}\}}
 \newcommand*{\elimProd}[1]{\kw{prod}\;#1}
-\newcommand*{\elimVar}[2]{\{{#1} \mapsto {#2}\}}
+\newcommand*{\elimVar}[2]{{#1} \mapsto {#2}} % no squigglies as not a 'set' of branches..
 
 \newcommand*{\singleton}[2]{#1[#2]}
 
@@ -146,12 +145,6 @@
 \newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\matchTrueNew}{\exTrue}
 \newcommand*{\matchVarNew}[1]{#1}
-
-%\newcommand*{\matchCons}[3]{\elimList{\branchNil{#1}}{\exCons{#2}{#3}}}
-%\newcommand*{\matchFalse}[1]{\elimBool{#1}{\matchHole}}
-%\newcommand*{\matchNil}[1]{\elimList{\branchNil{\matchHole}}{\branchCons{#1}}}
-%\newcommand*{\matchTrue}[1]{\elimBool{\matchHole}{#1}}
-%\newcommand*{\matchVar}[1]{\elimVar{#1}{\matchHole}}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
 

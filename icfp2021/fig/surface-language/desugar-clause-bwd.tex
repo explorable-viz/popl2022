@@ -102,7 +102,7 @@
    \strut
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattSNil
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattListEnd
    \dbwdarrow
    \kappa
 }
@@ -118,7 +118,7 @@
    \sigma', o \dbwdarrow \kappa'
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattSCons{p}{o}
+   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattListNext{p}{o}
    \dbwdarrow
    \kappa'
 }

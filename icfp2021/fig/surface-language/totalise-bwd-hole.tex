@@ -8,6 +8,22 @@
    \pattTrue
    &\totaliseBwdHole
    \elimBool{\hole}{\annNil{\FF}}
+   \\
+   \pattFalse
+   &\totaliseBwdHole
+   \elimBool{\annNil{\FF}}{\hole}
+   \\
+   \pattPair{p}{p'}
+   &\totaliseBwdHole
+   \elimProd{\hole}
+   \\
+   \pattNil
+   &\totaliseBwdHole
+   \elimList{\branchNil{\hole}}{\branchCons{\elimVar{x}{\elimVar{y}{\annNil{\FF}}}}}
+   \\
+   \pattCons{p}{p'}
+   &\totaliseBwdHole
+   \elimList{\branchNil{\annNil{\FF}}}{\branchCons{\hole}}
 \end{salign}
 \caption{Totalise -- backward slicing (hole expansion rules)}
 \end{figure}

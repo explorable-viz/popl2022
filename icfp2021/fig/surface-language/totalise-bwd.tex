@@ -134,7 +134,7 @@
 }
 {
    \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {\pattSNil \concat \vec{\pi}}
+              {\pattListEnd \concat \vec{\pi}}
               {\elimNil{\kappa'}}
               {\alpha \join \beta}
 }
@@ -149,7 +149,7 @@
 }
 {
    \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattSCons{p}{o}) \concat \vec{\pi}}
+              {(\pattListNext{p}{o}) \concat \vec{\pi}}
               {\elimCons{\sigma'}}
               {\alpha \join \beta}
 }
