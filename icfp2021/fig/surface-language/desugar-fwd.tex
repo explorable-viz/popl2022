@@ -142,7 +142,7 @@
 {
    \exListEnum{s}{s'}
    \dfwdarrow
-   \exApp{\exApp{\kw{enumFromTo}}{e}}{e'}
+   \exApp{\exApp{\funEnumFromTo}{e}}{e'}
 }
 %
 \and
@@ -162,7 +162,7 @@
    right={$q \neq \exTrue$}
 ]
 {
-  \annListComp{s}{q \concat \qualGuard{\annot{\exTrue}{\alpha}}}{\alpha} \dfwdarrow e
+   \annListComp{s}{q \concat \qualGuard{\annot{\exTrue}{\alpha}}}{\alpha} \dfwdarrow e
 }
 {
   \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
@@ -213,7 +213,7 @@
 {
    \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
    \dfwdarrow
-   \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma'})}}{e}
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
 }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}
