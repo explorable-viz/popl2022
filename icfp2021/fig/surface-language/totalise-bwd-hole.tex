@@ -19,23 +19,23 @@
    \\
    \pattNil
    &\totaliseBwdHole
-   \elimList{\branchNil{\hole}}{\branchCons{\elimVar{x}{\elimVar{y}{\annNil{\FF}}}}}
+   \elimListNew{\hole}{\elimVar{x}{\elimVar{y}{\annNil{\FF}}}}
    \\
    \pattCons{p}{p'}
    &\totaliseBwdHole
-   \elimList{\branchNil{\annNil{\FF}}}{\branchCons{\hole}}
+   \elimListNew{\annNil{\FF}}{\hole}
    \\
    \pattList{p}{o}
    &\totaliseBwdHole
-   \elimList{\branchNil{\annNil{\FF}}}{\branchCons{\hole}}
+   \elimListNew{\annNil{\FF}}{\hole}
    \\
    \pattListNext{p}{o}
    &\totaliseBwdHole
-   \elimList{\branchNil{\annNil{\FF}}}{\branchCons{\hole}}
+   \elimListNew{\annNil{\FF}}{\hole}
    \\
    \pattListEnd
    &\totaliseBwdHole
-   \elimList{\branchNil{\hole}}{\branchCons{\elimVar{x}{\elimVar{y}{\annNil{\FF}}}}}
+   \elimListNew{\hole}{\elimVar{x}{\elimVar{y}{\annNil{\FF}}}}
 \end{salign}
 \caption{Totalise -- backward slicing (hole expansion rules)}
 \end{figure}

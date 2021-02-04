@@ -88,10 +88,10 @@
    \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {\pattNil \concat \vec{\pi}}
-              {\elimNil{\kappa'}}
-              {\alpha \join \beta}
+   \totalisebwd{\elimListNew{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
+               {\pattNil \concat \vec{\pi}}
+               {\elimNil{\kappa'}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -103,10 +103,10 @@
    \totalisebwd{\sigma}{p \concat p' \concat \vec{\pi}}{\sigma'}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattCons{p}{p'}) \concat \vec{\pi}}
-              {\elimCons{\sigma'}}
-              {\alpha \join \beta}
+   \totalisebwd{\elimListNew{\annot{\exNil}{\alpha}}{\sigma}}
+               {(\pattCons{p}{p'}) \concat \vec{\pi}}
+               {\elimCons{\sigma'}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -118,10 +118,10 @@
    \totalisebwd{\sigma}{p \concat o \concat \vec{\pi}}{\sigma'}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattList{p}{o}) \concat \vec{\pi}}
-              {\elimCons{\sigma'}}
-              {\alpha \join \beta}
+   \totalisebwd{\elimListNew{\annot{\exNil}{\alpha}}{\sigma}}
+               {(\pattList{p}{o}) \concat \vec{\pi}}
+               {\elimCons{\sigma'}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -133,10 +133,10 @@
    \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {\pattListEnd \concat \vec{\pi}}
-              {\elimNil{\kappa'}}
-              {\alpha \join \beta}
+   \totalisebwd{\elimListNew{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
+               {\pattListEnd \concat \vec{\pi}}
+               {\elimNil{\kappa'}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -148,7 +148,7 @@
    \totalisebwd{\sigma}{p \concat o \concat \vec{\pi}}{\sigma'}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
+   \totalisebwd{\elimListNew{\annot{\exNil}{\alpha}}{\sigma}}
               {(\pattListNext{p}{o}) \concat \vec{\pi}}
               {\elimCons{\sigma'}}
               {\alpha \join \beta}

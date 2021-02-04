@@ -72,7 +72,7 @@
    \strut
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \exNil
+   \elimListNew{\kappa}{\sigma}, \exNil
    \dbwdarrow
    \kappa
 }
@@ -88,7 +88,7 @@
    \sigma', p' \dbwdarrow \kappa'
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattCons{p}{p'}
+   \elimListNew{\kappa}{\sigma}, \pattCons{p}{p'}
    \dbwdarrow
    \kappa'
 }
@@ -104,7 +104,7 @@
    \sigma', o \dbwdarrow \kappa'
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattList{p}{o}
+   \elimListNew{\kappa}{\sigma}, \pattList{p}{o}
    \dbwdarrow
    \kappa'
 }
@@ -136,7 +136,7 @@
    \strut
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattListEnd
+   \elimListNew{\kappa}{\sigma}, \pattListEnd
    \dbwdarrow
    \kappa
 }
@@ -152,7 +152,7 @@
    \sigma', o \dbwdarrow \kappa'
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattListNext{p}{o}
+   \elimListNew{\kappa}{\sigma}, \pattListNext{p}{o}
    \dbwdarrow
    \kappa'
 }
@@ -202,7 +202,7 @@
    \\
    \pattNil
    &\dbwdhole
-   \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+   \elimListNew{\hole}{\hole}
 \end{salign}
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
@@ -210,11 +210,11 @@
 \begin{salign}
    \pattListEnd
    &\dbwdhole
-   \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+   \elimListNew{\hole}{\hole}
    \\
    \pattListNext{p}{o}
    &\dbwdhole
-   \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+   \elimListNew{\hole}{\hole}
 \end{salign}
 \end{minipage}
 \caption{Desugaring clauses and patterns -- backward slicing}

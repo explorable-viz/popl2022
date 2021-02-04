@@ -9,8 +9,8 @@
    \\
    (\elimProd{\sigma}) \join (\elimProd{\sigma'}) &= \elimProd{(\sigma \join \sigma')}
    \\
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}} \join \elimList{\branchNil{\kappa'}}{\branchCons{\sigma'}} &=
-   \elimList{\branchNil{\kappa \join \kappa'}}{\branchCons{\sigma \join \sigma'}}
+   \elimListNew{\kappa}{\sigma} \join \elimListNew{\kappa'}{\sigma'} &=
+   \elimListNew{\kappa \join \kappa'}{\sigma \join \sigma'}
 \end{salign}
 \caption{Join of eliminator slices}
 \end{figure}
