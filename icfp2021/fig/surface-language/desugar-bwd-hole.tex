@@ -130,15 +130,16 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-guard-$\hole$-2}},
 ]
 {
-   e_2, s_2 \dbwdarrow s_2'
-   \\
-   e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{1}'}{\vec{q}'}}{\beta}
+   \exApp{\exLambda{\elimBool{e_{2}}{\annNil{\FF}}}}{e_{1}},
+   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
+   \dbwdarrow
+   s
 }
 {
-   \annot{(\exApp{\annot{\smash{\exLambda{\elimBool{e_{2}}{\hole}}}}{\alpha_1}}{e_{1}})}{\alpha_2}
-   , \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
+   \exApp{\exLambda{\elimBool{e_{2}}{\hole}}}{e_{1}},
+   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{s_{2}'})}{{\join}\alpha} \cdot \vec{q}'}}{({\join}\alpha) \join \beta}
+   s
 }
 %
 \and
@@ -147,15 +148,16 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-decl-$\hole$}},
 ]
 {
-   e, s_{1} \dbwdarrow s_{1}'
-}
-{
-   \annot{(\exApp{\hole}{e})}{\alpha}
-   ,
+   \exApp{(\exLambda{\hole})}{e},
    \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{\hole}{\annot{(\qualDeclaration{p}{s_{1}'})}{\alpha} \concat \hole_{\vec{q}}}}
-         {\alpha \join \beta}
+   s
+}
+{
+   \exApp{\hole}{e},
+   \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
+   \dbwdarrow
+   s
 }
 %
 \and
@@ -232,5 +234,5 @@
    s
 }
 \end{smathpar}
-\caption{Desugaring -- backward slicing (hole rules)}
+\caption{Desugaring -- backward slicing (hole expansion rules)}
 \end{figure}
