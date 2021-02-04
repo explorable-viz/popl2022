@@ -130,6 +130,22 @@
 \flushleft\shadebox{$\sigma, o \dbwdarrow \kappa$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\dbwdarrow$-$\hole$}}
+]
+{
+   o \dbwdhole \sigma
+   \\
+   \sigma, o \dbwdarrow \kappa
+}
+{
+   \hole, o
+   \dbwdarrow
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\dbwdarrow$-list-end}}
 ]
 {
@@ -157,6 +173,52 @@
    \kappa'
 }
 \end{smathpar}
+
+\vspace{5pt}
+\begin{minipage}[t]{0.5\textwidth}
+\flushleft \shadebox{$p \dbwdhole \sigma$}
+\begin{salign}
+   \pattVar{x}
+   &\dbwdhole
+   \elimVar{x}{\hole}
+   \\
+   \pattTrue
+   &\dbwdhole
+   \elimBool{\hole}{\hole}
+   \\
+   \pattFalse
+   &\dbwdhole
+   \elimBool{\hole}{\hole}
+   \\
+   \pattPair{p}{p'}
+   &\dbwdhole
+   \elimList{\hole}{\hole}
+   \\
+   \pattNil
+   &\dbwdhole
+   \elimList{\hole}{\hole}
+   \\
+   \pattCons{p}{p'}
+   &\dbwdhole
+   \elimList{\hole}{\hole}
+   \\
+   \pattList{p}{o}
+   &\dbwdhole
+   \elimList{\hole}{\hole}
+\end{salign}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\flushleft \shadebox{$o \dbwdhole \sigma$}
+\begin{salign}
+   \pattListEnd
+   &\dbwdhole
+   \elimList{\hole}{\hole}
+   \\
+   \pattListNext{p}{o}
+   &\dbwdhole
+   \elimList{\hole}{\hole}
+\end{salign}
+\end{minipage}
 
 \vspace{5pt}
 \flushleft\shadebox{$\sigma, \vec{c} \dbwdarrow \vec{c}$}
@@ -191,31 +253,5 @@
    c' \cdot \vec{c}'
 }
 \end{smathpar}
-
-\vspace{5pt}
-\begin{minipage}{0.5\textwidth}
-\flushleft \shadebox{$p \dbwdhole \sigma$}
-\begin{salign}
-   \pattVar{x}
-   &\dbwdhole
-   \elimVar{x}{\hole}
-   \\
-   \pattNil
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-\end{salign}
-\end{minipage}%
-\begin{minipage}{0.5\textwidth}
-\flushleft \shadebox{$o \dbwdhole \sigma$}
-\begin{salign}
-   \pattListEnd
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-   \\
-   \pattListNext{p}{o}
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-\end{salign}
-\end{minipage}
-\caption{Desugaring clauses and patterns -- backward slicing}
+\caption{Desugaring clauses and patterns -- backward slicing, with hole expansion rules}
 \end{figure}
