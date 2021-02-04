@@ -32,8 +32,25 @@
 }
 \end{smathpar}
 
+\vspace{5pt}
 \flushleft\shadebox{$\sigma, p \dbwdarrow \kappa$}
 \begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-$\hole$}}
+]
+{
+   p \dbwdhole \sigma
+   \\
+   \sigma, p \dbwdarrow \kappa
+}
+{
+   \hole, p
+   \dbwdarrow
+   \kappa
+}
+%
+\and
+%
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-var}}
 ]
@@ -109,6 +126,7 @@
 }
 \end{smathpar}
 
+\vspace{5pt}
 \flushleft\shadebox{$\sigma, o \dbwdarrow \kappa$}
 \begin{smathpar}
 \inferrule*[
@@ -140,6 +158,7 @@
 }
 \end{smathpar}
 
+\vspace{5pt}
 \flushleft\shadebox{$\sigma, \vec{c} \dbwdarrow \vec{c}$}
 \begin{smathpar}
 \inferrule*[
@@ -172,5 +191,31 @@
    c' \cdot \vec{c}'
 }
 \end{smathpar}
+
+\vspace{5pt}
+\begin{minipage}{0.5\textwidth}
+\flushleft \shadebox{$p \dbwdhole \sigma$}
+\begin{salign}
+   \pattVar{x}
+   &\dbwdhole
+   \elimVar{x}{\hole}
+   \\
+   \pattNil
+   &\dbwdhole
+   \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+\end{salign}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\flushleft \shadebox{$o \dbwdhole \sigma$}
+\begin{salign}
+   \pattListEnd
+   &\dbwdhole
+   \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+   \\
+   \pattListNext{p}{o}
+   &\dbwdhole
+   \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+\end{salign}
+\end{minipage}
 \caption{Desugaring clauses and patterns -- backward slicing}
 \end{figure}
