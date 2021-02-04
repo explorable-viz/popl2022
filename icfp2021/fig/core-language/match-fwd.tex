@@ -3,7 +3,9 @@
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchFwd$-$\hole$-val}}]
    {
-      \asVal{w}, w, \sigma
+      w \matchFwdHole v
+      \\
+      v, w, \sigma
       \matchFwd
       \rho, \kappa, \alpha
    }
@@ -108,19 +110,19 @@
 \end{smathpar}
 \vspace{5pt}
 \begin{minipage}{0.5\textwidth}
-\flushleft \shadebox{$\asVal{w} = v$}
+\flushleft \shadebox{$w \matchFwdHole v$}
 \begin{salign}
-   \asVal{\matchVarNew{x}} &= \hole
+   \matchVarNew{x} &\matchFwdHole \hole
    \\
-   \asVal{\matchFalseNew} &= \annFalse{\FF}
+   \matchFalseNew &\matchFwdHole \annFalse{\FF}
    \\
-   \asVal{\matchTrueNew} &= \annTrue{\FF}
+   \matchTrueNew &\matchFwdHole \annTrue{\FF}
    \\
-   \asVal{\matchPair{w}{w'}} &= \annPair{\hole}{\asVal{\hole}}{\FF}
+   \matchPair{w}{w'} &\matchFwdHole \annPair{\hole}{\hole}{\FF}
    \\
-   \asVal{\matchNilNew} &= \annNil{\FF}
+   \matchNilNew &\matchFwdHole \annNil{\FF}
    \\
-   \asVal{\matchConsNew{w}{w'}} &= \annCons{\hole}{\hole}{\FF}
+   \matchConsNew{w}{w'} &\matchFwdHole \annCons{\hole}{\hole}{\FF}
 \end{salign}
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
