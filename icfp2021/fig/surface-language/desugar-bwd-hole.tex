@@ -115,13 +115,16 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-guard-$\hole$-1}},
 ]
 {
-   e, \exListComp{s_1}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{1}'}{\vec{q}'}}{\beta}
-}
-{
-   \exApp{\hole}{e}, 
+   \exApp{\exLambda{\elimBool{\hole}{\annNil{\FF}}}}{e_{1}},
    \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{1}'}{\annot{(\qualGuard{\hole})}{\alpha} \cdot \vec{q}'}}{\alpha \join \beta}
+   s
+}
+{
+   \exApp{\hole}{e},
+   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
+   \dbwdarrow
+   s
 }
 %
 \and
