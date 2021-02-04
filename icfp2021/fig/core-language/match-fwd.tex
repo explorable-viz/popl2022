@@ -19,7 +19,9 @@
    %
    \inferrule*[lab={\ruleName{$\matchFwd$-$\hole$-elim}}]
    {
-      v, w, \asElim{w}
+      w \matchFwdHole \sigma
+      \\
+      v, w, \sigma
       \matchFwd
       \rho, \kappa, \alpha
    }
@@ -126,19 +128,19 @@
 \end{salign}
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
-\flushleft \shadebox{$\asElim{w} = \sigma$}
+\flushleft \shadebox{$w \matchFwdHole \sigma$}
 \begin{salign}
-   \asElim{\matchVarNew{x}} &= \elimVar{x}{\hole}
+   \matchVarNew{x} &\matchFwdHole \elimVar{x}{\hole}
    \\
-   \asElim{\matchFalseNew} &= \elimBool{\hole}{\hole}
+   \matchFalseNew &\matchFwdHole \elimBool{\hole}{\hole}
    \\
-   \asElim{\matchTrueNew} &= \elimBool{\hole}{\hole}
+   \matchTrueNew &\matchFwdHole \elimBool{\hole}{\hole}
    \\
-   \asElim{\matchPair{w}{w'}} &= \elimProd{\hole}
+   \matchPair{w}{w'} &\matchFwdHole \elimProd{\hole}
    \\
-   \asElim{\matchNilNew} &= \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+   \matchNilNew &\matchFwdHole \elimList{\branchNil{\hole}}{\branchCons{\hole}}
    \\
-   \asElim{\matchConsNew{w}{w'}} &= \elimList{\branchNil{\hole}}{\branchCons{\hole}}
+   \matchConsNew{w}{w'} &\matchFwdHole \elimList{\branchNil{\hole}}{\branchCons{\hole}}
 \end{salign}
 \end{minipage}
 \caption{Pattern-matching: forward slicing, with hole expansion rules for values and eliminators}
