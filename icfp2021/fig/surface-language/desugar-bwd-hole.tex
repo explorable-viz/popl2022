@@ -22,11 +22,11 @@
    e, s_{1} \dbwdarrow s_{1}'
 }
 {
-   \annot{(\exApp{\hole}{e})}{\alpha}
+   \exApp{\hole}{e}
    ,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \annot{(\exIfThenElse{s_{1}'}{\hole}{\hole})}{\alpha}
+   \exIfThenElse{s_{1}'}{\hole}{\hole}
 }
 %
 \and
@@ -227,9 +227,8 @@
    e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
 }
 {
-   \annot{(\exApp{\annot{(\exApp{\hole}{\annot{(\exLambda{\sigma})}{\alpha_1}})}{\alpha_2}}
-                 {e_1})}
-         {\alpha_3}
+   \exApp{\annot{(\exApp{\hole}{(\exLambda{\sigma}})}{\alpha_2}}
+                 {e_1}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
