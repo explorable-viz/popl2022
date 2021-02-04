@@ -19,14 +19,16 @@
    lab={\ruleName{$\dbwdarrow$-if-$\hole$}}
 ]
 {
-   e, s_{1} \dbwdarrow s_{1}'
-}
-{
-   \exApp{\hole}{e}
-   ,
+   \exApp{\elimBool{\hole}{\hole}}{e},
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
-   \exIfThenElse{s_{1}'}{\hole}{\hole}
+   s
+}
+{
+   \exApp{\hole}{e},
+   \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   \dbwdarrow
+   s
 }
 %
 \and
