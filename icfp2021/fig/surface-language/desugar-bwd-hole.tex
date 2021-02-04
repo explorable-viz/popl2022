@@ -19,7 +19,7 @@
    lab={\ruleName{$\dbwdarrow$-if-$\hole$}}
 ]
 {
-   \exApp{\elimBool{\hole}{\hole}}{e},
+   \exApp{\exLambda{\elimBool{\hole}{\hole}}}{e},
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
    s
@@ -125,7 +125,7 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-guard-$\hole$-1}},
 ]
 {
-   \exApp{\exLambda{\elimBool{\hole}{\annNil{\FF}}}}{e_{1}},
+   \exApp{\exLambda{\elimBool{\hole}{\annNil{\FF}}}}{e},
    \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
    \dbwdarrow
    s
