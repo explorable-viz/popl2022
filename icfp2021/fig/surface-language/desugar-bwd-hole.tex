@@ -218,22 +218,17 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-4}},
 ]
 {
-   e_{1}, s_{1} \dbwdarrow s_{1}'
-   \\
-   \totalisebwd{\sigma}{p}{\sigma'}{\beta}
-   \\
-   \sigma', p \dbwdarrow e_{2}
-   \\
-   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+   \exApp{\exApp{\exVar{\kw{concatMap}}}{(\exLambda{\sigma})}}{e_1}, s_{1},
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+   \dbwdarrow
+   s
 }
 {
-   \exApp{\annot{(\exApp{\hole}{(\exLambda{\sigma}})}{\alpha_2}}
-                 {e_1}
+   \exApp{\exApp{\hole}{(\exLambda{\sigma})}}{e_1}
    ,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
-   \annot{\exListComp{s_{2}'}{\annot{(\qualGenerator{p}{s_{1}'})}{({\join}\alpha) \join \beta} \concat \vec{q}'}}
-         {({\join}\alpha) \join \beta'}
+   s
 }
 \end{smathpar}
 \caption{Desugaring -- backward slicing (hole rules)}
