@@ -20,6 +20,36 @@
    \exListEnum{s_{1}}{s_{2}}
    &\dbwdhole
    \exApp{\exApp{\funEnumFromTo}{\hole}}{e}
+   \\
+   \exApp{\exApp{\hole}{e_1}}{e_2},
+   \exListEnum{s_{1}}{s_{2}}
+   &\dbwdhole
+   \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+   \\
+   \annCons{e}{\hole}{\alpha},
+   \exListComp{s_1}{\qualGuard{\exTrue}}
+   &\dbwdhole
+   \annCons{e}{\annNil{\FF}}{\alpha}
+   \\
+   \exApp{\hole}{e},
+   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
+   &\dbwdhole
+   \exApp{\exLambda{\elimBool{\hole}{\annNil{\FF}}}}{e}
+   \\
+   \exApp{\exLambda{\elimBool{e_{2}}{\hole}}}{e_{1}},
+   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
+   &\dbwdhole
+   \exApp{\exLambda{\elimBool{e_{2}}{\annNil{\FF}}}}{e_{1}}
+   \\
+   \exApp{\hole}{e},
+   \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
+   &\dbwdhole
+   \exApp{(\exLambda{\hole})}{e}
+   \\
+   \exApp{\hole}{e},
+   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+   &\dbwdhole
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\hole})}}{e}
 \end{salign}
 \begin{smathpar}
 \inferrule*[
@@ -32,112 +62,6 @@
    \hole, s
    \dbwdarrow
    \hole
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-enum-$\hole$-2}},
-]
-{
-   \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2},
-   \exListEnum{s_{1}}{s_{2}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\exApp{\hole}{e_1}}{e_2},
-   \exListEnum{s_{1}}{s_{2}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done-$\hole$}}]
-{
-   \annCons{e}{\annNil{\FF}}{\alpha},
-   \exListComp{s_1}{\qualGuard{\exTrue}}
-   \dbwdarrow
-   s
-}
-{
-   \annCons{e}{\hole}{\alpha},
-   \exListComp{s_1}{\qualGuard{\exTrue}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-comp-guard-$\hole$-1}},
-]
-{
-   \exApp{\exLambda{\elimBool{\hole}{\annNil{\FF}}}}{e},
-   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\hole}{e},
-   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-comp-guard-$\hole$-2}},
-]
-{
-   \exApp{\exLambda{\elimBool{e_{2}}{\annNil{\FF}}}}{e_{1}},
-   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\exLambda{\elimBool{e_{2}}{\hole}}}{e_{1}},
-   \exListComp{s_1}{\qualGuard{s_2} \cdot \vec{q}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-comp-decl-$\hole$}},
-]
-{
-   \exApp{(\exLambda{\hole})}{e},
-   \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\hole}{e},
-   \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
-   \dbwdarrow
-   s
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-comp-gen-$\hole$-1}},
-]
-{
-   \exApp{\exApp{\funConcatMap}{(\exLambda{\hole})}}{e},
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-   \dbwdarrow
-   s
-}
-{
-   \exApp{\hole}{e},
-   \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-   \dbwdarrow
-   s
 }
 %
 \and
