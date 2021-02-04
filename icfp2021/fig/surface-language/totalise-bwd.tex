@@ -16,10 +16,10 @@
    lab={\ruleName{$\totalisebwdarrow$-var}}
 ]
 {
-   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\alpha}
+   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
 }
 {
-   \totalisebwd{\elimVar{x}{\kappa}}{x \concat \vec{p}}{\elimVar{x}{\kappa'}}{\alpha}
+   \totalisebwd{\elimVar{x}{\kappa}}{x \concat \vec{\pi}}{\elimVar{x}{\kappa'}}{\alpha}
 }
 %
 \and
@@ -28,11 +28,11 @@
    lab={\ruleName{$\totalisebwdarrow$-true}}
 ]
 {
-   \totalisebwd{\kappa_1}{\vec{p}}{\kappa_1'}{\beta}
+   \totalisebwd{\kappa_1}{\vec{\pi}}{\kappa_1'}{\beta}
 }
 {
    \totalisebwd{\elimBool{\kappa_1}{\annot{\exNil}{\alpha}}}
-              {\pattTrue \concat \vec{p}}
+              {\pattTrue \concat \vec{\pi}}
               {\elimBoolTrue{\kappa_1'}}
               {\alpha \join \beta}
 }
@@ -43,11 +43,11 @@
    lab={\ruleName{$\totalisebwdarrow$-false}}
 ]
 {
-   \totalisebwd{\kappa_2}{\vec{p}}{\kappa_2'}{\beta}
+   \totalisebwd{\kappa_2}{\vec{\pi}}{\kappa_2'}{\beta}
 }
 {
    \totalisebwd{\elimBool{\annot{\exNil}{\alpha}}{\kappa_2}}
-              {\pattFalse \concat \vec{p}}
+              {\pattFalse \concat \vec{\pi}}
               {\elimBoolFalse{\kappa_2'}}
               {\alpha \join \beta}
 }
@@ -58,10 +58,10 @@
    lab={\ruleName{$\totalisebwdarrow$-prod}}
 ]
 {
-   \totalisebwd{\sigma}{p \concat p' \concat \vec{p}}{\sigma'}{\beta}
+   \totalisebwd{\sigma}{p \concat p' \concat \vec{\pi}}{\sigma'}{\beta}
 }
 {
-   \totalisebwd{\elimProd{\sigma}}{\pattPair{p}{p'} \concat \vec{p}}{\elimProd{\sigma'}}{\beta}
+   \totalisebwd{\elimProd{\sigma}}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma'}}{\beta}
 }
 %
 \and
@@ -70,11 +70,11 @@
    lab={\ruleName{$\totalisebwdarrow$-nil}}
 ]
 {
-   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\beta}
+   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
    \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {\pattNil \concat \vec{p}}
+              {\pattNil \concat \vec{\pi}}
               {\elimNil{\kappa'}}
               {\alpha \join \beta}
 }
@@ -85,11 +85,11 @@
    lab={\ruleName{$\totalisebwdarrow$-cons}}
 ]
 {
-   \totalisebwd{\sigma}{p \concat p' \concat \vec{p}}{\sigma'}{\beta}
+   \totalisebwd{\sigma}{p \concat p' \concat \vec{\pi}}{\sigma'}{\beta}
 }
 {
    \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattCons{p}{p'}) \concat \vec{p}}
+              {(\pattCons{p}{p'}) \concat \vec{\pi}}
               {\elimCons{\sigma'}}
               {\alpha \join \beta}
 }
@@ -100,11 +100,11 @@
    lab={\ruleName{$\totalisebwdarrow$-non-empty-list}}
 ]
 {
-   \totalisebwd{\sigma}{p \concat o \concat \vec{p}}{\sigma'}{\beta}
+   \totalisebwd{\sigma}{p \concat o \concat \vec{\pi}}{\sigma'}{\beta}
 }
 {
    \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattList{p}{o}) \concat \vec{p}}
+              {(\pattList{p}{o}) \concat \vec{\pi}}
               {\elimCons{\sigma'}}
               {\alpha \join \beta}
 }
@@ -115,11 +115,11 @@
    lab={\ruleName{$\totalisebwdarrow$-list-rest-end}}
 ]
 {
-   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\beta}
+   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
    \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {\pattSNil \concat \vec{p}}
+              {\pattSNil \concat \vec{\pi}}
               {\elimNil{\kappa'}}
               {\alpha \join \beta}
 }
@@ -130,11 +130,11 @@
    lab={\ruleName{$\totalisebwdarrow$-list-rest-cons}}
 ]
 {
-   \totalisebwd{\sigma}{p \concat o \concat \vec{p}}{\sigma'}{\beta}
+   \totalisebwd{\sigma}{p \concat o \concat \vec{\pi}}{\sigma'}{\beta}
 }
 {
    \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattSCons{p}{o}) \concat \vec{p}}
+              {(\pattSCons{p}{o}) \concat \vec{\pi}}
               {\elimCons{\sigma'}}
               {\alpha \join \beta}
 }
