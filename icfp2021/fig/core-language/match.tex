@@ -51,7 +51,7 @@
    {
       \explVal
          {\matchNilNew}
-         {\exNil, \elimListNew{\kappa}{\sigma} \match \envEmpty, \kappa}
+         {\exNil, \elimList{\kappa}{\sigma} \match \envEmpty, \kappa}
    }
    %
    \and
@@ -65,7 +65,7 @@
    {
       \explVal
          {(\matchConsNew{w}{w'})}
-         {\exCons{v}{v'}, \elimListNew{\kappa}{\sigma}
+         {\exCons{v}{v'}, \elimList{\kappa}{\sigma}
          \match
          \rho_1 \concat \rho_2, \kappa'}
    }

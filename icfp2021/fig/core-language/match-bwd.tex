@@ -58,7 +58,7 @@
    {
       \envEmpty, \kappa, \alpha, \matchNilNew
       \matchBwd
-      \annNil{\alpha}, \elimListNew{\kappa}{\hole}
+      \annNil{\alpha}, \elimList{\kappa}{\hole}
    }
    %
    \and
@@ -72,7 +72,7 @@
    {
       \rho_1 \concat \rho_2, \kappa, \alpha, \matchConsNew{w}{w'}
       \matchBwd
-      \annCons{v}{v'}{\alpha}, \elimListNew{\hole}{\tau}
+      \annCons{v}{v'}{\alpha}, \elimList{\hole}{\tau}
    }
 \end{smathpar}
 \caption{Pattern-matching: backward slicing}

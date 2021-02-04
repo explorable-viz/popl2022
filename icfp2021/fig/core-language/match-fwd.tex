@@ -91,7 +91,7 @@
       \strut
    }
    {
-      \annNil{\alpha}, \matchNilNew, \elimListNew{\kappa}{\sigma}
+      \annNil{\alpha}, \matchNilNew, \elimList{\kappa}{\sigma}
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
@@ -105,7 +105,7 @@
       v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
-      \annCons{v}{v'}{\alpha}, \matchConsNew{w}{w'}, \elimListNew{\kappa}{\sigma}
+      \annCons{v}{v'}{\alpha}, \matchConsNew{w}{w'}, \elimList{\kappa}{\sigma}
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
@@ -138,9 +138,9 @@
    \\
    \matchPair{w}{w'} &\matchFwdHole \elimProd{\hole}
    \\
-   \matchNilNew &\matchFwdHole \elimListNew{\hole}{\hole}
+   \matchNilNew &\matchFwdHole \elimList{\hole}{\hole}
    \\
-   \matchConsNew{w}{w'} &\matchFwdHole \elimListNew{\hole}{\hole}
+   \matchConsNew{w}{w'} &\matchFwdHole \elimList{\hole}{\hole}
 \end{salign}
 \end{minipage}
 \caption{Pattern-matching: forward slicing, with hole expansion rules for values and eliminators}

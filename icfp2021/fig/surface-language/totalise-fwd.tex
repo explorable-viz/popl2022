@@ -67,7 +67,7 @@
 {
    \totalise{\elimNil{\kappa}}
             {\alpha}
-            {\elimListNew{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
+            {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
 }
 \and
 %
@@ -78,7 +78,7 @@
    \totalise{\sigma}{\alpha}{\sigma'}
 }
 {
-   \totalise{\elimCons{\sigma}}{\alpha}{\elimListNew{\annot{\exNil}{\alpha}}{\sigma'}}
+   \totalise{\elimCons{\sigma}}{\alpha}{\elimList{\annot{\exNil}{\alpha}}{\sigma'}}
 }
 \end{smathpar}
 \caption{Totalise -- forward slicing}
