@@ -99,14 +99,16 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done-$\hole$}}]
 {
-   e, s \dbwdarrow s'
+   \annCons{e}{\annNil{\FF}}{\alpha},
+   \exListComp{s_1}{\qualGuard{\exTrue}}
+   \dbwdarrow
+   s
 }
 {
-   \annot{(\exCons{e}{\hole})}{\alpha}
-   ,
-   \exListComp{s}{\qualGuard{\exTrue}}
+   \annCons{e}{\hole}{\alpha},
+   \exListComp{s_1}{\qualGuard{\exTrue}}
    \dbwdarrow
-   \annot{\exListComp{s'}{\annot{(\qualGuard{\annot{\exTrue}{\alpha}})}{\alpha}}}{\alpha}
+   s
 }
 %
 \and
