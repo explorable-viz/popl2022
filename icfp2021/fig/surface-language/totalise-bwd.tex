@@ -10,6 +10,21 @@
 {
    \totalisebwd{\kappa}{\seqEmpty}{\kappa}{\FF}
 }
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisebwdarrow$-$\hole$}}
+]
+{
+   \pi \totaliseBwdHole \sigma
+   \\
+   \totalisebwd{\sigma}{\pi \concat \vec{\pi}'}{\kappa}{\alpha}
+}
+{
+   \totalisebwd{\hole}{\pi \concat \vec{\pi}'}{\kappa}{\alpha}
+}
+%
 \and
 %
 \inferrule*[
