@@ -266,10 +266,12 @@
       right={$\alpha \leq \alpha'$}
    ]
    {
-      \forall (i,j) \leq (i',j'). v_{i,j} \leq u_{i,j}
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2'
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha} \leq \annMatrix{u_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha'}
+      \annMatrix{e_1}{x}{y}{e_2}{\alpha} \leq \annMatrix{e_1'}{x}{y}{e_2'}{\alpha'}
    }
    %
    \and
@@ -277,10 +279,12 @@
    \inferrule*[
    ]
    {
-      \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\FF} \leq \hole
+      \annMatrix{e_1}{x}{y}{e_2}{\FF} \leq \hole
    }
    %
    \and
