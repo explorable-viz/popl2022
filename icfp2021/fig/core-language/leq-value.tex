@@ -43,6 +43,151 @@
    {
       \exPrim{\phi} \leq \exPrim{\phi}
    }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exPrim{\phi} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annTrue{\alpha} \leq \annTrue{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annTrue{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\alpha} \leq \annFalse{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      v \leq u
+      \\
+      v' \leq u'
+   }
+   {
+      \annPair{v}{v'}{\alpha} \leq \annPair{u}{u'}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      v \leq \hole
+      \\
+      v' \leq \hole
+   }
+   {
+      \annPair{v}{v'}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha} \leq \annNil{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      v \leq u
+      \\
+      v' \leq u'
+   }
+   {
+      \annCons{v}{v'}{\alpha} \leq \annCons{u}{u'}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      v \leq \hole
+      \\
+      v' \leq \hole
+   }
+   {
+      \annCons{v}{v'}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
+   }
+   {
+      \annMatrixNew{v_{i,j}}{i}{j}{i'}{j'}{\FF} \leq \hole
+   }
 \end{smathpar}
 \caption{Partial order on values}
 \end{figure}
