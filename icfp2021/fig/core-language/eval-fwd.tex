@@ -3,7 +3,7 @@
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-var}},
-      right={\textnormal{$x: v \in \rho$}}
+      right={$x: v \in \rho$}
    ]
    {
       e \geq \exVar{x}
@@ -16,13 +16,13 @@
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-op}},
-      right={$\rho(\primOp) \geq \phi$}
+      right={$\primOp: v \in \rho$}
    ]
    {
       e \geq \exOp{\primOp}
    }
    {
-      \rho, e, \alpha, \trOp{\primOp} \fwdSlice \phi
+      \rho, e, \alpha, \trOp{\primOp} \fwdSlice v
    }
    %
    \and
@@ -140,9 +140,9 @@
    {
       e \geq \exApp{e_1}{e_2}
       \\
-      \rho, e_1, \alpha, T \fwdSlice \phi
+      \rho, e_1, \alpha, T \fwdSlice\geq \phi
       \\
-      \rho, e_2, \alpha, U \fwdSlice \annInt{n}{\beta}
+      \rho, e_2, \alpha, U \fwdSlice\geq \annInt{n}{\beta}
    }
    {
       \rho, e, \alpha, \trAppPrim{T}{\phi}{U}{\exInt{n}}
@@ -154,15 +154,17 @@
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-binary-apply}},
-      right={$\primOp: \phi \in \rho$}
+      right={$\rho(\primOp) \geq \phi$}
    ]
    {
-      \rho, e, \alpha, T \fwdSlice \annInt{n}{\beta}
+      e \geq \exBinaryApp{e_1}{\primOp}{e_2}
       \\
-      \rho, e', \alpha, U \fwdSlice \annInt{m}{\beta'}
+      \rho, e_1, \alpha, T \fwdSlice\geq \annInt{n}{\beta}
+      \\
+      \rho, e_2, \alpha, U \fwdSlice\geq \annInt{m}{\beta'}
    }
    {
-      \rho, \exBinaryApp{e}{\primOp}{e'}, \alpha, \trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}
+      \rho, e, \alpha, \trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}
       \fwdSlice
       \annot{\exInt{\phi(n)(m)}}{\beta \meet \beta'}
    }
@@ -171,12 +173,14 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
    {
-      \rho, e, \alpha, T \fwdSlice v
+      e \geq \exLet{x}{e_1}{e_2}
       \\
-      \envExtend{\rho}{x}{v}, e', \alpha, U \fwdSlice v'
+      \rho, e_1, \alpha, T \fwdSlice v
+      \\
+      \envExtend{\rho}{x}{v}, e_2, \alpha, U \fwdSlice v'
    }
    {
-      \rho, \exLet{x}{e}{e'}, \alpha, \trLet{x}{T}{U} \fwdSlice v'
+      \rho, e, \alpha, \trLet{x}{T}{U} \fwdSlice v'
    }
    %
    \and
@@ -186,10 +190,12 @@
       right={$\vdash \rho: \Gamma$}
    ]
    {
-      \envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho}{f}{\sigma}}, e, \alpha, T \fwdSlice v
+      e \geq \exLetRec{f}{\sigma}{e'}
+      \\
+      \envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho}{f}{\sigma}}, e', \alpha, T \fwdSlice v
    }
    {
-      \rho, \exLetRec{f}{\sigma}{e}, \alpha, \trLetRec{f}{\sigma}{T} \fwdSlice v
+      \rho, e, \alpha, \trLetRec{f}{\sigma}{T} \fwdSlice v
    }
 \end{smathpar}
 \caption{Forward slicing; Boolean and pair cases omitted}
