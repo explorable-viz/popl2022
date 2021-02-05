@@ -2,20 +2,6 @@
 \flushleft \shadebox{$s \dfwdarrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-apply}}
-]
-{
-   s \dfwdarrow e
-   \\
-   s' \dfwdarrow e'
-}
-{
-   \exApp{s}{s'} \dfwdarrow \exApp{e}{e'}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\dfwdarrow$-nil}}
 ]
 {
@@ -65,6 +51,20 @@
 }
 {
    \exLetRecEquational{f}{\vec{c}}{s} \dfwdarrow \exLetRec{f}{\sigma}{e}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dfwdarrow$-apply}}
+]
+{
+   s \dfwdarrow e
+   \\
+   s' \dfwdarrow e'
+}
+{
+   \exApp{s}{s'} \dfwdarrow \exApp{e}{e'}
 }
 %
 \and

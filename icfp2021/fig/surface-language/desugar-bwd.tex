@@ -2,24 +2,6 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-apply}}
-]
-{
-   e \geq \exApp{e_1}{e_2}
-   \\
-   e_1, s_1 \dbwdarrow s_1'
-   \\
-   e_2, s_2 \dbwdarrow s_2'
-}
-{
-   e, \exApp{s_1}{s_2}
-   \dbwdarrow
-   \exApp{s_1'}{s_2'}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\dbwdarrow$-nil}}
 ]
 {
@@ -79,6 +61,24 @@
    e, \exLetRecEquational{f}{\vec{c}}{s}
    \dbwdarrow
    \exLetRecEquational{f}{\vec{c}'}{s'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\dbwdarrow$-apply}}
+]
+{
+   e \geq \exApp{e_1}{e_2}
+   \\
+   e_1, s_1 \dbwdarrow s_1'
+   \\
+   e_2, s_2 \dbwdarrow s_2'
+}
+{
+   e, \exApp{s_1}{s_2}
+   \dbwdarrow
+   \exApp{s_1'}{s_2'}
 }
 %
 \and
