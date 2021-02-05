@@ -20,11 +20,11 @@
    &=
    \annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}
    \\
-   \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\alpha}
+   \annMatrixNew{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha}
    \join
-   \annMatrix{\exPair{i'}{j'}}{i}{j}{v'_{i,j}}{\alpha'}
+   \annMatrixNew{v'_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha'}
    &=
-   \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j} \join v'_{i,j}}{\alpha \join \alpha'}
+   \annMatrixNew{v_{i,j} \join v'_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha \join \alpha'}
    \\
    \exPrim{\phi} \join \exPrim{\phi} &= \exPrim{\phi}
    \\

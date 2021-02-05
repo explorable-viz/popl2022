@@ -73,7 +73,7 @@
    %
    \inferrule*[
       lab={\ruleName{$\bwdSlice$-matrix}},
-      right={$v' \geq \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\beta}$}
+      right={$v' \geq \annMatrixNew{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}$}
    ]
    {
       \forall (i,j) \leq (i',j').
@@ -88,7 +88,7 @@
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
-      \annMatrix{e'}{x}{y}{{\Bigjoin{e}}}{\beta},
+      \annMatrixNew{\Bigjoin{e}}{x}{y}{e'}{\beta},
       \beta \join \alpha \join \Bigjoin{\alpha'}
    }
    %
@@ -98,7 +98,7 @@
       lab={\ruleName{$\bwdSlice$-matrix-lookup}}
    ]
    {
-      \annMatrix{\exPair{i'}{j'}}{i}{j}{\hole}{\FF} \reloverrideleft \{\exPair{i}{j} \mapsto v\}, T
+      \annMatrixNew{\hole}{i}{j}{\exPair{i'}{j'}}{\FF} \reloverrideleft \{\exPair{i}{j} \mapsto v\}, T
       \bwdSlice
       \rho, e, \alpha
       \\
@@ -117,7 +117,7 @@
       right={$v \geq \annPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}{\alpha}$}
    ]
    {
-      \annMatrix{\exPair{i'}{j'}}{i}{j}{\hole}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
+      \annMatrixNew{\hole}{i}{j}{\exPair{i'}{j'}}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
    }
    {
       v, \trMatrixDims{T}{i',j'}
