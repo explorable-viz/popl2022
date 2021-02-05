@@ -181,6 +181,18 @@
    \and
    %
    \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \forall (i,j) \leq (i',j'). v_{i,j} \leq u_{i,j}
+   }
+   {
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha} \leq \annMatrix{u_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
    ]
    {
       \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
