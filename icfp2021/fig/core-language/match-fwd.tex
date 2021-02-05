@@ -22,10 +22,10 @@
       right={$v \neq \hole$}
    ]
    {
-      \strut
+      \sigma \geq \elimVar{x}{\kappa}
    }
    {
-      v, \matchVarNew{x}, \elimVar{x}{\kappa}
+      v, \matchVarNew{x}, \sigma
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, \kappa, \TT
    }
@@ -33,14 +33,15 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-true}},
-      right={$v \geq \annTrue{\alpha}$}
+      lab={\ruleName{$\matchFwd$-true}}
    ]
    {
-      \strut
+      v \geq \annTrue{\alpha}
+      \\
+      \sigma \geq \elimBool{\kappa}{\kappa'}
    }
    {
-      v, \matchTrueNew, \elimBool{\kappa}{\kappa'}
+      v, \matchTrueNew, \sigma
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
@@ -48,14 +49,15 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-false}},
-      right={$v \geq \annFalse{\alpha}$}
+      lab={\ruleName{$\matchFwd$-false}}
    ]
    {
-      \strut
+      v \geq \annFalse{\alpha}
+      \\
+      \elimBool{\kappa}{\kappa'}
    }
    {
-      v, \matchFalseNew, \elimBool{\kappa}{\kappa'}
+      v, \matchFalseNew, \sigma
       \matchFwd
       \envEmpty, \kappa', \alpha
    }
@@ -63,16 +65,19 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-pair}},
-      right={$u \geq \annPair{v}{v'}{\alpha}$}
+      lab={\ruleName{$\matchFwd$-pair}}
    ]
    {
-      v, w, \sigma \matchFwd \rho_1, \tau, \beta
+      u \geq \annPair{v}{v'}{\alpha}
+      \\
+      \sigma \geq \elimProd{\sigma'}
+      \\
+      v, w, \sigma' \matchFwd \rho_1, \tau, \beta
       \\
       v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
-      u, \matchPair{w}{w'}, \elimProd{\sigma}
+      u, \matchPair{w}{w'}, \sigma'
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
@@ -80,14 +85,15 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-nil}},
-      right={$v \geq \annNil{\alpha}$}
+      lab={\ruleName{$\matchFwd$-nil}}
    ]
    {
-      \strut
+      v \geq \annNil{\alpha}
+      \\
+      \sigma \geq \elimList{\kappa}{\sigma'}
    }
    {
-      v, \matchNilNew, \elimList{\kappa}{\sigma}
+      v, \matchNilNew, \sigma
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
@@ -95,16 +101,19 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-cons}},
-      right={$u \geq \annCons{v}{v'}{\alpha}$}
+      lab={\ruleName{$\matchFwd$-cons}}
    ]
    {
-      v, w, \sigma \matchFwd \rho_1, \tau, \beta
+      u \geq \annCons{v}{v'}{\alpha}
+      \\
+      \sigma \geq \elimList{\kappa}{\sigma'}
+      \\
+      v, w, \sigma' \matchFwd \rho_1, \tau, \beta
       \\
       v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
-      u, \matchConsNew{w}{w'}, \elimList{\kappa}{\sigma}
+      u, \matchConsNew{w}{w'}, \sigma
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
@@ -126,5 +135,5 @@
    \matchConsNew{w}{w'} &\matchFwdHole \elimList{\hole}{\hole}
 \end{salign}
 \end{minipage}
-\caption{Pattern-matching: forward slicing, with hole expansion rules for values and eliminators}
+\caption{Pattern-matching: forward slicing}
 \end{figure}
