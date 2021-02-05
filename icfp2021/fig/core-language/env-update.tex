@@ -10,9 +10,9 @@
 \begin{salign}
    \envUpdate{\envEmpty}{k}{v} &= \envEmpty
    \\
-   \envUpdate{\envExtend{\rho}{k}{v}}{k}{v'} &= \envExtend{\rho}{k}{v'}
+   \envUpdate{\envExtend{\rho}{k}{v}}{k}{u} &= \envExtend{\rho}{k}{u}
    \\
-   \envUpdate{\envExtend{\rho}{k}{v}}{k'}{v'} &= \envExtend{\envUpdate{\rho}{k'}{v'}}{k}{v}
+   \envUpdate{\envExtend{\rho}{k}{v}}{k'}{u} &= \envExtend{\envUpdate{\rho}{k'}{u}}{k}{v}
    \quad (k \neq k')
 \end{salign}
 \caption{Hole environment; environment update}

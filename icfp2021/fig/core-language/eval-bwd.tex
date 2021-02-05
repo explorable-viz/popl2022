@@ -167,10 +167,11 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-binary-apply}},
-      right={$v \geq \annInt{n}{\beta}$}
+      lab={\ruleName{$\bwdSlice$-binary-apply}}
    ]
    {
+      v \geq \annInt{n}{\beta}
+      \\
       \annInt{n'}{\beta}, T \bwdSlice \rho, e, \alpha
       \\
       \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
@@ -198,10 +199,13 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let-rec}}
+      lab={\ruleName{$\bwdSlice$-let-rec}},
+      right={$\vdash \rho: \Gamma$}
    ]
    {
-      v, T \bwdSlice \envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho'}{f}{\sigma'}}, e, \alpha
+      v, T \bwdSlice \envExtend{\rho}{f}{u}, e, \alpha
+      \\
+      u \geq \exClosureRec{\Gamma}{\rho'}{f}{\sigma'}
    }
    {
       v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha

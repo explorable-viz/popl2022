@@ -2,31 +2,17 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-$\hole$}}
-]
-{
-   e, s \dbwdhole e'
-   \\
-   e', s \dbwdarrow s'
-}
-{
-   e, s
-   \dbwdarrow
-   s'
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\dbwdarrow$-apply}}
 ]
 {
+   e \geq \exApp{e_1}{e_2}
+   \\
    e_1, s_1 \dbwdarrow s_1'
    \\
    e_2, s_2 \dbwdarrow s_2'
 }
 {
-   \exApp{e_1}{e_2}, \exApp{s_1}{s_2}
+   e, \exApp{s_1}{s_2}
    \dbwdarrow
    \exApp{s_1'}{s_2'}
 }
@@ -37,10 +23,10 @@
    lab={\ruleName{$\dbwdarrow$-nil}}
 ]
 {
-   \strut
+   e \geq \annNil{\alpha}
 }
 {
-   \annNil{\alpha}, \exNil \dbwdarrow \annNil{\alpha}
+   e, \exNil \dbwdarrow \annNil{\alpha}
 }
 %
 \and
@@ -49,12 +35,14 @@
    lab={\ruleName{$\dbwdarrow$-non-empty-list}}
 ]
 {
+   e \geq \annCons{e_1}{e_2}{\alpha}
+   \\
    e_1, s \dbwdarrow s'
    \\
    e_2, l \dbwdarrow l'
 }
 {
-   \annCons{e_1}{e_2}{\alpha}, \exList{s}{l}
+   e, \exList{s}{l}
    \dbwdarrow
    \annList{s'}{l'}{\alpha}
 }
