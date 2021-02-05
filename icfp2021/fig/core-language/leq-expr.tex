@@ -32,21 +32,6 @@
       \exApp{(\exLambda{\hole})}{e}
       \\
       \hole,
-      \exListEnum{s_{1}}{s_{2}}
-      &\dbwdhole
-      \exApp{\exApp{\funEnumFromTo}{\hole}}{\hole}
-      \\
-      \exApp{\hole}{e},
-      \exListEnum{s_{1}}{s_{2}}
-      &\dbwdhole
-      \exApp{\exApp{\funEnumFromTo}{\hole}}{e}
-      \\
-      \exApp{\exApp{\hole}{e_1}}{e_2},
-      \exListEnum{s_{1}}{s_{2}}
-      &\dbwdhole
-      \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
-      \\
-      \hole,
       \exListComp{s_1}{\qualGuard{\exTrue}}
       &\dbwdhole
       \annCons{\hole}{\annNil{\FF}}{\alpha}
