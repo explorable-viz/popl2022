@@ -128,8 +128,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-apply}},
-      right={$\vdash \rho_1: \Gamma$}
+      lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
       v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho_2)}{f}{u}, e^\twoPrime, \beta
@@ -202,10 +201,10 @@
       lab={\ruleName{$\bwdSlice$-let-rec}}
    ]
    {
-      v, T \bwdSlice \envExtend{\rho}{f}{\annot{\exClosureRec{\Gamma}{\rho'}{f}{\sigma'}}{\alpha'}}, e, \alpha
+      v, T \bwdSlice \envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho'}{f}{\sigma'}}, e, \alpha
    }
    {
-      v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha \join \alpha'
+      v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha
    }
 \end{smathpar}
 \caption{Backward slicing; Boolean and pair cases omitted}
