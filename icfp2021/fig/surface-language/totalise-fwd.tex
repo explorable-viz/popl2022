@@ -18,10 +18,12 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-var}}
 ]
 {
+   \sigma \geq \elimVar{x}{\kappa}
+   \\
    \totalise{\kappa}{\alpha}{\kappa'}
 }
 {
-   \totalise{\elimVar{x}{\kappa}}{\alpha}{\elimVar{x}{\kappa'}}
+   \totalise{\sigma}{\alpha}{\elimVar{x}{\kappa'}}
 }
 \and
 %
@@ -29,10 +31,12 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-true}}
 ]
 {
+   \sigma \geq \elimBoolTrue{\kappa}
+   \\
    \totalise{\kappa}{\alpha}{\kappa'}
 }
 {
-   \totalise{\elimBoolTrue{\kappa}}{\alpha}{\elimBool{\kappa'}{\annot{\exNil}{\alpha}}}
+   \totalise{\sigma}{\alpha}{\elimBool{\kappa'}{\annot{\exNil}{\alpha}}}
 }
 \and
 %
@@ -40,10 +44,12 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-false}}
 ]
 {
+   \sigma \geq \elimBoolFalse{\kappa}
+   \\
    \totalise{\kappa}{\alpha}{\kappa'}
 }
 {
-   \totalise{\elimBoolFalse{\kappa}}{\alpha}{\elimBool{\annot{\exNil}{\alpha}}{\kappa'}}
+   \totalise{\sigma}{\alpha}{\elimBool{\annot{\exNil}{\alpha}}{\kappa'}}
 }
 \and
 %
@@ -51,10 +57,12 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-prod}}
 ]
 {
-   \totalise{\sigma}{\alpha}{\sigma'}
+   \sigma \geq \elimProd{\sigma'}
+   \\
+   \totalise{\sigma'}{\alpha}{\tau}
 }
 {
-   \totalise{\elimProd{\sigma}}{\alpha}{\elimProd{\sigma'}}
+   \totalise{\sigma}{\alpha}{\elimProd{\tau}}
 }
 \and
 %
@@ -62,10 +70,12 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-nil}}
 ]
 {
+   \sigma \geq \elimNil{\kappa}
+   \\
    \totalise{\kappa}{\alpha}{\kappa'}
 }
 {
-   \totalise{\elimNil{\kappa}}
+   \totalise{\sigma}
             {\alpha}
             {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
 }
@@ -75,10 +85,12 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-cons}}
 ]
 {
-   \totalise{\sigma}{\alpha}{\sigma'}
+   \sigma \geq \elimCons{\sigma'}
+   \\
+   \totalise{\sigma'}{\alpha}{\tau}
 }
 {
-   \totalise{\elimCons{\sigma}}{\alpha}{\elimList{\annot{\exNil}{\alpha}}{\sigma'}}
+   \totalise{\sigma}{\alpha}{\elimList{\annot{\exNil}{\alpha}}{\tau}}
 }
 \end{smathpar}
 \caption{Totalise -- forward slicing}
