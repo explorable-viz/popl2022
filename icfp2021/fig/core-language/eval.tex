@@ -47,12 +47,15 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-int}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-int}},
+      right={$\vdash \rho: \Gamma$}
+   ]
    {
       \strut
    }
    {
-      \explVal{\trInt{n}}{\rho, \exInt{n} \eval \exInt{n}}
+      \explVal{\trInt{n}{\Gamma}}{\rho, \exInt{n} \eval \exInt{n}}
    }
    %
    \and
@@ -69,12 +72,15 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-nil}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-nil}},
+      right={$\vdash \rho: \Gamma$}
+   ]
    {
       \strut
    }
    {
-      \explVal{\trNil}{\rho, \exNil \eval \exNil}
+      \explVal{\trNil{\Gamma}}{\rho, \exNil \eval \exNil}
    }
    %
    \and
