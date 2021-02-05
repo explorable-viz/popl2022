@@ -111,22 +111,6 @@
 \end{smathpar}
 \vspace{5pt}
 \begin{minipage}{0.5\textwidth}
-\flushleft \shadebox{$w \matchFwdHole v$}
-\begin{salign}
-   \matchVarNew{x} &\matchFwdHole \hole
-   \\
-   \matchFalseNew &\matchFwdHole \annFalse{\FF}
-   \\
-   \matchTrueNew &\matchFwdHole \annTrue{\FF}
-   \\
-   \matchPair{w}{w'} &\matchFwdHole \annPair{\hole}{\hole}{\FF}
-   \\
-   \matchNilNew &\matchFwdHole \annNil{\FF}
-   \\
-   \matchConsNew{w}{w'} &\matchFwdHole \annCons{\hole}{\hole}{\FF}
-\end{salign}
-\end{minipage}%
-\begin{minipage}{0.5\textwidth}
 \flushleft \shadebox{$w \matchFwdHole \sigma$}
 \begin{salign}
    \matchVarNew{x} &\matchFwdHole \elimVar{x}{\hole}
