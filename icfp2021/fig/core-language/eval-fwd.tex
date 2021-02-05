@@ -85,9 +85,9 @@
       \envExtend{\envExtend{\rho}{x}{i_{\gamma}}}{y}{j_{\gamma'}}, e, \alpha', U_{i,j} \fwdSlice v_{i,j}
    }
    {
-      \rho, \annMatrixNew{e}{x}{y}{e'}{\alpha}, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
+      \rho, \annMatrix{e}{x}{y}{e'}{\alpha}, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
       \fwdSlice
-      \annMatrixNew{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
    }
    %
    \and
@@ -97,7 +97,7 @@
       right={$(i,j) \leq (i',j')$}
    ]
    {
-      \rho, e, \alpha, T \fwdSlice \annMatrixNew{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}
+      \rho, e, \alpha, T \fwdSlice \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}
       \\
       \rho, e', \alpha, U \fwdSlice \annPair{\annInt{i}{\gamma}}{\annInt{j}{\gamma'}}{\beta'}
    }
