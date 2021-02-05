@@ -36,13 +36,13 @@ e
 \text{pair}
 \\
 &&&
-\elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+\elimList{\kappa}{\sigma}
 &
 \text{list}
 \\[2mm]
 \mbox{Selection state}
 &
-\alpha, \beta
+\alpha, \beta, \gamma
 &
 ::=
 &
@@ -55,12 +55,47 @@ e
 &
 \text{unselected}
 \\[2mm]
-\mbox{Raw term}
+\mbox{Term}
 &
-r
+e
 &
 ::=
 &
+\hole
+&
+\text{hole}
+\\
+&&&
+\annTrue{\alpha} \mid \annFalse{\alpha}
+&
+\text{Boolean}
+\\
+&&&
+\annInt{n}{\alpha}
+&
+\text{integer}
+\\
+&&&
+\annPair{e}{e'}{\alpha}
+&
+\text{pair}
+\\
+&&&
+\annNil{\alpha}
+&
+\text{nil}
+\\
+&&&
+\annCons{e}{e'}{\alpha}
+&
+\text{cons}
+\\
+&&&
+\annMatrix{e}{x}{y}{e'}{\alpha}
+&
+\text{matrix}
+\\
+&&&
 x
 &
 \text{variable}
@@ -69,21 +104,6 @@ x
 \exOp{\primOp}
 &
 \text{first-class operator}
-\\
-&&&
-\exTrue \mid \exFalse
-&
-\text{Boolean}
-\\
-&&&
-\exInt{n}
-&
-\text{integer}
-\\
-&&&
-\exPair{e}{e'}
-&
-\text{pair}
 \\
 &&&
 \exApp{e}{e'}
@@ -96,27 +116,12 @@ x
 \text{binary application}
 \\
 &&&
-\exNil
-&
-\text{nil}
-\\
-&&&
-\exCons{e}{e'}
-&
-\text{cons}
-\\
-&&&
-\exMatrix{e'}{x}{y}{e}
-&
-\text{matrix}
-\\
-&&&
 \exMatrixAccess{e}{e}
 &
 \text{matrix lookup}
 \\
 &&&
-\exMatrixSize{e}
+\exMatrixDims{e}
 &
 \text{matrix dimensions}
 \\
@@ -129,20 +134,6 @@ x
 \exLetRec{f}{\sigma}{e}
 &
 \text{recursive function}
-\\[2mm]
-
-\mbox{Term}
-&
-e
-&
-::=
-&
-\hole
-&
-\text{hole}
-\\
-&&&
-\annot{r}{\alpha}
 \end{syntaxfig}
 \caption{Syntax of terms}
 \end{figure}

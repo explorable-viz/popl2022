@@ -5,7 +5,7 @@
    lab={\ruleName{$\dbwdarrow$-pattern-seq}}
 ]
 {
-   \sigma, p \dbwdarrow \exLambda{\sigma'}
+   \sigma, p \dbwdarrow\geq \exLambda{\sigma'}
    \\
    \sigma', \vec{p} \dbwdarrow e
 }
@@ -16,16 +16,17 @@
 }
 \end{smathpar}
 
+\vspace{5pt}
 \flushleft\shadebox{$\sigma, p \dbwdarrow \kappa$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-var}}
 ]
 {
-   \strut
+   \sigma \geq \elimVar{x}{\kappa}
 }
 {
-   \elimVar{x}{\kappa}, x
+   \sigma, x
    \dbwdarrow
    \kappa
 }
@@ -36,10 +37,10 @@
    lab={\ruleName{$\dbwdarrow$-nil}}
 ]
 {
-   \strut
+   \sigma \geq \elimList{\kappa}{\sigma}
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \exNil
+   \sigma, \exNil
    \dbwdarrow
    \kappa
 }
@@ -50,12 +51,14 @@
    lab={\ruleName{$\dbwdarrow$-cons}}
 ]
 {
-   \sigma, p \dbwdarrow \sigma'
+   \sigma \geq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', p' \dbwdarrow \kappa'
+   \sigma', p \dbwdarrow \tau
+   \\
+   \tau, p' \dbwdarrow \kappa'
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattCons{p}{p'}
+   \sigma, \pattCons{p}{p'}
    \dbwdarrow
    \kappa'
 }
@@ -66,12 +69,14 @@
    lab={\ruleName{$\dbwdarrow$-non-empty-list}}
 ]
 {
-   \sigma, p \dbwdarrow \sigma'
+   \sigma \geq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', o \dbwdarrow \kappa'
+   \sigma', p \dbwdarrow \tau
+   \\
+   \tau, o \dbwdarrow \kappa'
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattList{p}{o}
+   \sigma, \pattList{p}{o}
    \dbwdarrow
    \kappa'
 }
@@ -82,27 +87,30 @@
    lab={\ruleName{$\dbwdarrow$-pair}}
 ]
 {
-   \sigma, p \dbwdarrow \sigma'
+   \sigma \geq \elimProd{\sigma'}
    \\
-   \sigma', p' \dbwdarrow \kappa
+   \sigma', p \dbwdarrow \tau
+   \\
+   \tau, p' \dbwdarrow \kappa
 }
 {
-   \elimProd{\sigma'}, \pattPair{p}{p'}
+   \sigma, \pattPair{p}{p'}
    \dbwdarrow
    \kappa
 }
 \end{smathpar}
 
+\vspace{5pt}
 \flushleft\shadebox{$\sigma, o \dbwdarrow \kappa$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-list-end}}
 ]
 {
-   \strut
+   \sigma \geq \elimList{\kappa}{\sigma}
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattSNil
+   \sigma, \pattListEnd
    \dbwdarrow
    \kappa
 }
@@ -113,17 +121,20 @@
    lab={\ruleName{$\dbwdarrow$-list-rest}}
 ]
 {
-   \sigma, p \dbwdarrow \sigma'
+   \sigma \geq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', o \dbwdarrow \kappa'
+   \sigma', p \dbwdarrow \tau
+   \\
+   \tau, o \dbwdarrow \kappa'
 }
 {
-   \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}, \pattSCons{p}{o}
+   \sigma, \pattListNext{p}{o}
    \dbwdarrow
    \kappa'
 }
 \end{smathpar}
 
+\vspace{5pt}
 \flushleft\shadebox{$\sigma, \vec{c} \dbwdarrow \vec{c}$}
 \begin{smathpar}
 \inferrule*[

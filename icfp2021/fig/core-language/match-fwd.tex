@@ -1,142 +1,105 @@
 \begin{figure}[H]
 \flushleft \shadebox{$v, w, \sigma \matchFwd \rho, \kappa, \alpha$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchFwd$-var}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-var}},
+      right={$v \neq \hole$}
+   ]
    {
-      \strut
+      \sigma \geq \elimVar{x}{\kappa}
    }
    {
-      v, \matchVarNew{x}, \elimVar{x}{\kappa}
+      v, \matchVarNew{x}, \sigma
       \matchFwd
       \envExtend{\envEmpty}{x}{v}, \kappa, \TT
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-true}}
+   ]
    {
-      \strut
+      v \geq \annTrue{\alpha}
+      \\
+      \sigma \geq \elimBool{\kappa}{\kappa'}
    }
    {
-      \annot{\exTrue}{\alpha}, \matchTrueNew, \elimBool{\kappa}{\kappa'}
+      v, \matchTrueNew, \sigma
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-true-$\hole$}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-false}}
+   ]
    {
-      \strut
+      v \geq \annFalse{\alpha}
+      \\
+      \elimBool{\kappa}{\kappa'}
    }
    {
-      \hole, \matchTrueNew, \elimBool{\kappa}{\kappa'}
-      \matchFwd
-      \envEmpty, \kappa, \FF
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
-   {
-      \strut
-   }
-   {
-      \annot{\exFalse}{\alpha}, \matchFalseNew, \elimBool{\kappa}{\kappa'}
+      v, \matchFalseNew, \sigma
       \matchFwd
       \envEmpty, \kappa', \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-false-$\hole$}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-pair}}
+   ]
    {
-      \strut
-   }
-   {
-      \hole, \matchFalseNew, \elimBool{\kappa}{\kappa'}
-      \matchFwd
-      \envEmpty, \kappa', \FF
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
-   {
-      v, w, \sigma \matchFwd \rho_1, \tau, \alpha'
+      u \geq \annPair{v}{v'}{\alpha}
       \\
-      v', w', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
-   }
-   {
-      \annot{\exPair{v}{v'}}{\alpha}, \matchPair{w}{w'}, \elimProd{\sigma}
-      \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \alpha \meet \alpha' \meet \alpha^\twoPrime
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair-$\hole$}}]
-   {
-      \hole, w, \sigma \matchFwd \rho_1, \tau, \alpha
+      \sigma \geq \elimProd{\sigma'}
       \\
-      \hole, w', \tau \matchFwd \rho_2, \kappa, \alpha'
+      v, w, \sigma' \matchFwd \rho_1, \tau, \beta
+      \\
+      v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
-      \hole, \matchPair{w}{w'}, \elimProd{\sigma}
+      u, \matchPair{w}{w'}, \sigma'
       \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \FF
+      \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-nil}}
+   ]
    {
-      \strut
+      v \geq \annNil{\alpha}
+      \\
+      \sigma \geq \elimList{\kappa}{\sigma'}
    }
    {
-      \annot{\exNil}{\alpha}, \matchNilNew, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      v, \matchNilNew, \sigma
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil-$\hole$}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-cons}}
+   ]
    {
-      \strut
-   }
-   {
-      \hole, \matchNilNew, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
-      \matchFwd
-      \envEmpty, \kappa, \FF
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
-   {
-      v, w, \sigma \matchFwd \rho_1, \tau, \alpha'
+      u \geq \annCons{v}{v'}{\alpha}
       \\
-      v', w', \tau \matchFwd \rho_2, \kappa, \alpha^\twoPrime
-   }
-   {
-      \annot{(\exCons{v}{v'})}{\alpha}, \matchConsNew{w}{w'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
-      \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \alpha \meet \alpha' \meet \alpha^\twoPrime
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons-$\hole$}}]
-   {
-      \hole, w, \sigma \matchFwd \rho_1, \tau, \alpha
+      \sigma \geq \elimList{\kappa}{\sigma'}
       \\
-      \hole, w', \tau \matchFwd \rho_2, \kappa, \alpha'
+      v, w, \sigma' \matchFwd \rho_1, \tau, \beta
+      \\
+      v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
-      \hole, \matchConsNew{w}{w'}, \elimList{\branchNil{\kappa}}{\branchCons{\sigma}}
+      u, \matchConsNew{w}{w'}, \sigma
       \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \FF
+      \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}

@@ -1,18 +1,18 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\hole_{\rho}$}
+\flushleft \shadebox{$\hole_{\Gamma}$}
 \begin{salign}
-   \hole_{\envEmpty} &= \envEmpty
+   \hole_{\cxtEmpty} &= \envEmpty
    \\
-   \hole_{\envExtend{\rho}{k}{v}} &= \envExtend{\hole_{\rho}}{k}{\hole}
+   \hole_{\cxtExtend{\Gamma}{k}{A}} &= \envExtend{\hole_{\Gamma}}{k}{\hole}
 \end{salign}
 \\[2mm]
 \flushleft \shadebox{$\envUpdate{\rho}{k}{v}$}
 \begin{salign}
    \envUpdate{\envEmpty}{k}{v} &= \envEmpty
    \\
-   \envUpdate{\envExtend{\rho}{k}{v}}{k}{v'} &= \envExtend{\rho}{k}{v'}
+   \envUpdate{\envExtend{\rho}{k}{v}}{k}{u} &= \envExtend{\rho}{k}{u}
    \\
-   \envUpdate{\envExtend{\rho}{k}{v}}{k'}{v'} &= \envExtend{\envUpdate{\rho}{k'}{v'}}{k}{v}
+   \envUpdate{\envExtend{\rho}{k}{v}}{k'}{u} &= \envExtend{\envUpdate{\rho}{k'}{u}}{k}{v}
    \quad (k \neq k')
 \end{salign}
 \caption{Hole environment; environment update}

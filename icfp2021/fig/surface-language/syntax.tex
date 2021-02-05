@@ -1,14 +1,13 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Raw surface term}
+\mbox{Surface term}
 &
-t
+s
 &
 ::=
 &
 ...
 &
-\text{raw terms}
 \\
 &&&
 \exLetRecEquational{f}{\vec{c}}{s}
@@ -31,33 +30,35 @@ t
 \text{structured let}
 \\
 &&&
-\exList{s}{l}
+\annList{s}{l}{\alpha}
 &
 \text{non-empty list}
 \\
 &&&
-\exListSeq{s}{s}
+\exListEnum{s}{s}
 &
 \text{list enum}
 \\
 &&&
-\exListComp{s}{\vec{q}}
+\annListComp{s}{\vec{q}}{\alpha}
 &
 \text{list comprehension}
 \\[2mm]
 
-\mbox{Surface term}
+\mbox{List rest}
 &
-s
+l
 &
 ::=
 &
-\hole
+\annListEnd{\alpha}
 &
-\text{hole}
+\text{end}
 \\
 &&&
-t_{\alpha}
+\annListNext{s}{l}{\alpha}
+&
+\text{cons}
 \\[2mm]
 
 \mbox{Clause}
@@ -69,7 +70,7 @@ c
 \clause{p}{s}
 \\[2mm]
 
-\mbox{Pattern or list pattern rest}
+\mbox{Pattern or list rest pattern}
 &
 \pi
 &
@@ -82,7 +83,7 @@ p
 &&&
 o
 &
-\text{list pattern rest}
+\text{list rest pattern}
 \\[2mm]
 
 \mbox{Pattern}
@@ -116,39 +117,18 @@ p
 \text{pair}
 \\[2mm]
 
-\mbox{List pattern rest}
+\mbox{List rest pattern}
 &
 o
 &
 ::=
 &
-\pattSNil
+\pattListEnd
 &
 \text{end}
 \\
 &&&
-\pattSCons{p}{o}
-&
-\text{cons}
-\\[2mm]
-
-\mbox{List rest}
-&
-l
-&
-::=
-&
-\hole
-&
-\text{hole}
-\\
-&&&
-\annot{\sExNil}{\alpha}
-&
-\text{end}
-\\
-&&&
-\annot{(\sExCons{s}{l})}{\alpha}
+\pattListNext{p}{o}
 &
 \text{cons}
 \\[2mm]
@@ -159,17 +139,17 @@ q
 &
 ::=
 &
-\annot{(\qualGuard{s})}{\alpha}
+\qualGuard{s}
 &
 \text{guard}
 \\
 &&&
-\annot{(\qualDeclaration{p}{s})}{\alpha}
+\qualDeclaration{p}{s}
 &
 \text{declaration}
 \\
 &&&
-\annot{(\qualGenerator{p}{s})}{\alpha}
+\qualGenerator{p}{s}
 &
 \text{generator}
 \\[2mm]

@@ -77,7 +77,7 @@
    \Gamma \vdash s': \tyInt
 }
 {
-   \Gamma \vdash \exListSeq{s}{s'}: \tyList{\tyInt}
+   \Gamma \vdash \exListEnum{s}{s'}: \tyList{\tyInt}
 }
 %
 \and
@@ -103,7 +103,7 @@
    \strut
 }
 {
-   \Gamma \vdash \ \sExNil : \tyList{A}
+   \Gamma \vdash \exListEnd : \tyList{A}
 }
 %
 \and
@@ -115,7 +115,7 @@
    \Gamma \vdash l : \tyList{A}
 }
 {
-   \Gamma \vdash \sExCons{s}{l} : \tyList{A}
+   \Gamma \vdash \exListNext{s}{l} : \tyList{A}
 }
 \end{smathpar}
 
@@ -162,7 +162,7 @@
 
 \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
 \begin{smathpar}
-\inferrule*[right={ \ $\vec{q} \; \textnormal{non-empty}$}]
+\inferrule*
 {
    \Gamma \vdash q \dashv \Gamma'
    \\

@@ -36,12 +36,12 @@ T, U
 &
 ::=
 &
-\trVar{x}
+\trVar{x}{\Gamma}
 &
 \text{variable}
 \\
 &&&
-\trInt{n}
+\trInt{n}{\Gamma}
 &
 \text{integer}
 \\
@@ -51,7 +51,7 @@ T, U
 \text{pair}
 \\
 &&&
-\trNil
+\trNil{\Gamma}
 &
 \text{nil}
 \\
@@ -61,32 +61,32 @@ T, U
 \text{cons}
 \\
 &&&
-\trMatrix{T_{i,j}}{x}{y}{i}{j}{U}
+\trMatrix{T_{i,j}}{x}{y}{i}{j}{U}{i',j'}
 &
 \text{matrix}
 \\
 &&&
-\trMatrixAccess{T}{U}
+\trMatrixAccess{T}{i',j'}{U}{i,j}
 &
 \text{matrix lookup}
 \\
 &&&
-\trMatrixSize{T}
+\trMatrixDims{T}{i,j}
 &
 \text{matrix dimensions}
 \\
 &&&
-\trApp{T}{T'}{\matchPlug{w}{U}}
+\trApp{T}{U}{\matchPlug{w}{T'}}
 &
 \text{apply}
 \\
 &&&
-\trAppPrim{T}{T'}
+\trAppPrim{T}{\phi}{U}{\exInt{n}}
 &
 \text{apply primitive}
 \\
 &&&
-\trBinaryApp{T}{\primOp}{\phi}{U}
+\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}
 &
 \text{binary application}
 \\
@@ -94,6 +94,11 @@ T, U
 \trLet{x}{T}{U}
 &
 \text{let}
+\\
+&&&
+\trLetRec{f}{\sigma}{T}
+&
+\text{recursive function}
 \end{syntaxfig}
 \caption{Matches and traces}
 \end{figure}

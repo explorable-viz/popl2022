@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\totalisebwd{\kappa}{\pi}{\kappa'}{\alpha}$}
+\flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-empty}}
@@ -10,16 +10,19 @@
 {
    \totalisebwd{\kappa}{\seqEmpty}{\kappa}{\FF}
 }
+%
 \and
 %
 \inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-var}}
 ]
 {
-   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\alpha}
+   \sigma \geq \elimVar{x}{\kappa}
+   \\
+   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
 }
 {
-   \totalisebwd{\elimVar{x}{\kappa}}{x \concat \vec{p}}{\elimVar{x}{\kappa'}}{\alpha}
+   \totalisebwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa'}}{\alpha}
 }
 %
 \and
@@ -28,13 +31,15 @@
    lab={\ruleName{$\totalisebwdarrow$-true}}
 ]
 {
-   \totalisebwd{\kappa_1}{\vec{p}}{\kappa_1'}{\beta}
+   \sigma \geq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}}
+   \\
+   \totalisebwd{\kappa_1}{\vec{\pi}}{\kappa_1'}{\beta}
 }
 {
-   \totalisebwd{\elimBool{\kappa_1}{\annot{\exNil}{\alpha}}}
-              {\pattTrue \concat \vec{p}}
-              {\elimBoolTrue{\kappa_1'}}
-              {\alpha \join \beta}
+   \totalisebwd{\sigma}
+               {\pattTrue \concat \vec{\pi}}
+               {\elimBoolTrue{\kappa_1'}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -43,13 +48,15 @@
    lab={\ruleName{$\totalisebwdarrow$-false}}
 ]
 {
-   \totalisebwd{\kappa_2}{\vec{p}}{\kappa_2'}{\beta}
+   \sigma \geq \elimBool{\annot{\exNil}{\alpha}}{\kappa_2}
+   \\
+   \totalisebwd{\kappa_2}{\vec{\pi}}{\kappa_2'}{\beta}
 }
 {
-   \totalisebwd{\elimBool{\annot{\exNil}{\alpha}}{\kappa_2}}
-              {\pattFalse \concat \vec{p}}
-              {\elimBoolFalse{\kappa_2'}}
-              {\alpha \join \beta}
+   \totalisebwd{\sigma}
+               {\pattFalse \concat \vec{\pi}}
+               {\elimBoolFalse{\kappa_2'}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -58,10 +65,12 @@
    lab={\ruleName{$\totalisebwdarrow$-prod}}
 ]
 {
-   \totalisebwd{\sigma}{p \concat p' \concat \vec{p}}{\sigma'}{\beta}
+   \sigma \geq \elimProd{\sigma'}
+   \\
+   \totalisebwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totalisebwd{\elimProd{\sigma}}{\pattPair{p}{p'} \concat \vec{p}}{\elimProd{\sigma'}}{\beta}
+   \totalisebwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\tau}}{\beta}
 }
 %
 \and
@@ -70,13 +79,15 @@
    lab={\ruleName{$\totalisebwdarrow$-nil}}
 ]
 {
-   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\beta}
+   \sigma \geq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
+   \\
+   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {\pattNil \concat \vec{p}}
-              {\elimNil{\kappa'}}
-              {\alpha \join \beta}
+   \totalisebwd{\sigma}
+               {\pattNil \concat \vec{\pi}}
+               {\elimNil{\kappa'}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -85,13 +96,15 @@
    lab={\ruleName{$\totalisebwdarrow$-cons}}
 ]
 {
-   \totalisebwd{\sigma}{p \concat p' \concat \vec{p}}{\sigma'}{\beta}
+   \sigma \geq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
+   \\
+   \totalisebwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattCons{p}{p'}) \concat \vec{p}}
-              {\elimCons{\sigma'}}
-              {\alpha \join \beta}
+   \totalisebwd{\sigma}
+               {(\pattCons{p}{p'}) \concat \vec{\pi}}
+               {\elimCons{\tau}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -100,13 +113,14 @@
    lab={\ruleName{$\totalisebwdarrow$-non-empty-list}}
 ]
 {
-   \totalisebwd{\sigma}{p \concat o \concat \vec{p}}{\sigma'}{\beta}
+   \sigma \geq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
+   \totalisebwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattList{p}{o}) \concat \vec{p}}
-              {\elimCons{\sigma'}}
-              {\alpha \join \beta}
+   \totalisebwd{\sigma}
+               {(\pattList{p}{o}) \concat \vec{\pi}}
+               {\elimCons{\tau}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -115,13 +129,15 @@
    lab={\ruleName{$\totalisebwdarrow$-list-rest-end}}
 ]
 {
-   \totalisebwd{\kappa}{\vec{p}}{\kappa'}{\beta}
+   \sigma \geq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
+   \\
+   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\kappa}}{\branchCons{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}}
-              {\pattSNil \concat \vec{p}}
-              {\elimNil{\kappa'}}
-              {\alpha \join \beta}
+   \totalisebwd{\sigma}
+               {\pattListEnd \concat \vec{\pi}}
+               {\elimNil{\kappa'}}
+               {\alpha \join \beta}
 }
 %
 \and
@@ -130,13 +146,15 @@
    lab={\ruleName{$\totalisebwdarrow$-list-rest-cons}}
 ]
 {
-   \totalisebwd{\sigma}{p \concat o \concat \vec{p}}{\sigma'}{\beta}
+   \sigma \geq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
+   \\
+   \totalisebwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totalisebwd{\elimList{\branchNil{\annot{\exNil}{\alpha}}}{\branchCons{\sigma}}}
-              {(\pattSCons{p}{o}) \concat \vec{p}}
-              {\elimCons{\sigma'}}
-              {\alpha \join \beta}
+   \totalisebwd{\sigma}
+               {(\pattListNext{p}{o}) \concat \vec{\pi}}
+               {\elimCons{\tau}}
+               {\alpha \join \beta}
 }
 \end{smathpar}
 \caption{Totalise -- backward slicing}

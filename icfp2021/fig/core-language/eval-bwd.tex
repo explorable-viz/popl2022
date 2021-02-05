@@ -8,7 +8,7 @@
       \strut
    }
    {
-      v, \sub{\trVar{x}}{\rho} \bwdSlice \envUpdate{\hole_{\rho}}{x}{v}, \annot{\exVar{x}}{\FF}, \FF
+      v, \trVar{x}{\rho} \bwdSlice \envUpdate{\hole_{\Gamma}}{x}{v}, \exVar{x}, \FF
    }
    %
    \and
@@ -17,12 +17,12 @@
       lab={\ruleName{$\bwdSlice$-op}}
    ]
    {
-      \strut
+      v \geq \phi
    }
    {
-      \annot{\phi}{\alpha}, \sub{\trOp{\primOp}}{\rho}
+      v, \trOp{\primOp}{\Gamma}
       \bwdSlice
-      \envUpdate{\hole_{\rho}}{\primOp}{\annot{\phi}{\alpha}}, \annot{\exOp{\primOp}}{\FF}, \FF
+      \envUpdate{\hole_{\Gamma}}{\primOp}{\phi}, \exOp{\primOp}, \FF
    }
    %
    \and
@@ -31,10 +31,10 @@
       lab={\ruleName{$\bwdSlice$-nil}}
    ]
    {
-      \strut
+      v \geq \annNil{\alpha}
    }
    {
-      \annot{\exNil}{\alpha}, \sub{\trNil}{\rho} \bwdSlice \hole_{\rho}, \annot{\exNil}{\alpha}, \alpha
+      v, \trNil{\Gamma} \bwdSlice \hole_{\Gamma}, \annNil{\alpha}, \alpha
    }
    %
    \and
@@ -43,10 +43,10 @@
       lab={\ruleName{$\bwdSlice$-int}}
    ]
    {
-      \strut
+      v \geq \annInt{n}{\alpha}
    }
    {
-      \annot{\exInt{n}}{\alpha}, \sub{\trInt{n}}{\rho} \bwdSlice \hole_{\rho}, \annot{\exInt{n}}{\alpha}, \alpha
+      v, \trInt{n}{\Gamma} \bwdSlice \hole_{\Gamma}, \annInt{n}{\alpha}, \alpha
    }
    %
    \and
@@ -55,14 +55,16 @@
       lab={\ruleName{$\bwdSlice$-cons}}
    ]
    {
-      u, T \bwdSlice \rho, e, \alpha'
+      v \geq \annCons{v_1}{v_2}{\beta}
       \\
-      v, U \bwdSlice \rho', e', \alpha^\twoPrime
+      v_1, T \bwdSlice \rho, e, \alpha
+      \\
+      v_2, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{(\exCons{u}{v})}{\alpha}, \trCons{T}{U}
+      v, \trCons{T}{U}
       \bwdSlice
-      \rho \join \rho', \annot{(\exCons{e}{e'})}{\alpha}, \alpha \join \alpha' \join \alpha^\twoPrime
+      \rho \join \rho', \annCons{e}{e'}{\beta}, \beta \join \alpha \join \alpha'
    }
    %
    \and
@@ -71,51 +73,56 @@
       lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
-      \annot{\exPair{\annot{i'}{\alpha}}{\annot{j'}{\alpha}}}{\FF}, T \bwdSlice \rho, e, \beta
+      v \geq \annMatrix{v'_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}
       \\
       \forall (i,j) \leq (i',j').
-      v_{i,j}, U_{i,j}
+      v'_{i,j}, U_{i,j}
       \bwdSlice
-      \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e'_{i,j}, \beta'_{i,j}
+      \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha'_{i,j}
+      \\
+      \annot{\exPair{\annInt{i'}{\join{\gamma}}}{\annInt{j'}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho, e', \alpha
    }
    {
-      \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\alpha},
-      \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}
+      v,
+      \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
-      \annot{\exMatrix{e}{x}{y}{{\Bigjoin{e'}}}}{\alpha \join {\Bigjoin{\gamma} \join \Bigjoin{\gamma'}}},
-      \alpha \join \beta \join \Bigjoin{\beta'}
+      \annMatrix{\Bigjoin{e}}{x}{y}{e'}{\beta},
+      \beta \join \alpha \join \Bigjoin{\alpha'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-matrix-lookup}},
-      right={$\val{U} = \exPair{i}{j}$}
+      lab={\ruleName{$\bwdSlice$-matrix-lookup}}
    ]
    {
-      \annot{(\val{T} \reloverrideleft \matrixLBrack\exPair{i}{j} \mapsto \annot{u}{\alpha}\matrixRBrack)}{\FF}, T
+      \annMatrix{\hole}{i}{j}{\exPair{i'}{j'}}{\FF} \reloverrideleft \{\exPair{i}{j} \mapsto v\}, T
       \bwdSlice
-      \rho, e, \beta
+      \rho, e, \alpha
       \\
-      \annot{\exPair{\annot{i}{\alpha}}{\annot{j}{\alpha}}}{\FF}, U \bwdSlice \rho', e', \beta'
+      \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}, U \bwdSlice \rho', e', \alpha'
    }
    {
-       \annot{u}{\alpha}, \trMatrixAccess{T}{U}
+       v, \trMatrixAccess{T}{i',j'}{U}{i,j}
        \bwdSlice
-       \rho \join \rho', \annot{(\exMatrixAccess{e}{e'})}{\alpha}, \beta \join \beta'
+       \rho \join \rho', \exMatrixAccess{e}{e'}, \alpha \join \alpha'
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\bwdSlice$-matrix-dimensions}}]
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-matrix-dims}}
+   ]
    {
-      \annot{\val{T}}{\alpha_1 \join \alpha_2}, T \bwdSlice \rho, e, \alpha'
+      v \geq \annPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}{\alpha}
+      \\
+      \annMatrix{\hole}{i}{j}{\exPair{i'}{j'}}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
    }
    {
-      \annot{\exPair{\annot{i'}{\alpha_1}}{\annot{j'}{\alpha_2}}}{\alpha}, \trMatrixSize{T}
+      v, \trMatrixDims{T}{i',j'}
       \bwdSlice
-      \rho, \annot{(\exMatrixSize{e})}{\alpha \join \alpha_1 \join \alpha_2}, \alpha \join \alpha'
+      \rho, \exMatrixDims{e}, \alpha \join \alpha'
    }
    %
    \and
@@ -124,32 +131,36 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho)}{f}{\exClosureRec{\rho_1'}{f}{\sigma}}, e, \alpha
+      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho_2)}{f}{u}, e^\twoPrime, \beta
       \\
-      \rho, e, \alpha, w, \matchBwd v', \sigma'
+      \rho_2, e^\twoPrime, \beta, w, \matchBwd v', \sigma'
       \\
-      v', U \bwdSlice \rho', e', \alpha'
+      v', U \bwdSlice \rho', e', \alpha
       \\
-      \annot{\exClosureRec{\rho_1 \join \rho_1'}{f}{(\sigma \join \sigma')}}{\alpha}, T
+      u \join \exClosureRec{\Gamma}{\rho_1}{f}{\sigma'}, T
       \bwdSlice
-      \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
+      \rho, e, \alpha'
    }
    {
       v, \trApp{T}{U}{\matchPlug{w}{T'}}
       \bwdSlice
-      \rho' \join \rho^\twoPrime, \annot{(\exApp{e^\twoPrime}{e'})}{\alpha}, \alpha' \join \alpha^\twoPrime
+      \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-apply-prim}}
+   ]
    {
-      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \alpha'
+      v \geq \annInt{n}{\beta}
       \\
-      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
+      \phi, T \bwdSlice \rho, e, \alpha
+      \\
+      \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{n}{\alpha}, \trAppPrim{T}{U}
+      v, \trAppPrim{T}{\phi}{U}{\exInt{m}}
       \bwdSlice
       \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
@@ -160,14 +171,16 @@
       lab={\ruleName{$\bwdSlice$-binary-apply}}
    ]
    {
-      \annot{\val{T}}{\alpha}, T \bwdSlice \rho, e, \alpha'
+      v \geq \annInt{n}{\beta}
       \\
-      \annot{\val{U}}{\alpha}, U \bwdSlice \rho', e', \alpha^\twoPrime
+      \annInt{n'}{\beta}, T \bwdSlice \rho, e, \alpha
+      \\
+      \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annot{\exInt{n}}{\alpha}, \trBinaryApp{T}{\primOp}{\phi}{U}
+      v, \trBinaryApp{T}{n'}{\primOp}{\phi}{U}{m}
       \bwdSlice
-      \rho \join \envUpdate{\rho'}{\primOp}{\annot{\phi}{\alpha}}, \exBinaryApp{e}{\primOp}{e'}, \FF
+      \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \alpha \join \alpha'
    }
    %
    \and
@@ -176,7 +189,7 @@
       lab={\ruleName{$\bwdSlice$-let}}
    ]
    {
-      v, U, \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+      v, U \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
       \\
       v', T \bwdSlice \rho', e', \alpha'
    }
@@ -187,13 +200,16 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let-rec}}
+      lab={\ruleName{$\bwdSlice$-let-rec}},
+      right={$\vdash \rho: \Gamma$}
    ]
    {
-      v, T, \bwdSlice \envExtend{\rho}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma'}}{\alpha'}}, e, \alpha
+      v, T \bwdSlice \envExtend{\rho}{f}{u}, e, \alpha
+      \\
+      u \geq \exClosureRec{\Gamma}{\rho'}{f}{\sigma'}
    }
    {
-      v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha \join \alpha'
+      v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha
    }
 \end{smathpar}
 \caption{Backward slicing; Boolean and pair cases omitted}

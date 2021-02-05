@@ -68,7 +68,7 @@
    \strut
 }
 {
-   \pattSNil : \tyList{A} \dashv \envEmpty
+   \pattListEnd : \tyList{A} \dashv \envEmpty
 }
 %
 \and
@@ -80,7 +80,7 @@
    o : \tyList{A} \dashv \Gamma'
 }
 {
-   \pattSCons{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
+   \pattListNext{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
 
@@ -100,7 +100,7 @@
 %
 \and
 %
-\inferrule*[right={ \ $\vec{p} \; \textnormal{non-empty}$}]
+\inferrule*
 {
    p : A \dashv \Gamma'
    \\

@@ -3,26 +3,26 @@
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\eval$-var}},
-      right={\textnormal{$x: v \in \rho$}}
+      right={$\vdash \rho: \Gamma$}
    ]
    {
-      \strut
+      x: v \in \rho
    }
    {
-      \explVal{x}{\rho, x \eval v}
+      \explVal{\trVar{x}{\Gamma}}{\rho, x \eval v}
    }
    %
    \and
    %
    \inferrule*[
       lab={\ruleName{$\eval$-op}},
-      right={$\primOp: \phi \in \rho$}
+      right={$\vdash \rho: \Gamma$}
    ]
    {
-      \strut
+      \primOp: \phi \in \rho
    }
    {
-      \explVal{\trOp{\primOp}}{\rho, \exOp{\primOp} \eval \phi}
+      \explVal{\trOp{\primOp}{\Gamma}}{\rho, \exOp{\primOp} \eval \phi}
    }
    %
    \and
@@ -47,12 +47,15 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-int}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-int}},
+      right={$\vdash \rho: \Gamma$}
+   ]
    {
       \strut
    }
    {
-      \explVal{\trInt{n}}{\rho, \exInt{n} \eval \exInt{n}}
+      \explVal{\trInt{n}{\Gamma}}{\rho, \exInt{n} \eval \exInt{n}}
    }
    %
    \and
@@ -69,12 +72,15 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-nil}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-nil}},
+      right={$\vdash \rho: \Gamma$}
+   ]
    {
       \strut
    }
    {
-      \explVal{\trNil}{\rho, \exNil \eval \exNil}
+      \explVal{\trNil{\Gamma}}{\rho, \exNil \eval \exNil}
    }
    %
    \and
@@ -98,8 +104,8 @@
       \forall (i,j) \leq (i',j').\explVal{U_{i,j}}{\envExtend{\envExtend{\rho}{x}{i}}{y}{j}, e \eval v_{i,j}}
    }
    {
-      \explVal{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}}
-              {\rho, \exMatrix{e'}{x}{y}{e} \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+      \explVal{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}}
+              {\rho, \exMatrix{e}{x}{y}{e'} \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}}
    }
    %
    \and
@@ -109,35 +115,38 @@
       right={$(i,j) \leq (i',j')$}
    ]
    {
-      \explVal{T}{\rho, e \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+      \explVal{T}{\rho, e \eval \exMatrix{i}{j}{v_{i,j}}{\exPair{i'}{j'}}}
       \\
       \explVal{U}{\rho, e' \eval \exPair{i}{j}}
    }
    {
-      \explVal{\trMatrixAccess{T}{U}}{\rho, \exMatrixAccess{e}{e'} \eval v_{i,j}}
+      \explVal{\trMatrixAccess{T}{i',j'}{U}{i,j}}{\rho, \exMatrixAccess{e}{e'} \eval v_{i,j}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-matrix-dimensions}}]
+   \inferrule*[lab={\ruleName{$\eval$-matrix-dims}}]
    {
-      \explVal{T}{\rho, e \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+      \explVal{T}{\rho, e \eval \exMatrix{i}{j}{v_{i,j}}{\exPair{i'}{j'}}}
    }
    {
-      \explVal{\trMatrixSize{T}}{\rho, \exMatrixSize{e} \eval \exPair{i'}{j'}}
+      \explVal{\trMatrixDims{T}{i',j'}}{\rho, \exMatrixDims{e} \eval \exPair{i'}{j'}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
-      \explVal{T}{\rho, e \eval \exClosureRec{\rho'}{f}{\sigma}}
+      \explVal{T}{\rho, e \eval \exClosureRec{\Gamma}{\rho'}{f}{\sigma}}
       \\
       \explVal{U}{\rho, e' \eval v}
       \\
       \explVal{w}{v, \sigma \match \rho^\twoPrime, e^\twoPrime}
       \\
-      \explVal{T'}{\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\rho'}{f}{\sigma}}, e^\twoPrime \eval v'}
+      \explVal{T'}
+              {\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\Gamma}{\rho'}{f}{\sigma}},
+               e^\twoPrime
+               \eval v'}
    }
    {
       \explVal{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
@@ -149,10 +158,10 @@
    {
       \explVal{T}{\rho, e \eval \phi}
       \\
-      \explVal{U}{\rho, e' \eval m}
+      \explVal{U}{\rho, e' \eval \exInt{n}}
    }
    {
-      \explVal{\trAppPrim{T}{U}}{\rho, \exApp{e}{e'} \eval \phi(m)}
+      \explVal{\trAppPrim{T}{\phi}{U}{n}}{\rho, \exApp{e}{e'} \eval \phi(n)}
    }
    %
    \and
@@ -162,12 +171,12 @@
       right={$\primOp: \phi \in \rho$}
    ]
    {
-      \explVal{T}{\rho, e \eval m}
+      \explVal{T}{\rho, e \eval n}
       \\
-      \explVal{U}{\rho, e' \eval n}
+      \explVal{U}{\rho, e' \eval m}
    }
    {
-      \explVal{\trBinaryApp{T}{\primOp}{\phi}{U}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(m)(n)}
+      \explVal{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}
    }
    %
    \and
@@ -184,9 +193,12 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-let-rec}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-let-rec}},
+      right={$\vdash \rho : \Gamma$}
+   ]
    {
-      \explVal{T}{\envExtend{\rho}{f}{\exClosureRec{\rho}{f}{\sigma}}, e \eval v}
+      \explVal{T}{\envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho}{f}{\sigma}}, e \eval v}
    }
    {
       \explVal{\trLetRec{f}{\sigma}{T}}{\rho, \exLetRec{f}{\sigma}{e} \eval v}
