@@ -1,22 +1,6 @@
 \begin{figure}[H]
 \flushleft \shadebox{$v, w, \sigma \matchFwd \rho, \kappa, \alpha$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchFwd$-$\hole$-val}}]
-   {
-      w \matchFwdHole v
-      \\
-      v, w, \sigma
-      \matchFwd
-      \rho, \kappa, \alpha
-   }
-   {
-      \hole, w, \sigma
-      \matchFwd
-      \rho, \kappa, \alpha
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\matchFwd$-$\hole$-elim}}]
    {
       w \matchFwdHole \sigma
