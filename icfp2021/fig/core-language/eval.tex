@@ -105,7 +105,7 @@
    }
    {
       \explVal{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}}
-              {\rho, \exMatrix{e'}{x}{y}{e} \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+              {\rho, \exMatrix{e}{x}{y}{e'} \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}}
    }
    %
    \and
@@ -115,7 +115,7 @@
       right={$(i,j) \leq (i',j')$}
    ]
    {
-      \explVal{T}{\rho, e \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+      \explVal{T}{\rho, e \eval \exMatrix{i}{j}{v_{i,j}}{\exPair{i'}{j'}}}
       \\
       \explVal{U}{\rho, e' \eval \exPair{i}{j}}
    }
@@ -127,7 +127,7 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-matrix-dims}}]
    {
-      \explVal{T}{\rho, e \eval \exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}
+      \explVal{T}{\rho, e \eval \exMatrix{i}{j}{v_{i,j}}{\exPair{i'}{j'}}}
    }
    {
       \explVal{\trMatrixDims{T}{i',j'}}{\rho, \exMatrixDims{e} \eval \exPair{i'}{j'}}
