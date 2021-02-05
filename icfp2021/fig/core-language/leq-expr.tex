@@ -101,22 +101,9 @@
       &\dbwdhole
       \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e}
    \end{salign}
-   \vspace{5pt}
-   \flushleft \shadebox{$e, l \dbwdhole e$}
-   \begin{salign}
-      \hole,
-      \exListEnd
-      &\dbwdhole
-      \annot{\exNil}{\FF}
-      \\
-      \hole,
-      \exListNext{s}{l}
-      &\dbwdhole
-      \annCons{\hole}{\hole}{\FF}
-   \end{salign}
 
 \vspace{5pt}
-\flushleft \shadebox{$s \leq s'$}
+\flushleft \shadebox{$e \leq e'$}
 \begin{smathpar}
    \inferrule*[
    ]
@@ -124,7 +111,19 @@
       \strut
    }
    {
-      \hole \leq s
+      \hole \leq e
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annInt{n}{\alpha} \leq \annInt{n}{\alpha'}
    }
    %
    \and
@@ -132,14 +131,22 @@
    \inferrule*[
    ]
    {
-      s_1 \leq \hole
-      \\
-      s_2 \leq \hole
-      \\
-      s_3 \leq \hole
+      \strut
    }
    {
-      \exIfThenElse{s_1}{s_2}{s_3} \leq \hole
+      \annInt{n}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annTrue{\alpha} \leq \annTrue{\alpha'}
    }
    %
    \and
@@ -147,20 +154,167 @@
    \inferrule*[
    ]
    {
-      s_1 \leq s_1'
-      \\
-      s_2 \leq s_2'
-      \\
-      s_3 \leq s_3'
+      \strut
    }
    {
-      \exIfThenElse{s_1}{s_2}{s_3} \leq \exIfThenElse{s_1'}{s_2'}{s_3'}
+      \annTrue{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\alpha} \leq \annFalse{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2
+   }
+   {
+      \annPair{e_1}{e_2}{\alpha} \leq \annPair{e_1}{e_2}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \annPair{e_1}{e_2}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha} \leq \annNil{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2'
+   }
+   {
+      \annCons{e_1}{e_2}{\alpha} \leq \annCons{e_1'}{e_2'}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \annCons{e_1}{e_2}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \forall (i,j) \leq (i',j'). v_{i,j} \leq u_{i,j}
+   }
+   {
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha} \leq \annMatrix{u_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
+   }
+   {
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
+   }
+   {
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exPrim{\phi} \leq \exPrim{\phi}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exPrim{\phi} \leq \hole
    }
 \end{smathpar}
-
-\vspace{5pt}
-\flushleft \shadebox{$l \leq l'$}
-\begin{smathpar}
-\end{smathpar}
-\caption{Partial orders on surface terms}
+\caption{Partial orders on terms}
 \end{figure}
