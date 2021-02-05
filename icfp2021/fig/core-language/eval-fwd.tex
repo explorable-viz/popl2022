@@ -103,7 +103,7 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-matrix-dims}}]
    {
-      e \leq \exMatrixDims{e'}
+      e \geq \exMatrixDims{e'}
       \\
       \rho, e', \alpha', T \fwdSlice \annot{\exMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}}{\beta}
    }
@@ -138,12 +138,14 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
    {
-      \rho, e, \alpha, T \fwdSlice \phi
+      e \geq \exApp{e_1}{e_2}
       \\
-      \rho, e', \alpha, U \fwdSlice \annInt{n}{\beta}
+      \rho, e_1, \alpha, T \fwdSlice \phi
+      \\
+      \rho, e_2, \alpha, U \fwdSlice \annInt{n}{\beta}
    }
    {
-      \rho, \exApp{e}{e'}, \alpha, \trAppPrim{T}{\phi}{U}{\exInt{n}}
+      \rho, e, \alpha, \trAppPrim{T}{\phi}{U}{\exInt{n}}
       \fwdSlice
       \annot{\phi(n)}{\beta}
    }
