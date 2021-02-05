@@ -258,27 +258,13 @@
 \flushleft \shadebox{$e, l \dbwdarrow l$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-rest-$\hole$}}
-]
-{
-   e, l \dbwdhole e'
-   \\
-   e', l \dbwdarrow l'
-}
-{
-   e, l \dbwdarrow l'
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\dbwdarrow$-list-rest-end}}
 ]
 {
-   \strut
+   e \geq \annot{\exNil}{\alpha}
 }
 {
-   \annot{\exNil}{\alpha},
+   e,
    \exListEnd
    \dbwdarrow
    \annot{\exListEnd}{\alpha}
@@ -290,12 +276,14 @@
    lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
 ]
 {
-   e, s \dbwdarrow s'
+   e \geq \annCons{e_1}{e_2}{\alpha}
    \\
-   e', l \dbwdarrow l'
+   e_1, s \dbwdarrow s'
+   \\
+   e_2, l \dbwdarrow l'
 }
 {
-   \annCons{e}{e'}{\alpha},
+   e,
    \exListNext{s}{l}
    \dbwdarrow
    \annListNext{s'}{l'}{\alpha}
