@@ -1,22 +1,6 @@
 \begin{figure}[H]
 \flushleft \shadebox{$v, w, \sigma \matchFwd \rho, \kappa, \alpha$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchFwd$-$\hole$-elim}}]
-   {
-      w \matchFwdHole \sigma
-      \\
-      v, w, \sigma
-      \matchFwd
-      \rho, \kappa, \alpha
-   }
-   {
-      v, w, \hole
-      \matchFwd
-      \rho, \kappa, \alpha
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\matchFwd$-var}},
       right={$v \neq \hole$}
@@ -118,22 +102,5 @@
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
 \end{smathpar}
-\vspace{5pt}
-\begin{minipage}{0.5\textwidth}
-\flushleft \shadebox{$w \matchFwdHole \sigma$}
-\begin{salign}
-   \matchVarNew{x} &\matchFwdHole \elimVar{x}{\hole}
-   \\
-   \matchFalseNew &\matchFwdHole \elimBool{\hole}{\hole}
-   \\
-   \matchTrueNew &\matchFwdHole \elimBool{\hole}{\hole}
-   \\
-   \matchPair{w}{w'} &\matchFwdHole \elimProd{\hole}
-   \\
-   \matchNilNew &\matchFwdHole \elimList{\hole}{\hole}
-   \\
-   \matchConsNew{w}{w'} &\matchFwdHole \elimList{\hole}{\hole}
-\end{salign}
-\end{minipage}
 \caption{Pattern-matching: forward slicing}
 \end{figure}
