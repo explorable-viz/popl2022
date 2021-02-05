@@ -58,7 +58,7 @@
    e_2, s_2 \dbwdarrow s_2'
 }
 {
-   \annCons{e_1}{e_2}{\alpha}, \exCons{s_1}{s_2}
+   e, \exCons{s_1}{s_2}
    \dbwdarrow
    \annCons{s_1'}{s_2'}{\alpha}
 }
@@ -69,12 +69,14 @@
    lab={\ruleName{$\dbwdarrow$-let-rec}}
 ]
 {
+   e \geq \exLetRec{f}{\sigma}{e}
+   \\
    \sigma, \vec{c} \dbwdarrow \vec{c}'
    \\
    e, s \dbwdarrow s'
 }
 {
-   \exLetRec{f}{\sigma}{e}, \exLetRecEquational{f}{\vec{c}}{s}
+   e, \exLetRecEquational{f}{\vec{c}}{s}
    \dbwdarrow
    \exLetRecEquational{f}{\vec{c}'}{s'}
 }
@@ -85,6 +87,8 @@
    lab={\ruleName{$\dbwdarrow$-if}}
 ]
 {
+   e \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+   \\
    e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
    e_{2}, s_{2} \dbwdarrow s_{2}'
@@ -92,8 +96,7 @@
    e_{3}, s_{3} \dbwdarrow s_{3}'
 }
 {
-   \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
-   ,
+   e,
    \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    \dbwdarrow
    \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
@@ -105,13 +108,14 @@
    lab={\ruleName{$\dbwdarrow$-match}}
 ]
 {
+   e \geq \exApp{(\exLambda{\sigma})}{e'}
+   \\
    \sigma, \vec{c} \dbwdarrow \vec{c}'
    \\
-   e, s \dbwdarrow s'
+   e', s \dbwdarrow s'
 }
 {
-   \exApp{(\exLambda{\sigma})}{e}
-   ,
+   e,
    \exMatch{s}{\vec{c}}
    \dbwdarrow
    \exMatch{s'}{\vec{c}'}
@@ -123,13 +127,14 @@
    lab={\ruleName{$\dbwdarrow$-let}}
 ]
 {
+   e \geq \exApp{(\exLambda{\sigma})}{e'}
+   \\
    \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2'
    \\
-   e, s_1 \dbwdarrow s_1'
+   e', s_1 \dbwdarrow s_1'
 }
 {
-   \exApp{(\exLambda{\sigma})}{e}
-   ,
+   e,
    \exLet{p}{s_1}{s_2}
    \dbwdarrow
    \exLet{p}{s_1'}{s_2'}
@@ -141,13 +146,14 @@
    lab={\ruleName{$\dbwdarrow$-list-enum}},
 ]
 {
+   e \geq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+   \\
    e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
    e_{2}, s_{2} \dbwdarrow s_{2}'
 }
 {
-   \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
-   ,
+   e,
    \exListEnum{s_{1}}{s_{2}}
    \dbwdarrow
    \exListEnum{s_{1}'}{s_{2}'}
@@ -157,11 +163,12 @@
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done}}]
 {
-   e, s \dbwdarrow s'
+   e \geq \annCons{e'}{\annNil{\alpha}}{\alpha'}
+   \\
+   e', s \dbwdarrow s'
 }
 {
-   \annCons{e}{\annNil{\alpha}}{\alpha'}
-   ,
+   e,
    \exListComp{s}{\qualGuard{\exTrue}}
    \dbwdarrow
    \annot{\exListComp{s'}{\qualGuard{\annTrue{\alpha \join \alpha'}}}}{\alpha \join \alpha'}
@@ -187,13 +194,15 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
 ]
 {
+   e \geq \exApp{\exLambda{\elimBool{e_{2}}{\annNil{\alpha}}}}{e_{1}}
+   \\
    e_2, s_2 \dbwdarrow s_2'
    \\
    e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annListComp{s_{1}'}{\vec{q}'}{\beta}
 }
 {
-   \exApp{\exLambda{\elimBool{e_{2}}{\annNil{\alpha}}}}{e_{1}}
-   , \exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}
+   e,
+   \exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}
    \dbwdarrow
    \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
 }
@@ -204,13 +213,16 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
 ]
 {
-   \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}} \dbwdarrow \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+   e \geq \exApp{(\exLambda{\sigma})}{e'}
    \\
-   e, s_{1} \dbwdarrow s_{1}'
+   \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
+   \dbwdarrow
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+   \\
+   e', s_{1} \dbwdarrow s_{1}'
 }
 {
-   \exApp{(\exLambda{\sigma})}{e}
-   ,
+   e,
    \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
    \dbwdarrow
    \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}
@@ -223,6 +235,8 @@
    lab={\ruleName{$\dbwdarrow$-list-comp-gen}},
 ]
 {
+   e \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma})}}{e_1}
+   \\
    e_{1}, s_{1} \dbwdarrow s_{1}'
    \\
    \totalisebwd{\sigma}{p}{\sigma'}{\beta}
@@ -232,8 +246,7 @@
    e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
 }
 {
-   \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma})}}{e_1}
-   ,
+   e,
    \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
    \dbwdarrow
    \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}
