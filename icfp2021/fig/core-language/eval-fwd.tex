@@ -2,28 +2,14 @@
 \flushleft \shadebox{$\rho, e, \alpha, T \fwdSlice v$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-$\hole$}}
-   ]
-   {
-      T \evalFwdHole e
-      \\
-      \rho, e, \alpha, T \fwdSlice v
-   }
-   {
-      \rho, \hole, \alpha, T \fwdSlice v
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\fwdSlice$-var}},
       right={\textnormal{$x: v \in \rho$}}
    ]
    {
-      \strut
+      e \geq \exVar{x}
    }
    {
-      \rho, \exVar{x}, \alpha, \trVar{x} \fwdSlice v
+      \rho, e, \alpha, \trVar{x} \fwdSlice v
    }
    %
    \and
@@ -33,30 +19,30 @@
       right={$\primOp: \phi \in \rho$}
    ]
    {
-      \strut
+      e \geq \exOp{\primOp}
    }
    {
-      \rho, \exOp{\primOp}, \alpha, \trOp{\primOp} \fwdSlice \phi
+      \rho, e, \alpha, \trOp{\primOp} \fwdSlice \phi
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
    {
-      \strut
+      e \geq \annNil{\alpha}
    }
    {
-      \rho, \annNil{\alpha}, \alpha', \trNil \fwdSlice \annNil{\alpha \meet \alpha'}
+      \rho, e, \alpha', \trNil \fwdSlice \annNil{\alpha \meet \alpha'}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-int}}]
    {
-      \strut
+      e \geq \annInt{n}{\alpha}
    }
    {
-      \rho, \annInt{n}{\alpha}, \alpha', \trInt{n} \fwdSlice \annInt{n}{\alpha \meet \alpha'}
+      \rho, e, \alpha', \trInt{n} \fwdSlice \annInt{n}{\alpha \meet \alpha'}
    }
    %
    \and
@@ -65,12 +51,14 @@
       lab={\ruleName{$\fwdSlice$-cons}},
    ]
    {
-      \rho, e, \alpha', T \fwdSlice v
+      e \geq \annCons{e_1}{e_2}{\alpha}
       \\
-      \rho, e', \alpha', U \fwdSlice v'
+      \rho, e_1, \alpha', T \fwdSlice v
+      \\
+      \rho, e_2, \alpha', U \fwdSlice v'
    }
    {
-      \rho, \annCons{e}{e'}{\alpha}, \alpha', \trCons{T}{U}
+      \rho, e, \alpha', \trCons{T}{U}
       \fwdSlice
       \annCons{v}{v'}{\alpha \meet \alpha'}
    }
@@ -79,13 +67,15 @@
    %
    \inferrule*[lab={\ruleName{$\fwdSlice$-matrix}}]
    {
-      \rho, e', \alpha', T \fwdSlice \annPair{\annInt{i'}{\smash{\gamma}}}{\annInt{j'}{\smash{\gamma'}}}{\beta}
+      e \geq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
+      \\
+      \rho, e_2, \alpha', T \fwdSlice \annPair{\annInt{i'}{\smash{\gamma}}}{\annInt{j'}{\smash{\gamma'}}}{\beta}
       \\
       \forall (i,j) \leq (i',j').
-      \envExtend{\envExtend{\rho}{x}{i_{\gamma}}}{y}{j_{\gamma'}}, e, \alpha', U_{i,j} \fwdSlice v_{i,j}
+      \envExtend{\envExtend{\rho}{x}{i_{\gamma}}}{y}{j_{\gamma'}}, e_1, \alpha', U_{i,j} \fwdSlice v_{i,j}
    }
    {
-      \rho, \annMatrix{e}{x}{y}{e'}{\alpha}, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
+      \rho, e, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
       \fwdSlice
       \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
    }
