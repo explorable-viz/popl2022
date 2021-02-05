@@ -238,5 +238,114 @@
       \exClosureRec{\Gamma}{\rho}{f}{\sigma} \leq \hole
    }
 \end{smathpar}
-\caption{Partial order on values}
+
+\vspace{5pt}
+\flushleft \shadebox{$\sigma \leq \sigma'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \hole \leq \sigma
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa \leq \kappa'
+   }
+   {
+      \elimVar{x}{\kappa} \leq \elimVar{x}{\kappa'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa \leq \hole
+   }
+   {
+      \elimVar{x}{\kappa} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa_1 \leq \kappa_1'
+      \\
+      \kappa_1 \leq \kappa_1'
+   }
+   {
+      \elimBool{\kappa_1}{\kappa_2} \leq \elimBool{\kappa_1'}{\kappa_2'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa_1 \leq \hole
+      \\
+      \kappa_1 \leq \hole
+   }
+   {
+      \elimBool{\kappa_1}{\kappa_2} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma \leq \sigma'
+   }
+   {
+      \elimProd{\sigma} \leq \elimProd{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma \leq \hole
+   }
+   {
+      \elimProd{\sigma} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa \leq \kappa'
+      \\
+      \sigma \leq \sigma'
+   }
+   {
+      \elimList{\kappa}{\sigma} \leq \elimList{\kappa'}{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa \leq \hole
+      \\
+      \sigma \leq \hole
+   }
+   {
+      \elimList{\kappa}{\sigma} \leq \hole
+   }
+\end{smathpar}
+\caption{Partial orders on values and eliminators}
 \end{figure}
