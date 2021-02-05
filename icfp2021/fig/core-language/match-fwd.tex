@@ -48,64 +48,79 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-true}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-true}},
+      right={$v \geq \annTrue{\alpha}$}
+   ]
    {
       \strut
    }
    {
-      \annTrue{\alpha}, \matchTrueNew, \elimBool{\kappa}{\kappa'}
+      v, \matchTrueNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-false}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-false}},
+      right={$v \geq \annFalse{\alpha}$}
+   ]
    {
       \strut
    }
    {
-      \annFalse{\alpha}, \matchFalseNew, \elimBool{\kappa}{\kappa'}
+      v, \matchFalseNew, \elimBool{\kappa}{\kappa'}
       \matchFwd
       \envEmpty, \kappa', \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-pair}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-pair}},
+      right={$u \geq \annPair{v}{v'}{\alpha}$}
+   ]
    {
       v, w, \sigma \matchFwd \rho_1, \tau, \beta
       \\
       v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
-      \annPair{v}{v'}{\alpha}, \matchPair{w}{w'}, \elimProd{\sigma}
+      u, \matchPair{w}{w'}, \elimProd{\sigma}
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-nil}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-nil}},
+      right={$v \geq \annNil{\alpha}$}
+   ]
    {
       \strut
    }
    {
-      \annNil{\alpha}, \matchNilNew, \elimList{\kappa}{\sigma}
+      v, \matchNilNew, \elimList{\kappa}{\sigma}
       \matchFwd
       \envEmpty, \kappa, \alpha
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchFwd$-cons}}]
+   \inferrule*[
+      lab={\ruleName{$\matchFwd$-cons}},
+      right={$u \geq \annCons{v}{v'}{\alpha}$}
+   ]
    {
       v, w, \sigma \matchFwd \rho_1, \tau, \beta
       \\
       v', w', \tau \matchFwd \rho_2, \kappa, \beta'
    }
    {
-      \annCons{v}{v'}{\alpha}, \matchConsNew{w}{w'}, \elimList{\kappa}{\sigma}
+      u, \matchConsNew{w}{w'}, \elimList{\kappa}{\sigma}
       \matchFwd
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
