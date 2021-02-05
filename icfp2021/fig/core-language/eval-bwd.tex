@@ -2,20 +2,6 @@
 \flushleft \shadebox{$v, T \bwdSlice \rho, e, \alpha$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-$\hole$}}
-   ]
-   {
-      T \evalBwdHole v
-      \\
-      v, T \bwdSlice \rho, e, \alpha
-   }
-   {
-      \hole, T \bwdSlice \rho, e, \alpha
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\bwdSlice$-var}}
    ]
    {
@@ -28,13 +14,14 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-op}}
+      lab={\ruleName{$\bwdSlice$-op}},
+      right={$v \geq \phi$}
    ]
    {
       \strut
    }
    {
-      \phi, \sub{\trOp{\primOp}}{\rho}
+      v, \sub{\trOp{\primOp}}{\rho}
       \bwdSlice
       \envUpdate{\hole_{\rho}}{\primOp}{\phi}, \exOp{\primOp}, \FF
    }
@@ -42,31 +29,34 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil}}
+      lab={\ruleName{$\bwdSlice$-nil}},
+      right={$v \geq \annNil{\alpha}$}
    ]
    {
       \strut
    }
    {
-      \annNil{\alpha}, \sub{\trNil}{\rho} \bwdSlice \hole_{\rho}, \annNil{\alpha}, \alpha
+      v, \sub{\trNil}{\rho} \bwdSlice \hole_{\rho}, \annNil{\alpha}, \alpha
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-int}}
+      lab={\ruleName{$\bwdSlice$-int}},
+      right={$v \geq \annInt{n}{\alpha}$}
    ]
    {
       \strut
    }
    {
-      \annInt{n}{\alpha}, \sub{\trInt{n}}{\rho} \bwdSlice \hole_{\rho}, \annInt{n}{\alpha}, \alpha
+      v, \sub{\trInt{n}}{\rho} \bwdSlice \hole_{\rho}, \annInt{n}{\alpha}, \alpha
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-cons}}
+      lab={\ruleName{$\bwdSlice$-cons}},
+      right={$v' \geq \annCons{u}{v}{\beta}$}
    ]
    {
       u, T \bwdSlice \rho, e, \alpha
@@ -74,7 +64,7 @@
       v, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annCons{u}{v}{\beta}, \trCons{T}{U}
+      v', \trCons{T}{U}
       \bwdSlice
       \rho \join \rho', \annCons{e}{e'}{\beta}, \beta \join \alpha \join \alpha'
    }
@@ -82,7 +72,8 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-matrix}}
+      lab={\ruleName{$\bwdSlice$-matrix}},
+      right={$v' \geq \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\beta}$}
    ]
    {
       \forall (i,j) \leq (i',j').
@@ -93,7 +84,7 @@
       \annot{\exPair{\annInt{i'}{\join{\gamma}}}{\annInt{j'}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho, e', \alpha
    }
    {
-      \annMatrix{\exPair{i'}{j'}}{i}{j}{v_{i,j}}{\beta},
+      v',
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
@@ -121,12 +112,15 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\bwdSlice$-matrix-dims}}]
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-matrix-dims}},
+      right={$v \geq \annPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}{\alpha}$}
+   ]
    {
       \annMatrix{\exPair{i'}{j'}}{i}{j}{\hole}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
    }
    {
-      \annot{\exPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}}{\alpha}, \trMatrixDims{T}{i',j'}
+      v, \trMatrixDims{T}{i',j'}
       \bwdSlice
       \rho, \exMatrixDims{e}, \alpha \join \alpha'
    }
@@ -155,14 +149,17 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\bwdSlice$-apply-prim}}]
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-apply-prim}},
+      right={$v \geq \annInt{n}{\beta}$}
+   ]
    {
       \phi, T \bwdSlice \rho, e, \alpha
       \\
       \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annInt{n}{\beta}, \trAppPrim{T}{\phi}{U}{\exInt{m}}
+      v, \trAppPrim{T}{\phi}{U}{\exInt{m}}
       \bwdSlice
       \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
    }
@@ -170,7 +167,8 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-binary-apply}}
+      lab={\ruleName{$\bwdSlice$-binary-apply}},
+      right={$v \geq \annInt{n}{\beta}$}
    ]
    {
       \annInt{n'}{\beta}, T \bwdSlice \rho, e, \alpha
@@ -178,7 +176,7 @@
       \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
    }
    {
-      \annInt{n}{\beta}, \trBinaryApp{T}{n'}{\primOp}{\phi}{U}{m}
+      v, \trBinaryApp{T}{n'}{\primOp}{\phi}{U}{m}
       \bwdSlice
       \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \alpha \join \alpha'
    }
