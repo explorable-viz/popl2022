@@ -1,0 +1,49 @@
+\begin{figure}[H]
+\flushleft \shadebox{$s \leq s'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \hole \leq s
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      s_1 \leq \hole
+      \\
+      s_2 \leq \hole
+      \\
+      s_3 \leq \hole
+   }
+   {
+      \exIfThenElse{s_1}{s_2}{s_3} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      s_1 \leq s_1'
+      \\
+      s_2 \leq s_2'
+      \\
+      s_3 \leq s_3'
+   }
+   {
+      \exIfThenElse{s_1}{s_2}{s_3} \leq \exIfThenElse{s_1'}{s_2'}{s_3'}
+   }
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft \shadebox{$l \leq l'$}
+\begin{smathpar}
+\end{smathpar}
+\caption{Partial orders on surface terms}
+\end{figure}
