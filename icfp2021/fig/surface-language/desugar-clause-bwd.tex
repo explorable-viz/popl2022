@@ -2,26 +2,10 @@
 \flushleft\shadebox{$\sigma, \vec{p} \dbwdarrow e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-pattern-seq-$\hole$}}
-]
-{
-   \sigma, p \dbwdarrow \hole
-   \\
-   \hole, \vec{p} \dbwdarrow e
-}
-{
-   \sigma, p \cdot \vec{p}
-   \dbwdarrow
-   e
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\dbwdarrow$-pattern-seq}}
 ]
 {
-   \sigma, p \dbwdarrow \exLambda{\sigma'}
+   \sigma, p \dbwdarrow\geq \exLambda{\sigma'}
    \\
    \sigma', \vec{p} \dbwdarrow e
 }
