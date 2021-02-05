@@ -150,10 +150,11 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-apply-prim}},
-      right={$v \geq \annInt{n}{\beta}$}
+      lab={\ruleName{$\bwdSlice$-apply-prim}}
    ]
    {
+      v \geq \annInt{n}{\beta}
+      \\
       \phi, T \bwdSlice \rho, e, \alpha
       \\
       \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'

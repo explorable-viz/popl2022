@@ -118,13 +118,14 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-apply}},
-      right={$u \geq \exClosureRec{\Gamma}{\rho'}{f}{\sigma}$}
+      lab={\ruleName{$\fwdSlice$-apply}}
    ]
    {
       e \geq \exApp{e_1}{e_2}
       \\
       \rho, e_1, \alpha, T \fwdSlice u
+      \\
+      u \geq \exClosureRec{\Gamma}{\rho'}{f}{\sigma}
       \\
       \rho, e_2, \alpha, U \fwdSlice v
       \\
