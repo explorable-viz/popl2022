@@ -3,26 +3,26 @@
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\eval$-var}},
-      right={\textnormal{$x: v \in \rho$}}
+      right={$\vdash \rho: \Gamma$}
    ]
    {
-      \strut
+      x: v \in \rho
    }
    {
-      \explVal{x}{\rho, x \eval v}
+      \explVal{\trVarNew{x}{\Gamma}}{\rho, x \eval v}
    }
    %
    \and
    %
    \inferrule*[
       lab={\ruleName{$\eval$-op}},
-      right={$\primOp: \phi \in \rho$}
+      right={$\vdash \rho: \Gamma$}
    ]
    {
-      \strut
+      \primOp: \phi \in \rho
    }
    {
-      \explVal{\trOp{\primOp}}{\rho, \exOp{\primOp} \eval \phi}
+      \explVal{\trOpNew{\primOp}{\Gamma}}{\rho, \exOp{\primOp} \eval \phi}
    }
    %
    \and

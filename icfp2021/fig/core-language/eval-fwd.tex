@@ -2,27 +2,29 @@
 \flushleft \shadebox{$\rho, e, \alpha, T \fwdSlice v$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-var}},
-      right={$x: v \in \rho$}
+      lab={\ruleName{$\fwdSlice$-var}}
    ]
    {
       e \geq \exVar{x}
+      \\
+      x : v \in \rho
    }
    {
-      \rho, e, \alpha, \trVar{x} \fwdSlice v
+      \rho, e, \alpha, \trVarNew{x}{\Gamma} \fwdSlice v
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-op}},
-      right={$\primOp: v \in \rho$}
+      lab={\ruleName{$\fwdSlice$-op}}
    ]
    {
       e \geq \exOp{\primOp}
+      \\
+      \primOp: v \in \rho
    }
    {
-      \rho, e, \alpha, \trOp{\primOp} \fwdSlice v
+      \rho, e, \alpha, \trOpNew{\primOp}{\Gamma} \fwdSlice v
    }
    %
    \and
