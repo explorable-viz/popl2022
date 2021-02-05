@@ -131,14 +131,14 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
-      \explVal{T}{\rho, e \eval \exClosureRecNew{\Gamma}{\rho'}{f}{\sigma}}
+      \explVal{T}{\rho, e \eval \exClosureRec{\Gamma}{\rho'}{f}{\sigma}}
       \\
       \explVal{U}{\rho, e' \eval v}
       \\
       \explVal{w}{v, \sigma \match \rho^\twoPrime, e^\twoPrime}
       \\
       \explVal{T'}
-              {\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRecNew{\Gamma}{\rho'}{f}{\sigma}},
+              {\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\Gamma}{\rho'}{f}{\sigma}},
                e^\twoPrime
                \eval v'}
    }
@@ -192,7 +192,7 @@
       right={$\vdash \rho : \Gamma$}
    ]
    {
-      \explVal{T}{\envExtend{\rho}{f}{\exClosureRecNew{\Gamma}{\rho}{f}{\sigma}}, e \eval v}
+      \explVal{T}{\envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho}{f}{\sigma}}, e \eval v}
    }
    {
       \explVal{\trLetRec{f}{\sigma}{T}}{\rho, \exLetRec{f}{\sigma}{e} \eval v}
