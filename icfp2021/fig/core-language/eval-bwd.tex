@@ -52,16 +52,17 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-cons}},
-      right={$v' \geq \annCons{u}{v}{\beta}$}
+      lab={\ruleName{$\bwdSlice$-cons}}
    ]
    {
-      u, T \bwdSlice \rho, e, \alpha
+      v \geq \annCons{v_1}{v_2}{\beta}
       \\
-      v, U \bwdSlice \rho', e', \alpha'
+      v_1, T \bwdSlice \rho, e, \alpha
+      \\
+      v_2, U \bwdSlice \rho', e', \alpha'
    }
    {
-      v', \trCons{T}{U}
+      v, \trCons{T}{U}
       \bwdSlice
       \rho \join \rho', \annCons{e}{e'}{\beta}, \beta \join \alpha \join \alpha'
    }
@@ -69,19 +70,20 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-matrix}},
-      right={$v' \geq \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}$}
+      lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
+      v \geq \annMatrix{v'_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}
+      \\
       \forall (i,j) \leq (i',j').
-      v_{i,j}, U_{i,j}
+      v'_{i,j}, U_{i,j}
       \bwdSlice
       \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha'_{i,j}
       \\
       \annot{\exPair{\annInt{i'}{\join{\gamma}}}{\annInt{j'}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho, e', \alpha
    }
    {
-      v',
+      v,
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
@@ -110,10 +112,11 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-matrix-dims}},
-      right={$v \geq \annPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}{\alpha}$}
+      lab={\ruleName{$\bwdSlice$-matrix-dims}}
    ]
    {
+      v \geq \annPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}{\alpha}
+      \\
       \annMatrix{\hole}{i}{j}{\exPair{i'}{j'}}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
    }
    {
