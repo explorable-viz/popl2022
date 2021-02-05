@@ -200,6 +200,30 @@
    {
       \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\FF} \leq \hole
    }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \rho \leq \hole_{?}
+      \\
+      \sigma \leq \hole
+   }
+   {
+      \exClosure{\rho}{f}{\sigma} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
+   }
+   {
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\FF} \leq \hole
+   }
 \end{smathpar}
 \caption{Partial order on values}
 \end{figure}
