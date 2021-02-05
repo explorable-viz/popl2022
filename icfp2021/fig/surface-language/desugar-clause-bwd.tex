@@ -123,10 +123,10 @@
    lab={\ruleName{$\dbwdarrow$-list-end}}
 ]
 {
-   \strut
+   \sigma \geq \elimList{\kappa}{\sigma}
 }
 {
-   \elimList{\kappa}{\sigma}, \pattListEnd
+   \sigma, \pattListEnd
    \dbwdarrow
    \kappa
 }
@@ -137,30 +137,18 @@
    lab={\ruleName{$\dbwdarrow$-list-rest}}
 ]
 {
-   \sigma, p \dbwdarrow \sigma'
+   \sigma \geq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', o \dbwdarrow \kappa'
+   \sigma', p \dbwdarrow \tau
+   \\
+   \tau, o \dbwdarrow \kappa'
 }
 {
-   \elimList{\kappa}{\sigma}, \pattListNext{p}{o}
+   \sigma, \pattListNext{p}{o}
    \dbwdarrow
    \kappa'
 }
 \end{smathpar}
-
-\vspace{5pt}
-\begin{minipage}[t]{0.5\textwidth}
-\flushleft \shadebox{$o \dbwdhole \sigma$}
-\begin{salign}
-   \pattListEnd
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-   \\
-   \pattListNext{p}{o}
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-\end{salign}
-\end{minipage}
 
 \vspace{5pt}
 \flushleft\shadebox{$\sigma, \vec{c} \dbwdarrow \vec{c}$}
@@ -195,5 +183,5 @@
    c' \cdot \vec{c}'
 }
 \end{smathpar}
-\caption{Desugaring clauses and patterns -- backward slicing, with hole expansion rules}
+\caption{Desugaring clauses and patterns -- backward slicing}
 \end{figure}
