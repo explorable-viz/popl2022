@@ -14,11 +14,10 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-op}},
-      right={$v \geq \phi$}
+      lab={\ruleName{$\bwdSlice$-op}}
    ]
    {
-      \strut
+      v \geq \phi
    }
    {
       v, \trOp{\primOp}{\Gamma}
@@ -29,11 +28,10 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil}},
-      right={$v \geq \annNil{\alpha}$}
+      lab={\ruleName{$\bwdSlice$-nil}}
    ]
    {
-      \strut
+      v \geq \annNil{\alpha}
    }
    {
       v, \trNil{\Gamma} \bwdSlice \hole_{\Gamma}, \annNil{\alpha}, \alpha
@@ -42,11 +40,10 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-int}},
-      right={$v \geq \annInt{n}{\alpha}$}
+      lab={\ruleName{$\bwdSlice$-int}}
    ]
    {
-      \strut
+      v \geq \annInt{n}{\alpha}
    }
    {
       v, \trInt{n}{\Gamma} \bwdSlice \hole_{\Gamma}, \annInt{n}{\alpha}, \alpha
