@@ -36,28 +36,6 @@
    \and
    %
    \inferrule*[
-   ]
-   {
-      \strut
-   }
-   {
-      \exPrim{\phi} \leq \exPrim{\phi}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      \strut
-   }
-   {
-      \exPrim{\phi} \leq \hole
-   }
-   %
-   \and
-   %
-   \inferrule*[
       right={$\alpha \leq \alpha'$}
    ]
    {
@@ -206,12 +184,10 @@
    \inferrule*[
    ]
    {
-      \rho \leq \hole_{?}
-      \\
-      \sigma \leq \hole
+      \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
    }
    {
-      \exClosure{\rho}{f}{\sigma} \leq \hole
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\FF} \leq \hole
    }
    %
    \and
@@ -219,10 +195,47 @@
    \inferrule*[
    ]
    {
-      \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
+      \strut
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\FF} \leq \hole
+      \exPrim{\phi} \leq \exPrim{\phi}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exPrim{\phi} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \rho \leq \rho'
+      \\
+      \sigma \leq \sigma'
+   }
+   {
+      \exClosureRecNew{\Gamma}{\rho}{f}{\sigma} \leq \exClosureRecNew{\Gamma}{\rho'}{f}{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \rho \leq \hole_{\Gamma}
+      \\
+      \sigma \leq \hole
+   }
+   {
+      \exClosureRecNew{\Gamma}{\rho}{f}{\sigma} \leq \hole
    }
 \end{smathpar}
 \caption{Partial order on values}

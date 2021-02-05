@@ -123,7 +123,7 @@
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-apply}},
-      right={$u = \exClosureRec{\rho'}{f}{\sigma}$}
+      right={$u = \exClosureRecNew{\Gamma}{\rho'}{f}{\sigma}$}
    ]
    {
       \rho, e, \alpha, T \fwdSlice u
@@ -183,9 +183,12 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-let-rec}}]
+   \inferrule*[lab={
+      \ruleName{$\fwdSlice$-let-rec}},
+      right={$\vdash \rho: \Gamma$}
+   ]
    {
-      \envExtend{\rho}{f}{\exClosureRec{\rho}{f}{\sigma}}, e, \alpha, T \fwdSlice v
+      \envExtend{\rho}{f}{\exClosureRecNew{\Gamma}{\rho}{f}{\sigma}}, e, \alpha, T \fwdSlice v
    }
    {
       \rho, \exLetRec{f}{\sigma}{e}, \alpha, \trLetRec{f}{\sigma}{T} \fwdSlice v

@@ -128,7 +128,8 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-apply}}
+      lab={\ruleName{$\bwdSlice$-apply}},
+      right={$\vdash \rho_1: \Gamma$}
    ]
    {
       v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho_2)}{f}{u}, e^\twoPrime, \beta
@@ -137,7 +138,7 @@
       \\
       v', U \bwdSlice \rho', e', \alpha
       \\
-      u \join \exClosureRec{\rho_1}{f}{\sigma'}, T
+      u \join \exClosureRecNew{\Gamma}{\rho_1}{f}{\sigma'}, T
       \bwdSlice
       \rho, e, \alpha'
    }
@@ -201,7 +202,7 @@
       lab={\ruleName{$\bwdSlice$-let-rec}}
    ]
    {
-      v, T \bwdSlice \envExtend{\rho}{f}{\annot{\exClosureRec{\rho'}{f}{\sigma'}}{\alpha'}}, e, \alpha
+      v, T \bwdSlice \envExtend{\rho}{f}{\annot{\exClosureRecNew{\Gamma}{\rho'}{f}{\sigma'}}{\alpha'}}, e, \alpha
    }
    {
       v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha \join \alpha'

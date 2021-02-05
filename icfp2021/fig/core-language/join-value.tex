@@ -28,9 +28,9 @@
    \\
    \exPrim{\phi} \join \exPrim{\phi} &= \exPrim{\phi}
    \\
-   \exClosureRec{\rho}{f}{\sigma} \join \exClosureRec{\rho'}{f}{\sigma'}
+   \exClosureRecNew{\Gamma}{\rho}{f}{\sigma} \join \exClosureRecNew{\Gamma}{\rho'}{f}{\sigma'}
    &=
-   \exClosureRec{\rho \join \rho'}{f}{\sigma \join \sigma'}
+   \exClosureRecNew{\Gamma}{\rho \join \rho'}{f}{\sigma \join \sigma'}
 \end{salign}
 \caption{Join of compatible values}
 \end{figure}
