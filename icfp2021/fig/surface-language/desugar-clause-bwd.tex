@@ -150,38 +150,6 @@
 
 \vspace{5pt}
 \begin{minipage}[t]{0.5\textwidth}
-\flushleft \shadebox{$p \dbwdhole \sigma$}
-\begin{salign}
-   \pattVar{x}
-   &\dbwdhole
-   \elimVar{x}{\hole}
-   \\
-   \pattTrue
-   &\dbwdhole
-   \elimBool{\hole}{\hole}
-   \\
-   \pattFalse
-   &\dbwdhole
-   \elimBool{\hole}{\hole}
-   \\
-   \pattPair{p}{p'}
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-   \\
-   \pattNil
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-   \\
-   \pattCons{p}{p'}
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-   \\
-   \pattList{p}{o}
-   &\dbwdhole
-   \elimList{\hole}{\hole}
-\end{salign}
-\end{minipage}%
-\begin{minipage}[t]{0.5\textwidth}
 \flushleft \shadebox{$o \dbwdhole \sigma$}
 \begin{salign}
    \pattListEnd
