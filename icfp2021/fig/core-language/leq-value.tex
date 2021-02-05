@@ -1,0 +1,48 @@
+\begin{figure}[H]
+\flushleft \shadebox{$v \leq v'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \hole \leq v
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annInt{n}{\alpha} \leq \annInt{n}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annInt{n}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exPrim{\phi} \leq \exPrim{\phi}
+   }
+\end{smathpar}
+\caption{Partial order on values}
+\end{figure}
