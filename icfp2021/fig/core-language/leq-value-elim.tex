@@ -1,4 +1,32 @@
 \begin{figure}[H]
+\flushleft \shadebox{$h \leq h'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \sigma_i \leq \sigma'_i
+      \quad
+      (\forall i \in \setRange{1}{n})
+   }
+   {
+      \seqRange{x_1: \sigma_1}{x_n: \sigma_n} \leq \seqRange{x_1: \sigma'_1}{x_n: \sigma'_n}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma_i \leq \hole
+      \quad
+      (\forall i \in \setRange{1}{n})
+   }
+   {
+      \seqRange{x_1: \sigma_1}{x_n: \sigma_n} \leq \hole
+   }
+\end{smathpar}
+
+\vspace{5pt}
 \flushleft \shadebox{$v \leq v'$}
 \begin{smathpar}
    \inferrule*[
@@ -208,6 +236,8 @@
    {
       \rho \leq \rho'
       \\
+      h \leq h'
+      \\
       \sigma \leq \sigma'
    }
    {
@@ -220,6 +250,8 @@
    ]
    {
       \rho \leq \hole_{\Gamma}
+      \\
+      h \leq \hole
       \\
       \sigma \leq \hole
    }
