@@ -147,10 +147,10 @@
 \and
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
-   right={$q \neq \exTrue$}
+   right={$\forall \alpha'.q \neq \qualGuard{\annTrue{\alpha'}}$}
 ]
 {
-   \annListComp{s}{q \concat \qualGuard{\annot{\exTrue}{\alpha}}}{\alpha} \dfwdarrow e
+   \annListComp{s}{q \concat \qualGuard{\annTrue{\alpha}}}{\alpha} \dfwdarrow e
 }
 {
   \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
