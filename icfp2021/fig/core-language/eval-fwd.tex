@@ -29,12 +29,12 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-lambda}}]
    {
-      e \geq \annNil{\alpha}
+      e \geq \exLambda{\sigma}
    }
    {
-      \rho, e, \alpha', \trNil{\Gamma} \fwdSlice \annNil{\alpha \meet \alpha'}
+      \rho, e, \trLambda{\sigma'} \fwdSlice \exClosure{\rho}{\seqEmpty}{\sigma}
    }
    %
    \and
@@ -45,6 +45,16 @@
    }
    {
       \rho, e, \alpha', \trInt{n}{\Gamma} \fwdSlice \annInt{n}{\alpha \meet \alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
+   {
+      e \geq \annNil{\alpha}
+   }
+   {
+      \rho, e, \alpha', \trNil{\Gamma} \fwdSlice \annNil{\alpha \meet \alpha'}
    }
    %
    \and
