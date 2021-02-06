@@ -35,6 +35,8 @@
    lab={\ruleName{$\dbwdarrow$-cons}}
 ]
 {
+   e \geq \exCons{e_1}{e_2}
+   \\
    e_1, s_1 \dbwdarrow s_1'
    \\
    e_2, s_2 \dbwdarrow s_2'
@@ -51,11 +53,11 @@
    lab={\ruleName{$\dbwdarrow$-let-rec}}
 ]
 {
-   e \geq \exLetRec{f}{\sigma}{e}
+   e \geq \exLetRec{f}{\sigma}{e'}
    \\
    \sigma, \vec{c} \dbwdarrow \vec{c}'
    \\
-   e, s \dbwdarrow s'
+   e', s \dbwdarrow s'
 }
 {
    e, \exLetRecEquational{f}{\vec{c}}{s}
