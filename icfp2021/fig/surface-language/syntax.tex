@@ -70,22 +70,6 @@ c
 \clause{p}{s}
 \\[2mm]
 
-\mbox{Pattern or list rest pattern}
-&
-\pi
-&
-::=
-&
-p
-&
-\text{pattern}
-\\
-&&&
-o
-&
-\text{list rest pattern}
-\\[2mm]
-
 \mbox{Pattern}
 &
 p
@@ -133,6 +117,14 @@ o
 \text{cons}
 \\[2mm]
 
+&
+\pi
+&
+::=
+&
+p \mid o
+\\[2mm]
+
 \mbox{Qualifier}
 &
 q
@@ -152,6 +144,11 @@ q
 \qualGenerator{p}{s}
 &
 \text{generator}
+\\
+&&&
+\qualDone
+&
+\text{done}
 \\[2mm]
 
 \end{syntaxfig}

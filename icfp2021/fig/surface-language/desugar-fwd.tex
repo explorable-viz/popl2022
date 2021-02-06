@@ -140,17 +140,17 @@
    s \dfwdarrow e
 }
 {
-   \annot{\exListComp{s}{\qualGuard{\annot{\exTrue}{\alpha}}}}{\alpha'}
+   \annot{\exListComp{s}{\qualDone}}{\alpha'}
    \dfwdarrow
    \annCons{e}{\annot{\exNil}{\alpha \meet \alpha'}}{\alpha \meet \alpha'}
 }
 \and
 %
 \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
-   right={$\forall \alpha'.q \neq \qualGuard{\annTrue{\alpha'}}$}
+   right={$q \neq \qualDone$}
 ]
 {
-   \annListComp{s}{q \concat \qualGuard{\annTrue{\alpha}}}{\alpha} \dfwdarrow e
+   \annListComp{s}{q \concat \qualDone}{\alpha} \dfwdarrow e
 }
 {
   \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
