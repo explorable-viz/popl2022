@@ -145,44 +145,22 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho_2)}{f}{u}, e^\twoPrime, \beta
+      v, T' \bwdSlice \rho_1 \concat \rho_2 \concat \rho_3, e, \beta
       \\
-      \rho_2, e^\twoPrime, \beta, w, \matchBwd v', \sigma'
+      \rho_3, e, \beta, w, \matchBwd v', \sigma
       \\
-      v', U \bwdSlice \rho', e', \alpha
+      v', U \bwdSlice \rho, e_2, \alpha
       \\
-      u \join \exClosureRec{\Gamma}{\rho_1}{f}{\sigma'}, T
+      \rho_2 \closeDefsBwd \rho_1', h
+      \\
+      \exClosureRec{\Gamma}{\rho_1 \join \rho_1'}{h}{\sigma}, T
       \bwdSlice
-      \rho, e, \alpha'
+      \rho', e_1, \alpha'
    }
    {
       v, \trApp{T}{U}{\matchPlug{w}{T'}}
       \bwdSlice
-      \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-apply}}
-   ]
-   {
-      v, T' \bwdSlice \rho_1 \concat \rho_2 \concat \rho_3, e, \alpha
-      \\
-      \rho_3, e, \alpha, \xi \matchBwd v', \sigma
-      \\
-      v', U \bwdSlice \rho', e', \alpha'
-      \\
-      \rho_2 \closeDefsBwd \rho_1', \delta, \alpha_2
-      \\
-      \annot{\exClosure{\rho_1 \join \rho_1'}{\delta}{\sigma}}{\alpha \join \alpha_2}, T
-      \bwdSlice
-      \rho^\twoPrime, e^\twoPrime, \alpha^\twoPrime
-   }
-   {
-      v, \trApp{T}{U}{\matchPlug{\xi}{T'}}
-      \bwdSlice
-      \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
+      \rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha'
    }
    %
    \and
