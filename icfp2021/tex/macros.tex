@@ -182,17 +182,14 @@
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
 \newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
 \newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
-%\newcommand*{\evalFwdHole}{\mathrel{\fwdSlice_{\hole}}}
-%\newcommand*{\evalBwdHole}{\mathrel{\bwdSlice_{\hole}}}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
-%\newcommand*{\matchFwdHole}{\mathrel{\matchFwd_{\hole}}}
 
-\newcommand*{\seq}{\mathrel{\smalltriangleright}}
+\newcommand*{\seq}[1]{\overrightarrow{#1}}
 
 % Traces.
-\newcommand*{\trApp}[3]{\exApp{#1}{#2}\seq{#3}}
+\newcommand*{\trApp}[3]{\exApp{#1}{#2} \mathrel{\smalltriangleright} {#3}}
 \newcommand*{\trAppPrim}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trMatrix}[7]{\exMatrix{#1}{#2:#4}{#3:#5}{\sub{#6}{#7}}}
