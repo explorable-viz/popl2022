@@ -212,5 +212,15 @@
       v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha
    }
 \end{smathpar}
-\caption{Backward slicing; Boolean and pair cases omitted}
+
+\vspace{5pt}
+\flushleft\shadebox{$\rho \closeDefsBwd \rho', \delta, \alpha$}
+\begin{salign}
+   [f : \annot{\exClosure{\rho_f}{\delta_f}{\sigma_f}}{\alpha_f} \mid f \in F]
+   &\closeDefsFwd
+   {\textstyle{\bigvee}\rho}, [
+   \exFun{f}{\sigma_f} \mid f \in F] \join {\textstyle{\bigvee}\delta},
+   {\textstyle{\bigvee}\alpha}
+\end{salign}
+\caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}
