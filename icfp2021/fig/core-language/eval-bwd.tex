@@ -182,20 +182,20 @@
       \bwdSlice
       \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \alpha \join \alpha'
    }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let}}
-   ]
-   {
-      v, U \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
-      \\
-      v', T \bwdSlice \rho', e', \alpha'
-   }
-   {
-      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
-   }
+%   %
+%   \and
+%   %
+%   \inferrule*[
+%      lab={\ruleName{$\bwdSlice$-let}}
+%   ]
+%   {
+%      v, U \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+%      \\
+%      v', T \bwdSlice \rho', e', \alpha'
+%   }
+%   {
+%      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
+%   }
    %
    \and
    %
