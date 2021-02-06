@@ -1,4 +1,14 @@
 \begin{figure}[H]
+\flushleft\shadebox{$h \join h'$}
+\begin{salign}
+   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n})
+   \join
+   (\seqRange{x_1: \sigma'_1}{x_n: \sigma'_n})
+   &=
+   \seqRange{x_1: (\sigma_1 \join \sigma'_1)}{x_n: (\sigma_n \join \sigma'_n)}
+\end{salign}
+
+\vspace{5pt}
 \flushleft\shadebox{$v \join v'$}
 \begin{salign}
    \hole \join v &= v
@@ -28,9 +38,9 @@
    \\
    \exPrim{\phi} \join \exPrim{\phi} &= \exPrim{\phi}
    \\
-   \exClosureRec{\Gamma}{\rho}{f}{\sigma} \join \exClosureRec{\Gamma}{\rho'}{f}{\sigma'}
+   \exClosureRec{\Gamma}{\rho}{h}{\sigma} \join \exClosureRec{\Gamma}{\rho'}{h'}{\sigma'}
    &=
-   \exClosureRec{\Gamma}{\rho \join \rho'}{f}{\sigma \join \sigma'}
+   \exClosureRec{\Gamma}{\rho \join \rho'}{h \join h'}{\sigma \join \sigma'}
 \end{salign}
 \caption{Join of compatible values}
 \end{figure}
