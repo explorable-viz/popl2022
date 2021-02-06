@@ -214,13 +214,12 @@
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\rho \closeDefsBwd \rho', \delta, \alpha$}
+\flushleft\shadebox{$\rho \closeDefsBwd \rho', h$}
 \begin{salign}
-   [f : \annot{\exClosure{\rho_f}{\delta_f}{\sigma_f}}{\alpha_f} \mid f \in F]
+   \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_n: \exClosure{\rho_n}{h_n}{\sigma_n}}
    &\closeDefsFwd
-   {\textstyle{\bigvee}\rho}, [
-   \exFun{f}{\sigma_f} \mid f \in F] \join {\textstyle{\bigvee}\delta},
-   {\textstyle{\bigvee}\alpha}
+   {\join}\setRange{\rho_1}{\rho_n}, [
+   \exFun{f}{\sigma_f} \mid f \in F] \join ({\join}\setRange{h_1}{h_n})
 \end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}
