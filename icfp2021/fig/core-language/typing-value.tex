@@ -22,6 +22,21 @@
 }
 \end{smathpar}
 \\[2mm]
+\flushleft \shadebox{$\Gamma \vdash h: \Delta$}
+\begin{smathpar}
+   \inferrule*[right={
+      \textnormal{$\Delta = \seqRange{x_1: \tyFun{A_1}{B_1}}{x_n: \tyFun{A_n}{B_n}}$}
+   }]
+   {
+      \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
+      \quad
+      (\forall i \in \setRange{1}{h})
+   }
+   {
+      \Gamma \vdash \seqRange{x_1 : \sigma_1}{x_n : \sigma_n}: \Delta
+   }
+\end{smathpar}
+\\[2mm]
 \flushleft \shadebox{$\vdash v: A$}
 \begin{smathpar}
 \inferrule*
