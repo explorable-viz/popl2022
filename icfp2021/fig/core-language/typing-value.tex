@@ -94,10 +94,12 @@
 {
    \vdash \rho: \Gamma
    \\
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
+   \Gamma \vdash h: \Delta
+   \\
+   \Gamma \concat \Delta \vdash \sigma: \tyFun{A}{B}
 }
 {
-   \vdash \exClosureRec{\Gamma}{\rho}{f}{\sigma}: \tyFun{A}{B}
+   \vdash \exClosureRec{\Gamma}{\rho}{h}{\sigma}: \tyFun{A}{B}
 }
 %
 \and
