@@ -200,14 +200,15 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-let-rec}},
-      right={$\vdash \rho : \Gamma$}
+      lab={\ruleName{$\eval$-let-rec}}
    ]
    {
-      \explVal{T}{\envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho}{f}{\sigma}}, e \eval v}
+      \rho, h \closeDefs \rho'
+      \\
+      \explVal{T}{\rho \concat \rho', e \eval v}
    }
    {
-      \explVal{\trLetRec{f}{\sigma}{T}}{\rho, \exLetRec{f}{\sigma}{e} \eval v}
+      \explVal{\trLetRecMutual{h}{T}}{\rho, \exLetRecMutual{h}{e} \eval v}
    }
 \end{smathpar}
 \caption{Evaluation}
