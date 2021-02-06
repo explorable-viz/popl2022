@@ -27,22 +27,28 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-true}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-true}},
+      right={$\vdash \rho: \Gamma$}
+   ]
    {
       \strut
    }
    {
-      \explVal{\trTrue}{\rho, \exTrue \eval \exTrue}
+      \explVal{\trTrue{\Gamma}}{\rho, \exTrue \eval \exTrue}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-false}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-false}},
+      right={$\vdash \rho: \Gamma$}
+   ]
    {
       \strut
    }
    {
-      \explVal{\trFalse}{\rho, \exFalse \eval \exFalse}
+      \explVal{\trFalse{\Gamma}}{\rho, \exFalse \eval \exFalse}
    }
    %
    \and

@@ -196,7 +196,7 @@
 \newcommand*{\trMatrixAccess}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
 \newcommand*{\trMatrixDims}[2]{\exMatrixDims{\sub{#1}{#2}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
-\newcommand*{\trFalse}{\exFalse}
+\newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
 \newcommand*{\trInt}[2]{\sub{\exInt{#1}}{#2}}
 \newcommand*{\trLambda}[1]{\exLambda{#1}}
 \newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
@@ -208,7 +208,7 @@
 \newcommand*{\trOp}[2]{\sub{\exOp{#1}}{#2}}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
-\newcommand*{\trTrue}{\exTrue}
+\newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
 \newcommand*{\trVar}[2]{\sub{#1}{#2}}
 
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}

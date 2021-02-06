@@ -36,6 +36,11 @@ T, U
 &
 ::=
 &
+\trTrue{\Gamma}
+&
+\text{Boolean}
+\\
+&&&
 \trVar{x}{\Gamma}
 &
 \text{variable}
@@ -96,9 +101,9 @@ T, U
 %\text{let}
 %\\
 &&&
-\trLetRec{f}{\sigma}{T}
+\trLetRecMutual{h}{T}
 &
-\text{recursive function}
+\text{recursive let}
 \end{syntaxfig}
 \caption{Matches and traces}
 \end{figure}
