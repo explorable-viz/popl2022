@@ -26,9 +26,10 @@
 
 % Misc.
 \newcommand*{\envExtendTwo}[2]{{#1}[#2]}
-\newcommand*{\closeDefs}{\mathrel{\rightharpoonup}}
-\newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}
-\newcommand*{\closeDefsBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}
+\newcommand*{\closeDefsArrow}{\twoheadrightarrow}
+\newcommand*{\closeDefs}{\mathrel{\closeDefsArrow}}
+\newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
+\newcommand*{\closeDefsBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsArrow$}}}
 
 % Misc. syntax.
 \newcommand*{\trace}[2]{\textcolor{gray}{#1}\mathrel{\textcolor{gray}{::}}{#2}}
