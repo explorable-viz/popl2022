@@ -155,16 +155,15 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
-      \explVal{T}{\rho, e \eval \exClosureRec{\Gamma}{\rho'}{f}{\sigma}}
+      \explVal{T}{\rho, e \eval \exClosureRec{\Gamma}{\rho_1}{h}{\sigma}}
+      \\
+      \rho_1, h \closeDefs \rho_2
       \\
       \explVal{U}{\rho, e' \eval v}
       \\
-      \explVal{w}{v, \sigma \match \rho^\twoPrime, e^\twoPrime}
+      \explVal{w}{v, \sigma \match \rho_3, e_1}
       \\
-      \explVal{T'}
-              {\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\Gamma}{\rho'}{f}{\sigma}},
-               e^\twoPrime
-               \eval v'}
+      \explVal{T'}{\rho_1 \concat \rho_2 \concat \rho_3, e_1 \eval v'}
    }
    {
       \explVal{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
