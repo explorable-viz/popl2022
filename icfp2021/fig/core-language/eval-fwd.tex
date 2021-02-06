@@ -199,16 +199,17 @@
    \and
    %
    \inferrule*[lab={
-      \ruleName{$\fwdSlice$-let-rec}},
-      right={$\vdash \rho: \Gamma$}
+      \ruleName{$\fwdSlice$-let-rec}}
    ]
    {
-      e \geq \exLetRec{f}{\sigma}{e'}
+      e \geq \exLetRecMutual{h}{e'}
       \\
-      \envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho}{f}{\sigma}}, e', \alpha, T \fwdSlice v
+      \rho, h \closeDefs \rho'
+      \\
+      \rho \concat \rho', e', \alpha, T \fwdSlice v
    }
    {
-      \rho, e, \alpha, \trLetRec{f}{\sigma}{T} \fwdSlice v
+      \rho, e, \alpha, \trLetRecMutual{h}{T} \fwdSlice v
    }
 \end{smathpar}
 \caption{Forward slicing; Boolean and pair cases omitted}

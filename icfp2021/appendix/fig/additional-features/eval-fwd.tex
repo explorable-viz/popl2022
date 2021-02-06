@@ -1,16 +1,6 @@
 \begin{figure}
 \flushleft \shadebox{$\rho, e, \alpha \fwdSlice v$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\fwdSlice$-lambda}}]
-   {
-      \strut
-   }
-   {
-      \rho, \exLambda{\sigma}, \alpha \fwdSlice \exClosure{\rho}{\seqEmpty}{\sigma}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\fwdSlice$-apply}}]
    {
       \rho, e, \alpha \fwdSlice \annot{\exClosure{\rho_1}{\delta}{\sigma}}{\alpha'}
