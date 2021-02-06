@@ -143,8 +143,9 @@
 %
 \inferrule*
 {
-   \forall (i,j) \leq (i',j').
    \vdash v_{i,j}: A
+   \quad
+   (\forall (i,j) \leq (i',j'))
 }
 {
    \vdash \exMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}: \tyMatrix{A}

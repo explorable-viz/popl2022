@@ -157,12 +157,12 @@
 %
 \inferrule*
 {
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
+   \Gamma \vdash h: \Delta
    \\
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash e: B'
+   \Gamma \concat \Delta \vdash e: A
 }
 {
-   \Gamma \vdash \exLetRec{f}{\sigma}{e}: B'
+   \Gamma \vdash \exLetRecMutual{h}{e}: A
 }
 \end{smathpar}
 \caption{Typing rules for terms}
