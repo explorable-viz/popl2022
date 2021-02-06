@@ -28,13 +28,15 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil}}
+      lab={\ruleName{$\bwdSlice$-lambda}}
    ]
    {
-      v \geq \annNil{\alpha}
+      \strut
    }
    {
-      v, \trNil{\Gamma} \bwdSlice \hole_{\Gamma}, \annNil{\alpha}, \alpha
+      \exClosure{\rho}{\seqEmpty}{\sigma}, \trLambda{\sigma'}
+      \bwdSlice
+      \rho, \exLambda{\sigma}, \FF
    }
    %
    \and
@@ -47,6 +49,18 @@
    }
    {
       v, \trInt{n}{\Gamma} \bwdSlice \hole_{\Gamma}, \annInt{n}{\alpha}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-nil}}
+   ]
+   {
+      v \geq \annNil{\alpha}
+   }
+   {
+      v, \trNil{\Gamma} \bwdSlice \hole_{\Gamma}, \annNil{\alpha}, \alpha
    }
    %
    \and
