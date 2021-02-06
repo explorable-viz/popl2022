@@ -36,14 +36,21 @@ T, U
 &
 ::=
 &
-\trTrue{\Gamma}
-&
-\text{Boolean}
-\\
-&&&
 \trVar{x}{\Gamma}
 &
 \text{variable}
+\\
+&&&
+\trOp{\primOp}{\Gamma}
+&
+\text{first-class operator}
+\\
+&&&
+\trTrue{\Gamma}
+\mid
+\trFalse{\Gamma}
+&
+\text{Boolean}
 \\
 &&&
 \trInt{n}{\Gamma}
