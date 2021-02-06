@@ -22,20 +22,6 @@
       \bwdSlice
       \rho' \join \rho^\twoPrime, \exApp{e^\twoPrime}{e'}, \alpha' \join \alpha^\twoPrime
    }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let-rec}}
-   ]
-   {
-      v, T \bwdSlice \rho \concat \rho', e, \alpha
-      \\
-      \rho' \closeDefsBwd \rho, \delta', \alpha'
-   }
-   {
-      v, \trLetRecMutual{\delta}{T} \bwdSlice \rho \join \rho', \exLetRecMutual{\delta'}{e}, \alpha \join \alpha'
-   }
 \end{smathpar}
 \caption{Additional/modified backward slicing rules}
 \end{figure}

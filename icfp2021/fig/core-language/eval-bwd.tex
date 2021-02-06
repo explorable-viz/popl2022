@@ -31,10 +31,10 @@
       lab={\ruleName{$\bwdSlice$-lambda}}
    ]
    {
-      \strut
+      v \geq \exClosure{\rho}{\seqEmpty}{\sigma}
    }
    {
-      \exClosure{\rho}{\seqEmpty}{\sigma}, \trLambda{\sigma'}
+      v, \trLambda{\sigma'}
       \bwdSlice
       \rho, \exLambda{\sigma}, \FF
    }
@@ -214,16 +214,15 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let-rec}},
-      right={$\vdash \rho: \Gamma$}
+      lab={\ruleName{$\bwdSlice$-let-rec}}
    ]
    {
-      v, T \bwdSlice \envExtend{\rho}{f}{u}, e, \alpha
+      v, T \bwdSlice \rho \concat \rho_1, e, \alpha
       \\
-      u \geq \exClosureRec{\Gamma}{\rho'}{f}{\sigma'}
+      \rho_1 \closeDefsBwd \rho', h'
    }
    {
-      v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha
+      v, \trLetRecMutual{h}{T} \bwdSlice \rho \join \rho', \exLetRecMutual{h'}{e}, \alpha
    }
 \end{smathpar}
 
