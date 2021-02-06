@@ -232,6 +232,28 @@
    \inferrule*[
    ]
    {
+      \sigma \leq \sigma'
+   }
+   {
+      \exLambda{\sigma} \leq \exLambda{\sigma}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma \leq \hole
+   }
+   {
+      \exLambda{\sigma} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
       e_1 \leq e_1'
       \\
       e_2 \leq e_2'

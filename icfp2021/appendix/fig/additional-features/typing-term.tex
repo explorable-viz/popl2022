@@ -3,16 +3,6 @@
 \begin{smathpar}
    \inferrule*
    {
-      \Gamma \vdash \sigma : \tyFun{A}{B}
-   }
-   {
-      \Gamma \vdash \exLambda{\sigma} : \tyFun{A}{B}
-   }
-   %
-   \and
-   %
-   \inferrule*
-   {
       \Gamma \vdash \delta: \Delta
       \\
       \Gamma \concat \Delta \vdash e : A

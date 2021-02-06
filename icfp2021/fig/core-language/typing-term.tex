@@ -77,6 +77,16 @@
 %
 \inferrule*
 {
+   \Gamma \vdash \sigma : \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exLambda{\sigma} : \tyFun{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash e: \tyFun{A}{B}
    \\
    \Gamma \vdash e': A
