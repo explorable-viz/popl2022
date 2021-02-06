@@ -169,23 +169,23 @@
 }
 {
    e,
-   \exListComp{s}{\qualGuard{\exTrue}}
+   \exListComp{s}{\qualDone}
    \dbwdarrow
-   \annot{\exListComp{s'}{\qualGuard{\annTrue{\alpha \join \alpha'}}}}{\alpha \join \alpha'}
+   \annot{\exListComp{s'}{\qualDone}}{\alpha \join \alpha'}
 }
 %
 \and
 %
 \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
 {
-   e, \exListComp{s}{q \concat \qualGuard{\exTrue}}
+   e, \exListComp{s}{q \concat \qualDone}
    \dbwdarrow
-   \annot{\exListComp{s'}{q' \concat \qualGuard{\annot{\exTrue}{\beta}}}}{\beta'}
+   \annot{\exListComp{s'}{q' \concat \qualDone}}{\beta}
 }
 {
    e, \exListComp{s}{q}
    \dbwdarrow
-   \annListComp{s'}{q'}{\beta \join \beta'}
+   \annListComp{s'}{q'}{\beta}
 }
 %
 \and
