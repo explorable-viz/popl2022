@@ -382,10 +382,10 @@
    {
       e \leq e'
       \\
-      \sigma \leq \sigma'
+      h \leq h'
    }
    {
-      \exLetRec{f}{\sigma}{e} \leq \exLet{f}{\sigma'}{e'}
+      \exLetRecMutual{h}{e} \leq \exLetRecMutual{h'}{e'}
    }
    %
    \and
@@ -395,10 +395,10 @@
    {
       e \leq \hole
       \\
-      \sigma \leq \hole
+      h \leq \hole
    }
    {
-      \exLetRec{f}{\sigma}{e} \leq \hole
+      \exLetRecMutual{h}{e} \leq \hole
    }
 \end{smathpar}
 \caption{Partial orders on terms}
