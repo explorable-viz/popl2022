@@ -222,5 +222,15 @@
       \explVal{\trLetRecMutual{h}{T}}{\rho, \exLetRecMutual{h}{e} \eval v}
    }
 \end{smathpar}
+
+\vspace{5pt}
+\flushleft\shadebox{$\rho, h \closeDefs \rho'$}
+\begin{salign}
+   \rho, h
+   &\closeDefs
+   \seqRange{\exClosure{\rho}{h}{\sigma_1}}{\exClosure{\rho}{h}{\sigma_n}}
+   \\
+   & \text{where $h = \seqRange{x_1: \sigma_1}{x_n: \sigma_n}$}
+\end{salign}
 \caption{Evaluation}
 \end{figure}
