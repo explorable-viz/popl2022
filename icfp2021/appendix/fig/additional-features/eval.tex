@@ -8,18 +8,6 @@
 \\[5mm]
 \flushleft \shadebox{$\explVal{T}{\rho, e \eval v}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\eval$-lambda}}]
-   {
-      \strut
-   }
-   {
-      \explVal
-         {\trLambda{\sigma}}
-         {\rho, \exLambda{\sigma} \eval \exClosure{\rho}{\seqEmpty}{\sigma}}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
       \explVal{T}{\rho, e \eval \exClosure{\rho_1}{\delta}{\sigma}}

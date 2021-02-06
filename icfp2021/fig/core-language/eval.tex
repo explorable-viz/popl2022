@@ -27,6 +27,18 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\eval$-lambda}}]
+   {
+      \strut
+   }
+   {
+      \explVal
+         {\trLambda{\sigma}}
+         {\rho, \exLambda{\sigma} \eval \exClosure{\rho}{\seqEmpty}{\sigma}}
+   }
+   %
+   \and
+   %
    \inferrule*[
       lab={\ruleName{$\eval$-true}},
       right={$\vdash \rho: \Gamma$}
