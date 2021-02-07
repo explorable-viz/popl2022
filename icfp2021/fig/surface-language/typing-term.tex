@@ -6,13 +6,12 @@
 \begin{smathpar}
 \inferrule*
 {
-   \forall c \in \vec{c}. \
-   \Gamma , f : \tyFun{A}{B} \vdash c : \tyFun{A}{B}
+   \Gamma \vdash \vec{g}: \Delta
    \\
-   \Gamma , f : \tyFun{A}{B} \vdash s: B'
+   \Gamma \concat \Delta \vdash s: A
 }
 {
-   \Gamma \vdash \exLetRecEquational{f}{\vec{c}}{s}: B'
+   \Gamma \vdash \exLetRecMutual{\vec{g}}{s}: A
 }
 %
 \and
