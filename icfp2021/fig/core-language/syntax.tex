@@ -55,6 +55,15 @@ e
 &
 \text{unselected}
 \\[2mm]
+\mbox{Mutually recursive functions}
+&
+h
+&
+::=
+&
+\seq{x : \sigma}
+&
+\\[2mm]
 \mbox{Term}
 &
 e
@@ -106,6 +115,11 @@ x
 \text{first-class operator}
 \\
 &&&
+\exLambda{\sigma}
+&
+\text{anonymous function}
+\\
+&&&
 \exApp{e}{e'}
 &
 \text{application}
@@ -125,15 +139,15 @@ x
 &
 \text{matrix dimensions}
 \\
+%&&&
+%\exLet{x}{e}{e'}
+%&
+%\text{let}
+%\\
 &&&
-\exLet{x}{e}{e'}
+\exLetRecMutual{h}{e}
 &
-\text{let}
-\\
-&&&
-\exLetRec{f}{\sigma}{e}
-&
-\text{recursive function}
+\text{recursive let}
 \end{syntaxfig}
 \caption{Syntax of terms}
 \end{figure}

@@ -77,6 +77,16 @@
 %
 \inferrule*
 {
+   \Gamma \vdash \sigma : \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exLambda{\sigma} : \tyFun{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash e: \tyFun{A}{B}
    \\
    \Gamma \vdash e': A
@@ -140,29 +150,29 @@
 {
    \Gamma \vdash \exMatrixDims{e}: \tyProd{\tyInt}{\tyInt}
 }
+%%
+%\and
+%%
+%\inferrule*
+%{
+%   \Gamma \vdash e: A
+%   \\
+%   \cxtExtend{\Gamma}{x}{A} \vdash e': B
+%}
+%{
+%   \Gamma \vdash \exLet{x}{e}{e'}: B
+%}
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash e: A
+   \Gamma \vdash h: \Delta
    \\
-   \cxtExtend{\Gamma}{x}{A} \vdash e': B
+   \Gamma \concat \Delta \vdash e: A
 }
 {
-   \Gamma \vdash \exLet{x}{e}{e'}: B
-}
-%
-\and
-%
-\inferrule*
-{
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
-   \\
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash e: B'
-}
-{
-   \Gamma \vdash \exLetRec{f}{\sigma}{e}: B'
+   \Gamma \vdash \exLetRecMutual{h}{e}: A
 }
 \end{smathpar}
 \caption{Typing rules for terms}

@@ -27,22 +27,40 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-true}}]
+   \inferrule*[lab={\ruleName{$\eval$-lambda}}]
    {
       \strut
    }
    {
-      \explVal{\trTrue}{\rho, \exTrue \eval \exTrue}
+      \explVal
+         {\trLambda{\sigma}}
+         {\rho, \exLambda{\sigma} \eval \exClosure{\rho}{\seqEmpty}{\sigma}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-false}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-true}},
+      right={$\vdash \rho: \Gamma$}
+   ]
    {
       \strut
    }
    {
-      \explVal{\trFalse}{\rho, \exFalse \eval \exFalse}
+      \explVal{\trTrue{\Gamma}}{\rho, \exTrue \eval \exTrue}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-false}},
+      right={$\vdash \rho: \Gamma$}
+   ]
+   {
+      \strut
+   }
+   {
+      \explVal{\trFalse{\Gamma}}{\rho, \exFalse \eval \exFalse}
    }
    %
    \and
@@ -137,16 +155,15 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
-      \explVal{T}{\rho, e \eval \exClosureRec{\Gamma}{\rho'}{f}{\sigma}}
+      \explVal{T}{\rho, e \eval \exClosureRec{\Gamma}{\rho_1}{h}{\sigma}}
+      \\
+      \rho_1, h \closeDefs \rho_2
       \\
       \explVal{U}{\rho, e' \eval v}
       \\
-      \explVal{w}{v, \sigma \match \rho^\twoPrime, e^\twoPrime}
+      \explVal{w}{v, \sigma \match \rho_3, e_1}
       \\
-      \explVal{T'}
-              {\envExtend{(\rho' \concat \rho^\twoPrime)}{f}{\exClosureRec{\Gamma}{\rho'}{f}{\sigma}},
-               e^\twoPrime
-               \eval v'}
+      \explVal{T'}{\rho_1 \concat \rho_2 \concat \rho_3, e_1 \eval v'}
    }
    {
       \explVal{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
@@ -178,31 +195,42 @@
    {
       \explVal{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}
    }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-let}}]
-   {
-      \explVal{T}{\rho, e \eval v}
-      \\
-      \explVal{U}{\envExtend{\rho}{x}{v}, e' \eval v'}
-   }
-   {
-      \explVal{\trLet{x}{T}{U}}{\rho, \exLet{x}{e}{e'} \eval v'}
-   }
+%   %
+%   \and
+%   %
+%   \inferrule*[lab={\ruleName{$\eval$-let}}]
+%   {
+%      \explVal{T}{\rho, e \eval v}
+%      \\
+%      \explVal{U}{\envExtend{\rho}{x}{v}, e' \eval v'}
+%   }
+%   {
+%      \explVal{\trLet{x}{T}{U}}{\rho, \exLet{x}{e}{e'} \eval v'}
+%   }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-let-rec}},
-      right={$\vdash \rho : \Gamma$}
+      lab={\ruleName{$\eval$-let-rec}}
    ]
    {
-      \explVal{T}{\envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho}{f}{\sigma}}, e \eval v}
+      \rho, h \closeDefs \rho'
+      \\
+      \explVal{T}{\rho \concat \rho', e \eval v}
    }
    {
-      \explVal{\trLetRec{f}{\sigma}{T}}{\rho, \exLetRec{f}{\sigma}{e} \eval v}
+      \explVal{\trLetRecMutual{h}{T}}{\rho, \exLetRecMutual{h}{e} \eval v}
    }
 \end{smathpar}
+
+\vspace{5pt}
+\flushleft\shadebox{$\rho, h \closeDefs \rho'$}
+\begin{salign}
+   \rho, h
+   &\closeDefs
+   \seqRange{\exClosure{\rho}{h}{\sigma_1}}{\exClosure{\rho}{h}{\sigma_n}}
+   \\
+   & \text{where $h = \seqRange{x_1: \sigma_1}{x_n: \sigma_n}$}
+\end{salign}
 \caption{Evaluation}
 \end{figure}

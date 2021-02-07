@@ -45,12 +45,16 @@
    lab={\ruleName{$\dfwdarrow$-let-rec}}
 ]
 {
-   \vec{c} \dfwdarrow \sigma
+   \vec{c}_i \dfwdarrow \sigma_i
+   \quad
+   (\forall i \in \setRange{1}{n})
    \\
    s \dfwdarrow e
 }
 {
-   \exLetRecEquational{f}{\vec{c}}{s} \dfwdarrow \exLetRec{f}{\sigma}{e}
+   \exLetRecMutual{\seqRange{x_1: \vec{c}_1}{x_n: \vec{c}_n}}{s}
+   \dfwdarrow
+   \exLetRecMutual{\seqRange{x_1: \sigma_1}{x_n: \sigma_n}}{e}
 }
 %
 \and

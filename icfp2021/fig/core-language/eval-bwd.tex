@@ -28,13 +28,15 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil}}
+      lab={\ruleName{$\bwdSlice$-lambda}}
    ]
    {
-      v \geq \annNil{\alpha}
+      v \geq \exClosure{\rho}{\seqEmpty}{\sigma}
    }
    {
-      v, \trNil{\Gamma} \bwdSlice \hole_{\Gamma}, \annNil{\alpha}, \alpha
+      v, \trLambda{\sigma'}
+      \bwdSlice
+      \rho, \exLambda{\sigma}, \FF
    }
    %
    \and
@@ -47,6 +49,18 @@
    }
    {
       v, \trInt{n}{\Gamma} \bwdSlice \hole_{\Gamma}, \annInt{n}{\alpha}, \alpha
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\bwdSlice$-nil}}
+   ]
+   {
+      v \geq \annNil{\alpha}
+   }
+   {
+      v, \trNil{\Gamma} \bwdSlice \hole_{\Gamma}, \annNil{\alpha}, \alpha
    }
    %
    \and
@@ -131,20 +145,22 @@
       lab={\ruleName{$\bwdSlice$-apply}}
    ]
    {
-      v, T' \bwdSlice \envExtend{(\rho_1 \concat \rho_2)}{f}{u}, e^\twoPrime, \beta
+      v, T' \bwdSlice \rho_1 \concat \rho_2 \concat \rho_3, e, \beta
       \\
-      \rho_2, e^\twoPrime, \beta, w, \matchBwd v', \sigma'
+      \rho_3, e, \beta, w, \matchBwd v', \sigma
       \\
-      v', U \bwdSlice \rho', e', \alpha
+      v', U \bwdSlice \rho, e_2, \alpha
       \\
-      u \join \exClosureRec{\Gamma}{\rho_1}{f}{\sigma'}, T
+      \rho_2 \closeDefsBwd \rho_1', h
+      \\
+      \exClosureRec{\Gamma}{\rho_1 \join \rho_1'}{h}{\sigma}, T
       \bwdSlice
-      \rho, e, \alpha'
+      \rho', e_1, \alpha'
    }
    {
       v, \trApp{T}{U}{\matchPlug{w}{T'}}
       \bwdSlice
-      \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
+      \rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha'
    }
    %
    \and
@@ -182,35 +198,43 @@
       \bwdSlice
       \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \alpha \join \alpha'
    }
+%   %
+%   \and
+%   %
+%   \inferrule*[
+%      lab={\ruleName{$\bwdSlice$-let}}
+%   ]
+%   {
+%      v, U \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+%      \\
+%      v', T \bwdSlice \rho', e', \alpha'
+%   }
+%   {
+%      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
+%   }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let}}
+      lab={\ruleName{$\bwdSlice$-let-rec}}
    ]
    {
-      v, U \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
+      v, T \bwdSlice \rho \concat \rho_1, e, \alpha
       \\
-      v', T \bwdSlice \rho', e', \alpha'
+      \rho_1 \closeDefsBwd \rho', h'
    }
    {
-      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let-rec}},
-      right={$\vdash \rho: \Gamma$}
-   ]
-   {
-      v, T \bwdSlice \envExtend{\rho}{f}{u}, e, \alpha
-      \\
-      u \geq \exClosureRec{\Gamma}{\rho'}{f}{\sigma'}
-   }
-   {
-      v, \trLetRec{f}{\sigma}{T} \bwdSlice \rho \join \rho', \exLetRec{f}{\sigma'}{e}, \alpha
+      v, \trLetRecMutual{h}{T} \bwdSlice \rho \join \rho', \exLetRecMutual{h'}{e}, \alpha
    }
 \end{smathpar}
-\caption{Backward slicing; Boolean and pair cases omitted}
+
+\vspace{5pt}
+\flushleft\shadebox{$\rho \closeDefsBwd \rho', h$}
+\begin{salign}
+   \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_n: \exClosure{\rho_n}{h_n}{\sigma_n}}
+   &\closeDefsFwd
+   \rho_1 \join .. \join \rho_n,
+   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join h_1 \join .. \join h_n
+\end{salign}
+\caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}

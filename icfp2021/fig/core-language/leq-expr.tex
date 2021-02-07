@@ -232,6 +232,28 @@
    \inferrule*[
    ]
    {
+      \sigma \leq \sigma'
+   }
+   {
+      \exLambda{\sigma} \leq \exLambda{\sigma}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma \leq \hole
+   }
+   {
+      \exLambda{\sigma} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
       e_1 \leq e_1'
       \\
       e_2 \leq e_2'
@@ -326,19 +348,19 @@
    {
       \exMatrixDims{e} \leq \hole
    }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      e_1 \leq e_1'
-      \\
-      e_2 \leq e_2'
-   }
-   {
-      \exLet{x}{e_1}{e_2} \leq \exLet{x}{e_1'}{e_2'}
-   }
+%   %
+%   \and
+%   %
+%   \inferrule*[
+%   ]
+%   {
+%      e_1 \leq e_1'
+%      \\
+%      e_2 \leq e_2'
+%   }
+%   {
+%      \exLet{x}{e_1}{e_2} \leq \exLet{x}{e_1'}{e_2'}
+%   }
    %
    \and
    %
@@ -360,10 +382,10 @@
    {
       e \leq e'
       \\
-      \sigma \leq \sigma'
+      h \leq h'
    }
    {
-      \exLetRec{f}{\sigma}{e} \leq \exLet{f}{\sigma'}{e'}
+      \exLetRecMutual{h}{e} \leq \exLetRecMutual{h'}{e'}
    }
    %
    \and
@@ -373,10 +395,10 @@
    {
       e \leq \hole
       \\
-      \sigma \leq \hole
+      h \leq \hole
    }
    {
-      \exLetRec{f}{\sigma}{e} \leq \hole
+      \exLetRecMutual{h}{e} \leq \hole
    }
 \end{smathpar}
 \caption{Partial orders on terms}

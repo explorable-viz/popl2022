@@ -29,12 +29,12 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
+   \inferrule*[lab={\ruleName{$\fwdSlice$-lambda}}]
    {
-      e \geq \annNil{\alpha}
+      e \geq \exLambda{\sigma}
    }
    {
-      \rho, e, \alpha', \trNil{\Gamma} \fwdSlice \annNil{\alpha \meet \alpha'}
+      \rho, e, \trLambda{\sigma'} \fwdSlice \exClosure{\rho}{\seqEmpty}{\sigma}
    }
    %
    \and
@@ -45,6 +45,16 @@
    }
    {
       \rho, e, \alpha', \trInt{n}{\Gamma} \fwdSlice \annInt{n}{\alpha \meet \alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
+   {
+      e \geq \annNil{\alpha}
+   }
+   {
+      \rho, e, \alpha', \trNil{\Gamma} \fwdSlice \annNil{\alpha \meet \alpha'}
    }
    %
    \and
@@ -125,13 +135,15 @@
       \\
       \rho, e_1, \alpha, T \fwdSlice u
       \\
-      u \geq \exClosureRec{\Gamma}{\rho'}{f}{\sigma}
+      u \geq \exClosureRec{\Gamma}{\rho_1}{h}{\sigma}
+      \\
+      \rho_1, \delta \closeDefs \rho_2
       \\
       \rho, e_2, \alpha, U \fwdSlice v
       \\
-      v, w, \sigma \matchFwd \rho^\twoPrime, e', \beta
+      v, w, \sigma \matchFwd \rho_3, e', \beta
       \\
-      \envExtend{(\rho' \concat \rho^\twoPrime)}{f}{u}, e', \beta, T' \fwdSlice v'
+      \rho_1 \concat \rho_2 \concat \rho_3, e', \beta, T' \fwdSlice v'
    }
    {
       \rho, e, \alpha, \trApp{T}{U}{\matchPlug{w}{T'}} \fwdSlice v'
@@ -171,35 +183,36 @@
       \fwdSlice
       \annot{\exInt{\phi(n)(m)}}{\beta \meet \beta'}
    }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
-   {
-      e \geq \exLet{x}{e_1}{e_2}
-      \\
-      \rho, e_1, \alpha, T \fwdSlice v
-      \\
-      \envExtend{\rho}{x}{v}, e_2, \alpha, U \fwdSlice v'
-   }
-   {
-      \rho, e, \alpha, \trLet{x}{T}{U} \fwdSlice v'
-   }
+%   %
+%   \and
+%   %
+%   \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
+%   {
+%      e \geq \exLet{x}{e_1}{e_2}
+%      \\
+%      \rho, e_1, \alpha, T \fwdSlice v
+%      \\
+%      \envExtend{\rho}{x}{v}, e_2, \alpha, U \fwdSlice v'
+%   }
+%   {
+%      \rho, e, \alpha, \trLet{x}{T}{U} \fwdSlice v'
+%   }
    %
    \and
    %
    \inferrule*[lab={
-      \ruleName{$\fwdSlice$-let-rec}},
-      right={$\vdash \rho: \Gamma$}
+      \ruleName{$\fwdSlice$-let-rec}}
    ]
    {
-      e \geq \exLetRec{f}{\sigma}{e'}
+      e \geq \exLetRecMutual{h}{e'}
       \\
-      \envExtend{\rho}{f}{\exClosureRec{\Gamma}{\rho}{f}{\sigma}}, e', \alpha, T \fwdSlice v
+      \rho, h \closeDefs \rho'
+      \\
+      \rho \concat \rho', e', \alpha, T \fwdSlice v
    }
    {
-      \rho, e, \alpha, \trLetRec{f}{\sigma}{T} \fwdSlice v
+      \rho, e, \alpha, \trLetRecMutual{h}{T} \fwdSlice v
    }
 \end{smathpar}
-\caption{Forward slicing; Boolean and pair cases omitted}
+\caption{Evaluation: forward slicing (Boolean and pair cases omitted)}
 \end{figure}

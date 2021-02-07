@@ -22,6 +22,21 @@
 }
 \end{smathpar}
 \\[2mm]
+\flushleft \shadebox{$\Gamma \vdash h: \Delta$}
+\begin{smathpar}
+   \inferrule*[right={
+      \textnormal{$\Delta = \seqRange{x_1: \tyFun{A_1}{B_1}}{x_n: \tyFun{A_n}{B_n}}$}
+   }]
+   {
+      \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
+      \quad
+      (\forall i \in \setRange{1}{h})
+   }
+   {
+      \Gamma \vdash \seqRange{x_1 : \sigma_1}{x_n : \sigma_n}: \Delta
+   }
+\end{smathpar}
+\\[2mm]
 \flushleft \shadebox{$\vdash v: A$}
 \begin{smathpar}
 \inferrule*
@@ -94,10 +109,12 @@
 {
    \vdash \rho: \Gamma
    \\
-   \cxtExtend{\Gamma}{f}{\tyFun{A}{B}} \vdash \sigma: \tyFun{A}{B}
+   \Gamma \vdash h: \Delta
+   \\
+   \Gamma \concat \Delta \vdash \sigma: \tyFun{A}{B}
 }
 {
-   \vdash \exClosureRec{\Gamma}{\rho}{f}{\sigma}: \tyFun{A}{B}
+   \vdash \exClosureRec{\Gamma}{\rho}{h}{\sigma}: \tyFun{A}{B}
 }
 %
 \and
@@ -126,8 +143,9 @@
 %
 \inferrule*
 {
-   \forall (i,j) \leq (i',j').
    \vdash v_{i,j}: A
+   \quad
+   (\forall (i,j) \leq (i',j'))
 }
 {
    \vdash \exMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}: \tyMatrix{A}

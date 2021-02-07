@@ -41,6 +41,18 @@ T, U
 \text{variable}
 \\
 &&&
+\trOp{\primOp}{\Gamma}
+&
+\text{first-class operator}
+\\
+&&&
+\trTrue{\Gamma}
+\mid
+\trFalse{\Gamma}
+&
+\text{Boolean}
+\\
+&&&
 \trInt{n}{\Gamma}
 &
 \text{integer}
@@ -76,6 +88,11 @@ T, U
 \text{matrix dimensions}
 \\
 &&&
+\trLambda{\sigma}
+&
+\text{anonymous function}
+\\
+&&&
 \trApp{T}{U}{\matchPlug{w}{T'}}
 &
 \text{apply}
@@ -90,15 +107,15 @@ T, U
 &
 \text{binary application}
 \\
+%&&&
+%\trLet{x}{T}{U}
+%&
+%\text{let}
+%\\
 &&&
-\trLet{x}{T}{U}
+\trLetRecMutual{h}{T}
 &
-\text{let}
-\\
-&&&
-\trLetRec{f}{\sigma}{T}
-&
-\text{recursive function}
+\text{recursive let}
 \end{syntaxfig}
 \caption{Matches and traces}
 \end{figure}
