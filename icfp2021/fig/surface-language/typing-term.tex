@@ -2,6 +2,22 @@
 
 %% Surface terms
 
+\flushleft \shadebox{$\Gamma \vdash \vec{g}: \Delta$}
+\begin{smathpar}
+   \inferrule*[right={
+      \textnormal{$\Delta = \seqRange{x_1: \tyFun{A_1}{B_1}}{x_n: \tyFun{A_n}{B_n}}$}
+   }]
+   {
+      \Gamma \concat \Delta \vdash c: \tyFun{A_i}{B_i}
+      \quad
+      (\forall i \in \setRange{1}{h}, \forall c \in \vec{c}_i)
+   }
+   {
+      \Gamma \vdash \seqRange{x_1 : \vec{c}_1}{x_n : \vec{c}_n}: \Delta
+   }
+\end{smathpar}
+
+\vspace{5pt}
 \flushleft \shadebox{$\Gamma \vdash s: A$}
 \begin{smathpar}
 \inferrule*
@@ -92,9 +108,8 @@
 }
 \end{smathpar}
 
-\vspace{0.1em}
-%% List rest
-
+% List rest
+\vspace{5pt}
 \flushleft \shadebox{$\Gamma \vdash l: \tyList{A}$}
 \begin{smathpar}
 \inferrule*
@@ -156,9 +171,8 @@
 }
 \end{smathpar}
 
-\vspace{0.1em}
-%% Qualifier sequence
-
+% Qualifier sequence
+\vspace{5pt}
 \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
 \begin{smathpar}
 \inferrule*
