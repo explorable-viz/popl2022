@@ -101,9 +101,9 @@
       v,
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \bwdSlice
-      \rho \join \Bigjoin{\rho'},
-      \annMatrix{\seqRangeOp{e_{1,1}}{e_{i,j}}{\join}}{x}{y}{e'}{\beta},
-      \beta \join \alpha \join \Bigjoin{\alpha'}
+      \rho \join \seqRangeOp{\rho'_{1,1}}{\rho'_{\ihat,\jhat}}{\join},
+      \annMatrix{\seqRangeOp{e_{1,1}}{e_{\ihat,\jhat}}{\join}}{x}{y}{e'}{\beta},
+      \beta \join \alpha \join \seqRangeOp{\alpha'_{1,1}}{\alpha'_{\ihat,\jhat}}{\join}
    }
    %
    \and
