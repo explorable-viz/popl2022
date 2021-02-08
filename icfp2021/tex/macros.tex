@@ -25,7 +25,7 @@
 \newcommand*{\seqEmpty}{\varepsilon}
 
 % Misc.
-\newcommand*{\envExtendTwo}[2]{{#1}[#2]}
+%\newcommand*{\envExtendTwo}[2]{{#1}[#2]}
 \newcommand*{\closeDefsArrow}{\twoheadrightarrow}
 \newcommand*{\closeDefs}{\mathrel{\closeDefsArrow}}
 \newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
@@ -180,6 +180,7 @@
 \newcommand*{\envExtend}[3]{{#1}[{#2}: {#3}]}
 \newcommand*{\envLookup}[3]{{#2}: {#3} \in {#1}}
 \newcommand*{\envUpdate}[3]{{#1}\smalltriangleleft[{#2}: {#3}]}
+\newcommand*{\mapUpdate}[3]{{#1}\smalltriangleleft\bind{#2}{#3}}
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
