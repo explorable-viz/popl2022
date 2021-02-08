@@ -87,18 +87,19 @@
       lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
-      v \geq \annMatrix{v'_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}
+      v \geq \annMatrix{u_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\beta}
       \\
-      \forall (i,j) \leq (i',j').
-      v'_{i,j}, U_{i,j}
+      u_{i,j}, U_{i,j}
       \bwdSlice
       \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha'_{i,j}
+      \quad
+      (\forall (i,j) \leq (\ihat,\jhat))
       \\
-      \annot{\exPair{\annInt{i'}{\join{\gamma}}}{\annInt{j'}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho, e', \alpha
+      \annot{\exPair{\annInt{\ihat}{\join{\gamma}}}{\annInt{\jhat}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho, e', \alpha
    }
    {
       v,
-      \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
+      \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
       \annMatrix{\Bigjoin{e}}{x}{y}{e'}{\beta},

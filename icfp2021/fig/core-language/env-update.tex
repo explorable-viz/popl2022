@@ -1,19 +1,17 @@
 \begin{figure}[H]
 \flushleft \shadebox{$\hole_{\Gamma}$}
 \begin{salign}
-   \hole_{\cxtEmpty} &= \envEmpty
-   \\
-   \hole_{\cxtExtend{\Gamma}{k}{A}} &= \envExtend{\hole_{\Gamma}}{k}{\hole}
+   \hole_{\seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}} &= \seqRange{\bind{x_1}{\hole}}{\bind{x_n}{\hole}}
 \end{salign}
 \\[2mm]
-\flushleft \shadebox{$\envUpdate{\rho}{k}{v}$}
+\flushleft \shadebox{$\envUpdate{\rho}{z}{v}$}
 \begin{salign}
-   \envUpdate{\envEmpty}{k}{v} &= \envEmpty
+   \mapUpdate{\envEmpty}{z}{v} &= \envEmpty
    \\
-   \envUpdate{\envExtend{\rho}{k}{v}}{k}{u} &= \envExtend{\rho}{k}{u}
+   \mapUpdate{(\rho \concat \bind{z}{v})}{z}{u} &= \rho \concat \bind{z}{u}
    \\
-   \envUpdate{\envExtend{\rho}{k}{v}}{k'}{u} &= \envExtend{\envUpdate{\rho}{k'}{u}}{k}{v}
-   \quad (k \neq k')
+   \mapUpdate{(\rho \concat \bind{z}{v})}{z'}{u} &= \mapUpdate{\rho}{z'}{u} \concat \bind{z}{v}
+   \quad (z \neq z')
 \end{salign}
 \caption{Hole environment; environment update}
 \end{figure}
