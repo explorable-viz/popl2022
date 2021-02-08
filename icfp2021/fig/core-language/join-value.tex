@@ -1,11 +1,11 @@
 \begin{figure}[H]
 \flushleft\shadebox{$h \join h'$}
 \begin{salign}
-   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n})
+   (\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}})
    \join
-   (\seqRange{x_1: \sigma'_1}{x_n: \sigma'_n})
+   (\seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_n}{\sigma'_n}})
    &=
-   \seqRange{x_1: (\sigma_1 \join \sigma'_1)}{x_n: (\sigma_n \join \sigma'_n)}
+   \seqRange{\bind{x_1}{\sigma_1 \join \sigma'_1}}{\bind{x_n}{\sigma_n \join \sigma'_n}}
 \end{salign}
 
 \vspace{5pt}
@@ -21,8 +21,8 @@
    \\
    \annInt{n}{\alpha} \join \annInt{n}{\alpha'} &= \annInt{n}{\alpha \join \alpha'}
    \\
-   \annPair{v_1}{v_2}{\alpha} \join \annPair{v_1'}{v_2'}{\alpha'} &=
-   \annPair{v_1 \join v_1'}{v_2 \join v_2'}{\alpha \join \alpha'}
+   \annPair{u}{v}{\alpha} \join \annPair{u'}{v'}{\alpha'} &=
+   \annPair{u \join u'}{v \join v'}{\alpha \join \alpha'}
    \\
    \annNil{\alpha} \join \annNil{\alpha} &= \annNil{\alpha \join \alpha'}
    \\
@@ -30,11 +30,11 @@
    &=
    \annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}
    \\
-   \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha}
+   \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha}
    \join
-   \annMatrix{v'_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha'}
+   \annMatrix{u_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha'}
    &=
-   \annMatrix{v_{i,j} \join v'_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha \join \alpha'}
+   \annMatrix{v_{i,j} \join u_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha \join \alpha'}
    \\
    \exPrim{\phi} \join \exPrim{\phi} &= \exPrim{\phi}
    \\

@@ -8,7 +8,7 @@
       \strut
    }
    {
-      v, \trVar{x}{\rho} \bwdSlice \envUpdate{\hole_{\Gamma}}{x}{v}, \exVar{x}, \FF
+      v, \trVar{x}{\rho} \bwdSlice \mapUpdate{\hole_{\Gamma}}{x}{v}, \exVar{x}, \FF
    }
    %
    \and
@@ -22,7 +22,7 @@
    {
       v, \trOp{\primOp}{\Gamma}
       \bwdSlice
-      \envUpdate{\hole_{\Gamma}}{\primOp}{\phi}, \exOp{\primOp}, \FF
+      \mapUpdate{\hole_{\Gamma}}{\primOp}{\phi}, \exOp{\primOp}, \FF
    }
    %
    \and
@@ -71,14 +71,14 @@
    {
       v \geq \annCons{v_1}{v_2}{\beta}
       \\
-      v_1, T \bwdSlice \rho, e, \alpha
+      v_1, T \bwdSlice \rho, e_1, \alpha
       \\
-      v_2, U \bwdSlice \rho', e', \alpha'
+      v_2, U \bwdSlice \rho', e_2, \alpha'
    }
    {
       v, \trCons{T}{U}
       \bwdSlice
-      \rho \join \rho', \annCons{e}{e'}{\beta}, \beta \join \alpha \join \alpha'
+      \rho \join \rho', \annCons{e_1}{e_2}{\beta}, \beta \join \alpha \join \alpha'
    }
    %
    \and
@@ -87,18 +87,19 @@
       lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
-      v \geq \annMatrix{v'_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}
+      v \geq \annMatrix{u_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\beta}
       \\
-      \forall (i,j) \leq (i',j').
-      v'_{i,j}, U_{i,j}
+      u_{i,j}, U_{i,j}
       \bwdSlice
       \envExtend{\envExtend{\rho'_{i,j}}{x}{i_{\gamma_{i,j}}}}{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha'_{i,j}
+      \quad
+      (\forall (i,j) \leq (\ihat,\jhat))
       \\
-      \annot{\exPair{\annInt{i'}{\join{\gamma}}}{\annInt{j'}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho, e', \alpha
+      \annot{\exPair{\annInt{\ihat}{\join{\gamma}}}{\annInt{\jhat}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho, e', \alpha
    }
    {
       v,
-      \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
+      \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
       \annMatrix{\Bigjoin{e}}{x}{y}{e'}{\beta},
@@ -111,14 +112,14 @@
       lab={\ruleName{$\bwdSlice$-matrix-lookup}}
    ]
    {
-      \annMatrix{\hole}{i}{j}{\exPair{i'}{j'}}{\FF} \reloverrideleft \{\exPair{i}{j} \mapsto v\}, T
+      \mapUpdate{\annMatrix{\hole}{i}{j}{\exPair{\ihat}{\jhat}}{\FF}}{\exPair{i}{j}}{v}, T
       \bwdSlice
       \rho, e, \alpha
       \\
       \annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}, U \bwdSlice \rho', e', \alpha'
    }
    {
-       v, \trMatrixAccess{T}{i',j'}{U}{i,j}
+       v, \trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}
        \bwdSlice
        \rho \join \rho', \exMatrixAccess{e}{e'}, \alpha \join \alpha'
    }
@@ -129,12 +130,12 @@
       lab={\ruleName{$\bwdSlice$-matrix-dims}}
    ]
    {
-      v \geq \annPair{\annInt{i'}{\beta}}{\annInt{j'}{\beta'}}{\alpha}
+      v \geq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\alpha}
       \\
-      \annMatrix{\hole}{i}{j}{\exPair{i'}{j'}}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
+      \annMatrix{\hole}{i}{j}{\exPair{\ihat}{\jhat}}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
    }
    {
-      v, \trMatrixDims{T}{i',j'}
+      v, \trMatrixDims{T}{\ihat,\jhat}
       \bwdSlice
       \rho, \exMatrixDims{e}, \alpha \join \alpha'
    }
@@ -171,14 +172,14 @@
    {
       v \geq \annInt{n}{\beta}
       \\
-      \phi, T \bwdSlice \rho, e, \alpha
+      \phi, T \bwdSlice \rho, e_1, \alpha
       \\
-      \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
+      \annInt{m}{\beta}, U \bwdSlice \rho', e_2, \alpha'
    }
    {
       v, \trAppPrim{T}{\phi}{U}{\exInt{m}}
       \bwdSlice
-      \rho \join \rho', \exApp{e}{e'}, \alpha \join \alpha'
+      \rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha'
    }
    %
    \and
@@ -189,14 +190,14 @@
    {
       v \geq \annInt{n}{\beta}
       \\
-      \annInt{n'}{\beta}, T \bwdSlice \rho, e, \alpha
+      \annInt{n'}{\beta}, T \bwdSlice \rho, e_1, \alpha
       \\
-      \annInt{m}{\beta}, U \bwdSlice \rho', e', \alpha'
+      \annInt{m}{\beta}, U \bwdSlice \rho', e_2, \alpha'
    }
    {
       v, \trBinaryApp{T}{n'}{\primOp}{\phi}{U}{m}
       \bwdSlice
-      \envUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e}{\primOp}{e'}, \alpha \join \alpha'
+      \mapUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e_1}{\primOp}{e_2}, \alpha \join \alpha'
    }
 %   %
 %   \and

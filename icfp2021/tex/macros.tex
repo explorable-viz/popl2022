@@ -25,7 +25,7 @@
 \newcommand*{\seqEmpty}{\varepsilon}
 
 % Misc.
-\newcommand*{\envExtendTwo}[2]{{#1}[#2]}
+%\newcommand*{\envExtendTwo}[2]{{#1}[#2]}
 \newcommand*{\closeDefsArrow}{\twoheadrightarrow}
 \newcommand*{\closeDefs}{\mathrel{\closeDefsArrow}}
 \newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
@@ -79,6 +79,9 @@
 \newcommand*{\exRec}[2]{{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
+
+\newcommand*{\ihat}{\hat\imath}
+\newcommand*{\jhat}{\hat\jmath}
 
 % List rest
 \newcommand*{\exListEnd}{\kw{]}}
@@ -177,6 +180,7 @@
 \newcommand*{\envExtend}[3]{{#1}[{#2}: {#3}]}
 \newcommand*{\envLookup}[3]{{#2}: {#3} \in {#1}}
 \newcommand*{\envUpdate}[3]{{#1}\smalltriangleleft[{#2}: {#3}]}
+\newcommand*{\mapUpdate}[3]{{#1}\smalltriangleleft\bind{#2}{#3}}
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
@@ -186,6 +190,7 @@
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
 
+\newcommand*{\bind}[2]{(#1:#2)}
 \newcommand*{\seq}[1]{\overrightarrow{#1}}
 \newcommand*{\seqRange}[2]{{#1} \concat .. \concat {#2}}
 \newcommand*{\setRange}[2]{\set{{#1 .. {#2}}}}

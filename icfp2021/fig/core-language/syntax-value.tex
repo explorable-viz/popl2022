@@ -25,7 +25,7 @@ u, v
 \text{integer}
 \\
 &&&
-\annPair{v}{v'}{\alpha}
+\annPair{u}{v}{\alpha}
 &
 \text{pair}
 \\
@@ -35,12 +35,12 @@ u, v
 \text{nil}
 \\
 &&&
-\annCons{v}{v'}{\alpha}
+\annCons{u}{v}{\alpha}
 &
 \text{cons}
 \\
 &&&
-\annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha}
+\annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha}
 &
 \text{matrix}
 \\
@@ -60,14 +60,7 @@ u, v
 &
 ::=
 &
-\envEmpty
-&
-\text{empty}
-\\
-&&&
-\envExtend{\rho}{k}{v}
-&
-\text{extend}
+\seq{\bind{z}{v}}
 \end{syntaxfig}
 \caption{Values and environments}
 \end{figure}

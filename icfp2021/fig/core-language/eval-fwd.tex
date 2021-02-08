@@ -81,32 +81,33 @@
    {
       e \geq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
       \\
-      \rho, e_2, \alpha', T \fwdSlice \annPair{\annInt{i'}{\smash{\gamma}}}{\annInt{j'}{\smash{\gamma'}}}{\beta}
+      \rho, e_2, \alpha', T \fwdSlice \annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}
       \\
-      \forall (i,j) \leq (i',j').
-      \envExtend{\envExtend{\rho}{x}{i_{\gamma}}}{y}{j_{\gamma'}}, e_1, \alpha', U_{i,j} \fwdSlice v_{i,j}
+      \rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}, e_1, \alpha', U_{i,j} \fwdSlice v_{i,j}
+      \quad
+      (\forall (i,j) \leq (\ihat,\jhat))
    }
    {
-      \rho, e, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}
+      \rho, e, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \fwdSlice
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
    }
    %
    \and
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-matrix-lookup}},
-      right={$(i,j) \leq (i',j')$}
+      right={$(i,j) \leq (\ihat,\jhat)$}
    ]
    {
       e \geq \exMatrixAccess{e_1}{e_2}
       \\
-      \rho, e_1, \alpha, T \fwdSlice \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\beta}
+      \rho, e_1, \alpha, T \fwdSlice\geq \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\beta}
       \\
-      \rho, e_2, \alpha, U \fwdSlice \annPair{\annInt{i}{\gamma}}{\annInt{j}{\gamma'}}{\beta'}
+      \rho, e_2, \alpha, U \fwdSlice\geq \annPair{\annInt{i}{\gamma}}{\annInt{j}{\gamma'}}{\beta'}
    }
    {
-      \rho, e, \alpha, \trMatrixAccess{T}{i',j'}{U}{i,j}
+      \rho, e, \alpha, \trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}
       \fwdSlice
       v_{i,j}
    }
@@ -117,12 +118,12 @@
    {
       e \geq \exMatrixDims{e'}
       \\
-      \rho, e', \alpha', T \fwdSlice \annot{\exMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}}{\beta}
+      \rho, e', \alpha', T \fwdSlice \annot{\exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}{\beta}
    }
    {
-      \rho, e, \alpha, \trMatrixDims{T}{i',j'}
+      \rho, e, \alpha, \trMatrixDims{T}{\ihat,\jhat}
       \fwdSlice
-      \annPair{\annot{i'}{\beta}}{\annot{j'}{\beta}}{\alpha}
+      \annPair{\annot{\ihat}{\beta}}{\annot{\jhat}{\beta}}{\alpha}
    }
    %
    \and
@@ -133,9 +134,7 @@
    {
       e \geq \exApp{e_1}{e_2}
       \\
-      \rho, e_1, \alpha, T \fwdSlice u
-      \\
-      u \geq \exClosureRec{\Gamma}{\rho_1}{h}{\sigma}
+      \rho, e_1, \alpha, T \fwdSlice\geq \exClosureRec{\Gamma}{\rho_1}{h}{\sigma}
       \\
       \rho_1, \delta \closeDefs \rho_2
       \\
