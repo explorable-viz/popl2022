@@ -117,38 +117,40 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-matrix}}]
    {
-      \explVal{T}{\rho, e' \eval \exPair{i'}{j'}}
+      \explVal{T}{\rho, e' \eval \exPair{\ihat}{\jhat}}
       \\
-      \forall (i,j) \leq (i',j').\explVal{U_{i,j}}{\envExtend{\envExtend{\rho}{x}{i}}{y}{j}, e \eval v_{i,j}}
+      \explVal{U_{i,j}}{\rho \concat x: i \concat y: j, e \eval v_{i,j}}
+      \quad
+      (\forall (i,j) \leq (\ihat,\jhat))
    }
    {
-      \explVal{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{i',j'}}
-              {\rho, \exMatrix{e}{x}{y}{e'} \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}}
+      \explVal{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}}
+              {\rho, \exMatrix{e}{x}{y}{e'} \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}
    }
    %
    \and
    %
    \inferrule*[
       lab={\ruleName{$\eval$-matrix-lookup}},
-      right={$(i,j) \leq (i',j')$}
+      right={$(i,j) \leq (\ihat,\jhat)$}
    ]
    {
-      \explVal{T}{\rho, e \eval \exMatrix{i}{j}{v_{i,j}}{\exPair{i'}{j'}}}
+      \explVal{T}{\rho, e \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}
       \\
       \explVal{U}{\rho, e' \eval \exPair{i}{j}}
    }
    {
-      \explVal{\trMatrixAccess{T}{i',j'}{U}{i,j}}{\rho, \exMatrixAccess{e}{e'} \eval v_{i,j}}
+      \explVal{\trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}}{\rho, \exMatrixAccess{e}{e'} \eval v_{i,j}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\eval$-matrix-dims}}]
    {
-      \explVal{T}{\rho, e \eval \exMatrix{i}{j}{v_{i,j}}{\exPair{i'}{j'}}}
+      \explVal{T}{\rho, e \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}
    }
    {
-      \explVal{\trMatrixDims{T}{i',j'}}{\rho, \exMatrixDims{e} \eval \exPair{i'}{j'}}
+      \explVal{\trMatrixDims{T}{\ihat,\jhat}}{\rho, \exMatrixDims{e} \eval \exPair{\ihat}{\jhat}}
    }
    %
    \and
@@ -184,13 +186,14 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-binary-apply}},
-      right={$\primOp: \phi \in \rho$}
+      lab={\ruleName{$\eval$-binary-apply}}
    ]
    {
       \explVal{T}{\rho, e \eval n}
       \\
       \explVal{U}{\rho, e' \eval m}
+      \\
+      \primOp: \phi \in \rho
    }
    {
       \explVal{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}

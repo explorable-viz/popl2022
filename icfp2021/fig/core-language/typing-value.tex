@@ -8,14 +8,14 @@
    (\forall i \in \setRange{1}{n})
 }
 {
-   \vdash (\seqRange{z_1: v_1}{z_n: v_n}): (\seqRange{z_1: A_1}{z_n: A_n})
+   \vdash \seqRange{\bind{z_1}{v_1}}{\bind{z_n}{v_n}}: \seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}
 }
 \end{smathpar}
 \\[2mm]
 \flushleft \shadebox{$\Gamma \vdash h: \Delta$}
 \begin{smathpar}
    \inferrule*[right={
-      \textnormal{$\Delta = \seqRange{x_1: \tyFun{A_1}{B_1}}{x_n: \tyFun{A_n}{B_n}}$}
+      \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_n}{\tyFun{A_n}{B_n}}}$}
    }]
    {
       \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
@@ -23,7 +23,7 @@
       (\forall i \in \setRange{1}{n})
    }
    {
-      \Gamma \vdash \seqRange{x_1 : \sigma_1}{x_n : \sigma_n}: \Delta
+      \Gamma \vdash \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}: \Delta
    }
 \end{smathpar}
 \\[2mm]
@@ -85,12 +85,12 @@
 %
 \inferrule*
 {
-   \vdash v: A
+   \vdash u: A
    \\
-   \vdash v': B
+   \vdash v: B
 }
 {
-   \vdash \exPair{v}{v'}: \tyProd{A}{B}
+   \vdash \exPair{u}{v}: \tyProd{A}{B}
 }
 %
 \and
@@ -121,12 +121,12 @@
 %
 \inferrule*
 {
-   \vdash v: A
+   \vdash u: A
    \\
-   \vdash v': \tyList{A}
+   \vdash v: \tyList{A}
 }
 {
-   \vdash (\exCons{v}{v'}): \tyList{A}
+   \vdash (\exCons{u}{v}): \tyList{A}
 }
 %
 \and
