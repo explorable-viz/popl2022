@@ -3,22 +3,12 @@
 \begin{smathpar}
 \inferrule*
 {
-   \strut
+   \vdash v_i: A_i
+   \quad
+   (\forall i \in \setRange{1}{n})
 }
 {
-   \vdash \envEmpty: \cxtEmpty
-}
-%
-\and
-%
-\inferrule*
-{
-   \vdash \rho: \Gamma
-   \\
-   \vdash v: A
-}
-{
-   \vdash \envExtend{\rho}{k}{v}: \cxtExtend{\Gamma}{k}{A}
+   \vdash (\seqRange{z_1: v_1}{z_n: v_n}): (\seqRange{z_1: A_1}{z_n: A_n})
 }
 \end{smathpar}
 \\[2mm]
@@ -30,7 +20,7 @@
    {
       \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
       \quad
-      (\forall i \in \setRange{1}{h})
+      (\forall i \in \setRange{1}{n})
    }
    {
       \Gamma \vdash \seqRange{x_1 : \sigma_1}{x_n : \sigma_n}: \Delta
