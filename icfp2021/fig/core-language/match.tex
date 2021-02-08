@@ -17,7 +17,7 @@
       \strut
    }
    {
-      \explVal{\matchTrueNew}{\exTrue, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa}
+      \explVal{\matchTrueNew}{\exTrue, \elimBool{\kappa}{\kappa'} \match \seqEmpty, \kappa}
    }
    %
    \and
@@ -27,7 +27,7 @@
       \strut
    }
    {
-      \explVal{\matchFalseNew}{\exFalse, \elimBool{\kappa}{\kappa'} \match \envEmpty, \kappa'}
+      \explVal{\matchFalseNew}{\exFalse, \elimBool{\kappa}{\kappa'} \match \seqEmpty, \kappa'}
    }
    %
    \and
@@ -51,7 +51,7 @@
    {
       \explVal
          {\matchNilNew}
-         {\exNil, \elimList{\kappa}{\sigma} \match \envEmpty, \kappa}
+         {\exNil, \elimList{\kappa}{\sigma} \match \seqEmpty, \kappa}
    }
    %
    \and

@@ -7,7 +7,7 @@
    {
       e \geq \exVar{x}
       \\
-      x : v \in \rho
+      \envLookup{\rho}{x}{v}
    }
    {
       \rho, e, \alpha, \trVar{x}{\Gamma} \fwdSlice v
@@ -21,7 +21,7 @@
    {
       e \geq \exOp{\primOp}
       \\
-      \primOp: v \in \rho
+      \envLookup{\rho}{\primOp}{v}
    }
    {
       \rho, e, \alpha, \trOp{\primOp}{\Gamma} \fwdSlice v

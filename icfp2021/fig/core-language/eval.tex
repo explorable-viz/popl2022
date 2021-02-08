@@ -6,7 +6,7 @@
       right={$\vdash \rho: \Gamma$}
    ]
    {
-      x: v \in \rho
+      \envLookup{\rho}{x}{v}
    }
    {
       \explVal{\trVar{x}{\Gamma}}{\rho, x \eval v}
@@ -19,7 +19,7 @@
       right={$\vdash \rho: \Gamma$}
    ]
    {
-      \primOp: \phi \in \rho
+      \envLookup{\rho}{\primOp}{\phi}
    }
    {
       \explVal{\trOp{\primOp}{\Gamma}}{\rho, \exOp{\primOp} \eval \phi}
@@ -231,7 +231,7 @@
 \begin{salign}
    \rho, h
    &\closeDefs
-   \seqRange{\exClosure{\rho}{h}{\sigma_1}}{\exClosure{\rho}{h}{\sigma_n}}
+   \seqRange{\bind{x_1}{\exClosure{\rho}{h}{\sigma_1}}}{\bind{x_n}{\exClosure{\rho}{h}{\sigma_n}}}
    \\
    & \text{where $h = \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}$}
 \end{salign}
