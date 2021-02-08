@@ -170,16 +170,8 @@
 \newcommand*{\Bigjoin}[1]{\textstyle{\bigvee}#1}
 \newcommand*{\Bigmeet}[1]{\textstyle{\bigwedge}#1}
 
-% Variable contexts.
-\newcommand*{\cxtEmpty}{\varepsilon}
-\newcommand*{\cxtExtend}[3]{{#1},{#2}: {#3}}
-\newcommand*{\cxtLookup}[2]{{#1}[{x}]}
-
 % Environments.
-\newcommand*{\envEmpty}{\varepsilon}
-\newcommand*{\envExtend}[3]{{#1}[{#2}: {#3}]}
-\newcommand*{\envLookup}[3]{{#2}: {#3} \in {#1}}
-\newcommand*{\envUpdate}[3]{{#1}\smalltriangleleft[{#2}: {#3}]}
+\newcommand*{\envLookup}[3]{{#1}\smalltriangleleft\bind{#2}{#3}}
 \newcommand*{\mapUpdate}[3]{{#1}\smalltriangleleft\bind{#2}{#3}}
 
 % Evaluation.

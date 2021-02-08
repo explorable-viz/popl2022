@@ -123,7 +123,7 @@
 {
    \Gamma \vdash e': \tyProd{\tyInt}{\tyInt}
    \\
-   \cxtExtend{\cxtExtend{\Gamma}{x}{\tyInt}}{y}{\tyInt} \vdash e: A
+   \Gamma \concat \bind{x}{\tyInt} \concat \bind{y}{\tyInt} \vdash e: A
 }
 {
    \Gamma \vdash \exMatrix{e}{x}{y}{e'}: \tyMatrix{A}
@@ -181,7 +181,7 @@
 \begin{smathpar}
 \inferrule*
 {
-   \cxtExtend{\Gamma}{x}{A} \vdash \kappa: B
+   \Gamma \concat \bind{x}{A} \vdash \kappa: B
 }
 {
    \Gamma \vdash \elimVar{x}{\kappa}: \tyFun{A}{B}
