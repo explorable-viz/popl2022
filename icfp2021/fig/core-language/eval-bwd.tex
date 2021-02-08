@@ -91,7 +91,7 @@
       \\
       u_{i,j}, U_{i,j}
       \bwdSlice
-      \rho'_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha'_{i,j}
+      \rho'_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat \bind{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha'_{i,j}
       \quad
       (\forall (i,j) \leq (\ihat,\jhat))
       \\
@@ -102,7 +102,7 @@
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \bwdSlice
       \rho \join \Bigjoin{\rho'},
-      \annMatrix{\Bigjoin{e}}{x}{y}{e'}{\beta},
+      \annMatrix{\seqRangeOp{e_{1,1}}{e_{i,j}}{\join}}{x}{y}{e'}{\beta},
       \beta \join \alpha \join \Bigjoin{\alpha'}
    }
    %
