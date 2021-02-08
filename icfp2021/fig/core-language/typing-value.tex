@@ -135,10 +135,10 @@
 {
    \vdash v_{i,j}: A
    \quad
-   (\forall (i,j) \leq (i',j'))
+   (\forall (i,j) \leq (\ihat,\jhat))
 }
 {
-   \vdash \exMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}: \tyMatrix{A}
+   \vdash \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}: \tyMatrix{A}
 }
 \end{smathpar}
 \caption{Typing rules for environments and values}
