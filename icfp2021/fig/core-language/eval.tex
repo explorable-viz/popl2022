@@ -119,7 +119,7 @@
    {
       \explVal{T}{\rho, e' \eval \exPair{\ihat}{\jhat}}
       \\
-      \explVal{U_{i,j}}{\rho \concat x: i \concat y: j, e \eval v_{i,j}}
+      \explVal{U_{i,j}}{\rho \concat \bind{x}{i} \concat \bind{y}{j}, e \eval v_{i,j}}
       \quad
       (\forall (i,j) \leq (\ihat,\jhat))
    }
@@ -233,7 +233,7 @@
    &\closeDefs
    \seqRange{\exClosure{\rho}{h}{\sigma_1}}{\exClosure{\rho}{h}{\sigma_n}}
    \\
-   & \text{where $h = \seqRange{x_1: \sigma_1}{x_n: \sigma_n}$}
+   & \text{where $h = \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}$}
 \end{salign}
 \caption{Evaluation}
 \end{figure}

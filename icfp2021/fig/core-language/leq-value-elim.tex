@@ -9,7 +9,9 @@
       (\forall i \in \setRange{1}{n})
    }
    {
-      \seqRange{x_1: \sigma_1}{x_n: \sigma_n} \leq \seqRange{x_1: \sigma'_1}{x_n: \sigma'_n}
+      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}
+      \leq
+      \seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_n}{\sigma'_n}}
    }
    %
    \and
@@ -22,7 +24,7 @@
       (\forall i \in \setRange{1}{n})
    }
    {
-      \seqRange{x_1: \sigma_1}{x_n: \sigma_n} \leq \hole
+      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}} \leq \hole
    }
 \end{smathpar}
 
@@ -190,10 +192,14 @@
       right={$\alpha \leq \alpha'$}
    ]
    {
-      \forall (i,j) \leq (i',j'). v_{i,j} \leq u_{i,j}
+      v_{i,j} \leq u_{i,j}
+      \quad
+      (\forall (i,j) \leq (\ihat,\jhat))
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha} \leq \annMatrix{u_{i,j}}{i}{j}{\exPair{i'}{j'}}{\alpha'}
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha}
+      \leq
+      \annMatrix{u_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha'}
    }
    %
    \and
@@ -201,10 +207,12 @@
    \inferrule*[
    ]
    {
-      \forall (i,j) \leq (i',j'). v_{i,j} \leq \hole
+      v_{i,j} \leq \hole
+      \quad
+      (\forall (i,j) \leq (\ihat,\jhat))
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{i'}{j'}}{\FF} \leq \hole
+      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\FF} \leq \hole
    }
    %
    \and
