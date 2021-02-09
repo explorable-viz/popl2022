@@ -188,17 +188,19 @@
    %
    \inferrule*[
       lab={\ruleName{$\bwdSlice$-binary-apply}},
-      right={$\vdash \rho: \Gamma$}
+      right={$\vdash \rho_1: \Gamma$}
    ]
    {
       v \geq \annInt{n}{\beta}
       \\
-      \annInt{n'}{\beta}, T \bwdSlice \rho, e_1, \alpha
+      \annInt{m}{\beta}, T \bwdSlice \rho_1, e_1, \alpha
       \\
-      \annInt{m}{\beta}, U \bwdSlice \rho', e_2, \alpha'
+      \envLookupBwd{\rho_3}{\Gamma}{\bind{\primOp}{\phi}}
+      \\
+      \annInt{m'}{\beta}, U \bwdSlice \rho_2, e_2, \alpha'
    }
    {
-      v, \trBinaryApp{T}{n'}{\primOp}{\phi}{U}{m}
+      v, \trBinaryApp{T}{m}{\primOp}{\phi}{U}{m'}
       \bwdSlice
       \rho_1 \join \rho_2 \join \rho_3, \exBinaryApp{e_1}{\primOp}{e_2}, \alpha \join \alpha'
    }
