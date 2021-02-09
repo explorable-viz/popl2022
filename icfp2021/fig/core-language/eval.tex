@@ -193,7 +193,7 @@
       \\
       \explVal{U}{\rho, e' \eval m}
       \\
-      \primOp: \phi \in \rho
+      \envLookup{\rho}{\primOp}{\phi}
    }
    {
       \explVal{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}
