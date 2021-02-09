@@ -174,7 +174,9 @@
       \\
       \rho, e_1, \alpha, T \fwdSlice\geq \annInt{n}{\beta}
       \\
-      \rho(\primOp) \geq \phi
+      \envLookup{\rho}{\primOp}{v}
+      \\
+      v \geq \phi
       \\
       \rho, e_2, \alpha, U \fwdSlice\geq \annInt{m}{\beta'}
    }
@@ -183,20 +185,6 @@
       \fwdSlice
       \annot{\exInt{\phi(n)(m)}}{\beta \meet \beta'}
    }
-%   %
-%   \and
-%   %
-%   \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
-%   {
-%      e \geq \exLet{x}{e_1}{e_2}
-%      \\
-%      \rho, e_1, \alpha, T \fwdSlice v
-%      \\
-%      \envExtend{\rho}{x}{v}, e_2, \alpha, U \fwdSlice v'
-%   }
-%   {
-%      \rho, e, \alpha, \trLet{x}{T}{U} \fwdSlice v'
-%   }
    %
    \and
    %
