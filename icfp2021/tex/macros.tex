@@ -100,12 +100,6 @@
 \newcommand*{\annPair}[3]{(#1,#2)_{#3}}
 \newcommand*{\annTrue}[1]{\kw{true}_{#1}}
 
-% Branches
-\newcommand*{\branchCons}[1]{(\symCons)\mapsto{#1}}
-\newcommand*{\branchNil}[1]{\exNil\mapsto{#1}}
-\newcommand*{\branchTrue}[1]{\exTrue\mapsto{#1}}
-\newcommand*{\branchFalse}[1]{\exFalse\mapsto{#1}}
-
 % Clause
 \newcommand*{\clause}[2]{\seq{{#1}}\equal{#2}}
 \newcommand*{\clauseUncurried}[2]{{#1}\equal{#2}}
@@ -128,6 +122,12 @@
 \newcommand*{\pattPair}[2]{\exPair{#1}{#2}}
 
 % Eliminators.
+\newcommand*{\elimmapsto}{:}
+\newcommand*{\branchCons}[1]{(\symCons)\elimmapsto{#1}}
+\newcommand*{\branchNil}[1]{\exNil\elimmapsto{#1}}
+\newcommand*{\branchTrue}[1]{\exTrue\elimmapsto{#1}}
+\newcommand*{\branchFalse}[1]{\exFalse\elimmapsto{#1}}
+
 \newcommand*{\elimNil}[1]{\{\branchNil{#1}\}}
 \newcommand*{\elimCons}[1]{\{\branchCons{#1}\}}
 \newcommand*{\elimBool}[2]{\{\branchTrue{#1}, \branchFalse{#2}\}}
@@ -135,7 +135,7 @@
 \newcommand*{\elimBoolFalse}[1]{\{\branchFalse{#1}\}}
 \newcommand*{\elimList}[2]{\{\branchNil{#1},\branchCons{#2}\}}
 \newcommand*{\elimProd}[1]{\kw{prod}\;#1}
-\newcommand*{\elimVar}[2]{{#1} \mapsto {#2}} % no squigglies as not a 'set' of branches..
+\newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches..
 
 \newcommand*{\singleton}[2]{#1[#2]}
 
@@ -171,8 +171,9 @@
 \newcommand*{\Bigmeet}[1]{\textstyle{\bigwedge}#1}
 
 % Environments.
-\newcommand*{\envLookup}[3]{{#1}\smalltriangleright\bind{#2}{#3}}
-\newcommand*{\mapUpdate}[3]{{#1}\smalltriangleleft\bind{#2}{#3}}
+\newcommand*{\envLookup}[3]{{#1}\mathrel{\smalltriangleright}\bind{#2}{#3}}
+\newcommand*{\envLookupBwd}[3]{{#1}\mathrel{\sub{\smalltriangleleft}{#2}}{#3}}
+\newcommand*{\mapUpdate}[3]{{#1}\mathrel{\smalltriangleleft}\bind{#2}{#3}}
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}

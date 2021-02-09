@@ -193,23 +193,11 @@
       \\
       \explVal{U}{\rho, e' \eval m}
       \\
-      \primOp: \phi \in \rho
+      \envLookup{\rho}{\primOp}{\phi}
    }
    {
       \explVal{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}
    }
-%   %
-%   \and
-%   %
-%   \inferrule*[lab={\ruleName{$\eval$-let}}]
-%   {
-%      \explVal{T}{\rho, e \eval v}
-%      \\
-%      \explVal{U}{\envExtend{\rho}{x}{v}, e' \eval v'}
-%   }
-%   {
-%      \explVal{\trLet{x}{T}{U}}{\rho, \exLet{x}{e}{e'} \eval v'}
-%   }
    %
    \and
    %

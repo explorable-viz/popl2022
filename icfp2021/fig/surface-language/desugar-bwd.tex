@@ -53,7 +53,7 @@
    lab={\ruleName{$\dbwdarrow$-let-rec}}
 ]
 {
-   e \geq \exLetRecMutual{\seqRange{x_1: \sigma_1}{x_n: \sigma_n}}{e'}
+   e \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}}{e'}
    \\
    \sigma_i, \vec{c}_i \dbwdarrow \vec{c}'_i
    \quad
@@ -62,9 +62,9 @@
    e', s \dbwdarrow s'
 }
 {
-   e, \exLetRecMutual{\seqRange{x_1: \vec{c}_1}{x_n: \vec{c}_n}}{s}
+   e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_n}{\vec{c}_n}}}{s}
    \dbwdarrow
-   \exLetRecMutual{\seqRange{x_1: \vec{c}'_1}{x_n: \vec{c}'_n}}{s'}
+   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}'_1}}{{x_n}{\vec{c}'_n}}}{s'}
 }
 %
 \and

@@ -5,10 +5,10 @@
       lab={\ruleName{$\bwdSlice$-var}}
    ]
    {
-      \strut
+      \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
    }
    {
-      v, \trVar{x}{\rho} \bwdSlice \mapUpdate{\hole_{\Gamma}}{x}{v}, \exVar{x}, \FF
+      v, \trVar{x}{\Gamma} \bwdSlice \rho, \exVar{x}, \FF
    }
    %
    \and
@@ -18,11 +18,13 @@
    ]
    {
       v \geq \phi
+      \\
+      \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
    }
    {
       v, \trOp{\primOp}{\Gamma}
       \bwdSlice
-      \mapUpdate{\hole_{\Gamma}}{\primOp}{\phi}, \exOp{\primOp}, \FF
+      \rho, \exOp{\primOp}, \FF
    }
    %
    \and
@@ -185,19 +187,22 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-binary-apply}}
+      lab={\ruleName{$\bwdSlice$-binary-apply}},
+      right={$\vdash \rho_1: \Gamma$}
    ]
    {
       v \geq \annInt{n}{\beta}
       \\
-      \annInt{n'}{\beta}, T \bwdSlice \rho, e_1, \alpha
+      \annInt{m}{\beta}, T \bwdSlice \rho_1, e_1, \alpha
       \\
-      \annInt{m}{\beta}, U \bwdSlice \rho', e_2, \alpha'
+      \envLookupBwd{\rho_3}{\Gamma}{\bind{\primOp}{\phi}}
+      \\
+      \annInt{m'}{\beta}, U \bwdSlice \rho_2, e_2, \alpha'
    }
    {
-      v, \trBinaryApp{T}{n'}{\primOp}{\phi}{U}{m}
+      v, \trBinaryApp{T}{m}{\primOp}{\phi}{U}{m'}
       \bwdSlice
-      \mapUpdate{(\rho \join \rho')}{\primOp}{\phi}, \exBinaryApp{e_1}{\primOp}{e_2}, \alpha \join \alpha'
+      \rho_1 \join \rho_2 \join \rho_3, \exBinaryApp{e_1}{\primOp}{e_2}, \alpha \join \alpha'
    }
 %   %
 %   \and

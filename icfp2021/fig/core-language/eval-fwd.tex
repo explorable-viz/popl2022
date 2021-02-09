@@ -167,13 +167,16 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-binary-apply}},
-      right={$\rho(\primOp) \geq \phi$}
+      lab={\ruleName{$\fwdSlice$-binary-apply}}
    ]
    {
       e \geq \exBinaryApp{e_1}{\primOp}{e_2}
       \\
       \rho, e_1, \alpha, T \fwdSlice\geq \annInt{n}{\beta}
+      \\
+      \envLookup{\rho}{\primOp}{v}
+      \\
+      v \geq \phi
       \\
       \rho, e_2, \alpha, U \fwdSlice\geq \annInt{m}{\beta'}
    }
@@ -182,20 +185,6 @@
       \fwdSlice
       \annot{\exInt{\phi(n)(m)}}{\beta \meet \beta'}
    }
-%   %
-%   \and
-%   %
-%   \inferrule*[lab={\ruleName{$\fwdSlice$-let}}]
-%   {
-%      e \geq \exLet{x}{e_1}{e_2}
-%      \\
-%      \rho, e_1, \alpha, T \fwdSlice v
-%      \\
-%      \envExtend{\rho}{x}{v}, e_2, \alpha, U \fwdSlice v'
-%   }
-%   {
-%      \rho, e, \alpha, \trLet{x}{T}{U} \fwdSlice v'
-%   }
    %
    \and
    %
@@ -205,9 +194,9 @@
    {
       e \geq \exLetRecMutual{h}{e'}
       \\
-      \rho, h \closeDefs \rho'
+      \rho_1, h \closeDefs \rho_2
       \\
-      \rho \concat \rho', e', \alpha, T \fwdSlice v
+      \rho_1 \concat \rho_2, e', \alpha, T \fwdSlice v
    }
    {
       \rho, e, \alpha, \trLetRecMutual{h}{T} \fwdSlice v
