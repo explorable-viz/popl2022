@@ -45,10 +45,10 @@
       right={$z \neq z'$}
    ]
    {
-      \mapUpdate{\rho}{z'}{u} \concat \bind{z}{v} = \rho'
+      \envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}
    }
    {
-      \mapUpdate{(\rho \concat \bind{z}{v})}{z'}{u} = \rho'
+      \envLookupBwd{\rho \concat \bind{z'}{\hole}}{\Gamma \concat \bind{z'}{A}}{\bind{z}{v}}
    }
 \end{smathpar}
 \caption{Hole environment, environment lookup and environment update}
