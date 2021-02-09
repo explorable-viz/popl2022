@@ -1,7 +1,7 @@
 \begin{figure}[H]
 \flushleft \shadebox{$\hole_{\Gamma}$}
 \begin{salign}
-   \hole_{\seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}} &= \seqRange{\bind{x_1}{\hole}}{\bind{x_n}{\hole}}
+   \hole_{\seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}} &= \seqRange{\bind{z_1}{\hole}}{\bind{z_n}{\hole}}
 \end{salign}
 \\[2mm]
 
@@ -18,25 +18,38 @@
    \and
    %
    \inferrule*[
-      right={$y \neq x$}
+      right={$z' \neq z$}
    ]
    {
-      \envLookup{\rho}{x}{v}
+      \envLookup{\rho}{z}{v}
    }
    {
-      \envLookup{(\rho \concat \bind{y}{u})}{x}{v}
+      \envLookup{(\rho \concat \bind{z'}{u})}{z}{v}
    }
 \end{smathpar}
 \\[2mm]
 
-\flushleft \shadebox{$\mapUpdate{\rho}{z}{v} = \rho'$}
-\begin{salign}
-   \mapUpdate{\seqEmpty}{z}{v} &= \seqEmpty
-   \\
-   \mapUpdate{(\rho \concat \bind{z}{v})}{z}{u} &= \rho \concat \bind{z}{u}
-   \\
-   \mapUpdate{(\rho \concat \bind{z}{v})}{z'}{u} &= \mapUpdate{\rho}{z'}{u} \concat \bind{z}{v}
-   \quad (z \neq z')
-\end{salign}
+\flushleft \shadebox{$\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$}
+\begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \envLookupBwd{\hole_{\Gamma} \concat \bind{z}{u}}{\Gamma \concat \bind{z}{A}}{\bind{z}{u}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$z \neq z'$}
+   ]
+   {
+      \mapUpdate{\rho}{z'}{u} \concat \bind{z}{v} = \rho'
+   }
+   {
+      \mapUpdate{(\rho \concat \bind{z}{v})}{z'}{u} = \rho'
+   }
+\end{smathpar}
 \caption{Hole environment, environment lookup and environment update}
 \end{figure}

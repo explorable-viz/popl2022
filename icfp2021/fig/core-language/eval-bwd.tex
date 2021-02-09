@@ -5,10 +5,10 @@
       lab={\ruleName{$\bwdSlice$-var}}
    ]
    {
-      \strut
+      \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
    }
    {
-      v, \trVar{x}{\rho} \bwdSlice \mapUpdate{\hole_{\Gamma}}{x}{v}, \exVar{x}, \FF
+      v, \trVar{x}{\Gamma} \bwdSlice \rho, \exVar{x}, \FF
    }
    %
    \and
