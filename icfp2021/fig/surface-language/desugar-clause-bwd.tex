@@ -104,7 +104,7 @@
 \flushleft\shadebox{$\sigma, o \dbwdarrow \kappa$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-end}}
+   lab={\ruleName{$\dbwdarrow$-list-rest-end}}
 ]
 {
    \sigma \geq \elimList{\kappa}{\sigma}
@@ -118,7 +118,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-rest}}
+   lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
 ]
 {
    \sigma \geq \elimList{\kappa}{\sigma'}
