@@ -42,7 +42,7 @@
 {
    \pattNil, \kappa
    \dfwdarrow
-   \branchNil{\kappa}
+   \elimNil{\kappa}
 }
 %
 \and
@@ -58,7 +58,7 @@
 {
    \pattCons{p}{p'}, \kappa
    \dfwdarrow
-   \branchCons{\sigma'}
+   \elimCons{\sigma'}
 }
 %
 \and
@@ -74,7 +74,7 @@
 {
    \pattList{p}{o}, \kappa
    \dfwdarrow
-   \branchCons{\sigma'}
+   \elimCons{\sigma'}
 }
 %
 \and
@@ -105,7 +105,7 @@
 {
    \pattListEnd, \kappa
    \dfwdarrow
-   \branchNil{\kappa}
+   \elimNil{\kappa}
 }
 %
 \and
@@ -121,7 +121,7 @@
 {
    (\pattListNext{p}{o}), \kappa
    \dfwdarrow
-   \branchCons{\sigma'}
+   \elimCons{\sigma'}
 }
 \end{smathpar}
 
