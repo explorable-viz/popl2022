@@ -81,7 +81,9 @@
    {
       e \geq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
       \\
-      \rho, e_2, \alpha', T \fwdSlice \annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}
+      \rho, e_2, \alpha', T \fwdSlice v
+      \\
+      v \geq \annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}
       \\
       \rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}, e_1, \alpha', U_{i,j} \fwdSlice v_{i,j}
       \quad
@@ -90,7 +92,7 @@
    {
       \rho, e, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \fwdSlice
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
+      \annMatrix{v_{i,j}}{i}{j}{v}{\alpha \meet \alpha'}
    }
    %
    \and
