@@ -195,11 +195,13 @@
       v_{i,j} \leq u_{i,j}
       \quad
       (\forall (i,j) \leq (\ihat,\jhat))
+      \\
+      v' \leq u'
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha}
+      \annMatrix{v_{i,j}}{i}{j}{v'}{\alpha}
       \leq
-      \annMatrix{u_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha'}
+      \annMatrix{u_{i,j}}{i}{j}{u'}{\alpha'}
    }
    %
    \and
@@ -210,9 +212,11 @@
       v_{i,j} \leq \hole
       \quad
       (\forall (i,j) \leq (\ihat,\jhat))
+      \\
+      v' \leq \hole
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\FF} \leq \hole
+      \annMatrix{v_{i,j}}{i}{j}{v'}{\FF} \leq \hole
    }
    %
    \and
