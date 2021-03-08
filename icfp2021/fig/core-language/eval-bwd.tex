@@ -134,14 +134,12 @@
       lab={\ruleName{$\bwdSlice$-matrix-dims}}
    ]
    {
-      v \geq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\alpha}
-      \\
-      \annMatrix{\hole}{i}{j}{\exPair{\ihat}{\jhat}}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
+      \annMatrix{\hole}{i}{j}{v}{\FF}, T \bwdSlice \rho, e, \alpha
    }
    {
       v, \trMatrixDims{T}{\ihat,\jhat}
       \bwdSlice
-      \rho, \exMatrixDims{e}, \alpha \join \alpha'
+      \rho, \exMatrixDims{e}, \alpha
    }
    %
    \and
@@ -206,20 +204,6 @@
       \bwdSlice
       \rho_1 \join \rho_2 \join \rho_3, \exBinaryApp{e_1}{\primOp}{e_2}, \alpha \join \alpha'
    }
-%   %
-%   \and
-%   %
-%   \inferrule*[
-%      lab={\ruleName{$\bwdSlice$-let}}
-%   ]
-%   {
-%      v, U \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
-%      \\
-%      v', T \bwdSlice \rho', e', \alpha'
-%   }
-%   {
-%      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
-%   }
    %
    \and
    %
