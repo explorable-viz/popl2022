@@ -81,18 +81,18 @@
    {
       e \geq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
       \\
-      \rho, e_2, \alpha', T \fwdSlice v
+      \rho, e_2, \alpha', T
+      \fwdSlice\geq
+      \annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}
       \\
-      v \geq \annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{}
-      \\
-      \rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}, e_1, \alpha', U_{i,j} \fwdSlice v'_{i,j}
+      \rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}, e_1, \alpha', U_{i,j} \fwdSlice v_{i,j}
       \quad
       (\forall (i,j) \numleq (\ihat,\jhat))
    }
    {
       \rho, e, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \fwdSlice
-      \annMatrix{v'_{i,j}}{i}{j}{v}{\alpha \meet \alpha'}
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\alpha \meet \alpha'}
    }
    %
    \and
