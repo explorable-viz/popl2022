@@ -136,7 +136,9 @@
       lab={\ruleName{$\bwdSlice$-matrix-dims}}
    ]
    {
-      \annMatrix{\hole}{i}{j}{v}{\FF}, T \bwdSlice \rho, e, \alpha
+      v \geq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\gamma}
+      \\
+      \annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\gamma}, T \bwdSlice \rho, e, \alpha
    }
    {
       v, \trMatrixDims{T}{\ihat,\jhat}
