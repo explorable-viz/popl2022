@@ -164,11 +164,17 @@
 % Sets
 \newcommand*{\Below}[1]{{\downarrow{#1}}}
 
-% Misc.
-\renewcommand*{\join}{\vee}
-\renewcommand*{\meet}{\wedge}
-\newcommand*{\Bigjoin}[1]{\textstyle{\bigvee}#1}
-\newcommand*{\Bigmeet}[1]{\textstyle{\bigwedge}#1}
+% Lattices
+\let\oldbigjoin\bigjoin
+\let\oldbigmeet\bigmeet
+\renewcommand*{\bigjoin}[1]{\textstyle{\oldbigjoin}#1}
+\renewcommand*{\bigmeet}[1]{\textstyle{\oldbigmeet}#1}
+\let\oldleq\leq
+\let\oldgeq\geq
+\newcommand*{\numleq}{\oldleq}
+\newcommand*{\numgeq}{\oldgeq}
+\renewcommand*{\leq}{\sqsubseteq}
+\renewcommand*{\geq}{\sqsupseteq}
 
 % Environments.
 \newcommand*{\envLookup}[3]{{#1}\mathrel{\smalltriangleright}\bind{#2}{#3}}

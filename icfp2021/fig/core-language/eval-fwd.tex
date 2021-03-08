@@ -87,7 +87,7 @@
       \\
       \rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}, e_1, \alpha', U_{i,j} \fwdSlice v_{i,j}
       \quad
-      (\forall (i,j) \leq (\ihat,\jhat))
+      (\forall (i,j) \numleq (\ihat,\jhat))
    }
    {
       \rho, e, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
@@ -99,7 +99,7 @@
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-matrix-lookup}},
-      right={$(i,j) \leq (\ihat,\jhat)$}
+      right={$(i,j) \numleq (\ihat,\jhat)$}
    ]
    {
       e \geq \exMatrixAccess{e_1}{e_2}

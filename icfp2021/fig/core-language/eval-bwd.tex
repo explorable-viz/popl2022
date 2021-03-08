@@ -95,17 +95,19 @@
       \bwdSlice
       \rho_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat \bind{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha_{i,j}
       \quad
-      (\forall (i,j) \leq (\ihat,\jhat))
+      (\forall (i,j) \numleq (\ihat,\jhat))
       \\
-      v' \join \annot{\exPair{\annInt{\ihat}{\join{\gamma}}}{\annInt{\jhat}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho', e', \alpha'
+      v' \join \annot{\exPair{\annInt{\ihat}{\bigjoin{\gamma}}}{\annInt{\jhat}{\bigjoin{\gamma'}}}}{\FF}, T
+      \bwdSlice
+      \rho', e', \alpha'
    }
    {
       v,
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \bwdSlice
-      (\join\rho) \join \rho',
-      \annMatrix{\join e}{x}{y}{e'}{\beta},
-      \beta \join (\join{\alpha}) \join \alpha'
+      (\bigjoin\rho) \join \rho',
+      \annMatrix{\bigjoin e}{x}{y}{e'}{\beta},
+      \beta \join (\bigjoin{\alpha}) \join \alpha'
    }
    %
    \and
@@ -239,8 +241,8 @@
 \begin{salign}
    \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_n: \exClosure{\rho_n}{h_n}{\sigma_n}}
    &\closeDefsFwd
-   \rho_1 \join .. \join \rho_n,
-   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join h_1 \join .. \join h_n
+   \bigjoin\rho,
+   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join (\bigjoin h)
 \end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}
