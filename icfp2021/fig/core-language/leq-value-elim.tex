@@ -189,19 +189,19 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
+      right={$(\alpha,\beta,\gamma) \leq (\alpha',\beta',\gamma')$}
    ]
    {
       v_{i,j} \leq u_{i,j}
       \quad
-      (\forall (i,j) \leq (\ihat,\jhat))
+      (\forall (i,j) \numleq (\ihat,\jhat))
       \\
       v' \leq u'
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{v'}{\alpha}
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\gamma})}{\alpha}
       \leq
-      \annMatrix{u_{i,j}}{i}{j}{u'}{\alpha'}
+      \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta'},\annInt{\jhat}{\gamma'})}{\alpha'}
    }
    %
    \and
