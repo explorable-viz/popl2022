@@ -89,7 +89,7 @@
       lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
-      v \geq \annMatrix{u_{i,j}}{i}{j}{v'}{\beta}
+      v \geq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta})}{\beta^\twoPrime}
       \\
       u_{i,j}, U_{i,j}
       \bwdSlice
@@ -97,7 +97,9 @@
       \quad
       (\forall (i,j) \numleq (\ihat,\jhat))
       \\
-      v' \join \annot{\exPair{\annInt{\ihat}{\bigjoin{\gamma}}}{\annInt{\jhat}{\bigjoin{\gamma'}}}}{\FF}, T
+      \annot{\exPair{\annInt{\ihat}{\bigjoin\gamma \join \beta}}
+            {\annInt{\jhat}{\bigjoin\gamma' \join \beta'}}}{\FF},
+      T
       \bwdSlice
       \rho', e', \alpha'
    }
@@ -106,8 +108,8 @@
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \bwdSlice
       (\bigjoin\rho) \join \rho',
-      \annMatrix{\bigjoin e}{x}{y}{e'}{\beta},
-      \beta \join (\bigjoin{\alpha}) \join \alpha'
+      \annMatrix{\bigjoin e}{x}{y}{e'}{\beta^\twoPrime},
+      \beta^\twoPrime \join (\bigjoin{\alpha}) \join \alpha'
    }
    %
    \and
