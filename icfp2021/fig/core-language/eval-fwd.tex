@@ -104,7 +104,9 @@
    {
       e \geq \exMatrixAccess{e_1}{e_2}
       \\
-      \rho, e_1, \alpha, T \fwdSlice\geq \annMatrix{v_{i,j}}{i}{j}{v'}{}
+      \rho, e_1, \alpha, T
+      \fwdSlice\geq
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\beta}
    }
    {
       \rho, e, \alpha, \trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}
@@ -118,12 +120,14 @@
    {
       e \geq \exMatrixDims{e'}
       \\
-      \rho, e', \alpha', T \fwdSlice\geq \annot{\exMatrix{v_{i,j}}{i}{j}{v}}{}
+      \rho, e', \alpha', T
+      \fwdSlice\geq
+      \annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}
    }
    {
       \rho, e, \alpha, \trMatrixDims{T}{\ihat,\jhat}
       \fwdSlice
-      v
+      \annPair{\annInt{\ihat}{\gamma}}{\annInt{\jhat}{\gamma'}}{\beta}
    }
    %
    \and
