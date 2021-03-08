@@ -195,8 +195,6 @@
       v_{i,j} \leq u_{i,j}
       \quad
       (\forall (i,j) \numleq (\ihat,\jhat))
-      \\
-      v' \leq u'
    }
    {
       \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\gamma})}{\alpha}
@@ -212,11 +210,9 @@
       v_{i,j} \leq \hole
       \quad
       (\forall (i,j) \leq (\ihat,\jhat))
-      \\
-      v' \leq \hole
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{v'}{\FF} \leq \hole
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\FF},\annInt{\jhat}{\FF})}{\FF} \leq \hole
    }
    %
    \and
