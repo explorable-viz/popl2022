@@ -1,8 +1,8 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Non-negative integer}
+\mbox{Positive integer}
 &
-i, j
+i, j, \ihat, \jhat
 \\[2mm]
 \mbox{Value}
 &
@@ -40,9 +40,9 @@ u, v
 \text{cons}
 \\
 &&&
-\annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha}
+\annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\gamma})}{\alpha}
 &
-\text{matrix}
+\text{matrix of dimensions $\ihat \times \jhat$}
 \\
 &&&
 \exPrim{\phi}

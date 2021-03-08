@@ -63,13 +63,13 @@
 \newcommand*{\exList}[2]{\kw{[}\;#1 \ #2}
 \newcommand*{\exListComp}[2]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}}
 \newcommand*{\exListEnum}[2]{\kw{[}\,{#1}\;\kw{..}\;{#2}\,\kw{]}}
-\newcommand*{\exLambda}[1]{\lambda{#1}}
+\newcommand*{\exLambda}[1]{\uplambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecEquational}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
-\newcommand*{\exMatrix}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#4}\matrixRBrack}
+\newcommand*{\exMatrix}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack}
 \newcommand*{\exMatrixAccess}[2]{{#1}\,\sym{!}\,{#2}}
 \newcommand*{\exMatrixDims}[1]{\kw{dims}\;{#1}}
 \newcommand*{\exNil}{\kw{[]}}
@@ -95,7 +95,7 @@
 \newcommand*{\annList}[3]{\kw{[}_{#3}\;#1 \ #2}
 \newcommand*{\annListComp}[3]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}_{#3}}
 \newcommand*{\annInt}[2]{#1_{#2}}
-\newcommand*{\annMatrix}[5]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\sym{$\leq$}\;{#4}\matrixRBrack_{#5}}
+\newcommand*{\annMatrix}[5]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack_{#5}}
 \newcommand*{\annNil}[1]{\kw{[]}_{#1}}
 \newcommand*{\annPair}[3]{(#1,#2)_{#3}}
 \newcommand*{\annTrue}[1]{\kw{true}_{#1}}
@@ -164,11 +164,17 @@
 % Sets
 \newcommand*{\Below}[1]{{\downarrow{#1}}}
 
-% Misc.
-\renewcommand*{\join}{\vee}
-\renewcommand*{\meet}{\wedge}
-\newcommand*{\Bigjoin}[1]{\textstyle{\bigvee}#1}
-\newcommand*{\Bigmeet}[1]{\textstyle{\bigwedge}#1}
+% Lattices
+\let\oldbigjoin\bigjoin
+\let\oldbigmeet\bigmeet
+\renewcommand*{\bigjoin}[1]{\textstyle{\oldbigjoin}#1}
+\renewcommand*{\bigmeet}[1]{\textstyle{\oldbigmeet}#1}
+\let\oldleq\leq
+\let\oldgeq\geq
+\newcommand*{\numleq}{\oldleq}
+\newcommand*{\numgeq}{\oldgeq}
+\renewcommand*{\leq}{\sqsubseteq}
+\renewcommand*{\geq}{\sqsupseteq}
 
 % Environments.
 \newcommand*{\envLookup}[3]{{#1}\mathrel{\smalltriangleright}\bind{#2}{#3}}

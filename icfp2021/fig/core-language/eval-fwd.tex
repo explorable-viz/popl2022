@@ -81,30 +81,32 @@
    {
       e \geq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
       \\
-      \rho, e_2, \alpha', T \fwdSlice \annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}
+      \rho, e_2, \alpha', T
+      \fwdSlice\geq
+      \annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}
       \\
       \rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}, e_1, \alpha', U_{i,j} \fwdSlice v_{i,j}
       \quad
-      (\forall (i,j) \leq (\ihat,\jhat))
+      (\forall (i,j) \numleq (\ihat,\jhat))
    }
    {
       \rho, e, \alpha', \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \fwdSlice
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha \meet \alpha' \meet \gamma \meet \gamma'}
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\alpha \meet \alpha'}
    }
    %
    \and
    %
    \inferrule*[
       lab={\ruleName{$\fwdSlice$-matrix-lookup}},
-      right={$(i,j) \leq (\ihat,\jhat)$}
+      right={$(i,j) \numleq (\ihat,\jhat)$}
    ]
    {
       e \geq \exMatrixAccess{e_1}{e_2}
       \\
-      \rho, e_1, \alpha, T \fwdSlice\geq \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\beta}
-      \\
-      \rho, e_2, \alpha, U \fwdSlice\geq \annPair{\annInt{i}{\gamma}}{\annInt{j}{\gamma'}}{\beta'}
+      \rho, e_1, \alpha, T
+      \fwdSlice\geq
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\beta}
    }
    {
       \rho, e, \alpha, \trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}
@@ -118,12 +120,14 @@
    {
       e \geq \exMatrixDims{e'}
       \\
-      \rho, e', \alpha', T \fwdSlice \annot{\exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}{\beta}
+      \rho, e', \alpha', T
+      \fwdSlice\geq
+      \annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}
    }
    {
       \rho, e, \alpha, \trMatrixDims{T}{\ihat,\jhat}
       \fwdSlice
-      \annPair{\annot{\ihat}{\beta}}{\annot{\jhat}{\beta}}{\alpha}
+      \annPair{\annInt{\ihat}{\gamma}}{\annInt{\jhat}{\gamma'}}{\beta}
    }
    %
    \and

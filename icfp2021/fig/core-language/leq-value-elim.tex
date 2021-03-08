@@ -6,7 +6,7 @@
    {
       \sigma_i \leq \sigma'_i
       \quad
-      (\forall i \in \setRange{1}{n})
+      (\forall i \numleq n)
    }
    {
       \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}
@@ -21,7 +21,7 @@
    {
       \sigma_i \leq \hole
       \quad
-      (\forall i \in \setRange{1}{n})
+      (\forall i \numleq n)
    }
    {
       \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}} \leq \hole
@@ -189,17 +189,17 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
+      right={$(\alpha,\beta,\gamma) \leq (\alpha',\beta',\gamma')$}
    ]
    {
       v_{i,j} \leq u_{i,j}
       \quad
-      (\forall (i,j) \leq (\ihat,\jhat))
+      (\forall (i,j) \numleq (\ihat,\jhat))
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha}
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\gamma})}{\alpha}
       \leq
-      \annMatrix{u_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\alpha'}
+      \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta'},\annInt{\jhat}{\gamma'})}{\alpha'}
    }
    %
    \and
@@ -212,7 +212,7 @@
       (\forall (i,j) \leq (\ihat,\jhat))
    }
    {
-      \annMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\FF} \leq \hole
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\FF},\annInt{\jhat}{\FF})}{\FF} \leq \hole
    }
    %
    \and

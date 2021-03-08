@@ -89,23 +89,27 @@
       lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
-      v \geq \annMatrix{u_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}{\beta}
+      v \geq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta})}{\beta^\twoPrime}
       \\
       u_{i,j}, U_{i,j}
       \bwdSlice
-      \rho'_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat \bind{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha'_{i,j}
+      \rho_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat \bind{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha_{i,j}
       \quad
-      (\forall (i,j) \leq (\ihat,\jhat))
+      (\forall (i,j) \numleq (\ihat,\jhat))
       \\
-      \annot{\exPair{\annInt{\ihat}{\join{\gamma}}}{\annInt{\jhat}{\join{\gamma'}}}}{\FF}, T \bwdSlice \rho, e', \alpha
+      \annot{\exPair{\annInt{\ihat}{\bigjoin\gamma \join \beta}}
+            {\annInt{\jhat}{\bigjoin\gamma' \join \beta'}}}{\FF},
+      T
+      \bwdSlice
+      \rho', e', \alpha'
    }
    {
       v,
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \bwdSlice
-      \rho \join \seqRangeOp{\rho'_{1,1}}{\rho'_{\ihat,\jhat}}{\join},
-      \annMatrix{\seqRangeOp{e_{1,1}}{e_{\ihat,\jhat}}{\join}}{x}{y}{e'}{\beta},
-      \beta \join \alpha \join \seqRangeOp{\alpha'_{1,1}}{\alpha'_{\ihat,\jhat}}{\join}
+      (\bigjoin\rho) \join \rho',
+      \annMatrix{\bigjoin e}{x}{y}{e'}{\beta^\twoPrime},
+      \beta^\twoPrime \join (\bigjoin{\alpha}) \join \alpha'
    }
    %
    \and
@@ -114,7 +118,7 @@
       lab={\ruleName{$\bwdSlice$-matrix-lookup}}
    ]
    {
-      \mapUpdate{\annMatrix{\hole}{i}{j}{\exPair{\ihat}{\jhat}}{\FF}}{\exPair{i}{j}}{v}, T
+      \mapUpdate{\annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\FF},\annInt{\jhat}{\FF})}{\FF}}{\exPair{i}{j}}{v}, T
       \bwdSlice
       \rho, e, \alpha
       \\
@@ -132,14 +136,14 @@
       lab={\ruleName{$\bwdSlice$-matrix-dims}}
    ]
    {
-      v \geq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\alpha}
+      v \geq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\gamma}
       \\
-      \annMatrix{\hole}{i}{j}{\exPair{\ihat}{\jhat}}{\beta \join \beta'}, T \bwdSlice \rho, e, \alpha'
+      \annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\gamma}, T \bwdSlice \rho, e, \alpha
    }
    {
       v, \trMatrixDims{T}{\ihat,\jhat}
       \bwdSlice
-      \rho, \exMatrixDims{e}, \alpha \join \alpha'
+      \rho, \exMatrixDims{e}, \alpha
    }
    %
    \and
@@ -204,20 +208,6 @@
       \bwdSlice
       \rho_1 \join \rho_2 \join \rho_3, \exBinaryApp{e_1}{\primOp}{e_2}, \alpha \join \alpha'
    }
-%   %
-%   \and
-%   %
-%   \inferrule*[
-%      lab={\ruleName{$\bwdSlice$-let}}
-%   ]
-%   {
-%      v, U \bwdSlice \envExtend{\rho}{x}{v'}, e, \alpha
-%      \\
-%      v', T \bwdSlice \rho', e', \alpha'
-%   }
-%   {
-%      v, \trLet{x}{T}{U} \bwdSlice \rho \join \rho', \exLet{x}{e'}{e}, \alpha \join \alpha'
-%   }
    %
    \and
    %
@@ -239,8 +229,8 @@
 \begin{salign}
    \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_n: \exClosure{\rho_n}{h_n}{\sigma_n}}
    &\closeDefsFwd
-   \rho_1 \join .. \join \rho_n,
-   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join h_1 \join .. \join h_n
+   \bigjoin\rho,
+   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join (\bigjoin h)
 \end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}

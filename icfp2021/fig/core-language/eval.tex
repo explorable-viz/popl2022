@@ -121,7 +121,7 @@
       \\
       \explVal{U_{i,j}}{\rho \concat \bind{x}{i} \concat \bind{y}{j}, e \eval v_{i,j}}
       \quad
-      (\forall (i,j) \leq (\ihat,\jhat))
+      (\forall (i,j) \numleq (\ihat,\jhat))
    }
    {
       \explVal{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}}
@@ -132,7 +132,7 @@
    %
    \inferrule*[
       lab={\ruleName{$\eval$-matrix-lookup}},
-      right={$(i,j) \leq (\ihat,\jhat)$}
+      right={$(i,j) \numleq (\ihat,\jhat)$}
    ]
    {
       \explVal{T}{\rho, e \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}

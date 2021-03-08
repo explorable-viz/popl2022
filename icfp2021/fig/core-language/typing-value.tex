@@ -5,7 +5,7 @@
 {
    \vdash v_i: A_i
    \quad
-   (\forall i \in \setRange{1}{n})
+   (\forall i \numleq n)
 }
 {
    \vdash \seqRange{\bind{z_1}{v_1}}{\bind{z_n}{v_n}}: \seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}
@@ -20,7 +20,7 @@
    {
       \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
       \quad
-      (\forall i \in \setRange{1}{n})
+      (\forall i \numleq n)
    }
    {
       \Gamma \vdash \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}: \Delta
@@ -135,7 +135,7 @@
 {
    \vdash v_{i,j}: A
    \quad
-   (\forall (i,j) \leq (\ihat,\jhat))
+   (\forall (i,j) \numleq (\ihat,\jhat))
 }
 {
    \vdash \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}: \tyMatrix{A}
