@@ -89,11 +89,11 @@
       lab={\ruleName{$\bwdSlice$-matrix}}
    ]
    {
-      v \geq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\beta^\twoPrime}
+      v \geq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\alpha}
       \\
       u_{i,j}, U_{i,j}
       \bwdSlice
-      \rho_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat \bind{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha_{i,j}
+      \rho_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat \bind{y}{j_{\gamma'_{i,j}}}, e_{i,j}, \alpha'_{i,j}
       \quad
       (\forall (i,j) \numleq (\ihat,\jhat))
       \\
@@ -101,15 +101,15 @@
             {\annInt{\jhat}{\bigjoin\gamma' \join \beta'}}}{\FF},
       T
       \bwdSlice
-      \rho', e', \alpha'
+      \rho', e', \alpha''
    }
    {
       v,
       \trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}
       \bwdSlice
       (\bigjoin\rho) \join \rho',
-      \annMatrix{\bigjoin e}{x}{y}{e'}{\beta^\twoPrime},
-      \beta^\twoPrime \join (\bigjoin{\alpha}) \join \alpha'
+      \annMatrix{\bigjoin e}{x}{y}{e'}{\alpha},
+      \alpha \join (\bigjoin{\alpha'}) \join \alpha''
    }
    %
    \and
