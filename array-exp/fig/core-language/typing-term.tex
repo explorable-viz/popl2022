@@ -63,46 +63,12 @@
 %
 \and
 %
-\inferrule*[right={$\primOp: \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}} \in \Gamma$}]
-{
-   \Gamma \vdash e: \tyInt
-   \\
-   \Gamma \vdash e': \tyInt
-}
-{
-   \Gamma \vdash \exBinaryApp{e}{\primOp}{e'}: \tyInt
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \sigma : \tyFun{A}{B}
-}
-{
-   \Gamma \vdash \exLambda{\sigma} : \tyFun{A}{B}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash e: \tyFun{A}{B}
-   \\
-   \Gamma \vdash e': A
-}
-{
-   \Gamma \vdash \exApp{e}{e'}: B
-}
-%
-\and
-%
 \inferrule*
 {
    \strut
 }
 {
-   \Gamma \vdash \exNil: \tyList{A}
+   \Gamma \vdash \exNil: \tyVec{0}{A}
 }
 %
 \and
@@ -111,103 +77,11 @@
 {
    \Gamma \vdash u: A
    \\
-   \Gamma \vdash v: \tyList{A}
+   \Gamma \vdash v: \tyVec{n}{A}
 }
 {
-   \Gamma \vdash (\exCons{u}{v}): \tyList{A}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash e': \tyProd{\tyInt}{\tyInt}
-   \\
-   \Gamma \concat \bind{x}{\tyInt} \concat \bind{y}{\tyInt} \vdash e: A
-}
-{
-   \Gamma \vdash \exMatrix{e}{x}{y}{e'}: \tyMatrix{A}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash e: \tyMatrix{A}
-   \\
-   \Gamma \vdash e': \tyProd{\tyInt}{\tyInt}
-}
-{
-   \Gamma \vdash \exMatrixAccess{e}{e'}: A
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash e: \tyMatrix{A}
-}
-{
-   \Gamma \vdash \exMatrixDims{e}: \tyProd{\tyInt}{\tyInt}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash h: \Delta
-   \\
-   \Gamma \concat \Delta \vdash e: A
-}
-{
-   \Gamma \vdash \exLetRecMutual{h}{e}: A
+   \Gamma \vdash (\exCons{u}{v}): \tyVec{(n + 1)}{A}
 }
 \end{smathpar}
-
-\vspace{5pt}
-\flushleft \shadebox{$\Gamma \vdash \sigma: \tyFun{A}{B}$}
-\begin{smathpar}
-\inferrule*
-{
-   \Gamma \concat \bind{x}{A} \vdash \kappa: B
-}
-{
-   \Gamma \vdash (\elimVar{x}{\kappa}): \tyFun{A}{B}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \kappa: A
-   \\
-   \Gamma \vdash \kappa': A
-}
-{
-   \Gamma \vdash \elimBool{\kappa}{\kappa'}: \tyFun{\tyBool}{A}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{A'}{B}}
-}
-{
-   \Gamma \vdash \elimProd{\sigma}: \tyFun{\tyProd{A}{A'}}{B}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \kappa: B
-   \\
-   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{\tyList{A}}{B}}
-}
-{
-   \Gamma \vdash \elimList{\kappa}{\sigma}: \tyFun{\tyList{A}}{B}
-}
-\end{smathpar}
-\caption{Typing rules for terms and eliminators}
+\caption{Typing rules for terms}
 \end{figure}
