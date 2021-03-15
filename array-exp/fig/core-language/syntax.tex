@@ -1,108 +1,34 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Continuation}
-&
-\kappa
-&
-::=
-&
-e
-&
-\text{term}
-\\
-&&&
-\sigma
-&
-\text{eliminator}
-\\[2mm]
-\mbox{Eliminator}
-&
-\sigma, \tau
-&
-::=
-&
-\elimVar{x}{\kappa}
-&
-\text{variable}
-\\
-&&&
-\elimBool{\kappa}{\kappa'}
-&
-\text{Boolean}
-\\
-&&&
-\elimProd{\sigma}
-&
-\text{pair}
-\\
-&&&
-\elimList{\kappa}{\sigma}
-&
-\text{list}
-\\[2mm]
-\mbox{Selection state}
-&
-\alpha, \beta, \gamma
-&
-::=
-&
-\TT
-&
-\text{selected}
-\\
-&&&
-\FF
-&
-\text{unselected}
-\\[2mm]
-\mbox{Mutually recursive functions}
-&
-h
-&
-::=
-&
-\seq{\bind{x}{\sigma}}
-&
-\\[2mm]
 \mbox{Term}
 &
 e
 &
 ::=
 &
-\hole
-&
-\text{hole}
-\\
-&&&
-\annTrue{\alpha} \mid \annFalse{\alpha}
+\exTrue \mid \exFalse
 &
 \text{Boolean}
 \\
 &&&
-\annInt{n}{\alpha}
+\exInt{n}
 &
 \text{integer}
 \\
 &&&
-\annPair{e}{e'}{\alpha}
+\exPair{e}{e'}
 &
 \text{pair}
 \\
 &&&
-\annNil{\alpha}
+\exNil
 &
 \text{nil}
 \\
 &&&
-\annCons{e}{e'}{\alpha}
+\exCons{e}{e'}
 &
 \text{cons}
-\\
-&&&
-\annMatrix{e}{x}{y}{e'}{\alpha}
-&
-\text{matrix}
 \\
 &&&
 x
@@ -113,41 +39,6 @@ x
 \exOp{\primOp}
 &
 \text{first-class operator}
-\\
-&&&
-\exLambda{\sigma}
-&
-\text{anonymous function}
-\\
-&&&
-\exApp{e}{e'}
-&
-\text{application}
-\\
-&&&
-\exBinaryApp{e}{\primOp}{e'}
-&
-\text{binary application}
-\\
-&&&
-\exMatrixAccess{e}{e}
-&
-\text{matrix lookup}
-\\
-&&&
-\exMatrixDims{e}
-&
-\text{matrix dimensions}
-\\
-%&&&
-%\exLet{x}{e}{e'}
-%&
-%\text{let}
-%\\
-&&&
-\exLetRecMutual{h}{e}
-&
-\text{recursive let}
 \end{syntaxfig}
-\caption{Terms and eliminators}
+\caption{Terms}
 \end{figure}
