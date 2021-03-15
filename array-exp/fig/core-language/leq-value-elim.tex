@@ -1,0 +1,380 @@
+\begin{figure}[H]
+\flushleft \shadebox{$h \leq h'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \sigma_i \leq \sigma'_i
+      \quad
+      (\forall i \numleq n)
+   }
+   {
+      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}
+      \leq
+      \seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_n}{\sigma'_n}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma_i \leq \hole
+      \quad
+      (\forall i \numleq n)
+   }
+   {
+      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}} \leq \hole
+   }
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft \shadebox{$v \leq v'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \hole \leq v
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annInt{n}{\alpha} \leq \annInt{n}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annInt{n}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annTrue{\alpha} \leq \annTrue{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annTrue{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\alpha} \leq \annFalse{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      v \leq u
+      \\
+      v' \leq u'
+   }
+   {
+      \annPair{v}{v'}{\alpha} \leq \annPair{u}{u'}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      v \leq \hole
+      \\
+      v' \leq \hole
+   }
+   {
+      \annPair{v}{v'}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha} \leq \annNil{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      v \leq u
+      \\
+      v' \leq u'
+   }
+   {
+      \annCons{v}{v'}{\alpha} \leq \annCons{u}{u'}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      v \leq \hole
+      \\
+      v' \leq \hole
+   }
+   {
+      \annCons{v}{v'}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$(\alpha,\beta,\gamma) \leq (\alpha',\beta',\gamma')$}
+   ]
+   {
+      v_{i,j} \leq u_{i,j}
+      \quad
+      (\forall (i,j) \numleq (\ihat,\jhat))
+   }
+   {
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\gamma})}{\alpha}
+      \leq
+      \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta'},\annInt{\jhat}{\gamma'})}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      v_{i,j} \leq \hole
+      \quad
+      (\forall (i,j) \leq (\ihat,\jhat))
+   }
+   {
+      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\FF},\annInt{\jhat}{\FF})}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exPrim{\phi} \leq \exPrim{\phi}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exPrim{\phi} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \rho \leq \rho'
+      \\
+      h \leq h'
+      \\
+      \sigma \leq \sigma'
+   }
+   {
+      \exClosureRec{\Gamma}{\rho}{h}{\sigma} \leq \exClosureRec{\Gamma}{\rho'}{h'}{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \rho \leq \hole_{\Gamma}
+      \\
+      h \leq \hole
+      \\
+      \sigma \leq \hole
+   }
+   {
+      \exClosureRec{\Gamma}{\rho}{h}{\sigma} \leq \hole
+   }
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft \shadebox{$\sigma \leq \sigma'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \hole \leq \sigma
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa \leq \kappa'
+   }
+   {
+      \elimVar{x}{\kappa} \leq \elimVar{x}{\kappa'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa \leq \hole
+   }
+   {
+      \elimVar{x}{\kappa} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa_1 \leq \kappa_1'
+      \\
+      \kappa_1 \leq \kappa_1'
+   }
+   {
+      \elimBool{\kappa_1}{\kappa_2} \leq \elimBool{\kappa_1'}{\kappa_2'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa_1 \leq \hole
+      \\
+      \kappa_1 \leq \hole
+   }
+   {
+      \elimBool{\kappa_1}{\kappa_2} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma \leq \sigma'
+   }
+   {
+      \elimProd{\sigma} \leq \elimProd{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma \leq \hole
+   }
+   {
+      \elimProd{\sigma} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa \leq \kappa'
+      \\
+      \sigma \leq \sigma'
+   }
+   {
+      \elimList{\kappa}{\sigma} \leq \elimList{\kappa'}{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \kappa \leq \hole
+      \\
+      \sigma \leq \hole
+   }
+   {
+      \elimList{\kappa}{\sigma} \leq \hole
+   }
+\end{smathpar}
+\caption{Partial orders on values and eliminators}
+\end{figure}

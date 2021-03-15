@@ -1,0 +1,234 @@
+\newcommand*{\hole}{\square}
+\newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
+% \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
+\newcommand*{\TT}{\mathsf{tt}}
+\newcommand*{\FF}{\mathsf{ff}}
+
+\renewcommand*{\ldots}{...} % \ldots sucks with acmart
+\renewcommand*{\ruleName}[1]{\textcolor{gray}{\textnormal{\textsf{#1}}}}
+
+% Section symbol.
+\renewcommand*{\secref}{\Secref}
+\renewcommand*{\secrefTwo}{\SecrefTwo}
+
+% Use this in place of \mathsf.
+\newcommand*{\mathSf}[1]{\textup{\textsf{#1}}}
+\newcommand*{\Set}[1]{\mathSf{#1}}
+
+\newcommand*{\Int}{\mathbb{Z}}
+\newcommand*{\Pow}[1]{\MnSymbolpowerset({#1})}
+\newcommand*{\id}{\textsf{id}}
+\newcommand*{\adjoint}{\dashv}
+
+% Vectors.
+\newcommand*{\override}{\reloverrideleft}
+\newcommand*{\seqEmpty}{\varepsilon}
+
+% Misc.
+%\newcommand*{\envExtendTwo}[2]{{#1}[#2]}
+\newcommand*{\closeDefsArrow}{\twoheadrightarrow}
+\newcommand*{\closeDefs}{\mathrel{\closeDefsArrow}}
+\newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
+\newcommand*{\closeDefsBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsArrow$}}}
+
+% Misc. syntax.
+\newcommand*{\trace}[2]{\textcolor{gray}{#1}\mathrel{\textcolor{gray}{::}}{#2}}
+
+% Primitives.
+\newcommand*{\primOp}{\oplus}
+
+% Prelude functions
+\newcommand*{\funConcatMap}{\exVar{\kw{concatMap}}}
+\newcommand*{\funEnumFromTo}{\exVar{\kw{enumFromTo}}}
+
+% Annotations.
+\newcommand*{\annot}[2]{#1_{#2}}
+
+\newcommand*{\sym}[1]{\textbf{\kw{#1}}}
+\newcommand*{\symCons}{\sym{:}}
+
+\newcommand*{\matrixLBrack}{\langle}
+\newcommand*{\matrixRBrack}{\rangle}
+
+% Expressions.
+\newcommand*{\exApp}[2]{{#1}\,{#2}}
+\newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
+\newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
+\newcommand*{\exClosure}[3]{\kw{cls}({#1},{#2},{#3})}
+\newcommand*{\exClosureRec}[4]{\sub{\kw{cls}}{#1}({#2},{#3},{#4})}
+\newcommand*{\exFalse}{\kw{false}}
+\newcommand*{\exFun}[2]{#1\,#2}
+\newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
+\newcommand*{\exInt}[1]{#1}
+\newcommand*{\exList}[2]{\kw{[}\;#1 \ #2}
+\newcommand*{\exListComp}[2]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}}
+\newcommand*{\exListEnum}[2]{\kw{[}\,{#1}\;\kw{..}\;{#2}\,\kw{]}}
+\newcommand*{\exLambda}[1]{\uplambda{#1}}
+\newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRecEquational}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
+\newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
+\newcommand*{\exMatrix}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack}
+\newcommand*{\exMatrixAccess}[2]{{#1}\,\sym{!}\,{#2}}
+\newcommand*{\exMatrixDims}[1]{\kw{dims}\;{#1}}
+\newcommand*{\exNil}{\kw{[]}}
+\newcommand*{\exOp}[1]{(#1)}
+\newcommand*{\exPair}[2]{(#1,#2)}
+\newcommand*{\exPrim}[1]{#1}
+\newcommand*{\exRec}[2]{{#1}{#2}}
+\newcommand*{\exTrue}{\kw{true}}
+\newcommand*{\exVar}[1]{#1}
+
+\newcommand*{\ihat}{\hat\imath}
+\newcommand*{\jhat}{\hat\jmath}
+
+% List rest
+\newcommand*{\exListEnd}{\kw{]}}
+\newcommand*{\exListNext}[2]{\comma\;#1 \ #2}
+\newcommand*{\annListEnd}[1]{\kw{]}_{#1}}
+\newcommand*{\annListNext}[3]{\comma_{#3}\;#1 \ #2}
+
+% Annotated expressions
+\newcommand*{\annCons}[3]{{#1}\,\symCons_{#3}\,{#2}}
+\newcommand*{\annFalse}[1]{\kw{false}_{#1}}
+\newcommand*{\annList}[3]{\kw{[}_{#3}\;#1 \ #2}
+\newcommand*{\annListComp}[3]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}_{#3}}
+\newcommand*{\annInt}[2]{#1_{#2}}
+\newcommand*{\annMatrix}[5]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack_{#5}}
+\newcommand*{\annNil}[1]{\kw{[]}_{#1}}
+\newcommand*{\annPair}[3]{(#1,#2)_{#3}}
+\newcommand*{\annTrue}[1]{\kw{true}_{#1}}
+
+% Clause
+\newcommand*{\clause}[2]{\seq{{#1}}\equal{#2}}
+\newcommand*{\clauseUncurried}[2]{{#1}\equal{#2}}
+
+% Qualifiers
+\newcommand*{\qualGuard}[1]{\kw{if}\;{#1}}
+\newcommand*{\qualDeclaration}[2]{\kw{let}\;{#1}\equal{#2}}
+\newcommand*{\qualDone}{\kw{done}}
+\newcommand*{\qualGenerator}[2]{{#1}\;\kw{$\leftarrow$}\;{#2}}
+
+% Patterns
+\newcommand*{\pattVar}[1]{#1}
+\newcommand*{\pattTrue}{\exTrue}
+\newcommand*{\pattFalse}{\exFalse}
+\newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\pattNil}{\exNil}
+\newcommand*{\pattList}[2]{\exList{#1}{#2}}
+\newcommand*{\pattListNext}[2]{\exListNext{#1}{#2}}
+\newcommand*{\pattListEnd}{\exListEnd}
+\newcommand*{\pattPair}[2]{\exPair{#1}{#2}}
+
+% Eliminators.
+\newcommand*{\elimmapsto}{:}
+\newcommand*{\branchCons}[1]{(\symCons)\elimmapsto{#1}}
+\newcommand*{\branchNil}[1]{\exNil\elimmapsto{#1}}
+\newcommand*{\branchTrue}[1]{\exTrue\elimmapsto{#1}}
+\newcommand*{\branchFalse}[1]{\exFalse\elimmapsto{#1}}
+
+\newcommand*{\elimNil}[1]{\{\branchNil{#1}\}}
+\newcommand*{\elimCons}[1]{\{\branchCons{#1}\}}
+\newcommand*{\elimBool}[2]{\{\branchTrue{#1}, \branchFalse{#2}\}}
+\newcommand*{\elimBoolTrue}[1]{\{\branchTrue{#1}\}}
+\newcommand*{\elimBoolFalse}[1]{\{\branchFalse{#1}\}}
+\newcommand*{\elimList}[2]{\{\branchNil{#1},\branchCons{#2}\}}
+\newcommand*{\elimProd}[1]{\kw{prod}\;#1}
+\newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches..
+
+\newcommand*{\singleton}[2]{#1[#2]}
+
+\renewcommand*{\lowlight}[1]{\textcolor{gray}{#1}}
+
+% Matches.
+\newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
+
+\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchFalseNew}{\exFalse}
+\newcommand*{\matchNilNew}{\exNil}
+\newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
+\newcommand*{\matchTrueNew}{\exTrue}
+\newcommand*{\matchVarNew}[1]{#1}
+
+\newcommand*{\interpret}[1]{\hat{#1}}
+
+% Types.
+\newcommand*{\tyMatrix}[1]{\kw{Matrix}\;{#1}}
+\newcommand*{\tyBool}[0]{\kw{Bool}}
+\newcommand*{\tyInt}[0]{\kw{Int}}
+\newcommand*{\tyList}[1]{\kw{List}\;{#1}}
+\newcommand*{\tyProd}[2]{{#1}\times{#2}}
+\newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
+
+% Sets
+\newcommand*{\Below}[1]{{\downarrow{#1}}}
+
+% Lattices
+\let\oldbigjoin\bigjoin
+\let\oldbigmeet\bigmeet
+\renewcommand*{\bigjoin}[1]{\textstyle{\oldbigjoin}#1}
+\renewcommand*{\bigmeet}[1]{\textstyle{\oldbigmeet}#1}
+\let\oldleq\leq
+\let\oldgeq\geq
+\newcommand*{\numleq}{\oldleq}
+\newcommand*{\numgeq}{\oldgeq}
+\renewcommand*{\leq}{\sqsubseteq}
+\renewcommand*{\geq}{\sqsupseteq}
+
+% Environments.
+\newcommand*{\envLookup}[3]{{#1}\mathrel{\smalltriangleright}\bind{#2}{#3}}
+\newcommand*{\envLookupBwd}[3]{{#1}\mathrel{\sub{\smalltriangleleft}{#2}}{#3}}
+\newcommand*{\mapUpdate}[3]{{#1}\mathrel{\smalltriangleleft}\bind{#2}{#3}}
+
+% Evaluation.
+\newcommand*{\eval}{\mathrel{\Rightarrow}}
+\newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
+\newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
+\newcommand*{\match}{\rightsquigarrow}
+\newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
+\newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
+
+\newcommand*{\bind}[2]{(#1:#2)}
+\renewcommand*{\vec}[1]{\vv{#1}}
+\newcommand*{\seq}[1]{\vv{#1}}
+\newcommand*{\seqRange}[2]{\seqRangeOp{#1}{#2}{\concat}}
+\newcommand*{\setRange}[2]{\set{{#1 .. {#2}}}}
+\newcommand*{\seqRangeOp}[3]{{#1} #3 .. #3 {#2}}
+
+% Traces.
+\newcommand*{\trApp}[3]{\exApp{#1}{#2} \mathrel{\smalltriangleright} {#3}}
+\newcommand*{\trAppPrim}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
+\newcommand*{\trMatrix}[7]{\exMatrix{#1}{#2:#4}{#3:#5}{\sub{#6}{#7}}}
+\newcommand*{\trMatrixAccess}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trMatrixDims}[2]{\exMatrixDims{\sub{#1}{#2}}}
+\newcommand*{\trCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
+\newcommand*{\trInt}[2]{\sub{\exInt{#1}}{#2}}
+\newcommand*{\trLambda}[1]{\exLambda{#1}}
+\newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
+\newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
+\newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
+\newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
+\newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
+\newcommand*{\trNil}[1]{\sub{\exNil}{#1}}
+\newcommand*{\trOp}[2]{\sub{\exOp{#1}}{#2}}
+\newcommand*{\trPair}[2]{\exPair{#1}{#2}}
+\newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
+\newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
+\newcommand*{\trVar}[2]{\sub{#1}{#2}}
+
+\newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
+
+% Desugaring.
+\newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
+\newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
+%\newcommand*{\dbwdhole}{\mathrel{\dbwdarrow_{\hole}}}
+\newcommand*{\totalisefwdarrow}{\nearrow}
+\newcommand*{\totalisebwdarrow}{\searrow}
+\newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
+\newcommand*{\totalisebwd}[4]{{#1}, {#2} \totalisebwdarrow {#3}, {#4}}
+\newcommand*{\totaliseBwdHole}{\mathrel{\totalisebwdarrow_{\hole}}}
+\newcommand*{\comma}{\textbf{\kw{,}}}
+\newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}

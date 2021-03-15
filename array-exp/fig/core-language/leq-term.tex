@@ -1,0 +1,405 @@
+\begin{figure}[H]
+\flushleft \shadebox{$e \leq e'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \hole \leq e
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annInt{n}{\alpha} \leq \annInt{n}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annInt{n}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annTrue{\alpha} \leq \annTrue{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annTrue{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\alpha} \leq \annFalse{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2
+   }
+   {
+      \annPair{e_1}{e_2}{\alpha} \leq \annPair{e_1}{e_2}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \annPair{e_1}{e_2}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha} \leq \annNil{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2'
+   }
+   {
+      \annCons{e_1}{e_2}{\alpha} \leq \annCons{e_1'}{e_2'}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \annCons{e_1}{e_2}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\alpha \leq \alpha'$}
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2'
+   }
+   {
+      \annMatrix{e_1}{x}{y}{e_2}{\alpha} \leq \annMatrix{e_1'}{x}{y}{e_2'}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \annMatrix{e_1}{x}{y}{e_2}{\FF} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exVar{x} \leq \exVar{x}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exVar{x} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exOp{\primOp} \leq \exOp{\primOp}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \exOp{\primOp} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma \leq \sigma'
+   }
+   {
+      \exLambda{\sigma} \leq \exLambda{\sigma}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \sigma \leq \hole
+   }
+   {
+      \exLambda{\sigma} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2'
+   }
+   {
+      \exApp{e_1}{e_2} \leq \exApp{e_1}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \exApp{e_1}{e_2} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2'
+   }
+   {
+      \exBinaryApp{e_1}{\primOp}{e_2} \leq \exBinaryApp{e_1}{\primOp}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \exBinaryApp{e_1}{\primOp}{e_2} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2'
+   }
+   {
+      \exMatrixAccess{e_1}{e_2} \leq \exMatrixAccess{e_1}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \exMatrixAccess{e_1}{e_2} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e \leq e'
+   }
+   {
+      \exMatrixDims{e} \leq \exMatrixDims{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e \leq \hole
+   }
+   {
+      \exMatrixDims{e} \leq \hole
+   }
+%   %
+%   \and
+%   %
+%   \inferrule*[
+%   ]
+%   {
+%      e_1 \leq e_1'
+%      \\
+%      e_2 \leq e_2'
+%   }
+%   {
+%      \exLet{x}{e_1}{e_2} \leq \exLet{x}{e_1'}{e_2'}
+%   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \exLet{x}{e_1}{e_2} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e \leq e'
+      \\
+      h \leq h'
+   }
+   {
+      \exLetRecMutual{h}{e} \leq \exLetRecMutual{h'}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e \leq \hole
+      \\
+      h \leq \hole
+   }
+   {
+      \exLetRecMutual{h}{e} \leq \hole
+   }
+\end{smathpar}
+\caption{Partial orders on terms}
+\end{figure}
