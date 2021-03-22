@@ -2,19 +2,19 @@
 \flushleft \shadebox{$e, s \dbwdarrow s'$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\dbwdarrow$-apply}}
+      lab={\ruleName{$\dbwdarrow$-binary-apply}}
    ]
    {
-      e \geq \exApp{e_1}{e_2}
+      e \geq \exBinaryApp{e_1}{\primOp}{e_2}
       \\
       e_1, s_1 \dbwdarrow s_1'
       \\
       e_2, s_2 \dbwdarrow s_2'
    }
    {
-      e, \exApp{s_1}{s_2}
+      e, \exApp{\exApp{\exOp{\primOp}}{s_1}}{s_2}
       \dbwdarrow
-      \exApp{s_1'}{s_2'}
+      \exApp{\exApp{\exOp{\primOp}}{s_1'}}{s_2'}
    }
    %
    \and
