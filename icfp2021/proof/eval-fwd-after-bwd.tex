@@ -9,6 +9,76 @@ Induction on the $\matchBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrueNew}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-true}}
+      ]
+      {
+         \strut
+      }
+      {
+         \matchFwd{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-false}}
+      ]
+      {
+         \strut
+      }
+      {
+         \matchFwd{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
       \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
       {
          \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
@@ -76,6 +146,41 @@ Induction on the $\matchBwdS$ derivation.
       (\localref{pair-premise-one},
        \localref{pair-premise-two})
    }
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNilNew}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-nil}}
+      ]
+      {
+         \strut
+      }
+      {
+         \matchFwd{\annNil{\alpha}}{\elimList{\kappa}{\hole}}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
    \notag
    \\
    \intertext{\crossrule}
@@ -152,41 +257,6 @@ Induction on the $\matchBwdS$ derivation.
       (\localref{cons-premise-one},
        \localref{cons-premise-two})
    }
-   \notag
-   \\
-   \intertext{\crossrule}
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   &
-   \caseDerivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNilNew}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
-      }
-   \end{smathpar}
-   }
-   &
-   \notag
-   \\
-   &
-   \qedLocal
-   \derivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-nil}}
-      ]
-      {
-         \strut
-      }
-      {
-         \matchFwd{\annNil{\alpha}}{\elimList{\kappa}{\hole}}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
-      }
-   \end{smathpar}
-   }
-   &
    \notag
 \end{flalign}
 \end{proof}
