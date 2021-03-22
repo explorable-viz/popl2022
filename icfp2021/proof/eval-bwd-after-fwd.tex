@@ -1,5 +1,5 @@
-\subsection{\thmref{core-language:pattern-matching:gc}, part (i)}
-Induction on the $\matchBwdS$ derivation.
+\subsection{\thmref{core-language:pattern-matching:gc}, part (ii)}
+Induction on the $\matchFwdS$ derivation.
 \begin{proof}
 
 \small
@@ -9,12 +9,14 @@ Induction on the $\matchBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-var}}
+      ]
       {
-         \strut
+         \sigma \geq \elimVar{x}{\kappa}
       }
       {
-         \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
+         \matchFwd{v}{\sigma}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
       }
    \end{smathpar}
    }
@@ -25,14 +27,12 @@ Induction on the $\matchBwdS$ derivation.
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-var}}
-      ]
+      \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
       {
          \strut
       }
       {
-         \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
+         \matchBwd{\bind{x}{v}}{\kappa}{\TT}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
       }
    \end{smathpar}
    }
@@ -41,9 +41,9 @@ Induction on the $\matchBwdS$ derivation.
    \\
    &
    \qedLocal
-   \TT
-   \geq
-   \alpha
+   \elimVar{x}{\kappa}
+   \leq
+   \sigma
    \notag
    \\
    \intertext{\crossrule}
