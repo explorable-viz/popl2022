@@ -183,12 +183,13 @@
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
+\newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
+\newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\evalBwdR}[1]{\sub{\bwdSlice}{#1}}
 \newcommand*{\evalFwdR}[1]{\sub{\fwdSlice}{#1}}
 \newcommand*{\evalBwd}[5]{#1 \evalBwdR{#2} #3, #4, #5}
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalBwdR{#4} #5}
-\newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
-\newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
+\newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalBwdR{#4}\geq #5}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchFwdR}[1]{\matchFwd_{\hspace{-0.2em}#1}}

@@ -44,7 +44,7 @@
       e \geq \annInt{n}{\alpha}
    }
    {
-      \rho, e, \alpha', \trInt{n}{\Gamma} \fwdSlice \annInt{n}{\alpha \meet \alpha'}
+      \evalFwd{\rho}{e}{\alpha'}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha \meet \alpha'}}
    }
    %
    \and
@@ -54,7 +54,7 @@
       e \geq \annNil{\alpha}
    }
    {
-      \rho, e, \alpha', \trNil{\Gamma} \fwdSlice \annNil{\alpha \meet \alpha'}
+      \evalFwd{\rho}{e}{\alpha'}{\trNil{\Gamma}}{\annNil{\alpha \meet \alpha'}}
    }
    %
    \and
@@ -65,14 +65,12 @@
    {
       e \geq \annCons{e_1}{e_2}{\alpha}
       \\
-      \rho, e_1, \alpha', T \fwdSlice v
+      \evalFwd{\rho}{e_1}{\alpha'}{T}{v}
       \\
-      \rho, e_2, \alpha', U \fwdSlice v'
+      \evalFwd{\rho}{e_2}{\alpha'}{U}{v'}
    }
    {
-      \rho, e, \alpha', \trCons{T}{U}
-      \fwdSlice
-      \annCons{v}{v'}{\alpha \meet \alpha'}
+      \evalFwd{\rho}{e}{\alpha'}{\trCons{T}{U}}{\annCons{v}{v'}{\alpha \meet \alpha'}}
    }
    %
    \and
