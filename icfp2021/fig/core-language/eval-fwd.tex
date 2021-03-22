@@ -10,7 +10,7 @@
       \envLookup{\rho}{x}{v}
    }
    {
-      \rho, e, \alpha, \trVar{x}{\Gamma} \fwdSlice v
+      \evalFwd{\rho}{e}{\alpha}{\trVar{x}{\Gamma}}{v}
    }
    %
    \and
@@ -24,7 +24,7 @@
       \envLookup{\rho}{\primOp}{v}
    }
    {
-      \rho, e, \alpha, \trOp{\primOp}{\Gamma} \fwdSlice v
+      \evalFwd{\rho}{e}{\alpha}{\trOp{\primOp}{\Gamma}}{v}
    }
    %
    \and
@@ -34,7 +34,7 @@
       e \geq \exLambda{\sigma}
    }
    {
-      \rho, e, \trLambda{\sigma'} \fwdSlice \exClosure{\rho}{\seqEmpty}{\sigma}
+      \evalFwd{\rho}{e}{\alpha}{\trLambda{\sigma'}}{\exClosure{\rho}{\seqEmpty}{\sigma}}
    }
    %
    \and
