@@ -79,9 +79,8 @@
    {
       e \geq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
       \\
-      \rho, e_2, \alpha', T
-      \fwdSlice\geq
-      \annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}
+      \evalFwdGeq{\rho}{e_2}{\alpha'}{T}
+                 {\annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}}
       \\
       \evalFwd{\rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}}{e_1}{\alpha'}{U_{i,j}}{v_{i,j}}
       \quad
@@ -101,14 +100,11 @@
    {
       e \geq \exMatrixAccess{e_1}{e_2}
       \\
-      \rho, e_1, \alpha, T
-      \fwdSlice\geq
-      \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\beta}
+      \evalFwdGeq{\rho}{e_1}{\alpha}{T}
+                 {\annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\beta}}
    }
    {
-      \rho, e, \alpha, \trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}
-      \fwdSlice
-      v_{i,j}
+      \evalFwd{\rho}{e}{\alpha}{\trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}}{v_{i,j}}
    }
    %
    \and
@@ -117,14 +113,12 @@
    {
       e \geq \exMatrixDims{e'}
       \\
-      \rho, e', \alpha', T
-      \fwdSlice\geq
-      \annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}
+      \evalFwdGeq{\rho}{e'}{\alpha'}{T}
+                 {\annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}}
    }
    {
-      \rho, e, \alpha, \trMatrixDims{T}{\ihat,\jhat}
-      \fwdSlice
-      \annPair{\annInt{\ihat}{\gamma}}{\annInt{\jhat}{\gamma'}}{\beta}
+      \evalFwd{\rho}{e}{\alpha}{\trMatrixDims{T}{\ihat,\jhat}}
+              {\annPair{\annInt{\ihat}{\gamma}}{\annInt{\jhat}{\gamma'}}{\beta}}
    }
    %
    \and
