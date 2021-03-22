@@ -147,16 +147,16 @@ Induction on the $\matchFwdS$ derivation.
          lab={\ruleName{$\matchFwdS$-pair}}
       ]
       {
-         u \eq \annPair{v}{v'}{\alpha}
+         v \eq \annPair{v_1}{v_2}{\alpha}
          \\
          \sigma \eq \elimProd{\sigma'}
          \\
-         \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
+         \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
          \\
-         \matchFwd{v'}{\tau}{w'}{\rho_2}{\kappa}{\beta'}
+         \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
       }
       {
-         \matchFwd{u}{\sigma'}{\matchPair{w}{w'}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
+         \matchFwd{v}{\sigma'}{\matchPair{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
       }
    \end{smathpar}
    }
@@ -165,22 +165,22 @@ Induction on the $\matchFwdS$ derivation.
    \\
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
-   \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
-   \geq
-   \rho_1, \sigma, \alpha
+   \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
+   \leq
+   v_2, \tau
    &
    \text{
-   	IH
+   	IH; monotonicity
    }
    \locallabel{pair-premise-one}
    \\
    &
-   \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
-   \geq
-   \rho_2, \kappa, \alpha
+   \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
+   \leq
+   v_1, \sigma'
    &
    \text{
-   	IH; $\tau' \geq \sigma$; monotonicity
+   	IH; $\tau' \leq \tau$; monotonicity
    }
    \locallabel{pair-premise-two}
    \\
@@ -190,16 +190,16 @@ Induction on the $\matchFwdS$ derivation.
    \begin{smathpar}
       \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
       {
-         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w'}{v'}{\sigma}
+         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
          \\
-         \matchBwd{\rho_1}{\sigma}{\alpha \meet \beta \meet \beta'}{w}{v}{\tau}
+         \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
       }
       {
          \matchBwd{\rho_1 \concat \rho_2}
                   {\kappa}
                   {\alpha \meet \beta \meet \beta'}
-                  {\matchPair{w}{w'}}
-                  {\annPair{v}{v'}{\alpha}}{\elimProd{\tau}}
+                  {\matchPair{w_1}{w_2}}
+                  {\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}}{\elimProd{\tau^\twoPrime}}
       }
    \end{smathpar}
    }
@@ -208,9 +208,11 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1' \concat \rho_2', \kappa', \alpha \meet \beta \meet \beta')
-   \geq
-   (\rho_1 \concat \rho_2, \kappa, \alpha)
+   (\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}, \elimProd{\tau^\twoPrime})
+   \leq
+   (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+   \eq
+   (v, \sigma)
    &
    \text{
       (\localref{pair-premise-one},
@@ -269,15 +271,20 @@ Induction on the $\matchFwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-cons}}
+      ]
       {
-         \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
+         v \eq \annCons{v_1}{v_2}{\alpha}
          \\
-         \matchBwd{\rho_1}{\sigma}{\alpha}{w}{v}{\tau}
+         \sigma \eq \elimList{\kappa}{\sigma'}
+         \\
+         \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
+         \\
+         \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
       }
       {
-         \matchBwd{\rho_1 \concat \rho_2}
-                  {\kappa}{\alpha}{\matchConsNew{w}{w'}}{\annCons{v}{v'}{\alpha}}{\elimList{\hole}{\tau}}
+         \matchFwd{v}{\sigma}{\matchConsNew{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
       }
    \end{smathpar}
    }
@@ -286,42 +293,41 @@ Induction on the $\matchFwdS$ derivation.
    \\
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
-   \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
-   \geq
-   \rho_1, \sigma, \alpha
+   \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
+   \leq
+   v_2, \tau
    &
    \text{
-   	IH
+   	IH; monotonicity
    }
-   \locallabel{cons-premise-one}
+   \locallabel{pair-premise-one}
    \\
    &
-   \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
-   \geq
-   \rho_2, \kappa, \alpha
+   \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
+   \leq
+   v_1, \sigma'
    &
    \text{
-   	IH; $\tau' \geq \sigma$; monotonicity
+   	IH; $\tau' \leq \tau$; monotonicity
    }
-   \locallabel{cons-premise-two}
+   \locallabel{pair-premise-two}
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-cons}}
-      ]
+      \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
       {
-         \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
+         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
          \\
-         \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
+         \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
       }
       {
-         \matchFwd{\annCons{v}{v'}{\alpha}}
-                  {\elimList{\hole}{\tau}}
-                  {\matchConsNew{w}{w'}}
-                  {\rho_1' \concat \rho_2'}{\kappa'}{\alpha \meet \beta \meet \beta'}
+         \matchBwd{\rho_1 \concat \rho_2}
+                  {\kappa}
+                  {\alpha \meet \beta \meet \beta'}
+                  {\matchPair{w_1}{w_2}}
+                  {\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}}{\elimProd{\tau^\twoPrime}}
       }
    \end{smathpar}
    }
@@ -330,13 +336,15 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1' \concat \rho_2', \kappa', \alpha \meet \beta \meet \beta')
-   \geq
-   (\rho_1 \concat \rho_2, \kappa, \alpha)
+   (\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}, \elimProd{\tau^\twoPrime})
+   \leq
+   (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+   \eq
+   (v, \sigma)
    &
    \text{
-      (\localref{cons-premise-one},
-       \localref{cons-premise-two})
+      (\localref{pair-premise-one},
+       \localref{pair-premise-two})
    }
    \notag
 \end{flalign}

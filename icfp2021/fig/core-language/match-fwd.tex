@@ -77,16 +77,16 @@
       lab={\ruleName{$\matchFwdS$-cons}}
    ]
    {
-      u \eq \annCons{v}{v'}{\alpha}
+      v \eq \annCons{v_1}{v_2}{\alpha}
       \\
       \sigma \eq \elimList{\kappa}{\sigma'}
       \\
-      \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
+      \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
       \\
-      \matchFwd{v'}{\tau}{w'}{\rho_2}{\kappa}{\beta'}
+      \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
    }
    {
-      \matchFwd{u}{\sigma}{\matchConsNew{w}{w'}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
+      \matchFwd{v}{\sigma}{\matchConsNew{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}
