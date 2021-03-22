@@ -25,6 +25,26 @@ Induction on the $\matchBwdS$ derivation.
    \\
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
+   \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
+   \geq
+   \rho_1, \sigma, \alpha
+   &
+   \text{
+   	IH
+   }
+   \locallabel{pair-premise-one}
+   \\
+   &
+   \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
+   \geq
+   \rho_2, \kappa, \alpha
+   &
+   \text{
+   	IH; $\tau' \geq \sigma$; monotonicity
+   }
+   \locallabel{pair-premise-two}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -48,10 +68,14 @@ Induction on the $\matchBwdS$ derivation.
    \\
    &
    \qedLocal
-   ?
-   \leq
-   ?
+   (\rho_1' \concat \rho_2', \kappa', \alpha \meet \beta \meet \beta')
+   \geq
+   (\rho_1 \concat \rho_2, \kappa, \alpha)
    &
+   \text{
+      (\localref{pair-premise-one},
+       \localref{pair-premise-two})
+   }
    \notag
 \end{flalign}
 \end{proof}
