@@ -2,7 +2,7 @@
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-var}}
+      lab={\ruleName{$\evalBwdS$-var}}
    ]
    {
       \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
@@ -14,7 +14,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-op}}
+      lab={\ruleName{$\evalBwdS$-op}}
    ]
    {
       v \geq \phi
@@ -28,7 +28,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-lambda}}
+      lab={\ruleName{$\evalBwdS$-lambda}}
    ]
    {
       v \geq \exClosure{\rho}{\seqEmpty}{\sigma}
@@ -40,7 +40,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-int}}
+      lab={\ruleName{$\evalBwdS$-int}}
    ]
    {
       v \geq \annInt{n}{\alpha}
@@ -52,7 +52,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-nil}}
+      lab={\ruleName{$\evalBwdS$-nil}}
    ]
    {
       v \geq \annNil{\alpha}
@@ -64,7 +64,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-cons}}
+      lab={\ruleName{$\evalBwdS$-cons}}
    ]
    {
       v \geq \annCons{v_1}{v_2}{\beta}
@@ -84,7 +84,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-matrix}}
+      lab={\ruleName{$\evalBwdS$-matrix}}
    ]
    {
       v \geq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\alpha}
@@ -115,12 +115,11 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-matrix-lookup}}
+      lab={\ruleName{$\evalBwdS$-matrix-lookup}}
    ]
    {
-      \mapUpdate{\annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\FF},\annInt{\jhat}{\FF})}{\FF}}{\exPair{i}{j}}{v}, T
-      \bwdSlice
-      \rho, e, \alpha
+      \evalBwd{\mapUpdate{\annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\FF},\annInt{\jhat}{\FF})}{\FF}}{\exPair{i}{j}}{v}}
+              {T}{\rho}{e}{\alpha}
       \\
       \evalBwd{\annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}}{U}{\rho'}{e'}{\alpha'}
    }
@@ -131,7 +130,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-matrix-dims}}
+      lab={\ruleName{$\evalBwdS$-matrix-dims}}
    ]
    {
       v \geq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\gamma}
@@ -145,7 +144,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-apply}}
+      lab={\ruleName{$\evalBwdS$-apply}}
    ]
    {
       \evalBwd{v}{T'}{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}
@@ -165,7 +164,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-apply-prim}}
+      lab={\ruleName{$\evalBwdS$-apply-prim}}
    ]
    {
       v \geq \annInt{n}{\beta}
@@ -181,30 +180,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\bwdSlice$-binary-apply}},
-      right={$\vdash \rho_1: \Gamma$}
-   ]
-   {
-      v \geq \annInt{n}{\beta}
-      \\
-      \evalBwd{\annInt{m}{\beta}}{T}{\rho_1}{e_1}{\alpha}
-      \\
-      \envLookupBwd{\rho_3}{\Gamma}{\bind{\primOp}{\phi}}
-      \\
-      \evalBwd{\annInt{m'}{\beta}}{U}{\rho_2}{e_2}{\alpha'}
-   }
-   {
-      \evalBwd{v}
-              {\trBinaryApp{T}{m}{\primOp}{\phi}{U}{m'}}
-              {\rho_1 \join \rho_2 \join \rho_3}
-              {\exBinaryApp{e_1}{\primOp}{e_2}}
-              {\alpha \join \alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\bwdSlice$-let-rec}}
+      lab={\ruleName{$\evalBwdS$-let-rec}}
    ]
    {
       \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}

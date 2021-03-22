@@ -2,7 +2,7 @@
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-var}}
+      lab={\ruleName{$\evalFwdS$-var}}
    ]
    {
       e \geq \exVar{x}
@@ -16,7 +16,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-op}}
+      lab={\ruleName{$\evalFwdS$-op}}
    ]
    {
       e \geq \exOp{\primOp}
@@ -29,7 +29,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-lambda}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
    {
       e \geq \exLambda{\sigma}
    }
@@ -39,7 +39,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-int}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
    {
       e \geq \annInt{n}{\alpha}
    }
@@ -49,7 +49,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-nil}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
    {
       e \geq \annNil{\alpha}
    }
@@ -60,7 +60,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-cons}},
+      lab={\ruleName{$\evalFwdS$-cons}},
    ]
    {
       e \geq \annCons{e_1}{e_2}{\alpha}
@@ -75,7 +75,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-matrix}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-matrix}}]
    {
       e \geq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
       \\
@@ -94,7 +94,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-matrix-lookup}},
+      lab={\ruleName{$\evalFwdS$-matrix-lookup}},
       right={$(i,j) \numleq (\ihat,\jhat)$}
    ]
    {
@@ -109,7 +109,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-matrix-dims}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-matrix-dims}}]
    {
       e \geq \exMatrixDims{e'}
       \\
@@ -124,7 +124,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\fwdSlice$-apply}}
+      lab={\ruleName{$\evalFwdS$-apply}}
    ]
    {
       e \geq \exApp{e_1}{e_2}
@@ -145,7 +145,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\fwdSlice$-apply-prim}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-apply-prim}}]
    {
       e \geq \exApp{e_1}{e_2}
       \\
@@ -161,7 +161,7 @@
    \and
    %
    \inferrule*[lab={
-      \ruleName{$\fwdSlice$-let-rec}}
+      \ruleName{$\evalFwdS$-let-rec}}
    ]
    {
       e \geq \exLetRecMutual{h}{e'}
