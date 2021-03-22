@@ -97,12 +97,16 @@ Induction on the $\matchFwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-false}}
+      ]
       {
-         \strut
+         v \eq \annFalse{\alpha}
+         \\
+         \sigma \eq \elimBool{\kappa}{\kappa'}
       }
       {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
+         \matchFwd{v}{\sigma}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
       }
    \end{smathpar}
    }
@@ -113,18 +117,25 @@ Induction on the $\matchFwdS$ derivation.
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-false}}
-      ]
+      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
       {
          \strut
       }
       {
-         \matchFwd{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
+         \matchBwd{\seqEmpty}{\kappa'}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa'}}
       }
    \end{smathpar}
    }
    &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimBool{\hole}{\kappa'}
+   \leq
+   \elimBool{\kappa}{\kappa'}
+   \eq
+   \sigma
    \notag
    \\
    \intertext{\crossrule}
