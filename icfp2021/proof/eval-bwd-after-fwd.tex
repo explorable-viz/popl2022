@@ -143,14 +143,20 @@ Induction on the $\matchFwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-pair}}
+      ]
       {
-         \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
+         u \eq \annPair{v}{v'}{\alpha}
          \\
-         \matchBwd{\rho_1}{\sigma}{\alpha}{w}{v}{\tau}
+         \sigma \eq \elimProd{\sigma'}
+         \\
+         \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
+         \\
+         \matchFwd{v'}{\tau}{w'}{\rho_2}{\kappa}{\beta'}
       }
       {
-         \matchBwd{\rho_1 \concat \rho_2}{\kappa}{\alpha}{\matchPair{w}{w'}}{\annPair{v}{v'}{\alpha}}{\elimProd{\tau}}
+         \matchFwd{u}{\sigma'}{\matchPair{w}{w'}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
       }
    \end{smathpar}
    }
@@ -182,18 +188,18 @@ Induction on the $\matchFwdS$ derivation.
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-pair}}
-      ]
+      \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
       {
-         \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
+         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w'}{v'}{\sigma}
          \\
-         \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
+         \matchBwd{\rho_1}{\sigma}{\alpha \meet \beta \meet \beta'}{w}{v}{\tau}
       }
       {
-         \matchFwd{\annPair{v}{v'}{\alpha}}
-                  {\elimProd{\tau}}{\matchPair{w}{w'}}
-                  {\rho_1' \concat \rho_2'}{\kappa'}{\alpha \meet \beta \meet \beta'}
+         \matchBwd{\rho_1 \concat \rho_2}
+                  {\kappa}
+                  {\alpha \meet \beta \meet \beta'}
+                  {\matchPair{w}{w'}}
+                  {\annPair{v}{v'}{\alpha}}{\elimProd{\tau}}
       }
    \end{smathpar}
    }
