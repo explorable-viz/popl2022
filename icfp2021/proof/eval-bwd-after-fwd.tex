@@ -51,6 +51,26 @@ Induction on the $\matchFwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-true}}
+      ]
+      {
+         v \eq \annTrue{\alpha}
+         \\
+         \sigma \eq \elimBool{\kappa}{\kappa'}
+      }
+      {
+         \matchFwd{v}{\sigma}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
       \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
       {
          \strut
@@ -65,20 +85,11 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \derivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-true}}
-      ]
-      {
-         \strut
-      }
-      {
-         \matchFwd{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
-      }
-   \end{smathpar}
-   }
-   &
+   \elimBool{\kappa}{\hole}
+   \leq
+   \elimBool{\kappa}{\kappa'}
+   \eq
+   \sigma
    \notag
    \\
    \intertext{\crossrule}
