@@ -9,6 +9,48 @@ Induction on the $\matchBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-var}}
+      ]
+      {
+         \strut
+      }
+      {
+         \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \TT
+   \geq
+   \alpha
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
       \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
       {
          \strut
