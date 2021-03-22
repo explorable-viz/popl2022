@@ -1,0 +1,59 @@
+\subsection{\thmref{core-language:pattern-matching:gc}}
+Induction on the $\matchBwdS$ derivation.
+\begin{proof}
+
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
+      {
+         \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
+         \\
+         \matchBwd{\rho_1}{\sigma}{\alpha}{w}{v}{\tau}
+      }
+      {
+         \matchBwd{\rho_1 \concat \rho_2}{\kappa}{\alpha}{\matchPair{w}{w'}}{\annPair{v}{v'}{\alpha}}{\elimProd{\tau}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-pair}}
+      ]
+      {
+         u \geq \annPair{v}{v'}{\alpha}
+         \\
+         \sigma \geq \elimProd{\sigma'}
+         \\
+         \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
+         \\
+         \matchFwd{v'}{\tau}{w'}{\rho_2}{\kappa}{\beta'}
+      }
+      {
+         \matchFwd{u}{\sigma'}{\matchPair{w}{w'}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   ?
+   \leq
+   ?
+   &
+   \notag
+\end{flalign}
+\end{proof}
