@@ -32,16 +32,14 @@ Induction on the $\matchBwdS$ derivation.
          lab={\ruleName{$\matchFwdS$-pair}}
       ]
       {
-         u \geq \annPair{v}{v'}{\alpha}
+         \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
          \\
-         \sigma \geq \elimProd{\sigma'}
-         \\
-         \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
-         \\
-         \matchFwd{v'}{\tau}{w'}{\rho_2}{\kappa}{\beta'}
+         \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
       }
       {
-         \matchFwd{u}{\sigma'}{\matchPair{w}{w'}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
+         \matchFwd{\annPair{v}{v'}{\alpha}}
+                  {\elimProd{\tau}}{\matchPair{w}{w'}}
+                  {\rho_1' \concat \rho_2'}{\kappa'}{\alpha \meet \beta \meet \beta'}
       }
    \end{smathpar}
    }
