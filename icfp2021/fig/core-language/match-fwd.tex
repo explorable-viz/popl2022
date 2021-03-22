@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$v, w, \sigma \matchFwdS \rho, \kappa, \alpha$}
+\flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\matchFwdS$-var}}
@@ -8,9 +8,7 @@
       \sigma \geq \elimVar{x}{\kappa}
    }
    {
-      v, \matchVarNew{x}, \sigma
-      \matchFwdS
-      \bind{x}{v}, \kappa, \TT
+      \matchFwd{v}{\sigma}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
    }
    %
    \and
@@ -24,9 +22,7 @@
       \sigma \geq \elimBool{\kappa}{\kappa'}
    }
    {
-      v, \matchTrueNew, \sigma
-      \matchFwdS
-      \seqEmpty, \kappa, \alpha
+      \matchFwd{v}{\sigma}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
    }
    %
    \and
@@ -37,12 +33,10 @@
    {
       v \geq \annFalse{\alpha}
       \\
-      \elimBool{\kappa}{\kappa'}
+      \sigma \geq \elimBool{\kappa}{\kappa'}
    }
    {
-      v, \matchFalseNew, \sigma
-      \matchFwdS
-      \seqEmpty, \kappa', \alpha
+      \matchFwd{v}{\sigma}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
    }
    %
    \and
@@ -55,14 +49,12 @@
       \\
       \sigma \geq \elimProd{\sigma'}
       \\
-      v, w, \sigma' \matchFwdS \rho_1, \tau, \beta
+      \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
       \\
-      v', w', \tau \matchFwdS \rho_2, \kappa, \beta'
+      \matchFwd{v'}{\tau}{w'}{\rho_2}{\kappa}{\beta'}
    }
    {
-      u, \matchPair{w}{w'}, \sigma'
-      \matchFwdS
-      \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
+      \matchFwd{u}{\sigma'}{\matchPair{w}{w'}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
    }
    %
    \and
@@ -76,9 +68,7 @@
       \sigma \geq \elimList{\kappa}{\sigma'}
    }
    {
-      v, \matchNilNew, \sigma
-      \matchFwdS
-      \seqEmpty, \kappa, \alpha
+      \matchFwd{v}{\sigma}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
    }
    %
    \and
@@ -91,14 +81,12 @@
       \\
       \sigma \geq \elimList{\kappa}{\sigma'}
       \\
-      v, w, \sigma' \matchFwdS \rho_1, \tau, \beta
+      \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
       \\
-      v', w', \tau \matchFwdS \rho_2, \kappa, \beta'
+      \matchFwd{v'}{\tau}{w'}{\rho_2}{\kappa}{\beta'}
    }
    {
-      u, \matchConsNew{w}{w'}, \sigma
-      \matchFwdS
-      \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
+      \matchFwd{u}{\sigma}{\matchConsNew{w}{w'}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}

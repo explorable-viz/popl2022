@@ -1,14 +1,12 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\rho, \kappa, \alpha, w \matchBwdS v, \sigma$}
+\flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
    {
       \strut
    }
    {
-      \bind{x}{v}, \kappa, \alpha, \matchVarNew{x}
-      \matchBwdS
-      v, \elimVar{x}{\kappa}
+      \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
    }
    %
    \and
@@ -18,9 +16,7 @@
       \strut
    }
    {
-      \seqEmpty, \kappa, \alpha, \matchTrueNew
-      \matchBwdS
-      \annTrue{\alpha}, \elimBool{\kappa}{\hole}
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrueNew}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
    }
    %
    \and
@@ -30,23 +26,19 @@
       \strut
    }
    {
-      \seqEmpty, \kappa, \alpha, \matchFalseNew
-      \matchBwdS
-      \annFalse{\alpha}, \elimBool{\hole}{\kappa}
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
    {
-      \rho_2, \kappa, \alpha, w' \matchBwdS v', \sigma
+      \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
       \\
-      \rho_1, \sigma, \alpha, w \matchBwdS v, \tau
+      \matchBwd{\rho_1}{\sigma}{\alpha}{w}{v}{\tau}
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \alpha, \matchPair{w}{w'}
-      \matchBwdS
-      \annPair{v}{v'}{\alpha}, \elimProd{\tau}
+      \matchBwd{\rho_1 \concat \rho_2}{\kappa}{\alpha}{\matchPair{w}{w'}}{\annPair{v}{v'}{\alpha}}{\elimProd{\tau}}
    }
    %
    \and
@@ -56,23 +48,20 @@
       \strut
    }
    {
-      \seqEmpty, \kappa, \alpha, \matchNilNew
-      \matchBwdS
-      \annNil{\alpha}, \elimList{\kappa}{\hole}
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNilNew}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
    {
-      \rho_2, \kappa, \alpha, w' \matchBwdS v', \sigma
+      \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
       \\
-      \rho_1, \sigma, \alpha, w \matchBwdS v, \tau
+      \matchBwd{\rho_1}{\sigma}{\alpha}{w}{v}{\tau}
    }
    {
-      \rho_1 \concat \rho_2, \kappa, \alpha, \matchConsNew{w}{w'}
-      \matchBwdS
-      \annCons{v}{v'}{\alpha}, \elimList{\hole}{\tau}
+      \matchBwd{\rho_1 \concat \rho_2}
+               {\kappa}{\alpha}{\matchConsNew{w}{w'}}{\annCons{v}{v'}{\alpha}}{\elimList{\hole}{\tau}}
    }
 \end{smathpar}
 \caption{Pattern-matching: backward slicing}
