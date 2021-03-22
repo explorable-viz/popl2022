@@ -153,5 +153,40 @@ Induction on the $\matchBwdS$ derivation.
        \localref{cons-premise-two})
    }
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNilNew}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-nil}}
+      ]
+      {
+         \strut
+      }
+      {
+         \matchFwd{\annNil{\alpha}}{\elimList{\kappa}{\hole}}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
 \end{flalign}
 \end{proof}
