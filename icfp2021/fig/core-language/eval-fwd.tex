@@ -129,18 +129,18 @@
    {
       e \geq \exApp{e_1}{e_2}
       \\
-      \rho, e_1, \alpha, T \fwdSlice\geq \exClosureRec{\Gamma}{\rho_1}{h}{\sigma}
+      \evalFwdGeq{\rho}{e_1}{\alpha}{T}{\exClosureRec{\Gamma}{\rho_1}{h}{\sigma}}
       \\
       \rho_1, \delta \closeDefs \rho_2
       \\
-      \rho, e_2, \alpha, U \fwdSlice v
+      \evalFwd{\rho}{e_2}{\alpha}{U}{v}
       \\
       v, w, \sigma \matchFwd \rho_3, e', \beta
       \\
-      \rho_1 \concat \rho_2 \concat \rho_3, e', \beta, T' \fwdSlice v'
+      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e'}{\beta}{T'}{v'}
    }
    {
-      \rho, e, \alpha, \trApp{T}{U}{\matchPlug{w}{T'}} \fwdSlice v'
+      \evalFwd{\rho}{e}{\alpha}{\trApp{T}{U}{\matchPlug{w}{T'}}}{v'}
    }
    %
    \and
@@ -149,14 +149,13 @@
    {
       e \geq \exApp{e_1}{e_2}
       \\
-      \rho, e_1, \alpha, T \fwdSlice\geq \phi
+      \evalFwd{\rho}{e_1}{\alpha}{T}{\phi}
       \\
-      \rho, e_2, \alpha, U \fwdSlice\geq \annInt{n}{\beta}
+      \evalFwd{\rho}{e_2}{\alpha}{U}{\annInt{n}{\beta}}
    }
    {
-      \rho, e, \alpha, \trAppPrim{T}{\phi}{U}{\exInt{n}}
-      \fwdSlice
-      \annot{\phi(n)}{\beta}
+      \evalFwd{\rho}{e}{\alpha}{\trAppPrim{T}{\phi}{U}{\exInt{n}}}
+              {\annot{\phi(n)}{\beta}}
    }
    %
    \and
@@ -167,18 +166,17 @@
    {
       e \geq \exBinaryApp{e_1}{\primOp}{e_2}
       \\
-      \rho, e_1, \alpha, T \fwdSlice\geq \annInt{n}{\beta}
+      \evalFwdGeq{\rho}{e_1}{\alpha}{T}{\annInt{n}{\beta}}
       \\
       \envLookup{\rho}{\primOp}{v}
       \\
       v \geq \phi
       \\
-      \rho, e_2, \alpha, U \fwdSlice\geq \annInt{m}{\beta'}
+      \evalFwdGeq{\rho}{e_2}{\alpha}{P}{\annInt{m}{\beta'}}
    }
    {
-      \rho, e, \alpha, \trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}
-      \fwdSlice
-      \annot{\exInt{\phi(n)(m)}}{\beta \meet \beta'}
+      \evalFwd{\rho}{e}{\alpha}{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}
+              {\annot{\exInt{\phi(n)(m)}}{\beta \meet \beta'}}
    }
    %
    \and
@@ -191,10 +189,10 @@
       \\
       \rho_1, h \closeDefs \rho_2
       \\
-      \rho_1 \concat \rho_2, e', \alpha, T \fwdSlice v
+      \evalFwd{\rho_1 \concat \rho_2}{e'}{\alpha}{T}{v}
    }
    {
-      \rho, e, \alpha, \trLetRecMutual{h}{T} \fwdSlice v
+      \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
    }
 \end{smathpar}
 \caption{Evaluation: forward slicing (Boolean and pair cases omitted)}
