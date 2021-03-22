@@ -6,9 +6,9 @@ Main source so far is \citet{gibbons17}.
 \input{fig/core-language/syntax}
 
 \begin{definition}[Representable functor]
-   A functor $F$ is \emph{representable} (has a fixed shape) iff there exists a type $\Set{Idx}(F)$ of \emph{indices} and a family of isomorphisms $\pi_A$ between $F A$ and $\Set{Idx}(F) \to A$.
+   A functor $F$ is \emph{representable} (has a fixed shape) iff there exists a type $\Idx{F}$ of \emph{indices} and a family of isomorphisms $\pi_A: F A \to \Idx{F} \to A$.
 \end{definition}
 
-The $F$-structure $\mathSf{indices}(F) \eqdef \pi_{\Set{Idx}(F)}^{-1}(\id)$ is a value of type $F\;\Set{Idx}(F)$ containing the indices of $F$.
+The $F$-structure $\mathSf{indices}(F) \eqdef \pi_{\Idx{F}}^{-1}(\id)$ is a value of type $F\;\Idx{F}$ containing the indices of $F$.
 
 \input{fig/core-language/typing-term}
