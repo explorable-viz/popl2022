@@ -1,240 +1,254 @@
 \begin{figure}[H]
 \flushleft \shadebox{$s \dfwdarrow e$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-nil}}
-]
-{
-   \strut
-}
-{
-   \annNil{\alpha} \dfwdarrow \annNil{\alpha}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-non-empty-list}}
-]
-{
-   s \dfwdarrow e
-   \\
-   l \dfwdarrow e'
-}
-{
-   \annList{s}{l}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-cons}}
-]
-{
-   s \dfwdarrow e
-   \\
-   s' \dfwdarrow e'
-}
-{
-   \annCons{s}{s'}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-let-rec}}
-]
-{
-   \vec{c}_i \dfwdarrow \sigma_i
-   \quad
-   (\forall i \in \setRange{1}{n})
-   \\
-   s \dfwdarrow e
-}
-{
-   \exLetRecMutual{\seqRange{x_1: \vec{c}_1}{x_n: \vec{c}_n}}{s}
-   \dfwdarrow
-   \exLetRecMutual{\seqRange{x_1: \sigma_1}{x_n: \sigma_n}}{e}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-apply}}
-]
-{
-   s \dfwdarrow e
-   \\
-   s' \dfwdarrow e'
-}
-{
-   \exApp{s}{s'} \dfwdarrow \exApp{e}{e'}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-match}}
-]
-{
-   s \dfwdarrow e
-   \\
-   \vec{c} \dfwdarrow \sigma
-}
-{
-   \exMatch{s}{\vec{c}}
-   \dfwdarrow
-   \exApp{(\exLambda{\sigma})}{e}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-let}}
-]
-{
-   s \dfwdarrow e
-   \\
-   \clauseUncurried{p}{s'} \dfwdarrow \sigma
-}
-{
-   \exLet{p}{s}{s'}
-   \dfwdarrow
-   \exApp{(\exLambda{\sigma})}{e}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-if}}
-]
-{
-   s \dfwdarrow e
-   \\
-   s' \dfwdarrow e'
-   \\
-   s^{\twoPrime} \dfwdarrow e^{\twoPrime}
-}
-{
-   \exIfThenElse{s}{s'}{s^{\twoPrime}}
-   \dfwdarrow
-   \exApp{\exLambda{\elimBool{e'}{e^{\twoPrime}}}}{e}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-enum}},
-]
-{
-   s \dfwdarrow e
-   \\
-   s' \dfwdarrow e'
-}
-{
-   \exListEnum{s}{s'}
-   \dfwdarrow
-   \exApp{\exApp{\funEnumFromTo}{e}}{e'}
-}
-%
-\and
-%
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
-{
-   s \dfwdarrow e
-}
-{
-   \annot{\exListComp{s}{\qualDone}}{\alpha}
-   \dfwdarrow
-   \annCons{e}{\annot{\exNil}{\alpha}}{\alpha}
-}
-\and
-%
-\inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
-   right={$q \neq \qualDone$}
-]
-{
-   \annListComp{s}{q \concat \qualDone}{\alpha} \dfwdarrow e
-}
-{
-  \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
-}
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
-]
-{
-   \annListComp{s}{\vec{q}}{\alpha}
-   \dfwdarrow e
-   \\
-   s' \dfwdarrow e'
-}
-{
-   \annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}
-   \dfwdarrow
-   \exApp{\smash{\exLambda{\elimBool{e}{\annNil{\alpha}}}}}{e'}
-}
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
-]
-{
-   \clauseUncurried{p}{\annListComp{s}{\vec{q}}{\alpha}} \dfwdarrow \sigma
-   \\
-   s' \dfwdarrow e
-}
-{
-   \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
-   \dfwdarrow
-   \exApp{(\exLambda{\sigma})}{e}
-}
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
-]
-{
-   \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha} \dfwdarrow \sigma
-   \\
-   \totalise{\sigma}{\alpha}{\sigma'}
-   \\
-   s' \dfwdarrow e
-}
-{
-   \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
-   \dfwdarrow
-   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
-}
-\end{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-binary-apply}}
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      s' \dfwdarrow e'
+   }
+   {
+      \exBinaryApp{s}{\primOp}{s'} \dfwdarrow \exApp{\exApp{\exOp{\primOp}}{e}}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-nil}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha} \dfwdarrow \annNil{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      l \dfwdarrow e'
+   }
+   {
+      \annList{s}{l}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-cons}}
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      s' \dfwdarrow e'
+   }
+   {
+      \annCons{s}{s'}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-let-rec}}
+   ]
+   {
+      \vec{c}_i \dfwdarrow \sigma_i
+      \quad
+      (\forall i \in \setRange{1}{n})
+      \\
+      s \dfwdarrow e
+   }
+   {
+      \exLetRecMutual{\seqRange{x_1: \vec{c}_1}{x_n: \vec{c}_n}}{s}
+      \dfwdarrow
+      \exLetRecMutual{\seqRange{x_1: \sigma_1}{x_n: \sigma_n}}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-apply}}
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      s' \dfwdarrow e'
+   }
+   {
+      \exApp{s}{s'} \dfwdarrow \exApp{e}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-match}}
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      \vec{c} \dfwdarrow \sigma
+   }
+   {
+      \exMatch{s}{\vec{c}}
+      \dfwdarrow
+      \exApp{(\exLambda{\sigma})}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-let}}
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      \clauseUncurried{p}{s'} \dfwdarrow \sigma
+   }
+   {
+      \exLet{p}{s}{s'}
+      \dfwdarrow
+      \exApp{(\exLambda{\sigma})}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-if}}
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      s' \dfwdarrow e'
+      \\
+      s^{\twoPrime} \dfwdarrow e^{\twoPrime}
+   }
+   {
+      \exIfThenElse{s}{s'}{s^{\twoPrime}}
+      \dfwdarrow
+      \exApp{\exLambda{\elimBool{e'}{e^{\twoPrime}}}}{e}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-list-enum}},
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      s' \dfwdarrow e'
+   }
+   {
+      \exListEnum{s}{s'}
+      \dfwdarrow
+      \exApp{\exApp{\funEnumFromTo}{e}}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
+   {
+      s \dfwdarrow e
+   }
+   {
+      \annot{\exListComp{s}{\qualDone}}{\alpha}
+      \dfwdarrow
+      \annCons{e}{\annot{\exNil}{\alpha}}{\alpha}
+   }
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
+      right={$q \neq \qualDone$}
+   ]
+   {
+      \annListComp{s}{q \concat \qualDone}{\alpha} \dfwdarrow e
+   }
+   {
+     \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
+   }
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
+   ]
+   {
+      \annListComp{s}{\vec{q}}{\alpha}
+      \dfwdarrow e
+      \\
+      s' \dfwdarrow e'
+   }
+   {
+      \annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}
+      \dfwdarrow
+      \exApp{\smash{\exLambda{\elimBool{e}{\annNil{\alpha}}}}}{e'}
+   }
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
+   ]
+   {
+      \clauseUncurried{p}{\annListComp{s}{\vec{q}}{\alpha}} \dfwdarrow \sigma
+      \\
+      s' \dfwdarrow e
+   }
+   {
+      \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
+      \dfwdarrow
+      \exApp{(\exLambda{\sigma})}{e}
+   }
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
+   ]
+   {
+      \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha} \dfwdarrow \sigma
+      \\
+      \totalise{\sigma}{\alpha}{\sigma'}
+      \\
+      s' \dfwdarrow e
+   }
+   {
+      \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
+      \dfwdarrow
+      \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
+   }
+   \end{smathpar}
 
-\vspace{5pt}
-\flushleft \shadebox{$l \dfwdarrow e$}
-\begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-rest-end}}
-]
-{
-   \strut
-}
-{
-   \annListEnd{\alpha} \dfwdarrow \annNil{\alpha}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\dfwdarrow$-list-rest-cons}}
-]
-{
-   s \dfwdarrow e
-   \\
-   l \dfwdarrow e'
-}
-{
-   \annListNext{s}{l}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
-}
+   \vspace{5pt}
+   \flushleft \shadebox{$l \dfwdarrow e$}
+   \begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-list-rest-end}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annListEnd{\alpha} \dfwdarrow \annNil{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dfwdarrow$-list-rest-cons}}
+   ]
+   {
+      s \dfwdarrow e
+      \\
+      l \dfwdarrow e'
+   }
+   {
+      \annListNext{s}{l}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
+   }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}
 \end{figure}
