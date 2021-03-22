@@ -184,7 +184,9 @@
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
 \newcommand*{\evalBwdR}[1]{\sub{\bwdSlice}{#1}}
+\newcommand*{\evalFwdR}[1]{\sub{\fwdSlice}{#1}}
 \newcommand*{\evalBwd}[5]{#1 \evalBwdR{#2} #3, #4, #5}
+\newcommand*{\evalFwd}[5]{#1, #2, #3 \evalBwdR{#4} #5}
 \newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
 \newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\match}{\rightsquigarrow}
