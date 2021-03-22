@@ -1,77 +1,77 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\rho, \kappa, \alpha, w \matchBwd v, \sigma$}
+\flushleft \shadebox{$\rho, \kappa, \alpha, w \matchBwdS v, \sigma$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchBwd$-var}}]
+   \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
    {
       \strut
    }
    {
       \bind{x}{v}, \kappa, \alpha, \matchVarNew{x}
-      \matchBwd
+      \matchBwdS
       v, \elimVar{x}{\kappa}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-true}}]
+   \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
    {
       \strut
    }
    {
       \seqEmpty, \kappa, \alpha, \matchTrueNew
-      \matchBwd
+      \matchBwdS
       \annTrue{\alpha}, \elimBool{\kappa}{\hole}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-false}}]
+   \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
    {
       \strut
    }
    {
       \seqEmpty, \kappa, \alpha, \matchFalseNew
-      \matchBwd
+      \matchBwdS
       \annFalse{\alpha}, \elimBool{\hole}{\kappa}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-pair}}]
+   \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
    {
-      \rho_2, \kappa, \alpha, w' \matchBwd v', \sigma
+      \rho_2, \kappa, \alpha, w' \matchBwdS v', \sigma
       \\
-      \rho_1, \sigma, \alpha, w \matchBwd v, \tau
+      \rho_1, \sigma, \alpha, w \matchBwdS v, \tau
    }
    {
       \rho_1 \concat \rho_2, \kappa, \alpha, \matchPair{w}{w'}
-      \matchBwd
+      \matchBwdS
       \annPair{v}{v'}{\alpha}, \elimProd{\tau}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-nil}}]
+   \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
    {
       \strut
    }
    {
       \seqEmpty, \kappa, \alpha, \matchNilNew
-      \matchBwd
+      \matchBwdS
       \annNil{\alpha}, \elimList{\kappa}{\hole}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwd$-cons}}]
+   \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
    {
-      \rho_2, \kappa, \alpha, w' \matchBwd v', \sigma
+      \rho_2, \kappa, \alpha, w' \matchBwdS v', \sigma
       \\
-      \rho_1, \sigma, \alpha, w \matchBwd v, \tau
+      \rho_1, \sigma, \alpha, w \matchBwdS v, \tau
    }
    {
       \rho_1 \concat \rho_2, \kappa, \alpha, \matchConsNew{w}{w'}
-      \matchBwd
+      \matchBwdS
       \annCons{v}{v'}{\alpha}, \elimList{\hole}{\tau}
    }
 \end{smathpar}

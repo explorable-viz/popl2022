@@ -12,12 +12,12 @@
 \input{fig/core-language/match}
 
 \begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \matchFwd \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\Bool)} \to \Below{(\rho,\kappa)}$ to be $\matchFwdR{w}$ domain-restricted to $\Below{(v,\sigma,\Bool)}$, and define $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\Bool)}$ to be $\matchBwdR{w}$ domain-restricted to $\Below{((\rho,\kappa))}$.
+   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\Bool)} \to \Below{(\rho,\kappa)}$ to be $\matchFwdR{w}$ domain-restricted to $\Below{(v,\sigma,\Bool)}$, and define $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\Bool)}$ to be $\matchBwdR{w}$ domain-restricted to $\Below{((\rho,\kappa))}$.
 \end{definition}
 
 \begin{theorem}[Galois connection for pattern-matching]
 \label{thm:core-language:pattern-matching:gc}
-   Suppose $w: v, \sigma \matchFwd \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
 \end{theorem}
 
 \input{fig/core-language/eval}

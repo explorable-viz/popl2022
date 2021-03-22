@@ -1,22 +1,22 @@
 \begin{figure}[H]
-\flushleft \shadebox{$v, w, \sigma \matchFwd \rho, \kappa, \alpha$}
+\flushleft \shadebox{$v, w, \sigma \matchFwdS \rho, \kappa, \alpha$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-var}}
+      lab={\ruleName{$\matchFwdS$-var}}
    ]
    {
       \sigma \geq \elimVar{x}{\kappa}
    }
    {
       v, \matchVarNew{x}, \sigma
-      \matchFwd
+      \matchFwdS
       \bind{x}{v}, \kappa, \TT
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-true}}
+      lab={\ruleName{$\matchFwdS$-true}}
    ]
    {
       v \geq \annTrue{\alpha}
@@ -25,14 +25,14 @@
    }
    {
       v, \matchTrueNew, \sigma
-      \matchFwd
+      \matchFwdS
       \seqEmpty, \kappa, \alpha
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-false}}
+      lab={\ruleName{$\matchFwdS$-false}}
    ]
    {
       v \geq \annFalse{\alpha}
@@ -41,34 +41,34 @@
    }
    {
       v, \matchFalseNew, \sigma
-      \matchFwd
+      \matchFwdS
       \seqEmpty, \kappa', \alpha
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-pair}}
+      lab={\ruleName{$\matchFwdS$-pair}}
    ]
    {
       u \geq \annPair{v}{v'}{\alpha}
       \\
       \sigma \geq \elimProd{\sigma'}
       \\
-      v, w, \sigma' \matchFwd \rho_1, \tau, \beta
+      v, w, \sigma' \matchFwdS \rho_1, \tau, \beta
       \\
-      v', w', \tau \matchFwd \rho_2, \kappa, \beta'
+      v', w', \tau \matchFwdS \rho_2, \kappa, \beta'
    }
    {
       u, \matchPair{w}{w'}, \sigma'
-      \matchFwd
+      \matchFwdS
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-nil}}
+      lab={\ruleName{$\matchFwdS$-nil}}
    ]
    {
       v \geq \annNil{\alpha}
@@ -77,27 +77,27 @@
    }
    {
       v, \matchNilNew, \sigma
-      \matchFwd
+      \matchFwdS
       \seqEmpty, \kappa, \alpha
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-cons}}
+      lab={\ruleName{$\matchFwdS$-cons}}
    ]
    {
       u \geq \annCons{v}{v'}{\alpha}
       \\
       \sigma \geq \elimList{\kappa}{\sigma'}
       \\
-      v, w, \sigma' \matchFwd \rho_1, \tau, \beta
+      v, w, \sigma' \matchFwdS \rho_1, \tau, \beta
       \\
-      v', w', \tau \matchFwd \rho_2, \kappa, \beta'
+      v', w', \tau \matchFwdS \rho_2, \kappa, \beta'
    }
    {
       u, \matchConsNew{w}{w'}, \sigma
-      \matchFwd
+      \matchFwdS
       \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
    }
 \end{smathpar}
