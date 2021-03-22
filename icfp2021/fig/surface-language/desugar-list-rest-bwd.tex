@@ -1,0 +1,37 @@
+\begin{figure}[H]
+\flushleft \shadebox{$e, l \dbwdarrow l$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\dbwdarrow$-list-rest-end}}
+   ]
+   {
+      e \geq \annot{\exNil}{\alpha}
+   }
+   {
+      e,
+      \exListEnd
+      \dbwdarrow
+      \annot{\exListEnd}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
+   ]
+   {
+      e \geq \annCons{e_1}{e_2}{\alpha}
+      \\
+      e_1, s \dbwdarrow s'
+      \\
+      e_2, l \dbwdarrow l'
+   }
+   {
+      e,
+      (\exListNext{s}{l})
+      \dbwdarrow
+      \annListNext{s'}{l'}{\alpha}
+   }
+\end{smathpar}
+\caption{Desugaring list rest forms -- backward slicing}
+\end{figure}
