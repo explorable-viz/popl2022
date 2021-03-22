@@ -8,7 +8,7 @@
       \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
    }
    {
-      v, \trVar{x}{\Gamma} \bwdSlice \rho, \exVar{x}, \FF
+      \evalBwd{v}{\trVar{x}{\Gamma}}{\rho}{\exVar{x}}{\FF}
    }
    %
    \and
@@ -22,9 +22,7 @@
       \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
    }
    {
-      v, \trOp{\primOp}{\Gamma}
-      \bwdSlice
-      \rho, \exOp{\primOp}, \FF
+      \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
    }
    %
    \and

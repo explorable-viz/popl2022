@@ -25,7 +25,6 @@
 \newcommand*{\seqEmpty}{\varepsilon}
 
 % Misc.
-%\newcommand*{\envExtendTwo}[2]{{#1}[#2]}
 \newcommand*{\closeDefsArrow}{\twoheadrightarrow}
 \newcommand*{\closeDefs}{\mathrel{\closeDefsArrow}}
 \newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
@@ -163,6 +162,7 @@
 
 % Sets
 \newcommand*{\Below}[1]{{\downarrow{#1}}}
+\newcommand*{\Bool}{\mathbb{B}}
 
 % Lattices
 \let\oldbigjoin\bigjoin
@@ -183,11 +183,17 @@
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
+\newcommand*{\evalBwdR}[1]{\bwdSlice_{#1}}
+\newcommand*{\evalBwd}[5]{#1 \evalBwdR{#2} #3, #4, #5}
 \newcommand*{\fwdSlice}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
 \newcommand*{\bwdSlice}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwd}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
+\newcommand*{\matchFwdR}[1]{\matchFwd_{\hspace{-0.2em}#1}}
 \newcommand*{\matchBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
+\newcommand*{\matchFwdF}[1]{\mathsf{matchFwd}_{#1}}
+\newcommand*{\matchBwdF}[1]{\mathsf{matchBwd}_{#1}}
+\newcommand*{\matchBwdR}[1]{\matchBwd_{#1}}
 
 \newcommand*{\bind}[2]{(#1:#2)}
 \renewcommand*{\vec}[1]{\vv{#1}}
@@ -224,7 +230,6 @@
 % Desugaring.
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
-%\newcommand*{\dbwdhole}{\mathrel{\dbwdarrow_{\hole}}}
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
