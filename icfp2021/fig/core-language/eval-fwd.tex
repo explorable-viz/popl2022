@@ -160,27 +160,6 @@
    %
    \and
    %
-   \inferrule*[
-      lab={\ruleName{$\fwdSlice$-binary-apply}}
-   ]
-   {
-      e \geq \exBinaryApp{e_1}{\primOp}{e_2}
-      \\
-      \evalFwdGeq{\rho}{e_1}{\alpha}{T}{\annInt{n}{\beta}}
-      \\
-      \envLookup{\rho}{\primOp}{v}
-      \\
-      v \geq \phi
-      \\
-      \evalFwdGeq{\rho}{e_2}{\alpha}{P}{\annInt{m}{\beta'}}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}
-              {\annot{\exInt{\phi(n)(m)}}{\beta \meet \beta'}}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={
       \ruleName{$\fwdSlice$-let-rec}}
    ]
