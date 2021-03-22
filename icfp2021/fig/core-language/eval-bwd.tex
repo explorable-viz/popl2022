@@ -17,7 +17,7 @@
       lab={\ruleName{$\evalBwdS$-op}}
    ]
    {
-      v \geq \phi
+      v \eq \phi
       \\
       \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
    }
@@ -31,7 +31,7 @@
       lab={\ruleName{$\evalBwdS$-lambda}}
    ]
    {
-      v \geq \exClosure{\rho}{\seqEmpty}{\sigma}
+      v \eq \exClosure{\rho}{\seqEmpty}{\sigma}
    }
    {
       \evalBwd{v}{\trLambda{\sigma'}}{\rho}{\exLambda{\sigma}}{\FF}
@@ -43,7 +43,7 @@
       lab={\ruleName{$\evalBwdS$-int}}
    ]
    {
-      v \geq \annInt{n}{\alpha}
+      v \eq \annInt{n}{\alpha}
    }
    {
       \evalBwd{v}{\trInt{n}{\Gamma}}{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}
@@ -55,7 +55,7 @@
       lab={\ruleName{$\evalBwdS$-nil}}
    ]
    {
-      v \geq \annNil{\alpha}
+      v \eq \annNil{\alpha}
    }
    {
       \evalBwd{v}{\trNil{\Gamma}}{\hole_{\Gamma}}{\annNil{\alpha}}{\alpha}
@@ -67,7 +67,7 @@
       lab={\ruleName{$\evalBwdS$-cons}}
    ]
    {
-      v \geq \annCons{v_1}{v_2}{\beta}
+      v \eq \annCons{v_1}{v_2}{\beta}
       \\
       \evalBwd{v_1}{T}{\rho}{e_1}{\alpha}
       \\
@@ -87,7 +87,7 @@
       lab={\ruleName{$\evalBwdS$-matrix}}
    ]
    {
-      v \geq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\alpha}
+      v \eq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\alpha}
       \\
       \evalBwd{u_{i,j}}
               {U_{i,j}}
@@ -133,7 +133,7 @@
       lab={\ruleName{$\evalBwdS$-matrix-dims}}
    ]
    {
-      v \geq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\gamma}
+      v \eq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\gamma}
       \\
       \evalBwd{\annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\gamma}}{T}{\rho}{e}{\alpha}
    }
@@ -167,7 +167,7 @@
       lab={\ruleName{$\evalBwdS$-apply-prim}}
    ]
    {
-      v \geq \annInt{n}{\beta}
+      v \eq \annInt{n}{\beta}
       \\
       \evalBwd{\phi}{T}{\rho}{e_1}{\alpha}
       \\

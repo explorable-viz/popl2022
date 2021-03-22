@@ -10,16 +10,6 @@
 
 \subsection{Evaluation}
 \input{fig/core-language/match}
-
-\begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \match \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\Bool)} \to \Below{(\rho,\kappa)}$ to be $\matchFwdR{w}$ domain-restricted to $\Below{(v,\sigma,\Bool)}$ and define $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\Bool)}$ to be $\matchBwdR{w}$ domain-restricted to $\Below{(\rho,\kappa)}$.
-\end{definition}
-
-\begin{theorem}[Galois connection for pattern-matching]
-\label{thm:core-language:pattern-matching:gc}
-   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
-\end{theorem}
-
 \input{fig/core-language/eval}
 
 \subsection{Forward and backward slicing}
@@ -34,6 +24,20 @@
 \input{fig/core-language/join-elim}
 \input{fig/core-language/match-fwd}
 \input{fig/core-language/match-bwd}
+
+\begin{lemma}[Determinism of pattern-matching]
+   If $v, \sigma \match \rho, \kappa$ and $v', \sigma' \match \rho', \kappa'$ with $v \eq v'$ and $\sigma \eq \sigma'$ then $\rho \eq \rho'$ and $\kappa \eq \kappa'$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for pattern-matching]
+   Suppose $w: v, \sigma \match \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\Bool)} \to \Below{(\rho,\kappa)}$ to be $\matchFwdR{w}$ domain-restricted to $\Below{(v,\sigma,\Bool)}$ and define $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\Bool)}$ to be $\matchBwdR{w}$ domain-restricted to $\Below{(\rho,\kappa)}$.
+\end{definition}
+
+\begin{theorem}[Galois connection for pattern-matching]
+\label{thm:core-language:pattern-matching:gc}
+   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+\end{theorem}
+
 \input{fig/core-language/eval-fwd}
 \input{fig/core-language/eval-bwd}
 \input{fig/core-language/env-lookup}

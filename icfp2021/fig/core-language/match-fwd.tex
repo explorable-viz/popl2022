@@ -5,7 +5,7 @@
       lab={\ruleName{$\matchFwdS$-var}}
    ]
    {
-      \sigma \geq \elimVar{x}{\kappa}
+      \sigma \eq \elimVar{x}{\kappa}
    }
    {
       \matchFwd{v}{\sigma}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
@@ -17,9 +17,9 @@
       lab={\ruleName{$\matchFwdS$-true}}
    ]
    {
-      v \geq \annTrue{\alpha}
+      v \eq \annTrue{\alpha}
       \\
-      \sigma \geq \elimBool{\kappa}{\kappa'}
+      \sigma \eq \elimBool{\kappa}{\kappa'}
    }
    {
       \matchFwd{v}{\sigma}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
@@ -31,9 +31,9 @@
       lab={\ruleName{$\matchFwdS$-false}}
    ]
    {
-      v \geq \annFalse{\alpha}
+      v \eq \annFalse{\alpha}
       \\
-      \sigma \geq \elimBool{\kappa}{\kappa'}
+      \sigma \eq \elimBool{\kappa}{\kappa'}
    }
    {
       \matchFwd{v}{\sigma}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
@@ -45,9 +45,9 @@
       lab={\ruleName{$\matchFwdS$-pair}}
    ]
    {
-      u \geq \annPair{v}{v'}{\alpha}
+      u \eq \annPair{v}{v'}{\alpha}
       \\
-      \sigma \geq \elimProd{\sigma'}
+      \sigma \eq \elimProd{\sigma'}
       \\
       \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
       \\
@@ -63,9 +63,9 @@
       lab={\ruleName{$\matchFwdS$-nil}}
    ]
    {
-      v \geq \annNil{\alpha}
+      v \eq \annNil{\alpha}
       \\
-      \sigma \geq \elimList{\kappa}{\sigma'}
+      \sigma \eq \elimList{\kappa}{\sigma'}
    }
    {
       \matchFwd{v}{\sigma}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
@@ -77,9 +77,9 @@
       lab={\ruleName{$\matchFwdS$-cons}}
    ]
    {
-      u \geq \annCons{v}{v'}{\alpha}
+      u \eq \annCons{v}{v'}{\alpha}
       \\
-      \sigma \geq \elimList{\kappa}{\sigma'}
+      \sigma \eq \elimList{\kappa}{\sigma'}
       \\
       \matchFwd{v}{\sigma'}{w}{\rho_1}{\tau}{\beta}
       \\
