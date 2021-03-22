@@ -318,15 +318,15 @@ Induction on the $\matchFwdS$ derivation.
    \begin{smathpar}
       \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
       {
-         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{v_2}{\sigma}
+         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
          \\
-         \matchBwd{\rho_1}{\sigma}{\alpha \meet \beta \meet \beta'}{w_1}{v_1}{\tau}
+         \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
       }
       {
          \matchBwd{\rho_1 \concat \rho_2}
                   {\kappa}
                   {\alpha \meet \beta \meet \beta'}
-                  {\matchConsNew{w_1}{w_2}}{\annCons{v_1}{v_2}{\alpha}}{\elimList{\hole}{\tau}}
+                  {\matchConsNew{w_1}{w_2}}{\annCons{v_1}{v_2}{\alpha}}{\elimList{\hole}{\tau^\twoPrime}}
       }
    \end{smathpar}
    }
@@ -335,9 +335,9 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}, \elimProd{\tau^\twoPrime})
+   (\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}, \elimList{\hole}{\tau^\twoPrime})
    \leq
-   (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+   (\annPair{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
    \eq
    (v, \sigma)
    &
