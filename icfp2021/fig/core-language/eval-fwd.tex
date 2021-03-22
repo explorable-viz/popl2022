@@ -5,7 +5,7 @@
       lab={\ruleName{$\evalFwdS$-var}}
    ]
    {
-      e \geq \exVar{x}
+      e \eq \exVar{x}
       \\
       \envLookup{\rho}{x}{v}
    }
@@ -19,7 +19,7 @@
       lab={\ruleName{$\evalFwdS$-op}}
    ]
    {
-      e \geq \exOp{\primOp}
+      e \eq \exOp{\primOp}
       \\
       \envLookup{\rho}{\primOp}{v}
    }
@@ -31,7 +31,7 @@
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
    {
-      e \geq \exLambda{\sigma}
+      e \eq \exLambda{\sigma}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trLambda{\sigma'}}{\exClosure{\rho}{\seqEmpty}{\sigma}}
@@ -41,7 +41,7 @@
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
    {
-      e \geq \annInt{n}{\alpha}
+      e \eq \annInt{n}{\alpha}
    }
    {
       \evalFwd{\rho}{e}{\alpha'}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha \meet \alpha'}}
@@ -51,7 +51,7 @@
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
    {
-      e \geq \annNil{\alpha}
+      e \eq \annNil{\alpha}
    }
    {
       \evalFwd{\rho}{e}{\alpha'}{\trNil{\Gamma}}{\annNil{\alpha \meet \alpha'}}
@@ -63,7 +63,7 @@
       lab={\ruleName{$\evalFwdS$-cons}},
    ]
    {
-      e \geq \annCons{e_1}{e_2}{\alpha}
+      e \eq \annCons{e_1}{e_2}{\alpha}
       \\
       \evalFwd{\rho}{e_1}{\alpha'}{T}{v}
       \\
@@ -77,10 +77,10 @@
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-matrix}}]
    {
-      e \geq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
+      e \eq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
       \\
-      \evalFwdGeq{\rho}{e_2}{\alpha'}{T}
-                 {\annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}}
+      \evalFwdEq{\rho}{e_2}{\alpha'}{T}
+                {\annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}}
       \\
       \evalFwd{\rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}}{e_1}{\alpha'}{U_{i,j}}{v_{i,j}}
       \quad
@@ -98,10 +98,10 @@
       right={$(i,j) \numleq (\ihat,\jhat)$}
    ]
    {
-      e \geq \exMatrixAccess{e_1}{e_2}
+      e \eq \exMatrixAccess{e_1}{e_2}
       \\
-      \evalFwdGeq{\rho}{e_1}{\alpha}{T}
-                 {\annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\beta}}
+      \evalFwdEq{\rho}{e_1}{\alpha}{T}
+                {\annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\beta}}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}}{v_{i,j}}
@@ -111,10 +111,10 @@
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-matrix-dims}}]
    {
-      e \geq \exMatrixDims{e'}
+      e \eq \exMatrixDims{e'}
       \\
-      \evalFwdGeq{\rho}{e'}{\alpha'}{T}
-                 {\annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}}
+      \evalFwdEq{\rho}{e'}{\alpha'}{T}
+                {\annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trMatrixDims{T}{\ihat,\jhat}}
@@ -127,9 +127,9 @@
       lab={\ruleName{$\evalFwdS$-apply}}
    ]
    {
-      e \geq \exApp{e_1}{e_2}
+      e \eq \exApp{e_1}{e_2}
       \\
-      \evalFwdGeq{\rho}{e_1}{\alpha}{T}{\exClosureRec{\Gamma}{\rho_1}{h}{\sigma}}
+      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exClosureRec{\Gamma}{\rho_1}{h}{\sigma}}
       \\
       \rho_1, \delta \closeDefs \rho_2
       \\
@@ -147,7 +147,7 @@
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-apply-prim}}]
    {
-      e \geq \exApp{e_1}{e_2}
+      e \eq \exApp{e_1}{e_2}
       \\
       \evalFwd{\rho}{e_1}{\alpha}{T}{\phi}
       \\
@@ -164,7 +164,7 @@
       \ruleName{$\evalFwdS$-let-rec}}
    ]
    {
-      e \geq \exLetRecMutual{h}{e'}
+      e \eq \exLetRecMutual{h}{e'}
       \\
       \rho_1, h \closeDefs \rho_2
       \\

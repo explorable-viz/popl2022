@@ -175,6 +175,7 @@
 \newcommand*{\numgeq}{\oldgeq}
 \renewcommand*{\leq}{\sqsubseteq}
 \renewcommand*{\geq}{\sqsupseteq}
+\newcommand{\eq}{\doteq}
 
 % Environments.
 \newcommand*{\envLookup}[3]{{#1}\mathrel{\smalltriangleright}\bind{#2}{#3}}
@@ -189,7 +190,7 @@
 \newcommand*{\evalFwdR}[1]{\sub{\evalFwdS}{#1}}
 \newcommand*{\evalBwd}[5]{#1 \evalBwdR{#2} #3, #4, #5}
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalBwdR{#4} #5}
-\newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalBwdR{#4}\geq #5}
+\newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalBwdR{#4}\eq #5}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchFwd}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3} #4, #5, #6}
