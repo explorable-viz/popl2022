@@ -217,6 +217,26 @@ Induction on the $\matchFwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-nil}}
+      ]
+      {
+         v \eq \annNil{\alpha}
+         \\
+         \sigma \eq \elimList{\kappa}{\sigma'}
+      }
+      {
+         \matchFwd{v}{\sigma}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
       \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
       {
          \strut
@@ -231,20 +251,11 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \derivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-nil}}
-      ]
-      {
-         \strut
-      }
-      {
-         \matchFwd{\annNil{\alpha}}{\elimList{\kappa}{\hole}}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
-      }
-   \end{smathpar}
-   }
-   &
+   \elimList{\kappa}{\hole}
+   \leq
+   \elimList{\kappa}{\sigma'}
+   \eq
+   \sigma
    \notag
    \\
    \intertext{\crossrule}
