@@ -186,22 +186,6 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-binary-apply}}
-   ]
-   {
-      \explVal{T}{\rho, e \eval n}
-      \\
-      \explVal{U}{\rho, e' \eval m}
-      \\
-      \envLookup{\rho}{\primOp}{\phi}
-   }
-   {
-      \explVal{\trBinaryApp{T}{n}{\primOp}{\phi}{U}{m}}{\rho, \exBinaryApp{e}{\primOp}{e'} \eval \phi(n)(m)}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\eval$-let-rec}}
    ]
    {

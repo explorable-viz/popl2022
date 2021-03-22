@@ -63,18 +63,6 @@
 %
 \and
 %
-\inferrule*[right={$\primOp: \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}} \in \Gamma$}]
-{
-   \Gamma \vdash e: \tyInt
-   \\
-   \Gamma \vdash e': \tyInt
-}
-{
-   \Gamma \vdash \exBinaryApp{e}{\primOp}{e'}: \tyInt
-}
-%
-\and
-%
 \inferrule*
 {
    \Gamma \vdash \sigma : \tyFun{A}{B}

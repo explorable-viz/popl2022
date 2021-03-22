@@ -1,104 +1,97 @@
 \begin{figure}[H]
-\flushleft \shadebox{$v, w, \sigma \matchFwd \rho, \kappa, \alpha$}
+\flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-var}}
+      lab={\ruleName{$\matchFwdS$-var}}
    ]
    {
-      \sigma \geq \elimVar{x}{\kappa}
+      \sigma \eq \elimVar{x}{\kappa}
    }
    {
-      v, \matchVarNew{x}, \sigma
-      \matchFwd
-      \bind{x}{v}, \kappa, \TT
+      \matchFwd{v}{\sigma}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-true}}
+      lab={\ruleName{$\matchFwdS$-true}}
    ]
    {
-      v \geq \annTrue{\alpha}
+      v \eq \annTrue{\alpha}
       \\
-      \sigma \geq \elimBool{\kappa}{\kappa'}
+      \sigma \eq \elimBool{\kappa}{\kappa'}
    }
    {
-      v, \matchTrueNew, \sigma
-      \matchFwd
-      \seqEmpty, \kappa, \alpha
+      \matchFwd{v}{\sigma}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-false}}
+      lab={\ruleName{$\matchFwdS$-false}}
    ]
    {
-      v \geq \annFalse{\alpha}
+      v \eq \annFalse{\alpha}
       \\
-      \elimBool{\kappa}{\kappa'}
+      \sigma \eq \elimBool{\kappa}{\kappa'}
    }
    {
-      v, \matchFalseNew, \sigma
-      \matchFwd
-      \seqEmpty, \kappa', \alpha
+      \matchFwd{v}{\sigma}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-pair}}
+      lab={\ruleName{$\matchFwdS$-pair}}
    ]
    {
-      u \geq \annPair{v}{v'}{\alpha}
+      v \eq \annPair{v_1}{v_2}{\alpha}
       \\
-      \sigma \geq \elimProd{\sigma'}
+      \sigma \eq \elimProd{\sigma'}
       \\
-      v, w, \sigma' \matchFwd \rho_1, \tau, \beta
+      \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
       \\
-      v', w', \tau \matchFwd \rho_2, \kappa, \beta'
+      \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
    }
    {
-      u, \matchPair{w}{w'}, \sigma'
-      \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
+      \matchFwd{v}
+               {\sigma'}
+               {\matchPair{w_1}{w_2}}
+               {\rho_1 \concat \rho_2}
+               {\kappa}
+               {\alpha \meet \beta \meet \beta'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-nil}}
+      lab={\ruleName{$\matchFwdS$-nil}}
    ]
    {
-      v \geq \annNil{\alpha}
+      v \eq \annNil{\alpha}
       \\
-      \sigma \geq \elimList{\kappa}{\sigma'}
+      \sigma \eq \elimList{\kappa}{\sigma'}
    }
    {
-      v, \matchNilNew, \sigma
-      \matchFwd
-      \seqEmpty, \kappa, \alpha
+      \matchFwd{v}{\sigma}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwd$-cons}}
+      lab={\ruleName{$\matchFwdS$-cons}}
    ]
    {
-      u \geq \annCons{v}{v'}{\alpha}
+      v \eq \annCons{v_1}{v_2}{\alpha}
       \\
-      \sigma \geq \elimList{\kappa}{\sigma'}
+      \sigma \eq \elimList{\kappa}{\sigma'}
       \\
-      v, w, \sigma' \matchFwd \rho_1, \tau, \beta
+      \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
       \\
-      v', w', \tau \matchFwd \rho_2, \kappa, \beta'
+      \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
    }
    {
-      u, \matchConsNew{w}{w'}, \sigma
-      \matchFwd
-      \rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta'
+      \matchFwd{v}{\sigma}{\matchConsNew{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}

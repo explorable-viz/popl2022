@@ -20,170 +20,182 @@
 \vspace{5pt}
 \flushleft \shadebox{$\Gamma \vdash s: A$}
 \begin{smathpar}
-\inferrule*
-{
-   \Gamma \vdash \vec{g}: \Delta
-   \\
-   \Gamma \concat \Delta \vdash s: A
-}
-{
-   \Gamma \vdash \exLetRecMutual{\vec{g}}{s}: A
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash s: \tyBool
-   \\
-   \Gamma \vdash s': A
-   \\
-   \Gamma \vdash s^{\twoPrime}: A
-}
-{
-   \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash s: A
-   \\
-   \forall c \in \vec{c}. \
-   \Gamma \vdash c : \tyFun{A}{B}
-}
-{
-   \Gamma \vdash \exMatch{s}{\vec{c}}: B
-}
-%
-\and
-%
-\inferrule*
-{
-   p: A \dashv \Gamma'
-   \\
-   \Gamma \vdash s: A
-   \\
-   \Gamma \concat \Gamma' \vdash s': B
-}
-{
-   \Gamma \vdash \exLet{p}{s}{s'}: B
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash s : A
-   \\
-   \Gamma \vdash l : \tyList{A}
-}
-{
-   \Gamma \vdash \exList{s}{l} : \tyList{A}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash s: \tyInt
-   \\
-   \Gamma \vdash s': \tyInt
-}
-{
-   \Gamma \vdash \exListEnum{s}{s'}: \tyList{\tyInt}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash \vec{q} \dashv \Delta
-   \\
-   \Gamma \concat \Delta \vdash s: A
-}
-{
-   \Gamma \vdash \exListComp{s}{\vec{q}}: \tyList{A}
-}
-\end{smathpar}
+   \inferrule*[right={$\primOp: \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}} \in \Gamma$}]
+   {
+      \Gamma \vdash s: \tyInt
+      \\
+      \Gamma \vdash s': \tyInt
+   }
+   {
+      \Gamma \vdash \exBinaryApp{s}{\primOp}{s'}: \tyInt
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash \vec{g}: \Delta
+      \\
+      \Gamma \concat \Delta \vdash s: A
+   }
+   {
+      \Gamma \vdash \exLetRecMutual{\vec{g}}{s}: A
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: \tyBool
+      \\
+      \Gamma \vdash s': A
+      \\
+      \Gamma \vdash s^{\twoPrime}: A
+   }
+   {
+      \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: A
+      \\
+      \forall c \in \vec{c}. \
+      \Gamma \vdash c : \tyFun{A}{B}
+   }
+   {
+      \Gamma \vdash \exMatch{s}{\vec{c}}: B
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      p: A \dashv \Gamma'
+      \\
+      \Gamma \vdash s: A
+      \\
+      \Gamma \concat \Gamma' \vdash s': B
+   }
+   {
+      \Gamma \vdash \exLet{p}{s}{s'}: B
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s : A
+      \\
+      \Gamma \vdash l : \tyList{A}
+   }
+   {
+      \Gamma \vdash \exList{s}{l} : \tyList{A}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: \tyInt
+      \\
+      \Gamma \vdash s': \tyInt
+   }
+   {
+      \Gamma \vdash \exListEnum{s}{s'}: \tyList{\tyInt}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash \vec{q} \dashv \Delta
+      \\
+      \Gamma \concat \Delta \vdash s: A
+   }
+   {
+      \Gamma \vdash \exListComp{s}{\vec{q}}: \tyList{A}
+   }
+   \end{smathpar}
 
-% List rest
-\vspace{5pt}
-\flushleft \shadebox{$\Gamma \vdash l: \tyList{A}$}
-\begin{smathpar}
-\inferrule*
-{
-   \strut
-}
-{
-   \Gamma \vdash \exListEnd : \tyList{A}
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash s : A
-   \\
-   \Gamma \vdash l : \tyList{A}
-}
-{
-   \Gamma \vdash \exListNext{s}{l} : \tyList{A}
-}
-\end{smathpar}
+   % List rest
+   \vspace{5pt}
+   \flushleft \shadebox{$\Gamma \vdash l: \tyList{A}$}
+   \begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \exListEnd : \tyList{A}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s : A
+      \\
+      \Gamma \vdash l : \tyList{A}
+   }
+   {
+      \Gamma \vdash \exListNext{s}{l} : \tyList{A}
+   }
+   \end{smathpar}
 
-\vspace{0.1em}
-%% Qualifiers
+   \vspace{0.1em}
+   %% Qualifiers
 
-\flushleft \shadebox{$\Gamma \vdash q \dashv \Delta $}
-\begin{smathpar}
-\inferrule*
-{
-   \Gamma \vdash s: \tyBool
-}
-{
-   \Gamma \vdash \qualGuard{s} \dashv \seqEmpty
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash s: \tyList{A}
-   \\
-   p: A \dashv \Delta
-}
-{
-   \Gamma \vdash \qualGenerator{p}{s} \dashv \Delta
-}
-%
-\and
-%
-\inferrule*
-{
-   \Gamma \vdash s: A
-   \\
-   p: A \dashv \Delta
-}
-{
-   \Gamma \vdash \qualDeclaration{p}{s} \dashv \Delta
-}
-\end{smathpar}
+   \flushleft \shadebox{$\Gamma \vdash q \dashv \Delta $}
+   \begin{smathpar}
+   \inferrule*
+   {
+      \Gamma \vdash s: \tyBool
+   }
+   {
+      \Gamma \vdash \qualGuard{s} \dashv \seqEmpty
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: \tyList{A}
+      \\
+      p: A \dashv \Delta
+   }
+   {
+      \Gamma \vdash \qualGenerator{p}{s} \dashv \Delta
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: A
+      \\
+      p: A \dashv \Delta
+   }
+   {
+      \Gamma \vdash \qualDeclaration{p}{s} \dashv \Delta
+   }
+   \end{smathpar}
 
-% Qualifier sequence
-\vspace{5pt}
-\flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
-\begin{smathpar}
-\inferrule*
-{
-   \Gamma \vdash q \dashv \Gamma'
-   \\
-   \Gamma \concat \Gamma' \vdash \vec{q} \dashv \Delta
-}
-{
-   \Gamma \vdash q \concat \vec{q} \dashv \Delta
-}
+   % Qualifier sequence
+   \vspace{5pt}
+   \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
+   \begin{smathpar}
+   \inferrule*
+   {
+      \Gamma \vdash q \dashv \Gamma'
+      \\
+      \Gamma \concat \Gamma' \vdash \vec{q} \dashv \Delta
+   }
+   {
+      \Gamma \vdash q \concat \vec{q} \dashv \Delta
+   }
 \end{smathpar}
 
 \caption{Typing rules for surface terms (additional forms only) and qualifiers}

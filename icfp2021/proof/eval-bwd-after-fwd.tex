@@ -1,0 +1,350 @@
+\subsection{\thmref{core-language:pattern-matching:gc}, part (ii)}
+Induction on the $\matchFwdS$ derivation.
+\begin{proof}
+
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-var}}
+      ]
+      {
+         \sigma \eq \elimVar{x}{\kappa}
+      }
+      {
+         \matchFwd{v}{\sigma}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\bind{x}{v}}{\kappa}{\TT}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimVar{x}{\kappa}
+   \leq
+   \sigma
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-true}}
+      ]
+      {
+         v \eq \annTrue{\alpha}
+         \\
+         \sigma \eq \elimBool{\kappa}{\kappa'}
+      }
+      {
+         \matchFwd{v}{\sigma}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrueNew}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimBool{\kappa}{\hole}
+   \leq
+   \elimBool{\kappa}{\kappa'}
+   \eq
+   \sigma
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-false}}
+      ]
+      {
+         v \eq \annFalse{\alpha}
+         \\
+         \sigma \eq \elimBool{\kappa}{\kappa'}
+      }
+      {
+         \matchFwd{v}{\sigma}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa'}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa'}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimBool{\hole}{\kappa'}
+   \leq
+   \elimBool{\kappa}{\kappa'}
+   \eq
+   \sigma
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-pair}}
+      ]
+      {
+         v \eq \annPair{v_1}{v_2}{\alpha}
+         \\
+         \sigma \eq \elimProd{\sigma'}
+         \\
+         \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
+         \\
+         \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
+      }
+      {
+         \matchFwd{v}{\sigma'}{\matchPair{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
+   \leq
+   v_2, \tau
+   &
+   \text{
+   	IH; monotonicity
+   }
+   \locallabel{pair-premise-one}
+   \\
+   &
+   \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
+   \leq
+   v_1, \sigma'
+   &
+   \text{
+   	IH; $\tau' \leq \tau$; monotonicity
+   }
+   \locallabel{pair-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
+      {
+         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
+         \\
+         \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
+      }
+      {
+         \matchBwd{\rho_1 \concat \rho_2}
+                  {\kappa}
+                  {\alpha \meet \beta \meet \beta'}
+                  {\matchPair{w_1}{w_2}}
+                  {\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}}{\elimProd{\tau^\twoPrime}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}, \elimProd{\tau^\twoPrime})
+   \leq
+   (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+   \eq
+   (v, \sigma)
+   &
+   \text{
+      (\localref{pair-premise-one},
+       \localref{pair-premise-two})
+   }
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-nil}}
+      ]
+      {
+         v \eq \annNil{\alpha}
+         \\
+         \sigma \eq \elimList{\kappa}{\sigma'}
+      }
+      {
+         \matchFwd{v}{\sigma}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNilNew}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimList{\kappa}{\hole}
+   \leq
+   \elimList{\kappa}{\sigma'}
+   \eq
+   \sigma
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\matchFwdS$-cons}}
+      ]
+      {
+         v \eq \annCons{v_1}{v_2}{\alpha}
+         \\
+         \sigma \eq \elimList{\kappa}{\sigma'}
+         \\
+         \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
+         \\
+         \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
+      }
+      {
+         \matchFwd{v}{\sigma}{\matchConsNew{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
+   \leq
+   v_2, \tau
+   &
+   \text{
+   	IH; monotonicity
+   }
+   \locallabel{cons-premise-one}
+   \\
+   &
+   \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
+   \leq
+   v_1, \sigma'
+   &
+   \text{
+   	IH; $\tau' \leq \tau$; monotonicity
+   }
+   \locallabel{cons-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
+      {
+         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
+         \\
+         \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
+      }
+      {
+         \matchBwd{\rho_1 \concat \rho_2}
+                  {\kappa}
+                  {\alpha \meet \beta \meet \beta'}
+                  {\matchConsNew{w_1}{w_2}}{\annCons{v_1}{v_2}{\alpha}}{\elimList{\hole}{\tau^\twoPrime}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}, \elimList{\hole}{\tau^\twoPrime})
+   \leq
+   (\annPair{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
+   \eq
+   (v, \sigma)
+   &
+   \text{
+      (\localref{cons-premise-one},
+       \localref{cons-premise-two})
+   }
+   \notag
+\end{flalign}
+\end{proof}
