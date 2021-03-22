@@ -300,7 +300,7 @@ Induction on the $\matchFwdS$ derivation.
    \text{
    	IH; monotonicity
    }
-   \locallabel{pair-premise-one}
+   \locallabel{cons-premise-one}
    \\
    &
    \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
@@ -310,24 +310,23 @@ Induction on the $\matchFwdS$ derivation.
    \text{
    	IH; $\tau' \leq \tau$; monotonicity
    }
-   \locallabel{pair-premise-two}
+   \locallabel{cons-premise-two}
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
+      \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
       {
-         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
+         \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{v_2}{\sigma}
          \\
-         \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
+         \matchBwd{\rho_1}{\sigma}{\alpha \meet \beta \meet \beta'}{w_1}{v_1}{\tau}
       }
       {
          \matchBwd{\rho_1 \concat \rho_2}
                   {\kappa}
                   {\alpha \meet \beta \meet \beta'}
-                  {\matchPair{w_1}{w_2}}
-                  {\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}}{\elimProd{\tau^\twoPrime}}
+                  {\matchConsNew{w_1}{w_2}}{\annCons{v_1}{v_2}{\alpha}}{\elimList{\hole}{\tau}}
       }
    \end{smathpar}
    }
@@ -343,8 +342,8 @@ Induction on the $\matchFwdS$ derivation.
    (v, \sigma)
    &
    \text{
-      (\localref{pair-premise-one},
-       \localref{pair-premise-two})
+      (\localref{cons-premise-one},
+       \localref{cons-premise-two})
    }
    \notag
 \end{flalign}

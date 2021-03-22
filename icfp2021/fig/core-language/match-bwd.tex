@@ -55,13 +55,13 @@
    %
    \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
    {
-      \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
+      \matchBwd{\rho_2}{\kappa}{\alpha}{w_2}{v_2}{\sigma}
       \\
-      \matchBwd{\rho_1}{\sigma}{\alpha}{w}{v}{\tau}
+      \matchBwd{\rho_1}{\sigma}{\alpha}{w_1}{v_1}{\tau}
    }
    {
       \matchBwd{\rho_1 \concat \rho_2}
-               {\kappa}{\alpha}{\matchConsNew{w}{w'}}{\annCons{v}{v'}{\alpha}}{\elimList{\hole}{\tau}}
+               {\kappa}{\alpha}{\matchConsNew{w_1}{w_2}}{\annCons{v_1}{v_2}{\alpha}}{\elimList{\hole}{\tau}}
    }
 \end{smathpar}
 \caption{Pattern-matching: backward slicing}
