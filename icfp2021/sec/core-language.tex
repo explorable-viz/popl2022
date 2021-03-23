@@ -42,6 +42,11 @@
 \input{fig/core-language/eval-bwd}
 \input{fig/core-language/env-lookup}
 
+\begin{lemma}[Environment get-put]
+\label{lem:core-language:env-get-put}
+   Suppose $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$. Then $\envLookup{\rho}{z}{v}$.
+\end{lemma}
+
 \begin{lemma}[Determinism of evaluation]
    Suppose $\rho, e \eval v$ and $\rho', e' \eval v'$. If $\rho \eq \rho'$ and $e \eq e'$ then $v \eq v'$.
 \end{lemma}
