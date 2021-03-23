@@ -144,5 +144,47 @@ Induction on the $\evalBwdS$ derivation.
    \eq
    v
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-int}}
+      ]
+      {
+         v \eq \annInt{n}{\alpha}
+      }
+      {
+         \evalBwd{v}{\trInt{n}{\Gamma}}{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
+      {
+         \strut
+      }
+      {
+         \evalFwd{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annInt{n}{\alpha}
+   \eq
+   v
+   \notag
 \end{flalign}
 \end{proof}
