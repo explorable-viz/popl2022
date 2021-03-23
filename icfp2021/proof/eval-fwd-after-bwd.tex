@@ -102,5 +102,47 @@ Induction on the $\evalBwdS$ derivation.
    \eq
    v
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-lambda}}
+      ]
+      {
+         v \eq \exClosure{\rho}{\seqEmpty}{\sigma}
+      }
+      {
+         \evalBwd{v}{\trLambda{\sigma'}}{\rho}{\exLambda{\sigma}}{\FF}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
+      {
+         \strut
+      }
+      {
+         \evalFwd{\rho}{\exLambda{\sigma}}{\FF}{\trLambda{\sigma'}}{\exClosure{\rho}{\seqEmpty}{\sigma}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \exClosure{\rho}{\seqEmpty}{\sigma}
+   \eq
+   v
+   \notag
 \end{flalign}
 \end{proof}
