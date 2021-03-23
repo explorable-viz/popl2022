@@ -65,12 +65,12 @@
    {
       e \eq \annCons{e_1}{e_2}{\alpha}
       \\
-      \evalFwd{\rho}{e_1}{\alpha'}{T}{v}
+      \evalFwd{\rho}{e_1}{\alpha'}{T}{v_1}
       \\
-      \evalFwd{\rho}{e_2}{\alpha'}{U}{v'}
+      \evalFwd{\rho}{e_2}{\alpha'}{U}{v_2}
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trCons{T}{U}}{\annCons{v}{v'}{\alpha \meet \alpha'}}
+      \evalFwd{\rho}{e}{\alpha'}{\trCons{T}{U}}{\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
    }
    %
    \and

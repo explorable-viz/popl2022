@@ -264,14 +264,16 @@ Induction on the $\evalBwdS$ derivation.
          lab={\ruleName{$\evalFwdS$-cons}},
       ]
       {
-         e \eq \annCons{e_1}{e_2}{\alpha}
+         \evalFwd{\rho \join \rho'}{e_1}{\beta \join \alpha \join \alpha'}{T}{v}
          \\
-         \evalFwd{\rho}{e_1}{\alpha'}{T}{v}
-         \\
-         \evalFwd{\rho}{e_2}{\alpha'}{U}{v'}
+         \evalFwd{\rho \join \rho'}{e_2}{\beta \join \alpha \join \alpha'}{U}{v'}
       }
       {
-         \evalFwd{\rho}{e}{\alpha'}{\trCons{T}{U}}{\annCons{v}{v'}{\alpha \meet \alpha'}}
+         \evalFwd{\rho \join \rho'}
+                 {\annCons{e_1}{e_2}{\beta}}
+                 {\beta \join \alpha \join \alpha'}
+                 {\trCons{T}{U}}
+                 {\annCons{v}{v'}{\alpha \meet \alpha'}}
       }
    \end{smathpar}
    }
