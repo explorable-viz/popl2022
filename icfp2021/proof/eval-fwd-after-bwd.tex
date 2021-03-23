@@ -257,6 +257,11 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
+   \beta \meet (\beta \join \alpha \join \alpha') = \beta
+   &
+   \notag
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -273,7 +278,7 @@ Induction on the $\evalBwdS$ derivation.
                  {\annCons{e_1}{e_2}{\beta}}
                  {\beta \join \alpha \join \alpha'}
                  {\trCons{T}{U}}
-                 {\annCons{u_1}{u_2}{\alpha \meet \alpha'}}
+                 {\annCons{u_1}{u_2}{\beta}}
       }
    \end{smathpar}
    }
@@ -282,7 +287,9 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   \annNil{\alpha}
+   (\annCons{u_1}{u_2}{\beta})
+   \geq
+   (\annCons{v_1}{v_2}{\beta})
    \eq
    v
    \notag
