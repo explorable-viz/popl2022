@@ -49,11 +49,58 @@ Induction on the $\evalBwdS$ derivation.
    &
    \notag
    \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-op}}
+      ]
+      {
+         v \eq \phi
+         \\
+         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
+      }
+      {
+         \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \envLookup{\rho}{\primOp}{\phi}
+   &
+   \text{
+   	(\lemref{core-language:env-get-put})
+   }
+   \notag
+   \\
    &
    \qedLocal
-   \TT
-   \geq
-   \alpha
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-op}}
+      ]
+      {
+         \envLookup{\rho}{\primOp}{\phi}
+      }
+      {
+         \evalFwd{\rho}{\exOp{\primOp}}{\FF}{\trOp{\primOp}{\Gamma}}{\phi}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \phi
+   \eq
+   v
    \notag
 \end{flalign}
 \end{proof}
