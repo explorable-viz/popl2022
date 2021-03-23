@@ -228,5 +228,61 @@ Induction on the $\evalBwdS$ derivation.
    \eq
    v
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-cons}}
+      ]
+      {
+         v \eq \annCons{v_1}{v_2}{\beta}
+         \\
+         \evalBwd{v_1}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{v_2}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{v}
+                 {\trCons{T}{U}}
+                 {\rho \join \rho'}
+                 {\annCons{e_1}{e_2}{\beta}}
+                 {\beta \join \alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-cons}},
+      ]
+      {
+         e \eq \annCons{e_1}{e_2}{\alpha}
+         \\
+         \evalFwd{\rho}{e_1}{\alpha'}{T}{v}
+         \\
+         \evalFwd{\rho}{e_2}{\alpha'}{U}{v'}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha'}{\trCons{T}{U}}{\annCons{v}{v'}{\alpha \meet \alpha'}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annNil{\alpha}
+   \eq
+   v
+   \notag
 \end{flalign}
 \end{proof}
