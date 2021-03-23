@@ -34,10 +34,23 @@
 \end{definition}
 
 \begin{theorem}[Galois connection for pattern-matching]
-\label{thm:core-language:pattern-matching:gc}
+\label{thm:core-language:match:gc}
    Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
 \end{theorem}
 
 \input{fig/core-language/eval-fwd}
 \input{fig/core-language/eval-bwd}
 \input{fig/core-language/env-lookup}
+
+\begin{lemma}[Determinism of evaluation]
+   If $\rho, e \eval v$ and $\rho', e' \eval v'$ with $\rho \eq \rho'$ and $e \eq e'$ then $v \eq v'$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for evaluation]
+   Suppose $T: \rho, e \eval v$. Define $\evalFwdF{T}: \Below{(\rho, e, \Bool)} \to \Below{v}$ to be $\evalFwdR{T}$ domain-restricted to $\Below{(\rho, e, \Bool)}$ and define $\evalBwdF{w}: \Below{v} \to \Below{(\rho, e, \Bool)}$ to be $\evalBwdR{w}$ domain-restricted to $\Below{v}$.
+\end{definition}
+
+\begin{theorem}[Galois connection for evaluation]
+\label{thm:core-language:eval:gc}
+   Suppose $T: \rho, e \evalFwdS v$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
+\end{theorem}
