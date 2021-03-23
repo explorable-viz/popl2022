@@ -262,6 +262,30 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
+   \evalFwdGeq{\rho}{e_1}{\alpha}{T}{v_1}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho \join \rho'}{e_1}{\beta \join \alpha \join \alpha'}{T}{v_1}
+   &
+   \text{monotonicity}
+   \locallabel{cons-premise-one}
+   \\
+   &
+   \evalFwdGeq{\rho'}{e_2}{\alpha'}{U}{v_2}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho \join \rho'}{e_2}{\beta \join \alpha \join \alpha'}{U}{v_2}
+   &
+   \text{monotonicity}
+   \locallabel{cons-premise-two}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -292,6 +316,11 @@ Induction on the $\evalBwdS$ derivation.
    (\annCons{v_1}{v_2}{\beta})
    \eq
    v
+   &
+   \text{
+      (\localref{cons-premise-one},
+       \localref{cons-premise-two})
+   }
    \notag
 \end{flalign}
 \end{proof}
