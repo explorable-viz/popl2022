@@ -94,31 +94,31 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-matrix-lookup}},
-      right={$(i,j) \numleq (\ihat,\jhat)$}
+      lab={\ruleName{$\evalFwdS$-vector-lookup}},
+      right={$i \numleq j$}
    ]
    {
-      e \eq \exMatrixAccess{e_1}{e_2}
+      e \eq \exVecAccess{e_1}{e_2}
       \\
       \evalFwdEq{\rho}{e_1}{\alpha}{T}
-                {\annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\beta}}
+                {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}}{v_{i,j}}
+      \evalFwd{\rho}{e}{\alpha}{\trVecAccess{T}{j}{U}{i}}{v_{i}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\evalFwdS$-matrix-dims}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
    {
-      e \eq \exMatrixDims{e'}
+      e \eq \exVecLen{e'}
       \\
       \evalFwdEq{\rho}{e'}{\alpha}{T}
-                {\annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}}
+                {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trMatrixDims{T}{\ihat,\jhat}}
-              {\annPair{\annInt{\ihat}{\gamma}}{\annInt{\jhat}{\gamma'}}{\beta}}
+      \evalFwd{\rho}{e}{\alpha}{\trVecLen{T}{j}}
+              {\annInt{j}{\alpha'}}
    }
    %
    \and
