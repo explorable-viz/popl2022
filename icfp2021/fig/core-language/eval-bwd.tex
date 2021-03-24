@@ -97,8 +97,7 @@
       \quad
       (\forall i \numleq j)
       \\
-      \evalBwd{\annot{\exPair{\annInt{\ihat}{\bigjoin\gamma \join \beta}}
-                     {\annInt{\jhat}{\bigjoin\gamma' \join \beta'}}}{\FF}}
+      \evalBwd{\annInt{\ihat}{\bigjoin\gamma \join \beta}}
               {T}
               {\rho'}
               {e'}
@@ -107,7 +106,7 @@
    {
       \evalBwd{v}
               {\trVec{U_{i}}{x}{i}{T}{j}}
-              {(\bigjoin\rho) \join \rho'}
+              {\bigjoin\rho \join \rho'}
               {\annMatrix{\bigjoin e}{x}{y}{e'}{\alpha}}
               {\alpha \join (\bigjoin{\alpha'}) \join \alpha''}
    }
