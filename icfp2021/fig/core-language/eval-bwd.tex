@@ -87,28 +87,28 @@
       lab={\ruleName{$\evalBwdS$-vector}}
    ]
    {
-      v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+      v \eq \annVec{u_{i}}{i}{\annInt{j}{\alpha'}}{\alpha}
       \\
       \evalBwd{u_{i}}
               {U_{i}}
-              {\rho_{i} \concat \bind{x}{i_{\gamma_{i}}}}
+              {\rho_{i} \concat \bind{x}{i_{\beta_{i}}}}
               {e_{i}}
-              {\alpha'_{i}}
+              {\beta'_{i}}
       \quad
       (\forall i \numleq j)
       \\
-      \evalBwd{\annInt{\ihat}{\bigjoin\gamma \join \beta}}
+      \evalBwd{\annInt{j}{\bigjoin\beta \join \alpha'}}
               {T}
               {\rho'}
               {e'}
-              {\alpha''}
+              {\alpha^\twoPrime}
    }
    {
       \evalBwd{v}
               {\trVec{U_{i}}{x}{i}{T}{j}}
               {\bigjoin\rho \join \rho'}
               {\annMatrix{\bigjoin e}{x}{y}{e'}{\alpha}}
-              {\alpha \join (\bigjoin{\alpha'}) \join \alpha''}
+              {\alpha \join (\bigjoin{\alpha'}) \join \alpha^\twoPrime}
    }
    %
    \and
