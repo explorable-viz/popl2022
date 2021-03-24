@@ -285,32 +285,6 @@
       e_2 \leq e_2'
    }
    {
-      \exBinaryApp{e_1}{\primOp}{e_2} \leq \exBinaryApp{e_1}{\primOp}{e_2}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      e_1 \leq \hole
-      \\
-      e_2 \leq \hole
-   }
-   {
-      \exBinaryApp{e_1}{\primOp}{e_2} \leq \hole
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      e_1 \leq e_1'
-      \\
-      e_2 \leq e_2'
-   }
-   {
       \exVecAccess{e_1}{e_2} \leq \exVecAccess{e_1}{e_2}
    }
    %
