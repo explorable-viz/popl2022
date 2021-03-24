@@ -115,42 +115,42 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-matrix}}]
+   \inferrule*[lab={\ruleName{$\eval$-vector}}]
    {
-      \explVal{T}{\rho, e' \eval \exPair{\ihat}{\jhat}}
+      \explVal{T}{\rho, e' \eval j}
       \\
-      \explVal{U_{i,j}}{\rho \concat \bind{x}{i} \concat \bind{y}{j}, e \eval v_{i,j}}
+      \explVal{U_{i}}{\rho \concat \bind{x}{i}, e \eval v_{i}}
       \quad
-      (\forall (i,j) \numleq (\ihat,\jhat))
+      (\forall i \numleq j)
    }
    {
-      \explVal{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}}
-              {\rho, \exMatrix{e}{x}{y}{e'} \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}
+      \explVal{\trVec{U_{i}}{x}{i}{T}{j}}
+              {\rho, \exVec{e}{x}{e'} \eval \exVec{v_{i}}{i}{j}}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-matrix-lookup}},
-      right={$(i,j) \numleq (\ihat,\jhat)$}
+      lab={\ruleName{$\eval$-vector-lookup}},
+      right={$i \numleq j$}
    ]
    {
-      \explVal{T}{\rho, e \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}
+      \explVal{T}{\rho, e \eval \exVec{v_{i}}{i}{j}}
       \\
-      \explVal{U}{\rho, e' \eval \exPair{i}{j}}
+      \explVal{U}{\rho, e' \eval i}
    }
    {
-      \explVal{\trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}}{\rho, \exMatrixAccess{e}{e'} \eval v_{i,j}}
+      \explVal{\trVecAccess{T}{j}{U}{i}}{\rho, \exVecAccess{e}{e'} \eval v_{i}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-matrix-dims}}]
+   \inferrule*[lab={\ruleName{$\eval$-vector-length}}]
    {
-      \explVal{T}{\rho, e \eval \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}}
+      \explVal{T}{\rho, e \eval \exVec{v_{i}}{i}{j}}
    }
    {
-      \explVal{\trMatrixDims{T}{\ihat,\jhat}}{\rho, \exMatrixDims{e} \eval \exPair{\ihat}{\jhat}}
+      \explVal{\trVecLen{T}{j}}{\rho, \exVecLen{e} \eval j}
    }
    %
    \and
