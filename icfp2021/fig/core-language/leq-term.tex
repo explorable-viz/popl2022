@@ -167,7 +167,7 @@
       e_2 \leq e_2'
    }
    {
-      \annMatrix{e_1}{x}{y}{e_2}{\alpha} \leq \annMatrix{e_1'}{x}{y}{e_2'}{\alpha'}
+      \annVec{e_1}{x}{e_2}{\alpha} \leq \annVec{e_1'}{x}{e_2'}{\alpha'}
    }
    %
    \and
@@ -180,7 +180,7 @@
       e_2 \leq \hole
    }
    {
-      \annMatrix{e_1}{x}{y}{e_2}{\FF} \leq \hole
+      \annVec{e_1}{x}{e_2}{\FF} \leq \hole
    }
    %
    \and
@@ -311,7 +311,7 @@
       e_2 \leq e_2'
    }
    {
-      \exMatrixAccess{e_1}{e_2} \leq \exMatrixAccess{e_1}{e_2}
+      \exVecAccess{e_1}{e_2} \leq \exVecAccess{e_1}{e_2}
    }
    %
    \and
@@ -324,7 +324,7 @@
       e_2 \leq \hole
    }
    {
-      \exMatrixAccess{e_1}{e_2} \leq \hole
+      \exVecAccess{e_1}{e_2} \leq \hole
    }
    %
    \and
@@ -335,7 +335,7 @@
       e \leq e'
    }
    {
-      \exMatrixDims{e} \leq \exMatrixDims{e'}
+      \exVecLen{e} \leq \exVecLen{e'}
    }
    %
    \and
@@ -346,21 +346,8 @@
       e \leq \hole
    }
    {
-      \exMatrixDims{e} \leq \hole
+      \exVecLen{e} \leq \hole
    }
-%   %
-%   \and
-%   %
-%   \inferrule*[
-%   ]
-%   {
-%      e_1 \leq e_1'
-%      \\
-%      e_2 \leq e_2'
-%   }
-%   {
-%      \exLet{x}{e_1}{e_2} \leq \exLet{x}{e_1'}{e_2'}
-%   }
    %
    \and
    %
