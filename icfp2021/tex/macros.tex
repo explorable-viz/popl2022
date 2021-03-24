@@ -98,6 +98,7 @@
 \newcommand*{\annNil}[1]{\kw{[]}_{#1}}
 \newcommand*{\annPair}[3]{(#1,#2)_{#3}}
 \newcommand*{\annTrue}[1]{\kw{true}_{#1}}
+\newcommand*{\annVec}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack_{#4}}
 
 % Clause
 \newcommand*{\clause}[2]{\seq{{#1}}\equal{#2}}
@@ -153,12 +154,13 @@
 \newcommand*{\interpret}[1]{\hat{#1}}
 
 % Types.
-\newcommand*{\tyMatrix}[1]{\kw{Matrix}\;{#1}}
 \newcommand*{\tyBool}[0]{\kw{Bool}}
+\newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
 \newcommand*{\tyInt}[0]{\kw{Int}}
 \newcommand*{\tyList}[1]{\kw{List}\;{#1}}
+\newcommand*{\tyMatrix}[1]{\kw{Matrix}\;{#1}}
 \newcommand*{\tyProd}[2]{{#1}\times{#2}}
-\newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
+\newcommand*{\tyVec}[1]{\kw{Vec}\;{#1}}
 
 % Sets
 \newcommand*{\Below}[1]{{\downarrow{#1}}}
