@@ -1,5 +1,5 @@
-\subsection{\thmref{core-language:pattern-matching:gc}, part (i)}
-Induction on the $\matchBwdS$ derivation.
+\subsection{\thmref{core-language:eval:gc}, part (i)}
+Induction on the $\evalBwdS$ derivation.
 \begin{proof}
 
 \small
@@ -9,16 +9,26 @@ Induction on the $\matchBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-var}}
+      ]
       {
-         \strut
+         \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
       }
       {
-         \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
+         \evalBwd{v}{\trVar{x}{\Gamma}}{\rho}{\exVar{x}}{\FF}
       }
    \end{smathpar}
    }
    &
+   \notag
+   \\
+   &
+   \envLookup{\rho}{x}{v}
+   &
+   \text{
+   	(\lemref{core-language:env-get-put})
+   }
    \notag
    \\
    &
@@ -26,55 +36,13 @@ Induction on the $\matchBwdS$ derivation.
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\matchFwdS$-var}}
+         lab={\ruleName{$\evalFwdS$-var}}
       ]
       {
-         \strut
+         \envLookup{\rho}{x}{v}
       }
       {
-         \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
-      }
-   \end{smathpar}
-   }
-   &
-   \notag
-   \\
-   &
-   \qedLocal
-   \TT
-   \geq
-   \alpha
-   \notag
-   \\
-   \intertext{\crossrule}
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   &
-   \caseDerivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrueNew}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
-      }
-   \end{smathpar}
-   }
-   &
-   \notag
-   \\
-   &
-   \qedLocal
-   \derivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-true}}
-      ]
-      {
-         \strut
-      }
-      {
-         \matchFwd{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
+         \evalFwd{\rho}{x}{\FF}{\trVar{x}{\Gamma}}{v}
       }
    \end{smathpar}
    }
@@ -86,92 +54,42 @@ Induction on the $\matchBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
-      }
-   \end{smathpar}
-   }
-   &
-   \notag
-   \\
-   &
-   \qedLocal
-   \derivation{\derivationWidth}{
-   \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\matchFwdS$-false}}
+         lab={\ruleName{$\evalBwdS$-op}}
       ]
       {
-         \strut
-      }
-      {
-         \matchFwd{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
-      }
-   \end{smathpar}
-   }
-   &
-   \notag
-   \\
-   \intertext{\crossrule}
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   &
-   \caseDerivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
-      {
-         \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
+         v \eq \phi
          \\
-         \matchBwd{\rho_1}{\sigma}{\alpha}{w}{v}{\tau}
+         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
       }
       {
-         \matchBwd{\rho_1 \concat \rho_2}{\kappa}{\alpha}{\matchPair{w}{w'}}{\annPair{v}{v'}{\alpha}}{\elimProd{\tau}}
+         \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
       }
    \end{smathpar}
    }
    &
    \notag
    \\
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
-   \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
-   \geq
-   \rho_1, \sigma, \alpha
+   \envLookup{\rho}{\primOp}{\phi}
    &
    \text{
-   	IH
+   	(\lemref{core-language:env-get-put})
    }
-   \locallabel{pair-premise-one}
-   \\
-   &
-   \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
-   \geq
-   \rho_2, \kappa, \alpha
-   &
-   \text{
-   	IH; $\tau' \geq \sigma$; monotonicity
-   }
-   \locallabel{pair-premise-two}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\matchFwdS$-pair}}
+         lab={\ruleName{$\evalFwdS$-op}}
       ]
       {
-         \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
-         \\
-         \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
+         \envLookup{\rho}{\primOp}{\phi}
       }
       {
-         \matchFwd{\annPair{v}{v'}{\alpha}}
-                  {\elimProd{\tau}}{\matchPair{w}{w'}}
-                  {\rho_1' \concat \rho_2'}{\kappa'}{\alpha \meet \beta \meet \beta'}
+         \evalFwd{\rho}{\exOp{\primOp}}{\FF}{\trOp{\primOp}{\Gamma}}{\phi}
       }
    \end{smathpar}
    }
@@ -180,14 +98,9 @@ Induction on the $\matchBwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1' \concat \rho_2', \kappa', \alpha \meet \beta \meet \beta')
-   \geq
-   (\rho_1 \concat \rho_2, \kappa, \alpha)
-   &
-   \text{
-      (\localref{pair-premise-one},
-       \localref{pair-premise-two})
-   }
+   \phi
+   \eq
+   v
    \notag
    \\
    \intertext{\crossrule}
@@ -195,12 +108,14 @@ Induction on the $\matchBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-lambda}}
+      ]
       {
-         \strut
+         v \eq \exClosure{\rho}{\seqEmpty}{\sigma}
       }
       {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNilNew}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
+         \evalBwd{v}{\trLambda{\sigma'}}{\rho}{\exLambda{\sigma}}{\FF}
       }
    \end{smathpar}
    }
@@ -211,18 +126,23 @@ Induction on the $\matchBwdS$ derivation.
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\matchFwdS$-nil}}
-      ]
+      \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
       {
          \strut
       }
       {
-         \matchFwd{\annNil{\alpha}}{\elimList{\kappa}{\hole}}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
+         \evalFwd{\rho}{\exLambda{\sigma}}{\FF}{\trLambda{\sigma'}}{\exClosure{\rho}{\seqEmpty}{\sigma}}
       }
    \end{smathpar}
    }
    &
+   \notag
+   \\
+   &
+   \qedLocal
+   \exClosure{\rho}{\seqEmpty}{\sigma}
+   \eq
+   v
    \notag
    \\
    \intertext{\crossrule}
@@ -230,40 +150,139 @@ Induction on the $\matchBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-int}}
+      ]
       {
-         \matchBwd{\rho_2}{\kappa}{\alpha}{w'}{v'}{\sigma}
-         \\
-         \matchBwd{\rho_1}{\sigma}{\alpha}{w}{v}{\tau}
+         v \eq \annInt{n}{\alpha}
       }
       {
-         \matchBwd{\rho_1 \concat \rho_2}
-                  {\kappa}{\alpha}{\matchConsNew{w}{w'}}{\annCons{v}{v'}{\alpha}}{\elimList{\hole}{\tau}}
+         \evalBwd{v}{\trInt{n}{\Gamma}}{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}
       }
    \end{smathpar}
    }
    &
    \notag
    \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
+      {
+         \strut
+      }
+      {
+         \evalFwd{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annInt{n}{\alpha}
+   \eq
+   v
+   \notag
+   \\
+   \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
-   \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
-   \geq
-   \rho_1, \sigma, \alpha
-   &
-   \text{
-   	IH
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-nil}}
+      ]
+      {
+         v \eq \annNil{\alpha}
+      }
+      {
+         \evalBwd{v}{\trNil{\Gamma}}{\hole_{\Gamma}}{\annNil{\alpha}}{\alpha}
+      }
+   \end{smathpar}
    }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
+      {
+         \strut
+      }
+      {
+         \evalFwd{\hole_{\Gamma}}{\annNil{\alpha}}{\alpha}{\trNil{\Gamma}}{\annNil{\alpha}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annNil{\alpha}
+   \eq
+   v
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-cons}}
+      ]
+      {
+         v \eq \annCons{v_1}{v_2}{\beta}
+         \\
+         \evalBwd{v_1}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{v_2}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{v}
+                 {\trCons{T}{U}}
+                 {\rho \join \rho'}
+                 {\annCons{e_1}{e_2}{\beta}}
+                 {\beta \join \alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \beta \meet (\beta \join \alpha \join \alpha') = \beta
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}{e_1}{\alpha}{T}{v_1}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho \join \rho'}{e_1}{\beta \join \alpha \join \alpha'}{T}{v_1}
+   &
+   \text{monotonicity}
    \locallabel{cons-premise-one}
    \\
    &
-   \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
-   \geq
-   \rho_2, \kappa, \alpha
+   \evalFwdGeq{\rho'}{e_2}{\alpha'}{U}{v_2}
    &
-   \text{
-   	IH; $\tau' \geq \sigma$; monotonicity
-   }
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho \join \rho'}{e_2}{\beta \join \alpha \join \alpha'}{U}{v_2}
+   &
+   \text{monotonicity}
    \locallabel{cons-premise-two}
    \\
    &
@@ -271,18 +290,19 @@ Induction on the $\matchBwdS$ derivation.
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\matchFwdS$-cons}}
+         lab={\ruleName{$\evalFwdS$-cons}},
       ]
       {
-         \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
+         \evalFwd{\rho \join \rho'}{e_1}{\beta \join \alpha \join \alpha'}{T}{u_1}
          \\
-         \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
+         \evalFwd{\rho \join \rho'}{e_2}{\beta \join \alpha \join \alpha'}{U}{u_2}
       }
       {
-         \matchFwd{\annCons{v}{v'}{\alpha}}
-                  {\elimList{\hole}{\tau}}
-                  {\matchConsNew{w}{w'}}
-                  {\rho_1' \concat \rho_2'}{\kappa'}{\alpha \meet \beta \meet \beta'}
+         \evalFwd{\rho \join \rho'}
+                 {\annCons{e_1}{e_2}{\beta}}
+                 {\beta \join \alpha \join \alpha'}
+                 {\trCons{T}{U}}
+                 {\annCons{u_1}{u_2}{\beta}}
       }
    \end{smathpar}
    }
@@ -291,9 +311,11 @@ Induction on the $\matchBwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1' \concat \rho_2', \kappa', \alpha \meet \beta \meet \beta')
+   (\annCons{u_1}{u_2}{\beta})
    \geq
-   (\rho_1 \concat \rho_2, \kappa, \alpha)
+   (\annCons{v_1}{v_2}{\beta})
+   \eq
+   v
    &
    \text{
       (\localref{cons-premise-one},
