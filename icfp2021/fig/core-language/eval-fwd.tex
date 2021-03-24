@@ -80,15 +80,15 @@
       e \eq \annVec{e_1}{x}{e_2}{\alpha}
       \\
       \evalFwdEq{\rho}{e_2}{\alpha'}{T}
-                {\annInt{j}{\gamma}}
+                {\annInt{j}{\beta}}
       \\
-      \evalFwd{\rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}}{e_1}{\alpha'}{U_{i,j}}{v_{i,j}}
+      \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e_1}{\alpha'}{U_{i}}{v_{i}}
       \quad
-      (\forall (i,j) \numleq (\ihat,\jhat))
+      (\forall i \numleq j)
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}}
-              {\annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\alpha \meet \alpha'}}
+      \evalFwd{\rho}{e}{\alpha'}{\trVec{U_{i}}{x}{i}{T}{j}}
+              {\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
    }
    %
    \and
