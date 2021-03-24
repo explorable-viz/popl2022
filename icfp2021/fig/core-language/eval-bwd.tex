@@ -84,18 +84,18 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-matrix}}
+      lab={\ruleName{$\evalBwdS$-vector}}
    ]
    {
-      v \eq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\alpha}
+      v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
       \\
-      \evalBwd{u_{i,j}}
-              {U_{i,j}}
-              {\rho_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat \bind{y}{j_{\gamma'_{i,j}}}}
-              {e_{i,j}}
-              {\alpha'_{i,j}}
+      \evalBwd{u_{i}}
+              {U_{i}}
+              {\rho_{i} \concat \bind{x}{i_{\gamma_{i}}}}
+              {e_{i}}
+              {\alpha'_{i}}
       \quad
-      (\forall (i,j) \numleq (\ihat,\jhat))
+      (\forall i \numleq j)
       \\
       \evalBwd{\annot{\exPair{\annInt{\ihat}{\bigjoin\gamma \join \beta}}
                      {\annInt{\jhat}{\bigjoin\gamma' \join \beta'}}}{\FF}}
@@ -106,7 +106,7 @@
    }
    {
       \evalBwd{v}
-              {\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}}
+              {\trVec{U_{i}}{x}{i}{T}{j}}
               {(\bigjoin\rho) \join \rho'}
               {\annMatrix{\bigjoin e}{x}{y}{e'}{\alpha}}
               {\alpha \join (\bigjoin{\alpha'}) \join \alpha''}
