@@ -78,6 +78,9 @@
 \newcommand*{\exRec}[2]{{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
+\newcommand*{\exVec}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack}
+\newcommand*{\exVecAccess}[2]{{#1}\,\sym{!}\,{#2}}
+\newcommand*{\exVecLen}[1]{\kw{len}\;{#1}}
 
 \newcommand*{\ihat}{\hat\imath}
 \newcommand*{\jhat}{\hat\jmath}
@@ -235,6 +238,7 @@
 \newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
 \newcommand*{\trVar}[2]{\sub{#1}{#2}}
+\newcommand*{\trVec}[5]{\exVec{#1}{\bind{#2}{#3}}{\sub{#4}{#5}}}
 
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 
