@@ -239,6 +239,8 @@
 \newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
 \newcommand*{\trVar}[2]{\sub{#1}{#2}}
 \newcommand*{\trVec}[5]{\exVec{#1}{\bind{#2}{#3}}{\sub{#4}{#5}}}
+\newcommand*{\trVecAccess}[4]{\exVecAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trVecLen}[2]{\exVecLen{\sub{#1}{#2}}}
 
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{::}{#2}}
 
