@@ -80,7 +80,7 @@
       e \eq \annVec{e_1}{x}{e_2}{\alpha}
       \\
       \evalFwdEq{\rho}{e_2}{\alpha'}{T}
-                {\annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}}
+                {\annInt{j}{\gamma}}
       \\
       \evalFwd{\rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}}{e_1}{\alpha'}{U_{i,j}}{v_{i,j}}
       \quad
@@ -113,7 +113,7 @@
    {
       e \eq \exMatrixDims{e'}
       \\
-      \evalFwdEq{\rho}{e'}{\alpha'}{T}
+      \evalFwdEq{\rho}{e'}{\alpha}{T}
                 {\annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}}
    }
    {
