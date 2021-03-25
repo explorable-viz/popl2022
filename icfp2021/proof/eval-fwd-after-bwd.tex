@@ -655,13 +655,13 @@ Induction on the $\evalBwdS$ derivation.
    \locallabel{app-premise-one}
    \\
    &
-   \rho'_1, h \closeDefsR\geq \rho_2
+   \rho'_1, h \closeDefsFwdR\geq \rho_2
    &
    \text{(\thmref{core-language:closeDefs:gc})}
    \notag
    \\
    &
-   \rho^\dagger, h' \closeDefsR \rho'_2
+   \rho^\dagger, h' \closeDefsFwdR \rho'_2
    \text{ with }
    \rho'_2 \geq \rho_2
    \quad
@@ -669,6 +669,12 @@ Induction on the $\evalBwdS$ derivation.
    \
    &
    \text{monotonicity}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}{e_2}{\alpha}{U}{v'}
+   &
+   \text{IH}
    \notag
    \\
    &
@@ -681,7 +687,7 @@ Induction on the $\evalBwdS$ derivation.
      {
         \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosureRec{\Gamma}{\rho^\dagger}{h'}{\sigma'}}
         \\
-        \rho^\dagger, h' \closeDefsR \rho_2'
+        \rho^\dagger, h' \closeDefsFwdR \rho_2'
         \\
         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u}
         \\
