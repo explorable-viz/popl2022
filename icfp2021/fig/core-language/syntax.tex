@@ -42,7 +42,7 @@ e
 \\[2mm]
 \mbox{Selection state}
 &
-\alpha, \beta, \gamma
+\alpha, \beta
 &
 ::=
 &
@@ -100,9 +100,19 @@ e
 \text{cons}
 \\
 &&&
-\annMatrix{e}{x}{y}{e'}{\alpha}
+\annVec{e}{x}{e'}{\alpha}
 &
-\text{matrix}
+\text{vector}
+\\
+&&&
+\exVecAccess{e}{e}
+&
+\text{vector lookup}
+\\
+&&&
+\exVecLen{e}
+&
+\text{vector length}
 \\
 &&&
 x
@@ -124,21 +134,6 @@ x
 &
 \text{application}
 \\
-&&&
-\exMatrixAccess{e}{e}
-&
-\text{matrix lookup}
-\\
-&&&
-\exMatrixDims{e}
-&
-\text{matrix dimensions}
-\\
-%&&&
-%\exLet{x}{e}{e'}
-%&
-%\text{let}
-%\\
 &&&
 \exLetRecMutual{h}{e}
 &

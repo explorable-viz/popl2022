@@ -75,50 +75,50 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\evalFwdS$-matrix}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
    {
-      e \eq \annMatrix{e_1}{x}{y}{e_2}{\alpha}
+      e \eq \annVec{e_1}{x}{e_2}{\alpha}
       \\
       \evalFwdEq{\rho}{e_2}{\alpha'}{T}
-                {\annPair{\annInt{\ihat}{\smash{\gamma}}}{\annInt{\jhat}{\smash{\gamma'}}}{\beta}}
+                {\annInt{j}{\beta}}
       \\
-      \evalFwd{\rho \concat \bind{x}{i_{\gamma}} \concat \bind{y}{j_{\gamma'}}}{e_1}{\alpha'}{U_{i,j}}{v_{i,j}}
+      \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e_1}{\alpha'}{U_{i}}{v_{i}}
       \quad
-      (\forall (i,j) \numleq (\ihat,\jhat))
+      (\forall i \numleq j)
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}}
-              {\annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\alpha \meet \alpha'}}
+      \evalFwd{\rho}{e}{\alpha'}{\trVec{U_{i}}{x}{i}{T}{j}}
+              {\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-matrix-lookup}},
-      right={$(i,j) \numleq (\ihat,\jhat)$}
+      lab={\ruleName{$\evalFwdS$-vector-lookup}},
+      right={$i \numleq j$}
    ]
    {
-      e \eq \exMatrixAccess{e_1}{e_2}
+      e \eq \exVecAccess{e_1}{e_2}
       \\
       \evalFwdEq{\rho}{e_1}{\alpha}{T}
-                {\annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}{\beta}}
+                {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}}{v_{i,j}}
+      \evalFwd{\rho}{e}{\alpha}{\trVecAccess{T}{j}{U}{i}}{v_{i}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\evalFwdS$-matrix-dims}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
    {
-      e \eq \exMatrixDims{e'}
+      e \eq \exVecLen{e'}
       \\
-      \evalFwdEq{\rho}{e'}{\alpha'}{T}
-                {\annot{\exMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\gamma},\annInt{\jhat}{\gamma'})}}{\beta}}
+      \evalFwdEq{\rho}{e'}{\alpha}{T}
+                {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trMatrixDims{T}{\ihat,\jhat}}
-              {\annPair{\annInt{\ihat}{\gamma}}{\annInt{\jhat}{\gamma'}}{\beta}}
+      \evalFwd{\rho}{e}{\alpha}{\trVecLen{T}{j}}
+              {\annInt{j}{\alpha'}}
    }
    %
    \and

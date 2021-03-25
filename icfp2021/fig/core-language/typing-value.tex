@@ -133,12 +133,12 @@
 %
 \inferrule*
 {
-   \vdash v_{i,j}: A
+   \vdash v_{i}: A
    \quad
-   (\forall (i,j) \numleq (\ihat,\jhat))
+   (\forall i \numleq j)
 }
 {
-   \vdash \exMatrix{v_{i,j}}{i}{j}{\exPair{\ihat}{\jhat}}: \tyMatrix{A}
+   \vdash \exVec{v_{i}}{i}{j}: \tyVec{A}
 }
 \end{smathpar}
 \caption{Typing rules for environments and values}

@@ -84,61 +84,60 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-matrix}}
+      lab={\ruleName{$\evalBwdS$-vector}}
    ]
    {
-      v \eq \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\alpha}
+      v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
       \\
-      \evalBwd{u_{i,j}}
-              {U_{i,j}}
-              {\rho_{i,j} \concat \bind{x}{i_{\gamma_{i,j}}} \concat \bind{y}{j_{\gamma'_{i,j}}}}
-              {e_{i,j}}
-              {\alpha'_{i,j}}
+      \evalBwd{u_{i}}
+              {U_{i}}
+              {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
+              {e_{i}}
+              {\alpha'_{i}}
       \quad
-      (\forall (i,j) \numleq (\ihat,\jhat))
+      (\forall i \numleq j)
       \\
-      \evalBwd{\annot{\exPair{\annInt{\ihat}{\bigjoin\gamma \join \beta}}
-                     {\annInt{\jhat}{\bigjoin\gamma' \join \beta'}}}{\FF}}
+      \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
               {T}
               {\rho'}
               {e'}
-              {\alpha''}
+              {\alpha^\twoPrime}
    }
    {
       \evalBwd{v}
-              {\trMatrix{U_{i,j}}{x}{y}{i}{j}{T}{\ihat,\jhat}}
-              {(\bigjoin\rho) \join \rho'}
-              {\annMatrix{\bigjoin e}{x}{y}{e'}{\alpha}}
-              {\alpha \join (\bigjoin{\alpha'}) \join \alpha''}
+              {\trVec{U_{i}}{x}{i}{T}{j}}
+              {\bigjoin\rho \join \rho'}
+              {\annVec{\bigjoin e}{x}{e'}{\alpha}}
+              {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-matrix-lookup}}
+      lab={\ruleName{$\evalBwdS$-vector-lookup}}
    ]
    {
-      \evalBwd{\mapUpdate{\annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\FF},\annInt{\jhat}{\FF})}{\FF}}{\exPair{i}{j}}{v}}
-              {T}{\rho}{e}{\alpha}
+      \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+              {T}{\rho}{e_1}{\alpha}
       \\
-      \evalBwd{\annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}}{U}{\rho'}{e'}{\alpha'}
+      \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
    }
    {
-      \evalBwd{v}{\trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}}{\rho \join \rho'}{\exMatrixAccess{e}{e'}}{\alpha \join \alpha'}
+      \evalBwd{v}{\trMatrixAccess{T}{j}{U}{i}}{\rho \join \rho'}{\exMatrixAccess{e_1}{e_2}}{\alpha \join \alpha'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-matrix-dims}}
+      lab={\ruleName{$\evalBwdS$-vector-length}}
    ]
    {
-      v \eq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\gamma}
+      v \eq \annInt{j}{\beta}
       \\
-      \evalBwd{\annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\gamma}}{T}{\rho}{e}{\alpha}
+      \evalBwd{\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
    }
    {
-      \evalBwd{v}{\trMatrixDims{T}{\ihat,\jhat}}{\rho}{\exMatrixDims{e}}{\alpha}
+      \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
    }
    %
    \and
@@ -198,7 +197,7 @@
    \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_n: \exClosure{\rho_n}{h_n}{\sigma_n}}
    &\closeDefsFwd
    \bigjoin\rho,
-   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join (\bigjoin h)
+   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join {\bigjoin h}
 \end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}

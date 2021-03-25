@@ -109,34 +109,34 @@
 %
 \inferrule*
 {
-   \Gamma \vdash e': \tyProd{\tyInt}{\tyInt}
+   \Gamma \vdash e': \tyInt
    \\
-   \Gamma \concat \bind{x}{\tyInt} \concat \bind{y}{\tyInt} \vdash e: A
+   \Gamma \concat \bind{x}{\tyInt} \vdash e: A
 }
 {
-   \Gamma \vdash \exMatrix{e}{x}{y}{e'}: \tyMatrix{A}
+   \Gamma \vdash \exVec{e}{x}{e'}: \tyVec{A}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash e: \tyMatrix{A}
+   \Gamma \vdash e: \tyVec{A}
    \\
-   \Gamma \vdash e': \tyProd{\tyInt}{\tyInt}
+   \Gamma \vdash e': \tyInt
 }
 {
-   \Gamma \vdash \exMatrixAccess{e}{e'}: A
+   \Gamma \vdash \exVecAccess{e}{e'}: A
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash e: \tyMatrix{A}
+   \Gamma \vdash e: \tyVec{A}
 }
 {
-   \Gamma \vdash \exMatrixDims{e}: \tyProd{\tyInt}{\tyInt}
+   \Gamma \vdash \exVecLen{e}: \tyInt
 }
 %
 \and
