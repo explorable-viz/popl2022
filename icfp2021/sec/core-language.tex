@@ -22,6 +22,9 @@
 
 \input{fig/core-language/join-value}
 \input{fig/core-language/join-elim}
+
+\subsubsection{Pattern-matching}
+
 \input{fig/core-language/match-fwd}
 \input{fig/core-language/match-bwd}
 
@@ -38,6 +41,8 @@
    Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
 \end{theorem}
 
+\subsubsection{Evaluation}
+
 \input{fig/core-language/eval-fwd}
 \input{fig/core-language/eval-bwd}
 \input{fig/core-language/env-lookup}
@@ -46,6 +51,14 @@
 \label{lem:core-language:env-get-put}
    Suppose $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$. Then $\envLookup{\rho}{z}{v}$.
 \end{lemma}
+
+\begin{lemma}[Determinism of recursive binding]
+    Suppose $\rho_1 \closeDefs \rho_1', h_1$ and $\rho_2 \closeDefs \rho_2', h_2$. If $\rho_1 \eq \rho_1'$ then $\rho_2 \eq \rho_2'$ and $h_1 \eq h_2$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for recursive binding]
+   Suppose $\rho \closeDefs \rho', h$. Define $\closeDefsFwd: \Below{\rho} \to \Below{(\rho', h)}$ to be $\closeDefsR$ domain-restricted to $\Below{(\rho, e, \Bool)}$ and define $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \Bool)}$ to be $\closeDefsBwdR{T}$ domain-restricted to $\Below{v}$.
+\end{definition}
 
 \begin{lemma}[Determinism of evaluation]
    Suppose $\rho, e \eval v$ and $\rho', e' \eval v'$. If $\rho \eq \rho'$ and $e \eq e'$ then $v \eq v'$.
