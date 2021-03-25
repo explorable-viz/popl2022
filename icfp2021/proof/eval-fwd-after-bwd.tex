@@ -704,6 +704,22 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
+   \evalFwdGeq{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}{T'}{v}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwd{\rho^\dagger \concat \rho_2' \concat \rho_3'}{e'}{\beta'}{T'}{u}
+   \text{ with }
+   u \geq v
+   \quad
+   (\exists u)
+   &
+   \text{monotonicity}
+   \notag
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -719,7 +735,7 @@ Induction on the $\evalBwdS$ derivation.
         \\
         \matchFwd{u'}{\sigma'}{w}{\rho_3'}{e'}{\beta'}
         \\
-        \evalFwd{\rho_1' \concat \rho_2' \concat \rho_3'}{e'}{\beta}{T'}{u}
+        \evalFwd{\rho^\dagger \concat \rho_2' \concat \rho_3'}{e'}{\beta'}{T'}{u}
      }
      {
         \evalFwd{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}{\trApp{T}{U}{\matchPlug{w}{T'}}}{u}
