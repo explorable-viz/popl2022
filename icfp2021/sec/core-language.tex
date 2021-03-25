@@ -60,6 +60,11 @@
    Suppose $\rho, h \closeDefsR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ to be $\closeDefsR$ domain-restricted to $\Below{(\rho, h)}$ and define $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsBwdR$ domain-restricted to $\Below{\rho'}$.
 \end{definition}
 
+\begin{theorem}[Galois connection for recursive bindings]
+\label{thm:core-language:closeDefs:gc}
+   Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h} \adjoint \closeDefsBwdF{\rho,h}$.
+\end{theorem}
+
 \begin{lemma}[Determinism of evaluation]
    Suppose $\rho, e \eval v$ and $\rho', e' \eval v'$. If $\rho \eq \rho'$ and $e \eq e'$ then $v \eq v'$.
 \end{lemma}
