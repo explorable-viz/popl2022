@@ -322,5 +322,82 @@ Induction on the $\evalBwdS$ derivation.
        \localref{cons-premise-two})
    }
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalBwdS$-vector}}
+     ]
+     {
+        v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+        \\
+        \evalBwd{u_{i}}
+                {U_{i}}
+                {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
+                {e_{i}}
+                {\alpha'_{i}}
+        \quad
+        (\forall i \numleq j)
+        \\
+        \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
+                {T}
+                {\rho'}
+                {e'}
+                {\alpha^\twoPrime}
+     }
+     {
+        \evalBwd{v}
+                {\trVec{U_{i}}{x}{i}{T}{j}}
+                {\bigjoin\rho \join \rho'}
+                {\annVec{\bigjoin e}{x}{e'}{\alpha}}
+                {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \alpha^\dagger = \alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime
+   &
+   \text{
+      define
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
+     {
+        \evalFwdEq{\bigjoin\rho \join \rho'}
+                  {e'}
+                  {\alpha^\dagger}
+                  {T}
+                  {\annInt{j}{\beta}}
+        \\
+        \evalFwd{\bigjoin\rho \join \rho' \concat \bind{x}{i_{\beta}}}
+                {\bigjoin e}
+                {\alpha^\dagger}
+                {U_{i}}
+                {v_{i}}
+        \quad
+        (\forall i \numleq j)
+     }
+     {
+        \evalFwd{\bigjoin\rho \join \rho'}
+                {\annVec{\bigjoin e}{x}{e'}{\alpha}}
+                {\alpha^\dagger}
+                {\trVec{U_{i}}{x}{i}{T}{j}}
+                {\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha^\dagger}}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
 \end{flalign}
 \end{proof}
