@@ -30,13 +30,13 @@
    &=
    \annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}
    \\
-   \annMatrix{v_{i,j}}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\gamma})}{\alpha}
+   \annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha}
    \join
-   \annMatrix{u_{i,j}}{i}{j}{(\annInt{\ihat}{\beta'},\annInt{\jhat}{\gamma'})}{\alpha'}
+   \annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\alpha'}
    &=
-   \annMatrix{v_{i,j} \join u_{i,j}}
-             {i}{j}
-             {(\annInt{\ihat}{\beta \join \beta'},\annInt{\jhat}{\gamma \join \gamma'})}{\alpha \join \alpha'}
+   \annVec{v_{i} \join u_{i}}
+             {i}
+             {\annInt{j}{\beta \join \beta'}}{\alpha \join \alpha'}
    \\
    \exPrim{\phi} \join \exPrim{\phi} &= \exPrim{\phi}
    \\
