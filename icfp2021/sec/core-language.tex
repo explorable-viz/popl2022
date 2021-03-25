@@ -53,11 +53,11 @@
 \end{lemma}
 
 \begin{lemma}[Determinism of recursive binding]
-    Suppose $\rho_1, h \closeDefs \rho_2$ and $\rho_1', h' \closeDefs \rho_2'$. If $\rho_1 \eq \rho_1'$ and $h \eq h'$ then $\rho_2 \eq \rho_2'$.
+    Suppose $\rho_1, h \closeDefsR \rho_2$ and $\rho_1', h' \closeDefsR \rho_2'$. If $\rho_1 \eq \rho_1'$ and $h \eq h'$ then $\rho_2 \eq \rho_2'$.
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for recursive bindings]
-   Suppose $\rho, h \closeDefs \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ to be $\closeDefsR$ domain-restricted to $\Below{(\rho, h)}$ and define $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsBwdR{T}$ domain-restricted to $\Below{\rho'}$.
+   Suppose $\rho, h \closeDefsR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ to be $\closeDefsR$ domain-restricted to $\Below{(\rho, h)}$ and define $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsBwdR$ domain-restricted to $\Below{\rho'}$.
 \end{definition}
 
 \begin{lemma}[Determinism of evaluation]
