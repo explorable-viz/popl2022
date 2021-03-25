@@ -573,23 +573,21 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \evalFwdGeq{\rho}
-              {e_1}
+              {e}
               {\alpha}
               {T}
-              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+              {\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}
    &
    \text{IH}
    \notag
    \\
    &
-   \evalFwdGeq{\rho \join \rho'}
-              {e_1}
-              {\alpha \join \alpha'}
-              {T}
-              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   \evalFwdEq{\rho}{e}{\alpha}{T}
+             {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+   \text{ with }
+   \alpha' \geq \beta
    &
-   \text{monotonicity}
-   \locallabel{vector-lookup-premise-one}
+   \notag
    \\
    &
    \qedLocal
@@ -611,9 +609,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   u_i \geq v
+   \annInt{j}{\alpha'} \geq \annInt{j}{\beta} \eq v
    &
-   \text{(\localref{vector-lookup-premise-one})}
    \notag
 \end{flalign}
 \end{proof}
