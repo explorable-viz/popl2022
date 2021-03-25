@@ -669,7 +669,7 @@ Induction on the $\evalBwdS$ derivation.
    \
    &
    \text{monotonicity}
-   \notag
+   \locallabel{app-premise-two}
    \\
    &
    \evalFwdGeq{\rho}{e_2}{\alpha}{U}{v'}
@@ -685,7 +685,7 @@ Induction on the $\evalBwdS$ derivation.
    (\exists u')
    &
    \text{monotonicity}
-   \notag
+   \locallabel{app-premise-three}
    \\
    &
    \matchFwdGeq{v'}{\sigma}{w}{\rho_3}{e}{\beta}
@@ -701,7 +701,7 @@ Induction on the $\evalBwdS$ derivation.
    (\exists \rho_3', e', \beta')
    &
    \text{monotonicity}
-   \notag
+   \locallabel{app-premise-four}
    \\
    &
    \evalFwdGeq{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}{T'}{v}
@@ -717,7 +717,7 @@ Induction on the $\evalBwdS$ derivation.
    (\exists u)
    &
    \text{monotonicity}
-   \notag
+   \locallabel{app-premise-five}
    \\
    &
    \qedLocal
@@ -743,6 +743,13 @@ Induction on the $\evalBwdS$ derivation.
    \end{smathpar}
    }
    &
+   \text{(
+    \localref{app-premise-one},
+    \localref{app-premise-two},
+    \localref{app-premise-three},
+    \localref{app-premise-four},
+    \localref{app-premise-five}
+   )}
    \notag
 \end{flalign}
 \end{proof}
