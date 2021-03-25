@@ -497,6 +497,26 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
+   \evalFwdGeq{\rho}
+              {e_1}
+              {\alpha}
+              {T}
+              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho \join \rho'}
+              {e_1}
+              {\alpha \join \alpha'}
+              {T}
+              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   &
+   \text{monotonicity}
+   \locallabel{vector-lookup-premise-one}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -525,7 +545,75 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   u_i \geq v_i
+   u_i \geq v
+   &
+   \text{(\localref{vector-lookup-premise-one})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalBwdS$-vector-length}}
+     ]
+     {
+        v \eq \annInt{j}{\beta}
+        \\
+        \evalBwd{\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
+     }
+     {
+        \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_1}
+              {\alpha}
+              {T}
+              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho \join \rho'}
+              {e_1}
+              {\alpha \join \alpha'}
+              {T}
+              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   &
+   \text{monotonicity}
+   \locallabel{vector-lookup-premise-one}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
+     {
+        \evalFwdEq{\rho}{e}{\alpha}{T}
+                  {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+     }
+     {
+        \evalFwd{\rho}{\exVecLen{e}}{\alpha}{\trVecLen{T}{j}}
+                {\annInt{j}{\alpha'}}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   u_i \geq v
+   &
+   \text{(\localref{vector-lookup-premise-one})}
    \notag
 \end{flalign}
 \end{proof}
