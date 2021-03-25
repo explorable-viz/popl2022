@@ -159,7 +159,7 @@
    {
       \explVal{T}{\rho, e \eval \exClosureRec{\Gamma}{\rho_1}{h}{\sigma}}
       \\
-      \rho_1, h \closeDefs \rho_2
+      \rho_1, h \closeDefsR \rho_2
       \\
       \explVal{U}{\rho, e' \eval v}
       \\
@@ -189,7 +189,7 @@
       lab={\ruleName{$\eval$-let-rec}}
    ]
    {
-      \rho, h \closeDefs \rho'
+      \rho, h \closeDefsR \rho'
       \\
       \explVal{T}{\rho \concat \rho', e \eval v}
    }
@@ -199,10 +199,10 @@
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\rho, h \closeDefs \rho'$}
+\flushleft\shadebox{$\rho, h \closeDefsR \rho'$}
 \begin{salign}
    \rho, h
-   &\closeDefs
+   &\closeDefsR
    \seqRange{\bind{x_1}{\exClosure{\rho}{h}{\sigma_1}}}{\bind{x_n}{\exClosure{\rho}{h}{\sigma_n}}}
    \\
    & \text{where $h = \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}$}

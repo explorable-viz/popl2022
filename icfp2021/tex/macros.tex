@@ -26,9 +26,11 @@
 
 % Misc.
 \newcommand*{\closeDefsArrow}{\twoheadrightarrow}
-\newcommand*{\closeDefs}{\mathrel{\closeDefsArrow}}
-\newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
-\newcommand*{\closeDefsBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsArrow$}}}
+\newcommand*{\closeDefsR}{\mathrel{\closeDefsArrow}}
+\newcommand*{\closeDefsFwdR}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
+\newcommand*{\closeDefsBwdR}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsArrow$}}}
+\newcommand*{\closeDefsFwdF}[1]{\mathsf{recFwd}_{#1}}
+\newcommand*{\closeDefsBwdF}[1]{\mathsf{recBwd}_{#1}}
 
 % Misc. syntax.
 \newcommand*{\trace}[2]{\textcolor{gray}{#1}\mathrel{\textcolor{gray}{::}}{#2}}
@@ -202,6 +204,7 @@
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchFwd}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3} #4, #5, #6}
+\newcommand*{\matchFwdGeq}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3}\geq #4, #5, #6}
 \newcommand*{\matchBwd}[6]{#1, #2, #3 \sub{\matchBwdS}{#4} #5, #6}
 \newcommand*{\matchFwdR}[1]{\matchFwdS_{\hspace{-0.2em}#1}}
 \newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}

@@ -131,11 +131,11 @@
       \\
       \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exClosureRec{\Gamma}{\rho_1}{h}{\sigma}}
       \\
-      \rho_1, \delta \closeDefs \rho_2
+      \rho_1, h \closeDefsFwdR \rho_2
       \\
       \evalFwd{\rho}{e_2}{\alpha}{U}{v}
       \\
-      v, w, \sigma \matchFwdS \rho_3, e', \beta
+      \matchFwd{v}{\sigma}{w}{\rho_3}{e'}{\beta}
       \\
       \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e'}{\beta}{T'}{v'}
    }
@@ -166,7 +166,7 @@
    {
       e \eq \exLetRecMutual{h}{e'}
       \\
-      \rho_1, h \closeDefs \rho_2
+      \rho_1, h \closeDefsFwdR \rho_2
       \\
       \evalFwd{\rho_1 \concat \rho_2}{e'}{\alpha}{T}{v}
    }

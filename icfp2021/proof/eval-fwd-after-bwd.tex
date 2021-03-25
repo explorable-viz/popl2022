@@ -322,5 +322,427 @@ Induction on the $\evalBwdS$ derivation.
        \localref{cons-premise-two})
    }
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalBwdS$-vector}}
+     ]
+     {
+        v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+        \\
+        \evalBwd{u_{i}}
+                {U_{i}}
+                {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
+                {e_{i}}
+                {\alpha'_{i}}
+        \quad
+        (\forall i \numleq j)
+        \\
+        \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
+                {T}
+                {\rho'}
+                {e'}
+                {\alpha^\twoPrime}
+     }
+     {
+        \evalBwd{v}
+                {\trVec{U_{i}}{x}{i}{T}{j}}
+                {\bigjoin\rho \join \rho'}
+                {\annVec{\bigjoin e}{x}{e'}{\alpha}}
+                {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \alpha^\dagger = \alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime
+   &
+   \text{define}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho'}
+              {e'}
+              {\alpha^\twoPrime}
+              {T}
+              {\annInt{j}{\beta \join \bigjoin\beta'}}
+   &
+   \text{IH}
+   \locallabel{vector-IH-one}
+   \\
+   &
+   (\bigjoin\rho \join \rho', \alpha^\dagger)
+   \geq
+   (\rho', \alpha^\twoPrime)
+   &
+   \notag
+   \\
+   &
+   \evalFwdEq{\bigjoin\rho \join \rho'}
+             {e'}
+             {\alpha^\dagger}
+             {T}
+             {\annInt{j}{\beta^\dagger}}
+   \text{ where }
+   \beta^\dagger \geq \beta \join \bigjoin\beta'
+   &
+   \text{(\localref{vector-IH-one}); monotonicity}
+   \locallabel{vector-premise-one}
+   \\
+   &
+   \evalFwdGeq{\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
+              {e_{i}}
+              {\alpha'_{i}}
+              {U_{i}}
+              {u_{i}}
+   \quad
+   (\forall i \numleq j)
+   &
+   \text{IH}
+   \locallabel{vector-IH-two}
+   \\
+   &
+   (\bigjoin \rho \join \rho', \beta^\dagger, \bigjoin e, \alpha^\dagger)
+   \geq
+   (\rho_i, e_i, \beta'_i, \alpha'_i)
+   \quad
+   (\forall i \numleq j)
+   \notag
+   \\
+   &
+   \evalFwdGeq{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
+              {\bigjoin e}
+              {\alpha^\dagger}
+              {U_{i}}
+              {u_{i}}
+   \quad
+   (\forall i \numleq j)
+   &
+   \text{(\localref{vector-IH-two}); monotonicity}
+   \locallabel{vector-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
+     {
+        \evalFwdEq{\bigjoin\rho \join \rho'}
+                  {e'}
+                  {\alpha^\dagger}
+                  {T}
+                  {\annInt{j}{\beta^\dagger}}
+        \\
+        \evalFwd{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
+                {\bigjoin e}
+                {\alpha^\dagger}
+                {U_{i}}
+                {v_{i}}
+        \quad
+        (\forall i \numleq j)
+     }
+     {
+        \evalFwd{\bigjoin\rho \join \rho'}
+                {\annVec{\bigjoin e}{x}{e'}{\alpha}}
+                {\alpha^\dagger}
+                {\trVec{U_{i}}{x}{i}{T}{j}}
+                {\annVec{v_{i}}{i}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annVec{v_{i}}{i}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}
+   \geq
+   \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+   &
+   \text{
+       (\localref{vector-premise-two})
+   }
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalBwdS$-vector-lookup}}
+     ]
+     {
+        \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+                {T}{\rho}{e_1}{\alpha}
+        \\
+        \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
+     }
+     {
+        \evalBwd{v}
+                {\trMatrixAccess{T}{j}{U}{i}}
+                {\rho \join \rho'}
+                {\exMatrixAccess{e_1}{e_2}}
+                {\alpha \join \alpha'}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_1}
+              {\alpha}
+              {T}
+              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho \join \rho'}
+              {e_1}
+              {\alpha \join \alpha'}
+              {T}
+              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   &
+   \text{monotonicity}
+   \locallabel{vector-lookup-premise-one}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalFwdS$-vector-lookup}},
+        right={$i \numleq j$}
+     ]
+     {
+        \evalFwdEq{\rho \join \rho'}
+                  {e_1}
+                  {\alpha \join \alpha'}
+                  {T}
+                  {\annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\beta}}
+     }
+     {
+        \evalFwd{\rho \join \rho'}
+                {\exVecAccess{e_1}{e_2}}
+                {\alpha \join \alpha'}
+                {\trVecAccess{T}{j}{U}{i}}
+                {u_{i}}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   u_i \geq v
+   &
+   \text{(\localref{vector-lookup-premise-one})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalBwdS$-vector-length}}
+     ]
+     {
+        v \eq \annInt{j}{\beta}
+        \\
+        \evalBwd{\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
+     }
+     {
+        \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e}
+              {\alpha}
+              {T}
+              {\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho}{e}{\alpha}{T}
+             {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+   \text{ with }
+   \alpha' \geq \beta
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
+     {
+        \evalFwdEq{\rho}{e}{\alpha}{T}
+                  {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+     }
+     {
+        \evalFwd{\rho}{\exVecLen{e}}{\alpha}{\trVecLen{T}{j}}
+                {\annInt{j}{\alpha'}}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annInt{j}{\alpha'} \geq \annInt{j}{\beta} \eq v
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalBwdS$-apply}}
+     ]
+     {
+        \evalBwd{v}{T'}{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}
+        \\
+        \matchBwd{\rho_3}{e}{\beta}{w}{v'}{\sigma}
+        \\
+        \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
+        \\
+        \rho_2 \closeDefsBwdR \rho_1', h
+        \\
+        \evalBwd{\exClosureRec{\Gamma}{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
+     }
+     {
+        \evalBwd{v}{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho'}{e_1}{\alpha'}{T}{\exClosureRec{\Gamma}{\rho_1 \join \rho_1'}{h}{\sigma}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosureRec{\Gamma}{\rho_1^\dagger}{h'}{\sigma'}}
+   \text{ with }
+   (\rho^\dagger, h', \sigma') \geq (\rho_1 \join \rho_1', h, \sigma)
+   &
+   \text{monotonicity}
+   \locallabel{app-premise-one}
+   \\
+   &
+   \rho'_1, h \closeDefsFwdR\geq \rho_2
+   &
+   \text{(\thmref{core-language:closeDefs:gc})}
+   \notag
+   \\
+   &
+   \rho^\dagger, h' \closeDefsFwdR \rho'_2
+   \text{ with }
+   \rho'_2 \geq \rho_2
+   \quad
+   (\exists\rho'_2)
+   \
+   &
+   \text{monotonicity}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}{e_2}{\alpha}{U}{v'}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u'}
+   \text{ where }
+   u' \geq v'
+   \quad
+   (\exists u')
+   &
+   \text{monotonicity}
+   \notag
+   \\
+   &
+   \matchFwdGeq{v'}{\sigma}{w}{\rho_3}{e}{\beta}
+   &
+   \text{(\thmref{core-language:match:gc})}
+   \notag
+   \\
+   &
+   \matchFwd{u'}{\sigma'}{w}{\rho_3'}{e'}{\beta'}
+   \text{ with }
+   (\rho_3', e', \beta') \geq (\rho_3, e, \beta)
+   \quad
+   (\exists \rho_3', e', \beta')
+   &
+   \text{monotonicity}
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}{T'}{v}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwd{\rho^\dagger \concat \rho_2' \concat \rho_3'}{e'}{\beta'}{T'}{u}
+   \text{ with }
+   u \geq v
+   \quad
+   (\exists u)
+   &
+   \text{monotonicity}
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalFwdS$-apply}}
+     ]
+     {
+        \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosureRec{\Gamma}{\rho^\dagger}{h'}{\sigma'}}
+        \\
+        \rho^\dagger, h' \closeDefsFwdR \rho_2'
+        \\
+        \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u'}
+        \\
+        \matchFwd{u'}{\sigma'}{w}{\rho_3'}{e'}{\beta'}
+        \\
+        \evalFwd{\rho^\dagger \concat \rho_2' \concat \rho_3'}{e'}{\beta'}{T'}{u}
+     }
+     {
+        \evalFwd{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}{\trApp{T}{U}{\matchPlug{w}{T'}}}{u}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
 \end{flalign}
 \end{proof}
