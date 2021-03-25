@@ -114,30 +114,30 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-matrix-lookup}}
+      lab={\ruleName{$\evalBwdS$-vector-lookup}}
    ]
    {
-      \evalBwd{\mapUpdate{\annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\FF},\annInt{\jhat}{\FF})}{\FF}}{\exPair{i}{j}}{v}}
-              {T}{\rho}{e}{\alpha}
+      \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+              {T}{\rho}{e_1}{\alpha}
       \\
-      \evalBwd{\annPair{\annInt{i}{\FF}}{\annInt{j}{\FF}}{\FF}}{U}{\rho'}{e'}{\alpha'}
+      \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
    }
    {
-      \evalBwd{v}{\trMatrixAccess{T}{\ihat,\jhat}{U}{i,j}}{\rho \join \rho'}{\exMatrixAccess{e}{e'}}{\alpha \join \alpha'}
+      \evalBwd{v}{\trMatrixAccess{T}{j}{U}{i}}{\rho \join \rho'}{\exMatrixAccess{e_1}{e_2}}{\alpha \join \alpha'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-matrix-dims}}
+      lab={\ruleName{$\evalBwdS$-vector-length}}
    ]
    {
-      v \eq \annPair{\annInt{\ihat}{\beta}}{\annInt{\jhat}{\beta'}}{\gamma}
+      v \eq \annInt{j}{\beta}
       \\
-      \evalBwd{\annMatrix{\hole}{i}{j}{(\annInt{\ihat}{\beta},\annInt{\jhat}{\beta'})}{\gamma}}{T}{\rho}{e}{\alpha}
+      \evalBwd{\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
    }
    {
-      \evalBwd{v}{\trMatrixDims{T}{\ihat,\jhat}}{\rho}{\exMatrixDims{e}}{\alpha}
+      \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
    }
    %
    \and
