@@ -678,11 +678,27 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u}
+   \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u'}
    \text{ where }
    u' \geq v'
    \quad
    (\exists u')
+   &
+   \text{monotonicity}
+   \notag
+   \\
+   &
+   \matchFwdGeq{v'}{\sigma}{w}{\rho_3}{e}{\beta}
+   &
+   \text{(\thmref{core-language:match:gc})}
+   \notag
+   \\
+   &
+   \matchFwd{u'}{\sigma'}{w}{\rho_3'}{e'}{\beta'}
+   \text{ with }
+   (\rho_3', e', \beta') \geq (\rho_3, e, \beta)
+   \quad
+   (\exists \rho_3', e', \beta')
    &
    \text{monotonicity}
    \notag
@@ -701,7 +717,7 @@ Induction on the $\evalBwdS$ derivation.
         \\
         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u'}
         \\
-        \matchFwd{u'}{\sigma}{w}{\rho_3'}{e'}{\beta}
+        \matchFwd{u'}{\sigma'}{w}{\rho_3'}{e'}{\beta'}
         \\
         \evalFwd{\rho_1' \concat \rho_2' \concat \rho_3'}{e'}{\beta}{T'}{u}
      }
