@@ -469,5 +469,49 @@ Induction on the $\evalBwdS$ derivation.
        (\localref{vector-premise-two})
    }
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalBwdS$-vector-lookup}}
+     ]
+     {
+        \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+                {T}{\rho}{e_1}{\alpha}
+        \\
+        \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
+     }
+     {
+        \evalBwd{v}{\trMatrixAccess{T}{j}{U}{i}}{\rho \join \rho'}{\exMatrixAccess{e_1}{e_2}}{\alpha \join \alpha'}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalFwdS$-vector-lookup}},
+        right={$i \numleq j$}
+     ]
+     {
+        e \eq \exVecAccess{e_1}{e_2}
+        \\
+        \evalFwdEq{\rho}{e_1}{\alpha}{T}
+                  {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
+     }
+     {
+        \evalFwd{\rho}{e}{\alpha}{\trVecAccess{T}{j}{U}{i}}{v_{i}}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
 \end{flalign}
 \end{proof}
