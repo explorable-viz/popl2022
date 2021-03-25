@@ -361,6 +361,12 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
+   \alpha^\dagger = \alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime
+   &
+   \text{define}
+   \notag
+   \\
+   &
    \evalFwdGeq{\rho'}
               {e'}
               {\alpha^\twoPrime}
@@ -368,7 +374,7 @@ Induction on the $\evalBwdS$ derivation.
               {\annInt{j}{\beta \join \bigjoin\beta'}}
    &
    \text{IH}
-   \notag
+   \locallabel{vector-IH-one}
    \\
    &
    (\bigjoin\rho \join \rho', \alpha^\dagger)
@@ -382,10 +388,12 @@ Induction on the $\evalBwdS$ derivation.
              {e'}
              {\alpha^\dagger}
              {T}
-             {\annInt{j}{\beta}}
+             {\annInt{j}{\beta^\dagger}}
+   \text{ where }
+   \beta^\dagger \geq \beta \join \bigjoin\beta'
    &
-   \text{IH}
-   \notag
+   \text{(\localref{vector-IH-one}); monotonicity}
+   \locallabel{vector-premise-one}
    \\
    &
    \evalFwdGeq{\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
@@ -401,14 +409,6 @@ Induction on the $\evalBwdS$ derivation.
    (\bigjoin \rho \join \rho', \bigjoin e, \alpha \join \bigjoin \alpha' \join \alpha^\twoPrime)
    \geq
    (\rho_i, e_i, \alpha'_i)
-   \notag
-   \\
-   &
-   \alpha^\dagger = \alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime
-   &
-   \text{
-      define
-   }
    \notag
    \\
    &
