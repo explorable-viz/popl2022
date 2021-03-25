@@ -152,7 +152,7 @@
       \\
       \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
       \\
-      \rho_2 \closeDefsBwd \rho_1', h
+      \rho_2 \closeDefsBwdR \rho_1', h
       \\
       \evalBwd{\exClosureRec{\Gamma}{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
    }
@@ -184,7 +184,7 @@
    {
       \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
       \\
-      \rho_1 \closeDefsBwd \rho', h'
+      \rho_1 \closeDefsBwdR \rho', h'
    }
    {
       \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
@@ -192,10 +192,10 @@
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\rho \closeDefsBwd \rho', h$}
+\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
 \begin{salign}
    \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_n: \exClosure{\rho_n}{h_n}{\sigma_n}}
-   &\closeDefsFwd
+   &\closeDefsBwdR
    \bigjoin\rho,
    (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join {\bigjoin h}
 \end{salign}

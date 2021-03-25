@@ -57,7 +57,7 @@
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for recursive binding]
-   Suppose $\rho \closeDefs \rho', h$. Define $\closeDefsFwd: \Below{\rho} \to \Below{(\rho', h)}$ to be $\closeDefsR$ domain-restricted to $\Below{(\rho, e, \Bool)}$ and define $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \Bool)}$ to be $\closeDefsBwdR{T}$ domain-restricted to $\Below{v}$.
+   Suppose $\rho \closeDefs \rho', h$. Define $\closeDefsFwdF: \Below{\rho} \to \Below{(\rho', h)}$ to be $\closeDefsR$ domain-restricted to $\Below{(\rho, e, \Bool)}$ and define $\closeDefsBwdF{T}: \Below{v} \to \Below{(\rho, e, \Bool)}$ to be $\closeDefsBwdR{T}$ domain-restricted to $\Below{v}$.
 \end{definition}
 
 \begin{lemma}[Determinism of evaluation]

@@ -27,8 +27,10 @@
 % Misc.
 \newcommand*{\closeDefsArrow}{\twoheadrightarrow}
 \newcommand*{\closeDefs}{\mathrel{\closeDefsArrow}}
-\newcommand*{\closeDefsFwd}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
-\newcommand*{\closeDefsBwd}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsArrow$}}}
+\newcommand*{\closeDefsR}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
+\newcommand*{\closeDefsBwdR}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsArrow$}}}
+\newcommand*{\closeDefsFwdF}{\mathsf{recDefsFwd}}
+\newcommand*{\closeDefsBwdF}{\mathsf{recDefsBwd}}
 
 % Misc. syntax.
 \newcommand*{\trace}[2]{\textcolor{gray}{#1}\mathrel{\textcolor{gray}{::}}{#2}}
