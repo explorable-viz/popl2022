@@ -612,5 +612,72 @@ Induction on the $\evalBwdS$ derivation.
    \annInt{j}{\alpha'} \geq \annInt{j}{\beta} \eq v
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalBwdS$-apply}}
+     ]
+     {
+        \evalBwd{v}{T'}{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}
+        \\
+        \rho_3, e, \beta, w, \matchBwdS v', \sigma
+        \\
+        \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
+        \\
+        \rho_2 \closeDefsBwd \rho_1', h
+        \\
+        \evalBwd{\exClosureRec{\Gamma}{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
+     }
+     {
+        \evalBwd{v}{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho'}{e_1}{\alpha'}{T}{\exClosureRec{\Gamma}{\rho_1 \join \rho_1'}{h}{\sigma}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosureRec{\Gamma}{\rho_1^\dagger}{h'}{\sigma'}}
+   \text{ with }
+   (\rho^\dagger, h', \sigma') \geq (\rho_1 \join \rho_1', h, \sigma)
+   &
+   \text{monotonicity}
+   \locallabel{app-premise-one}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+     \inferrule*[
+        lab={\ruleName{$\evalFwdS$-apply}}
+     ]
+     {
+        \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosureRec{\Gamma}{\rho_1'}{h'}{\sigma'}}
+        \\
+        \rho_1', h' \closeDefs \rho_2'
+        \\
+        \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u}
+        \\
+        u, w, \sigma \matchFwdS \rho_3', e', \beta
+        \\
+        \evalFwd{\rho_1' \concat \rho_2' \concat \rho_3'}{e'}{\beta}{T'}{u'}
+     }
+     {
+        \evalFwd{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}{\trApp{T}{U}{\matchPlug{w}{T'}}}{u'}
+     }
+   \end{smathpar}
+   }
+   &
+   \notag
 \end{flalign}
 \end{proof}
