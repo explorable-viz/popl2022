@@ -403,23 +403,23 @@ Induction on the $\evalBwdS$ derivation.
               {u_{i}}
    &
    \text{IH}
-   \notag
+   \locallabel{vector-IH-two}
    \\
    &
-   (\bigjoin \rho \join \rho', \bigjoin e, \alpha \join \bigjoin \alpha' \join \alpha^\twoPrime)
+   (\bigjoin \rho \join \rho', \beta^\dagger, \bigjoin e, \alpha^\dagger)
    \geq
-   (\rho_i, e_i, \alpha'_i)
+   (\rho_i, e_i, \beta'_i, \alpha'_i)
    \notag
    \\
    &
-   \evalFwdGeq{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta}}}
+   \evalFwdGeq{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
               {\bigjoin e}
               {\alpha^\dagger}
               {U_{i}}
               {u_{i}}
    &
-   \text{monotonicity}
-   \locallabel{vector-premise-one}
+   \text{(\localref{vector-IH-two}); monotonicity}
+   \locallabel{vector-premise-two}
    \\
    &
    \qedLocal
@@ -431,9 +431,9 @@ Induction on the $\evalBwdS$ derivation.
                   {e'}
                   {\alpha^\dagger}
                   {T}
-                  {\annInt{j}{\beta}}
+                  {\annInt{j}{\beta^\dagger}}
         \\
-        \evalFwd{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta}}}
+        \evalFwd{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
                 {\bigjoin e}
                 {\alpha^\dagger}
                 {U_{i}}
@@ -446,7 +446,7 @@ Induction on the $\evalBwdS$ derivation.
                 {\annVec{\bigjoin e}{x}{e'}{\alpha}}
                 {\alpha^\dagger}
                 {\trVec{U_{i}}{x}{i}{T}{j}}
-                {\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha^\dagger}}
+                {\annVec{v_{i}}{i}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}}
      }
    \end{smathpar}
    }
