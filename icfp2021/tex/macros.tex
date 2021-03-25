@@ -172,8 +172,8 @@
 % Lattices
 \let\oldbigjoin\bigjoin
 \let\oldbigmeet\bigmeet
-\renewcommand*{\bigjoin}[1]{\textstyle{\oldbigjoin}#1}
-\renewcommand*{\bigmeet}[1]{\textstyle{\oldbigmeet}#1}
+\renewcommand*{\bigjoin}[1]{{\textstyle{\oldbigjoin}}#1}
+\renewcommand*{\bigmeet}[1]{{\textstyle{\oldbigmeet}}#1}
 \let\oldleq\leq
 \let\oldgeq\geq
 \newcommand*{\numleq}{\oldleq}

@@ -87,17 +87,17 @@
       lab={\ruleName{$\evalBwdS$-vector}}
    ]
    {
-      v \eq \annVec{u_{i}}{i}{\annInt{j}{\alpha'}}{\alpha}
+      v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
       \\
       \evalBwd{u_{i}}
               {U_{i}}
-              {\rho_{i} \concat \bind{x}{i_{\beta_{i}}}}
+              {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
               {e_{i}}
-              {\beta'_{i}}
+              {\alpha'_{i}}
       \quad
       (\forall i \numleq j)
       \\
-      \evalBwd{\annInt{j}{\bigjoin\beta \join \alpha'}}
+      \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
               {T}
               {\rho'}
               {e'}
@@ -108,7 +108,7 @@
               {\trVec{U_{i}}{x}{i}{T}{j}}
               {\bigjoin\rho \join \rho'}
               {\annVec{\bigjoin e}{x}{e'}{\alpha}}
-              {\alpha \join (\bigjoin{\alpha'}) \join \alpha^\twoPrime}
+              {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
    }
    %
    \and
@@ -197,7 +197,7 @@
    \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_n: \exClosure{\rho_n}{h_n}{\sigma_n}}
    &\closeDefsFwd
    \bigjoin\rho,
-   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join (\bigjoin h)
+   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join {\bigjoin h}
 \end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}
