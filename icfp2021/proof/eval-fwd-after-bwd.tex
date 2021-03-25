@@ -485,7 +485,11 @@ Induction on the $\evalBwdS$ derivation.
         \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
      }
      {
-        \evalBwd{v}{\trMatrixAccess{T}{j}{U}{i}}{\rho \join \rho'}{\exMatrixAccess{e_1}{e_2}}{\alpha \join \alpha'}
+        \evalBwd{v}
+                {\trMatrixAccess{T}{j}{U}{i}}
+                {\rho \join \rho'}
+                {\exMatrixAccess{e_1}{e_2}}
+                {\alpha \join \alpha'}
      }
    \end{smathpar}
    }
@@ -501,17 +505,27 @@ Induction on the $\evalBwdS$ derivation.
         right={$i \numleq j$}
      ]
      {
-        e \eq \exVecAccess{e_1}{e_2}
-        \\
-        \evalFwdEq{\rho}{e_1}{\alpha}{T}
-                  {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
+        \evalFwdEq{\rho \join \rho'}
+                  {e_1}
+                  {\alpha \join \alpha'}
+                  {T}
+                  {\annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\beta}}
      }
      {
-        \evalFwd{\rho}{e}{\alpha}{\trVecAccess{T}{j}{U}{i}}{v_{i}}
+        \evalFwd{\rho \join \rho'}
+                {\exVecAccess{e_1}{e_2}}
+                {\alpha \join \alpha'}
+                {\trVecAccess{T}{j}{U}{i}}
+                {u_{i}}
      }
    \end{smathpar}
    }
    &
+   \notag
+   \\
+   &
+   \qedLocal
+   u_i \geq v_i
    \notag
 \end{flalign}
 \end{proof}
