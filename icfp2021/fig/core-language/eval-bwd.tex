@@ -143,6 +143,26 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\evalBwdS$-apply-prim}}
+   ]
+   {
+      v \eq \exPrimOp{\phi}{\vec{u} \concat u'}
+      \\
+      \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+      \\
+      \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+   }
+   {
+      \evalBwd{v}
+              {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+              {\rho \join \rho'}
+              {\exApp{e_1}{e_2}}
+              {\alpha \join \alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\evalBwdS$-apply-prim-sat}},
       right={$\primBwd{\phi}(v,\vec{n} \concat m) = \vec{u} \concat u'$}
    ]
