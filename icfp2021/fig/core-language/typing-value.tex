@@ -15,15 +15,15 @@
 \flushleft \shadebox{$\Gamma \vdash h: \Delta$}
 \begin{smathpar}
    \inferrule*[right={
-      \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_n}{\tyFun{A_n}{B_n}}}$}
+      \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_j}{\tyFun{A_j}{B_j}}}$}
    }]
    {
       \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
       \quad
-      (\forall i \numleq n)
+      (\forall i \numleq j)
    }
    {
-      \Gamma \vdash \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}: \Delta
+      \Gamma \vdash \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}: \Delta
    }
 \end{smathpar}
 \\[2mm]
@@ -40,25 +40,15 @@
 \and
 %
 \inferrule*[
-   right={$\phi \in \Int \to \Int$}
+   right={$\phi \in \Int^{i + j} \to \Int$}
 ]
 {
-   \strut
+   \vdash v_i: \tyInt
+   \quad
+   (\forall i \numleq j)
 }
 {
-   \vdash \exPrim{\phi}: \tyFun{\tyInt}{\tyInt}
-}
-%
-\and
-%
-\inferrule*[
-   right={$\phi \in \Int \to \Int \to \Int$}
-]
-{
-   \strut
-}
-{
-   \vdash \exPrim{\phi}: \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}}
+   \vdash \exPrimOp{\phi}{\seqRange{v_1}{v_j}}: \tyFun{\tyInt^i}{\tyInt}
 }
 %
 \and
