@@ -154,7 +154,7 @@
       \\
       \rho_2 \closeDefsBwdR \rho_1', h
       \\
-      \evalBwd{\exClosureRec{\Gamma}{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
+      \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
    }
    {
       \evalBwd{v}{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}

@@ -157,7 +157,7 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
-      \explVal{T}{\rho, e \eval \exClosureRec{\Gamma}{\rho_1}{h}{\sigma}}
+      \explVal{T}{\rho, e \eval \exClosure{\rho_1}{h}{\sigma}}
       \\
       \rho_1, h \closeDefsR \rho_2
       \\

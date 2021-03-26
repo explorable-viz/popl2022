@@ -40,9 +40,9 @@
    \\
    \exPrim{\phi} \join \exPrim{\phi} &= \exPrim{\phi}
    \\
-   \exClosureRec{\Gamma}{\rho}{h}{\sigma} \join \exClosureRec{\Gamma}{\rho'}{h'}{\sigma'}
+   \exClosure{\rho}{h}{\sigma} \join \exClosure{\rho'}{h'}{\sigma'}
    &=
-   \exClosureRec{\Gamma}{\rho \join \rho'}{h \join h'}{\sigma \join \sigma'}
+   \exClosure{\rho \join \rho'}{h \join h'}{\sigma \join \sigma'}
 \end{salign}
 \caption{Join of compatible values}
 \end{figure}
