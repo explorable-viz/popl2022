@@ -19,10 +19,10 @@
       right={$\vdash \rho: \Gamma$}
    ]
    {
-      \envLookup{\rho}{\primOp}{\phi}
+      \envLookup{\rho}{\primOp}{v}
    }
    {
-      \explVal{\trOp{\primOp}{\Gamma}}{\rho, \exOp{\primOp} \eval \phi}
+      \explVal{\trOp{\primOp}{\Gamma}}{\rho, \exOp{\primOp} \eval v}
    }
    %
    \and
@@ -155,6 +155,38 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\eval$-apply-prim}},
+      right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
+   ]
+   {
+      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\vec{n}}}
+      \\
+      \explVal{U}{\rho, e' \eval \exInt{m}}
+   }
+   {
+      \explVal{\trAppPrim{T}{\phi}{U}{n}}
+              {\rho, \exApp{e}{e'} \eval \exPrimOp{\phi}{\vec{n} \concat m}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-apply-prim-sat}},
+      right={$\arity{\phi} = \length{\vec{n}} + 1$}
+   ]
+   {
+      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\vec{n}}}
+      \\
+      \explVal{U}{\rho, e' \eval \exInt{m}}
+   }
+   {
+      \explVal{\trAppPrim{T}{\phi}{U}{n}}
+              {\rho, \exApp{e}{e'} \eval \phi(\vec{n} \concat m)}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
       \explVal{T}{\rho, e \eval \exClosure{\rho_1}{h}{\sigma}}
@@ -169,38 +201,6 @@
    }
    {
       \explVal{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\eval$-apply-prim}},
-      right={$\arity{\phi} \numgt i + 1$}
-   ]
-   {
-      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\seqRange{n_1}{n_i}}}
-      \\
-      \explVal{U}{\rho, e' \eval \exInt{n_{i+1}}}
-   }
-   {
-      \explVal{\trAppPrim{T}{\phi}{U}{n}}
-              {\rho, \exApp{e}{e'} \eval \exPrimOp{\phi}{\seqRange{n_1}{n_{i+1}}}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\eval$-apply-prim-sat}},
-      right={$\arity{\phi} = i + 1$}
-   ]
-   {
-      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\seqRange{n_1}{n_i}}}
-      \\
-      \explVal{U}{\rho, e' \eval \exInt{n_{i+1}}}
-   }
-   {
-      \explVal{\trAppPrim{T}{\phi}{U}{n}}
-              {\rho, \exApp{e}{e'} \eval \phi(\seqRangeOp{n_1}{n_{i+1}}{,})}
    }
    %
    \and
