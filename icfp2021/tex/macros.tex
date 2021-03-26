@@ -226,6 +226,7 @@
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2} \mathrel{\smalltriangleright} {#3}}
 \newcommand*{\trAppPrim}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trAppPrimNew}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trMatrix}[7]{\exMatrix{#1}{#2:#4}{#3:#5}{\sub{#6}{#7}}}
 \newcommand*{\trMatrixAccess}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
