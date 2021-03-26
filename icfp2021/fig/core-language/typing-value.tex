@@ -39,20 +39,6 @@
 %
 \and
 %
-\inferrule*[
-   right={$\phi \in \Int^{i + j} \to \Int$}
-]
-{
-   \vdash v_i: \tyInt
-   \quad
-   (\forall i \numleq j)
-}
-{
-   \vdash \exPrimOp{\phi}{\seqRange{v_1}{v_j}}: \tyFun{\tyInt^i}{\tyInt}
-}
-%
-\and
-%
 \inferrule*
 {
    \strut
@@ -87,20 +73,6 @@
 %
 \inferrule*
 {
-   \vdash \rho: \Gamma
-   \\
-   \Gamma \vdash h: \Delta
-   \\
-   \Gamma \concat \Delta \vdash \sigma: \tyFun{A}{B}
-}
-{
-   \vdash \exClosure{\rho}{h}{\sigma}: \tyFun{A}{B}
-}
-%
-\and
-%
-\inferrule*
-{
    \strut
 }
 {
@@ -129,6 +101,34 @@
 }
 {
    \vdash \exVec{v_{i}}{i}{j}: \tyVec{A}
+}
+%
+\and
+%
+\inferrule*[
+   right={$\phi \in \Int^{i + j} \to \Int$}
+]
+{
+   \vdash v_i: \tyInt
+   \quad
+   (\forall i \numleq j)
+}
+{
+   \vdash \exPrimOp{\phi}{\seqRange{v_1}{v_j}}: \tyFun{\tyInt^i}{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash \rho: \Gamma
+   \\
+   \Gamma \vdash h: \Delta
+   \\
+   \Gamma \concat \Delta \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \vdash \exClosure{\rho}{h}{\sigma}: \tyFun{A}{B}
 }
 \end{smathpar}
 \caption{Typing rules for environments and values}
