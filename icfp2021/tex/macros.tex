@@ -37,6 +37,8 @@
 
 % Primitives.
 \newcommand*{\primOp}{\oplus}
+\newcommand*{\primFwd}[1]{{#1}_{\mathsf{fwd}}}
+\newcommand*{\primBwd}[1]{{#1}_{\mathsf{bwd}}}
 
 % Prelude functions
 \newcommand*{\funConcatMap}{\exVar{\kw{concatMap}}}
@@ -55,8 +57,7 @@
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
 \newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
-\newcommand*{\exClosure}[3]{\kw{cls}({#1},{#2},{#3})}
-%\newcommand*{\exClosureRec}[4]{\sub{\kw{cls}}{#1}({#2},{#3},{#4})}
+\newcommand*{\exClosure}[3]{\kw{cl}({#1},{#2},{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
 \newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
@@ -77,6 +78,7 @@
 \newcommand*{\exOp}[1]{(#1)}
 \newcommand*{\exPair}[2]{(#1,#2)}
 \newcommand*{\exPrim}[1]{#1}
+\newcommand*{\exPrimOp}[2]{\kw{pr}({#1},{#2})} % value form, analogous to closures
 \newcommand*{\exRec}[2]{{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
@@ -180,6 +182,7 @@
 \let\oldgeq\geq
 \newcommand*{\numleq}{\oldleq}
 \newcommand*{\numgeq}{\oldgeq}
+\newcommand*{\numgt}{>}
 \renewcommand*{\leq}{\sqsubseteq}
 \renewcommand*{\geq}{\sqsupseteq}
 \newcommand{\eq}{\doteq}
@@ -219,9 +222,13 @@
 \newcommand*{\setRange}[2]{\set{{#1 .. {#2}}}}
 \newcommand*{\seqRangeOp}[3]{{#1} #3 .. #3 {#2}}
 
+\newcommand*{\arity}[1]{\mathsf{arity}(#1)}
+\newcommand*{\length}[1]{|#1|}
+
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2} \mathrel{\smalltriangleright} {#3}}
 \newcommand*{\trAppPrim}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trAppPrimNew}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trMatrix}[7]{\exMatrix{#1}{#2:#4}{#3:#5}{\sub{#6}{#7}}}
 \newcommand*{\trMatrixAccess}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}

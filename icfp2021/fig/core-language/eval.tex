@@ -19,10 +19,10 @@
       right={$\vdash \rho: \Gamma$}
    ]
    {
-      \envLookup{\rho}{\primOp}{\phi}
+      \envLookup{\rho}{\primOp}{v}
    }
    {
-      \explVal{\trOp{\primOp}{\Gamma}}{\rho, \exOp{\primOp} \eval \phi}
+      \explVal{\trOp{\primOp}{\Gamma}}{\rho, \exOp{\primOp} \eval v}
    }
    %
    \and
@@ -155,6 +155,38 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\eval$-apply-prim-unsat}},
+      right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
+   ]
+   {
+      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\vec{n}}}
+      \\
+      \explVal{U}{\rho, e' \eval \exInt{m}}
+   }
+   {
+      \explVal{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{m}}
+              {\rho, \exApp{e}{e'} \eval \exPrimOp{\phi}{\vec{n} \concat m}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-apply-prim-sat}},
+      right={$\arity{\phi} = \length{\vec{n}} + 1$}
+   ]
+   {
+      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\vec{n}}}
+      \\
+      \explVal{U}{\rho, e' \eval \exInt{m}}
+   }
+   {
+      \explVal{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{m}}
+              {\rho, \exApp{e}{e'} \eval \phi(\vec{n} \concat m)}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
       \explVal{T}{\rho, e \eval \exClosure{\rho_1}{h}{\sigma}}
@@ -169,18 +201,6 @@
    }
    {
       \explVal{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\eval$-apply-prim}}]
-   {
-      \explVal{T}{\rho, e \eval \phi}
-      \\
-      \explVal{U}{\rho, e' \eval \exInt{n}}
-   }
-   {
-      \explVal{\trAppPrim{T}{\phi}{U}{n}}{\rho, \exApp{e}{e'} \eval \phi(n)}
    }
    %
    \and

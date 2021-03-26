@@ -6,12 +6,12 @@
    {
       \sigma_i \leq \sigma'_i
       \quad
-      (\forall i \numleq n)
+      (\forall i \numleq j)
    }
    {
-      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}
+      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}
       \leq
-      \seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_n}{\sigma'_n}}
+      \seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_j}{\sigma'_j}}
    }
    %
    \and
@@ -21,10 +21,10 @@
    {
       \sigma_i \leq \hole
       \quad
-      (\forall i \numleq n)
+      (\forall i \numleq j)
    }
    {
-      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}} \leq \hole
+      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}} \leq \hole
    }
 \end{smathpar}
 
@@ -220,10 +220,12 @@
    \inferrule*[
    ]
    {
-      \strut
+      v_i \leq u_i
+      \quad
+      (\forall i \numleq j)
    }
    {
-      \exPrim{\phi} \leq \exPrim{\phi}
+      \exPrimOp{\phi}{\seqRange{v_1}{v_j}} \leq \exPrimOp{\phi}{\seqRange{u_1}{u_j}}
    }
    %
    \and
@@ -231,10 +233,12 @@
    \inferrule*[
    ]
    {
-      \strut
+      v_i \leq \hole
+      \quad
+      (\forall i \numleq j)
    }
    {
-      \exPrim{\phi} \leq \hole
+      \exPrimOp{\phi}{\seqRange{v_1}{v_j}} \leq \hole
    }
    %
    \and

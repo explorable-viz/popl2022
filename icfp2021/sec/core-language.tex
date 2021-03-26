@@ -43,6 +43,15 @@
 
 \subsubsection{Evaluation}
 
+\paragraph{Primitive operations}
+
+We require each primitive operation $\phi: \tyInt^{i} \to \tyInt$ with $\arity{\phi} = i$ to be provided with  forward and backward slicing variants with the following signatures:
+
+\begin{salign}
+   \primFwd{\phi} &: (\tyInt \times \Bool)^i \to \tyInt \times \Bool \\
+   \primBwd{\phi} &: \tyInt \times \Bool \to \tyInt^i \to (\tyInt \times \Bool)^i
+\end{salign}
+
 \input{fig/core-language/eval-fwd}
 \input{fig/core-language/eval-bwd}
 \input{fig/core-language/env-lookup}

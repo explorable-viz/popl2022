@@ -143,6 +143,49 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\evalBwdS$-apply-prim-unsat}}
+   ]
+   {
+      v \eq \exPrimOp{\phi}{\vec{u} \concat u'}
+      \\
+      \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+      \\
+      \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+   }
+   {
+      \evalBwd{v}
+              {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+              {\rho \join \rho'}
+              {\exApp{e_1}{e_2}}
+              {\alpha \join \alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalBwdS$-apply-prim-sat}},
+      right={$\arity{\phi} = \length{\vec{n}} + 1$}
+   ]
+   {
+      v \eq \annInt{n'}{\beta}
+      \\
+      \primBwd{\phi}(\annInt{n'}{\beta},\vec{n} \concat m) = \vec{u} \concat u'
+      \\
+      \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+      \\
+      \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+   }
+   {
+      \evalBwd{v}
+              {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+              {\rho \join \rho'}
+              {\exApp{e_1}{e_2}}
+              {\alpha \join \alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\evalBwdS$-apply}}
    ]
    {
@@ -163,22 +206,6 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply-prim}}
-   ]
-   {
-      v \eq \annInt{n}{\beta}
-      \\
-      \evalBwd{\phi}{T}{\rho}{e_1}{\alpha}
-      \\
-      \evalBwd{\annInt{m}{\beta}}{U}{\rho'}{e_2}{\alpha'}
-   }
-   {
-      \evalBwd{v}{\trAppPrim{T}{\phi}{U}{\exInt{m}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\evalBwdS$-let-rec}}
    ]
    {
@@ -194,10 +221,10 @@
 \vspace{5pt}
 \flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
 \begin{salign}
-   \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_n: \exClosure{\rho_n}{h_n}{\sigma_n}}
+   \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_i: \exClosure{\rho_i}{h_i}{\sigma_i}}
    &\closeDefsBwdR
    \bigjoin\rho,
-   (\seqRange{x_1: \sigma_1}{x_n: \sigma_n}) \join {\bigjoin h}
+   (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin h}
 \end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}
