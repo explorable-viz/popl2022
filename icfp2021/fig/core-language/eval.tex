@@ -173,14 +173,34 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-apply-prim}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-apply-prim}},
+      right={$\arity{\phi} \numgt i + 1$}
+   ]
    {
-      \explVal{T}{\rho, e \eval \phi}
+      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\seqRange{n_1}{n_i}}}
       \\
-      \explVal{U}{\rho, e' \eval \exInt{n}}
+      \explVal{U}{\rho, e' \eval \exInt{n_{i+1}}}
    }
    {
-      \explVal{\trAppPrim{T}{\phi}{U}{n}}{\rho, \exApp{e}{e'} \eval \phi(n)}
+      \explVal{\trAppPrim{T}{\phi}{U}{n}}
+              {\rho, \exApp{e}{e'} \eval \exPrimOp{\phi}{\seqRange{n_1}{n_{i+1}}}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-apply-prim-sat}},
+      right={$\arity{\phi} = i + 1$}
+   ]
+   {
+      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\seqRange{n_1}{n_i}}}
+      \\
+      \explVal{U}{\rho, e' \eval \exInt{n_{i+1}}}
+   }
+   {
+      \explVal{\trAppPrim{T}{\phi}{U}{n}}
+              {\rho, \exApp{e}{e'} \eval \phi(\seqRangeOp{n_1}{n_{i+1}}{,})}
    }
    %
    \and
