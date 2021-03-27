@@ -45,19 +45,18 @@
 
 \paragraph{Primitive operations}
 
-Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection with the following signature:
-
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection $(\primFwdBool{\phi}(\vec{n}), \primBwdBool{\phi}(\vec{n}))$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}(\vec{n}), \primBwd{\phi}(\vec{n}))$ between $\Val{\tyInt}^i$ and $\Val{\tyInt}$ by defining
 \begin{salign}
-   \primFwd{\phi}(\vec{n}) &: \Bool^i \to \Bool \\
-   \primBwd{\phi}(\vec{n}) &: \Bool \to \Bool^i
+   \primFwd{\phi}(\vec{n})(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
+   \text{ where }
+   \primFwdBool{\phi}(\vec{n})(\vec{\alpha}) = \beta
+   \\
+   \primBwd{\phi}(\vec{n})(\annInt{m}{\alpha}) &= \vec{\annInt{n}{\beta}}
+   \text{ where }
+   \primBwdBool{\phi}(\vec{n})(\alpha) = \vec{\beta}
 \end{salign}
 
-\noindent From these we can derive two forward and backward slicing families
-
-\begin{salign}
-   \primFwd{\phi(\vec{n})} &: (\tyInt \times \Bool)^i \to \tyInt \times \Bool \\
-   \primBwd{\phi(\vec{n})} &: \tyInt \times \Bool \to (\tyInt \times \Bool)^i
-\end{salign}
+\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values.
 
 \input{fig/core-language/eval-fwd}
 \input{fig/core-language/eval-bwd}

@@ -38,7 +38,9 @@
 % Primitives.
 \newcommand*{\primOp}{\oplus}
 \newcommand*{\primFwd}[1]{{#1}_{\mathsf{fwd}}}
+\newcommand*{\primFwdBool}[1]{{#1}^{\Bool}_{\mathsf{fwd}}}
 \newcommand*{\primBwd}[1]{{#1}_{\mathsf{bwd}}}
+\newcommand*{\primBwdBool}[1]{{#1}^{\Bool}_{\mathsf{bwd}}}
 
 % Prelude functions
 \newcommand*{\funConcatMap}{\exVar{\kw{concatMap}}}
@@ -172,6 +174,7 @@
 % Sets
 \newcommand*{\Below}[1]{{\downarrow{#1}}}
 \newcommand*{\Bool}{\mathbb{B}}
+\newcommand*{\Val}[1]{\Set{Val}({#1})}
 
 % Lattices
 \let\oldbigjoin\bigjoin
