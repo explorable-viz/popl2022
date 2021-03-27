@@ -45,11 +45,18 @@
 
 \paragraph{Primitive operations}
 
-We require each primitive operation $\phi: \tyInt^{i} \to \tyInt$ with $\arity{\phi} = i$ to be provided with  forward and backward slicing variants with the following signatures:
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection with the following signature:
 
 \begin{salign}
-   \primFwd{\phi} &: (\tyInt \times \Bool)^i \to \tyInt \times \Bool \\
-   \primBwd{\phi} &: \tyInt \times \Bool \to \tyInt^i \to (\tyInt \times \Bool)^i
+   \primFwd{\phi}(\vec{n}) &: \Bool^i \to \Bool \\
+   \primBwd{\phi}(\vec{n}) &: \Bool \to \Bool^i
+\end{salign}
+
+\noindent From these we can derive two forward and backward slicing families
+
+\begin{salign}
+   \primFwd{\phi(\vec{n})} &: (\tyInt \times \Bool)^i \to \tyInt \times \Bool \\
+   \primBwd{\phi(\vec{n})} &: \tyInt \times \Bool \to (\tyInt \times \Bool)^i
 \end{salign}
 
 \input{fig/core-language/eval-fwd}
