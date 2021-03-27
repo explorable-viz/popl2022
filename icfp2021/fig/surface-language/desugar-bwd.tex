@@ -71,18 +71,18 @@
       lab={\ruleName{$\dbwdarrow$-let-rec}}
    ]
    {
-      e \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_n}{\sigma_n}}}{e'}
+      e \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e'}
       \\
-      \sigma_i, \vec{c}_i \dbwdarrow \vec{c}'_i
+      \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}'
       \quad
-      (\forall i \in \setRange{1}{n})
+      (\forall i \in \setRange{1}{j})
       \\
       e', s \dbwdarrow s'
    }
    {
-      e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_n}{\vec{c}_n}}}{s}
+      e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c_j}}}}{s}
       \dbwdarrow
-      \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}'_1}}{{x_n}{\vec{c}'_n}}}{s'}
+      \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
    }
    %
    \and

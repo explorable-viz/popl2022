@@ -59,16 +59,16 @@
       lab={\ruleName{$\dfwdarrow$-let-rec}}
    ]
    {
-      \vec{c}_i \dfwdarrow \sigma_i
+      \vec{c_i} \dfwdarrow \sigma_i
       \quad
-      (\forall i \in \setRange{1}{n})
+      (\forall i \in \setRange{1}{j})
       \\
       s \dfwdarrow e
    }
    {
-      \exLetRecMutual{\seqRange{x_1: \vec{c}_1}{x_n: \vec{c}_n}}{s}
+      \exLetRecMutual{\seqRange{x_1: \vec{c_1}}{x_j: \vec{c_j}}}{s}
       \dfwdarrow
-      \exLetRecMutual{\seqRange{x_1: \sigma_1}{x_n: \sigma_n}}{e}
+      \exLetRecMutual{\seqRange{x_1: \sigma_1}{x_j: \sigma_j}}{e}
    }
    %
    \and
