@@ -810,14 +810,14 @@ Induction on the $\evalBwdS$ derivation.
       {
          \evalFwd{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
          \\
-         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u}
+         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{v'}
       }
       {
          \evalFwd{\rho \join \rho'}
                  {\exApp{e_1}{e_2}}
                  {\alpha \join \alpha'}
                  {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-                 {\primFwd{\phi}(\vec{v} \concat u)}
+                 {\primFwd{\phi}(\vec{v} \concat v')}
       }
    \end{smathpar}
    }
@@ -827,7 +827,6 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   \exPrimOp{\phi}{\vec{v} \concat v'} \geq \exPrimOp{\phi}{\vec{u} \concat u'} \eq v
    &
    \notag
    \\
