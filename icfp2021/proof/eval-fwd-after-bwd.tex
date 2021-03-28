@@ -1049,14 +1049,12 @@ Induction on the $\evalBwdS$ derivation.
          \ruleName{$\evalFwdS$-let-rec}}
       ]
       {
-         e \eq \exLetRecMutual{h}{e'}
-         \\
          \rho_1, h \closeDefsFwdR \rho_2
          \\
          \evalFwd{\rho_1 \concat \rho_2}{e'}{\alpha}{T}{v}
       }
       {
-         \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
+         \evalFwd{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
       }
    \end{smathpar}
    }

@@ -187,9 +187,9 @@
    {
       e \eq \exLetRecMutual{h}{e'}
       \\
-      \rho_1, h \closeDefsFwdR \rho_2
+      \rho, h \closeDefsFwdR \rho_1
       \\
-      \evalFwd{\rho_1 \concat \rho_2}{e'}{\alpha}{T}{v}
+      \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
