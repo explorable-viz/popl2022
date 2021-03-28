@@ -100,10 +100,10 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-op}}
       ]
       {
-         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
+         \envLookupBwd{\rho'}{\Gamma}{\bind{\primOp}{v}}
       }
       {
-         \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
+         \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho'}{\exOp{\primOp}}{\FF}
       }
    \end{smathpar}
    }
