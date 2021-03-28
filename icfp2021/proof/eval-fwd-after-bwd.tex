@@ -994,52 +994,41 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{\rho}
-              {e_1}
+   \evalFwdGeq{\rho \concat \rho_1}
+              {e}
               {\alpha}
               {T}
-              {\exPrimOp{\phi}{\vec{u}}}
+              {v}
    &
    \text{IH}
    \notag
    \\
    &
-   \evalFwdEq{\rho \join \rho'}
-             {e_1}
-             {\alpha \join \alpha'}
+   \evalFwdEq{(\rho \join \rho') \concat \rho_1}
+             {e}
+             {\alpha}
              {T}
-             {\exPrimOp{\phi}{\vec{v}}}
+             {u}
    \text{ with }
-   \vec{v} \geq \vec{u}
+   u \geq v
    \quad
-   (\exists \vec{v})
+   (\exists u)
    &
    \text{monotonicity}
-   \locallabel{apply-prim-sat-premise-one}
+   \locallabel{let-rec-premise-one}
    \\
    &
-   \evalFwdGeq{\rho}
-              {e_2}
-              {\alpha}
-              {U}
-              {u'}
+   \rho', h' \closeDefsBwdR\geq \rho_1
    &
-   \text{IH}
    \notag
    \\
    &
-   \evalFwdEq{\rho \join \rho'}
-             {e_2}
-             {\alpha \join \alpha'}
-             {U}
-             {v'}
-   \text{ with }
-   v' \geq u'
+   \rho \join \rho', h' \closeDefsBwdR = \rho_1' \geq \rho_1
    \quad
-   (\exists v')
+   (\exists \rho_1')
    &
    \text{monotonicity}
-   \locallabel{apply-prim-sat-premise-two}
+   \locallabel{let-rec-premise-two}
    \\
    &
    \qedLocal
@@ -1059,7 +1048,7 @@ Induction on the $\evalBwdS$ derivation.
    \end{smathpar}
    }
    &
-   (\localref{apply-prim-sat-premise-one}, \localref{apply-prim-sat-premise-two})
+   (\localref{let-rec-premise-one}, \localref{let-rec-premise-two})
    \notag
    \\
    &
