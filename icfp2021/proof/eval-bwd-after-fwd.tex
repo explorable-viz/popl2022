@@ -26,10 +26,13 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \envLookup{\rho}{x}{v}
+   \rho \geq
+   \envLookupBwd{\rho'}{\Gamma}{\bind{x}{v}}
+   \quad
+   (\exists \rho')
    &
    \text{
-   	(\lemref{core-language:env-get-put})
+   	(totality; \lemref{core-language:env-get-put})
    }
    \notag
    \\
@@ -54,5 +57,7 @@ Induction on the $\evalFwdS$ derivation.
    &
    \qedLocal
    (\rho', x, \FF) \leq (\rho, e, \alpha)
+   &
+   \notag
 \end{flalign}
 \end{proof}
