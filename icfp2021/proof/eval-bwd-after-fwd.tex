@@ -56,7 +56,65 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho', x, \FF) \leq (\rho, e, \alpha)
+   (\rho', \exVar{x}, \FF) \leq (\rho, e, \alpha)
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-op}}
+      ]
+      {
+         e \eq \exOp{\primOp}
+         \\
+         \envLookup{\rho}{\primOp}{v}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trOp{\primOp}{\Gamma}}{v}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \rho \geq
+   \envLookupBwd{\rho'}{\Gamma}{\bind{\primOp}{v}}
+   \quad
+   (\exists \rho')
+   &
+   \text{
+   	(totality; \lemref{core-language:env-get-put})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-op}}
+      ]
+      {
+         v \eq \phi
+         \\
+         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
+      }
+      {
+         \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho', \exOp{\primOp}, \FF) \leq (\rho, e, \alpha)
    &
    \notag
 \end{flalign}
