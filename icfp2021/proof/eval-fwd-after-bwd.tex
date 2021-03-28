@@ -727,6 +727,114 @@ Induction on the $\evalBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply-prim-sat}}
+      ]
+      {
+         v \eq \annInt{n'}{\beta}
+         \\
+         \primBwd{\phi}(\vec{n} \concat m)(\annInt{n'}{\beta}) = \vec{u} \concat u'
+         \\
+         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{v}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_1}
+              {\alpha}
+              {T}
+              {\exPrimOp{\phi}{\vec{u}}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_1}
+             {\alpha \join \alpha'}
+             {T}
+             {\exPrimOp{\phi}{\vec{v}}}
+   \text{ with }
+   \vec{v} \geq \vec{u}
+   \quad
+   (\exists \vec{v})
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-sat-premise-one}
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_2}
+              {\alpha}
+              {U}
+              {u'}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_2}
+             {\alpha \join \alpha'}
+             {U}
+             {v'}
+   \text{ with }
+   v' \geq u'
+   \quad
+   (\exists v')
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-sat-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-apply-prim-sat}},
+         right={$\arity{\phi} = \length{\vec{n}} + 1$}
+      ]
+      {
+         e \eq \exApp{e_1}{e_2}
+         \\
+         \evalFwd{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
+         \\
+         \evalFwd{\rho}{e_2}{\alpha}{U}{u}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\primFwd{\phi}(\vec{v} \concat u)}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{apply-prim-sat-premise-one}, \localref{apply-prim-sat-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   \exPrimOp{\phi}{\vec{v} \concat v'} \geq \exPrimOp{\phi}{\vec{u} \concat u'} \eq v
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
      \inferrule*[
         lab={\ruleName{$\evalBwdS$-apply}}
      ]
