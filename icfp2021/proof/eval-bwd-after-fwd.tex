@@ -1,0 +1,54 @@
+\subsection{\thmref{core-language:eval:gc}, part (ii)}
+Induction on the $\evalFwdS$ derivation.
+\begin{proof}
+
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-var}}
+      ]
+      {
+         e \eq \exVar{x}
+         \\
+         \envLookup{\rho}{x}{v}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trVar{x}{\Gamma}}{v}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \envLookup{\rho}{x}{v}
+   &
+   \text{
+   	(\lemref{core-language:env-get-put})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-var}}
+      ]
+      {
+         \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
+      }
+      {
+         \evalBwd{v}{\trVar{x}{\Gamma}}{\rho}{\exVar{x}}{\FF}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+\end{flalign}
+\end{proof}

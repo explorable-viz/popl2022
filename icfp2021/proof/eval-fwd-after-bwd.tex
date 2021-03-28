@@ -1020,10 +1020,11 @@ Induction on the $\evalBwdS$ derivation.
    &
    \rho', h' \closeDefsBwdR\geq \rho_1
    &
+   \text{\thmref{core-language:closeDefs:gc}}
    \notag
    \\
    &
-   \rho \join \rho', h' \closeDefsBwdR = \rho_1' \geq \rho_1
+   \rho \join \rho', h' \closeDefsBwdR \rho_1' \geq \rho_1
    \quad
    (\exists \rho_1')
    &
@@ -1040,10 +1041,10 @@ Induction on the $\evalBwdS$ derivation.
       {
          \rho \join \rho', h' \closeDefsFwdR \rho_1
          \\
-         \evalFwd{(\rho \join \rho') \concat \rho_1}{e}{\alpha}{T}{v}
+         \evalFwd{(\rho \join \rho') \concat \rho_1}{e}{\alpha}{T}{u}
       }
       {
-         \evalFwd{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
+         \evalFwd{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{u}
       }
    \end{smathpar}
    }
@@ -1053,10 +1054,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   \primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat v') \geq
-   \primFwd{\phi}(\vec{n} \concat m)(\vec{u} \concat u') \geq \annInt{n'}{\beta} \eq v
+   u \geq v
    &
-   \text{\defrefShort{core-language:primop-gc}; monotonicity}
    \notag
 \end{flalign}
 \end{proof}
