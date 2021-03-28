@@ -115,5 +115,57 @@ Induction on the $\evalFwdS$ derivation.
    (\rho', \exOp{\primOp}, \FF) \leq (\rho, e, \alpha)
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
+      {
+         e \eq \exLambda{\sigma}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trLambda{\sigma'}}{\exClosure{\rho}{\seqEmpty}{\sigma}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \rho \geq
+   \envLookupBwd{\rho'}{\Gamma}{\bind{\primOp}{v}}
+   \quad
+   (\exists \rho')
+   &
+   \text{
+   	(totality; \lemref{core-language:env-get-put})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-lambda}}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{\exClosure{\rho}{\seqEmpty}{\sigma}}{\trLambda{\sigma'}}{\rho}{\exLambda{\sigma}}{\FF}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho', \exOp{\primOp}, \FF) \leq (\rho, e, \alpha)
+   &
+   \notag
 \end{flalign}
 \end{proof}
