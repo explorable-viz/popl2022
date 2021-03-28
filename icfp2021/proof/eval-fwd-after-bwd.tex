@@ -677,6 +677,20 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
+   \evalFwdEq{\rho \join \rho'}
+             {e_2}
+             {\alpha \join \alpha'}
+             {U}
+             {v'}
+   \text{ with }
+   v' \geq u'
+   \quad
+   (\exists v')
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-unsat-premise-two}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -687,23 +701,24 @@ Induction on the $\evalBwdS$ derivation.
       {
          \evalFwd{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
          \\
-         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u}
+         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{v'}
       }
       {
          \evalFwd{\rho \join \rho'}
                  {\exApp{e_1}{e_2}}
                  {\alpha \join \alpha'}
                  {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-                 {\exPrimOp{\phi}{\vec{v} \concat u}}
+                 {\exPrimOp{\phi}{\vec{v} \concat v'}}
       }
    \end{smathpar}
    }
    &
+   (\localref{apply-prim-unsat-premise-one}, \localref{apply-prim-unsat-premise-two})
    \notag
    \\
    &
    \qedLocal
-   \annInt{j}{\alpha'} \geq \annInt{j}{\beta} \eq v
+   \exPrimOp{\phi}{\vec{v} \concat v'} \geq \exPrimOp{\phi}{\vec{u} \concat u'} \eq v
    &
    \notag
    \\
