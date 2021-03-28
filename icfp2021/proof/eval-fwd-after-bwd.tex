@@ -827,7 +827,10 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
+   \primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat v') \geq
+   \primFwd{\phi}(\vec{n} \concat m)(\vec{u} \concat u') \geq \annInt{n'}{\beta} \eq v
    &
+   \text{\defrefShort{core-language:primop-gc}; monotonicity}
    \notag
    \\
    \intertext{\crossrule}
@@ -874,7 +877,7 @@ Induction on the $\evalBwdS$ derivation.
    &
    \rho'_1, h \closeDefsFwdR\geq \rho_2
    &
-   \text{(\thmref{core-language:closeDefs:gc})}
+   \text{\thmref{core-language:closeDefs:gc}}
    \notag
    \\
    &
@@ -907,7 +910,7 @@ Induction on the $\evalBwdS$ derivation.
    &
    \matchFwdGeq{v'}{\sigma}{w}{\rho_3}{e}{\beta}
    &
-   \text{(\thmref{core-language:match:gc})}
+   \text{\thmref{core-language:match:gc}}
    \notag
    \\
    &
@@ -960,13 +963,113 @@ Induction on the $\evalBwdS$ derivation.
    \end{smathpar}
    }
    &
-   \text{(
+   \text{(%
     \localref{app-premise-one},
     \localref{app-premise-two},
     \localref{app-premise-three},
     \localref{app-premise-four},
-    \localref{app-premise-five}
+    \localref{app-premise-five}%
    )}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-let-rec}}
+      ]
+      {
+         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
+         \\
+         \rho_1 \closeDefsBwdR \rho', h'
+      }
+      {
+         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_1}
+              {\alpha}
+              {T}
+              {\exPrimOp{\phi}{\vec{u}}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_1}
+             {\alpha \join \alpha'}
+             {T}
+             {\exPrimOp{\phi}{\vec{v}}}
+   \text{ with }
+   \vec{v} \geq \vec{u}
+   \quad
+   (\exists \vec{v})
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-sat-premise-one}
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_2}
+              {\alpha}
+              {U}
+              {u'}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_2}
+             {\alpha \join \alpha'}
+             {U}
+             {v'}
+   \text{ with }
+   v' \geq u'
+   \quad
+   (\exists v')
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-sat-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={
+         \ruleName{$\evalFwdS$-let-rec}}
+      ]
+      {
+         e \eq \exLetRecMutual{h}{e'}
+         \\
+         \rho_1, h \closeDefsFwdR \rho_2
+         \\
+         \evalFwd{\rho_1 \concat \rho_2}{e'}{\alpha}{T}{v}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{apply-prim-sat-premise-one}, \localref{apply-prim-sat-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   \primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat v') \geq
+   \primFwd{\phi}(\vec{n} \concat m)(\vec{u} \concat u') \geq \annInt{n'}{\beta} \eq v
+   &
+   \text{\defrefShort{core-language:primop-gc}; monotonicity}
    \notag
 \end{flalign}
 \end{proof}

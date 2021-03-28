@@ -46,6 +46,8 @@
 \paragraph{Primitive operations}
 
 Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection $(\primFwdBool{\phi}(\vec{n}), \primBwdBool{\phi}(\vec{n}))$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}(\vec{n}), \primBwd{\phi}(\vec{n}))$ between $\Below{\vec{\annInt{n}{\TT}}}$ and $\Below{\annInt{\phi(\vec{n})}{\TT}}$ by defining
+\begin{definition}
+\label{def:core-language:primop-gc}
 \begin{salign}
    \primFwd{\phi}(\vec{n})(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
    \text{ where }
@@ -55,6 +57,7 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
    \text{ where }
    \primBwdBool{\phi}(\vec{n})(\alpha) = \vec{\beta}
 \end{salign}
+\end{definition}
 
 \noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values.
 
