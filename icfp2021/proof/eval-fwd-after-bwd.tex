@@ -586,6 +586,8 @@ Induction on the $\evalBwdS$ derivation.
              {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
    \text{ with }
    \alpha' \geq \beta
+   \quad
+   \text{($\exists v, \alpha'$)}
    &
    \notag
    \\
@@ -602,6 +604,98 @@ Induction on the $\evalBwdS$ derivation.
         \evalFwd{\rho}{\exVecLen{e}}{\alpha}{\trVecLen{T}{j}}
                 {\annInt{j}{\alpha'}}
      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annInt{j}{\alpha'} \geq \annInt{j}{\beta} \eq v
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply-prim-unsat}}
+      ]
+      {
+         v \eq \exPrimOp{\phi}{\vec{u} \concat u'}
+         \\
+         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{v}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_1}
+              {\alpha}
+              {T}
+              {\exPrimOp{\phi}{\vec{u}}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_1}
+             {\alpha \join \alpha'}
+             {T}
+             {\exPrimOp{\phi}{\vec{v}}}
+   \text{ with }
+   \vec{v} \geq \vec{u}
+   \quad
+   (\exists \vec{v})
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-unsat-premise-one}
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_2}
+              {\alpha}
+              {U}
+              {u'}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-apply-prim-unsat}},
+         right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
+      ]
+      {
+         \evalFwd{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
+         \\
+         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u}
+      }
+      {
+         \evalFwd{\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\exPrimOp{\phi}{\vec{v} \concat u}}
+      }
    \end{smathpar}
    }
    &
@@ -679,7 +773,7 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u'}
-   \text{ where }
+   \text{ with }
    u' \geq v'
    \quad
    (\exists u')
