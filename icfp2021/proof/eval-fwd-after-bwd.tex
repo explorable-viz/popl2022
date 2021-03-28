@@ -808,14 +808,15 @@ Induction on the $\evalBwdS$ derivation.
          right={$\arity{\phi} = \length{\vec{n}} + 1$}
       ]
       {
-         e \eq \exApp{e_1}{e_2}
+         \evalFwd{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
          \\
-         \evalFwd{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
-         \\
-         \evalFwd{\rho}{e_2}{\alpha}{U}{u}
+         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u}
       }
       {
-         \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+         \evalFwd{\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
                  {\primFwd{\phi}(\vec{v} \concat u)}
       }
    \end{smathpar}
