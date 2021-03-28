@@ -45,9 +45,9 @@
 
 \paragraph{Primitive operations}
 
-Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection $(\primFwdBool{\phi}(\vec{n}), \primBwdBool{\phi}(\vec{n}))$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}, \primBwd{\phi}(\vec{n}))$ between $\Val{\tyInt}^i$ and $\Val{\tyInt}$ by defining
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection $(\primFwdBool{\phi}(\vec{n}), \primBwdBool{\phi}(\vec{n}))$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}(\vec{n}), \primBwd{\phi}(\vec{n}))$ between $\Below{\vec{\annInt{n}{\TT}}}$ and $\Below{\annInt{\phi(\vec{n})}{\TT}}$ by defining
 \begin{salign}
-   \primFwd{\phi}(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
+   \primFwd{\phi}(\vec{n})(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
    \text{ where }
    \primFwdBool{\phi}(\vec{n})(\vec{\alpha}) = \beta
    \\
