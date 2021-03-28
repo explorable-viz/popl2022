@@ -167,5 +167,62 @@ Induction on the $\evalFwdS$ derivation.
    (\rho, \exLambda{\sigma}, \FF) \leq (\rho, e, \alpha)
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
+      {
+         e \eq \annInt{n}{\alpha}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha'}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha \meet \alpha'}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \rho \geq
+   \envLookupBwd{\rho'}{\Gamma}{\bind{\primOp}{v}}
+   \quad
+   (\exists \rho')
+   &
+   \text{
+   	(totality; \lemref{core-language:env-get-put})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-int}}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{\annInt{n}{\alpha \meet \alpha'}}
+                 {\trInt{n}{\Gamma}}{\hole_{\Gamma}}
+                 {\annInt{n}{\alpha \meet \alpha'}}
+                 {\alpha \meet \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\hole_{\Gamma}, \annInt{n}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   \leq
+   (\rho, e, \alpha)
+   &
+   \notag
 \end{flalign}
 \end{proof}
