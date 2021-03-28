@@ -100,9 +100,7 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-op}}
       ]
       {
-         v \eq \phi
-         \\
-         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
+         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
       }
       {
          \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
