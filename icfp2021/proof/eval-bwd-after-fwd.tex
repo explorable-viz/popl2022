@@ -284,6 +284,16 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{cons-premise-one}
    \\
    &
+   \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
+   \leq
+   (\rho', e_2, \alpha')
+   \quad
+   (\exists \rho_2, e_2', \beta')
+   &
+   \text{IH}
+   \locallabel{cons-premise-two}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -299,12 +309,13 @@ Induction on the $\evalFwdS$ derivation.
          \evalBwd{\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
                  {\trCons{T}{U}}
                  {\rho_1 \join \rho_2}
-                 {\annCons{e_1'}{e_2'}{\beta}}
+                 {\annCons{e_1'}{e_2'}{\alpha \meet \alpha'}}
                  {(\alpha \meet \alpha') \join \beta \join \beta'}
       }
    \end{smathpar}
    }
    &
+   (\localref{cons-premise-one}, \localref{cons-premise-two})
    \notag
    \\
    &
