@@ -286,7 +286,7 @@ Induction on the $\evalFwdS$ derivation.
    &
    \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
    \leq
-   (\rho', e_2, \alpha')
+   (\rho, e_2, \alpha')
    \quad
    (\exists \rho_2, e_2', \beta')
    &
@@ -320,9 +320,9 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\hole_{\Gamma}, \annNil{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   (\rho_1 \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
    \leq
-   (\rho, e, \alpha)
+   (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
    &
    \notag
 \end{flalign}
