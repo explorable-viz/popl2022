@@ -249,5 +249,60 @@ Induction on the $\evalFwdS$ derivation.
    (\rho, e, \alpha)
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-cons}},
+      ]
+      {
+         e \eq \annCons{e_1}{e_2}{\alpha}
+         \\
+         \evalFwd{\rho}{e_1}{\alpha'}{T}{v_1}
+         \\
+         \evalFwd{\rho}{e_2}{\alpha'}{U}{v_2}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha'}{\trCons{T}{U}}{\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-cons}}
+      ]
+      {
+         \evalBwd{v_1}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{v_2}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
+                 {\trCons{T}{U}}
+                 {\rho \join \rho'}
+                 {\annCons{e_1}{e_2}{\beta}}
+                 {\beta \join \alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\hole_{\Gamma}, \annNil{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   \leq
+   (\rho, e, \alpha)
+   &
+   \notag
 \end{flalign}
 \end{proof}
