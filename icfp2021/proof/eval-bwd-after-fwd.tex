@@ -134,17 +134,6 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \rho \geq
-   \envLookupBwd{\rho'}{\Gamma}{\bind{\primOp}{v}}
-   \quad
-   (\exists \rho')
-   &
-   \text{
-   	(totality; \lemref{core-language:env-get-put})
-   }
-   \notag
-   \\
-   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -220,6 +209,64 @@ Induction on the $\evalFwdS$ derivation.
    &
    \qedLocal
    (\hole_{\Gamma}, \annInt{n}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   \leq
+   (\rho, e, \alpha)
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
+      {
+         e \eq \annNil{\alpha}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha'}{\trNil{\Gamma}}{\annNil{\alpha \meet \alpha'}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \rho \geq
+   \envLookupBwd{\rho'}{\Gamma}{\bind{\primOp}{v}}
+   \quad
+   (\exists \rho')
+   &
+   \text{
+   	(totality; \lemref{core-language:env-get-put})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-nil}}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{\annNil{\alpha \meet \alpha'}}
+                 {\trNil{\Gamma}}
+                 {\hole_{\Gamma}}
+                 {\annNil{\alpha \meet \alpha'}}
+                 {\alpha \meet \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\hole_{\Gamma}, \annNil{\alpha \meet \alpha'}, \alpha \meet \alpha')
    \leq
    (\rho, e, \alpha)
    &
