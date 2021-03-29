@@ -274,6 +274,16 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
+   \evalBwd{v_1}{T}{\rho_1}{e_1'}{\beta}
+   \leq
+   (\rho, e_1, \alpha')
+   \quad
+   (\exists \rho_1, e_1', \beta)
+   &
+   \text{IH}
+   \locallabel{cons-premise-one}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -281,16 +291,16 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-cons}}
       ]
       {
-         \evalBwd{v_1}{T}{\rho}{e_1}{\alpha}
+         \evalBwd{v_1}{T}{\rho_1}{e_1'}{\beta}
          \\
-         \evalBwd{v_2}{U}{\rho'}{e_2}{\alpha'}
+         \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
       }
       {
          \evalBwd{\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
                  {\trCons{T}{U}}
-                 {\rho \join \rho'}
-                 {\annCons{e_1}{e_2}{\beta}}
-                 {\beta \join \alpha \join \alpha'}
+                 {\rho_1 \join \rho_2}
+                 {\annCons{e_1'}{e_2'}{\beta}}
+                 {(\alpha \meet \alpha') \join \beta \join \beta'}
       }
    \end{smathpar}
    }
