@@ -362,7 +362,7 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{vector-premise-one}
    \\
    &
-   \evalBwd{v_i}{U_i}{\rho'_i \concat \bind{x}{i_{\beta^\twoPrime_i}}}{e_1'}{\beta'_i}
+   \evalBwd{v_i}{U_i}{\rho'_i \concat \bind{x}{i_{\beta^\twoPrime_i}}}{e'_i}{\beta'_i}
    \leq
    \rho \concat \bind{x}{i_{\beta}}, e_1, \alpha'
    \quad
@@ -381,26 +381,26 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-vector}}
       ]
       {
-         \evalBwd{u_{i}}
+         \evalBwd{v_{i}}
                  {U_{i}}
-                 {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
-                 {e_{i}}
-                 {\alpha'_{i}}
+                 {\rho'_{i} \concat \bind{x}{i_{\beta^\twoPrime_{i}}}}
+                 {e'_{i}}
+                 {\beta'_{i}}
          \quad
          (\forall i \numleq j)
          \\
-         \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
+         \evalBwd{\annInt{j}{\beta \join \bigjoin\beta^\twoPrime}}
                  {T}
-                 {\rho'}
-                 {e'}
+                 {\rho^\twoPrime}
+                 {e_2'}
                  {\alpha^\twoPrime}
       }
       {
          \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
                  {\trVec{U_{i}}{x}{i}{T}{j}}
-                 {\bigjoin\rho \join \rho'}
-                 {\annVec{\bigjoin e}{x}{e'}{\alpha}}
-                 {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
+                 {\bigjoin\rho' \join \rho^\twoPrime}
+                 {\annVec{\bigjoin e'}{x}{e_2'}{\alpha \meet \alpha'}}
+                 {(\alpha \meet \alpha') \join {\bigjoin{\beta'}} \join \alpha^\twoPrime}
       }
    \end{smathpar}
    }
