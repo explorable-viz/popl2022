@@ -591,5 +591,83 @@ Induction on the $\evalFwdS$ derivation.
    (\rho, \exVecLen{e'}, \alpha)
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-apply-prim-unsat}},
+         right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
+      ]
+      {
+         e \eq \exApp{e_1}{e_2}
+         \\
+         \evalFwd{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
+         \\
+         \evalFwd{\rho}{e_2}{\alpha}{U}{u}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\exPrimOp{\phi}{\vec{v} \concat u}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalBwd{v_1}{T}{\rho_1}{e_1'}{\beta}
+   \leq
+   \rho, e_1, \alpha'
+   \quad
+   (\exists \rho_1, e_1', \beta)
+   &
+   \text{IH}
+   \locallabel{apply-prim-unsat-premise-one}
+   \\
+   &
+   \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
+   \leq
+   \rho, e_2, \alpha'
+   \quad
+   (\exists \rho_2, e_2', \beta')
+   &
+   \text{IH}
+   \locallabel{apply-prim-unsat-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply-prim-unsat}}
+      ]
+      {
+         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{\exPrimOp{\phi}{\vec{v} \concat u}}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{apply-prim-unsat-premise-one}, \localref{apply-prim-unsat-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho_1 \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   \leq
+   (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
+   &
+   \notag
 \end{flalign}
 \end{proof}
