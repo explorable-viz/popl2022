@@ -441,13 +441,13 @@ Induction on the $\evalFwdS$ derivation.
          right={$i' \numleq j$}
       ]
       {
-         e \eq \exVecAccess{e_1}{e_2}
+         e \eq \exVecLookup{e_1}{e_2}
          \\
          \evalFwdEq{\rho}{e_1}{\alpha}{T}
                    {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
       }
       {
-         \evalFwd{\rho}{e}{\alpha}{\trVecAccess{T}{j}{U}{i}}{v_{i'}}
+         \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i'}}
       }
    \end{smathpar}
    }
@@ -509,9 +509,9 @@ Induction on the $\evalFwdS$ derivation.
       }
       {
          \evalBwd{v_{i'}}
-                 {\trMatrixAccess{T}{j}{U}{i}}
+                 {\trVecLookup{T}{j}{U}{i}}
                  {\rho_1 \join \rho_2}
-                 {\exMatrixAccess{e_1'}{e_2'}}
+                 {\exVecLookup{e_1'}{e_2'}}
                  {\beta' \join \beta^\twoPrime}
       }
    \end{smathpar}
@@ -522,9 +522,9 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1 \join \rho_2, \exMatrixAccess{e_1'}{e_2'}, \beta \join \beta')
+   (\rho_1 \join \rho_2, \exVecLookup{e_1'}{e_2'}, \beta \join \beta')
    \leq
-   (\rho, \exMatrixAccess{e_1}{e_2}, \alpha)
+   (\rho, \exVecLookup{e_1}{e_2}, \alpha)
    &
    \notag
    \\

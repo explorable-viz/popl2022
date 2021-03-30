@@ -486,9 +486,9 @@ Induction on the $\evalBwdS$ derivation.
      }
      {
         \evalBwd{v}
-                {\trMatrixAccess{T}{j}{U}{i}}
+                {\trVecLookup{T}{j}{U}{i}}
                 {\rho \join \rho'}
-                {\exMatrixAccess{e_1}{e_2}}
+                {\exVecLookup{e_1}{e_2}}
                 {\alpha \join \alpha'}
      }
    \end{smathpar}
@@ -533,9 +533,9 @@ Induction on the $\evalBwdS$ derivation.
      }
      {
         \evalFwd{\rho \join \rho'}
-                {\exVecAccess{e_1}{e_2}}
+                {\exVecLookup{e_1}{e_2}}
                 {\alpha \join \alpha'}
-                {\trVecAccess{T}{j}{U}{i}}
+                {\trVecLookup{T}{j}{U}{i}}
                 {u_{i}}
      }
    \end{smathpar}
