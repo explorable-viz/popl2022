@@ -276,7 +276,7 @@ Induction on the $\evalFwdS$ derivation.
    &
    \evalBwd{v_1}{T}{\rho_1}{e_1'}{\beta}
    \leq
-   (\rho, e_1, \alpha')
+   \rho, e_1, \alpha'
    \quad
    (\exists \rho_1, e_1', \beta)
    &
@@ -286,7 +286,7 @@ Induction on the $\evalFwdS$ derivation.
    &
    \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
    \leq
-   (\rho, e_2, \alpha')
+   \rho, e_2, \alpha'
    \quad
    (\exists \rho_2, e_2', \beta')
    &
@@ -354,7 +354,7 @@ Induction on the $\evalFwdS$ derivation.
    &
    \evalBwd{\annInt{j}{\beta}}{T}{\rho_2}{e_2'}{\alpha^\twoPrime}
    \leq
-   (\rho, e_2, \alpha')
+   \rho, e_2, \alpha'
    \quad
    (\exists \rho_2, e_2', \alpha^\twoPrime)
    &
@@ -362,11 +362,13 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{vector-premise-one}
    \\
    &
-   \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
+   \evalBwd{v_i}{U_i}{\rho'_i \concat \bind{x}{i_{\beta^\twoPrime_i}}}{e_1'}{\beta'_i}
    \leq
-   (\rho, e_2, \alpha')
+   \rho \concat \bind{x}{i_{\beta}}, e_1, \alpha'
    \quad
-   (\exists \rho_2, e_2', \beta')
+   (\exists \rho'_i, e_2', \beta')
+   \quad
+   (\forall i \numleq j)
    &
    \text{IH}
    \locallabel{vector-premise-two}
