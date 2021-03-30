@@ -696,6 +696,18 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
+   \primBwd{\phi}(\vec{n} \concat m)(\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u))
+   =
+   \vec{u} \concat u'
+   \leq
+   \vec{v} \concat u
+   \quad
+   (\exists \vec{u}, u')
+   &
+   \text{??}
+   \locallabel{apply-prim-sat-premise-zero}
+   \\
+   &
    \evalBwd{\exPrimOp{\phi}{\vec{v}}}{T}{\rho_1}{e_1'}{\beta}
    \leq
    \rho, e_1, \alpha
