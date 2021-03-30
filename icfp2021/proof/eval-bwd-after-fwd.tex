@@ -556,11 +556,11 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i'}}}{T}{\rho_1}{e_1'}{\beta'}
+   \evalBwd{\annVec{\hole}{i}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
    \leq
-   \rho, e_1, \alpha
+   \rho, e', \alpha
    \quad
-   (\exists \rho_1, e_1', \beta')
+   (\exists \rho', e^\twoPrime, \beta)
    &
    \text{monotonicity}
    \locallabel{vector-lookup-premise-one}
@@ -573,10 +573,10 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-vector-length}}
       ]
       {
-         \evalBwd{\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
+         \evalBwd{\annVec{\hole}{i}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
       }
       {
-         \evalBwd{\annInt{j}{\alpha'}}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
+         \evalBwd{\annInt{j}{\alpha'}}{\trVecLen{T}{j}}{\rho'}{\exVecLen{e^\twoPrime}}{\beta}
       }
    \end{smathpar}
    }
@@ -586,9 +586,9 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1 \join \rho_2, \exMatrixAccess{e_1'}{e_2'}, \beta \join \beta')
+   (\rho', \exVecLen{e^\twoPrime}, \beta)
    \leq
-   (\rho, \exMatrixAccess{e_1}{e_2}, \alpha)
+   (\rho, \exVecLen{e'}, \alpha)
    &
    \notag
 \end{flalign}
