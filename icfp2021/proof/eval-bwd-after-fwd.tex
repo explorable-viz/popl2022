@@ -352,16 +352,6 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{\annInt{j}{\beta}}{T}{\rho_2}{e_2'}{\alpha^\twoPrime}
-   \leq
-   \rho, e_2, \alpha'
-   \quad
-   (\exists \rho_2, e_2', \alpha^\twoPrime)
-   &
-   \text{IH}
-   \notag
-   \\
-   &
    \evalBwd{v_i}{U_i}{\rho'_i \concat \bind{x}{i_{\beta^\twoPrime_i}}}{e'_i}{\beta'_i}
    \leq
    \rho \concat \bind{x}{i_{\beta}}, e_1, \alpha'
@@ -374,13 +364,19 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{vector-premise-two}
    \\
    &
-   \evalBwd{\annInt{j}{\beta}}{T}{\rho_2}{e_2'}{\alpha^\twoPrime}
+   \evalBwdLeq{\annInt{j}{\beta}}{T}{\rho}{e_2}{\alpha'}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalBwd{\annInt{j}{\beta \join \bigjoin\beta^\twoPrime}}{T}{\rho_2}{e_2'}{\alpha^\twoPrime}
    \leq
    \rho, e_2, \alpha'
    \quad
    (\exists \rho_2, e_2', \alpha^\twoPrime)
    &
-   \text{IH}
+   \text{$\bigjoin\beta^\twoPrime \leq \beta$; monotonicity}
    \locallabel{vector-premise-one}
    \\
    &
