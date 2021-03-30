@@ -391,14 +391,14 @@ Induction on the $\evalFwdS$ derivation.
          \\
          \evalBwd{\annInt{j}{\beta \join \bigjoin\beta^\twoPrime}}
                  {T}
-                 {\rho^\twoPrime}
+                 {\rho_2}
                  {e_2'}
                  {\alpha^\twoPrime}
       }
       {
          \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
                  {\trVec{U_{i}}{x}{i}{T}{j}}
-                 {\bigjoin\rho' \join \rho^\twoPrime}
+                 {\bigjoin\rho' \join \rho_2}
                  {\annVec{\bigjoin e'}{x}{e_2'}{\alpha \meet \alpha'}}
                  {(\alpha \meet \alpha') \join {\bigjoin{\beta'}} \join \alpha^\twoPrime}
       }
@@ -410,7 +410,7 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1 \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   (\bigjoin\rho' \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
    \leq
    (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
    &
