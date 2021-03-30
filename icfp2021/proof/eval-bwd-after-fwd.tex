@@ -481,14 +481,14 @@ Induction on the $\evalFwdS$ derivation.
          \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i'}}}
                  {T}{\rho_1}{e_1'}{\beta'}
          \\
-         \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
+         \evalBwd{\annInt{i}{\FF}}{U}{\rho_2}{e_2'}{\beta^\twoPrime}
       }
       {
          \evalBwd{v_{i'}}
                  {\trMatrixAccess{T}{j}{U}{i}}
-                 {\rho \join \rho'}
-                 {\exMatrixAccess{e_1}{e_2}}
-                 {\alpha \join \alpha'}
+                 {\rho_1 \join \rho_2}
+                 {\exMatrixAccess{e_1'}{e_2'}}
+                 {\beta \join \beta'}
       }
    \end{smathpar}
    }
@@ -498,9 +498,9 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1 \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   (\rho_1 \join \rho_2, \exMatrixAccess{e_1'}{e_2'}, \beta \join \beta')
    \leq
-   (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
+   (\rho, \exMatrixAccess{e_1}{e_2}, \alpha)
    &
    \notag
 \end{flalign}
