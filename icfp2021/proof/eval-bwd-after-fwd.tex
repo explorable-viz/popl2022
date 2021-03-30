@@ -430,5 +430,82 @@ Induction on the $\evalFwdS$ derivation.
    \alpha'
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-vector-lookup}},
+         right={$i' \numleq j$}
+      ]
+      {
+         e \eq \exVecAccess{e_1}{e_2}
+         \\
+         \evalFwdEq{\rho}{e_1}{\alpha}{T}
+                   {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trVecAccess{T}{j}{U}{i}}{v_{i'}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho_1}{e_1'}{\beta'}
+   \leq
+   \rho, e_1, \alpha
+   \quad
+   (\exists \rho_1, e_1', \beta')
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho_1}{e_1'}{\beta'}
+   \leq
+   \rho, e_1, \alpha
+   \quad
+   (\exists \rho_1, e_1', \beta')
+   &
+   \text{monotonicity}
+   \locallabel{vector-lookup-premise-one}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-vector-lookup}}
+      ]
+      {
+         \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i'}}}
+                 {T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{v_{i'}}
+                 {\trMatrixAccess{T}{j}{U}{i}}
+                 {\rho \join \rho'}
+                 {\exMatrixAccess{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{vector-lookup-premise-one})
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho_1 \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   \leq
+   (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
+   &
+   \notag
 \end{flalign}
 \end{proof}
