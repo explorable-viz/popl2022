@@ -416,9 +416,18 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\bigjoin\rho' \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   (\bigjoin\rho' \join \rho_2,
+    \annVec{\bigjoin e'}{x}{e_2'}{\alpha \meet \alpha'})
    \leq
-   (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
+   (\rho, \annVec{e_1}{x}{e_2}{\alpha})
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\alpha \meet \alpha') \join {\bigjoin{\beta'}} \join \alpha^\twoPrime
+   \leq
+   \alpha'
    &
    \notag
 \end{flalign}
