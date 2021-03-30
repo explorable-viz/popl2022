@@ -471,16 +471,27 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{vector-lookup-premise-one}
    \\
    &
-   \evalFwd{\rho}{e_2}{\alpha}{T}{\annInt{i}{\alpha^\twoPrime}}
+   \evalFwd{\rho}{e_2}{\alpha}{U}{\annInt{i}{\alpha^\twoPrime}}
    \quad
    (\exists \alpha^\twoPrime)
    &
-   \text{codomain of $\evalFwdF{T}$}
+   \text{codomain of $\evalFwdF{U}$}
    \notag
    \\
    &
-   \evalBwd{\annInt{i}{\FF}}{U}{\rho_2}{e_2'}{\beta^\twoPrime}
+   \evalBwdLeq{\annInt{i}{\alpha^\twoPrime}}{U}{\rho}{e_2}{\alpha}
    &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalBwd{\annInt{i}{\alpha^\twoPrime}}{U}{\rho_2}{e_2'}{\beta^\twoPrime}
+   \leq
+   \rho, e_2, \alpha
+   \quad
+   (\exists \rho_2, e_2', \beta^\twoPrime)
+   &
+   \text{monotonicity}
    \locallabel{vector-lookup-premise-two}
    \\
    &
