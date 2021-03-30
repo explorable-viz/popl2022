@@ -703,7 +703,7 @@ Induction on the $\evalFwdS$ derivation.
    (\exists \rho_1, e_1', \beta)
    &
    \text{IH}
-   \locallabel{apply-prim-unsat-premise-one}
+   \locallabel{apply-prim-sat-premise-one}
    \\
    &
    \evalBwd{u}{U}{\rho_2}{e_2'}{\beta'}
@@ -713,7 +713,7 @@ Induction on the $\evalFwdS$ derivation.
    (\exists \rho_2, e_2', \beta')
    &
    \text{IH}
-   \locallabel{apply-prim-unsat-premise-two}
+   \locallabel{apply-prim-sat-premise-two}
    \\
    &
    \qedLocal
@@ -723,16 +723,16 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-apply-prim-sat}}
       ]
       {
-         v \eq \annInt{n'}{\beta}
-         \\
-         \primBwd{\phi}(\vec{n} \concat m)(\annInt{n'}{\beta}) = \vec{u} \concat u'
+         \primBwd{\phi}(\vec{n} \concat m)(\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u))
+         =
+         \vec{u} \concat u'
          \\
          \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
          \\
          \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
       }
       {
-         \evalBwd{v}
+         \evalBwd{\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u)}
                  {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
                  {\rho \join \rho'}
                  {\exApp{e_1}{e_2}}
@@ -741,7 +741,7 @@ Induction on the $\evalFwdS$ derivation.
    \end{smathpar}
    }
    &
-   (\localref{apply-prim-unsat-premise-one}, \localref{apply-prim-unsat-premise-two})
+   (\localref{apply-prim-sat-premise-one}, \localref{apply-prim-sat-premise-two})
    \notag
    \\
    &
