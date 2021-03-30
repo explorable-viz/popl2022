@@ -704,7 +704,7 @@ Induction on the $\evalFwdS$ derivation.
    \quad
    (\exists \vec{u}, u')
    &
-   \text{??}
+   \text{\defrefShort{core-language:primop-gc}}
    \locallabel{apply-prim-sat-premise-zero}
    \\
    &
@@ -739,21 +739,23 @@ Induction on the $\evalFwdS$ derivation.
          =
          \vec{u} \concat u'
          \\
-         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho_1}{e_1'}{\beta}
          \\
-         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+         \evalBwd{u'}{U}{\rho_2}{e_2'}{\beta'}
       }
       {
          \evalBwd{\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u)}
                  {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-                 {\rho \join \rho'}
-                 {\exApp{e_1}{e_2}}
-                 {\alpha \join \alpha'}
+                 {\rho_1 \join \rho_2}
+                 {\exApp{e_1'}{e_2'}}
+                 {\beta \join \beta'}
       }
    \end{smathpar}
    }
    &
-   (\localref{apply-prim-sat-premise-one}, \localref{apply-prim-sat-premise-two})
+   (\localref{apply-prim-sat-premise-zero},%
+    \localref{apply-prim-sat-premise-one},%
+    \localref{apply-prim-sat-premise-two})
    \notag
    \\
    &
