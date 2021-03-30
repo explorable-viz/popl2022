@@ -325,5 +325,93 @@ Induction on the $\evalFwdS$ derivation.
    (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
+      {
+         e \eq \annVec{e_1}{x}{e_2}{\alpha}
+         \\
+         \evalFwdEq{\rho}{e_2}{\alpha'}{T}
+                   {\annInt{j}{\beta}}
+         \\
+         \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e_1}{\alpha'}{U_{i}}{v_{i}}
+         \quad
+         (\forall i \numleq j)
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha'}{\trVec{U_{i}}{x}{i}{T}{j}}
+                 {\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalBwd{v_1}{T}{\rho_1}{e_1'}{\beta}
+   \leq
+   (\rho, e_1, \alpha')
+   \quad
+   (\exists \rho_1, e_1', \beta)
+   &
+   \text{IH}
+   \locallabel{vector-premise-one}
+   \\
+   &
+   \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
+   \leq
+   (\rho, e_2, \alpha')
+   \quad
+   (\exists \rho_2, e_2', \beta')
+   &
+   \text{IH}
+   \locallabel{vector-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-vector}}
+      ]
+      {
+         \evalBwd{u_{i}}
+                 {U_{i}}
+                 {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
+                 {e_{i}}
+                 {\alpha'_{i}}
+         \quad
+         (\forall i \numleq j)
+         \\
+         \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
+                 {T}
+                 {\rho'}
+                 {e'}
+                 {\alpha^\twoPrime}
+      }
+      {
+         \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
+                 {\trVec{U_{i}}{x}{i}{T}{j}}
+                 {\bigjoin\rho \join \rho'}
+                 {\annVec{\bigjoin e}{x}{e'}{\alpha}}
+                 {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{vector-premise-one}, \localref{vector-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho_1 \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   \leq
+   (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
+   &
+   \notag
 \end{flalign}
 \end{proof}
