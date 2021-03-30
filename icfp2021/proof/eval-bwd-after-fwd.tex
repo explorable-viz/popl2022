@@ -471,6 +471,19 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{vector-lookup-premise-one}
    \\
    &
+   \evalFwd{\rho}{e_2}{\alpha}{T}{\annInt{i}{\alpha^\twoPrime}}
+   \quad
+   (\exists \alpha^\twoPrime)
+   &
+   \text{codomain of $\evalFwdF{T}$}
+   \notag
+   \\
+   &
+   \evalBwd{\annInt{i}{\FF}}{U}{\rho_2}{e_2'}{\beta^\twoPrime}
+   &
+   \locallabel{vector-lookup-premise-two}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
@@ -493,7 +506,7 @@ Induction on the $\evalFwdS$ derivation.
    \end{smathpar}
    }
    &
-   (\localref{vector-lookup-premise-one})
+   (\localref{vector-lookup-premise-one}, \localref{vector-lookup-premise-two})
    \notag
    \\
    &
