@@ -527,5 +527,95 @@ Induction on the $\evalFwdS$ derivation.
    (\rho, \exMatrixAccess{e_1}{e_2}, \alpha)
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
+      {
+         e \eq \exVecLen{e'}
+         \\
+         \evalFwdEq{\rho}{e'}{\alpha}{T}
+                   {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trVecLen{T}{j}}
+                 {\annInt{j}{\alpha'}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalBwdLeq{\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho}{e_1}{\alpha}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i'}}}{T}{\rho_1}{e_1'}{\beta'}
+   \leq
+   \rho, e_1, \alpha
+   \quad
+   (\exists \rho_1, e_1', \beta')
+   &
+   \text{monotonicity}
+   \locallabel{vector-lookup-premise-one}
+   \\
+   &
+   \evalFwd{\rho}{e_2}{\alpha}{U}{\annInt{i}{\alpha^\twoPrime}}
+   \quad
+   (\exists \alpha^\twoPrime)
+   &
+   \text{codomain of $\evalFwdF{U}$}
+   \notag
+   \\
+   &
+   \evalBwdLeq{\annInt{i}{\alpha^\twoPrime}}{U}{\rho}{e_2}{\alpha}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalBwd{\annInt{i}{\FF}}{U}{\rho_2}{e_2'}{\beta^\twoPrime}
+   \leq
+   \rho, e_2, \alpha
+   \quad
+   (\exists \rho_2, e_2', \beta^\twoPrime)
+   &
+   \text{monotonicity}
+   \locallabel{vector-lookup-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-vector-length}}
+      ]
+      {
+         v \eq \annInt{j}{\beta}
+         \\
+         \evalBwd{\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
+      }
+      {
+         \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{vector-lookup-premise-one}, \localref{vector-lookup-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho_1 \join \rho_2, \exMatrixAccess{e_1'}{e_2'}, \beta \join \beta')
+   \leq
+   (\rho, \exMatrixAccess{e_1}{e_2}, \alpha)
+   &
+   \notag
 \end{flalign}
 \end{proof}
