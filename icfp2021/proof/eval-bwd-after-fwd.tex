@@ -765,5 +765,89 @@ Induction on the $\evalFwdS$ derivation.
    (\rho, \exApp{e_1}{e_2}, \alpha)
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-apply}}
+      ]
+      {
+         e \eq \exApp{e_1}{e_2}
+         \\
+         \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
+         \\
+         \rho_1, h \closeDefsFwdR \rho_2
+         \\
+         \evalFwd{\rho}{e_2}{\alpha}{U}{v}
+         \\
+         \matchFwd{v}{\sigma}{w}{\rho_3}{e'}{\beta}
+         \\
+         \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e'}{\beta}{T'}{v'}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trApp{T}{U}{\matchPlug{w}{T'}}}{v'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalBwd{\exPrimOp{\phi}{\vec{v}}}{T}{\rho_1}{e_1'}{\beta}
+   \leq
+   \rho, e_1, \alpha
+   \quad
+   (\exists \rho_1, e_1', \beta)
+   &
+   \text{IH}
+   \locallabel{apply-premise-one}
+   \\
+   &
+   \evalBwd{u}{U}{\rho_2}{e_2'}{\beta'}
+   \leq
+   \rho, e_2, \alpha
+   \quad
+   (\exists \rho_2, e_2', \beta')
+   &
+   \text{IH}
+   \locallabel{apply-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply}}
+      ]
+      {
+         \evalBwd{v'}{T'}{\rho_1' \concat \rho_2' \concat \rho_3'}{e}{\beta}
+         \\
+         \matchBwd{\rho_3}{e}{\beta}{w}{v'}{\sigma}
+         \\
+         \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
+         \\
+         \rho_2 \closeDefsBwdR \rho_1', h
+         \\
+         \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
+      }
+      {
+         \evalBwd{v'}{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{apply-premise-one}, \localref{apply--premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho_1 \join \rho_2, \exApp{e_1'}{e_2'}, \beta \join \beta')
+   \leq
+   (\rho, \exApp{e_1}{e_2}, \alpha)
+   &
+   \notag
 \end{flalign}
 \end{proof}
