@@ -359,19 +359,29 @@ Induction on the $\evalFwdS$ derivation.
    (\exists \rho_2, e_2', \alpha^\twoPrime)
    &
    \text{IH}
-   \locallabel{vector-premise-one}
+   \notag
    \\
    &
    \evalBwd{v_i}{U_i}{\rho'_i \concat \bind{x}{i_{\beta^\twoPrime_i}}}{e'_i}{\beta'_i}
    \leq
    \rho \concat \bind{x}{i_{\beta}}, e_1, \alpha'
    \quad
-   (\exists \rho'_i, e_2', \beta')
+   (\exists \rho'_i, \beta^\twoPrime_i, e'_i, \beta'_i)
    \quad
    (\forall i \numleq j)
    &
    \text{IH}
    \locallabel{vector-premise-two}
+   \\
+   &
+   \evalBwd{\annInt{j}{\beta}}{T}{\rho_2}{e_2'}{\alpha^\twoPrime}
+   \leq
+   \rho, e_2, \alpha'
+   \quad
+   (\exists \rho_2, e_2', \alpha^\twoPrime)
+   &
+   \text{IH}
+   \locallabel{vector-premise-one}
    \\
    &
    \qedLocal
