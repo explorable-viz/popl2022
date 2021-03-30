@@ -618,13 +618,18 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{v_1}{T}{\rho_1}{e_1'}{\beta}
+   \evalBwdLeq{\exPrimOp{\phi}{\vec{v}}}{T}{\rho}{e_1}{\alpha'}
+   &
+   \text{IH}
+   \\
+   &
+   \evalBwd{\exPrimOp{\phi}{\vec{v}}}{T}{\rho_1}{e_1'}{\beta}
    \leq
    \rho, e_1, \alpha'
    \quad
    (\exists \rho_1, e_1', \beta)
    &
-   \text{IH}
+   \text{monotonicity}
    \locallabel{apply-prim-unsat-premise-one}
    \\
    &
