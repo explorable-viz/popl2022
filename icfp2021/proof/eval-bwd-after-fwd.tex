@@ -455,17 +455,13 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho_1}{e_1'}{\beta'}
-   \leq
-   \rho, e_1, \alpha
-   \quad
-   (\exists \rho_1, e_1', \beta')
+   \evalBwdLeq{\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho}{e_1}{\alpha}
    &
    \text{IH}
    \notag
    \\
    &
-   \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho_1}{e_1'}{\beta'}
+   \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i'}}}{T}{\rho_1}{e_1'}{\beta'}
    \leq
    \rho, e_1, \alpha
    \quad
@@ -483,7 +479,7 @@ Induction on the $\evalFwdS$ derivation.
       ]
       {
          \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i'}}}
-                 {T}{\rho}{e_1}{\alpha}
+                 {T}{\rho_1}{e_1'}{\beta'}
          \\
          \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
       }
