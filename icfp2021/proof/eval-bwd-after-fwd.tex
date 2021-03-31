@@ -836,13 +836,17 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{apply-premise-three}
    \\
    &
-   \rho_2' \closeDefsBwdR \rho_2^\twoPrime, h'
+   \rho_2 \closeDefsBwdR\leq \rho_1, h
    &
    \text{\thmref{core-language:closeDefs:gc}}
    \notag
    \\
    &
-   \rho_2' \closeDefsBwdR \rho_2^\twoPrime, h'
+   \rho_2' \closeDefsBwdR \rho_1^\twoPrime, h'
+   \leq
+   \rho_1, h
+   \quad
+   (\exists \rho_1^\twoPrime, h')
    &
    \text{monotonicity}
    \locallabel{apply-premise-four}
@@ -877,9 +881,9 @@ Induction on the $\evalFwdS$ derivation.
          \\
          \evalBwd{u}{U}{\rho^\twoPrime}{e_2'}{\alpha'}
          \\
-         \rho_2' \closeDefsBwdR \rho_2^\twoPrime, h'
+         \rho_2' \closeDefsBwdR \rho_1^\twoPrime, h'
          \\
-         \evalBwd{\exClosure{\rho_1' \join \rho_2^\twoPrime}{h'}{\sigma'}}
+         \evalBwd{\exClosure{\rho_1' \join \rho_1^\twoPrime}{h'}{\sigma'}}
                  {T}
                  {\rho^\threePrime}
                  {e_1'}
