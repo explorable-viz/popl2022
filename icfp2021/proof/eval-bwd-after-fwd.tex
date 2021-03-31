@@ -963,10 +963,14 @@ Induction on the $\evalFwdS$ derivation.
       {
          \evalBwd{v}{T}{\rho' \concat \rho_1'}{e^\twoPrime}{\beta}
          \\
-         \rho_1' \closeDefsBwdR \rho^\twoPrime, h'
+         \rho_1' \closeDefsBwdR \rho^\twoPrime, h^\twoPrime
       }
       {
-         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho' \join \rho^\twoPrime}{\exLetRecMutual{h'}{e^\twoPrime}}{\beta}
+         \evalBwd{v}
+                 {\trLetRecMutual{h}{T}}
+                 {\rho' \join \rho^\twoPrime}
+                 {\exLetRecMutual{h^\twoPrime}{e^\twoPrime}}
+                 {\beta}
       }
    \end{smathpar}
    }
