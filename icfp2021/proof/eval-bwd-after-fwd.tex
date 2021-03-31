@@ -796,24 +796,35 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
+   \evalBwd{v'}{T'}{\rho_1' \concat \rho_2' \concat \rho_3'}{e^\twoPrime}{\beta'}
+   \leq
+   \rho_1 \concat \rho_2 \concat \rho_3, e'', \beta'
+   \quad
+   (\exists \rho_1, \rho_2, \rho_3', e^\twoPrime, \beta')
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \matchBwd{\rho_3'}{e^\twoPrime}{\beta'}{w}{u}{\sigma'}
+   &
+   \text{}
+   \locallabel{apply-premise-one}
+   \\
+   &
+   \evalBwdLeq{\exClosure{\rho_1}{h}{\sigma}}{T}{\rho}{e_1}{\alpha}
+   &
+   \text{IH}
+   \\
+   &
    \evalBwd{\exClosure{\rho_1}{h}{\sigma}}{T}{\rho_1}{e_1'}{\beta}
    \leq
    \rho, e_1, \alpha
    \quad
    (\exists \rho_1, e_1', \beta)
    &
-   \text{IH}
-   \locallabel{apply-premise-one}
-   \\
-   &
-   \evalBwd{u}{U}{\rho_2}{e_2'}{\beta'}
-   \leq
-   \rho, e_2, \alpha
-   \quad
-   (\exists \rho_2, e_2', \beta')
-   &
-   \text{IH}
-   \locallabel{apply-premise-two}
+   \text{monotonicity}
+   \locallabel{apply-premise-five}
    \\
    &
    \qedLocal
@@ -823,9 +834,9 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-apply}}
       ]
       {
-         \evalBwd{v'}{T'}{\rho_1' \concat \rho_2' \concat \rho_3'}{e''}{\beta'}
+         \evalBwd{v'}{T'}{\rho_1' \concat \rho_2' \concat \rho_3'}{e^\twoPrime}{\beta'}
          \\
-         \matchBwd{\rho_3'}{e''}{\beta'}{w}{u}{\sigma'}
+         \matchBwd{\rho_3'}{e^\twoPrime}{\beta'}{w}{u}{\sigma'}
          \\
          \evalBwd{u}{U}{\rho^\twoPrime}{e_2'}{\alpha'}
          \\
