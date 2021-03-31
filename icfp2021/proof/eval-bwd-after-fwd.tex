@@ -934,14 +934,14 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{v_1}{T}{\rho_1}{e_1'}{\beta}
+   \evalBwd{v}{T}{\rho' \concat \rho_1'}{e^\twoPrime}{\beta}
    \leq
-   \rho, e_1, \alpha'
+   \rho \concat \rho_1, e', \alpha
    \quad
-   (\exists \rho_1, e_1', \beta)
+   (\exists \rho', \rho_1', e^\twoPrime, \beta)
    &
    \text{IH}
-   \locallabel{cons-premise-one}
+   \locallabel{let-rec-premise-one}
    \\
    &
    \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
@@ -951,7 +951,7 @@ Induction on the $\evalFwdS$ derivation.
    (\exists \rho_2, e_2', \beta')
    &
    \text{IH}
-   \locallabel{cons-premise-two}
+   \locallabel{let-rec-premise-two}
    \\
    &
    \qedLocal
@@ -961,17 +961,17 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-let-rec}}
       ]
       {
-         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
+         \evalBwd{v}{T}{\rho' \concat \rho_1'}{e^\twoPrime}{\beta}
          \\
-         \rho_1 \closeDefsBwdR \rho', h'
+         \rho_1' \closeDefsBwdR \rho^\twoPrime, h'
       }
       {
-         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
+         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho' \join \rho^\twoPrime}{\exLetRecMutual{h'}{e^\twoPrime}}{\beta}
       }
    \end{smathpar}
    }
    &
-   (\localref{cons-premise-one}, \localref{cons-premise-two})
+   (\localref{let-rec-premise-one}, \localref{let-rec-premise-two})
    \notag
    \\
    &
