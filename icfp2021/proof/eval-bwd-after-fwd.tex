@@ -858,11 +858,11 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{\exClosure{\rho_1}{h}{\sigma}}{T}{\rho_1}{e_1'}{\beta}
+   \evalBwd{\exClosure{\rho_1' \join \rho_1^\twoPrime}{h'}{\sigma'}}{T}{\rho^\ddagger}{e_1'}{\alpha^\twoPrime}
    \leq
    \rho, e_1, \alpha
    \quad
-   (\exists \rho_1, e_1', \beta)
+   (\exists \rho^\ddagger, e_1', \alpha^\twoPrime)
    &
    \text{monotonicity}
    \locallabel{apply-premise-five}
