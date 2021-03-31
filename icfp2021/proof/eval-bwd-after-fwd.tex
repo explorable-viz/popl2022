@@ -909,5 +909,77 @@ Induction on the $\evalFwdS$ derivation.
    (\rho, \exApp{e_1}{e_2}, \alpha)
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={
+         \ruleName{$\evalFwdS$-let-rec}}
+      ]
+      {
+         e \eq \exLetRecMutual{h'}{e'}
+         \\
+         \rho, h' \closeDefsFwdR \rho_1
+         \\
+         \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalBwd{v_1}{T}{\rho_1}{e_1'}{\beta}
+   \leq
+   \rho, e_1, \alpha'
+   \quad
+   (\exists \rho_1, e_1', \beta)
+   &
+   \text{IH}
+   \locallabel{cons-premise-one}
+   \\
+   &
+   \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
+   \leq
+   \rho, e_2, \alpha'
+   \quad
+   (\exists \rho_2, e_2', \beta')
+   &
+   \text{IH}
+   \locallabel{cons-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-let-rec}}
+      ]
+      {
+         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
+         \\
+         \rho_1 \closeDefsBwdR \rho', h'
+      }
+      {
+         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{cons-premise-one}, \localref{cons-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho_1 \join \rho_2, \annCons{e_1'}{e_2'}{\alpha \meet \alpha'}, \alpha \meet \alpha')
+   \leq
+   (\rho, \annCons{e_1}{e_2}{\alpha}, \alpha')
+   &
+   \notag
 \end{flalign}
 \end{proof}
