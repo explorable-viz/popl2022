@@ -1,11 +1,14 @@
 \begin{figure}[H]
 \flushleft\shadebox{$h \join h'$}
 \begin{salign}
-   (\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}})
-   \join
-   (\seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_j}{\sigma'_j}})
-   &=
-   \seqRange{\bind{x_1}{\sigma_1 \join \sigma'_1}}{\bind{x_j}{\sigma_j \join \sigma'_j}}
+   \vec{\bind{x}{\sigma}} \join \vec{\bind{x}{\tau}}
+   =
+   \vec{\bind{x}{\sigma \join \tau}}
+%   (\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}})
+%   \join
+%   (\seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_j}{\sigma'_j}})
+%   &=
+%   \seqRange{\bind{x_1}{\sigma_1 \join \sigma'_1}}{\bind{x_j}{\sigma_j \join \sigma'_j}}
 \end{salign}
 
 \vspace{5pt}
