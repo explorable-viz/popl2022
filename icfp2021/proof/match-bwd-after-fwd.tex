@@ -165,23 +165,35 @@ Induction on the $\matchFwdS$ derivation.
    \\
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
+   \matchBwdLeq{\rho_2}{\kappa}{\beta'}{w_2}{v_2}{\tau}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
    \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
    \leq
    v_2, \tau
+   \quad
+   (\exists u_2, \tau')
    &
-   \text{
-   	IH; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{pair-premise-one}
+   \\
+   &
+   \matchBwdLeq{\rho_1}{\tau}{\beta}{w_1}{v_1}{\sigma'}
+   &
+   \text{IH}
+   \notag
    \\
    &
    \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
    \leq
    v_1, \sigma'
+   \quad
+   (\exists u_1, \tau^\twoPrime)
    &
-   \text{
-   	IH; $\tau' \leq \tau$; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{pair-premise-two}
    \\
    &
@@ -204,6 +216,10 @@ Induction on the $\matchFwdS$ derivation.
    \end{smathpar}
    }
    &
+   \text{
+      (\localref{pair-premise-one},
+       \localref{pair-premise-two})
+   }
    \notag
    \\
    &
@@ -214,10 +230,6 @@ Induction on the $\matchFwdS$ derivation.
    \eq
    (v, \sigma)
    &
-   \text{
-      (\localref{pair-premise-one},
-       \localref{pair-premise-two})
-   }
    \notag
    \\
    \intertext{\crossrule}
