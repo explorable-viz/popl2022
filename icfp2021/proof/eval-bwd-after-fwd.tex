@@ -820,14 +820,26 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{apply-premise-two}
    \\
    &
-   \evalBwd{u}{U}{\rho^\twoPrime}{e_2'}{\alpha'}
+   \evalBwdLeq{v}{U}{\rho}{e_2}{\alpha}
    &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalBwd{u}{U}{\rho^\twoPrime}{e_2'}{\alpha'}
+   \leq
+   \rho, e_2, \alpha
+   \quad
+   (\exists \rho^\twoPrime,e_2',\alpha')
+   &
+   \text{monotonicity}
    \locallabel{apply-premise-three}
    \\
    &
    \evalBwdLeq{\exClosure{\rho_1}{h}{\sigma}}{T}{\rho}{e_1}{\alpha}
    &
    \text{IH}
+   \notag
    \\
    &
    \evalBwd{\exClosure{\rho_1}{h}{\sigma}}{T}{\rho_1}{e_1'}{\beta}
