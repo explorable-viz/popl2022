@@ -836,6 +836,18 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{apply-premise-three}
    \\
    &
+   \rho_2' \closeDefsBwdR \rho_2^\twoPrime, h'
+   &
+   \text{\thmref{core-language:closeDefs:gc}}
+   \notag
+   \\
+   &
+   \rho_2' \closeDefsBwdR \rho_2^\twoPrime, h'
+   &
+   \text{monotonicity}
+   \locallabel{apply-premise-four}
+   \\
+   &
    \evalBwdLeq{\exClosure{\rho_1}{h}{\sigma}}{T}{\rho}{e_1}{\alpha}
    &
    \text{IH}
