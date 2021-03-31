@@ -8,9 +8,11 @@
       \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_j}{\tyFun{A_j}{B_j}}}$}
    }]
    {
-      \Gamma \concat \Delta \vdash c: \tyFun{A_i}{B_i}
+      \Gamma \concat \Delta \vdash c': \tyFun{A_i}{B_i}
       \quad
-      (\forall i \in \setRange{1}{j}, \forall c \in \vec{c_i})
+      (\forall c' \in \vec{c_i})
+      \quad
+      (\forall i \numleq j)
    }
    {
       \Gamma \vdash \seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}: \Delta
