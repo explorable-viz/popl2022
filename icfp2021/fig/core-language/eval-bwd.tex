@@ -85,17 +85,17 @@
       lab={\ruleName{$\evalBwdS$-vector}}
    ]
    {
-      v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\alpha'}
+      v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
       \\
       \evalBwd{u_{i}}
               {U_{i}}
-              {\rho_{i} \concat \bind{x}{i_{\beta_{i}}}}
+              {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
               {e_{i}}
               {\alpha'_{i}}
       \quad
       (\forall i \numleq j)
       \\
-      \evalBwd{\annInt{j}{\beta' \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}}}}}
+      \evalBwd{\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}}}
               {T}
               {\rho'}
               {e'}
@@ -105,8 +105,8 @@
       \evalBwd{v}
               {\trVec{U_{i}}{x}{i}{T}{j}}
               {\bigjoin\vec{\rho} \join \rho'}
-              {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha'}}
-              {\alpha' \join {\bigjoin{\vec{\alpha}}} \join \alpha^\twoPrime}
+              {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}}
+              {\alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime}
    }
    %
    \and
@@ -220,8 +220,8 @@
 \begin{salign}
    \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_i: \exClosure{\rho_i}{h_i}{\sigma_i}}
    &\closeDefsBwdR
-   \bigjoin\rho,
-   (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin h}
+   \bigjoin\vec{\rho},
+   (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin\vec{h}}
 \end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}

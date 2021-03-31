@@ -148,13 +148,13 @@
    {
       e \eq \exApp{e_1}{e_2}
       \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{\annInt{n}{\beta}}}}
+      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
       \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{\annInt{m'}{\beta}}
+      \evalFwd{\rho}{e_2}{\alpha}{U}{u}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\primFwd{\phi}(\vec{n} \concat m)(\vec{\annInt{n}{\beta}} \concat \annInt{m'}{\beta})}
+              {\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u)}
    }
    %
    \and
