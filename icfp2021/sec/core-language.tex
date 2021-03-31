@@ -57,13 +57,13 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
    \text{ where }
    \primFwdBool{\phi}(\vec{n})(\vec{\alpha}) = \beta
    \\
-   \primBwd{\phi}(\vec{n})(\annInt{m}{\alpha}) &= \vec{\annInt{n}{\beta}}
+   \primBwd{\phi}(\vec{n})(\annInt{m}{\beta}) &= \vec{\annInt{n}{\alpha}}
    \text{ where }
-   \primBwdBool{\phi}(\vec{n})(\alpha) = \vec{\beta}
+   \primBwdBool{\phi}(\vec{n})(\beta) = \vec{\alpha}
 \end{salign}
 \end{definition}
 
-\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values.
+\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values.
 
 \input{fig/core-language/eval-fwd}
 \input{fig/core-language/eval-bwd}
