@@ -796,7 +796,7 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{\exPrimOp{\phi}{\vec{v}}}{T}{\rho_1}{e_1'}{\beta}
+   \evalBwd{\exClosure{\rho_1}{h}{\sigma}}{T}{\rho_1}{e_1'}{\beta}
    \leq
    \rho, e_1, \alpha
    \quad
@@ -823,23 +823,31 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-apply}}
       ]
       {
-         \evalBwd{v'}{T'}{\rho_1' \concat \rho_2' \concat \rho_3'}{e}{\beta}
+         \evalBwd{v'}{T'}{\rho_1' \concat \rho_2' \concat \rho_3'}{e''}{\beta'}
          \\
-         \matchBwd{\rho_3}{e}{\beta}{w}{v'}{\sigma}
+         \matchBwd{\rho_3'}{e''}{\beta'}{w}{u}{\sigma'}
          \\
-         \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
+         \evalBwd{u}{U}{\rho^\twoPrime}{e_2'}{\alpha'}
          \\
-         \rho_2 \closeDefsBwdR \rho_1', h
+         \rho_2' \closeDefsBwdR \rho_2^\twoPrime, h'
          \\
-         \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
+         \evalBwd{\exClosure{\rho_1' \join \rho_2^\twoPrime}{h'}{\sigma'}}
+                 {T}
+                 {\rho^\threePrime}
+                 {e_1'}
+                 {\alpha^\twoPrime}
       }
       {
-         \evalBwd{v'}{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
+         \evalBwd{v'}
+                 {\trApp{T}{U}{\matchPlug{w}{T'}}}
+                 {\rho^\twoPrime \join \rho^\threePrime}
+                 {\exApp{e_1'}{e_2'}}
+                 {\alpha' \join \alpha^\twoPrime}
       }
    \end{smathpar}
    }
    &
-   (\localref{apply-premise-one}, \localref{apply--premise-two})
+   (\localref{apply-premise-one}, \localref{apply-premise-two})
    \notag
    \\
    &
