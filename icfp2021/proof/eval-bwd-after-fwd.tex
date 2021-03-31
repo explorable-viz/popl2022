@@ -798,17 +798,25 @@ Induction on the $\evalFwdS$ derivation.
    &
    \evalBwd{v'}{T'}{\rho_1' \concat \rho_2' \concat \rho_3'}{e^\twoPrime}{\beta'}
    \leq
-   \rho_1 \concat \rho_2 \concat \rho_3, e'', \beta'
+   \rho_1 \concat \rho_2 \concat \rho_3, e', \beta
    \quad
-   (\exists \rho_1, \rho_2, \rho_3', e^\twoPrime, \beta')
+   (\exists \rho_1', \rho_2', \rho_3', e^\twoPrime, \beta')
    &
    \text{IH}
    \locallabel{apply-premise-one}
    \\
    &
-   \matchBwd{\rho_3'}{e^\twoPrime}{\beta'}{w}{u}{\sigma'}
+   \matchBwdLeq{\rho_3}{e'}{\beta}{w}{v}{\sigma}
    &
-   \text{}
+   \text{\thmref{core-language:match:gc}}
+   \notag
+   \\
+   &
+   \matchBwd{\rho_3'}{e^\twoPrime}{\beta'}{w}{u}{\sigma'}
+   \leq
+   v, \sigma
+   &
+   \text{monotonicity}
    \locallabel{apply-premise-two}
    \\
    &
