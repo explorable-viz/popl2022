@@ -131,11 +131,11 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \elimBool{\hole}{\kappa'}
+   (\annFalse{\alpha}, \elimBool{\hole}{\kappa'})
    \leq
-   \elimBool{\kappa}{\kappa'}
+   (\annFalse{\alpha},  \elimBool{\kappa}{\kappa'})
    \eq
-   \sigma
+   (v, \sigma)
    \notag
    \\
    \intertext{\crossrule}
