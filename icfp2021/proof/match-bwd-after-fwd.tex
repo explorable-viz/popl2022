@@ -41,9 +41,9 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \elimVar{x}{\kappa}
-   \leq
-   \sigma
+   (v, \elimVar{x}{\kappa})
+   \eq
+   (v, \sigma)
    \notag
    \\
    \intertext{\crossrule}
@@ -85,11 +85,11 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \elimBool{\kappa}{\hole}
+   (\annTrue{\alpha}, \elimBool{\kappa}{\hole})
    \leq
-   \elimBool{\kappa}{\kappa'}
+   (\annTrue{\alpha}, \elimBool{\kappa}{\kappa'})
    \eq
-   \sigma
+   (v, \sigma)
    \notag
    \\
    \intertext{\crossrule}
