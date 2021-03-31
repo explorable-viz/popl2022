@@ -256,20 +256,26 @@ Induction on the $\matchBwdS$ derivation.
    \matchFwd{v}{\tau}{w}{\rho_1'}{\tau'}{\beta}
    \geq
    \rho_1, \sigma, \alpha
+   \quad
+   (\exists \rho_1', \tau', \beta)
    &
-   \text{
-   	IH
-   }
+   \text{IH}
    \locallabel{cons-premise-one}
+   \\
+   &
+   \matchFwdGeq{v'}{\sigma}{w'}{\rho_2}{\kappa}{\alpha}
+   &
+   \text{IH}
+   \notag
    \\
    &
    \matchFwd{v'}{\tau'}{w'}{\rho_2'}{\kappa'}{\beta'}
    \geq
    \rho_2, \kappa, \alpha
+   \quad
+   (\exists \rho_2', \kappa', \beta')
    &
-   \text{
-   	IH; $\tau' \geq \sigma$; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{cons-premise-two}
    \\
    &
