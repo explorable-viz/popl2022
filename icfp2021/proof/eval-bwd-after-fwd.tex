@@ -944,13 +944,19 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{let-rec-premise-one}
    \\
    &
-   \evalBwd{v_2}{U}{\rho_2}{e_2'}{\beta'}
-   \leq
-   \rho, e_2, \alpha'
-   \quad
-   (\exists \rho_2, e_2', \beta')
+   \rho_1 \closeDefsBwdR\leq \rho, h'
    &
-   \text{IH}
+   \text{\thmref{core-language:closeDefs:gc}}
+   \notag
+   \\
+   &
+   \rho_1' \closeDefsBwdR \rho^\twoPrime, h^\twoPrime
+   \leq
+   \rho, h'
+   \quad
+   (\exists \rho^\twoPrime, h^\twoPrime)
+   &
+   \text{monotonicity}
    \locallabel{let-rec-premise-two}
    \\
    &
