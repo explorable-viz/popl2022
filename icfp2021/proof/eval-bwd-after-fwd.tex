@@ -370,13 +370,13 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{\annInt{j}{\beta \join \bigjoin\beta^\twoPrime}}{T}{\rho_2}{e_2'}{\alpha^\twoPrime}
+   \evalBwd{\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}^\twoPrime}}}}{T}{\rho_2}{e_2'}{\alpha^\twoPrime}
    \leq
    \rho, e_2, \alpha'
    \quad
    (\exists \rho_2, e_2', \alpha^\twoPrime)
    &
-   \text{$\bigjoin\beta^\twoPrime \leq \beta$; monotonicity}
+   \text{monotonicity}
    \locallabel{vector-premise-one}
    \\
    &
@@ -395,7 +395,7 @@ Induction on the $\evalFwdS$ derivation.
          \quad
          (\forall i \numleq j)
          \\
-         \evalBwd{\annInt{j}{\beta \join \bigjoin\beta^\twoPrime}}
+         \evalBwd{\annInt{j}{\beta \join \bigjoin{\beta^\twoPrime}}}
                  {T}
                  {\rho_2}
                  {e_2'}
@@ -404,9 +404,9 @@ Induction on the $\evalFwdS$ derivation.
       {
          \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
                  {\trVec{U_{i}}{x}{i}{T}{j}}
-                 {\bigjoin\rho' \join \rho_2}
-                 {\annVec{\bigjoin e'}{x}{e_2'}{\alpha \meet \alpha'}}
-                 {(\alpha \meet \alpha') \join {\bigjoin{\beta'}} \join \alpha^\twoPrime}
+                 {\bigjoin{\vec{\rho}'} \join \rho_2}
+                 {\annVec{\bigjoin{\vec{e}'}}{x}{e_2'}{\alpha \meet \alpha'}}
+                 {(\alpha \meet \alpha') \join {\bigjoin{\vec{\beta}'}} \join \alpha^\twoPrime}
       }
    \end{smathpar}
    }
@@ -416,8 +416,8 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\bigjoin\rho' \join \rho_2,
-    \annVec{\bigjoin e'}{x}{e_2'}{\alpha \meet \alpha'})
+   (\bigjoin{\vec{\rho}'} \join \rho_2,
+    \annVec{\bigjoin{\vec{e}'}}{x}{e_2'}{\alpha \meet \alpha'})
    \leq
    (\rho, \annVec{e_1}{x}{e_2}{\alpha})
    &
@@ -425,7 +425,7 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\alpha \meet \alpha') \join {\bigjoin{\beta'}} \join \alpha^\twoPrime
+   (\alpha \meet \alpha') \join {\bigjoin{\vec{\beta}'}} \join \alpha^\twoPrime
    \leq
    \alpha'
    &
