@@ -334,7 +334,7 @@ Induction on the $\evalBwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-vector}}
       ]
       {
-         v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+         v \eq \annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}
          \\
          \evalBwd{u_{i}}
                  {U_{i}}
@@ -460,7 +460,7 @@ Induction on the $\evalBwdS$ derivation.
                 {\annVec{\bigjoin e}{x}{e'}{\alpha}}
                 {\alpha^\dagger}
                 {\trVec{U_{i}}{x}{i}{T}{j}}
-                {\annVec{v_{i}}{i}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}}
+                {\annVecVal{\vec{v}}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}}
      }
    \end{smathpar}
    }
@@ -469,13 +469,11 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   \annVec{v_{i}}{i}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}
+   \annVecVal{\vec{v}}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}
    \geq
-   \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+   \annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}
    &
-   \text{
-       (\localref{vector-premise-two})
-   }
+   \text{(\localref{vector-premise-two})}
    \notag
    \\
    \intertext{\crossrule}
@@ -487,7 +485,7 @@ Induction on the $\evalBwdS$ derivation.
         lab={\ruleName{$\evalBwdS$-vector-lookup}}
      ]
      {
-        \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+        \evalBwd{\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}}
                 {T}{\rho}{e_1}{\alpha}
         \\
         \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
@@ -509,7 +507,7 @@ Induction on the $\evalBwdS$ derivation.
               {e_1}
               {\alpha}
               {T}
-              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+              {\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}}
    &
    \text{IH}
    \notag
@@ -519,9 +517,9 @@ Induction on the $\evalBwdS$ derivation.
              {e_1}
              {\alpha \join \alpha'}
              {T}
-             {\annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\beta}}
+             {\annVecVal{\vec{u}}{\annInt{j}{\beta'}}{\beta}}
    \geq
-   \mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}
+   \mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}
    \quad
    (\exists \vec{u}, \beta', \beta)
    &
@@ -541,7 +539,7 @@ Induction on the $\evalBwdS$ derivation.
                   {e_1}
                   {\alpha \join \alpha'}
                   {T}
-                  {\annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\beta}}
+                  {\annVecVal{\vec{u}}{\annInt{j}{\beta'}}{\beta}}
      }
      {
         \evalFwd{\rho \join \rho'}
@@ -573,7 +571,7 @@ Induction on the $\evalBwdS$ derivation.
      {
         v \eq \annInt{j}{\beta}
         \\
-        \evalBwd{\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
+        \evalBwd{\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
      }
      {
         \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
@@ -585,11 +583,11 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \evalFwdEq{\rho}{e}{\alpha}{T}
-             {\annot{\exVec{v_{i}}{i}{\annInt{j}{\beta'}}}{\alpha'}}
+             {\annVecVal{\vec{v}}{\annInt{j}{\beta'}}{\alpha'}}
    \geq
-   \annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}
+   \annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF}
    \quad
-   (\exists \vec{v}, \alpha', \beta')
+   (\exists \vec{v}, \beta', \alpha')
    &
    \text{IH}
    \notag
@@ -601,7 +599,7 @@ Induction on the $\evalBwdS$ derivation.
      \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
      {
         \evalFwdEq{\rho}{e}{\alpha}{T}
-                  {\annot{\exVec{v_{i}}{i}{\annInt{j}{\beta'}}}{\alpha'}}
+                  {\annVecVal{\vec{v}}{\annInt{j}{\beta'}}{\alpha'}}
      }
      {
         \evalFwd{\rho}{\exVecLen{e}}{\alpha}{\trVecLen{T}{j}}

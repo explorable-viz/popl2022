@@ -85,7 +85,7 @@
       lab={\ruleName{$\evalBwdS$-vector}}
    ]
    {
-      v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+      v \eq \annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}
       \\
       \evalBwd{u_{i}}
               {U_{i}}
@@ -115,7 +115,7 @@
       lab={\ruleName{$\evalBwdS$-vector-lookup}}
    ]
    {
-      \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+      \evalBwd{\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}}
               {T}{\rho}{e_1}{\alpha}
       \\
       \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
@@ -132,7 +132,7 @@
    {
       v \eq \annInt{j}{\beta}
       \\
-      \evalBwd{\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
+      \evalBwd{\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
    }
    {
       \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}

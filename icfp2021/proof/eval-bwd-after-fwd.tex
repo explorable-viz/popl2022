@@ -344,7 +344,7 @@ Induction on the $\evalFwdS$ derivation.
       }
       {
          \evalFwd{\rho}{e}{\alpha'}{\trVec{U_{i}}{x}{i}{T}{j}}
-                 {\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
+                 {\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
       }
    \end{smathpar}
    }
@@ -402,7 +402,7 @@ Induction on the $\evalFwdS$ derivation.
                  {\alpha^\twoPrime}
       }
       {
-         \evalBwd{\annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
+         \evalBwd{\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
                  {\trVec{U_{i}}{x}{i}{T}{j}}
                  {\bigjoin{\vec{\rho}'} \join \rho_2}
                  {\annVec{\bigjoin{\vec{e}'}}{x}{e_2'}{\alpha \meet \alpha'}}
@@ -444,7 +444,7 @@ Induction on the $\evalFwdS$ derivation.
          e \eq \exVecLookup{e_1}{e_2}
          \\
          \evalFwdEq{\rho}{e_1}{\alpha}{T}
-                   {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
+                   {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
       }
       {
          \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i}}
@@ -455,13 +455,13 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwdLeq{\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho}{e_1}{\alpha}
+   \evalBwdLeq{\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho}{e_1}{\alpha}
    &
    \text{IH}
    \notag
    \\
    &
-   \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i}}}{T}{\rho_1}{e_1'}{\beta'}
+   \evalBwd{\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v_{i}}}{T}{\rho_1}{e_1'}{\beta'}
    \leq
    \rho, e_1, \alpha
    \quad
@@ -502,7 +502,7 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-vector-lookup}}
       ]
       {
-         \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i}}}
+         \evalBwd{\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v_{i}}}
                  {T}{\rho_1}{e_1'}{\beta'}
          \\
          \evalBwd{\annInt{i}{\FF}}{U}{\rho_2}{e_2'}{\beta^\twoPrime}
@@ -538,7 +538,7 @@ Induction on the $\evalFwdS$ derivation.
          e \eq \exVecLen{e'}
          \\
          \evalFwdEq{\rho}{e'}{\alpha}{T}
-                   {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+                   {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
       }
       {
          \evalFwd{\rho}{e}{\alpha}{\trVecLen{T}{j}}
@@ -550,13 +550,13 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwdLeq{\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}{T}{\rho}{e'}{\alpha}
+   \evalBwdLeq{\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}{T}{\rho}{e'}{\alpha}
    &
    \text{IH}
    \notag
    \\
    &
-   \evalBwd{\annVec{\hole}{i}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
+   \evalBwd{\annVecVal{\vec{\hole}}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
    \leq
    \rho, e', \alpha
    \quad
@@ -573,7 +573,7 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-vector-length}}
       ]
       {
-         \evalBwd{\annVec{\hole}{i}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
+         \evalBwd{\annVecVal{\vec{\hole}}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
       }
       {
          \evalBwd{\annInt{j}{\alpha'}}{\trVecLen{T}{j}}{\rho'}{\exVecLen{e^\twoPrime}}{\beta}

@@ -33,18 +33,17 @@
    &=
    \annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}
    \\
-   \annVec{v_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+   \annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha}
    \join
-   \annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\alpha'}
+   \annVecVal{\vec{u}}{\annInt{j}{\beta'}}{\alpha'}
    &=
-   \annVec{v_{i} \join u_{i}}
-             {i}
+   \annVecVal{\vec{v \join u}}
              {\annInt{j}{\beta \join \beta'}}{\alpha \join \alpha'}
    \\
-   \exPrimOp{\phi}{\seqRange{v_1}{v_j}} \join
-   \exPrimOp{\phi}{\seqRange{u_1}{u_j}}
+   \exPrimOp{\phi}{\vec{v}} \join
+   \exPrimOp{\phi}{\vec{u}}
    &=
-   \exPrimOp{\phi}{\seqRange{(v_1 \join u_1)}{(v_j \join u_j)}}
+   \exPrimOp{\phi}{\vec{v \join u}}
    \\
    \exClosure{\rho}{h}{\sigma} \join \exClosure{\rho'}{h'}{\sigma'}
    &=
