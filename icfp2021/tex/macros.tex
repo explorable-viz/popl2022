@@ -200,7 +200,7 @@
 \newcommand*{\evalFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
 \newcommand*{\evalBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\evalBwdR}[1]{\sub{\evalBwdS}{#1}}
-\newcommand*{\evalFwdR}[1]{\sub{\evalFwdS}{#1}}
+\newcommand*{\evalFwdR}[1]{\sub{\evalFwdS}{\hspace{-0.2em}#1}}
 \newcommand*{\evalBwd}[5]{#1 \evalBwdR{#2} #3, #4, #5}
 \newcommand*{\evalBwdLeq}[5]{#1 \evalBwdR{#2}\leq #3, #4, #5}
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalFwdR{#4} #5}
