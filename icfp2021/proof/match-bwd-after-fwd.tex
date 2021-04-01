@@ -305,13 +305,17 @@ Induction on the $\matchFwdS$ derivation.
    \\
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
+   \matchBwdLeq{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{v_2}{\tau}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
    \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
    \leq
    v_2, \tau
    &
-   \text{
-   	IH; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{cons-premise-one}
    \\
    &
@@ -319,9 +323,7 @@ Induction on the $\matchFwdS$ derivation.
    \leq
    v_1, \sigma'
    &
-   \text{
-   	IH; $\tau' \leq \tau$; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{cons-premise-two}
    \\
    &
@@ -343,6 +345,7 @@ Induction on the $\matchFwdS$ derivation.
    \end{smathpar}
    }
    &
+   \text{(\localref{cons-premise-one}, \localref{cons-premise-two})}
    \notag
    \\
    &
@@ -353,10 +356,6 @@ Induction on the $\matchFwdS$ derivation.
    \eq
    (v, \sigma)
    &
-   \text{
-      (\localref{cons-premise-one},
-       \localref{cons-premise-two})
-   }
    \notag
 \end{flalign}
 \end{proof}
