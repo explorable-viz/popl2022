@@ -56,7 +56,7 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho', \exVar{x}, \FF) \leq (\rho, e, \alpha)
+   (\rho', \exVar{x}, \FF) \leq (\rho, \exVar{x}, \alpha)
    &
    \notag
    \\
@@ -112,7 +112,7 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho', \exOp{\primOp}, \FF) \leq (\rho, e, \alpha)
+   (\rho', \exOp{\primOp}, \FF) \leq (\rho, \exOp{\primOp}, \alpha)
    &
    \notag
    \\
@@ -153,7 +153,7 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho, \exLambda{\sigma}, \FF) \leq (\rho, e, \alpha)
+   (\rho, \exLambda{\sigma}, \FF) \leq (\rho, \exLambda{\sigma}, \alpha)
    &
    \notag
    \\
@@ -199,7 +199,7 @@ Induction on the $\evalFwdS$ derivation.
    \qedLocal
    (\hole_{\Gamma}, \annInt{n}{\alpha \meet \alpha'}, \alpha \meet \alpha')
    \leq
-   (\rho, e, \alpha)
+   (\rho, \annInt{n}{\alpha}, \alpha)
    &
    \notag
    \\
@@ -246,7 +246,7 @@ Induction on the $\evalFwdS$ derivation.
    \qedLocal
    (\hole_{\Gamma}, \annNil{\alpha \meet \alpha'}, \alpha \meet \alpha')
    \leq
-   (\rho, e, \alpha)
+   (\rho, \annNil{\alpha}, \alpha)
    &
    \notag
    \\
