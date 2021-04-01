@@ -556,7 +556,7 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{\annVec{\hole}{i}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
+   \evalBwd{\annVecVal{\vec{\hole}}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
    \leq
    \rho, e', \alpha
    \quad
@@ -573,7 +573,7 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-vector-length}}
       ]
       {
-         \evalBwd{\annVec{\hole}{i}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
+         \evalBwd{\annVecVal{\vec{\hole}}{\annInt{j}{\alpha'}}{\FF}}{T}{\rho'}{e^\twoPrime}{\beta}
       }
       {
          \evalBwd{\annInt{j}{\alpha'}}{\trVecLen{T}{j}}{\rho'}{\exVecLen{e^\twoPrime}}{\beta}
