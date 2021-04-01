@@ -870,9 +870,11 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosure{\rho_1^\dagger}{h'}{\sigma'}}
-   \text{ with }
-   (\rho^\dagger, h', \sigma') \geq (\rho_1 \join \rho_1', h, \sigma)
+   \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosure{\rho^\dagger}{h'}{\sigma'}}
+   \geq
+   \exClosure{\rho_1 \join \rho_1'}{h}{\sigma}
+   \quad
+   (\exists \rho^\dagger, h', \sigma')
    &
    \text{monotonicity}
    \locallabel{app-premise-one}
