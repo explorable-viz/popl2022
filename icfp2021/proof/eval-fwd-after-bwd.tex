@@ -811,7 +811,7 @@ Induction on the $\evalBwdS$ derivation.
          right={$\arity{\phi} = \length{\vec{n}} + 1$}
       ]
       {
-         \evalFwd{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
+         \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
          \\
          \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{v'}
       }
@@ -833,7 +833,7 @@ Induction on the $\evalBwdS$ derivation.
    \primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat v') \geq
    \primFwd{\phi}(\vec{n} \concat m)(\vec{u} \concat u') \geq \annInt{n'}{\beta} \eq v
    &
-   \text{\defrefShort{core-language:primop-gc}; monotonicity}
+   \text{monotonicity; \defrefShort{core-language:primop-gc}}
    \notag
    \\
    \intertext{\crossrule}
