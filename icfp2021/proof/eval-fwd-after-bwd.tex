@@ -334,7 +334,7 @@ Induction on the $\evalBwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-vector}}
       ]
       {
-         v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+         v \eq \annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}
          \\
          \evalBwd{u_{i}}
                  {U_{i}}
@@ -460,7 +460,7 @@ Induction on the $\evalBwdS$ derivation.
                 {\annVec{\bigjoin e}{x}{e'}{\alpha}}
                 {\alpha^\dagger}
                 {\trVec{U_{i}}{x}{i}{T}{j}}
-                {\annVec{v_{i}}{i}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}}
+                {\annVecVal{\vec{v}}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}}
      }
    \end{smathpar}
    }
@@ -469,13 +469,11 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   \annVec{v_{i}}{i}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}
+   \annVecVal{\vec{v}}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}
    \geq
-   \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+   \annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}
    &
-   \text{
-       (\localref{vector-premise-two})
-   }
+   \text{(\localref{vector-premise-two})}
    \notag
    \\
    \intertext{\crossrule}
