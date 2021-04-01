@@ -661,8 +661,8 @@ Induction on the $\evalBwdS$ derivation.
              {\alpha \join \alpha'}
              {T}
              {\exPrimOp{\phi}{\vec{v}}}
-   \text{ with }
-   \vec{v} \geq \vec{u}
+   \geq
+   \vec{u}
    \quad
    (\exists \vec{v})
    &
@@ -685,8 +685,8 @@ Induction on the $\evalBwdS$ derivation.
              {\alpha \join \alpha'}
              {U}
              {v'}
-   \text{ with }
-   v' \geq u'
+   \geq
+   u'
    \quad
    (\exists v')
    &
@@ -702,7 +702,7 @@ Induction on the $\evalBwdS$ derivation.
          right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
       ]
       {
-         \evalFwd{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
+         \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
          \\
          \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{v'}
       }
