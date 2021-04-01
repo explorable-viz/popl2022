@@ -363,7 +363,7 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \alpha^\dagger = \alpha \join {\bigjoin{\vec{\alpha'}}} \join \alpha^\twoPrime
+   \alpha^\dagger = \alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime
    &
    \text{define}
    \notag
@@ -420,11 +420,15 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
-              {\bigjoin e}
-              {\alpha^\dagger}
-              {U_{i}}
-              {u_{i}}
+   \evalFwd{(\bigjoin\vec{\rho} \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
+           {\bigjoin\vec{e}}
+           {\alpha^\dagger}
+           {U_{i}}
+           {v_{i}}
+   \geq
+   u_i
+   \quad
+   (\exists v_i)
    \quad
    (\forall i \numleq j)
    &
@@ -437,14 +441,14 @@ Induction on the $\evalBwdS$ derivation.
    \begin{smathpar}
      \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
      {
-        \evalFwdEq{\bigjoin\rho \join \rho'}
+        \evalFwdEq{\bigjoin\vec{\rho} \join \rho'}
                   {e'}
                   {\alpha^\dagger}
                   {T}
                   {\annInt{j}{\beta^\dagger}}
         \\
-        \evalFwd{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
-                {\bigjoin e}
+        \evalFwd{(\bigjoin\vec{\rho} \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
+                {\bigjoin\vec{e}}
                 {\alpha^\dagger}
                 {U_{i}}
                 {v_{i}}
