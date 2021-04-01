@@ -60,7 +60,7 @@ Induction on the $\evalBwdS$ derivation.
       {
          v \eq \phi
          \\
-         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
+         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
       }
       {
          \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
@@ -71,7 +71,7 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \envLookup{\rho}{\primOp}{\phi}
+   \envLookup{\rho}{\primOp}{v}
    &
    \text{
    	(\lemref{core-language:env-get-put})
@@ -86,21 +86,14 @@ Induction on the $\evalBwdS$ derivation.
          lab={\ruleName{$\evalFwdS$-op}}
       ]
       {
-         \envLookup{\rho}{\primOp}{\phi}
+         \envLookup{\rho}{\primOp}{v}
       }
       {
-         \evalFwd{\rho}{\exOp{\primOp}}{\FF}{\trOp{\primOp}{\Gamma}}{\phi}
+         \evalFwd{\rho}{\exOp{\primOp}}{\FF}{\trOp{\primOp}{\Gamma}}{v}
       }
    \end{smathpar}
    }
    &
-   \notag
-   \\
-   &
-   \qedLocal
-   \phi
-   \eq
-   v
    \notag
    \\
    \intertext{\crossrule}
