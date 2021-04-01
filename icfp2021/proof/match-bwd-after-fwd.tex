@@ -305,7 +305,7 @@ Induction on the $\matchFwdS$ derivation.
    \\
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
-   \matchBwdLeq{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{v_2}{\tau}
+   \matchBwdLeq{\rho_2}{\kappa}{\beta'}{w_2}{v_2}{\tau}
    &
    \text{IH}
    \notag
@@ -314,14 +314,24 @@ Induction on the $\matchFwdS$ derivation.
    \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
    \leq
    v_2, \tau
+   \quad
+   (\exists u_2, \tau')
    &
    \text{monotonicity}
    \locallabel{cons-premise-one}
    \\
    &
+   \matchBwdLeq{\rho_1}{\tau}{\beta}{w_1}{v_1}{\sigma'}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
    \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
    \leq
    v_1, \sigma'
+   \quad
+   (\exists u_1, \tau^\twoPrime)
    &
    \text{monotonicity}
    \locallabel{cons-premise-two}
