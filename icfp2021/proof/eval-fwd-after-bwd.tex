@@ -166,7 +166,7 @@ Induction on the $\evalBwdS$ derivation.
          \strut
       }
       {
-         \evalFwd{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha}}
+         \evalFwd{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha \meet \alpha}}
       }
    \end{smathpar}
    }
@@ -175,6 +175,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
+   \annInt{n}{\alpha \meet \alpha}
+   \geq
    \annInt{n}{\alpha}
    \eq
    v
@@ -208,7 +210,7 @@ Induction on the $\evalBwdS$ derivation.
          \strut
       }
       {
-         \evalFwd{\hole_{\Gamma}}{\annNil{\alpha}}{\alpha}{\trNil{\Gamma}}{\annNil{\alpha}}
+         \evalFwd{\hole_{\Gamma}}{\annNil{\alpha}}{\alpha}{\trNil{\Gamma}}{\annNil{\alpha \meet \alpha}}
       }
    \end{smathpar}
    }
@@ -217,6 +219,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
+   \annNil{\alpha \meet \alpha}
+   \geq
    \annNil{\alpha}
    \eq
    v
