@@ -254,11 +254,6 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \beta \meet (\beta \join \alpha \join \alpha') = \beta
-   &
-   \notag
-   \\
-   &
    \evalFwdGeq{\rho}{e_1}{\alpha}{T}{v_1}
    &
    \text{IH}
@@ -307,6 +302,11 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
+   \beta \meet (\beta \join \alpha \join \alpha') = \beta
+   &
+   \notag
+   \\
+   &
    \qedLocal
    (\annCons{u_1}{u_2}{\beta})
    \geq
@@ -314,10 +314,7 @@ Induction on the $\evalBwdS$ derivation.
    \eq
    v
    &
-   \text{
-      (\localref{cons-premise-one},
-       \localref{cons-premise-two})
-   }
+   \text{(\localref{cons-premise-one}, \localref{cons-premise-two})}
    \notag
    \\
    \intertext{\crossrule}
