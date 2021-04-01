@@ -471,7 +471,7 @@ Induction on the $\evalFwdS$ derivation.
    \locallabel{vector-lookup-premise-one}
    \\
    &
-   \evalFwd{\rho}{e_2}{\alpha}{U}{\annInt{i}{\alpha^\twoPrime}}
+   \evalFwdEq{\rho}{e_2}{\alpha}{U}{\annInt{i}{\alpha^\twoPrime}}
    \quad
    (\exists \alpha^\twoPrime)
    &
@@ -522,7 +522,7 @@ Induction on the $\evalFwdS$ derivation.
    \\
    &
    \qedLocal
-   (\rho_1 \join \rho_2, \exVecLookup{e_1'}{e_2'}, \beta \join \beta')
+   (\rho_1 \join \rho_2, \exVecLookup{e_1'}{e_2'}, \beta' \join \beta^\twoPrime)
    \leq
    (\rho, \exVecLookup{e_1}{e_2}, \alpha)
    &
