@@ -101,7 +101,7 @@
       e \eq \exVecLookup{e_1}{e_2}
       \\
       \evalFwdEq{\rho}{e_1}{\alpha}{T}
-                {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
+                {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i}}
@@ -114,7 +114,7 @@
       e \eq \exVecLen{e'}
       \\
       \evalFwdEq{\rho}{e'}{\alpha}{T}
-                {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+                {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trVecLen{T}{j}}
