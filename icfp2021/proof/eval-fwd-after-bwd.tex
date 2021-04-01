@@ -485,7 +485,7 @@ Induction on the $\evalBwdS$ derivation.
         lab={\ruleName{$\evalBwdS$-vector-lookup}}
      ]
      {
-        \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+        \evalBwd{\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}}
                 {T}{\rho}{e_1}{\alpha}
         \\
         \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
@@ -507,7 +507,7 @@ Induction on the $\evalBwdS$ derivation.
               {e_1}
               {\alpha}
               {T}
-              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+              {\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}}
    &
    \text{IH}
    \notag
@@ -517,9 +517,9 @@ Induction on the $\evalBwdS$ derivation.
              {e_1}
              {\alpha \join \alpha'}
              {T}
-             {\annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\beta}}
+             {\annVecVal{\vec{u}}{\annInt{j}{\beta'}}{\beta}}
    \geq
-   \mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}
+   \mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}
    \quad
    (\exists \vec{u}, \beta', \beta)
    &
