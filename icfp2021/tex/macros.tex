@@ -73,9 +73,9 @@
 \newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
-\newcommand*{\exMatrix}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack}
-\newcommand*{\exMatrixAccess}[2]{{#1}\,\sym{!}\,{#2}}
-\newcommand*{\exMatrixDims}[1]{\kw{dims}\;{#1}}
+%\newcommand*{\exMatrix}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack}
+%\newcommand*{\exMatrixAccess}[2]{{#1}\,\sym{!}\,{#2}}
+%\newcommand*{\exMatrixDims}[1]{\kw{dims}\;{#1}}
 \newcommand*{\exNil}{\kw{[]}}
 \newcommand*{\exOp}[1]{(#1)}
 \newcommand*{\exPair}[2]{(#1,#2)}
@@ -85,7 +85,7 @@
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
 \newcommand*{\exVec}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack}
-\newcommand*{\exVecAccess}[2]{{#1}\,\sym{!}\,{#2}}
+\newcommand*{\exVecLookup}[2]{{#1}\,\sym{!}\,{#2}}
 \newcommand*{\exVecLen}[1]{\kw{len}\;{#1}}
 
 \newcommand*{\ihat}{\hat\imath}
@@ -98,7 +98,7 @@
 \newcommand*{\annListNext}[3]{\comma_{#3}\;#1 \ #2}
 
 % Annotated expressions
-\newcommand*{\annCons}[3]{{#1}\,\symCons_{#3}\,{#2}}
+\newcommand*{\annCons}[3]{{#1}\,\symCons_{\hspace{-0.1em}#3}\,{#2}}
 \newcommand*{\annFalse}[1]{\kw{false}_{#1}}
 \newcommand*{\annList}[3]{\kw{[}_{#3}\;#1 \ #2}
 \newcommand*{\annListComp}[3]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}_{#3}}
@@ -172,15 +172,15 @@
 \newcommand*{\tyVec}[1]{\kw{Vec}\;{#1}}
 
 % Sets
-\newcommand*{\Below}[1]{{\downarrow{#1}}}
+\newcommand*{\Below}[1]{{\downarrow}{#1}}
 \newcommand*{\Bool}{\mathbb{B}}
 \newcommand*{\Val}[1]{\Set{Val}({#1})}
 
 % Lattices
 \let\oldbigjoin\bigjoin
 \let\oldbigmeet\bigmeet
-\renewcommand*{\bigjoin}[1]{{\textstyle{\oldbigjoin}}#1}
-\renewcommand*{\bigmeet}[1]{{\textstyle{\oldbigmeet}}#1}
+\renewcommand*{\bigjoin}[1]{{\textstyle{\oldbigjoin}}\hspace{-0.1em}#1}
+\renewcommand*{\bigmeet}[1]{{\textstyle{\oldbigmeet}}\hspace{-0.1em}#1}
 \let\oldleq\leq
 \let\oldgeq\geq
 \newcommand*{\numleq}{\oldleq}
@@ -200,8 +200,9 @@
 \newcommand*{\evalFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
 \newcommand*{\evalBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
 \newcommand*{\evalBwdR}[1]{\sub{\evalBwdS}{#1}}
-\newcommand*{\evalFwdR}[1]{\sub{\evalFwdS}{#1}}
+\newcommand*{\evalFwdR}[1]{\sub{\evalFwdS}{\hspace{-0.2em}#1}}
 \newcommand*{\evalBwd}[5]{#1 \evalBwdR{#2} #3, #4, #5}
+\newcommand*{\evalBwdLeq}[5]{#1 \evalBwdR{#2}\leq #3, #4, #5}
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalFwdR{#4} #5}
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
@@ -212,6 +213,7 @@
 \newcommand*{\matchFwd}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3} #4, #5, #6}
 \newcommand*{\matchFwdGeq}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3}\geq #4, #5, #6}
 \newcommand*{\matchBwd}[6]{#1, #2, #3 \sub{\matchBwdS}{#4} #5, #6}
+\newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \sub{\matchBwdS}{#4}\leq #5, #6}
 \newcommand*{\matchFwdR}[1]{\matchFwdS_{\hspace{-0.2em}#1}}
 \newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
 \newcommand*{\matchFwdF}[1]{\mathsf{matchFwd}_{#1}}
@@ -233,9 +235,9 @@
 \newcommand*{\trAppPrim}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
 \newcommand*{\trAppPrimNew}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
-\newcommand*{\trMatrix}[7]{\exMatrix{#1}{#2:#4}{#3:#5}{\sub{#6}{#7}}}
-\newcommand*{\trMatrixAccess}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
-\newcommand*{\trMatrixDims}[2]{\exMatrixDims{\sub{#1}{#2}}}
+%\newcommand*{\trMatrix}[7]{\exMatrix{#1}{#2:#4}{#3:#5}{\sub{#6}{#7}}}
+%\newcommand*{\trMatrixAccess}[4]{\exMatrixAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
+%\newcommand*{\trMatrixDims}[2]{\exMatrixDims{\sub{#1}{#2}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
 \newcommand*{\trInt}[2]{\sub{\exInt{#1}}{#2}}
@@ -252,7 +254,7 @@
 \newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
 \newcommand*{\trVar}[2]{\sub{#1}{#2}}
 \newcommand*{\trVec}[5]{\exVec{#1}{\bind{#2}{#3}}{\sub{#4}{#5}}}
-\newcommand*{\trVecAccess}[4]{\exVecAccess{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trVecLookup}[4]{\exVecLookup{\sub{#1}{#2}}{\sub{#3}{#4}}}
 \newcommand*{\trVecLen}[2]{\exVecLen{\sub{#1}{#2}}}
 
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{\textcolor{gray}{::}}{#2}}

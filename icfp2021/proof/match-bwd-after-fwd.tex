@@ -41,9 +41,9 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \elimVar{x}{\kappa}
-   \leq
-   \sigma
+   (v, \elimVar{x}{\kappa})
+   \eq
+   (v, \sigma)
    \notag
    \\
    \intertext{\crossrule}
@@ -85,11 +85,11 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \elimBool{\kappa}{\hole}
+   (\annTrue{\alpha}, \elimBool{\kappa}{\hole})
    \leq
-   \elimBool{\kappa}{\kappa'}
+   (\annTrue{\alpha}, \elimBool{\kappa}{\kappa'})
    \eq
-   \sigma
+   (v, \sigma)
    \notag
    \\
    \intertext{\crossrule}
@@ -131,11 +131,11 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \elimBool{\hole}{\kappa'}
+   (\annFalse{\alpha}, \elimBool{\hole}{\kappa'})
    \leq
-   \elimBool{\kappa}{\kappa'}
+   (\annFalse{\alpha},  \elimBool{\kappa}{\kappa'})
    \eq
-   \sigma
+   (v, \sigma)
    \notag
    \\
    \intertext{\crossrule}
@@ -165,23 +165,35 @@ Induction on the $\matchFwdS$ derivation.
    \\
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
+   \matchBwdLeq{\rho_2}{\kappa}{\beta'}{w_2}{v_2}{\tau}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
    \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
    \leq
    v_2, \tau
+   \quad
+   (\exists u_2, \tau')
    &
-   \text{
-   	IH; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{pair-premise-one}
+   \\
+   &
+   \matchBwdLeq{\rho_1}{\tau}{\beta}{w_1}{v_1}{\sigma'}
+   &
+   \text{IH}
+   \notag
    \\
    &
    \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
    \leq
    v_1, \sigma'
+   \quad
+   (\exists u_1, \tau^\twoPrime)
    &
-   \text{
-   	IH; $\tau' \leq \tau$; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{pair-premise-two}
    \\
    &
@@ -204,6 +216,10 @@ Induction on the $\matchFwdS$ derivation.
    \end{smathpar}
    }
    &
+   \text{
+      (\localref{pair-premise-one},
+       \localref{pair-premise-two})
+   }
    \notag
    \\
    &
@@ -214,10 +230,6 @@ Induction on the $\matchFwdS$ derivation.
    \eq
    (v, \sigma)
    &
-   \text{
-      (\localref{pair-premise-one},
-       \localref{pair-premise-two})
-   }
    \notag
    \\
    \intertext{\crossrule}
@@ -259,11 +271,11 @@ Induction on the $\matchFwdS$ derivation.
    \\
    &
    \qedLocal
-   \elimList{\kappa}{\hole}
+   (\annNil{\alpha}, \elimList{\kappa}{\hole})
    \leq
-   \elimList{\kappa}{\sigma'}
+   (\annNil{\alpha}, \elimList{\kappa}{\sigma'})
    \eq
-   \sigma
+   (v, \sigma)
    \notag
    \\
    \intertext{\crossrule}
@@ -293,23 +305,35 @@ Induction on the $\matchFwdS$ derivation.
    \\
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
+   \matchBwdLeq{\rho_2}{\kappa}{\beta'}{w_2}{v_2}{\tau}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
    \matchBwd{\rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}{w_2}{u_2}{\tau'}
    \leq
    v_2, \tau
+   \quad
+   (\exists u_2, \tau')
    &
-   \text{
-   	IH; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{cons-premise-one}
+   \\
+   &
+   \matchBwdLeq{\rho_1}{\tau}{\beta}{w_1}{v_1}{\sigma'}
+   &
+   \text{IH}
+   \notag
    \\
    &
    \matchBwd{\rho_1}{\tau'}{\alpha \meet \beta \meet \beta'}{w_1}{u_1}{\tau^\twoPrime}
    \leq
    v_1, \sigma'
+   \quad
+   (\exists u_1, \tau^\twoPrime)
    &
-   \text{
-   	IH; $\tau' \leq \tau$; monotonicity
-   }
+   \text{monotonicity}
    \locallabel{cons-premise-two}
    \\
    &
@@ -326,25 +350,24 @@ Induction on the $\matchFwdS$ derivation.
          \matchBwd{\rho_1 \concat \rho_2}
                   {\kappa}
                   {\alpha \meet \beta \meet \beta'}
-                  {\matchConsNew{w_1}{w_2}}{\annCons{v_1}{v_2}{\alpha}}{\elimList{\hole}{\tau^\twoPrime}}
+                  {\matchConsNew{w_1}{w_2}}
+                  {\annCons{u_1}{u_2}{\alpha \meet \beta \meet \beta'}}
+                  {\elimList{\hole}{\tau^\twoPrime}}
       }
    \end{smathpar}
    }
    &
+   \text{(\localref{cons-premise-one}, \localref{cons-premise-two})}
    \notag
    \\
    &
    \qedLocal
-   (\annPair{u_1}{u_2}{\alpha \meet \beta \meet \beta'}, \elimList{\hole}{\tau^\twoPrime})
+   (\annCons{u_1}{u_2}{\alpha \meet \beta \meet \beta'}, \elimList{\hole}{\tau^\twoPrime})
    \leq
-   (\annPair{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
+   (\annCons{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
    \eq
    (v, \sigma)
    &
-   \text{
-      (\localref{cons-premise-one},
-       \localref{cons-premise-two})
-   }
    \notag
 \end{flalign}
 \end{proof}

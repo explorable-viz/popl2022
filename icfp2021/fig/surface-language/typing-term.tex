@@ -8,19 +8,21 @@
       \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_j}{\tyFun{A_j}{B_j}}}$}
    }]
    {
-      \Gamma \concat \Delta \vdash c: \tyFun{A_i}{B_i}
+      \Gamma \concat \Delta \vdash c': \tyFun{A_i}{B_i}
       \quad
-      (\forall i \in \setRange{1}{j}, \forall c \in \vec{c}_i)
+      (\forall c' \in \vec{c_i})
+      \quad
+      (\forall i \numleq j)
    }
    {
-      \Gamma \vdash \seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c}_j}}: \Delta
+      \Gamma \vdash \seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}: \Delta
    }
 \end{smathpar}
 
 \vspace{5pt}
 \flushleft \shadebox{$\Gamma \vdash s: A$}
 \begin{smathpar}
-   \inferrule*[right={$\primOp: \tyFun{\tyInt}{\tyFun{\tyInt}{\tyInt}} \in \Gamma$}]
+   \inferrule*[right={$\primOp: \tyFun{\tyInt^2}{\tyInt} \in \Gamma$}]
    {
       \Gamma \vdash s: \tyInt
       \\

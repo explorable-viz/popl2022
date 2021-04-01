@@ -98,13 +98,13 @@
       right={$i \numleq j$}
    ]
    {
-      e \eq \exVecAccess{e_1}{e_2}
+      e \eq \exVecLookup{e_1}{e_2}
       \\
       \evalFwdEq{\rho}{e_1}{\alpha}{T}
                 {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trVecAccess{T}{j}{U}{i}}{v_{i}}
+      \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i}}
    }
    %
    \and
@@ -130,7 +130,7 @@
    {
       e \eq \exApp{e_1}{e_2}
       \\
-      \evalFwd{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
+      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
       \\
       \evalFwd{\rho}{e_2}{\alpha}{U}{u}
    }
@@ -148,13 +148,13 @@
    {
       e \eq \exApp{e_1}{e_2}
       \\
-      \evalFwd{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
+      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
       \\
       \evalFwd{\rho}{e_2}{\alpha}{U}{u}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\primFwd{\phi}(\vec{v} \concat u)}
+              {\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u)}
    }
    %
    \and
@@ -185,11 +185,11 @@
       \ruleName{$\evalFwdS$-let-rec}}
    ]
    {
-      e \eq \exLetRecMutual{h}{e'}
+      e \eq \exLetRecMutual{h'}{e'}
       \\
-      \rho_1, h \closeDefsFwdR \rho_2
+      \rho, h' \closeDefsFwdR \rho_1
       \\
-      \evalFwd{\rho_1 \concat \rho_2}{e'}{\alpha}{T}{v}
+      \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}

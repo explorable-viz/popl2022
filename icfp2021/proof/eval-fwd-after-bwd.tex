@@ -60,7 +60,7 @@ Induction on the $\evalBwdS$ derivation.
       {
          v \eq \phi
          \\
-         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
+         \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
       }
       {
          \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
@@ -71,7 +71,7 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \envLookup{\rho}{\primOp}{\phi}
+   \envLookup{\rho}{\primOp}{v}
    &
    \text{
    	(\lemref{core-language:env-get-put})
@@ -86,21 +86,14 @@ Induction on the $\evalBwdS$ derivation.
          lab={\ruleName{$\evalFwdS$-op}}
       ]
       {
-         \envLookup{\rho}{\primOp}{\phi}
+         \envLookup{\rho}{\primOp}{v}
       }
       {
-         \evalFwd{\rho}{\exOp{\primOp}}{\FF}{\trOp{\primOp}{\Gamma}}{\phi}
+         \evalFwd{\rho}{\exOp{\primOp}}{\FF}{\trOp{\primOp}{\Gamma}}{v}
       }
    \end{smathpar}
    }
    &
-   \notag
-   \\
-   &
-   \qedLocal
-   \phi
-   \eq
-   v
    \notag
    \\
    \intertext{\crossrule}
@@ -173,7 +166,7 @@ Induction on the $\evalBwdS$ derivation.
          \strut
       }
       {
-         \evalFwd{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha}}
+         \evalFwd{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha \meet \alpha}}
       }
    \end{smathpar}
    }
@@ -182,6 +175,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
+   \annInt{n}{\alpha \meet \alpha}
+   \geq
    \annInt{n}{\alpha}
    \eq
    v
@@ -215,7 +210,7 @@ Induction on the $\evalBwdS$ derivation.
          \strut
       }
       {
-         \evalFwd{\hole_{\Gamma}}{\annNil{\alpha}}{\alpha}{\trNil{\Gamma}}{\annNil{\alpha}}
+         \evalFwd{\hole_{\Gamma}}{\annNil{\alpha}}{\alpha}{\trNil{\Gamma}}{\annNil{\alpha \meet \alpha}}
       }
    \end{smathpar}
    }
@@ -224,6 +219,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
+   \annNil{\alpha \meet \alpha}
+   \geq
    \annNil{\alpha}
    \eq
    v
@@ -257,18 +254,17 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \beta \meet (\beta \join \alpha \join \alpha') = \beta
-   &
-   \notag
-   \\
-   &
    \evalFwdGeq{\rho}{e_1}{\alpha}{T}{v_1}
    &
    \text{IH}
    \notag
    \\
    &
-   \evalFwdGeq{\rho \join \rho'}{e_1}{\beta \join \alpha \join \alpha'}{T}{v_1}
+   \evalFwd{\rho \join \rho'}{e_1}{\beta \join \alpha \join \alpha'}{T}{u_1}
+   \geq
+   v_1
+   \quad
+   (\exists u_1)
    &
    \text{monotonicity}
    \locallabel{cons-premise-one}
@@ -280,7 +276,11 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{\rho \join \rho'}{e_2}{\beta \join \alpha \join \alpha'}{U}{v_2}
+   \evalFwd{\rho \join \rho'}{e_2}{\beta \join \alpha \join \alpha'}{U}{u_2}
+   \geq
+   v_2
+   \quad
+   (\exists u_2)
    &
    \text{monotonicity}
    \locallabel{cons-premise-two}
@@ -302,7 +302,7 @@ Induction on the $\evalBwdS$ derivation.
                  {\annCons{e_1}{e_2}{\beta}}
                  {\beta \join \alpha \join \alpha'}
                  {\trCons{T}{U}}
-                 {\annCons{u_1}{u_2}{\beta}}
+                 {\annCons{u_1}{u_2}{\beta \meet (\beta \join \alpha \join \alpha')}}
       }
    \end{smathpar}
    }
@@ -310,17 +310,19 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
+   \beta \meet (\beta \join \alpha \join \alpha') = \beta
+   &
+   \notag
+   \\
+   &
    \qedLocal
-   (\annCons{u_1}{u_2}{\beta})
+   (\annCons{u_1}{u_2}{\beta \meet (\beta \join \alpha \join \alpha')})
    \geq
    (\annCons{v_1}{v_2}{\beta})
    \eq
    v
    &
-   \text{
-      (\localref{cons-premise-one},
-       \localref{cons-premise-two})
-   }
+   \text{(\localref{cons-premise-one}, \localref{cons-premise-two})}
    \notag
    \\
    \intertext{\crossrule}
@@ -328,40 +330,40 @@ Induction on the $\evalBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-     \inferrule*[
-        lab={\ruleName{$\evalBwdS$-vector}}
-     ]
-     {
-        v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
-        \\
-        \evalBwd{u_{i}}
-                {U_{i}}
-                {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
-                {e_{i}}
-                {\alpha'_{i}}
-        \quad
-        (\forall i \numleq j)
-        \\
-        \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
-                {T}
-                {\rho'}
-                {e'}
-                {\alpha^\twoPrime}
-     }
-     {
-        \evalBwd{v}
-                {\trVec{U_{i}}{x}{i}{T}{j}}
-                {\bigjoin\rho \join \rho'}
-                {\annVec{\bigjoin e}{x}{e'}{\alpha}}
-                {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
-     }
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-vector}}
+      ]
+      {
+         v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+         \\
+         \evalBwd{u_{i}}
+                 {U_{i}}
+                 {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
+                 {e_{i}}
+                 {\alpha'_{i}}
+         \quad
+         (\forall i \numleq j)
+         \\
+         \evalBwd{\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}}}
+                 {T}
+                 {\rho'}
+                 {e'}
+                 {\alpha^\twoPrime}
+      }
+      {
+         \evalBwd{v}
+                 {\trVec{U_{i}}{x}{i}{T}{j}}
+                 {\bigjoin\vec{\rho} \join \rho'}
+                 {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}}
+                 {\alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime}
+      }
    \end{smathpar}
    }
    &
    \notag
    \\
    &
-   \alpha^\dagger = \alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime
+   \alpha^\dagger = \alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime
    &
    \text{define}
    \notag
@@ -371,26 +373,28 @@ Induction on the $\evalBwdS$ derivation.
               {e'}
               {\alpha^\twoPrime}
               {T}
-              {\annInt{j}{\beta \join \bigjoin\beta'}}
+              {\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}}}
    &
    \text{IH}
    \locallabel{vector-IH-one}
    \\
    &
-   (\bigjoin\rho \join \rho', \alpha^\dagger)
+   (\bigjoin\vec{\rho} \join \rho', \alpha^\dagger)
    \geq
    (\rho', \alpha^\twoPrime)
    &
    \notag
    \\
    &
-   \evalFwdEq{\bigjoin\rho \join \rho'}
+   \evalFwdEq{\bigjoin\vec{\rho} \join \rho'}
              {e'}
              {\alpha^\dagger}
              {T}
              {\annInt{j}{\beta^\dagger}}
-   \text{ where }
-   \beta^\dagger \geq \beta \join \bigjoin\beta'
+   \geq
+   \annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}}
+   \quad
+   (\exists \annInt{j}{\beta^\dagger})
    &
    \text{(\localref{vector-IH-one}); monotonicity}
    \locallabel{vector-premise-one}
@@ -408,21 +412,25 @@ Induction on the $\evalBwdS$ derivation.
    \locallabel{vector-IH-two}
    \\
    &
-   (\bigjoin \rho \join \rho', \beta^\dagger, \bigjoin e, \alpha^\dagger)
+   (\bigjoin\vec{\rho} \join \rho', \beta^\dagger, \bigjoin\vec{e}, \alpha^\dagger)
    \geq
-   (\rho_i, e_i, \beta'_i, \alpha'_i)
+   (\rho_i, \beta'_i, e_i, \alpha'_i)
    \quad
    (\forall i \numleq j)
    \notag
    \\
    &
-   \evalFwdGeq{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
-              {\bigjoin e}
-              {\alpha^\dagger}
-              {U_{i}}
-              {u_{i}}
+   \evalFwd{(\bigjoin\vec{\rho} \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
+           {\bigjoin\vec{e}}
+           {\alpha^\dagger}
+           {U_{i}}
+           {v_{i}}
+   \geq
+   u_i
    \quad
    (\forall i \numleq j)
+   \quad
+   (\exists \vec{v})
    &
    \text{(\localref{vector-IH-two}); monotonicity}
    \locallabel{vector-premise-two}
@@ -433,14 +441,14 @@ Induction on the $\evalBwdS$ derivation.
    \begin{smathpar}
      \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
      {
-        \evalFwdEq{\bigjoin\rho \join \rho'}
+        \evalFwdEq{\bigjoin\vec{\rho} \join \rho'}
                   {e'}
                   {\alpha^\dagger}
                   {T}
                   {\annInt{j}{\beta^\dagger}}
         \\
-        \evalFwd{(\bigjoin\rho \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
-                {\bigjoin e}
+        \evalFwd{(\bigjoin\vec{\rho} \join \rho') \concat \bind{x}{i_{\beta^\dagger}}}
+                {\bigjoin\vec{e}}
                 {\alpha^\dagger}
                 {U_{i}}
                 {v_{i}}
@@ -486,9 +494,9 @@ Induction on the $\evalBwdS$ derivation.
      }
      {
         \evalBwd{v}
-                {\trMatrixAccess{T}{j}{U}{i}}
+                {\trVecLookup{T}{j}{U}{i}}
                 {\rho \join \rho'}
-                {\exMatrixAccess{e_1}{e_2}}
+                {\exVecLookup{e_1}{e_2}}
                 {\alpha \join \alpha'}
      }
    \end{smathpar}
@@ -507,11 +515,15 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{\rho \join \rho'}
-              {e_1}
-              {\alpha \join \alpha'}
-              {T}
-              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   \evalFwdEq{\rho \join \rho'}
+             {e_1}
+             {\alpha \join \alpha'}
+             {T}
+             {\annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\beta}}
+   \geq
+   \mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}
+   \quad
+   (\exists \vec{u}, \beta', \beta)
    &
    \text{monotonicity}
    \locallabel{vector-lookup-premise-one}
@@ -533,21 +545,21 @@ Induction on the $\evalBwdS$ derivation.
      }
      {
         \evalFwd{\rho \join \rho'}
-                {\exVecAccess{e_1}{e_2}}
+                {\exVecLookup{e_1}{e_2}}
                 {\alpha \join \alpha'}
-                {\trVecAccess{T}{j}{U}{i}}
+                {\trVecLookup{T}{j}{U}{i}}
                 {u_{i}}
      }
    \end{smathpar}
    }
    &
+   \text{(\localref{vector-lookup-premise-one})}
    \notag
    \\
    &
    \qedLocal
    u_i \geq v
    &
-   \text{(\localref{vector-lookup-premise-one})}
    \notag
    \\
    \intertext{\crossrule}
@@ -572,21 +584,14 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{\rho}
-              {e}
-              {\alpha}
-              {T}
-              {\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}
+   \evalFwdEq{\rho}{e}{\alpha}{T}
+             {\annot{\exVec{v_{i}}{i}{\annInt{j}{\beta'}}}{\alpha'}}
+   \geq
+   \annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}
+   \quad
+   (\exists \vec{v}, \alpha', \beta')
    &
    \text{IH}
-   \notag
-   \\
-   &
-   \evalFwdEq{\rho}{e}{\alpha}{T}
-             {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
-   \text{ with }
-   \alpha' \geq \beta
-   &
    \notag
    \\
    &
@@ -596,11 +601,11 @@ Induction on the $\evalBwdS$ derivation.
      \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
      {
         \evalFwdEq{\rho}{e}{\alpha}{T}
-                  {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+                  {\annot{\exVec{v_{i}}{i}{\annInt{j}{\beta'}}}{\alpha'}}
      }
      {
         \evalFwd{\rho}{\exVecLen{e}}{\alpha}{\trVecLen{T}{j}}
-                {\annInt{j}{\alpha'}}
+                {\annInt{j}{\beta'}}
      }
    \end{smathpar}
    }
@@ -609,8 +614,226 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   \annInt{j}{\alpha'} \geq \annInt{j}{\beta} \eq v
+   \annInt{j}{\beta'} \geq \annInt{j}{\beta} \eq v
    &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply-prim-unsat}}
+      ]
+      {
+         v \eq \exPrimOp{\phi}{\vec{u} \concat u'}
+         \\
+         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{v}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_1}
+              {\alpha}
+              {T}
+              {\exPrimOp{\phi}{\vec{u}}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_1}
+             {\alpha \join \alpha'}
+             {T}
+             {\exPrimOp{\phi}{\vec{v}}}
+   \geq
+   \vec{u}
+   \quad
+   (\exists \vec{v})
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-unsat-premise-one}
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_2}
+              {\alpha}
+              {U}
+              {u'}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_2}
+             {\alpha \join \alpha'}
+             {U}
+             {v'}
+   \geq
+   u'
+   \quad
+   (\exists v')
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-unsat-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-apply-prim-unsat}},
+         right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
+      ]
+      {
+         \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
+         \\
+         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{v'}
+      }
+      {
+         \evalFwd{\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\exPrimOp{\phi}{\vec{v} \concat v'}}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{apply-prim-unsat-premise-one}, \localref{apply-prim-unsat-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   \exPrimOp{\phi}{\vec{v} \concat v'} \geq \exPrimOp{\phi}{\vec{u} \concat u'} \eq v
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply-prim-sat}}
+      ]
+      {
+         v \eq \annInt{n'}{\beta}
+         \\
+         \primBwd{\phi}(\vec{n} \concat m)(\annInt{n'}{\beta}) = \vec{u} \concat u'
+         \\
+         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{v}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_1}
+              {\alpha}
+              {T}
+              {\exPrimOp{\phi}{\vec{u}}}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_1}
+             {\alpha \join \alpha'}
+             {T}
+             {\exPrimOp{\phi}{\vec{v}}}
+   \geq
+   \exPrimOp{\phi}{\vec{u}}
+   \quad
+   (\exists \vec{v})
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-sat-premise-one}
+   \\
+   &
+   \evalFwdGeq{\rho}
+              {e_2}
+              {\alpha}
+              {U}
+              {u'}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwdEq{\rho \join \rho'}
+             {e_2}
+             {\alpha \join \alpha'}
+             {U}
+             {v'}
+   \geq
+   u'
+   \quad
+   (\exists v')
+   &
+   \text{monotonicity}
+   \locallabel{apply-prim-sat-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalFwdS$-apply-prim-sat}},
+         right={$\arity{\phi} = \length{\vec{n}} + 1$}
+      ]
+      {
+         \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exPrimOp{\phi}{\vec{v}}}
+         \\
+         \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{v'}
+      }
+      {
+         \evalFwd{\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat v')}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{apply-prim-sat-premise-one}, \localref{apply-prim-sat-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   \primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat v') \geq
+   \primFwd{\phi}(\vec{n} \concat m)(\vec{u} \concat u') \geq \annInt{n'}{\beta} \eq v
+   &
+   \text{monotonicity; \defrefShort{core-language:primop-gc}}
    \notag
    \\
    \intertext{\crossrule}
@@ -647,9 +870,11 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosure{\rho_1^\dagger}{h'}{\sigma'}}
-   \text{ with }
-   (\rho^\dagger, h', \sigma') \geq (\rho_1 \join \rho_1', h, \sigma)
+   \evalFwdEq{\rho \join \rho'}{e_1}{\alpha \join \alpha'}{T}{\exClosure{\rho^\dagger}{h'}{\sigma'}}
+   \geq
+   \exClosure{\rho_1 \join \rho_1'}{h}{\sigma}
+   \quad
+   (\exists \rho^\dagger, h', \sigma')
    &
    \text{monotonicity}
    \locallabel{app-premise-one}
@@ -657,13 +882,13 @@ Induction on the $\evalBwdS$ derivation.
    &
    \rho'_1, h \closeDefsFwdR\geq \rho_2
    &
-   \text{(\thmref{core-language:closeDefs:gc})}
+   \text{\thmref{core-language:closeDefs:gc}}
    \notag
    \\
    &
    \rho^\dagger, h' \closeDefsFwdR \rho'_2
-   \text{ with }
-   \rho'_2 \geq \rho_2
+   \geq
+   \rho_2
    \quad
    (\exists\rho'_2)
    \
@@ -679,8 +904,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \evalFwd{\rho \join \rho'}{e_2}{\alpha \join \alpha'}{U}{u'}
-   \text{ where }
-   u' \geq v'
+   \geq
+   v'
    \quad
    (\exists u')
    &
@@ -690,13 +915,13 @@ Induction on the $\evalBwdS$ derivation.
    &
    \matchFwdGeq{v'}{\sigma}{w}{\rho_3}{e}{\beta}
    &
-   \text{(\thmref{core-language:match:gc})}
+   \text{\thmref{core-language:match:gc}}
    \notag
    \\
    &
    \matchFwd{u'}{\sigma'}{w}{\rho_3'}{e'}{\beta'}
-   \text{ with }
-   (\rho_3', e', \beta') \geq (\rho_3, e, \beta)
+   \geq
+   \rho_3, e, \beta
    \quad
    (\exists \rho_3', e', \beta')
    &
@@ -711,8 +936,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \evalFwd{\rho^\dagger \concat \rho_2' \concat \rho_3'}{e'}{\beta'}{T'}{u}
-   \text{ with }
-   u \geq v
+   \geq
+   v
    \quad
    (\exists u)
    &
@@ -743,13 +968,99 @@ Induction on the $\evalBwdS$ derivation.
    \end{smathpar}
    }
    &
-   \text{(
+   \text{(%
     \localref{app-premise-one},
     \localref{app-premise-two},
     \localref{app-premise-three},
     \localref{app-premise-four},
-    \localref{app-premise-five}
+    \localref{app-premise-five}%
    )}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-let-rec}}
+      ]
+      {
+         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
+         \\
+         \rho_1 \closeDefsBwdR \rho', h'
+      }
+      {
+         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalFwdGeq{\rho \concat \rho_1}
+              {e}
+              {\alpha}
+              {T}
+              {v}
+   &
+   \text{IH}
+   \notag
+   \\
+   &
+   \evalFwd{(\rho \join \rho') \concat \rho_1}
+           {e}
+           {\alpha}
+           {T}
+           {u}
+   \geq
+   v
+   \quad
+   (\exists u)
+   &
+   \text{monotonicity}
+   \locallabel{let-rec-premise-one}
+   \\
+   &
+   \rho', h' \closeDefsBwdR\geq \rho_1
+   &
+   \text{\thmref{core-language:closeDefs:gc}}
+   \notag
+   \\
+   &
+   \rho \join \rho', h' \closeDefsBwdR \rho_1' \geq \rho_1
+   \quad
+   (\exists \rho_1')
+   &
+   \text{monotonicity}
+   \locallabel{let-rec-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={
+         \ruleName{$\evalFwdS$-let-rec}}
+      ]
+      {
+         \rho \join \rho', h' \closeDefsFwdR \rho_1
+         \\
+         \evalFwd{(\rho \join \rho') \concat \rho_1}{e}{\alpha}{T}{u}
+      }
+      {
+         \evalFwd{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{u}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{let-rec-premise-one}, \localref{let-rec-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   u \geq v
+   &
    \notag
 \end{flalign}
 \end{proof}

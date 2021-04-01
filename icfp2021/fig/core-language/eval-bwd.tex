@@ -17,9 +17,7 @@
       lab={\ruleName{$\evalBwdS$-op}}
    ]
    {
-      v \eq \phi
-      \\
-      \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{\phi}}
+      \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
    }
    {
       \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
@@ -97,7 +95,7 @@
       \quad
       (\forall i \numleq j)
       \\
-      \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
+      \evalBwd{\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}}}
               {T}
               {\rho'}
               {e'}
@@ -106,9 +104,9 @@
    {
       \evalBwd{v}
               {\trVec{U_{i}}{x}{i}{T}{j}}
-              {\bigjoin\rho \join \rho'}
-              {\annVec{\bigjoin e}{x}{e'}{\alpha}}
-              {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
+              {\bigjoin\vec{\rho} \join \rho'}
+              {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}}
+              {\alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime}
    }
    %
    \and
@@ -123,7 +121,7 @@
       \evalBwd{\annInt{i}{\FF}}{U}{\rho'}{e_2}{\alpha'}
    }
    {
-      \evalBwd{v}{\trMatrixAccess{T}{j}{U}{i}}{\rho \join \rho'}{\exMatrixAccess{e_1}{e_2}}{\alpha \join \alpha'}
+      \evalBwd{v}{\trVecLookup{T}{j}{U}{i}}{\rho \join \rho'}{\exVecLookup{e_1}{e_2}}{\alpha \join \alpha'}
    }
    %
    \and
@@ -222,8 +220,8 @@
 \begin{salign}
    \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_i: \exClosure{\rho_i}{h_i}{\sigma_i}}
    &\closeDefsBwdR
-   \bigjoin\rho,
-   (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin h}
+   \bigjoin\vec{\rho},
+   (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin\vec{h}}
 \end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \end{figure}
