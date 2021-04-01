@@ -363,7 +363,7 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \alpha^\dagger = \alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime
+   \alpha^\dagger = \alpha \join {\bigjoin{\vec{\alpha'}}} \join \alpha^\twoPrime
    &
    \text{define}
    \notag
@@ -373,26 +373,28 @@ Induction on the $\evalBwdS$ derivation.
               {e'}
               {\alpha^\twoPrime}
               {T}
-              {\annInt{j}{\beta \join \bigjoin\beta'}}
+              {\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}}}
    &
    \text{IH}
    \locallabel{vector-IH-one}
    \\
    &
-   (\bigjoin\rho \join \rho', \alpha^\dagger)
+   (\bigjoin\vec{\rho} \join \rho', \alpha^\dagger)
    \geq
    (\rho', \alpha^\twoPrime)
    &
    \notag
    \\
    &
-   \evalFwdEq{\bigjoin\rho \join \rho'}
+   \evalFwdEq{\bigjoin\vec{\rho} \join \rho'}
              {e'}
              {\alpha^\dagger}
              {T}
              {\annInt{j}{\beta^\dagger}}
-   \text{ where }
-   \beta^\dagger \geq \beta \join \bigjoin\beta'
+   \geq
+   \annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}}
+   \quad
+   (\exists \annInt{j}{\beta^\dagger})
    &
    \text{(\localref{vector-IH-one}); monotonicity}
    \locallabel{vector-premise-one}
@@ -410,9 +412,9 @@ Induction on the $\evalBwdS$ derivation.
    \locallabel{vector-IH-two}
    \\
    &
-   (\bigjoin \rho \join \rho', \beta^\dagger, \bigjoin e, \alpha^\dagger)
+   (\bigjoin\vec{\rho} \join \rho', \beta^\dagger, \bigjoin\vec{e}, \alpha^\dagger)
    \geq
-   (\rho_i, e_i, \beta'_i, \alpha'_i)
+   (\rho_i, \beta'_i, e_i, \alpha'_i)
    \quad
    (\forall i \numleq j)
    \notag
