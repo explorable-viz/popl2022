@@ -438,7 +438,7 @@ Induction on the $\evalFwdS$ derivation.
    \begin{smathpar}
       \inferrule*[
          lab={\ruleName{$\evalFwdS$-vector-lookup}},
-         right={$i' \numleq j$}
+         right={$i \numleq j$}
       ]
       {
          e \eq \exVecLookup{e_1}{e_2}
@@ -447,7 +447,7 @@ Induction on the $\evalFwdS$ derivation.
                    {\annVec{v_{i}}{i}{\annInt{j}{\alpha'}}{\beta}}
       }
       {
-         \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i'}}
+         \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i}}
       }
    \end{smathpar}
    }
@@ -461,7 +461,7 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i'}}}{T}{\rho_1}{e_1'}{\beta'}
+   \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i}}}{T}{\rho_1}{e_1'}{\beta'}
    \leq
    \rho, e_1, \alpha
    \quad
@@ -502,13 +502,13 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-vector-lookup}}
       ]
       {
-         \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i'}}}
+         \evalBwd{\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v_{i}}}
                  {T}{\rho_1}{e_1'}{\beta'}
          \\
          \evalBwd{\annInt{i}{\FF}}{U}{\rho_2}{e_2'}{\beta^\twoPrime}
       }
       {
-         \evalBwd{v_{i'}}
+         \evalBwd{v_{i}}
                  {\trVecLookup{T}{j}{U}{i}}
                  {\rho_1 \join \rho_2}
                  {\exVecLookup{e_1'}{e_2'}}
