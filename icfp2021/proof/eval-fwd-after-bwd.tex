@@ -330,33 +330,33 @@ Induction on the $\evalBwdS$ derivation.
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-     \inferrule*[
-        lab={\ruleName{$\evalBwdS$-vector}}
-     ]
-     {
-        v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
-        \\
-        \evalBwd{u_{i}}
-                {U_{i}}
-                {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
-                {e_{i}}
-                {\alpha'_{i}}
-        \quad
-        (\forall i \numleq j)
-        \\
-        \evalBwd{\annInt{j}{\beta \join \bigjoin\beta'}}
-                {T}
-                {\rho'}
-                {e'}
-                {\alpha^\twoPrime}
-     }
-     {
-        \evalBwd{v}
-                {\trVec{U_{i}}{x}{i}{T}{j}}
-                {\bigjoin\rho \join \rho'}
-                {\annVec{\bigjoin e}{x}{e'}{\alpha}}
-                {\alpha \join {\bigjoin{\alpha'}} \join \alpha^\twoPrime}
-     }
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-vector}}
+      ]
+      {
+         v \eq \annVec{u_{i}}{i}{\annInt{j}{\beta}}{\alpha}
+         \\
+         \evalBwd{u_{i}}
+                 {U_{i}}
+                 {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
+                 {e_{i}}
+                 {\alpha'_{i}}
+         \quad
+         (\forall i \numleq j)
+         \\
+         \evalBwd{\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}}}
+                 {T}
+                 {\rho'}
+                 {e'}
+                 {\alpha^\twoPrime}
+      }
+      {
+         \evalBwd{v}
+                 {\trVec{U_{i}}{x}{i}{T}{j}}
+                 {\bigjoin\vec{\rho} \join \rho'}
+                 {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}}
+                 {\alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime}
+      }
    \end{smathpar}
    }
    &
