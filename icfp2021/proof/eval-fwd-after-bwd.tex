@@ -260,7 +260,11 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{\rho \join \rho'}{e_1}{\beta \join \alpha \join \alpha'}{T}{v_1}
+   \evalFwd{\rho \join \rho'}{e_1}{\beta \join \alpha \join \alpha'}{T}{u_1}
+   \geq
+   v_1
+   \quad
+   (\exists u_1)
    &
    \text{monotonicity}
    \locallabel{cons-premise-one}
@@ -272,7 +276,11 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{\rho \join \rho'}{e_2}{\beta \join \alpha \join \alpha'}{U}{v_2}
+   \evalFwd{\rho \join \rho'}{e_2}{\beta \join \alpha \join \alpha'}{U}{u_2}
+   \geq
+   v_2
+   \quad
+   (\exists u_2)
    &
    \text{monotonicity}
    \locallabel{cons-premise-two}
@@ -294,7 +302,7 @@ Induction on the $\evalBwdS$ derivation.
                  {\annCons{e_1}{e_2}{\beta}}
                  {\beta \join \alpha \join \alpha'}
                  {\trCons{T}{U}}
-                 {\annCons{u_1}{u_2}{\beta}}
+                 {\annCons{u_1}{u_2}{\beta \meet (\beta \join \alpha \join \alpha')}}
       }
    \end{smathpar}
    }
@@ -308,7 +316,7 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   (\annCons{u_1}{u_2}{\beta})
+   (\annCons{u_1}{u_2}{\beta \meet (\beta \join \alpha \join \alpha')})
    \geq
    (\annCons{v_1}{v_2}{\beta})
    \eq
