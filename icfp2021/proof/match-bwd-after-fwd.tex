@@ -350,7 +350,9 @@ Induction on the $\matchFwdS$ derivation.
          \matchBwd{\rho_1 \concat \rho_2}
                   {\kappa}
                   {\alpha \meet \beta \meet \beta'}
-                  {\matchConsNew{w_1}{w_2}}{\annCons{v_1}{v_2}{\alpha}}{\elimList{\hole}{\tau^\twoPrime}}
+                  {\matchConsNew{w_1}{w_2}}
+                  {\annCons{u_1}{u_2}{\alpha \meet \beta \meet \beta'}}
+                  {\elimList{\hole}{\tau^\twoPrime}}
       }
    \end{smathpar}
    }
