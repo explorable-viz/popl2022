@@ -515,11 +515,15 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{\rho \join \rho'}
-              {e_1}
-              {\alpha \join \alpha'}
-              {T}
-              {\mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}}
+   \evalFwdEq{\rho \join \rho'}
+             {e_1}
+             {\alpha \join \alpha'}
+             {T}
+             {\annVec{u_{i}}{i}{\annInt{j}{\beta'}}{\beta}}
+   \geq
+   \mapUpdate{\annVec{\hole}{i}{\annInt{j}{\FF}}{\FF}}{i}{v}
+   \quad
+   (\exists \vec{u}, \beta', \beta)
    &
    \text{monotonicity}
    \locallabel{vector-lookup-premise-one}
@@ -549,13 +553,13 @@ Induction on the $\evalBwdS$ derivation.
    \end{smathpar}
    }
    &
+   \text{(\localref{vector-lookup-premise-one})}
    \notag
    \\
    &
    \qedLocal
    u_i \geq v
    &
-   \text{(\localref{vector-lookup-premise-one})}
    \notag
    \\
    \intertext{\crossrule}
