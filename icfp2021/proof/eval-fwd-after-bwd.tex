@@ -584,23 +584,14 @@ Induction on the $\evalBwdS$ derivation.
    \notag
    \\
    &
-   \evalFwdGeq{\rho}
-              {e}
-              {\alpha}
-              {T}
-              {\annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}}
+   \evalFwdEq{\rho}{e}{\alpha}{T}
+             {\annot{\exVec{v_{i}}{i}{\annInt{j}{\beta'}}}{\alpha'}}
+   \geq
+   \annVec{\hole}{i}{\annInt{j}{\beta}}{\FF}
+   \quad
+   (\exists \vec{v}, \alpha', \beta')
    &
    \text{IH}
-   \notag
-   \\
-   &
-   \evalFwdEq{\rho}{e}{\alpha}{T}
-             {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
-   \text{ with }
-   \alpha' \geq \beta
-   \quad
-   \text{($\exists v, \alpha'$)}
-   &
    \notag
    \\
    &
@@ -610,11 +601,11 @@ Induction on the $\evalBwdS$ derivation.
      \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
      {
         \evalFwdEq{\rho}{e}{\alpha}{T}
-                  {\annot{\exVec{v_{i}}{i}{\annInt{j}{\alpha'}}}{\beta}}
+                  {\annot{\exVec{v_{i}}{i}{\annInt{j}{\beta'}}}{\alpha'}}
      }
      {
         \evalFwd{\rho}{\exVecLen{e}}{\alpha}{\trVecLen{T}{j}}
-                {\annInt{j}{\alpha'}}
+                {\annInt{j}{\beta'}}
      }
    \end{smathpar}
    }
@@ -623,7 +614,7 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   \annInt{j}{\alpha'} \geq \annInt{j}{\beta} \eq v
+   \annInt{j}{\beta'} \geq \annInt{j}{\beta} \eq v
    &
    \notag
    \\
