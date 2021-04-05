@@ -71,10 +71,10 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
 
 \begin{lemma}[Environment get-put]
 \label{lem:core-language:env-get-put}Suppose $\vdash \rho: \Gamma$.
-\begin{itemize}
-   \item If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$.
-   \item If $\envLookup{\rho}{z}{v}$ and $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$ then $(u \leq v \iff \rho' \leq \rho)$.
-\end{itemize}
+\begin{enumerate}
+   \item \label{lem:core-language:env-get-put:1} If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$.
+   \item \label{lem:core-language:env-get-put:2} If $\envLookup{\rho}{z}{v}$ and $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$ then $(u \leq v \iff \rho' \leq \rho)$.
+\end{enumerate}
 \end{lemma}
 
 \begin{lemma}[Determinism of recursive binding]

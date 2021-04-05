@@ -8,7 +8,9 @@
 
 \flushleft \shadebox{$\envLookup{\rho}{z}{v}$}
 \begin{smathpar}
-   \inferrule*
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-head}}
+   ]
    {
       \strut
    }
@@ -19,6 +21,7 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-tail}},
       right={$z' \neq z$}
    ]
    {
@@ -32,7 +35,9 @@
 
 \flushleft \shadebox{$\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$}
 \begin{smathpar}
-   \inferrule*
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleleft_{\Gamma}$-head}}
+   ]
    {
       \strut
    }
@@ -43,6 +48,7 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\smalltriangleleft_{\Gamma}$-tail}},
       right={$z \neq z'$}
    ]
    {

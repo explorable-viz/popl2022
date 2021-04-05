@@ -1,9 +1,10 @@
 \subsection{\lemref{core-language:env-get-put}}
 
-If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$.
-
 \begin{proof}
-
+   \ref{lem:core-language:env-get-put:1}
+   If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$. \\
+   
+   Suppose that $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$. By induction on the proof that $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$:
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -75,8 +76,6 @@ If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$.
    }
    &
    \notag
-   \\
-   \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{flalign}
 \end{proof}
