@@ -54,7 +54,7 @@
          right={$z \neq z'$}
       ]
       {
-         \envLookupBwd{\rho'}{\Gamma}{\bind{z}{v}}
+         \envLookupBwd{\rho'}{\Gamma'}{\bind{z}{v}}
       }
       {
          \envLookupBwd{\rho' \concat \bind{z'}{\hole}}{\Gamma' \concat \bind{z'}{A}}{\bind{z}{v}}
@@ -88,21 +88,18 @@
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
    \caseDerivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[lab={
-         \ruleName{$\evalFwdS$-let-rec}}
-      ]
-      {
-         e \eq \exLetRecMutual{h'}{e'}
-         \\
-         \rho, h' \closeDefsFwdR \rho_1
-         \\
-         \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
-      }
-      {
-         \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
-      }
-   \end{smathpar}
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\smalltriangleleft_{\Gamma}$-tail}},
+            right={$z \neq z'$}
+         ]
+         {
+            \envLookupBwd{\rho'}{\Gamma'}{\bind{z}{v}}
+         }
+         {
+            \envLookupBwd{\rho' \concat \bind{z'}{\hole}}{\Gamma' \concat \bind{z'}{A}}{\bind{z}{v}}
+         }
+      \end{smathpar}
    }
    &
    \notag
