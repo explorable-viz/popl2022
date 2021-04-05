@@ -1,0 +1,82 @@
+\subsection{\lemref{core-language:env-get-put}}
+
+If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$.
+
+\begin{proof}
+
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*
+      {
+        \strut
+      }
+      {
+        \envLookupBwd{\hole_{\Gamma'} \concat \bind{z}{v}}{\Gamma' \concat \bind{z}{A}}{\bind{z}{v}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*
+      {
+        \strut
+      }
+      {
+        \envLookup{\hole_{\Gamma'} \concat \bind{z}{v}}{z}{v}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         right={$z \neq z'$}
+      ]
+      {
+         \envLookupBwd{\rho'}{\Gamma}{\bind{z}{v}}
+      }
+      {
+         \envLookupBwd{\rho' \concat \bind{z'}{\hole}}{\Gamma' \concat \bind{z'}{A}}{\bind{z}{v}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         right={$z' \neq z$}
+      ]
+      {
+         \envLookup{\rho'}{z}{v}
+      }
+      {
+         \envLookup{(\rho' \concat \bind{z'}{\hole})}{z}{v}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{flalign}
+\end{proof}
