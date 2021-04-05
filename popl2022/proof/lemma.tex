@@ -12,7 +12,9 @@
    &
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*
+      \inferrule*[
+         lab={\ruleName{$\smalltriangleleft_{\Gamma}$-head}}
+      ]
       {
         \strut
       }
@@ -28,7 +30,9 @@
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*
+      \inferrule*[ 
+         lab={\ruleName{$\smalltriangleright$-head}}
+      ]
       {
         \strut
       }
@@ -46,6 +50,7 @@
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
+         lab={\ruleName{$\smalltriangleleft_{\Gamma}$-tail}},
          right={$z \neq z'$}
       ]
       {
@@ -64,6 +69,7 @@
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
+         lab={\ruleName{$\smalltriangleright$-tail}},
          right={$z' \neq z$}
       ]
       {
@@ -77,5 +83,87 @@
    &
    \notag
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[lab={
+         \ruleName{$\evalFwdS$-let-rec}}
+      ]
+      {
+         e \eq \exLetRecMutual{h'}{e'}
+         \\
+         \rho, h' \closeDefsFwdR \rho_1
+         \\
+         \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
+      }
+      {
+         \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \evalBwd{v}{T}{\rho' \concat \rho_1'}{e^\twoPrime}{\beta}
+   \leq
+   \rho \concat \rho_1, e', \alpha
+   \quad
+   (\exists \rho', \rho_1', e^\twoPrime, \beta)
+   &
+   \text{IH}
+   \locallabel{let-rec-premise-one}
+   \\
+   &
+   \rho_1 \closeDefsBwdR\leq \rho, h'
+   &
+   \text{\thmref{core-language:closeDefs:gc}}
+   \notag
+   \\
+   &
+   \rho_1' \closeDefsBwdR \rho^\twoPrime, h^\twoPrime
+   \leq
+   \rho, h'
+   \quad
+   (\exists \rho^\twoPrime, h^\twoPrime)
+   &
+   \text{monotonicity}
+   \locallabel{let-rec-premise-two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-let-rec}}
+      ]
+      {
+         \evalBwd{v}{T}{\rho' \concat \rho_1'}{e^\twoPrime}{\beta}
+         \\
+         \rho_1' \closeDefsBwdR \rho^\twoPrime, h^\twoPrime
+      }
+      {
+         \evalBwd{v}
+                 {\trLetRecMutual{h}{T}}
+                 {\rho' \join \rho^\twoPrime}
+                 {\exLetRecMutual{h^\twoPrime}{e^\twoPrime}}
+                 {\beta}
+      }
+   \end{smathpar}
+   }
+   &
+   (\localref{let-rec-premise-one}, \localref{let-rec-premise-two})
+   \notag
+   \\
+   &
+   \qedLocal
+   (\rho' \join \rho^\twoPrime, \exLetRecMutual{h^\twoPrime}{e^\twoPrime}, \beta)
+   \leq
+   (\rho, \exLetRecMutual{h'}{e'}, \alpha)
+   &
+   \notag
 \end{flalign}
 \end{proof}
