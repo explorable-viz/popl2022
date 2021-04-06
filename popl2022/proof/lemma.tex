@@ -284,7 +284,7 @@
    \notag
    \\
    &
-   \rho_{2} \leq \rho_{1}
+   u \leq v \iff \rho_2 \leq \rho_1
    &
    \text{IH}
    \locallabel{ih-tail}
@@ -296,9 +296,15 @@
    \notag
    \\
    &
-   \rho_{2} \concat \bind{z'}{\hole} \leq \rho_{1} \concat \bind{z'}{v'}
+   \rho_{2} \leq \rho_{1}
    &
    \text{(\localref{ih-tail})}
+   \notag
+   \\
+   &
+   \rho_{2} \concat \bind{z'}{\hole} \leq \rho_{1} \concat \bind{z'}{v'}
+   &
+   \text{Congruence}
    \notag
    \\
    &
@@ -316,6 +322,19 @@
    \rho_{2} \concat \bind{z'}{\hole} \leq \rho_{1} \concat \bind{z'}{v'}
    &
    \text{(\localref{decompose-rho-tail}, \localref{decompose-rho'-tail})}
+   \notag
+   \\
+   &
+   \rho_{2} \leq \rho_{1}
+   &
+   \text{Congruence}
+   \notag
+   \\
+   &
+   \qedLocal
+   u \leq v
+   &
+   \text{(\localref{ih-tail})}
    \notag
 \end{flalign}
 \end{proof}
