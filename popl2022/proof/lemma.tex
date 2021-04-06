@@ -145,7 +145,7 @@
    \notag
    \\
    &
-   \text{The \ruleName{$\smalltriangleleft$-head} proof is of the following form:}
+   \text{The \ruleName{$\smalltriangleleft$} proof is of the following form:}
    \notag
    \\
    &
@@ -213,16 +213,109 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\smalltriangleleft$-tail}},
-            right={$z \neq z'$}
+            lab={\ruleName{$\smalltriangleright$-tail}},
+            right={$z' \neq z$}
          ]
          {
-            \envLookupBwd{\rho'}{\Gamma'}{\bind{z}{v}}
+            \envLookup{\rho_1}{z}{v}
          }
          {
-            \envLookupBwd{\rho' \concat \bind{z'}{\hole}}{\Gamma' \concat \bind{z'}{A}}{\bind{z}{v}}
+            \envLookup{(\rho_1 \concat \bind{z'}{v'})}{z}{v}
          }
       \end{smathpar}
    }
+   &
+   \notag
+   \\
+   &
+   \text{where}
+   \notag
+   \\
+   &
+   \rho = \rho_{1} \concat \bind{z'}{v'}
+   \locallabel{decompose-rho-tail}
+   \\
+   &
+   \Gamma = \Gamma_{1} \concat \bind{z'}{A}
+   &
+   \exists \Gamma_{1}, A
+   \notag
+   \\
+   &
+   \vdash \rho_{1} : \Gamma_{1}
+   \notag
+   \\
+   \notag
+   \\
+   &
+   \text{The \ruleName{$\smalltriangleleft$} proof is of the following form:}
+   \notag
+   \\
+   &
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[ 
+         lab={\ruleName{$\smalltriangleleft$-tail}},
+         right={$z' \neq z$}
+      ]
+      {
+         \envLookupBwd{\rho_2}{\Gamma_1}{\bind{z}{u}}
+      }
+      {
+         \envLookupBwd{\rho'}{\Gamma_1 \concat \bind{z'}{A}}{\bind{z}{u}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \text{where}
+   \notag
+   \\
+   &
+   \rho' = \rho_{2} \concat \bind{z'}{\hole'}
+   \locallabel{decompose-rho'-tail}
+   \\
+   &
+   \vdash \rho_{2} : \Gamma_{1}
+   \notag
+   \\
+   \notag
+   \\
+   &
+   \rho_{2} \leq \rho_{1}
+   &
+   \text{IH}
+   \locallabel{ih-tail}
+   \\
+   \notag
+   \\
+   &
+   \text{1. Suppose $u \leq v$:}
+   \notag
+   \\
+   &
+   \rho_{2} \concat \bind{z'}{\hole} \leq \rho_{1} \concat \bind{z'}{v'}
+   &
+   \text{(\localref{ih-tail})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \rho' \leq \rho 
+   &
+   \text{(\localref{decompose-rho-tail}, \localref{decompose-rho'-tail})}
+   \notag
+   \\
+   &
+   \text{2. Suppose $\rho' \leq \rho$:}
+   \notag
+   \\
+   &
+   \rho_{2} \concat \bind{z'}{\hole} \leq \rho_{1} \concat \bind{z'}{v'}
+   &
+   \text{(\localref{decompose-rho-tail}, \localref{decompose-rho'-tail})}
+   \notag
 \end{flalign}
 \end{proof}
