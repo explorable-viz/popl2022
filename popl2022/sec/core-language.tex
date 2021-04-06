@@ -69,6 +69,10 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
 \input{fig/core-language/eval-bwd}
 \input{fig/core-language/env-lookup}
 
+\begin{lemma}[Hole environment]
+\label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\Gamma} \leq \rho$.
+\end{lemma}
+
 \begin{lemma}[Environment get-put]
 \label{lem:core-language:env-get-put}Suppose $\vdash \rho: \Gamma$.
 \begin{enumerate}

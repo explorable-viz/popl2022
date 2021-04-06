@@ -142,6 +142,8 @@
    (\localref{decompose-rho}, \localref{decompose-gamma})
    \notag
    \\
+   \notag
+   \\
    &
    \text{The \ruleName{$\smalltriangleleft$-head} proof is of the following form:}
    \notag
@@ -168,11 +170,59 @@
    \notag
    \\
    &
-   \rho' = \hole_{\rho_{1}} \concat \bind{z}{u}
+   \rho' = \hole_{\Gamma_{1}} \concat \bind{z}{u}
+   \locallabel{rho-prime-bwd}
+   \\
    \notag
    \\
    &
-   \text{Suppose $u \leq v$:}
+   \text{1. Suppose $u \leq v$:}
    \notag
+   \\
+   &
+   \hole_{\Gamma_{1}} \leq \rho_{1}
+   &
+   \text{
+   	(\lemref{core-language:hole-env})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \hole_{\Gamma_{1}} \concat \bind{z}{u} \leq \rho_{1} \concat \bind{z}{v}
+   \notag
+   \\
+   &
+   \text{2. Suppose $\rho' \leq \rho$:}
+   \notag
+   \\
+   &
+   \hole_{\Gamma_{1}} \concat \bind{z}{u} \leq \rho_{1} \concat \bind{z}{v}
+   &
+   \text{(\localref{decompose-rho}, \localref{rho-prime-bwd})}
+   \notag
+   \\
+   &
+   \qedLocal
+   u \leq v
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\smalltriangleleft$-tail}},
+            right={$z \neq z'$}
+         ]
+         {
+            \envLookupBwd{\rho'}{\Gamma'}{\bind{z}{v}}
+         }
+         {
+            \envLookupBwd{\rho' \concat \bind{z'}{\hole}}{\Gamma' \concat \bind{z'}{A}}{\bind{z}{v}}
+         }
+      \end{smathpar}
+   }
 \end{flalign}
 \end{proof}
