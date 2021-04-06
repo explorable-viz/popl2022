@@ -13,7 +13,7 @@
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\smalltriangleleft_{\Gamma}$-head}}
+         lab={\ruleName{$\smalltriangleleft$-head}}
       ]
       {
         \strut
@@ -48,49 +48,9 @@
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
    \caseDerivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\smalltriangleleft_{\Gamma}$-tail}},
-         right={$z \neq z'$}
-      ]
-      {
-         \envLookupBwd{\rho'}{\Gamma'}{\bind{z}{v}}
-      }
-      {
-         \envLookupBwd{\rho' \concat \bind{z'}{\hole}}{\Gamma' \concat \bind{z'}{A}}{\bind{z}{v}}
-      }
-   \end{smathpar}
-   }
-   &
-   \notag
-   \\
-   &
-   \qedLocal
-   \derivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\smalltriangleright$-tail}},
-         right={$z' \neq z$}
-      ]
-      {
-         \envLookup{\rho'}{z}{v}
-      }
-      {
-         \envLookup{(\rho' \concat \bind{z'}{\hole})}{z}{v}
-      }
-   \end{smathpar}
-   }
-   &
-   \notag
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   \\
-   \intertext{\crossrule}
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   &
-   \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\smalltriangleleft_{\Gamma}$-tail}},
+            lab={\ruleName{$\smalltriangleleft$-tail}},
             right={$z \neq z'$}
          ]
          {
@@ -105,62 +65,29 @@
    \notag
    \\
    &
-   \evalBwd{v}{T}{\rho' \concat \rho_1'}{e^\twoPrime}{\beta}
-   \leq
-   \rho \concat \rho_1, e', \alpha
-   \quad
-   (\exists \rho', \rho_1', e^\twoPrime, \beta)
+   \envLookup{\rho'}{z}{v}
    &
    \text{IH}
-   \locallabel{let-rec-premise-one}
-   \\
-   &
-   \rho_1 \closeDefsBwdR\leq \rho, h'
-   &
-   \text{\thmref{core-language:closeDefs:gc}}
-   \notag
-   \\
-   &
-   \rho_1' \closeDefsBwdR \rho^\twoPrime, h^\twoPrime
-   \leq
-   \rho, h'
-   \quad
-   (\exists \rho^\twoPrime, h^\twoPrime)
-   &
-   \text{monotonicity}
-   \locallabel{let-rec-premise-two}
+   \locallabel{lookup-ih}
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
-   \begin{smathpar}
-      \inferrule*[
-         lab={\ruleName{$\evalBwdS$-let-rec}}
-      ]
-      {
-         \evalBwd{v}{T}{\rho' \concat \rho_1'}{e^\twoPrime}{\beta}
-         \\
-         \rho_1' \closeDefsBwdR \rho^\twoPrime, h^\twoPrime
-      }
-      {
-         \evalBwd{v}
-                 {\trLetRecMutual{h}{T}}
-                 {\rho' \join \rho^\twoPrime}
-                 {\exLetRecMutual{h^\twoPrime}{e^\twoPrime}}
-                 {\beta}
-      }
-   \end{smathpar}
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\smalltriangleright$-tail}},
+            right={$z' \neq z$}
+         ]
+         {
+            \envLookup{\rho'}{z}{v}
+         }
+         {
+            \envLookup{(\rho' \concat \bind{z'}{\hole})}{z}{v}
+         }
+      \end{smathpar}
    }
    &
-   (\localref{let-rec-premise-one}, \localref{let-rec-premise-two})
-   \notag
-   \\
-   &
-   \qedLocal
-   (\rho' \join \rho^\twoPrime, \exLetRecMutual{h^\twoPrime}{e^\twoPrime}, \beta)
-   \leq
-   (\rho, \exLetRecMutual{h'}{e'}, \alpha)
-   &
+   (\localref{lookup-ih})
    \notag
 \end{flalign}
 \end{proof}
