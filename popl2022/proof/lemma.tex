@@ -1,10 +1,11 @@
+\newpage
 \subsection{\lemref{core-language:env-get-put}}
 
 \begin{proof}
    \ref{lem:core-language:env-get-put:1}
-   If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$. \\
+   Suppose $\vdash \rho: \Gamma$. If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$. \\
    
-   Suppose that $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$. By induction on the proof that $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$:
+   By induction on the proof that $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$:
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -88,6 +89,90 @@
    }
    &
    (\localref{lookup-ih})
+   \notag
+   \\
+   \intertext{\crossrule}
+   \notag
+\end{flalign}
+\end{proof}
+\newpage
+\begin{proof}
+   \ref{lem:core-language:env-get-put:2}
+   Suppose $\vdash \rho: \Gamma$. If $\envLookup{\rho}{z}{v}$ and $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$ then $(u \leq v \iff \rho' \leq \rho)$. \\
+   
+   By induction on the proof that $\envLookup{\rho}{z}{v}$, $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$.
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\smalltriangleright$-head}}
+      ]
+      {
+         \strut
+      }
+      {
+         \envLookup{(\rho_{1} \concat \bind{z}{v})}{z}{v}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \text{where}
+   \notag
+   \\
+   &
+   \rho = \rho_{1} \concat \bind{z}{v}
+   \locallabel{decompose-rho}
+   \\
+   &
+   \Gamma = \Gamma_{1} \concat \bind{z}{A}
+   &
+   \exists \Gamma_{1}, A
+   \locallabel{decompose-gamma}
+   \\
+   &
+   \vdash \rho_{1}: \Gamma_{1} 
+   &
+   (\localref{decompose-rho}, \localref{decompose-gamma})
+   \notag
+   \\
+   &
+   \text{The \ruleName{$\smalltriangleleft$-head} proof is of the following form:}
+   \notag
+   \\
+   &
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[ 
+         lab={\ruleName{$\smalltriangleleft$-head}}
+      ]
+      {
+        \strut
+      }
+      {
+         \envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \text{where}
+   \notag
+   \\
+   &
+   \rho' = \hole_{\rho_{1}} \concat \bind{z}{u}
+   \notag
+   \\
+   &
+   \text{Suppose $u \leq v$:}
    \notag
 \end{flalign}
 \end{proof}
