@@ -112,5 +112,133 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \text{(\localref{dfb:nil})}
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+         ]
+         {
+            e \eq \annCons{e_1}{e_2}{\alpha}
+            \\
+            e_1, s \dbwdarrow s'
+            \\
+            e_2, l \dbwdarrow l'
+         }
+         {
+            e, \exList{s}{l}
+            \dbwdarrow
+            \annList{s'}{l'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:nelist-ih1}
+   \\
+   &
+   l' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:nelist-ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+         ]
+         {
+            s' \dfwdarrow e_{1}'
+            \\
+            l' \dfwdarrow e_{2}'
+         }
+         {
+            \annList{s'}{l'}{\alpha} \dfwdarrow \annCons{e_{1}'}{e_{2}'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:nelist-ih1}, \localref{dfb:nelist-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha}
+   &
+   \text{(\localref{dfb:nelist-ih1}, \localref{dfb:nelist-ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-cons}}
+         ]
+         {
+            e \eq \annCons{e_1}{e_2}{\alpha}
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+         }
+         {
+            e, \exCons{s_1}{s_2}
+            \dbwdarrow
+            \annCons{s_1'}{s_2'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:cons-ih1}
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:cons-ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-cons}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+         }
+         {
+            \annCons{s_{1}'}{s_{2}'}{\alpha} \dfwdarrow \annCons{e_{1}'}{e_{2}'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:cons-ih1}, \localref{dfb:cons-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha}
+   &
+   \text{(\localref{dfb:cons-ih1}, \localref{dfb:cons-ih2})}
+   \notag
 \end{flalign}
 \end{proof}
