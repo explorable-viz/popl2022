@@ -240,5 +240,131 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \text{(\localref{dfb:cons-ih1}, \localref{dfb:cons-ih2})}
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-let-rec}}
+         ]
+         {
+            e \eq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
+            \\
+            \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}'
+            \quad
+            (\forall i \numleq j)
+            \\
+            e_1, s \dbwdarrow s'
+         }
+         {
+            e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c_j}}}}{s}
+            \dbwdarrow
+            \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \vec{c_i}' \dfwdarrow \sigma_{i}' (\forall i \numleq j) \geq \sigma_{i} (\forall i \numleq j) \quad (\exists \sigma_{i}')
+   \locallabel{dfb:letrec:ih1}
+   \\
+   &
+   s' \dfwdarrow e' \geq e \quad (\exists e')
+   \locallabel{dfb:letrec:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-let-rec}}
+         ]
+         {
+            \vec{c_i}' \dfwdarrow \sigma_{i}'
+            \quad
+            (\forall i \numleq j)
+            \\
+            s' \dfwdarrow e'
+         }
+         {
+            \exLetRecMutual{\seqRange{x_1: \vec{c_1}'}{x_j: \vec{c_j}'}}{s'}
+            \dfwdarrow
+            \exLetRecMutual{\seqRange{x_1: \sigma_1'}{x_j: \sigma_j'}}{e'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:letrec:ih1}, \localref{dfb:letrec:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exLetRecMutual{\seqRange{x_1: \sigma_1'}{x_j: \sigma_j'}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
+   &
+   \text{(\localref{dfb:letrec:ih1}, \localref{dfb:letrec:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-apply}}
+         ]
+         {
+            e \eq \exApp{e_1}{e_2}
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+         }
+         {
+            e, \exApp{s_1}{s_2}
+            \dbwdarrow
+            \exApp{s_1'}{s_2'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   \locallabel{dfb:app:ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{1} \quad (\exists e_{2}')
+   \locallabel{dfb:app:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-apply}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+         }
+         {
+            \exApp{s_{1}'}{s_{2}'} \dfwdarrow \exApp{e_{1}'}{e_{2}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:app:ih1}, \localref{dfb:app:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{e_{1}'}{e_{2}'} \geq \exApp{e_{1}}{e_{2}}
+   &
+   \text{(\localref{dfb:app:ih1}, \localref{dfb:app:ih2})}
+   \notag
 \end{flalign}
 \end{proof}
