@@ -652,5 +652,107 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \text{(\localref{dfb:listenum:ih1}, \localref{dfb:listenum:ih2})}
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done}}]
+         {
+            e \eq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+         }
+         {
+            e,
+            \exListComp{s_{1}}{\qualDone}
+            \dbwdarrow
+            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listcompdone:ih1}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+         }
+         {
+            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha}
+            \dfwdarrow
+            \annCons{e_{1}'}{\annot{\exNil}{\alpha}}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listcompdone:ih1})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annCons{e_{1}'}{\annot{\exNil}{\alpha}}{\alpha} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'}
+   &
+   \text{(\localref{dfb:listcompdone:ih1})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
+         {
+            e, \exListComp{s}{q \concat \qualDone}
+            \dbwdarrow
+            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha}
+         }
+         {
+            e, \exListComp{s}{q}
+            \dbwdarrow
+            \annListComp{s'}{q'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \annListComp{s'}{q' \concat \qualDone}{\alpha} \dfwdarrow e' \geq e \quad (\exists e')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listcomplast:ih1}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
+            right={$q' \neq \qualDone$}
+         ]
+         {
+            \annListComp{s'}{q' \concat \qualDone}{\alpha} \dfwdarrow e'
+         }
+         {
+            \annot{\exListComp{s'}{q'}}{\alpha} \dfwdarrow e'
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listcomplast:ih1})}
+   \notag
+   \\
+   &
+   \text{not sure about this one}
+   \notag
 \end{flalign}
 \end{proof}
