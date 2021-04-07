@@ -514,9 +514,143 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{(\exLambda{\sigma})}{e'} \geq \exApp{(\exLambda{\sigma})}{e_1}
+   \exApp{(\exLambda{\sigma'})}{e'} \geq \exApp{(\exLambda{\sigma})}{e_1}
    &
    \text{(\localref{dfb:match:ih1}, \localref{dfb:match:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-let}}
+         ]
+         {
+            e \eq \exApp{(\exLambda{\sigma})}{e_1}
+            \\
+            \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2'
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+         }
+         {
+            e,
+            \exLet{p}{s_1}{s_2}
+            \dbwdarrow
+            \exLet{p}{s_1'}{s_2'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:let:ih1}
+   \\
+   &
+   \clauseUncurried{p}{s_{2}'} \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(IH)}
+   \locallabel{dfb:let:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-let}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            \clauseUncurried{p}{s_{2}'} \dfwdarrow \sigma'
+         }
+         {
+            \exLet{p}{s_{1}'}{s_{2}'}
+            \dfwdarrow
+            \exApp{(\exLambda{\sigma'})}{e_{1}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:let:ih1}, \localref{dfb:let:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1}
+   &
+   \text{(\localref{dfb:let:ih1}, \localref{dfb:let:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-enum}},
+         ]
+         {
+            e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+            \\
+            e_{2}, s_{2} \dbwdarrow s_{2}'
+         }
+         {
+            e,
+            \exListEnum{s_{1}}{s_{2}}
+            \dbwdarrow
+            \exListEnum{s_{1}'}{s_{2}'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listenum:ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listenum:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-enum}},
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+         }
+         {
+            \exListEnum{s_{1}'}{s_{2}'}
+            \dfwdarrow
+            \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listenum:ih1}, \localref{dfb:listenum:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+   &
+   \text{(\localref{dfb:listenum:ih1}, \localref{dfb:listenum:ih2})}
    \notag
 \end{flalign}
 \end{proof}
