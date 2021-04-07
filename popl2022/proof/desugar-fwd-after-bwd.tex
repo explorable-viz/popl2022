@@ -927,19 +927,19 @@ Induction on the $\dbwdarrow$ derivation.
    \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\alpha} \dfwdarrow \sigma_{2}' \geq \sigma_{2} \quad (\exists \sigma_{2}')
    &
    \text{(IH)}
-   \locallabel{dfb:listdecl:ih1}
+   \locallabel{dfb:listgen:ih1}
    \\
    &
    \totalise{\sigma_{2}'}{\alpha}{\sigma_{1}'} \geq \sigma_{1} \quad (\exists \sigma_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:listdecl:ih2}
+   \locallabel{dfb:listgen:ih2}
    \\
    &
    s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:listdecl:ih3}
+   \locallabel{dfb:listgen:ih3}
    \\
    &
    \qedLocal
@@ -963,14 +963,14 @@ Induction on the $\dbwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:listdecl:ih1}, \localref{dfb:listdecl:ih2}, \localref{dfb:listdecl:ih3})}
+   \text{(\localref{dfb:listgen:ih1}, \localref{dfb:listgen:ih2}, \localref{dfb:listgen:ih3})}
    \notag
    \\
    &
    \qedLocal
    \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1}
    &
-   \text{(\localref{dfb:listdecl:ih1}, \localref{dfb:listdecl:ih2}, \localref{dfb:listdecl:ih3})}
+   \text{(\localref{dfb:listgen:ih1}, \localref{dfb:listgen:ih2}, \localref{dfb:listgen:ih3})}
    \notag
 \end{flalign}
 \end{proof}

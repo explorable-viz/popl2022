@@ -650,5 +650,310 @@ Induction on the $\dfwdarrow$ derivation.
    &
    \text{(\localref{dbf:listenum:ih1}, \localref{dbf:listenum:ih2})}
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
+         {
+            s_{1} \dfwdarrow e_{1}
+         }
+         {
+            \annot{\exListComp{s_{1}}{\qualDone}}{\alpha}
+            \dfwdarrow
+            \annCons{e_{1}}{\annot{\exNil}{\alpha}}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:listcompdone:ih1}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done}}]
+         {
+            e \eq \annCons{e_{1}}{\annNil{\alpha}}{\alpha}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+         }
+         {
+            e,
+            \exListComp{s_{1}}{\qualDone}
+            \dbwdarrow
+            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:listcompdone:ih1})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha} \leq \annot{\exListComp{s_{1}}{\qualDone}}{\alpha}
+   &
+   \text{(\localref{dbf:listcompdone:ih1})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
+            right={$q' \neq \qualDone$}
+         ]
+         {
+            \annListComp{s}{q \concat \qualDone}{\alpha} \dfwdarrow e
+         }
+         {
+            \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   e, \exListComp{s}{q \concat \qualDone}
+            \dbwdarrow
+            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha} \leq \exListComp{s}{q \concat \qualDone} \quad (\exists \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha})
+   &
+   \text{(IH)}
+   \locallabel{dbf:listcomplast:ih1}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
+         {
+            e, \exListComp{s}{q \concat \qualDone}
+            \dbwdarrow
+            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha}
+         }
+         {
+            e, \exListComp{s}{q}
+            \dbwdarrow
+            \annListComp{s'}{q'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:listcomplast:ih1})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annListComp{s'}{q'}{\alpha} \leq \annot{\exListComp{s}{q}}{\alpha}
+   &
+   \text{(\localref{dbf:listcomplast:ih1})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
+         ]
+         {
+            \annListComp{s_{1}}{\vec{q}}{\alpha}
+            \dfwdarrow e_{1}
+            \\
+            s_{2} \dfwdarrow e_{2}
+         }
+         {
+            \annListComp{s_{1}}{\qualGuard{s_{2}} \concat \vec{q}}{\alpha}
+            \dfwdarrow
+            \exApp{\smash{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}}{e_{2}}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   e_2, s_2 \dbwdarrow s_2' \leq s_{2} \quad (\exists s_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:listguard:ih1}
+   \\
+   &
+   e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annListComp{s_{1}'}{\vec{q}'}{\beta} \leq \exListComp{s_1}{\vec{q}} \quad (\exists \annListComp{s_{1}'}{\vec{q}'})
+   &
+   \text{(IH)}
+   \locallabel{dbf:listguard:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
+         ]
+         {
+            e \eq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+            \\
+            e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annListComp{s_{1}'}{\vec{q}'}{\beta}
+         }
+         {
+            e,
+            \exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}
+            \dbwdarrow
+            \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:listguard:ih1}, \localref{dbf:listguard:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta} \leq \annListComp{s_{1}}{\qualGuard{s_{2}} \concat \vec{q}}{\alpha}
+   &
+   \text{(\localref{dbf:listguard:ih1}, \localref{dbf:listguard:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
+         ]
+         {
+            \clauseUncurried{p}{\annListComp{s_{2}}{\vec{q}}{\alpha}} \dfwdarrow \sigma
+            \\
+            s_{1} \dfwdarrow e_{1}
+         }
+         {
+            \annListComp{s_{2}}{\qualDeclaration{p}{s_{1}} \concat \vec{q}}{\alpha}
+            \dfwdarrow
+            \exApp{(\exLambda{\sigma})}{e_{1}}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
+            \dbwdarrow
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}}\leq \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}} \quad (\exists \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}})
+   &
+   \text{(IH)}
+   \locallabel{dbf:listdecl:ih1}
+   \\
+   &
+   e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:listdecl:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
+         ]
+         {
+            e \eq \exApp{(\exLambda{\sigma})}{e_1}
+            \\
+            \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
+            \dbwdarrow
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+         }
+         {
+            e,
+            \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
+            \dbwdarrow
+            \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:listdecl:ih1}, \localref{dbf:listdecl:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\alpha} \leq \annListComp{s_{2}}{\qualDeclaration{p}{s_{1}} \concat \vec{q}}{\alpha}
+   &
+   \text{(\localref{dbf:listdecl:ih1}, \localref{dbf:listdecl:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
+         ]
+         {
+            \annot{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}{\alpha} \dfwdarrow \sigma_{1}
+            \\
+            \totalise{\sigma_{1}}{\alpha}{\sigma_{2}}
+            \\
+            s_{1} \dfwdarrow e_{1}
+         }
+         {
+            \annListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}{\alpha}
+            \dfwdarrow
+            \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{2}})}}{e_{1}}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-comp-gen}},
+         ]
+         {
+            e \eq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_2})}}{e_1}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+            \\
+            \totalisebwd{\sigma_2}{p}{\sigma_1}{\beta}
+            \\
+            \sigma_{1}, p \dbwdarrow e_{2}
+            \\
+            e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+         }
+         {
+            e,
+            \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+            \dbwdarrow
+            \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}{\beta \join \beta'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}{\beta \join \beta'} \leq \annListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}{\alpha}
+   &
+   \notag
 \end{flalign}
 \end{proof}
