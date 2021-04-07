@@ -174,5 +174,481 @@ Induction on the $\dfwdarrow$ derivation.
    &
    \text{(\localref{dbf:nelist-ih1}, \localref{dbf:nelist-ih2})}
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-cons}}
+         ]
+         {
+            s_{1} \dfwdarrow e_{1}
+            \\
+            s_{2} \dfwdarrow e_{2}
+         }
+         {
+            \annCons{s_{1}}{s_{2}}{\alpha} \dfwdarrow \annCons{e_{1}}{e_{2}}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   e_1, s_1 \dbwdarrow s_1' \leq s_{1} \quad (\exists s_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:cons-ih1}
+   \\
+   &
+   e_2, s_2 \dbwdarrow s_2' \leq s_{2} \quad (\exists s_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:cons-ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-cons}}
+         ]
+         {
+            e \eq \annCons{e_1}{e_2}{\alpha}
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+         }
+         {
+            e, \exCons{s_1}{s_2}
+            \dbwdarrow
+            \annCons{s_1'}{s_2'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:cons-ih1}, \localref{dbf:cons-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annCons{s_1'}{s_2'}{\alpha} \leq \annCons{s_{1}}{s_{2}}{\alpha}
+   &
+   \text{(\localref{dbf:cons-ih1}, \localref{dbf:cons-ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-let-rec}}
+         ]
+         {
+            \vec{c_i} \dfwdarrow \sigma_{i}
+            \quad
+            (\forall i \numleq j)
+            \\
+            s \dfwdarrow e
+         }
+         {
+            \exLetRecMutual{\seqRange{x_1: \vec{c_1}}{x_j: \vec{c_j}}}{s}
+            \dfwdarrow
+            \exLetRecMutual{\seqRange{x_1: \sigma_1}{x_j: \sigma_j}}{e}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}' \leq \vec{c_i} (\forall i \numleq j) \quad (\exists \vec{c_i}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:letrec:ih1}
+   \\
+   &
+   e_1, s \dbwdarrow s' \leq s \quad (\exists s')
+   &
+   \text{(IH)}
+   \locallabel{dbf:letrec:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-let-rec}}
+         ]
+         {
+            e \eq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
+            \\
+            \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}'
+            \quad
+            (\forall i \numleq j)
+            \\
+            e_1, s \dbwdarrow s'
+         }
+         {
+            e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c_j}}}}{s}
+            \dbwdarrow
+            \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:letrec:ih1}, \localref{dbf:letrec:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'} \leq \exLetRecMutual{\seqRange{x_1: \vec{c_1}}{x_j: \vec{c_j}}}{s}
+   &
+   \text{(\localref{dbf:letrec:ih1}, \localref{dbf:letrec:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-apply}}
+         ]
+         {
+            s_{1} \dfwdarrow e_{1}
+            \\
+            s_{2} \dfwdarrow e_{2}
+         }
+         {
+            \exApp{s_{1}}{s_{2}} \dfwdarrow \exApp{e_{1}}{e_{2}}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   e_1, s_1 \dbwdarrow s_1' \leq s_{1} \quad (\exists s_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:app:ih1}
+   \\
+   &
+   e_2, s_2 \dbwdarrow s_2' \leq s_{2} \quad (\exists s_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:app:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-apply}}
+         ]
+         {
+            e \eq \exApp{e_1}{e_2}
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+         }
+         {
+            e, \exApp{s_1}{s_2}
+            \dbwdarrow
+            \exApp{s_1'}{s_2'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:app:ih1}, \localref{dbf:app:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{s_1'}{s_2'} \leq \exApp{s_{1}}{s_{2}}
+   &
+   \text{(\localref{dbf:app:ih1}, \localref{dbf:app:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-match}}
+         ]
+         {
+            s_{1} \dfwdarrow e_{1}
+            \\
+            \vec{c} \dfwdarrow \sigma
+         }
+         {
+            \exMatch{s_{1}}{\vec{c}}
+            \dfwdarrow
+            \exApp{(\exLambda{\sigma})}{e_{1}}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \sigma, \vec{c} \dbwdarrow \vec{c}' \leq \vec{c} \quad (\exists \vec{c}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:match:ih1}
+   \\
+   &
+   e_1, s_1 \dbwdarrow s_{1}' \leq s_1 \quad (\exists s_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:match:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-match}}
+         ]
+         {
+            e \eq \exApp{(\exLambda{\sigma})}{e_1}
+            \\
+            \sigma, \vec{c} \dbwdarrow \vec{c}'
+            \\
+            e_1, s_1 \dbwdarrow s_{1}'
+         }
+         {
+            e,
+            \exMatch{s_1}{\vec{c}}
+            \dbwdarrow
+            \exMatch{s_{1}'}{\vec{c}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:match:ih1}, \localref{dbf:match:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exMatch{s_{1}'}{\vec{c}'} \leq \exMatch{s_{1}}{\vec{c}}
+   &
+   \text{(\localref{dbf:match:ih1}, \localref{dbf:match:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-let}}
+         ]
+         {
+            s_{1} \dfwdarrow e_{1}
+            \\
+            \clauseUncurried{p}{s_{2}} \dfwdarrow \sigma
+         }
+         {
+            \exLet{p}{s_{1}}{s_{2}}
+            \dfwdarrow
+            \exApp{(\exLambda{\sigma})}{e_{1}}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2' \leq s_{2} \quad (\exists s_2')
+   &
+   \text{(IH)}
+   \locallabel{dbf:let:ih1}
+   \\
+   &
+   e_1, s_1 \dbwdarrow s_1' \leq s_1 \quad (\exists s_1')
+   &
+   \text{(IH)}
+   \locallabel{dbf:let:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-let}}
+         ]
+         {
+            e \eq \exApp{(\exLambda{\sigma})}{e_1}
+            \\
+            \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2'
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+         }
+         {
+            e,
+            \exLet{p}{s_1}{s_2}
+            \dbwdarrow
+            \exLet{p}{s_1'}{s_2'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:let:ih1}, \localref{dbf:let:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exLet{p}{s_1'}{s_2'} \leq \exLet{p}{s_{1}}{s_{2}}
+   &
+   \text{(\localref{dbf:let:ih1}, \localref{dbf:let:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-if}}
+         ]
+         {
+            s_{1} \dfwdarrow e_{1}
+            \\
+            s_{2} \dfwdarrow e_{2}
+            \\
+            s_{3} \dfwdarrow e_{3}
+         }
+         {
+            \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+            \dfwdarrow
+            \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:if:ih1}
+   \\
+   &
+   e_{2}, s_{2} \dbwdarrow s_{2}' \leq s_{2} \quad (\exists s_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:if:ih2}
+   \\
+   &
+   e_{3}, s_{3} \dbwdarrow s_{3}' \leq s_{3} \quad (\exists s_{3}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:if:ih3}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-if}}
+         ]
+         {
+            e \eq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+            \\
+            e_{2}, s_{2} \dbwdarrow s_{2}'
+            \\
+            e_{3}, s_{3} \dbwdarrow s_{3}'
+         }
+         {
+            e,
+            \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+            \dbwdarrow
+            \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:if:ih1}, \localref{dbf:if:ih2}, \localref{dbf:if:ih3})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'} \leq \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+   &
+   \text{(\localref{dbf:if:ih1}, \localref{dbf:if:ih2}, \localref{dbf:if:ih3})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-enum}},
+         ]
+         {
+            s_{1} \dfwdarrow e_{1}
+            \\
+            s_{2} \dfwdarrow e_{2}
+         }
+         {
+            \exListEnum{s_{1}}{s_{2}}
+            \dfwdarrow
+            \exApp{\exApp{\funEnumFromTo}{e_{1}}}{e_{2}}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:listenum:ih1}
+   \\
+   &
+   e_{2}, s_{2} \dbwdarrow s_{2}' \leq s_{2} \quad (\exists s_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:listenum:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-enum}},
+         ]
+         {
+            e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+            \\
+            e_{2}, s_{2} \dbwdarrow s_{2}'
+         }
+         {
+            e,
+            \exListEnum{s_{1}}{s_{2}}
+            \dbwdarrow
+            \exListEnum{s_{1}'}{s_{2}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:listenum:ih1}, \localref{dbf:listenum:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exListEnum{s_{1}'}{s_{2}'} \leq \exListEnum{s_{1}}{s_{2}}
+   &
+   \text{(\localref{dbf:listenum:ih1}, \localref{dbf:listenum:ih2})}
+   \notag
 \end{flalign}
 \end{proof}
