@@ -5,7 +5,7 @@
       lab={\ruleName{$\dbwdarrow$-binary-apply}}
    ]
    {
-      e \geq \exBinaryApp{e_1}{\primOp}{e_2}
+      e \eq \exBinaryApp{e_1}{\primOp}{e_2}
       \\
       e_1, s_1 \dbwdarrow s_1'
       \\
@@ -23,7 +23,7 @@
       lab={\ruleName{$\dbwdarrow$-nil}}
    ]
    {
-      e \geq \annNil{\alpha}
+      e \eq \annNil{\alpha}
    }
    {
       e, \exNil \dbwdarrow \annNil{\alpha}
@@ -35,7 +35,7 @@
       lab={\ruleName{$\dbwdarrow$-non-empty-list}}
    ]
    {
-      e \geq \annCons{e_1}{e_2}{\alpha}
+      e \eq \annCons{e_1}{e_2}{\alpha}
       \\
       e_1, s \dbwdarrow s'
       \\
@@ -53,7 +53,7 @@
       lab={\ruleName{$\dbwdarrow$-cons}}
    ]
    {
-      e \geq \annCons{e_1}{e_2}{\alpha}
+      e \eq \annCons{e_1}{e_2}{\alpha}
       \\
       e_1, s_1 \dbwdarrow s_1'
       \\
@@ -71,7 +71,7 @@
       lab={\ruleName{$\dbwdarrow$-let-rec}}
    ]
    {
-      e \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e'}
+      e \eq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e'}
       \\
       \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}'
       \quad
@@ -91,7 +91,7 @@
       lab={\ruleName{$\dbwdarrow$-apply}}
    ]
    {
-      e \geq \exApp{e_1}{e_2}
+      e \eq \exApp{e_1}{e_2}
       \\
       e_1, s_1 \dbwdarrow s_1'
       \\
@@ -109,7 +109,7 @@
       lab={\ruleName{$\dbwdarrow$-if}}
    ]
    {
-      e \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+      e \eq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
       \\
       e_{1}, s_{1} \dbwdarrow s_{1}'
       \\
@@ -130,7 +130,7 @@
       lab={\ruleName{$\dbwdarrow$-match}}
    ]
    {
-      e \geq \exApp{(\exLambda{\sigma})}{e'}
+      e \eq \exApp{(\exLambda{\sigma})}{e'}
       \\
       \sigma, \vec{c} \dbwdarrow \vec{c}'
       \\
@@ -149,7 +149,7 @@
       lab={\ruleName{$\dbwdarrow$-let}}
    ]
    {
-      e \geq \exApp{(\exLambda{\sigma})}{e'}
+      e \eq \exApp{(\exLambda{\sigma})}{e'}
       \\
       \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2'
       \\
@@ -168,7 +168,7 @@
       lab={\ruleName{$\dbwdarrow$-list-enum}},
    ]
    {
-      e \geq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+      e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
       \\
       e_{1}, s_{1} \dbwdarrow s_{1}'
       \\
@@ -185,7 +185,7 @@
    %
    \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done}}]
    {
-      e \geq \annCons{e'}{\annNil{\alpha}}{\alpha'}
+      e \eq \annCons{e'}{\annNil{\alpha}}{\alpha'}
       \\
       e', s \dbwdarrow s'
    }
@@ -216,7 +216,7 @@
       lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
    ]
    {
-      e \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
+      e \eq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
       \\
       e_2, s_2 \dbwdarrow s_2'
       \\
@@ -235,7 +235,7 @@
       lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
    ]
    {
-      e \geq \exApp{(\exLambda{\sigma})}{e'}
+      e \eq \exApp{(\exLambda{\sigma})}{e'}
       \\
       \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
       \dbwdarrow
@@ -257,7 +257,7 @@
       lab={\ruleName{$\dbwdarrow$-list-comp-gen}},
    ]
    {
-      e \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma})}}{e_1}
+      e \eq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma})}}{e_1}
       \\
       e_{1}, s_{1} \dbwdarrow s_{1}'
       \\

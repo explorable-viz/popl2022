@@ -1,8 +1,54 @@
 \subsection{\thmref{surface-language:desugar:gc}, part (i)}
 Induction on the $\dbwdarrow$ derivation.
 \begin{proof}
+   Suppose $s \dfwdarrow e$. Then $\desugarFwdF{T}(\desugarBwdF{T}(e')) \geq e'$.
 \small
 \begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-binary-apply}}
+         ]
+         {
+            e \geq \exBinaryApp{e_1}{\primOp}{e_2}
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+         }
+         {
+            e, \exApp{\exApp{\exOp{\primOp}}{s_1}}{s_2}
+            \dbwdarrow
+            \exApp{\exApp{\exOp{\primOp}}{s_1'}}{s_2'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\dfwdarrow$-binary-apply}}
+      ]
+      {
+         s_{1}' \dfwdarrow e_{1}'
+         \\
+         s_{2}' \dfwdarrow e_{2}'
+      }
+      {
+         \exBinaryApp{s_{1}'}{\primOp}{s_{2}'} \dfwdarrow \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
@@ -12,7 +58,7 @@ Induction on the $\dbwdarrow$ derivation.
             lab={\ruleName{$\dbwdarrow$-nil}}
          ]
          {
-            e \geq \annNil{\alpha}
+            e \eq \annNil{\alpha}
          }
          {
             e, \exNil \dbwdarrow \annNil{\alpha}
@@ -42,7 +88,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   e \geq \annNil{\alpha}
+   e \eq \annNil{\alpha} \Rightarrow \annNil{\alpha} \geq e
    &
    \text{(\localref{dfb:nil})}
    \notag
