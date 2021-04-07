@@ -5,16 +5,16 @@
       lab={\ruleName{$\dbwdarrow$-binary-apply}}
    ]
    {
-      e \eq \exBinaryApp{e_1}{\primOp}{e_2}
+      e \eq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
       \\
       e_1, s_1 \dbwdarrow s_1'
       \\
       e_2, s_2 \dbwdarrow s_2'
    }
    {
-      e, \exApp{\exApp{\exOp{\primOp}}{s_1}}{s_2}
+      e, \exBinaryApp{s_{1}}{\primOp}{s_{2}}
       \dbwdarrow
-      \exApp{\exApp{\exOp{\primOp}}{s_1'}}{s_2'}
+      \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
    }
    %
    \and

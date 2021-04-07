@@ -1,7 +1,7 @@
 \subsection{\thmref{surface-language:desugar:gc}, part (i)}
 Induction on the $\dbwdarrow$ derivation.
 \begin{proof}
-   Suppose $s \dfwdarrow e$. Then $\desugarFwdF{T}(\desugarBwdF{T}(e')) \geq e'$.
+   Suppose $s \dfwdarrow e$. Then $\desugarFwdF{s}(\desugarBwdF{s}(e')) \geq e'$.
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -13,21 +13,33 @@ Induction on the $\dbwdarrow$ derivation.
             lab={\ruleName{$\dbwdarrow$-binary-apply}}
          ]
          {
-            e \geq \exBinaryApp{e_1}{\primOp}{e_2}
+            e \eq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
             \\
             e_1, s_1 \dbwdarrow s_1'
             \\
             e_2, s_2 \dbwdarrow s_2'
          }
          {
-            e, \exApp{\exApp{\exOp{\primOp}}{s_1}}{s_2}
+            e, \exBinaryApp{s_{1}}{\primOp}{s_{2}}
             \dbwdarrow
-            \exApp{\exApp{\exOp{\primOp}}{s_1'}}{s_2'}
+            \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
          }
       \end{smathpar}
    }
    &
    \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:binary-ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:binary-ih2}
    \\
    &
    \qedLocal
@@ -47,6 +59,14 @@ Induction on the $\dbwdarrow$ derivation.
    \end{smathpar}
    }
    &
+   \text{(\localref{dfb:binary-ih1}, \localref{dfb:binary-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
+   &
+   \text{(\localref{dfb:binary-ih1}, \localref{dfb:binary-ih2})}
    \notag
    \\
    \intertext{\crossrule}
