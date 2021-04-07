@@ -4,5 +4,175 @@ Induction on the $\dfwdarrow$ derivation.
    Suppose $e, s \dbwdarrow s'$. Then $\desugarBwdF{s}(\desugarFwdF{s}(s')) \leq s'$.
 \small
 \begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-binary-apply}}
+         ]
+         {
+            s_{1} \dfwdarrow e_{1}
+            \\
+            s_{2} \dfwdarrow e_{2}
+         }
+         {
+            \exBinaryApp{s_{1}}{\primOp}{s_{2}} \dfwdarrow \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:binary-ih1}
+   \\
+   &
+   e_{2}, s_{2} \dbwdarrow s_{2}' \leq s_{2} \quad (\exists s_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dbf:binary-ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\dbwdarrow$-binary-apply}}
+      ]
+      {
+         e \eq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
+         \\
+         e_1, s_1 \dbwdarrow s_1'
+         \\
+         e_2, s_2 \dbwdarrow s_2'
+      }
+      {
+         e, \exBinaryApp{s_{1}}{\primOp}{s_{2}}
+         \dbwdarrow
+         \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
+      }
+   \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:binary-ih1}, \localref{dbf:binary-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exBinaryApp{s_{1}'}{\primOp}{s_{2}'} \leq \exBinaryApp{s_{1}}{\primOp}{s_{2}} 
+   &
+   \text{(\localref{dbf:binary-ih1}, \localref{dbf:binary-ih2})}
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-nil}}
+         ]
+         {
+            \strut
+         }
+         {
+            \annNil{\alpha} \dfwdarrow \annNil{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\dbwdarrow$-nil}}
+      ]
+      {
+         e \eq \annNil{\alpha}
+      }
+      {
+         e, \exNil \dbwdarrow \annNil{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annNil{\alpha} \eq \annNil{\alpha} \Rightarrow \annNil{\alpha} \leq \annNil{\alpha} 
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+         ]
+         {
+            s \dfwdarrow e_{1}
+            \\
+            l \dfwdarrow e_{2}
+         }
+         {
+            \annList{s}{l}{\alpha} \dfwdarrow \annCons{e_{1}}{e_{2}}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   e_1, s \dbwdarrow s' \leq s \quad (\exists s')
+   &
+   \text{(IH)}
+   \locallabel{dbf:nelist-ih1}
+   \\
+   &
+   e_2, l \dbwdarrow l' \leq l \quad (\exists l')
+   &
+   \text{(IH)}
+   \locallabel{dbf:nelist-ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+         ]
+         {
+            e \eq \annCons{e_1}{e_2}{\alpha}
+            \\
+            e_1, s \dbwdarrow s'
+            \\
+            e_2, l \dbwdarrow l'
+         }
+         {
+            e, \exList{s}{l}
+            \dbwdarrow
+            \annList{s'}{l'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dbf:nelist-ih1}, \localref{dbf:nelist-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annList{s'}{l'}{\alpha} \leq \annList{s}{l}{\alpha}
+   &
+   \text{(\localref{dbf:nelist-ih1}, \localref{dbf:nelist-ih2})}
+   \notag
 \end{flalign}
 \end{proof}
