@@ -6,5 +6,45 @@ Induction on the $\dbwdarrow$ derivation.
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-nil}}
+         ]
+         {
+            e \geq \annNil{\alpha}
+         }
+         {
+            e, \exNil \dbwdarrow \annNil{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \locallabel{dfb:nil}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\dfwdarrow$-nil}}
+      ]
+      {
+         \strut
+      }
+      {
+         \annNil{\alpha} \dfwdarrow \annNil{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   e \geq \annNil{\alpha}
+   &
+   \text{(\localref{dfb:nil})}
+   \notag
 \end{flalign}
 \end{proof}
