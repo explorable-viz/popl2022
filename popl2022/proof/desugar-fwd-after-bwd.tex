@@ -208,7 +208,7 @@ Induction on the $\dbwdarrow$ derivation.
    \locallabel{dfb:cons-ih1}
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
    \locallabel{dfb:cons-ih2}
@@ -269,10 +269,14 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \vec{c_i}' \dfwdarrow \sigma_{i}' (\forall i \numleq j) \geq \sigma_{i} (\forall i \numleq j) \quad (\exists \sigma_{i}')
+   &
+   \text{(IH)}
    \locallabel{dfb:letrec:ih1}
    \\
    &
    s' \dfwdarrow e' \geq e \quad (\exists e')
+   &
+   \text{(IH)}
    \locallabel{dfb:letrec:ih2}
    \\
    &
@@ -333,10 +337,14 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
    \locallabel{dfb:app:ih1}
    \\
    &
-   s_{2}' \dfwdarrow e_{2}' \geq e_{1} \quad (\exists e_{2}')
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
    \locallabel{dfb:app:ih2}
    \\
    &
@@ -365,6 +373,150 @@ Induction on the $\dbwdarrow$ derivation.
    \exApp{e_{1}'}{e_{2}'} \geq \exApp{e_{1}}{e_{2}}
    &
    \text{(\localref{dfb:app:ih1}, \localref{dfb:app:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-if}}
+         ]
+         {
+            e \eq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+            \\
+            e_{2}, s_{2} \dbwdarrow s_{2}'
+            \\
+            e_{3}, s_{3} \dbwdarrow s_{3}'
+         }
+         {
+            e,
+            \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+            \dbwdarrow
+            \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:if:ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:if:ih2}
+   \\
+   &
+   s_{3}' \dfwdarrow e_{3}' \geq e_{3} \quad (\exists e_{3}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:if:ih3}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-if}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+            \\
+            s_{3}' \dfwdarrow e_{3}'
+         }
+         {
+            \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+            \dfwdarrow
+            \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:if:ih1}, \localref{dfb:if:ih2}, \localref{dfb:if:ih3})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'} \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+   &
+   \text{(\localref{dfb:if:ih1}, \localref{dfb:if:ih2}, \localref{dfb:if:ih3})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-match}}
+         ]
+         {
+            e \eq \exApp{(\exLambda{\sigma})}{e_1}
+            \\
+            \sigma, \vec{c} \dbwdarrow \vec{c}'
+            \\
+            e_1, s \dbwdarrow s'
+         }
+         {
+            e,
+            \exMatch{s}{\vec{c}}
+            \dbwdarrow
+            \exMatch{s'}{\vec{c}'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s' \dfwdarrow e' \geq e_{1} \quad (\exists e')
+   &
+   \text{(IH)}
+   \locallabel{dfb:match:ih1}
+   \\
+   &
+   \vec{c}' \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(IH)}
+   \locallabel{dfb:match:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-match}}
+         ]
+         {
+            s' \dfwdarrow e'
+            \\
+            \vec{c}' \dfwdarrow \sigma'
+         }
+         {
+            \exMatch{s'}{\vec{c}'}
+            \dfwdarrow
+            \exApp{(\exLambda{\sigma})}{e'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:match:ih1}, \localref{dfb:match:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{(\exLambda{\sigma})}{e'} \geq \exApp{(\exLambda{\sigma})}{e_1}
+   &
+   \text{(\localref{dfb:match:ih1}, \localref{dfb:match:ih2})}
    \notag
 \end{flalign}
 \end{proof}
