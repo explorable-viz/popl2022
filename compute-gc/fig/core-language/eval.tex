@@ -90,14 +90,20 @@
       lab={\ruleName{$\eval$-match-cons}}
    ]
    {
-      \rho, e \eval \exCons{v_1}{v_2}
+      \rho, e \eval \exCons{v_1}{v_2}, \phi
       \\
-      \rho \concat \bind{x}{v_1} \concat \bind{y}{v_2}, e_2 \eval v
+      \rho \concat \bind{x}{v_1} \concat \bind{y}{v_2}, e_2 \eval v, \psi
    }
    {
       \rho, \exMatchList{e}{e_1}{x}{y}{e_2}
       \eval
-      v
+      v,
+      \lambda u.(\rho_1 \join \rho_2, \exMatchList{e'}{\hole}{x}{y}{e_2'})
+      \text{ where }
+      {\begin{aligned}[t]
+      (\rho_1, e') &= \phi(\exCons{\hole}{\hole}) \\
+      (\rho_2, e_2') &= \psi(v)
+      \end{aligned}}
    }
    %
    \and
