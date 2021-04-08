@@ -13,7 +13,7 @@
       \eval
       v,
       \lambda_{\hole} u.
-      (\envLookupBwd{\hole_\rho}{x}{u}, x)
+      (\envLookupBwd{\hole_\rho}{}{\bind{x}{u}}, x)
    }
    %
    \and
@@ -23,7 +23,9 @@
       \strut
    }
    {
-      \rho, \exLambda{x}{e} \eval \exClosure{\rho}{x}{e}
+      \rho, \exLambda{x}{e} \eval
+      \exClosure{\rho}{x}{e},
+      \lambda_\hole\{\exClosure{\rho'}{x}{e'} \mapsto (\rho', e')\}
    }
    %
    \and
@@ -35,7 +37,10 @@
       \strut
    }
    {
-      \rho, \exInt{n} \eval \exInt{n}
+      \rho, \exInt{n}
+      \eval
+      \exInt{n},
+      \lambda_\hole u.(\hole_{\rho}, \exInt{n})
    }
    %
    \and
@@ -47,7 +52,9 @@
       \strut
    }
    {
-      \rho, \exNil \eval \exNil
+      \rho, \exNil \eval
+      \exNil,
+      \lambda_\hole \{\exNil \mapsto (\hole_{\rho}, \exNil)\}
    }
    %
    \and
