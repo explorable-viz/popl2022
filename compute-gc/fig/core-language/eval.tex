@@ -77,6 +77,11 @@
       \eval
       v,
       \lambda u.(\rho_1 \join \rho_2, \exMatchList{e'}{e_1'}{x}{y}{\hole})
+      \text{ where }
+      {\begin{aligned}[t]
+      (\rho_1, e') &= \phi(\exNil) \\
+      (\rho_2, e_1') &= \psi(v)
+      \end{aligned}}
    }
    %
    \and
