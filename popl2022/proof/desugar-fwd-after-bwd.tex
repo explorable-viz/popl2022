@@ -108,7 +108,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   e \eq \annNil{\alpha} \Rightarrow \annNil{\alpha} \geq e
+   \annNil{\alpha} \geq \annNil{\alpha} \eq e
    &
    \text{(\localref{dfb:nil})}
    \notag
@@ -268,7 +268,7 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \vec{c_i}' \dfwdarrow \sigma_{i}' (\forall i \numleq j) \geq \sigma_{i} (\forall i \numleq j) \quad (\exists \sigma_{i}')
+   \vec{c_i}' \dfwdarrow \sigma_{i}' \geq \sigma_{i}  \quad (\exists \sigma_{i}') \quad (\forall i \numleq j)
    &
    \text{(IH)}
    \locallabel{dfb:letrec:ih1}
@@ -294,9 +294,9 @@ Induction on the $\dbwdarrow$ derivation.
             s' \dfwdarrow e'
          }
          {
-            \exLetRecMutual{\seqRange{x_1: \vec{c_1}'}{x_j: \vec{c_j}'}}{s'}
+            \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
             \dfwdarrow
-            \exLetRecMutual{\seqRange{x_1: \sigma_1'}{x_j: \sigma_j'}}{e'}
+            \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'}
          }
       \end{smathpar}
    }
@@ -306,7 +306,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exLetRecMutual{\seqRange{x_1: \sigma_1'}{x_j: \sigma_j'}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
+   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
    &
    \text{(\localref{dfb:letrec:ih1}, \localref{dfb:letrec:ih2})}
    \notag
@@ -689,9 +689,9 @@ Induction on the $\dbwdarrow$ derivation.
             s_{1}' \dfwdarrow e_{1}'
          }
          {
-            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha}
+            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha'}
             \dfwdarrow
-            \annCons{e_{1}'}{\annot{\exNil}{\alpha}}{\alpha}
+            \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'}
          }
       \end{smathpar}
    }
@@ -701,7 +701,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \annCons{e_{1}'}{\annot{\exNil}{\alpha}}{\alpha} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'}
+   \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'}
    &
    \text{(\localref{dfb:listcompdone:ih1})}
    \notag
@@ -752,7 +752,8 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \text{not sure about this one}
+   \qedLocal
+   e' \geq e
    \notag
    \\
    \intertext{\crossrule}
@@ -781,9 +782,15 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \annListComp{s_{1}'}{\vec{q}'}{\alpha} \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   \annListComp{s_{1}'}{\vec{q}'}{\beta} \dfwdarrow \geq e_{1}
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta} \dfwdarrow e_{1}' \geq e_1  \quad (\exists e_{1}')
+   &
+   \text{(Monotonicity)}
    \locallabel{dfb:listguard:ih1}
    \\
    &
@@ -800,15 +807,15 @@ Induction on the $\dbwdarrow$ derivation.
             lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
          ]
          {
-            \annListComp{s_{1}'}{\vec{q}'}{\alpha}
+            \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta}
             \dfwdarrow e_{1}'
             \\
             s_{2}' \dfwdarrow e_{2}'
          }
          {
-            \annListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}{\alpha}
+            \annListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}{\alpha \join \beta}
             \dfwdarrow
-            \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha}}}}}{e_{2}'}
+            \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'}
          }
       \end{smathpar}
    }
@@ -818,7 +825,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha}}}}}{e_{2}'} \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
+   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'} \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
    &
    \text{(\localref{dfb:listguard:ih1}, \localref{dfb:listguard:ih2})}
    \notag
@@ -924,22 +931,67 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\alpha} \dfwdarrow \sigma_{2}' \geq \sigma_{2} \quad (\exists \sigma_{2}')
+   \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'} \dfwdarrow \geq e_{2} 
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(Monotonicity)}
    \locallabel{dfb:listgen:ih1}
    \\
    &
-   \totalise{\sigma_{2}'}{\alpha}{\sigma_{1}'} \geq \sigma_{1} \quad (\exists \sigma_{1}')
+   p, e_2 \dfwdarrow \geq \sigma_2
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   p, e_{2}' \dfwdarrow \sigma_2' \geq \sigma_2 \quad (\exists \sigma_2')
+   &
+   \text{(Monotonicity)}
    \locallabel{dfb:listgen:ih2}
+   \\
+   &
+   \totalise{\sigma_{2}}{\beta}{\geq}  \sigma_{1}
+   &
+   \text{(IH)}
+   \notag
+   \\
+   &
+   \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1} \quad (\exists \sigma_{1}')
+   &
+   \text{(Monotonicity)}
+   \locallabel{dfb:listgen:ih3}
    \\
    &
    s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:listgen:ih3}
+   \locallabel{dfb:listgen:ih4}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-clause}}
+            ]
+            {
+               \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \dfwdarrow e_2'
+               \\
+               p, e_2' \dfwdarrow \sigma_{2}'
+            }
+            {
+               \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \dfwdarrow \sigma_{2}'
+            }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listgen:ih1}, \localref{dfb:listgen:ih2})}
+   \locallabel{dfb:listgen:clause}
    \\
    &
    \qedLocal
@@ -949,28 +1001,28 @@ Induction on the $\dbwdarrow$ derivation.
             lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
          ]
          {
-            \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\alpha} \dfwdarrow \sigma_{2}'
+            \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \dfwdarrow \sigma_{2}'
             \\
-            \totalise{\sigma_{2}'}{\alpha}{\sigma_{1}'}
+            \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'}
             \\
             s_{1}' \dfwdarrow e_{1}'
          }
          {
-            \annListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}{\alpha}
+            \annListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}{\beta \join \beta'}
             \dfwdarrow
             \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:listgen:ih1}, \localref{dfb:listgen:ih2}, \localref{dfb:listgen:ih3})}
+   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4}, \localref{dfb:listgen:clause})}
    \notag
    \\
    &
    \qedLocal
    \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1}
    &
-   \text{(\localref{dfb:listgen:ih1}, \localref{dfb:listgen:ih2}, \localref{dfb:listgen:ih3})}
+   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4}, \localref{dfb:listgen:clause})}
    \notag
 \end{flalign}
 \end{proof}

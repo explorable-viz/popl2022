@@ -107,7 +107,7 @@ Induction on the $\dfwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \annNil{\alpha} \eq \annNil{\alpha} \Rightarrow \annNil{\alpha} \leq \annNil{\alpha} 
+   \annNil{\alpha} \leq \annNil{\alpha} \eq e
    &
    \notag
    \\
@@ -255,16 +255,16 @@ Induction on the $\dfwdarrow$ derivation.
             s \dfwdarrow e
          }
          {
-            \exLetRecMutual{\seqRange{x_1: \vec{c_1}}{x_j: \vec{c_j}}}{s}
+            \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
             \dfwdarrow
-            \exLetRecMutual{\seqRange{x_1: \sigma_1}{x_j: \sigma_j}}{e}
+            \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e}
          }
       \end{smathpar}
    }
    \notag
    \\
    &
-   \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}' \leq \vec{c_i} (\forall i \numleq j) \quad (\exists \vec{c_i}')
+   \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}' \leq \vec{c_i} \quad (\exists \vec{c_i}') \quad (\forall i \numleq j)
    &
    \text{(IH)}
    \locallabel{dbf:letrec:ih1}
