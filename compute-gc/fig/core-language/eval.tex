@@ -63,14 +63,15 @@
       lab={\ruleName{$\eval$-cons}}
    ]
    {
-      \rho, e \eval v
+      \rho, e \eval v, \phi
       \\
-      \rho, e' \eval v'
+      \rho, e' \eval v', \psi
    }
    {
       \rho, \exCons{e}{e'}
       \eval
-      \exCons{v}{v'}
+      \exCons{v}{v'},
+      \lambda_\hole \{\exCons{u}{u'} \mapsto (\rho_1 \join \rho_2, \exCons{e_1}{e_2})\}
    }
    %
    \and
@@ -91,7 +92,7 @@
       \text{ where }
       {\begin{aligned}[t]
       (\rho_1, e') &= \phi(\exNil) \\
-      (\rho_2, e_1') &= \psi(v)
+      (\rho_2, e_1') &= \psi(u)
       \end{aligned}}
    }
    %
@@ -113,7 +114,7 @@
       \text{ where }
       {\begin{aligned}[t]
       (\rho_1, e') &= \phi(\exCons{\hole}{\hole}) \\
-      (\rho_2, e_2') &= \psi(v)
+      (\rho_2, e_2') &= \psi(u)
       \end{aligned}}
    }
    %
