@@ -28,6 +28,7 @@
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
 \newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
+\newcommand*{\exCaseList}[5]{\kw{case}~{#1}\;\{\exNil \mapsto #2; \exCons{#3}{#4} \mapsto #5\}}
 \newcommand*{\exClosure}[3]{\kw{cl}({#1},{#2},{#3})}
 \newcommand*{\exFalse}{\kw{false}}
 \newcommand*{\exFun}[2]{#1\,#2}
