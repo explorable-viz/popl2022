@@ -37,44 +37,45 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-nil}},
-      right={$\vdash \rho: \Gamma$}
+      lab={\ruleName{$\eval$-nil}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trNil{\Gamma}}{\rho, \exNil \eval \exNil}
+      \rho, \exNil \eval \exNil
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-cons}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-cons}}
+   ]
    {
-      \explVal{T}{\rho, e \eval v}
+      \rho, e \eval v
       \\
-      \explVal{U}{\rho, e' \eval v'}
+      \rho, e' \eval v'
    }
    {
-      \explVal{\trCons{T}{U}}{\rho, \exCons{e}{e'} \eval \exCons{v}{v'}}
+      \rho, \exCons{e}{e'}
+      \eval
+      \exCons{v}{v'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-apply}}]
+   \inferrule*[
+      lab={\ruleName{$\eval$-apply}}
+   ]
    {
-      \explVal{T}{\rho, e \eval \exClosure{\rho_1}{h}{\sigma}}
+      \rho, e \eval \exClosure{\rho_1}{x}{e''}
       \\
-      \rho_1, h \closeDefsR \rho_2
+      \rho, e' \eval v
       \\
-      \explVal{U}{\rho, e' \eval v}
-      \\
-      \explVal{w}{v, \sigma \match \rho_3, e_1}
-      \\
-      \explVal{T'}{\rho_1 \concat \rho_2 \concat \rho_3, e_1 \eval v'}
+      \rho \concat \bind{x}{v} \eval v'
    }
    {
-      \explVal{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
+      \rho, \exApp{e}{e'} \eval v'
    }
 \end{smathpar}
 
