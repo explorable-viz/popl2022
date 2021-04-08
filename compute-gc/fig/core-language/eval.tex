@@ -65,6 +65,38 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\eval$-match-nil}}
+   ]
+   {
+      \rho, e \eval \exNil
+      \\
+      \rho, e_1 \eval v
+   }
+   {
+      \rho, \exMatchList{e}{e_1}{x}{y}{e_2}
+      \eval
+      v
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-match-cons}}
+   ]
+   {
+      \rho, e \eval \exCons{v_1}{v_2}
+      \\
+      \rho \concat \bind{x}{v_1} \concat \bind{y}{v_2}, e_2 \eval v
+   }
+   {
+      \rho, \exMatchList{e}{e_1}{x}{y}{e_2}
+      \eval
+      v
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\eval$-apply}}
    ]
    {
