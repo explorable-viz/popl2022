@@ -36,7 +36,7 @@ x
 \text{list eliminator}
 \\
 &&&
-\exLambda{\sigma}
+\exLambda{x}{e}
 &
 \text{anonymous function}
 \\
@@ -44,6 +44,41 @@ x
 \exApp{e}{e'}
 &
 \text{application}
+\\[2mm]
+\mbox{Value}
+&
+u, v
+&
+::=
+&
+\hole
+&
+\text{hole}
+\\
+&&&
+\exInt{n}
+&
+\text{integer}
+\\
+&&&
+\exNil
+&
+\text{nil}
+\\
+&&&
+\exCons{e}{e'}
+&
+\text{cons}
+\\
+&&&
+\exMatchList{e}{e_1}{x}{y}{e_2}
+&
+\text{list eliminator}
+\\
+&&&
+\exClosure{\rho}{x}{e}
+&
+\text{anonymous function}
 \end{syntaxfig}
 \caption{Syntax}
 \end{figure}
