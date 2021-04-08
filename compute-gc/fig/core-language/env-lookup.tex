@@ -1,0 +1,62 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\hole_{\Gamma} = \rho$}
+\begin{salign}
+   \hole_{\vec{\bind{z}{A}}} &= \vec{\bind{z}{\hole}}
+%   \hole_{\seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}} &= \seqRange{\bind{z_1}{\hole}}{\bind{z_n}{\hole}}
+\end{salign}
+\\[2mm]
+
+\flushleft \shadebox{$\envLookup{\rho}{z}{v}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-head}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envLookup{(\rho \concat \bind{z}{v})}{z}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-tail}},
+      right={$z' \neq z$}
+   ]
+   {
+      \envLookup{\rho}{z}{v}
+   }
+   {
+      \envLookup{(\rho \concat \bind{z'}{u})}{z}{v}
+   }
+\end{smathpar}
+\\[2mm]
+
+\flushleft \shadebox{$\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleleft$-head}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envLookupBwd{\hole_{\Gamma} \concat \bind{z}{u}}{\Gamma \concat \bind{z}{A}}{\bind{z}{u}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleleft$-tail}},
+      right={$z \neq z'$}
+   ]
+   {
+      \envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}
+   }
+   {
+      \envLookupBwd{\rho \concat \bind{z'}{\hole}}{\Gamma \concat \bind{z'}{A}}{\bind{z}{v}}
+   }
+\end{smathpar}
+\caption{Hole environment, environment lookup and backward slicing for environment lookup}
+\end{figure}

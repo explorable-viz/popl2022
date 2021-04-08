@@ -1,0 +1,111 @@
+\begin{figure}[H]
+\begin{syntaxfig}
+\mbox{Match}
+&
+w
+&
+::=
+&
+\matchVarNew{x}
+&
+\text{variable}
+\\
+&&&
+\matchTrueNew \mid \matchFalseNew
+&
+\text{Boolean}
+\\
+&&&
+\matchPair{w}{w'}
+&
+\text{pair}
+\\
+&&&
+\matchNilNew
+&
+\text{nil}
+\\
+&&&
+\matchConsNew{w}{w'}
+&
+\text{cons}
+\\[2mm]
+\mbox{Trace}
+&
+T, U
+&
+::=
+&
+\trVar{x}{\Gamma}
+&
+\text{variable}
+\\
+&&&
+\trOp{\primOp}{\Gamma}
+&
+\text{first-class operator}
+\\
+&&&
+\trTrue{\Gamma}
+\mid
+\trFalse{\Gamma}
+&
+\text{Boolean}
+\\
+&&&
+\trInt{n}{\Gamma}
+&
+\text{integer}
+\\
+&&&
+\trPair{T}{U}
+&
+\text{pair}
+\\
+&&&
+\trNil{\Gamma}
+&
+\text{nil}
+\\
+&&&
+\trCons{T}{U}
+&
+\text{cons}
+\\
+&&&
+\trVec{T_{i}}{x}{i}{U}{j}
+&
+\text{vector of length $j$}
+\\
+&&&
+\trVecLookup{T}{i}{U}{j}
+&
+\text{vector lookup}
+\\
+&&&
+\trVecLen{T}{i}
+&
+\text{vector length}
+\\
+&&&
+\trLambda{\sigma}
+&
+\text{anonymous function}
+\\
+&&&
+\trApp{T}{U}{\matchPlug{w}{T'}}
+&
+\text{application}
+\\
+&&&
+\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{n}}
+&
+\text{primitive application}
+\\
+&&&
+\trLetRecMutual{h}{T}
+&
+\text{recursive let}
+\end{syntaxfig}
+\caption{Matches and traces}
+\end{figure}

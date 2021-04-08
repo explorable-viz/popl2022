@@ -1,0 +1,31 @@
+\section{Proofs: Core language}
+
+\subsection{Conventions}
+
+The symbol ${\qedLocal}$ indicates that a proof obligation is being discharged, and IH
+stands for ``inductive hypothesis''. We make free use of the fact that all term constructors
+preserve and reflect $\leq$, so that for example $\exCons{u}{u'} \leq
+\exCons{v}{v'}$ if and only if $u \leq v$ and $u' \leq v'$.
+
+\setcounter{equation}{0}
+\proofContext{match-fwd-after-bwd}
+\input{proof/match-fwd-after-bwd}
+\setcounter{equation}{0}
+\proofContext{match-bwd-after-fwd}
+\input{proof/match-bwd-after-fwd}
+
+\setcounter{equation}{0}
+\proofContext{eval-fwd-after-bwd}
+\input{proof/eval-fwd-after-bwd}
+\setcounter{equation}{0}
+\proofContext{eval-bwd-after-fwd}
+\input{proof/eval-bwd-after-fwd}
+\setcounter{equation}{0}
+\proofContext{desugar-fwd-after-bwd}
+\input{proof/desugar-fwd-after-bwd}
+\setcounter{equation}{0}
+\proofContext{desugar-bwd-after-fwd}
+\input{proof/desugar-bwd-after-fwd}
+\setcounter{equation}{0}
+\proofContext{lemma}
+\input{proof/lemma}

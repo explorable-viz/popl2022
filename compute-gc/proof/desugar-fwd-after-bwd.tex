@@ -1,0 +1,1028 @@
+\subsection{\thmref{surface-language:desugar:gc}, part (i)}
+Induction on the $\dbwdarrow$ derivation.
+\begin{proof}
+   Suppose $s \dfwdarrow e$. Then $\desugarFwdF{s}(\desugarBwdF{s}(e')) \geq e'$.
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-binary-apply}}
+         ]
+         {
+            e \eq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+         }
+         {
+            e, \exBinaryApp{s_{1}}{\primOp}{s_{2}}
+            \dbwdarrow
+            \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:binary-ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:binary-ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\dfwdarrow$-binary-apply}}
+      ]
+      {
+         s_{1}' \dfwdarrow e_{1}'
+         \\
+         s_{2}' \dfwdarrow e_{2}'
+      }
+      {
+         \exBinaryApp{s_{1}'}{\primOp}{s_{2}'} \dfwdarrow \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'}
+      }
+   \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:binary-ih1}, \localref{dfb:binary-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}} \eq e
+   &
+   \text{(\localref{dfb:binary-ih1}, \localref{dfb:binary-ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-nil}}
+         ]
+         {
+            e \eq \annNil{\alpha}
+         }
+         {
+            e, \exNil \dbwdarrow \annNil{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \locallabel{dfb:nil}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\dfwdarrow$-nil}}
+      ]
+      {
+         \strut
+      }
+      {
+         \annNil{\alpha} \dfwdarrow \annNil{\alpha}
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annNil{\alpha} \geq \annNil{\alpha} \eq e
+   &
+   \text{(\localref{dfb:nil})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+         ]
+         {
+            e \eq \annCons{e_1}{e_2}{\alpha}
+            \\
+            e_1, s \dbwdarrow s'
+            \\
+            e_2, l \dbwdarrow l'
+         }
+         {
+            e, \exList{s}{l}
+            \dbwdarrow
+            \annList{s'}{l'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:nelist-ih1}
+   \\
+   &
+   l' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:nelist-ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+         ]
+         {
+            s' \dfwdarrow e_{1}'
+            \\
+            l' \dfwdarrow e_{2}'
+         }
+         {
+            \annList{s'}{l'}{\alpha} \dfwdarrow \annCons{e_{1}'}{e_{2}'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:nelist-ih1}, \localref{dfb:nelist-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha} \eq e
+   &
+   \text{(\localref{dfb:nelist-ih1}, \localref{dfb:nelist-ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-cons}}
+         ]
+         {
+            e \eq \annCons{e_1}{e_2}{\alpha}
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+         }
+         {
+            e, \exCons{s_1}{s_2}
+            \dbwdarrow
+            \annCons{s_1'}{s_2'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:cons-ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:cons-ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-cons}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+         }
+         {
+            \annCons{s_{1}'}{s_{2}'}{\alpha} \dfwdarrow \annCons{e_{1}'}{e_{2}'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:cons-ih1}, \localref{dfb:cons-ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha} \eq e
+   &
+   \text{(\localref{dfb:cons-ih1}, \localref{dfb:cons-ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-let-rec}}
+         ]
+         {
+            e \eq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
+            \\
+            \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}'
+            \quad
+            (\forall i \numleq j)
+            \\
+            e_1, s \dbwdarrow s'
+         }
+         {
+            e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c_j}}}}{s}
+            \dbwdarrow
+            \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \vec{c_i}' \dfwdarrow \sigma_{i}' \geq \sigma_{i}  \quad (\exists \sigma_{i}') \quad (\forall i \numleq j)
+   &
+   \text{(IH)}
+   \locallabel{dfb:letrec:ih1}
+   \\
+   &
+   s' \dfwdarrow e' \geq e \quad (\exists e')
+   &
+   \text{(IH)}
+   \locallabel{dfb:letrec:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-let-rec}}
+         ]
+         {
+            \vec{c_i}' \dfwdarrow \sigma_{i}'
+            \quad
+            (\forall i \numleq j)
+            \\
+            s' \dfwdarrow e'
+         }
+         {
+            \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+            \dfwdarrow
+            \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:letrec:ih1}, \localref{dfb:letrec:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1} \eq e
+   &
+   \text{(\localref{dfb:letrec:ih1}, \localref{dfb:letrec:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-apply}}
+         ]
+         {
+            e \eq \exApp{e_1}{e_2}
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+         }
+         {
+            e, \exApp{s_1}{s_2}
+            \dbwdarrow
+            \exApp{s_1'}{s_2'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:app:ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:app:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-apply}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+         }
+         {
+            \exApp{s_{1}'}{s_{2}'} \dfwdarrow \exApp{e_{1}'}{e_{2}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:app:ih1}, \localref{dfb:app:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{e_{1}'}{e_{2}'} \geq \exApp{e_{1}}{e_{2}} \eq e
+   &
+   \text{(\localref{dfb:app:ih1}, \localref{dfb:app:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-if}}
+         ]
+         {
+            e \eq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+            \\
+            e_{2}, s_{2} \dbwdarrow s_{2}'
+            \\
+            e_{3}, s_{3} \dbwdarrow s_{3}'
+         }
+         {
+            e,
+            \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
+            \dbwdarrow
+            \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:if:ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:if:ih2}
+   \\
+   &
+   s_{3}' \dfwdarrow e_{3}' \geq e_{3} \quad (\exists e_{3}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:if:ih3}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-if}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+            \\
+            s_{3}' \dfwdarrow e_{3}'
+         }
+         {
+            \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+            \dfwdarrow
+            \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:if:ih1}, \localref{dfb:if:ih2}, \localref{dfb:if:ih3})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'} \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}} \eq e
+   &
+   \text{(\localref{dfb:if:ih1}, \localref{dfb:if:ih2}, \localref{dfb:if:ih3})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-match}}
+         ]
+         {
+            e \eq \exApp{(\exLambda{\sigma})}{e_1}
+            \\
+            \sigma, \vec{c} \dbwdarrow \vec{c}'
+            \\
+            e_1, s_1 \dbwdarrow s_{1}'
+         }
+         {
+            e,
+            \exMatch{s_1}{\vec{c}}
+            \dbwdarrow
+            \exMatch{s_{1}'}{\vec{c}'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:match:ih1}
+   \\
+   &
+   \vec{c}' \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(IH)}
+   \locallabel{dfb:match:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-match}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            \vec{c}' \dfwdarrow \sigma'
+         }
+         {
+            \exMatch{s_{1}'}{\vec{c}'}
+            \dfwdarrow
+            \exApp{(\exLambda{\sigma})}{e_{1}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:match:ih1}, \localref{dfb:match:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
+   &
+   \text{(\localref{dfb:match:ih1}, \localref{dfb:match:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-let}}
+         ]
+         {
+            e \eq \exApp{(\exLambda{\sigma})}{e_1}
+            \\
+            \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2'
+            \\
+            e_1, s_1 \dbwdarrow s_1'
+         }
+         {
+            e,
+            \exLet{p}{s_1}{s_2}
+            \dbwdarrow
+            \exLet{p}{s_1'}{s_2'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:let:ih1}
+   \\
+   &
+   \clauseUncurried{p}{s_{2}'} \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(IH)}
+   \locallabel{dfb:let:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-let}}
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            \clauseUncurried{p}{s_{2}'} \dfwdarrow \sigma'
+         }
+         {
+            \exLet{p}{s_{1}'}{s_{2}'}
+            \dfwdarrow
+            \exApp{(\exLambda{\sigma'})}{e_{1}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:let:ih1}, \localref{dfb:let:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
+   &
+   \text{(\localref{dfb:let:ih1}, \localref{dfb:let:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-enum}},
+         ]
+         {
+            e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+            \\
+            e_{2}, s_{2} \dbwdarrow s_{2}'
+         }
+         {
+            e,
+            \exListEnum{s_{1}}{s_{2}}
+            \dbwdarrow
+            \exListEnum{s_{1}'}{s_{2}'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listenum:ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listenum:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-enum}},
+         ]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+         }
+         {
+            \exListEnum{s_{1}'}{s_{2}'}
+            \dfwdarrow
+            \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listenum:ih1}, \localref{dfb:listenum:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2} \eq e
+   &
+   \text{(\localref{dfb:listenum:ih1}, \localref{dfb:listenum:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done}}]
+         {
+            e \eq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+         }
+         {
+            e,
+            \exListComp{s_{1}}{\qualDone}
+            \dbwdarrow
+            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listcompdone:ih1}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
+         {
+            s_{1}' \dfwdarrow e_{1}'
+         }
+         {
+            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha'}
+            \dfwdarrow
+            \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listcompdone:ih1})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'} \eq e
+   &
+   \text{(\localref{dfb:listcompdone:ih1})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
+         {
+            e, \exListComp{s}{q \concat \qualDone}
+            \dbwdarrow
+            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha}
+         }
+         {
+            e, \exListComp{s}{q}
+            \dbwdarrow
+            \annListComp{s'}{q'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \annListComp{s'}{q' \concat \qualDone}{\alpha} \dfwdarrow e' \geq e \quad (\exists e')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listcomplast:ih1}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
+            right={$q' \neq \qualDone$}
+         ]
+         {
+            \annListComp{s'}{q' \concat \qualDone}{\alpha} \dfwdarrow e'
+         }
+         {
+            \annot{\exListComp{s'}{q'}}{\alpha} \dfwdarrow e'
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listcomplast:ih1})}
+   \notag
+   \\
+   &
+   \qedLocal
+   e' \geq e
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
+         ]
+         {
+            e \eq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
+            \\
+            e_2, s_2 \dbwdarrow s_2'
+            \\
+            e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annListComp{s_{1}'}{\vec{q}'}{\beta}
+         }
+         {
+            e,
+            \exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}
+            \dbwdarrow
+            \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \annListComp{s_{1}'}{\vec{q}'}{\beta} \dfwdarrow \geq e_{1}
+   &
+   \text{(IH)}
+   \notag
+   \\
+   &
+   \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta} \dfwdarrow e_{1}' \geq e_1  \quad (\exists e_{1}')
+   &
+   \text{(Monotonicity)}
+   \locallabel{dfb:listguard:ih1}
+   \\
+   &
+   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listguard:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
+         ]
+         {
+            \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta}
+            \dfwdarrow e_{1}'
+            \\
+            s_{2}' \dfwdarrow e_{2}'
+         }
+         {
+            \annListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}{\alpha \join \beta}
+            \dfwdarrow
+            \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listguard:ih1}, \localref{dfb:listguard:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'} \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}} \eq e
+   &
+   \text{(\localref{dfb:listguard:ih1}, \localref{dfb:listguard:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
+         ]
+         {
+            e \eq \exApp{(\exLambda{\sigma})}{e_1}
+            \\
+            \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
+            \dbwdarrow
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+         }
+         {
+            e,
+            \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
+            \dbwdarrow
+            \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}
+                  {\alpha}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listdecl:ih1}
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listdecl:ih2}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
+         ]
+         {
+            \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \dfwdarrow \sigma'
+            \\
+            s_{1}' \dfwdarrow e_{1}'
+         }
+         {
+            \annListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}{\alpha}
+            \dfwdarrow
+            \exApp{(\exLambda{\sigma'})}{e_{1}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listdecl:ih1}, \localref{dfb:listdecl:ih2})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
+   &
+   \text{(\localref{dfb:listdecl:ih1}, \localref{dfb:listdecl:ih2})}
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dbwdarrow$-list-comp-gen}},
+         ]
+         {
+            e \eq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1}
+            \\
+            e_{1}, s_{1} \dbwdarrow s_{1}'
+            \\
+            \totalisebwd{\sigma_1}{p}{\sigma_2}{\beta}
+            \\
+            \sigma_{2}, p \dbwdarrow e_{2}
+            \\
+            e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+         }
+         {
+            e,
+            \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
+            \dbwdarrow
+            \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}
+                  {\beta \join \beta'}
+         }
+      \end{smathpar}
+   }
+   \notag
+   \\
+   &
+   \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'} \dfwdarrow \geq e_{2} 
+   &
+   \text{(IH)}
+   \notag
+   \\
+   &
+   \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   &
+   \text{(Monotonicity)}
+   \locallabel{dfb:listgen:ih1}
+   \\
+   &
+   p, e_2 \dfwdarrow \geq \sigma_2
+   &
+   \text{(IH)}
+   \notag
+   \\
+   &
+   p, e_{2}' \dfwdarrow \sigma_2' \geq \sigma_2 \quad (\exists \sigma_2')
+   &
+   \text{(Monotonicity)}
+   \locallabel{dfb:listgen:ih2}
+   \\
+   &
+   \totalise{\sigma_{2}}{\beta}{\geq}  \sigma_{1}
+   &
+   \text{(IH)}
+   \notag
+   \\
+   &
+   \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1} \quad (\exists \sigma_{1}')
+   &
+   \text{(Monotonicity)}
+   \locallabel{dfb:listgen:ih3}
+   \\
+   &
+   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   &
+   \text{(IH)}
+   \locallabel{dfb:listgen:ih4}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-clause}}
+            ]
+            {
+               \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \dfwdarrow e_2'
+               \\
+               p, e_2' \dfwdarrow \sigma_{2}'
+            }
+            {
+               \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \dfwdarrow \sigma_{2}'
+            }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listgen:ih1}, \localref{dfb:listgen:ih2})}
+   \locallabel{dfb:listgen:clause}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
+         ]
+         {
+            \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \dfwdarrow \sigma_{2}'
+            \\
+            \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'}
+            \\
+            s_{1}' \dfwdarrow e_{1}'
+         }
+         {
+            \annListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}{\beta \join \beta'}
+            \dfwdarrow
+            \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4}, \localref{dfb:listgen:clause})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1} \eq e
+   &
+   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4}, \localref{dfb:listgen:clause})}
+   \notag
+\end{flalign}
+\end{proof}

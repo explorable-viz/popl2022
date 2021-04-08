@@ -1,0 +1,16 @@
+\section{Surface language}
+\input{fig/surface-language/syntax}
+\input{fig/surface-language/typing-term}
+\input{fig/surface-language/typing-pattern}
+\input{fig/surface-language/desugar-fwd}
+\input{fig/surface-language/desugar-bwd}
+\input{fig/surface-language/desugar-list-rest-bwd}
+\input{fig/surface-language/desugar-clause-fwd}
+\input{fig/surface-language/desugar-clause-bwd}
+\input{fig/surface-language/totalise-fwd}
+\input{fig/surface-language/totalise-bwd}
+
+\begin{theorem}[Galois connection for desugaring]
+  \label{thm:surface-language:desugar:gc}
+     Suppose $s \dfwdarrow e$. Then $\desugarFwdF{T} \adjoint \desugarBwdF{T}$.
+\end{theorem}

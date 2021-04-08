@@ -1,0 +1,108 @@
+\section{Core language}
+
+\subsection{Syntax and typing}
+\input{fig/core-language/syntax-type}
+\input{fig/core-language/syntax}
+\input{fig/core-language/syntax-value}
+\input{fig/core-language/syntax-trace}
+\input{fig/core-language/typing-value}
+\input{fig/core-language/typing-term}
+
+\subsection{Evaluation}
+\input{fig/core-language/match}
+\input{fig/core-language/eval}
+
+\subsection{Forward and backward slicing}
+\input{fig/core-language/leq-value-elim}
+\input{fig/core-language/leq-term}
+
+\begin{definition}[Order on selection state]
+   Define $\leq$ to be the total order satisfying $\FF \leq \alpha$ and $\TT \leq \TT$.
+\end{definition}
+
+\begin{definition}[Hole equivalence]
+   Define $\eq$ as the intersection of $\leq$ and $\geq$.
+\end{definition}
+
+\input{fig/core-language/join-value}
+\input{fig/core-language/join-elim}
+
+\subsubsection{Pattern-matching}
+
+\input{fig/core-language/match-fwd}
+\input{fig/core-language/match-bwd}
+
+\begin{lemma}[Determinism of pattern-matching]
+   Suppose $v, \sigma \match \rho, \kappa$ and $v', \sigma' \match \rho', \kappa'$. If $v \eq v'$ and $\sigma \eq \sigma'$ then $\rho \eq \rho'$ and $\kappa \eq \kappa'$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for pattern-matching]
+   Suppose $w: v, \sigma \match \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\Bool)} \to \Below{(\rho,\kappa)}$ to be $\matchFwdR{w}$ domain-restricted to $\Below{(v,\sigma,\Bool)}$ and define $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\Bool)}$ to be $\matchBwdR{w}$ domain-restricted to $\Below{(\rho,\kappa)}$.
+\end{definition}
+
+\begin{theorem}[Galois connection for pattern-matching]
+\label{thm:core-language:match:gc}
+   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+\end{theorem}
+
+\subsubsection{Evaluation}
+
+\paragraph{Primitive operations}
+
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection $(\primFwdBool{\phi}(\vec{n}), \primBwdBool{\phi}(\vec{n}))$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}(\vec{n}), \primBwd{\phi}(\vec{n}))$ between $\Below{\vec{\annInt{n}{\TT}}}$ and $\Below{\annInt{\phi(\vec{n})}{\TT}}$ by defining
+\begin{definition}
+\label{def:core-language:primop-gc}
+\begin{salign}
+   \primFwd{\phi}(\vec{n})(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
+   \text{ where }
+   \primFwdBool{\phi}(\vec{n})(\vec{\alpha}) = \beta
+   \\
+   \primBwd{\phi}(\vec{n})(\annInt{m}{\beta}) &= \vec{\annInt{n}{\alpha}}
+   \text{ where }
+   \primBwdBool{\phi}(\vec{n})(\beta) = \vec{\alpha}
+\end{salign}
+\end{definition}
+
+\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values.
+
+\input{fig/core-language/eval-fwd}
+\input{fig/core-language/eval-bwd}
+\input{fig/core-language/env-lookup}
+
+\begin{lemma}[Hole environment]
+\label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\Gamma} \leq \rho$.
+\end{lemma}
+
+\begin{lemma}[Environment get-put]
+\label{lem:core-language:env-get-put}Suppose $\vdash \rho: \Gamma$.
+\begin{enumerate}
+   \item \label{lem:core-language:env-get-put:1} If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$.
+   \item \label{lem:core-language:env-get-put:2} If $\envLookup{\rho}{z}{v}$ and $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$ then $(u \leq v \iff \rho' \leq \rho)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{lemma}[Determinism of recursive binding]
+    Suppose $\rho_1, h \closeDefsR \rho_2$ and $\rho_1', h' \closeDefsR \rho_2'$. If $\rho_1 \eq \rho_1'$ and $h \eq h'$ then $\rho_2 \eq \rho_2'$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for recursive bindings]
+   Suppose $\rho, h \closeDefsFwdR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ to be $\closeDefsFwdR$ domain-restricted to $\Below{(\rho, h)}$ and define $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsBwdR$ domain-restricted to $\Below{\rho'}$.
+\end{definition}
+
+\begin{theorem}[Galois connection for recursive bindings]
+\label{thm:core-language:closeDefs:gc}
+   Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h} \adjoint \closeDefsBwdF{\rho,h}$.
+\end{theorem}
+
+\begin{lemma}[Determinism of evaluation]
+   Suppose $\rho, e \eval v$ and $\rho', e' \eval v'$. If $\rho \eq \rho'$ and $e \eq e'$ then $v \eq v'$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for evaluation]
+   Suppose $T: \rho, e \eval v$. Define $\evalFwdF{T}: \Below{(\rho, e, \Bool)} \to \Below{v}$ to be $\evalFwdR{T}$ domain-restricted to $\Below{(\rho, e, \Bool)}$ and define $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \Bool)}$ to be $\evalBwdR{T}$ domain-restricted to $\Below{v}$.
+\end{definition}
+
+\begin{theorem}[Galois connection for evaluation]
+\label{thm:core-language:eval:gc}
+   Suppose $T: \rho, e \evalFwdS v$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
+\end{theorem}

@@ -1,0 +1,133 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\vdash \rho: \Gamma$}
+\begin{smathpar}
+\inferrule*
+{
+   \vdash v_i: A_i
+   \quad
+   (\forall i \numleq n)
+}
+{
+   \vdash \seqRange{\bind{z_1}{v_1}}{\bind{z_n}{v_n}}: \seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}
+}
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$\Gamma \vdash h: \Delta$}
+\begin{smathpar}
+   \inferrule*[right={
+      \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_j}{\tyFun{A_j}{B_j}}}$}
+   }]
+   {
+      \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
+      \quad
+      (\forall i \numleq j)
+   }
+   {
+      \Gamma \vdash \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}: \Delta
+   }
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$\vdash v: A$}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exInt{n}: \tyInt
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exTrue: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exFalse: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash u: A
+   \\
+   \vdash v: B
+}
+{
+   \vdash \exPair{u}{v}: \tyProd{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exNil: \tyList{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash u: A
+   \\
+   \vdash v: \tyList{A}
+}
+{
+   \vdash (\exCons{u}{v}): \tyList{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash v_{i}: A
+   \quad
+   (\forall i \numleq j)
+}
+{
+   \vdash \exVec{v_{i}}{i}{j}: \tyVec{A}
+}
+%
+\and
+%
+\inferrule*[
+   right={$\phi \in \Int^{i + j} \to \Int$}
+]
+{
+   \strut
+}
+{
+   \vdash \exPrimOp{\phi}{\seqRange{n_1}{n_i}}: \tyFun{\tyInt^j}{\tyInt}
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash \rho: \Gamma
+   \\
+   \Gamma \vdash h: \Delta
+   \\
+   \Gamma \concat \Delta \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \vdash \exClosure{\rho}{h}{\sigma}: \tyFun{A}{B}
+}
+\end{smathpar}
+\caption{Typing rules for environments and values}
+\end{figure}

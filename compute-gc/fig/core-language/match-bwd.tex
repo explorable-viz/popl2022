@@ -1,0 +1,77 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}
+\begin{smathpar}
+   \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
+   {
+      \strut
+   }
+   {
+      \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
+   {
+      \strut
+   }
+   {
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrueNew}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
+   {
+      \strut
+   }
+   {
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
+   {
+      \matchBwd{\rho_2}{\kappa}{\alpha}{w_2}{v_2}{\sigma}
+      \\
+      \matchBwd{\rho_1}{\sigma}{\alpha}{w_1}{v_1}{\tau}
+   }
+   {
+      \matchBwd{\rho_1 \concat \rho_2}
+               {\kappa}
+               {\alpha}
+               {\matchPair{w_1}{w_2}}
+               {\annPair{v_1}{v_2}{\alpha}}
+               {\elimProd{\tau}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
+   {
+      \strut
+   }
+   {
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNilNew}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
+   {
+      \matchBwd{\rho_2}{\kappa}{\alpha}{w_2}{v_2}{\sigma}
+      \\
+      \matchBwd{\rho_1}{\sigma}{\alpha}{w_1}{v_1}{\tau}
+   }
+   {
+      \matchBwd{\rho_1 \concat \rho_2}
+               {\kappa}
+               {\alpha}
+               {\matchConsNew{w_1}{w_2}}
+               {\annCons{v_1}{v_2}{\alpha}}
+               {\elimList{\hole}{\tau}}
+   }
+\end{smathpar}
+\caption{Pattern-matching: backward slicing}
+\end{figure}

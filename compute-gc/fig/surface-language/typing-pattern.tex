@@ -1,0 +1,116 @@
+\begin{figure}[H]
+
+%% Patterns
+
+\flushleft \shadebox{$p: A \dashv \Gamma $}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \pattVar{x}: A \dashv \seqEmpty, \exVar{x}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   p: A \dashv \Gamma
+   \\
+   p': B \dashv \Gamma'
+}
+{
+   \pattPair{p}{p'}: \tyProd{A}{B} \dashv \Gamma \concat \Gamma'
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \pattNil: \tyList{A} \dashv \seqEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   p: A \dashv \Gamma
+   \\
+   p': \tyList{A} \dashv \Gamma'
+}
+{
+   \pattCons{p}{p'}: \tyList{A} \dashv \Gamma \concat \Gamma'
+}
+%
+\and
+%
+\inferrule*
+{
+   p: A \dashv \Gamma
+   \\
+   o: \tyList{A} \dashv \Gamma'
+}
+{
+   \pattList{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
+}
+\end{smathpar}
+
+%% List pattern rest
+
+\flushleft \shadebox{$o: \tyList{A} \dashv \Gamma $}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \pattListEnd : \tyList{A} \dashv \seqEmpty
+}
+%
+\and
+%
+\inferrule*
+{
+   p : A \dashv \Gamma
+   \\
+   o : \tyList{A} \dashv \Gamma'
+}
+{
+   \pattListNext{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
+}
+\end{smathpar}
+
+%% Clauses
+
+\flushleft \shadebox{$\Gamma \vdash c : A $}
+\begin{smathpar}
+\inferrule*
+{
+   p: A \dashv \Gamma'
+   \\
+   \Gamma \cdot \Gamma' \vdash s: B
+}
+{
+   \Gamma \vdash \clauseUncurried{p}{s} : \tyFun{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   p : A \dashv \Gamma'
+   \\
+   \Gamma \cdot \Gamma' \vdash \clause{p}{s} : B
+}
+{
+   \Gamma \vdash \clauseUncurried{p \cdot \vec{p}}{s} : \tyFun{A}{B}
+}
+\end{smathpar}
+
+
+\caption{Typing rules for patterns and clauses}
+\end{figure}
