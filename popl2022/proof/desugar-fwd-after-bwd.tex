@@ -64,7 +64,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
+   \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}} \eq e
    &
    \text{(\localref{dfb:binary-ih1}, \localref{dfb:binary-ih2})}
    \notag
@@ -172,7 +172,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha}
+   \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha} \eq e
    &
    \text{(\localref{dfb:nelist-ih1}, \localref{dfb:nelist-ih2})}
    \notag
@@ -236,7 +236,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha}
+   \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha} \eq e
    &
    \text{(\localref{dfb:cons-ih1}, \localref{dfb:cons-ih2})}
    \notag
@@ -306,7 +306,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
+   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1} \eq e
    &
    \text{(\localref{dfb:letrec:ih1}, \localref{dfb:letrec:ih2})}
    \notag
@@ -370,7 +370,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{e_{1}'}{e_{2}'} \geq \exApp{e_{1}}{e_{2}}
+   \exApp{e_{1}'}{e_{2}'} \geq \exApp{e_{1}}{e_{2}} \eq e
    &
    \text{(\localref{dfb:app:ih1}, \localref{dfb:app:ih2})}
    \notag
@@ -447,7 +447,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'} \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+   \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'} \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}} \eq e
    &
    \text{(\localref{dfb:if:ih1}, \localref{dfb:if:ih2}, \localref{dfb:if:ih3})}
    \notag
@@ -514,7 +514,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1}
+   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
    \text{(\localref{dfb:match:ih1}, \localref{dfb:match:ih2})}
    \notag
@@ -581,7 +581,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1}
+   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
    \text{(\localref{dfb:let:ih1}, \localref{dfb:let:ih2})}
    \notag
@@ -648,7 +648,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+   \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2} \eq e
    &
    \text{(\localref{dfb:listenum:ih1}, \localref{dfb:listenum:ih2})}
    \notag
@@ -701,7 +701,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'}
+   \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'} \eq e
    &
    \text{(\localref{dfb:listcompdone:ih1})}
    \notag
@@ -825,7 +825,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'} \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
+   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'} \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}} \eq e
    &
    \text{(\localref{dfb:listguard:ih1}, \localref{dfb:listguard:ih2})}
    \notag
@@ -895,7 +895,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1}
+   \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
    \text{(\localref{dfb:listdecl:ih1}, \localref{dfb:listdecl:ih2})}
    \notag
@@ -1020,7 +1020,7 @@ Induction on the $\dbwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1}
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1} \eq e
    &
    \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4}, \localref{dfb:listgen:clause})}
    \notag
