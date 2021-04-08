@@ -2,4 +2,6 @@
 
 Here evaluation produces not only a value $v$ but also a monotonic function $\phi: \Below{v} \to \Below{(\rho,e)}$ which maps slices of $v$ to slices of $(\rho,e)$. The $\lambda$ used to denote functions in the meta-language must not be confused with the $\uplambda$ used in the syntax of functions in the object language.
 
+If $\lambda u.z$ is a function then $\lambda_{\hole} u.z$ denotes the function $\lambda\{\hole \mapsto \hole; u \mapsto z\}$.
+
 \input{fig/core-language/eval}

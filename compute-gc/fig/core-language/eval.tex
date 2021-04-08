@@ -9,7 +9,11 @@
       \strut
    }
    {
-      \rho, x \eval v
+      \rho, x
+      \eval
+      v,
+      \lambda_{\hole} u.
+      (\envLookupBwd{\hole_\rho}{x}{u}, x)
    }
    %
    \and
