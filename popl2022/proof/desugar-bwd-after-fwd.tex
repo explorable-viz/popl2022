@@ -709,18 +709,56 @@ Induction on the $\dfwdarrow$ derivation.
    &
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
-            right={$q \neq \qualDone$}
+         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}}
          ]
          {
-            \annListComp{s}{q \concat \qualDone}{\alpha} \dfwdarrow e
+            \inferrule*[]
+            {
+               \inferrule*[]
+               {
+                  \inferrule*[]
+                  {
+                     s \dfwdarrow e_2
+                  }{
+                     \annListComp{s}{\qualDone}{\alpha} \dfwdarrow \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha}
+                  }
+                  \\
+                  p, \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \dfwdarrow \sigma
+               }
+               {
+                  \clauseUncurried{p}{\annListComp{s}{\qualDone}{\alpha}} \dfwdarrow \sigma
+               }
+               \\
+               s_{1} \dfwdarrow e_{1}
+            }
+            {
+               \annListComp{s}{\qualDeclaration{p}{s_{1}} \concat \qualDone}{\alpha} \dfwdarrow \exApp{(\lambda \sigma)}{e_1}
+            }
          }
          {
-            \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
+            \annot{\exListComp{s}{\qualDeclaration{p}{s_{1}}}}{\alpha} \dfwdarrow \exApp{(\lambda \sigma)}{e_1}
          }
       \end{smathpar}
    }
    \notag
+   \\
+   &
+   \sigma, p \dbwdarrow \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta} \leq \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \quad (\exists e_2', \beta, \beta')
+   \\
+   &
+   e_2, s \dbwdarrow \leq s
+   &
+   \text{(IH)}
+   \\
+   &
+   e_2, s \dbwdarrow s' \leq s \quad (\exists s')
+   &
+   \text{(Monotonicity)}
+   \\
+   &
+   e_1, s_1 \dbwdarrow s_1' \leq s_1 \quad (\exists s_1')
+   &
+   \text{(IH)}
    \\
    &
    \qedLocal
@@ -728,14 +766,36 @@ Induction on the $\dfwdarrow$ derivation.
       \begin{smathpar}
          \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
          {
-            e, \exListComp{s}{q \concat \qualDone}
-            \dbwdarrow
-            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha}
+            \inferrule*[]
+            {
+               \inferrule*[]
+               {
+                  \sigma, p \dbwdarrow \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta}
+                  \\
+                  \inferrule*[]
+                  {
+                     e_2', s \dbwdarrow s'
+                  }
+                  {
+                     \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta}, \exListComp{s}{\qualDone} \dbwdarrow \annot{\exListComp{s'}{\qualDone}}{\beta \join \beta'}
+                  }
+               }
+               {
+                  \sigma, p = \exListComp{s}{\qualDone} \dbwdarrow p = \annot{\exListComp{s'}{\qualDone}}{\beta \join \beta'}
+               }
+               \\
+               e_1, s_1 \dbwdarrow s_1'
+            }
+            {
+               \exApp{(\lambda \sigma)}{e_1}, \exListComp{s}{\qualDeclaration{p}{s_{1}} \concat \qualDone}
+               \dbwdarrow
+               \annot{\exListComp{s'}{\qualDeclaration{p}{s_1'} \concat \qualDone}}{\beta \join \beta'}
+            }
          }
          {
-            e, \exListComp{s}{q}
+            \exApp{(\lambda \sigma)}{e_1}, \exListComp{s}{\qualDeclaration{p}{s_{1}}}
             \dbwdarrow
-            \annListComp{s'}{q'}{\alpha}
+            \annListComp{s'}{\qualDeclaration{p}{s_1'}}{\beta \join \beta'}
          }
       \end{smathpar}
    }
@@ -744,8 +804,12 @@ Induction on the $\dfwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \annListComp{s'}{q'}{\alpha} \leq \annot{\exListComp{s}{q}}{\alpha}
+   \annListComp{s'}{\qualDeclaration{p}{s_1'}}{\beta \join \beta'} \leq \annListComp{s}{\qualDeclaration{p}{s_{1}}}{\alpha}
    &
+   \notag
+   \\
+   &
+   \intertext{The cases when the final qualifier is a guard or a generator are similar.}
    \notag
    \\
    \intertext{\crossrule}
