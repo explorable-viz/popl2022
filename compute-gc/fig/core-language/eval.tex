@@ -12,7 +12,7 @@
       \rho, x
       \eval
       v,
-      \lambda_{\hole} u.
+      \lambda u.
       (\envLookupBwd{\hole_\rho}{}{\bind{x}{u}}, x)
    }
    %
@@ -72,7 +72,7 @@
       \eval
       \exCons{v}{v'},
       \lambda_\hole \{\exCons{u}{u'} \mapsto (\rho_1 \join \rho_2, \exCons{e_1}{e_2})
-      \text{ where }
+      \textit{ where }
       (\rho_1, e_1) = \phi(u); (\rho_2, e_2) = \phi(u')\}
    }
    %
@@ -92,7 +92,7 @@
       v,
       \lambda v'.(\rho_1 \join \rho_2, \exMatchList{e'}{e_1'}{x}{y}{\hole})
       \\
-      \text{ where } (\rho_1, e') = \phi(\exNil); (\rho_2, e_1') = \psi(v')
+      \textit{ where } (\rho_1, e') = \phi(\exNil); (\rho_2, e_1') = \psi(v')
    }
    %
    \and
@@ -111,7 +111,7 @@
       v,
       \lambda v'.(\rho_1 \join \rho_2, \exMatchList{e'}{\hole}{x}{y}{e_2'})
       \\
-      \text{ where }
+      \textit{ where }
       (\rho_2 \concat \bind{x}{v_1'} \concat \bind{y}{v_2'}, e_2') = \psi(v');
       (\rho_1, e') = \phi(\exCons{v_1'}{v_2'})
    }
@@ -133,7 +133,7 @@
       \eval
       v',
       \lambda v^\twoPrime.(\rho_1 \join \rho_2, \exApp{e_1}{e_2})
-      \text{ where }
+      \textit{ where }
       (\rho^\dagger \concat \bind{x}{v^\dagger}, e^\dagger) = \psi(v^\twoPrime);
       (\rho_2, e_2) = \phi'(v^\dagger);
       (\rho_1, e_1) = \phi(\exClosure{\rho^\dagger}{x}{e^\dagger})
