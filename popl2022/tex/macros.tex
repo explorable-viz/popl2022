@@ -257,8 +257,10 @@
 % Desugaring.
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
-\newcommand*{\desugarFwdF}[1]{\mathsf{desugarFwd}_{#1}}
-\newcommand*{\desugarBwdF}[1]{\mathsf{desugarBwd}_{#1}}
+\newcommand*{\desugarFwdF}[1]{\mathsf{desugFwd}_{#1}}
+\newcommand*{\desugarBwdF}[1]{\mathsf{desugBwd}_{#1}}
+\newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRest}(#1)_*}
+\newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRest}(#1)^*}
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
