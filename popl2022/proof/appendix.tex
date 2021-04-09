@@ -1,0 +1,22 @@
+\subsection{Appendix}
+\begin{proof}
+  Suppose $l \dfwdarrow e$. Then $\desugarFwdF{l}(\desugarBwdF{l}(e')) \geq e'$.
+\end{proof}
+\begin{proof}
+  Suppose $\vec{c} \dfwdarrow \sigma$. Then $\desugarFwdF{\vec{c}}(\desugarBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
+\end{proof}
+\begin{proof}
+  Suppose $p, e \dfwdarrow \sigma$. Then $\desugarFwdF{p}(\desugarBwdF{p}(\sigma')) \geq \sigma'$.
+\end{proof}
+\begin{proof}
+  Suppose $\totalise{\sigma}{\alpha}{\sigma'}$. Then $\totaliseFwdF{\alpha}(\totaliseBwdF{\vec{p}}(\sigma')) \leq \sigma'$.
+\end{proof}
+\begin{proof}
+  Suppose $\sigma, \vec{c} \dbwdarrow \vec{c}'$. Then $\desugarBwdF{\vec{c}}(\desugarFwdF{\vec{c}}(\vec{c}')) \leq \vec{c}'$.
+\end{proof}
+\begin{proof}
+  Suppose $\sigma, \vec{p} \dbwdarrow e$. Then $\desugarBwdF{\vec{p}}(\desugarFwdF{\vec{p}}(e')) \leq e'$.
+\end{proof}
+\begin{proof}
+  Suppose $\totalisebwd{\sigma}{\vec{p}}{\sigma'}{\alpha}$. Then $\totaliseBwdF{\vec{p}}(\totaliseFwdF{\alpha}(\sigma')) \leq \sigma'$.
+\end{proof}

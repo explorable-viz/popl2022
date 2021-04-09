@@ -977,31 +977,18 @@ Induction on the $\dbwdarrow$ derivation.
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-clause}}
-            ]
-            {
-               \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \dfwdarrow e_2'
-               \\
-               p, e_2' \dfwdarrow \sigma_{2}'
-            }
-            {
-               \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \dfwdarrow \sigma_{2}'
-            }
-      \end{smathpar}
-   }
-   &
-   \text{(\localref{dfb:listgen:ih1}, \localref{dfb:listgen:ih2})}
-   \locallabel{dfb:listgen:clause}
-   \\
-   &
-   \qedLocal
-   \derivation{\derivationWidth}{
-      \begin{smathpar}
-         \inferrule*[
             lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
          ]
          {
-            \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \dfwdarrow \sigma_{2}'
+            \inferrule*[]
+               {
+                  \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \dfwdarrow e_2'
+                  \\
+                  p, e_2' \dfwdarrow \sigma_{2}'
+               }
+               {
+                  \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \dfwdarrow \sigma_{2}'
+               }
             \\
             \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'}
             \\
@@ -1015,14 +1002,14 @@ Induction on the $\dbwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4}, \localref{dfb:listgen:clause})}
+   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4})}
    \notag
    \\
    &
    \qedLocal
    \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1} \eq e
    &
-   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4}, \localref{dfb:listgen:clause})}
+   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4})}
    \notag
 \end{flalign}
 \end{proof}
