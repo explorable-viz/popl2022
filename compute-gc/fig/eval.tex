@@ -149,23 +149,22 @@
    &=
    \lambda\set{
       \hole \mapsto (\hole_\rho,\hole);
-      \exCons{u}{u'}) \mapsto
-   (\rho_1 \join \rho_2, \exCons{e_1}{e_2})
-   \textit{ where }
-   (\rho_1, e_1) = \phi(u); (\rho_2, e_2) = \psi(u')}
+      \exCons{v}{v'} \mapsto (\rho_1 \join \rho_2, \exCons{e_1}{e_2})
+   \text{ where }
+   (\rho_2, e_2) = \psi(v'); (\rho_1, e_1) = \phi(v)}
    \\
    \bwdF{case\_nil(\phi,\psi)}
    &=
    \lambda v.
    (\rho_1 \join \rho_2, \exMatchList{e}{e_1}{x}{y}{\hole})
-   \textit{ where }
-   (\rho_1, e) = \phi(\exNil); (\rho_2, e_1) = \psi(v)
+   \text{ where }
+   (\rho_2, e_1) = \psi(v); (\rho_1, e) = \phi(\exNil)
    \\
    \bwdF{case\_cons(\phi,\psi)}
    &=
    \lambda v.
    (\rho_1 \join \rho_2, \exMatchList{e}{\hole}{x}{y}{e_2})
-   \textit{ where }
+   \text{ where }
    (\rho_2 \concat \bind{x}{v_1} \concat \bind{y}{v_2}, e_2) = \psi(v);
    (\rho_1, e) = \phi(\exCons{v_1}{v_2})
    \\
@@ -173,7 +172,7 @@
    &=
    \lambda v'.
    (\rho_1 \join \rho_2, \exApp{e}{e'})
-   \textit{ where }
+   \text{ where }
    (\rho' \concat \bind{x}{v}, e^\twoPrime) = \psi(v');
    (\rho_2, e') = \phi'(v);
    (\rho_1, e) = \phi(\exClosure{\rho'}{x}{e^\twoPrime})
