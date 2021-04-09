@@ -252,12 +252,12 @@ Induction on the $\dfwdarrow$ derivation.
             \quad
             (\forall i \numleq j)
             \\
-            s \dfwdarrow e
+            s \dfwdarrow e_1
          }
          {
             \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
             \dfwdarrow
-            \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e}
+            \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
          }
       \end{smathpar}
    }
@@ -709,26 +709,56 @@ Induction on the $\dfwdarrow$ derivation.
    &
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
-            right={$q' \neq \qualDone$}
+         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}}
          ]
          {
-            \annListComp{s}{q \concat \qualDone}{\alpha} \dfwdarrow e
+            \inferrule*[]
+            {
+               \inferrule*[]
+               {
+                  \inferrule*[]
+                  {
+                     s \dfwdarrow e_2
+                  }{
+                     \annListComp{s}{\qualDone}{\alpha} \dfwdarrow \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha}
+                  }
+                  \\
+                  p, \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \dfwdarrow \sigma
+               }
+               {
+                  \clauseUncurried{p}{\annListComp{s}{\qualDone}{\alpha}} \dfwdarrow \sigma
+               }
+               \\
+               s_{1} \dfwdarrow e_{1}
+            }
+            {
+               \annListComp{s}{\qualDeclaration{p}{s_{1}} \concat \qualDone}{\alpha} \dfwdarrow \exApp{(\lambda \sigma)}{e_1}
+            }
          }
          {
-            \annot{\exListComp{s}{q}}{\alpha} \dfwdarrow e
+            \annot{\exListComp{s}{\qualDeclaration{p}{s_{1}}}}{\alpha} \dfwdarrow \exApp{(\lambda \sigma)}{e_1}
          }
       \end{smathpar}
    }
    \notag
    \\
    &
-   e, \exListComp{s}{q \concat \qualDone}
-            \dbwdarrow
-            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha} \leq \exListComp{s}{q \concat \qualDone} \quad (\exists \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha})
+   \sigma, p \dbwdarrow \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta} \leq \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \quad (\exists e_2', \beta, \beta')
+   \\
+   &
+   e_2, s \dbwdarrow \leq s
    &
    \text{(IH)}
-   \locallabel{dbf:listcomplast:ih1}
+   \\
+   &
+   e_2, s \dbwdarrow s' \leq s \quad (\exists s')
+   &
+   \text{(Monotonicity)}
+   \\
+   &
+   e_1, s_1 \dbwdarrow s_1' \leq s_1 \quad (\exists s_1')
+   &
+   \text{(IH)}
    \\
    &
    \qedLocal
@@ -736,26 +766,50 @@ Induction on the $\dfwdarrow$ derivation.
       \begin{smathpar}
          \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
          {
-            e, \exListComp{s}{q \concat \qualDone}
-            \dbwdarrow
-            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha}
+            \inferrule*[]
+            {
+               \inferrule*[]
+               {
+                  \sigma, p \dbwdarrow \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta}
+                  \\
+                  \inferrule*[]
+                  {
+                     e_2', s \dbwdarrow s'
+                  }
+                  {
+                     \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta}, \exListComp{s}{\qualDone} \dbwdarrow \annot{\exListComp{s'}{\qualDone}}{\beta \join \beta'}
+                  }
+               }
+               {
+                  \sigma, p = \exListComp{s}{\qualDone} \dbwdarrow p = \annot{\exListComp{s'}{\qualDone}}{\beta \join \beta'}
+               }
+               \\
+               e_1, s_1 \dbwdarrow s_1'
+            }
+            {
+               \exApp{(\lambda \sigma)}{e_1}, \exListComp{s}{\qualDeclaration{p}{s_{1}} \concat \qualDone}
+               \dbwdarrow
+               \annot{\exListComp{s'}{\qualDeclaration{p}{s_1'} \concat \qualDone}}{\beta \join \beta'}
+            }
          }
          {
-            e, \exListComp{s}{q}
+            \exApp{(\lambda \sigma)}{e_1}, \exListComp{s}{\qualDeclaration{p}{s_{1}}}
             \dbwdarrow
-            \annListComp{s'}{q'}{\alpha}
+            \annListComp{s'}{\qualDeclaration{p}{s_1'}}{\beta \join \beta'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:listcomplast:ih1})}
    \notag
    \\
    &
    \qedLocal
-   \annListComp{s'}{q'}{\alpha} \leq \annot{\exListComp{s}{q}}{\alpha}
+   \annListComp{s'}{\qualDeclaration{p}{s_1'}}{\beta \join \beta'} \leq \annListComp{s}{\qualDeclaration{p}{s_{1}}}{\alpha}
    &
-   \text{(\localref{dbf:listcomplast:ih1})}
+   \notag
+   \\
+   &
+   \intertext{The cases when the final qualifier is a guard or a generator are similar.}
    \notag
    \\
    \intertext{\crossrule}
@@ -788,7 +842,7 @@ Induction on the $\dfwdarrow$ derivation.
    \locallabel{dbf:listguard:ih1}
    \\
    &
-   e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annListComp{s_{1}'}{\vec{q}'}{\beta} \leq \exListComp{s_1}{\vec{q}} \quad (\exists \annListComp{s_{1}'}{\vec{q}'})
+   e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annListComp{s_{1}'}{\vec{q}'}{\beta} \leq \annot{\exListComp{s_1}{\vec{q}}}{\alpha} \quad (\exists s_{1}', \vec{q}', \beta)
    &
    \text{(IH)}
    \locallabel{dbf:listguard:ih2}
@@ -851,7 +905,7 @@ Induction on the $\dfwdarrow$ derivation.
    &
    \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
             \dbwdarrow
-            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}}\leq \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}} \quad (\exists \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}})
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}\leq \clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha} } \quad (\exists s_{2}', \vec{q}', \beta)
    &
    \text{(IH)}
    \locallabel{dbf:listdecl:ih1}
@@ -872,9 +926,9 @@ Induction on the $\dfwdarrow$ derivation.
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
+            \sigma, \clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha}}
             \dbwdarrow
-            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}}
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
             \\
             e_{1}, s_{1} \dbwdarrow s_{1}'
          }
@@ -882,7 +936,7 @@ Induction on the $\dfwdarrow$ derivation.
             e,
             \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
             \dbwdarrow
-            \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\alpha}
+            \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\beta}
          }
       \end{smathpar}
    }
@@ -892,7 +946,7 @@ Induction on the $\dfwdarrow$ derivation.
    \\
    &
    \qedLocal
-   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\alpha} \leq \annListComp{s_{2}}{\qualDeclaration{p}{s_{1}} \concat \vec{q}}{\alpha}
+   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\beta} \leq \annListComp{s_{2}}{\qualDeclaration{p}{s_{1}} \concat \vec{q}}{\alpha}
    &
    \text{(\localref{dbf:listdecl:ih1}, \localref{dbf:listdecl:ih2})}
    \notag
@@ -906,7 +960,15 @@ Induction on the $\dfwdarrow$ derivation.
             lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
          ]
          {
-            \annot{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}{\alpha} \dfwdarrow \sigma_{1}
+            \inferrule*[]
+            {
+               \annot{\exListComp{s_{2}}{\vec{q}}}{\alpha} \dfwdarrow e_2
+               \\
+               p, e_2 \dfwdarrow \sigma_1
+            }
+            {
+               \annot{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}{\alpha} \dfwdarrow \sigma_{1}
+            }
             \\
             \totalise{\sigma_{1}}{\alpha}{\sigma_{2}}
             \\
@@ -922,6 +984,42 @@ Induction on the $\dfwdarrow$ derivation.
    \notag
    \\
    &
+   e_1, s_1 \dbwdarrow s_1' \quad (\exists s_1')
+   &
+   \text{(IH)}
+   \locallabel{dbf:listgen:ih1}
+   \\
+   &
+   \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta} \leq \sigma_1, \alpha \quad (\exists \sigma_1', \beta)
+   &
+   \text{(New theorem)}
+   \locallabel{dbf:listgen:ih2}
+   \\
+   &
+   \sigma_1, p \dbwdarrow \leq e_2
+   &
+   \text{(New theorem)}
+   \notag
+   \\
+   &
+   \sigma_1', p \dbwdarrow e_2' \leq e_2 \quad (\exists e_2')
+   &
+   \text{(Monotonicity)}
+   \locallabel{dbf:listgen:ih3}
+   \\
+   &
+   e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \leq \annot{\exListComp{s_{2}}{\vec{q}}}{\alpha}
+   &
+   \text{(IH)}
+   \notag
+   \\
+   &
+   e_{2}', \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'} \leq \annot{\exListComp{s_2}{\vec{q}}}{\alpha}  \quad (\exists s_2', \vec{q}', \beta')
+   &
+   \text{(Monotonicity)}
+   \locallabel{dbf:listgen:ih4}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
@@ -933,11 +1031,11 @@ Induction on the $\dfwdarrow$ derivation.
             \\
             e_{1}, s_{1} \dbwdarrow s_{1}'
             \\
-            \totalisebwd{\sigma_2}{p}{\sigma_1}{\beta}
+            \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta}
             \\
-            \sigma_{1}, p \dbwdarrow e_{2}
+            \sigma_{1}', p \dbwdarrow e_{2}'
             \\
-            e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+            e_{2}', \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
          }
          {
             e,
@@ -948,12 +1046,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
+   \text{(\localref{dbf:listgen:ih1}, \localref{dbf:listgen:ih2}, \localref{dbf:listgen:ih3}, \localref{dbf:listgen:ih4})}
    \notag
    \\
    &
    \qedLocal
    \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}{\beta \join \beta'} \leq \annListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}{\alpha}
    &
+   \text{(\localref{dbf:listgen:ih1}, \localref{dbf:listgen:ih2}, \localref{dbf:listgen:ih3}, \localref{dbf:listgen:ih4})}
    \notag
 \end{flalign}
 \end{proof}
