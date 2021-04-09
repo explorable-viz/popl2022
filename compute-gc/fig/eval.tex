@@ -76,7 +76,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-match-nil}}
+      lab={\ruleName{$\eval$-case-nil}}
    ]
    {
       \rho, e \eval \exNil, \phi
@@ -87,13 +87,13 @@
       \rho, \exMatchList{e}{e_1}{x}{y}{e_2}
       \eval
       v,
-      \bwdF{match\_nil}(\phi,\psi)
+      \bwdF{case\_nil}(\phi,\psi)
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-match-cons}}
+      lab={\ruleName{$\eval$-case-cons}}
    ]
    {
       \rho, e \eval \exCons{v_1}{v_2}, \phi
@@ -104,7 +104,7 @@
       \rho, \exMatchList{e}{e_1}{x}{y}{e_2}
       \eval
       v,
-      \bwdF{match\_cons}(\phi,\psi)
+      \bwdF{case\_cons}(\rho,\phi,\psi)
    }
    %
    \and
@@ -132,7 +132,7 @@
    &=
    \lambda\set{\hole \mapsto (\hole_\rho, \hole); u \mapsto (\envLookupBwd{\hole_\rho}{}{\bind{x}{u}}, x)}
    \\
-   \bwdF{fun}
+   \bwdF{fun}(\rho)
    &=
    \lambda\set{\hole \mapsto (\hole_\rho, \hole); \exClosure{\rho}{x}{e} \mapsto (\rho, \exLambda{x}{e})}
    \\
@@ -144,21 +144,23 @@
    &=
    \lambda\set{\hole \mapsto (\hole_\rho, \hole); \exNil \mapsto (\hole_{\rho}, \exNil)}
    \\
-   \bwdF{cons}(\phi,\psi)
+   \bwdF{cons}(\rho,\phi,\psi)
    &=
-   \lambda (\exCons{u}{u'}).
+   \lambda\set{
+      \hole \mapsto (\hole_\rho,\hole);
+      \exCons{u}{u'}) \mapsto
    (\rho_1 \join \rho_2, \exCons{e_1}{e_2})
    \textit{ where }
-   (\rho_1, e_1) = \phi(u); (\rho_2, e_2) = \psi(u')\}
+   (\rho_1, e_1) = \phi(u); (\rho_2, e_2) = \psi(u')}
    \\
-   \bwdF{match\_nil}(\phi,\psi)
+   \bwdF{case\_nil}(\phi,\psi)
    &=
    \lambda v.
    (\rho_1 \join \rho_2, \exMatchList{e}{e_1}{x}{y}{\hole})
    \textit{ where }
    (\rho_1, e) = \phi(\exNil); (\rho_2, e_1) = \psi(v)
    \\
-   \bwdF{match\_cons}(\phi,\psi)
+   \bwdF{case\_cons}(\phi,\psi)
    &=
    \lambda v.
    (\rho_1 \join \rho_2, \exMatchList{e}{\hole}{x}{y}{e_2})
