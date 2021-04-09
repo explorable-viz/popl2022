@@ -1,0 +1,180 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\rho, e \eval v, \phi$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\eval$-var}},
+      right={$\envLookup{\rho}{x}{v}$}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, x
+      \eval
+      v,
+      \bwdF{var}(\rho)_\hole
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\eval$-fun}}]
+   {
+      \strut
+   }
+   {
+      \rho, \exLambda{x}{e} \eval
+      \exClosure{\rho}{x}{e},
+      \bwdF{fun}_\hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-int}}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, \exInt{n}
+      \eval
+      \exInt{n},
+      \bwdF{int}(\rho)_\hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-nil}}
+   ]
+   {
+      \strut
+   }
+   {
+      \rho, \exNil \eval
+      \exNil,
+      \bwdF{nil}(\rho)_\hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-cons}}
+   ]
+   {
+      \rho, e \eval v, \phi
+      \\
+      \rho, e' \eval v', \psi
+   }
+   {
+      \rho, \exCons{e}{e'}
+      \eval
+      \exCons{v}{v'},
+      \bwdF{cons}(\phi,\psi)_\hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-match-nil}}
+   ]
+   {
+      \rho, e \eval \exNil, \phi
+      \\
+      \rho, e_1 \eval v, \psi
+   }
+   {
+      \rho, \exMatchList{e}{e_1}{x}{y}{e_2}
+      \eval
+      v,
+      \bwdF{match\_nil}(\phi,\psi)
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-match-cons}}
+   ]
+   {
+      \rho, e \eval \exCons{v_1}{v_2}, \phi
+      \\
+      \rho \concat \bind{x}{v_1} \concat \bind{y}{v_2}, e_2 \eval v, \psi
+   }
+   {
+      \rho, \exMatchList{e}{e_1}{x}{y}{e_2}
+      \eval
+      v,
+      \bwdF{match\_cons}(\phi,\psi)
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\eval$-apply}}
+   ]
+   {
+      \rho, e \eval \exClosure{\rho'}{x}{e^\twoPrime}, \phi
+      \\
+      \rho, e' \eval v, \phi'
+      \\
+      \rho' \concat \bind{x}{v} \eval v', \psi
+   }
+   {
+      \rho, \exApp{e}{e'}
+      \eval
+      v', \bwdF{apply}(\phi,\phi',\psi)
+   }
+\end{smathpar}
+
+\vspace{5mm}
+\begin{salign}
+   \bwdF{var}(\rho)
+   &=
+   \lambda\set{\hole \mapsto (\hole_\rho, \hole); u \mapsto (\envLookupBwd{\hole_\rho}{}{\bind{x}{u}}, x)}
+   \\
+   \bwdF{fun}
+   &=
+   \lambda\set{\hole \mapsto (\hole_\rho, \hole); \exClosure{\rho}{x}{e} \mapsto (\rho, \exLambda{x}{e})}
+   \\
+   \bwdF{int}(\rho)
+   &=
+   \lambda\set{\hole \mapsto (\hole_\rho, \hole); n \mapsto (\hole_{\rho}, \exInt{n})}
+   \\
+   \bwdF{nil}(\rho)
+   &=
+   \lambda\set{\hole \mapsto (\hole_\rho, \hole); \exNil \mapsto (\hole_{\rho}, \exNil)}
+   \\
+   \bwdF{cons}(\phi,\psi)
+   &=
+   \lambda (\exCons{u}{u'}).
+   (\rho_1 \join \rho_2, \exCons{e_1}{e_2})
+   \textit{ where }
+   (\rho_1, e_1) = \phi(u); (\rho_2, e_2) = \psi(u')\}
+   \\
+   \bwdF{match\_nil}(\phi,\psi)
+   &=
+   \lambda v.
+   (\rho_1 \join \rho_2, \exMatchList{e}{e_1}{x}{y}{\hole})
+   \textit{ where }
+   (\rho_1, e) = \phi(\exNil); (\rho_2, e_1) = \psi(v)
+   \\
+   \bwdF{match\_cons}(\phi,\psi)
+   &=
+   \lambda v.
+   (\rho_1 \join \rho_2, \exMatchList{e}{\hole}{x}{y}{e_2})
+   \textit{ where }
+   (\rho_2 \concat \bind{x}{v_1} \concat \bind{y}{v_2}, e_2) = \psi(v);
+   (\rho_1, e) = \phi(\exCons{v_1}{v_2})
+   \\
+   \bwdF{apply}(\phi,\phi',\psi)
+   &=
+   \lambda v'.
+   (\rho_1 \join \rho_2, \exApp{e}{e'})
+   \textit{ where }
+   (\rho' \concat \bind{x}{v}, e^\twoPrime) = \psi(v');
+   (\rho_2, e') = \phi'(v);
+   (\rho_1, e) = \phi(\exClosure{\rho'}{x}{e^\twoPrime})
+\end{salign}
+
+\caption{Evaluation}
+\end{figure}
