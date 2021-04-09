@@ -12,7 +12,7 @@
       \rho, x
       \eval
       v,
-      \bwdF{var}(\rho)_\hole
+      \bwdF{var}(\rho)
    }
    %
    \and
@@ -24,7 +24,7 @@
    {
       \rho, \exLambda{x}{e} \eval
       \exClosure{\rho}{x}{e},
-      \bwdF{fun}_\hole
+      \bwdF{fun}
    }
    %
    \and
@@ -39,7 +39,7 @@
       \rho, \exInt{n}
       \eval
       \exInt{n},
-      \bwdF{int}(\rho)_\hole
+      \bwdF{int}(\rho)
    }
    %
    \and
@@ -53,7 +53,7 @@
    {
       \rho, \exNil \eval
       \exNil,
-      \bwdF{nil}(\rho)_\hole
+      \bwdF{nil}(\rho)
    }
    %
    \and
@@ -70,7 +70,7 @@
       \rho, \exCons{e}{e'}
       \eval
       \exCons{v}{v'},
-      \bwdF{cons}(\phi,\psi)_\hole
+      \bwdF{cons}(\phi,\psi)
    }
    %
    \and
