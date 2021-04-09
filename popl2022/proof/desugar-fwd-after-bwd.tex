@@ -146,7 +146,7 @@ Induction on the $\dbwdarrow$ derivation.
    &
    l' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
-   \text{(IH)}
+   \text{(\ref{lem:aux:desugarlistrest:gc})}
    \locallabel{dfb:nelist-ih2}
    \\
    &
@@ -270,8 +270,7 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \vec{c_i}' \dfwdarrow \sigma_{i}' \geq \sigma_{i}  \quad (\exists \sigma_{i}') \quad (\forall i \numleq j)
    &
-   \text{(IH)}
-   \locallabel{dfb:letrec:ih1}
+   \text{(\ref{lem:aux:clauses:gc})}
    \\
    &
    s' \dfwdarrow e' \geq e \quad (\exists e')
@@ -486,7 +485,7 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \vec{c}' \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
    &
-   \text{(IH)}
+   \text{(\ref{lem:aux:clauses:gc})}
    \locallabel{dfb:match:ih2}
    \\
    &
@@ -553,7 +552,7 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \clauseUncurried{p}{s_{2}'} \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
    &
-   \text{(IH)}
+   \text{(\ref{lem:aux:clauses:gc})}
    \locallabel{dfb:let:ih2}
    \\
    &
@@ -861,7 +860,7 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
    &
-   \text{(IH)}
+   \text{(\ref{lem:aux:clauses:gc})}
    \locallabel{dfb:listdecl:ih1}
    \\
    &
@@ -945,7 +944,7 @@ Induction on the $\dbwdarrow$ derivation.
    &
    p, e_2 \dfwdarrow \geq \sigma_2
    &
-   \text{(IH)}
+   \text{(\ref{lem:aux:clause:gc})}
    \notag
    \\
    &
@@ -957,7 +956,7 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \totalise{\sigma_{2}}{\beta}{\geq}  \sigma_{1}
    &
-   \text{(IH)}
+   \text{(\ref{lem:aux:totalise:gc})}
    \notag
    \\
    &
