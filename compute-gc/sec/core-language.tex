@@ -1,0 +1,15 @@
+\input{fig/syntax}
+
+Some conventions:
+\begin{itemize}
+\item Define $\leq$ to be the least compatible partial order containing $\hole \leq v$.
+\item Write $\Below{v}$ (the \emph{slices} of $v$) to be the set $\set{v' \mid v' \leq v}$.m
+\item If $f$ is a function from non-hole values then $f_{\hole}$ denotes $\lambda\{\hole \mapsto (\hole_\rho,\hole); u \mapsto f(u)\}$.
+\item $\hole_\rho$ denotes the environment that maps $x$ to $\hole$ for every $x \in \dom{\rho}$.
+\item $\envLookup{\rho}{x}{v}$ means $\rho$ maps $x$ to $v$.
+\item $\envLookupBwd{\rho}{x}{u}$ denotes the environment that agrees with $\rho$ except at $x$, which it maps to $u$.
+\end{itemize}
+
+The idea is that evaluation produces not only a value $v$ but also a monotonic function $\phi: \Below{v} \to \Below{(\rho,e)}$ which maps slices of $v$ to slices of $(\rho,e)$.
+
+\input{fig/eval}
