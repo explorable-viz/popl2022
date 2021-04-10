@@ -301,7 +301,9 @@ Induction on the $\desugarBwd{}$ derivation.
    \\
    &
    \qedLocal
-   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1} \eq e
+   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'}
+   \geq
+   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1} \eq e
    &
    \notag
    \\
@@ -437,7 +439,9 @@ Induction on the $\desugarBwd{}$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'} \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}} \eq e
+   \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'}
+   \geq
+   \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}} \eq e
    &
    \notag
    \\
@@ -679,7 +683,9 @@ Induction on the $\desugarBwd{}$ derivation.
    \\
    &
    \qedLocal
-   \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'} \eq e
+   \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'}
+   \geq
+   \annCons{e_{1}}{\annNil{\alpha}}{\alpha'} \eq e
    &
    \notag
    \\
@@ -714,7 +720,9 @@ Induction on the $\desugarBwd{}$ derivation.
    \notag
    \\
    &
-   \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta} \desugarFwd e_{1}' \geq e_1  \quad (\exists e_{1}')
+   \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta} \desugarFwd e_{1}' \geq e_1
+   \quad
+   (\exists e_{1}')
    &
    \text{(monotonicity)}
    \locallabel{listguard:ih1}
@@ -751,7 +759,9 @@ Induction on the $\desugarBwd{}$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'} \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}} \eq e
+   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'}
+   \geq
+   \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}} \eq e
    &
    \notag
    \\
@@ -783,7 +793,11 @@ Induction on the $\desugarBwd{}$ derivation.
    \notag
    \\
    &
-   \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \desugarFwd \sigma' \geq \sigma \quad (\exists \sigma')
+   \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \desugarFwd \sigma'
+   \geq
+   \sigma
+   \quad
+   (\exists \sigma')
    &
    \text{(\lemref{aux:clauses:gc})}
    \notag
@@ -831,7 +845,7 @@ Induction on the $\desugarBwd{}$ derivation.
             lab={\ruleName{$\desugarBwd{}$-list-comp-gen}},
          ]
          {
-            e \eq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1}
+            e \eq \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_1})}}{e_1}
             \\
             e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
@@ -863,8 +877,11 @@ Induction on the $\desugarBwd{}$ derivation.
    \\
    &
    \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'}}
-   \desugarClauseFwd \sigma_{2}' \geq \sigma_{2}^\dagger
-   \quad (\exists \sigma_{2}')
+   \desugarClauseFwd \sigma_{2}'
+   \geq
+   \sigma_{2}^\dagger
+   \quad
+   (\exists \sigma_{2}')
    &
    \text{(monotonicity)}
    \locallabel{listgen:premise-one}
@@ -876,7 +893,9 @@ Induction on the $\desugarBwd{}$ derivation.
    \notag
    \\
    &
-   \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1} \quad (\exists \sigma_{1}')
+   \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1}
+   \quad
+   (\exists \sigma_{1}')
    &
    \text{(monotonicity)}
    \locallabel{listgen:premise-two}
@@ -916,7 +935,9 @@ Induction on the $\desugarBwd{}$ derivation.
    \\
    &
    \qedLocal
-   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1} \eq e
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'}
+   \geq
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_1})}}{e_1} \eq e
    &
    \notag
 \end{flalign}
