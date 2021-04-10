@@ -30,18 +30,18 @@
      \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}$.
   \end{enumerate}
 \end{lemma}
-\begin{lemma}[Galois connection for generator]
+\begin{lemma}[Galois connection for list generator]
   \label{lem:aux:totalise:gc}
   \item
   \begin{itemize}
-    \item Define $e, \alpha \mathrel{R_p} \sigma $ if and only if $\clauseUncurried{p}{e} \dfwdarrow \sigma'$ and $\totalise{\sigma}{\alpha}{\sigma}$.
-    \item Define $\sigma \mathrel{S_p} e, \alpha$ if and only if $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma', p \dbwdarrow e$. 
+    \item Define $e, \alpha \listGenFwd{p} \sigma $ iff $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma}{\alpha}{\sigma}$.
+    \item Define $\sigma \listGenBwd{p} e, \alpha$ iff $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma'  \desugarClauseBwd{p} e$.
   \end{itemize}
-  Suppose $\clauseUncurried{p}{e} \dfwdarrow \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then :
+  Suppose $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
   \begin{enumerate}
-     \item $\mathrel{R_p}$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\totaliseFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
-     \item $\mathrel{S_p}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\totaliseBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.
-     \item $\totaliseFwdF{p, e, \alpha}(\totaliseBwdF{p, e, \alpha}(\tau)) \geq \tau$.
-     \item $\totaliseBwdF{p, e, \alpha}(\totaliseFwdF{p, e, \alpha}(e', \alpha')) \leq (e', \alpha')$.
+     \item $\listGenFwd{p}$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
+     \item $\listGenBwd{p}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\listGenBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.
+     \item $\listGenFwdF{p, e, \alpha}(\listGenBwdF{p, e, \alpha}(\tau)) \geq \tau$.
+     \item $\listGenBwdF{p, e, \alpha}(\listGenFwdF{p, e, \alpha}(e', \alpha')) \leq (e', \alpha')$.
   \end{enumerate}
 \end{lemma}

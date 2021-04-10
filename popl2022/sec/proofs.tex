@@ -3,8 +3,7 @@
 \subsection{Conventions}
 
 The symbol ${\qedLocal}$ indicates that a proof obligation is being discharged, and IH
-stands for ``inductive hypothesis''. We make free use of the fact that all term constructors
-preserve and reflect $\leq$, so that for example $\exCons{u}{u'} \leq
+stands for ``inductive hypothesis''. We make free use of the totality of the forward and backward slicing functions, and the fact that all term constructors preserve and reflect $\leq$, so that for example $\exCons{u}{u'} \leq
 \exCons{v}{v'}$ if and only if $u \leq v$ and $u' \leq v'$.
 
 \input{proof/auxiliary-lemmas}
