@@ -2,7 +2,7 @@
 
 \begin{lemma}[Galois connection for desugaring list rest]
   \label{lem:aux:desugarlistrest:gc}
-  Suppose $l \dfwdarrow e$. Then :
+  Suppose $l \dfwdarrow e$. Then:
   \begin{enumerate}
      \item $\dfwdarrow$ domain-restricted to $\Below{l}$ is a monotonic function $\desugarListRestFwdF{l}$ to $\Below{e}$.
      \item $\dbwdarrow$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarListRestBwdF{l}$ to $\Below{l}$.
@@ -12,7 +12,7 @@
 \end{lemma}
 \begin{lemma}[Galois connection for clause]
   \label{lem:aux:clause:gc}
-  Suppose $p, e \dfwdarrow \sigma$. Then :
+  Suppose $p, e \dfwdarrow \sigma$. Then:
   \begin{enumerate}
      \item $\dfwdarrow$ domain-restricted to $\Below{(p, e)}$ is a monotonic function $\desugarClauseFwdF{p, e}$ to $\Below{\sigma}$.
      \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClauseBwdF{p, e}$ to $\Below{(p, e)}$.
@@ -22,7 +22,7 @@
 \end{lemma}
 \begin{lemma}[Galois connection for clauses]
   \label{lem:aux:clauses:gc}
-  Suppose $\vec{c} \dfwdarrow \sigma$. Then :
+  Suppose $\vec{c} \dfwdarrow \sigma$. Then:
   \begin{enumerate}
      \item $\dfwdarrow$ domain-restricted to $\Below{\vec{c}}$ is a monotonic function $\desugarClausesFwdF{\vec{c}}$ to $\Below{\sigma}$.
      \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClausesBwdF{\vec{c}}$ to $\Below{\vec{c}}$.
@@ -34,7 +34,7 @@
   \label{lem:aux:list-gen:gc}
   \item
   \begin{itemize}
-    \item Define $e, \alpha \listGenFwd{p} \sigma $ iff $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma}{\alpha}{\sigma}$.
+    \item Define $e, \alpha \listGenFwd{p} \sigma $ iff there exists $\sigma'$ such that $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
     \item Define $\sigma \listGenBwd{p} e, \alpha$ iff $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma'  \desugarClauseBwd{\clauseUncurried{p}{e'}} \clauseUncurried{p}{e}$.
   \end{itemize}
   Suppose $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
