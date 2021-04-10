@@ -852,46 +852,38 @@ Induction on the $\desugarBwd{}$ derivation.
    \notag
    \\
    &
-   \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'} \desugarFwd \geq e_{2}
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}}
+   \desugarClauseFwd\geq
+   \sigma_{2}
    &
-   \text{(IH)}
+   \text{(\lemref{aux:clauses:gc})}
    \notag
    \\
    &
-   \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'}}
+   \desugarClauseFwd \sigma_{2}' \geq \sigma_{2}
+   \quad (\exists \sigma_{2}')
    &
    \text{(Monotonicity)}
-   \locallabel{listgen:ih1}
+   \locallabel{listgen:premise-one}
    \\
    &
-   p, e_2 \desugarFwd \geq \sigma_2
+   \totaliseGeq{\sigma_{2}}{\beta} \sigma_{1}
    &
-   \text{(\ref{lem:aux:clause:gc})}
-   \notag
-   \\
-   &
-   p, e_{2}' \desugarFwd \sigma_2' \geq \sigma_2 \quad (\exists \sigma_2')
-   &
-   \text{(Monotonicity)}
-   \locallabel{listgen:ih2}
-   \\
-   &
-   \totalise{\sigma_{2}}{\beta}{\geq}  \sigma_{1}
-   &
-   \text{(\ref{lem:aux:totalise:gc})}
+   \text{(\lemref{aux:list-gen:gc})}
    \notag
    \\
    &
    \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1} \quad (\exists \sigma_{1}')
    &
    \text{(Monotonicity)}
-   \locallabel{listgen:ih3}
+   \locallabel{listgen:premise-two}
    \\
    &
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{listgen:ih4}
+   \locallabel{listgen:premise-three}
    \\
    &
    \qedLocal
@@ -901,15 +893,9 @@ Induction on the $\desugarBwd{}$ derivation.
             lab={\ruleName{$\desugarFwd$-list-comp-gen}}
          ]
          {
-            \inferrule*[]
-               {
-                  \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \desugarFwd e_2'
-                  \\
-                  p, e_2' \desugarFwd \sigma_{2}'
-               }
-               {
-                  \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \desugarFwd \sigma_{2}'
-               }
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'}}
+            \desugarFwd
+            \sigma_{2}'
             \\
             \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'}
             \\
@@ -923,14 +909,13 @@ Induction on the $\desugarBwd{}$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{listgen:ih3}, \localref{listgen:ih4})}
+   \text{(\localref{listgen:premise-one}, \localref{listgen:premise-two}, \localref{listgen:premise-three})}
    \notag
    \\
    &
    \qedLocal
    \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1} \eq e
    &
-   \text{(\localref{listgen:ih3}, \localref{listgen:ih4})}
    \notag
 \end{flalign}
 \end{proof}
