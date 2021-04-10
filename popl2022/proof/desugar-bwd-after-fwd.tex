@@ -469,7 +469,7 @@
    \locallabel{let:ih1}
    \\
    &
-   e_1, s_1 \desugarBwd{} s_1' \leq s_1 \quad (\exists s_1')
+   e_1 \desugarBwd{s_1} s_1' \leq s_1 \quad (\exists s_1')
    &
    \text{(IH)}
    \locallabel{let:ih2}
@@ -484,14 +484,13 @@
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma, \clauseUncurried{p}{s_2} \desugarBwd{} s_2'
+            \sigma \desugarBwd{\clauseUncurried{p}{s_2}} s_2'
             \\
-            e_1, s_1 \desugarBwd{} s_1'
+            e_1 \desugarBwd{s_1} s_1'
          }
          {
             e,
-            \exLet{p}{s_1}{s_2}
-            \desugarBwd{}
+            \desugarBwd{\exLet{p}{s_1}{s_2}}
             \exLet{p}{s_1'}{s_2'}
          }
       \end{smathpar}
@@ -532,19 +531,19 @@
    \notag
    \\
    &
-   e_{1}, s_{1} \desugarBwd{} s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   e_{1} \desugarBwd{s_{1}} s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
    \locallabel{if:ih1}
    \\
    &
-   e_{2}, s_{2} \desugarBwd{} s_{2}' \leq s_{2} \quad (\exists s_{2}')
+   e_{2} \desugarBwd{s_{2}} s_{2}' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
    \locallabel{if:ih2}
    \\
    &
-   e_{3}, s_{3} \desugarBwd{} s_{3}' \leq s_{3} \quad (\exists s_{3}')
+   e_{3} \desugarBwd{s_{3}} s_{3}' \leq s_{3} \quad (\exists s_{3}')
    &
    \text{(IH)}
    \locallabel{if:ih3}
@@ -559,16 +558,15 @@
          {
             e \eq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
             \\
-            e_{1}, s_{1} \desugarBwd{} s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
-            e_{2}, s_{2} \desugarBwd{} s_{2}'
+            e_{2} \desugarBwd{s_{2}} s_{2}'
             \\
-            e_{3}, s_{3} \desugarBwd{} s_{3}'
+            e_{3} \desugarBwd{s_{3}} s_{3}'
          }
          {
-            e,
-            \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}
             \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
          }
       \end{smathpar}
