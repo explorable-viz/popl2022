@@ -2,7 +2,7 @@
 \flushleft\shadebox{$\sigma \singletonElimBwd{\vec{p}} e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-pattern-seq}}
+   lab={\ruleName{$\singletonElimBwd{}$-pattern-seq}}
 ]
 {
    \sigma \singletonElimBwd{p}\eq \exLambda{\sigma'}
@@ -17,85 +17,85 @@
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\sigma, p \dbwdarrow \kappa$}
+\flushleft\shadebox{$\sigma \singletonElimBwd{p} \kappa$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-var}}
+   lab={\ruleName{$\singletonElimBwd{}$-var}}
 ]
 {
-   \sigma \geq \elimVar{x}{\kappa}
+   \sigma \eq \elimVar{x}{\kappa}
 }
 {
-   \sigma, x
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{x}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-nil}}
+   lab={\ruleName{$\singletonElimBwd{}$-nil}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma}
+   \sigma \eq \elimList{\kappa}{\sigma}
 }
 {
-   \sigma, \exNil
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\exNil}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-cons}}
+   lab={\ruleName{$\singletonElimBwd{}$-cons}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma'}
+   \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', p \dbwdarrow \tau
+   \sigma' \singletonElimBwd{p} \tau
    \\
-   \tau, p' \dbwdarrow \kappa'
+   \tau \singletonElimBwd{p'} \kappa'
 }
 {
-   \sigma, \pattCons{p}{p'}
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattCons{p}{p'}}
    \kappa'
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+   lab={\ruleName{$\singletonElimBwd{}$-non-empty-list}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma'}
+   \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', p \dbwdarrow \tau
+   \sigma' \singletonElimBwd{p} \tau
    \\
-   \tau, o \dbwdarrow \kappa'
+   \tau \singletonElimBwd{o} \kappa'
 }
 {
-   \sigma, \pattList{p}{o}
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattList{p}{o}}
    \kappa'
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-pair}}
+   lab={\ruleName{$\singletonElimBwd{}$-pair}}
 ]
 {
-   \sigma \geq \elimProd{\sigma'}
+   \sigma \eq \elimProd{\sigma'}
    \\
-   \sigma', p \dbwdarrow \tau
+   \sigma' \singletonElimBwd{p} \tau
    \\
-   \tau, p' \dbwdarrow \kappa
+   \tau \singletonElimBwd{p'} \kappa
 }
 {
-   \sigma, \pattPair{p}{p'}
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattPair{p}{p'}}
    \kappa
 }
 \end{smathpar}
