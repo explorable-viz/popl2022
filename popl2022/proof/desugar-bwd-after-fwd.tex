@@ -851,14 +851,18 @@
    \notag
    \\
    &
-   \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta} \leq \sigma_1, \alpha \quad (\exists \sigma_1', \beta)
+   \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta}\text{ with } \beta \leq \alpha
+   \quad
+   (\exists \sigma_1', \beta)
    &
    \text{(\lemref{aux:list-gen:gc})}
    \notag
    \\
    &
-   \sigma_2
+   \sigma_1'
    \desugarBwd{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
+   \clauseUncurried{p}{\annot{\exListComp{s_2'}{\vec{q}'}}{\beta'}}
+   \leq
    \clauseUncurried{p}{\annot{\exListComp{s_2}{\vec{q}}}{\alpha}}
    \quad (\exists s_2', \vec{q}', \beta')
    &
