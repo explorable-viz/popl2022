@@ -101,35 +101,35 @@
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\sigma, o \dbwdarrow \kappa$}
+\flushleft\shadebox{$\sigma \singletonElimBwd{o} \kappa$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-rest-end}}
+   lab={\ruleName{$\singletonElimBwd{}$-list-rest-end}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma}
+   \sigma \eq \elimList{\kappa}{\sigma}
 }
 {
-   \sigma, \pattListEnd
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattListEnd}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
+   lab={\ruleName{$\singletonElimBwd{}$-list-rest-cons}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma'}
+   \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', p \dbwdarrow \tau
+   \sigma' \singletonElimBwd{p} \tau
    \\
-   \tau, o \dbwdarrow \kappa'
+   \tau \singletonElimBwd{o} \kappa'
 }
 {
-   \sigma, (\pattListNext{p}{o})
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattListNext{p}{o}}
    \kappa'
 }
 \end{smathpar}
