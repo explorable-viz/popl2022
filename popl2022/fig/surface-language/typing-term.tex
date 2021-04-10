@@ -62,8 +62,9 @@
    {
       \Gamma \vdash s: A
       \\
-      \forall c \in \vec{c}. \
-      \Gamma \vdash c : \tyFun{A}{B}
+      \Gamma \vdash c': \tyFun{A}{B}
+      \quad
+      (\forall c' \in \vec{c})
    }
    {
       \Gamma \vdash \exMatch{s}{\vec{c}}: B
