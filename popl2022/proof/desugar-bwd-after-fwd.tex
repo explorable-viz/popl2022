@@ -261,13 +261,16 @@
    \notag
    \\
    &
-   \sigma_i, \vec{c_i} \desugarBwd{} \vec{c_i}' \leq \vec{c_i} \quad (\exists \vec{c_i}') \quad (\forall i \numleq j)
+   \sigma_i
+   \desugarClauseBwd{\vec{c_i}}
+   \vec{c_i}' \leq \vec{c_i} \quad (\exists \vec{c_i}')
+   \quad (\forall i \numleq j)
    &
    \text{(\ref{lem:aux:clauses:gc})}
    \locallabel{letrec:ih1}
    \\
    &
-   e_1, s \desugarBwd{} s' \leq s \quad (\exists s')
+   e_1 \desugarBwd{s} s' \leq s \quad (\exists s')
    &
    \text{(IH)}
    \locallabel{letrec:ih2}
@@ -282,15 +285,15 @@
          {
             e \eq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
             \\
-            \sigma_i, \vec{c_i} \desugarBwd{} \vec{c_i}'
+            \sigma_i \desugarClauseBwd{\vec{c_i}} \vec{c_i}'
             \quad
             (\forall i \numleq j)
             \\
-            e_1, s \desugarBwd{} s'
+            e_1 \desugarBwd{s} s'
          }
          {
-            e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c_j}}}}{s}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c_j}}}}{s}}
             \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
          }
       \end{smathpar}
@@ -327,13 +330,13 @@
    \notag
    \\
    &
-   e_1, s_1 \desugarBwd{} s_1' \leq s_{1} \quad (\exists s_{1}')
+   e_1 \desugarBwd{s_1} s_1' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
    \locallabel{app:ih1}
    \\
    &
-   e_2, s_2 \desugarBwd{} s_2' \leq s_{2} \quad (\exists s_{2}')
+   e_2 \desugarBwd{s_2} s_2' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
    \locallabel{app:ih2}
@@ -348,13 +351,13 @@
          {
             e \eq \exApp{e_1}{e_2}
             \\
-            e_1, s_1 \desugarBwd{} s_1'
+            e_1 \desugarBwd{s_1} s_1'
             \\
-            e_2, s_2 \desugarBwd{} s_2'
+            e_2 \desugarBwd{s_2} s_2'
          }
          {
-            e, \exApp{s_1}{s_2}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exApp{s_1}{s_2}}
             \exApp{s_1'}{s_2'}
          }
       \end{smathpar}
@@ -393,13 +396,13 @@
    \notag
    \\
    &
-   \sigma, \vec{c} \desugarBwd{} \vec{c}' \leq \vec{c} \quad (\exists \vec{c}')
+   \sigma \desugarClauseBwd{\vec{c}} \vec{c}' \leq \vec{c} \quad (\exists \vec{c}')
    &
    \text{(\ref{lem:aux:clauses:gc})}
    \locallabel{match:ih1}
    \\
    &
-   e_1, s_1 \desugarBwd{} s_{1}' \leq s_1 \quad (\exists s_{1}')
+   e_1 \desugarBwd{s_1} s_{1}' \leq s_1 \quad (\exists s_{1}')
    &
    \text{(IH)}
    \locallabel{match:ih2}
@@ -414,14 +417,13 @@
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma, \vec{c} \desugarBwd{} \vec{c}'
+            \sigma \desugarClauseBwd{\vec{c}} \vec{c}'
             \\
-            e_1, s_1 \desugarBwd{} s_{1}'
+            e_1 \desugarBwd{s_1} s_{1}'
          }
          {
-            e,
-            \exMatch{s_1}{\vec{c}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exMatch{s_1}{\vec{c}}}
             \exMatch{s_{1}'}{\vec{c}'}
          }
       \end{smathpar}
@@ -460,7 +462,8 @@
    \notag
    \\
    &
-   \sigma, \clauseUncurried{p}{s_2} \desugarBwd{} s_2' \leq s_{2} \quad (\exists s_2')
+   \sigma \desugarClauseBwd{\clauseUncurried{p}{s_2}} s_2' \leq s_{2}
+   \quad (\exists s_2')
    &
    \text{(\ref{lem:aux:clauses:gc})}
    \locallabel{let:ih1}
@@ -658,7 +661,7 @@
             s_{1} \desugarFwd e_{1}
          }
          {
-            \annot{\exListComp{s_{1}}{\qualDone}}{\alpha}
+            \annot{\exListComp{s_{1}}{\seqEmpty}}{\alpha}
             \desugarFwd
             \annCons{e_{1}}{\annot{\exNil}{\alpha}}{\alpha}
          }
@@ -684,9 +687,9 @@
          }
          {
             e,
-            \exListComp{s_{1}}{\qualDone}
+            \exListComp{s_{1}}{\seqEmpty}
             \desugarBwd{}
-            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha}
+            \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha}
          }
       \end{smathpar}
    }
@@ -696,7 +699,7 @@
    \\
    &
    \qedLocal
-   \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha} \leq \annot{\exListComp{s_{1}}{\qualDone}}{\alpha}
+   \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha} \leq \annot{\exListComp{s_{1}}{\seqEmpty}}{\alpha}
    &
    \text{(\localref{listcompdone:ih1})}
    \notag
