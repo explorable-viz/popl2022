@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$e, s \dbwdarrow s'$}
+\flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\dbwdarrow$-binary-apply}}
@@ -12,8 +12,8 @@
       e_2, s_2 \dbwdarrow s_2'
    }
    {
-      e, \exBinaryApp{s_{1}}{\primOp}{s_{2}}
-      \dbwdarrow
+      e
+      \desugarBwd{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}
       \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
    }
    %
