@@ -333,13 +333,13 @@ Induction on the $\desugarBwd{}$ derivation.
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{app:ih1}
+   \notag
    \\
    &
    s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{app:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -359,14 +359,12 @@ Induction on the $\desugarBwd{}$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{app:ih1}, \localref{app:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{e_{1}'}{e_{2}'} \geq \exApp{e_{1}}{e_{2}} \eq e
    &
-   \text{(\localref{app:ih1}, \localref{app:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -399,19 +397,19 @@ Induction on the $\desugarBwd{}$ derivation.
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{if:ih1}
+   \notag
    \\
    &
    s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{if:ih2}
+   \notag
    \\
    &
    s_{3}' \desugarFwd e_{3}' \geq e_{3} \quad (\exists e_{3}')
    &
    \text{(IH)}
-   \locallabel{if:ih3}
+   \notag
    \\
    &
    \qedLocal
@@ -435,14 +433,12 @@ Induction on the $\desugarBwd{}$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{if:ih1}, \localref{if:ih2}, \localref{if:ih3})}
    \notag
    \\
    &
    \qedLocal
    \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'} \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}} \eq e
    &
-   \text{(\localref{if:ih1}, \localref{if:ih2}, \localref{if:ih3})}
    \notag
    \\
    \intertext{\crossrule}
@@ -473,13 +469,13 @@ Induction on the $\desugarBwd{}$ derivation.
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{match:ih1}
+   \notag
    \\
    &
    \vec{c}' \desugarFwd \sigma' \geq \sigma \quad (\exists \sigma')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{match:ih2}
+   \text{(\lemref{aux:clauses:gc})}
+   \notag
    \\
    &
    \qedLocal
@@ -501,14 +497,12 @@ Induction on the $\desugarBwd{}$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{match:ih1}, \localref{match:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
-   \text{(\localref{match:ih1}, \localref{match:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -539,13 +533,13 @@ Induction on the $\desugarBwd{}$ derivation.
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{let:ih1}
+   \notag
    \\
    &
    \clauseUncurried{p}{s_{2}'} \desugarFwd \sigma' \geq \sigma \quad (\exists \sigma')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{let:ih2}
+   \text{(\lemref{aux:clauses:gc})}
+   \notag
    \\
    &
    \qedLocal
@@ -567,14 +561,12 @@ Induction on the $\desugarBwd{}$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{let:ih1}, \localref{let:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
-   \text{(\localref{let:ih1}, \localref{let:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -605,13 +597,13 @@ Induction on the $\desugarBwd{}$ derivation.
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{listenum:ih1}
+   \notag
    \\
    &
    s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{listenum:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -633,14 +625,12 @@ Induction on the $\desugarBwd{}$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{listenum:ih1}, \localref{listenum:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2} \eq e
    &
-   \text{(\localref{listenum:ih1}, \localref{listenum:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -667,7 +657,7 @@ Induction on the $\desugarBwd{}$ derivation.
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{listcompdone:ih1}
+   \notag
    \\
    &
    \qedLocal
@@ -678,71 +668,19 @@ Induction on the $\desugarBwd{}$ derivation.
             s_{1}' \desugarFwd e_{1}'
          }
          {
-            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha'}
+            \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha'}
             \desugarFwd
             \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{listcompdone:ih1})}
    \notag
    \\
    &
    \qedLocal
    \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'} \eq e
    &
-   \text{(\localref{listcompdone:ih1})}
-   \notag
-   \\
-   \intertext{\crossrule}
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   &
-   \caseDerivation{\derivationWidth}{
-      \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\desugarBwd{}$-list-comp-last}}]
-         {
-            e
-            \desugarBwd{\exListComp{s}{q \concat \qualDone}}
-            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha}
-         }
-         {
-            e
-            \desugarBwd{\exListComp{s}{q}}
-            \annListComp{s'}{q'}{\alpha}
-         }
-      \end{smathpar}
-   }
-   \notag
-   \\
-   &
-   \annListComp{s'}{q' \concat \qualDone}{\alpha} \desugarFwd e' \geq e \quad (\exists e')
-   &
-   \text{(IH)}
-   \locallabel{listcomplast:ih1}
-   \\
-   &
-   \qedLocal
-   \derivation{\derivationWidth}{
-      \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\desugarFwd$-list-comp-last}},
-            right={$q' \neq \qualDone$}
-         ]
-         {
-            \annListComp{s'}{q' \concat \qualDone}{\alpha} \desugarFwd e'
-         }
-         {
-            \annot{\exListComp{s'}{q'}}{\alpha} \desugarFwd e'
-         }
-      \end{smathpar}
-   }
-   &
-   \text{(\localref{listcomplast:ih1})}
-   \notag
-   \\
-   &
-   \qedLocal
-   e' \geq e
    \notag
    \\
    \intertext{\crossrule}
