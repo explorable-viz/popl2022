@@ -875,7 +875,7 @@
    \notag
    \\
    &
-   e_1, s_1 \desugarBwd{} s_1' \quad (\exists s_1')
+   e_1 \desugarBwd{s_1} s_1' \quad (\exists s_1')
    &
    \text{(IH)}
    \locallabel{listgen:ih1}
@@ -887,25 +887,28 @@
    \locallabel{listgen:ih2}
    \\
    &
-   \sigma_1, p \desugarBwd{} \leq e_2
+   \sigma_1 \singletonElimBwd{p} \leq e_2
    &
    \text{(\ref{lem:aux:clause:gc})}
    \notag
    \\
    &
-   \sigma_1', p \desugarBwd{} e_2' \leq e_2 \quad (\exists e_2')
+   \sigma_1' \singletonElimBwd{p} e_2' \leq e_2 \quad (\exists e_2')
    &
    \text{(Monotonicity)}
    \locallabel{listgen:ih3}
    \\
    &
-   e_{2}, \exListComp{s_2}{\vec{q}} \desugarBwd{} \leq \annot{\exListComp{s_{2}}{\vec{q}}}{\alpha}
+   e_{2} \desugarBwd{\exListComp{s_2}{\vec{q}}}\leq \annot{\exListComp{s_{2}}{\vec{q}}}{\alpha}
    &
    \text{(IH)}
    \notag
    \\
    &
-   e_{2}', \exListComp{s_2}{\vec{q}} \desugarBwd{} \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'} \leq \annot{\exListComp{s_2}{\vec{q}}}{\alpha}  \quad (\exists s_2', \vec{q}', \beta')
+   e_{2}' \desugarBwd{\exListComp{s_2}{\vec{q}}} \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+   \leq
+   \annot{\exListComp{s_2}{\vec{q}}}{\alpha}
+   \quad (\exists s_2', \vec{q}', \beta')
    &
    \text{(Monotonicity)}
    \locallabel{listgen:ih4}
@@ -920,18 +923,17 @@
          {
             e \eq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_2})}}{e_1}
             \\
-            e_{1}, s_{1} \desugarBwd{} s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
             \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta}
             \\
-            \sigma_{1}', p \desugarBwd{} e_{2}'
+            \sigma_{1}' \singletonElimBwd{p} e_{2}'
             \\
-            e_{2}', \exListComp{s_2}{\vec{q}} \desugarBwd{} \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+            e_{2}' \desugarBwd{\exListComp{s_2}{\vec{q}}} \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
          }
          {
-            e,
-            \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
             \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}{\beta \join \beta'}
          }
       \end{smathpar}
