@@ -605,13 +605,13 @@
    \notag
    \\
    &
-   e_{1}, s_{1} \desugarBwd{} s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   e_{1} \desugarBwd{s_{1}} s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
    \locallabel{listenum:ih1}
    \\
    &
-   e_{2}, s_{2} \desugarBwd{} s_{2}' \leq s_{2} \quad (\exists s_{2}')
+   e_{2} \desugarBwd{s_{2}} s_{2}' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
    \locallabel{listenum:ih2}
@@ -626,14 +626,13 @@
          {
             e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
             \\
-            e_{1}, s_{1} \desugarBwd{} s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
-            e_{2}, s_{2} \desugarBwd{} s_{2}'
+            e_{2} \desugarBwd{s_{2}} s_{2}'
          }
          {
-            e,
-            \exListEnum{s_{1}}{s_{2}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListEnum{s_{1}}{s_{2}}}
             \exListEnum{s_{1}'}{s_{2}'}
          }
       \end{smathpar}
@@ -668,7 +667,7 @@
    \notag
    \\
    &
-   e_{1}, s_{1} \desugarBwd{} s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   e_{1} \desugarBwd{s_{1}} s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
    \locallabel{listcompdone:ih1}
@@ -681,12 +680,11 @@
          {
             e \eq \annCons{e_{1}}{\annNil{\alpha}}{\alpha}
             \\
-            e_{1}, s_{1} \desugarBwd{} s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
          }
          {
-            e,
-            \exListComp{s_{1}}{\seqEmpty}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s_{1}}{\seqEmpty}}
             \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha}
          }
       \end{smathpar}
@@ -726,13 +724,15 @@
    \notag
    \\
    &
-   e_2, s_2 \desugarBwd{} s_2' \leq s_{2} \quad (\exists s_{2}')
+   e_2 \desugarBwd{s_2} s_2' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
    \locallabel{listguard:ih1}
    \\
    &
-   e_1, \exListComp{s_1}{\vec{q}} \desugarBwd{} \annListComp{s_{1}'}{\vec{q}'}{\beta} \leq \annot{\exListComp{s_1}{\vec{q}}}{\alpha} \quad (\exists s_{1}', \vec{q}', \beta)
+   e_1 \desugarBwd{\exListComp{s_1}{\vec{q}}} \annListComp{s_{1}'}{\vec{q}'}{\beta}
+   \leq
+   \annot{\exListComp{s_1}{\vec{q}}}{\alpha} \quad (\exists s_{1}', \vec{q}', \beta)
    &
    \text{(IH)}
    \locallabel{listguard:ih2}
@@ -747,14 +747,13 @@
          {
             e \eq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
             \\
-            e_2, s_2 \desugarBwd{} s_2'
+            e_2 \desugarBwd{s_2} s_2'
             \\
-            e_1, \exListComp{s_1}{\vec{q}} \desugarBwd{} \annListComp{s_{1}'}{\vec{q}'}{\beta}
+            e_1 \desugarBwd{\exListComp{s_1}{\vec{q}}} \annListComp{s_{1}'}{\vec{q}'}{\beta}
          }
          {
-            e,
-            \exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
             \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
          }
       \end{smathpar}
@@ -793,15 +792,18 @@
    \notag
    \\
    &
-   \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
-            \desugarBwd{}
-            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}\leq \clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha} } \quad (\exists s_{2}', \vec{q}', \beta)
+   \sigma,
+   \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+   \leq
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha} }
+   \quad (\exists s_{2}', \vec{q}', \beta)
    &
    \text{(\ref{lem:aux:clause:gc})}
    \locallabel{listdecl:ih1}
    \\
    &
-   e_{1}, s_{1} \desugarBwd{} s_{1}' \leq s_{1} \quad (\exists s_{1}')
+   e_{1} \desugarBwd{s_{1}} s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
    \locallabel{listdecl:ih2}
@@ -816,16 +818,15 @@
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma, \clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha}}
-            \desugarBwd{}
+            \sigma
+            \desugarClauseBwd{\clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha}}}
             \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
             \\
             e_{1}, s_{1} \desugarBwd{} s_{1}'
          }
          {
-            e,
-            \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
             \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\beta}
          }
       \end{smathpar}
