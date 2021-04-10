@@ -17,7 +17,7 @@
    lab={\ruleName{$\totalisebwdarrow$-var}}
 ]
 {
-   \sigma \geq \elimVar{x}{\kappa}
+   \sigma \eq \elimVar{x}{\kappa}
    \\
    \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
 }
@@ -31,7 +31,7 @@
    lab={\ruleName{$\totalisebwdarrow$-true}}
 ]
 {
-   \sigma \geq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}}
+   \sigma \eq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}}
    \\
    \totalisebwd{\kappa_1}{\vec{\pi}}{\kappa_1'}{\beta}
 }
@@ -48,7 +48,7 @@
    lab={\ruleName{$\totalisebwdarrow$-false}}
 ]
 {
-   \sigma \geq \elimBool{\annot{\exNil}{\alpha}}{\kappa_2}
+   \sigma \eq \elimBool{\annot{\exNil}{\alpha}}{\kappa_2}
    \\
    \totalisebwd{\kappa_2}{\vec{\pi}}{\kappa_2'}{\beta}
 }
@@ -65,7 +65,7 @@
    lab={\ruleName{$\totalisebwdarrow$-prod}}
 ]
 {
-   \sigma \geq \elimProd{\sigma'}
+   \sigma \eq \elimProd{\sigma'}
    \\
    \totalisebwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
@@ -79,7 +79,7 @@
    lab={\ruleName{$\totalisebwdarrow$-nil}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
+   \sigma \eq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
    \\
    \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
@@ -96,7 +96,7 @@
    lab={\ruleName{$\totalisebwdarrow$-cons}}
 ]
 {
-   \sigma \geq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
+   \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
    \\
    \totalisebwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
@@ -113,7 +113,7 @@
    lab={\ruleName{$\totalisebwdarrow$-non-empty-list}}
 ]
 {
-   \sigma \geq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
+   \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
    \\
    \totalisebwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
 }
@@ -130,7 +130,7 @@
    lab={\ruleName{$\totalisebwdarrow$-list-rest-end}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
+   \sigma \eq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
    \\
    \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
@@ -147,7 +147,7 @@
    lab={\ruleName{$\totalisebwdarrow$-list-rest-cons}}
 ]
 {
-   \sigma \geq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
+   \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
    \\
    \totalisebwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
 }
@@ -158,5 +158,5 @@
                {\alpha \join \beta}
 }
 \end{smathpar}
-\caption{Totalise -- backward slicing}
+\caption{Totalise --- backward slicing}
 \end{figure}
