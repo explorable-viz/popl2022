@@ -53,9 +53,7 @@
 {
    \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma' \singletonElimBwd{p} \tau
-   \\
-   \tau \singletonElimBwd{p'} \kappa'
+   \sigma' \compRel{\singletonElimBwd{p}}{\singletonElimBwd{p'}} \kappa'
 }
 {
    \sigma
@@ -71,9 +69,7 @@
 {
    \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma' \singletonElimBwd{p} \tau
-   \\
-   \tau \singletonElimBwd{o} \kappa'
+   \sigma' \compRel{\singletonElimBwd{p}}{\singletonElimBwd{o}} \kappa'
 }
 {
    \sigma
@@ -89,9 +85,7 @@
 {
    \sigma \eq \elimProd{\sigma'}
    \\
-   \sigma' \singletonElimBwd{p} \tau
-   \\
-   \tau \singletonElimBwd{p'} \kappa
+   \sigma' \compRel{\singletonElimBwd{p}}{\singletonElimBwd{p'}} \kappa
 }
 {
    \sigma
@@ -123,9 +117,7 @@
 {
    \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma' \singletonElimBwd{p} \tau
-   \\
-   \tau \singletonElimBwd{o} \kappa'
+   \sigma' \compRel{\singletonElimBwd{p}}{\singletonElimBwd{o}} \kappa'
 }
 {
    \sigma
@@ -141,9 +133,7 @@
    lab={\ruleName{$\desugarBwd{}$-clause}}
 ]
 {
-   \sigma \singletonElimBwd{\vec{p}} e
-   \\
-   e \desugarBwd{s} s'
+   \sigma \compRel{\singletonElimBwd{\vec{p}}}{\desugarBwd{s}} s'
 }
 {
    \sigma
