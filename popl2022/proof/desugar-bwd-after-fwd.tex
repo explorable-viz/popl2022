@@ -1,6 +1,6 @@
 \subsection{\thmref{surface-language:desugar:gc}, part (ii)}
 \begin{proof}
-   Induction on the $\dfwdarrow$ derivation.
+   Induction on the $\desugarFwd$ derivation.
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -9,15 +9,15 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-binary-apply}}
+            lab={\ruleName{$\desugarFwd$-binary-apply}}
          ]
          {
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
             \\
-            s_{2} \dfwdarrow e_{2}
+            s_{2} \desugarFwd e_{2}
          }
          {
-            \exBinaryApp{s_{1}}{\primOp}{s_{2}} \dfwdarrow \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
+            \exBinaryApp{s_{1}}{\primOp}{s_{2}} \desugarFwd \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
          }
       \end{smathpar}
    }
@@ -58,14 +58,12 @@
    \end{smathpar}
    }
    &
-   \text{(\localref{binary-ih1}, \localref{binary-ih2})}
    \notag
    \\
    &
    \qedLocal
    \exBinaryApp{s_{1}'}{\primOp}{s_{2}'} \leq \exBinaryApp{s_{1}}{\primOp}{s_{2}}
    &
-   \text{(\localref{binary-ih1}, \localref{binary-ih2})}
    \notag
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,13 +71,13 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-nil}}
+            lab={\ruleName{$\desugarFwd$-nil}}
          ]
          {
             \strut
          }
          {
-            \annNil{\alpha} \dfwdarrow \annNil{\alpha}
+            \annNil{\alpha} \desugarFwd \annNil{\alpha}
          }
       \end{smathpar}
    }
@@ -116,15 +114,15 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+            lab={\ruleName{$\desugarFwd$-non-empty-list}}
          ]
          {
-            s \dfwdarrow e_{1}
+            s \desugarFwd e_{1}
             \\
-            l \dfwdarrow e_{2}
+            l \desugarFwd e_{2}
          }
          {
-            \annList{s}{l}{\alpha} \dfwdarrow \annCons{e_{1}}{e_{2}}{\alpha}
+            \annList{s}{l}{\alpha} \desugarFwd \annCons{e_{1}}{e_{2}}{\alpha}
          }
       \end{smathpar}
    }
@@ -180,15 +178,15 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-cons}}
+            lab={\ruleName{$\desugarFwd$-cons}}
          ]
          {
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
             \\
-            s_{2} \dfwdarrow e_{2}
+            s_{2} \desugarFwd e_{2}
          }
          {
-            \annCons{s_{1}}{s_{2}}{\alpha} \dfwdarrow \annCons{e_{1}}{e_{2}}{\alpha}
+            \annCons{s_{1}}{s_{2}}{\alpha} \desugarFwd \annCons{e_{1}}{e_{2}}{\alpha}
          }
       \end{smathpar}
    }
@@ -244,18 +242,18 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-let-rec}}
+            lab={\ruleName{$\desugarFwd$-let-rec}}
          ]
          {
-            \vec{c_i} \dfwdarrow \sigma_{i}
+            \vec{c_i} \desugarFwd \sigma_{i}
             \quad
             (\forall i \numleq j)
             \\
-            s \dfwdarrow e_1
+            s \desugarFwd e_1
          }
          {
             \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
-            \dfwdarrow
+            \desugarFwd
             \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
          }
       \end{smathpar}
@@ -314,15 +312,15 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-apply}}
+            lab={\ruleName{$\desugarFwd$-apply}}
          ]
          {
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
             \\
-            s_{2} \dfwdarrow e_{2}
+            s_{2} \desugarFwd e_{2}
          }
          {
-            \exApp{s_{1}}{s_{2}} \dfwdarrow \exApp{e_{1}}{e_{2}}
+            \exApp{s_{1}}{s_{2}} \desugarFwd \exApp{e_{1}}{e_{2}}
          }
       \end{smathpar}
    }
@@ -378,16 +376,16 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-match}}
+            lab={\ruleName{$\desugarFwd$-match}}
          ]
          {
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
             \\
-            \vec{c} \dfwdarrow \sigma
+            \vec{c} \desugarFwd \sigma
          }
          {
             \exMatch{s_{1}}{\vec{c}}
-            \dfwdarrow
+            \desugarFwd
             \exApp{(\exLambda{\sigma})}{e_{1}}
          }
       \end{smathpar}
@@ -445,16 +443,16 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-let}}
+            lab={\ruleName{$\desugarFwd$-let}}
          ]
          {
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
             \\
-            \clauseUncurried{p}{s_{2}} \dfwdarrow \sigma
+            \clauseUncurried{p}{s_{2}} \desugarFwd \sigma
          }
          {
             \exLet{p}{s_{1}}{s_{2}}
-            \dfwdarrow
+            \desugarFwd
             \exApp{(\exLambda{\sigma})}{e_{1}}
          }
       \end{smathpar}
@@ -512,18 +510,18 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-if}}
+            lab={\ruleName{$\desugarFwd$-if}}
          ]
          {
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
             \\
-            s_{2} \dfwdarrow e_{2}
+            s_{2} \desugarFwd e_{2}
             \\
-            s_{3} \dfwdarrow e_{3}
+            s_{3} \desugarFwd e_{3}
          }
          {
             \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
-            \dfwdarrow
+            \desugarFwd
             \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
          }
       \end{smathpar}
@@ -589,16 +587,16 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-list-enum}},
+            lab={\ruleName{$\desugarFwd$-list-enum}},
          ]
          {
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
             \\
-            s_{2} \dfwdarrow e_{2}
+            s_{2} \desugarFwd e_{2}
          }
          {
             \exListEnum{s_{1}}{s_{2}}
-            \dfwdarrow
+            \desugarFwd
             \exApp{\exApp{\funEnumFromTo}{e_{1}}}{e_{2}}
          }
       \end{smathpar}
@@ -655,13 +653,13 @@
    &
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
+         \inferrule*[lab={\ruleName{$\desugarFwd$-list-comp-done}}]
          {
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
          }
          {
             \annot{\exListComp{s_{1}}{\qualDone}}{\alpha}
-            \dfwdarrow
+            \desugarFwd
             \annCons{e_{1}}{\annot{\exNil}{\alpha}}{\alpha}
          }
       \end{smathpar}
@@ -708,7 +706,7 @@
    &
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}}
+         \inferrule*[lab={\ruleName{$\desugarFwd$-list-comp-last}}
          ]
          {
             \inferrule*[]
@@ -717,25 +715,25 @@
                {
                   \inferrule*[]
                   {
-                     s \dfwdarrow e_2
+                     s \desugarFwd e_2
                   }{
-                     \annListComp{s}{\qualDone}{\alpha} \dfwdarrow \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha}
+                     \annListComp{s}{\qualDone}{\alpha} \desugarFwd \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha}
                   }
                   \\
-                  p, \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \dfwdarrow \sigma
+                  p, \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \desugarFwd \sigma
                }
                {
-                  \clauseUncurried{p}{\annListComp{s}{\qualDone}{\alpha}} \dfwdarrow \sigma
+                  \clauseUncurried{p}{\annListComp{s}{\qualDone}{\alpha}} \desugarFwd \sigma
                }
                \\
-               s_{1} \dfwdarrow e_{1}
+               s_{1} \desugarFwd e_{1}
             }
             {
-               \annListComp{s}{\qualDeclaration{p}{s_{1}} \concat \qualDone}{\alpha} \dfwdarrow \exApp{(\lambda \sigma)}{e_1}
+               \annListComp{s}{\qualDeclaration{p}{s_{1}} \concat \qualDone}{\alpha} \desugarFwd \exApp{(\lambda \sigma)}{e_1}
             }
          }
          {
-            \annot{\exListComp{s}{\qualDeclaration{p}{s_{1}}}}{\alpha} \dfwdarrow \exApp{(\lambda \sigma)}{e_1}
+            \annot{\exListComp{s}{\qualDeclaration{p}{s_{1}}}}{\alpha} \desugarFwd \exApp{(\lambda \sigma)}{e_1}
          }
       \end{smathpar}
    }
@@ -826,17 +824,17 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
+            lab={\ruleName{$\desugarFwd$-list-comp-guard}}
          ]
          {
             \annListComp{s_{1}}{\vec{q}}{\alpha}
-            \dfwdarrow e_{1}
+            \desugarFwd e_{1}
             \\
-            s_{2} \dfwdarrow e_{2}
+            s_{2} \desugarFwd e_{2}
          }
          {
             \annListComp{s_{1}}{\qualGuard{s_{2}} \concat \vec{q}}{\alpha}
-            \dfwdarrow
+            \desugarFwd
             \exApp{\smash{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}}{e_{2}}
          }
       \end{smathpar}
@@ -894,16 +892,16 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
+            lab={\ruleName{$\desugarFwd$-list-comp-decl}}
          ]
          {
-            \clauseUncurried{p}{\annListComp{s_{2}}{\vec{q}}{\alpha}} \dfwdarrow \sigma
+            \clauseUncurried{p}{\annListComp{s_{2}}{\vec{q}}{\alpha}} \desugarFwd \sigma
             \\
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
          }
          {
             \annListComp{s_{2}}{\qualDeclaration{p}{s_{1}} \concat \vec{q}}{\alpha}
-            \dfwdarrow
+            \desugarFwd
             \exApp{(\exLambda{\sigma})}{e_{1}}
          }
       \end{smathpar}
@@ -965,26 +963,26 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
+            lab={\ruleName{$\desugarFwd$-list-comp-gen}}
          ]
          {
             \inferrule*[]
             {
-               \annot{\exListComp{s_{2}}{\vec{q}}}{\alpha} \dfwdarrow e_2
+               \annot{\exListComp{s_{2}}{\vec{q}}}{\alpha} \desugarFwd e_2
                \\
-               p, e_2 \dfwdarrow \sigma_1
+               p, e_2 \desugarFwd \sigma_1
             }
             {
-               \annot{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}{\alpha} \dfwdarrow \sigma_{1}
+               \annot{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}{\alpha} \desugarFwd \sigma_{1}
             }
             \\
             \totalise{\sigma_{1}}{\alpha}{\sigma_{2}}
             \\
-            s_{1} \dfwdarrow e_{1}
+            s_{1} \desugarFwd e_{1}
          }
          {
             \annListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}{\alpha}
-            \dfwdarrow
+            \desugarFwd
             \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{2}})}}{e_{1}}
          }
       \end{smathpar}
