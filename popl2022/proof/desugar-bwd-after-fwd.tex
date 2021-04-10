@@ -135,7 +135,7 @@
    \locallabel{nelist-ih1}
    \\
    &
-   e_2, l \desugarBwd{} l' \leq l \quad (\exists l')
+   e_2 \desugarBwd{l} l' \leq l \quad (\exists l')
    &
    \text{(IH)}
    \locallabel{nelist-ih2}
@@ -150,13 +150,13 @@
          {
             e \eq \annCons{e_1}{e_2}{\alpha}
             \\
-            e_1, s \desugarBwd{} s'
+            e_1 \desugarBwd{s} s'
             \\
-            e_2, l \desugarBwd{} l'
+            e_2 \desugarBwd{l} l'
          }
          {
-            e, \exList{s}{l}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exList{s}{l}}
             \annList{s'}{l'}{\alpha}
          }
       \end{smathpar}
@@ -193,13 +193,13 @@
    \notag
    \\
    &
-   e_1, s_1 \desugarBwd{} s_1' \leq s_{1} \quad (\exists s_{1}')
+   e_1 \desugarBwd{s_1} s_1' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
    \locallabel{cons-ih1}
    \\
    &
-   e_2, s_2 \desugarBwd{} s_2' \leq s_{2} \quad (\exists s_{2}')
+   e_2 \desugarBwd{s_2} s_2' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
    \locallabel{cons-ih2}
@@ -214,13 +214,13 @@
          {
             e \eq \annCons{e_1}{e_2}{\alpha}
             \\
-            e_1, s_1 \desugarBwd{} s_1'
+            e_1 \desugarBwd{s_1} s_1'
             \\
-            e_2, s_2 \desugarBwd{} s_2'
+            e_2 \desugarBwd{s_2} s_2'
          }
          {
-            e, \exCons{s_1}{s_2}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exCons{s_1}{s_2}}
             \annCons{s_1'}{s_2'}{\alpha}
          }
       \end{smathpar}
@@ -699,123 +699,6 @@
    \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha} \leq \annot{\exListComp{s_{1}}{\qualDone}}{\alpha}
    &
    \text{(\localref{listcompdone:ih1})}
-   \notag
-   \\
-   \intertext{\crossrule}
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   &
-   \caseDerivation{\derivationWidth}{
-      \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\desugarFwd$-list-comp-last}}
-         ]
-         {
-            \inferrule*[]
-            {
-               \inferrule*[]
-               {
-                  \inferrule*[]
-                  {
-                     s \desugarFwd e_2
-                  }{
-                     \annListComp{s}{\qualDone}{\alpha} \desugarFwd \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha}
-                  }
-                  \\
-                  p, \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \desugarFwd \sigma
-               }
-               {
-                  \clauseUncurried{p}{\annListComp{s}{\qualDone}{\alpha}} \desugarFwd \sigma
-               }
-               \\
-               s_{1} \desugarFwd e_{1}
-            }
-            {
-               \annListComp{s}{\qualDeclaration{p}{s_{1}} \concat \qualDone}{\alpha} \desugarFwd \exApp{(\lambda \sigma)}{e_1}
-            }
-         }
-         {
-            \annot{\exListComp{s}{\qualDeclaration{p}{s_{1}}}}{\alpha} \desugarFwd \exApp{(\lambda \sigma)}{e_1}
-         }
-      \end{smathpar}
-   }
-   \notag
-   \\
-   &
-   \sigma, p \desugarBwd{} \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta} \leq \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \quad (\exists e_2', \beta, \beta')
-   &
-   \text{(\ref{lem:aux:clause:gc})}
-   \locallabel{listcomplast:ih1}
-   \\
-   &
-   e_2, s \desugarBwd{} \leq s
-   &
-   \text{(IH)}
-   \notag
-   \\
-   &
-   e_2, s \desugarBwd{} s' \leq s \quad (\exists s')
-   &
-   \text{(Monotonicity)}
-   \locallabel{listcomplast:ih2}
-   \\
-   &
-   e_1, s_1 \desugarBwd{} s_1' \leq s_1 \quad (\exists s_1')
-   &
-   \text{(IH)}
-   \locallabel{listcomplast:ih3}
-   \\
-   &
-   \qedLocal
-   \derivation{\derivationWidth}{
-      \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\desugarBwd{}$-list-comp-last}}]
-         {
-            \inferrule*[]
-            {
-               \inferrule*[]
-               {
-                  \sigma, p \desugarBwd{} \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta}
-                  \\
-                  \inferrule*[]
-                  {
-                     e_2', s \desugarBwd{} s'
-                  }
-                  {
-                     \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta}, \exListComp{s}{\qualDone} \desugarBwd{} \annot{\exListComp{s'}{\qualDone}}{\beta \join \beta'}
-                  }
-               }
-               {
-                  \sigma, p = \exListComp{s}{\qualDone} \desugarBwd{} p = \annot{\exListComp{s'}{\qualDone}}{\beta \join \beta'}
-               }
-               \\
-               e_1, s_1 \desugarBwd{} s_1'
-            }
-            {
-               \exApp{(\lambda \sigma)}{e_1}, \exListComp{s}{\qualDeclaration{p}{s_{1}} \concat \qualDone}
-               \desugarBwd{}
-               \annot{\exListComp{s'}{\qualDeclaration{p}{s_1'} \concat \qualDone}}{\beta \join \beta'}
-            }
-         }
-         {
-            \exApp{(\lambda \sigma)}{e_1}, \exListComp{s}{\qualDeclaration{p}{s_{1}}}
-            \desugarBwd{}
-            \annListComp{s'}{\qualDeclaration{p}{s_1'}}{\beta \join \beta'}
-         }
-      \end{smathpar}
-   }
-   &
-   \text{(\localref{listcomplast:ih1}, \localref{listcomplast:ih2}, \localref{listcomplast:ih3})}
-   \notag
-   \\
-   &
-   \qedLocal
-   \annListComp{s'}{\qualDeclaration{p}{s_1'}}{\beta \join \beta'} \leq \annListComp{s}{\qualDeclaration{p}{s_{1}}}{\alpha}
-   &
-   \text{(\localref{listcomplast:ih1}, \localref{listcomplast:ih2}, \localref{listcomplast:ih3})}
-   \notag
-   \\
-   &
-   \notag
-   \intertext{The cases when the final qualifier is a guard or a generator are similar.}
    \notag
    \\
    \intertext{\crossrule}
