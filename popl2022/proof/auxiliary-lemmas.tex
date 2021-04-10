@@ -2,46 +2,46 @@
 
 \begin{lemma}[Galois connection for desugaring list rest]
   \label{lem:aux:desugarlistrest:gc}
-  Suppose $l \dfwdarrow e$. Then :
+  Suppose $l \dfwdarrow e$. Then:
   \begin{enumerate}
      \item $\dfwdarrow$ domain-restricted to $\Below{l}$ is a monotonic function $\desugarListRestFwdF{l}$ to $\Below{e}$.
      \item $\dbwdarrow$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarListRestBwdF{l}$ to $\Below{l}$.
-     \item $\desugarListRestFwdF{l}(\desugarListRestBwdF{l}(e)) \geq e$.
+     \item $\desugarListRestFwdF{l}(\desugarListRestBwdF{l}(e')) \geq e'$.
      \item $\desugarListRestBwdF{l}(\desugarListRestFwdF{l}(l')) \leq l'$.
   \end{enumerate}
 \end{lemma}
 \begin{lemma}[Galois connection for clause]
   \label{lem:aux:clause:gc}
-  Suppose $p, e \dfwdarrow \sigma$. Then :
+  Suppose $p, e \dfwdarrow \sigma$. Then:
   \begin{enumerate}
-     \item $\dfwdarrow$ domain-restricted to $\Below{(p, e)}$ is a monotonic function $\desugarClauseFwdF{p, e}$ to $\Below{\sigma}$.
-     \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClauseBwdF{p, e}$ to $\Below{(p, e)}$.
-     \item $\desugarClauseFwdF{p, e}(\desugarClauseBwdF{p, e}(\sigma)) \geq \sigma$.
-     \item $\desugarClauseBwdF{p, e}(\desugarClauseFwdF{p, e}(p, e)) \leq (p, e)$.
+     \item $\dfwdarrow$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarClauseFwdF{p, e}$ to $\Below{\sigma}$.
+     \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClauseBwdF{p, e}$ to $\Below{e}$.
+     \item $\desugarClauseFwdF{p, e}(\desugarClauseBwdF{p, e}(\sigma')) \geq \sigma'$.
+     \item $\desugarClauseBwdF{p, e}(\desugarClauseFwdF{p, e}(e')) \leq e'$.
   \end{enumerate}
 \end{lemma}
 \begin{lemma}[Galois connection for clauses]
   \label{lem:aux:clauses:gc}
-  Suppose $\vec{c} \dfwdarrow \sigma$. Then :
+  Suppose $\vec{c} \dfwdarrow \sigma$. Then:
   \begin{enumerate}
      \item $\dfwdarrow$ domain-restricted to $\Below{\vec{c}}$ is a monotonic function $\desugarClausesFwdF{\vec{c}}$ to $\Below{\sigma}$.
      \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClausesBwdF{\vec{c}}$ to $\Below{\vec{c}}$.
-     \item $\desugarClausesFwdF{\vec{c}}(\desugarClausesBwdF{\vec{c}}(\sigma)) \geq \sigma$.
-     \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}$.
+     \item $\desugarClausesFwdF{\vec{c}}(\desugarClausesBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
+     \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}'$.
   \end{enumerate}
 \end{lemma}
-\begin{lemma}[Galois connection for generator]
-  \label{lem:aux:totalise:gc}
+\begin{lemma}[Galois connection for list generator]
+  \label{lem:aux:list-gen:gc}
   \item
   \begin{itemize}
-    \item Define $e, \alpha \mathrel{R_p} \sigma $ if and only if $\clauseUncurried{p}{e} \dfwdarrow \sigma'$ and $\totalise{\sigma}{\alpha}{\sigma}$.
-    \item Define $\sigma \mathrel{S_p} e, \alpha$ if and only if $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma', p \dbwdarrow e$. 
+    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ with $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
+    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ with $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \desugarClauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
   \end{itemize}
-  Suppose $\clauseUncurried{p}{e} \dfwdarrow \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then :
+  Suppose $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
   \begin{enumerate}
-     \item $\mathrel{R_p}$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\totaliseFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
-     \item $\mathrel{S_p}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\totaliseBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.
-     \item $\totaliseFwdF{p, e, \alpha}(\totaliseBwdF{p, e, \alpha}(\tau)) \geq \tau$.
-     \item $\totaliseBwdF{p, e, \alpha}(\totaliseFwdF{p, e, \alpha}(e', \alpha')) \leq (e', \alpha')$.
+     \item $\listGenFwd$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
+     \item $\listGenBwd{\clauseUncurried{p}{e}}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\listGenBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.
+     \item $\listGenFwdF{p, e, \alpha}(\listGenBwdF{p, e, \alpha}(\tau)) \geq \tau$.
+     \item $\listGenBwdF{p, e, \alpha}(\listGenFwdF{p, e, \alpha}(e', \alpha')) \leq (e', \alpha')$.
   \end{enumerate}
 \end{lemma}

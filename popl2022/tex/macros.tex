@@ -74,8 +74,8 @@
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{[]}}
-\newcommand*{\exOp}[1]{(#1)}
-\newcommand*{\exPair}[2]{(#1,#2)}
+\newcommand*{\exOp}[1]{\kw{(}{#1}\kw{)}}
+\newcommand*{\exPair}[2]{\kw{(}#1,#2\kw{)}}
 \newcommand*{\exPrim}[1]{#1}
 \newcommand*{\exPrimOp}[2]{\kw{pr}({#1},{#2})} % value form, analogous to closures
 \newcommand*{\exRec}[2]{{#1}{#2}}
@@ -102,7 +102,7 @@
 \newcommand*{\annInt}[2]{#1_{#2}}
 \newcommand*{\annMatrix}[5]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack_{#5}}
 \newcommand*{\annNil}[1]{\kw{[]}_{#1}}
-\newcommand*{\annPair}[3]{(#1,#2)_{#3}}
+\newcommand*{\annPair}[3]{\exPair{#1}{#2}_{#3}}
 \newcommand*{\annTrue}[1]{\kw{true}_{#1}}
 \newcommand*{\annVec}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack_{#4}}
 \newcommand*{\annVecVal}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;{#2}\matrixRBrack_{#3}}
@@ -254,23 +254,40 @@
 
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{\textcolor{gray}{::}}{#2}}
 
+\newcommand*{\compRel}[2]{\mathrel{{#1}\hspace{-0.2em}{#2}}}
+
 % Desugaring.
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
+
+\newcommand*{\desugarFwd}{\dfwdarrow}
+\newcommand*{\desugarBwd}[1]{\sub{\dbwdarrow}{#1}}
 \newcommand*{\desugarFwdF}[1]{\mathsf{desugFwd}_{#1}}
 \newcommand*{\desugarBwdF}[1]{\mathsf{desugBwd}_{#1}}
-\newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRest}(#1)_*}
-\newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRest}(#1)^*}
-\newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClause}(#1)_*}
-\newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClause}(#1)^*}
-\newcommand*{\desugarClausesFwdF}[1]{\mathsf{desugClauses}(#1)_*}
-\newcommand*{\desugarClausesBwdF}[1]{\mathsf{desugClauses}(#1)^*}
+
+\newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRestFwd}_{#1}}
+\newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRestBwd}_{#1}}
+
+\newcommand*{\desugarClauseFwd}{\desugarFwd}
+\newcommand*{\desugarClauseBwd}[1]{\desugarBwd{#1}}
+\newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClauseFwd}_{#1}}
+\newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClauseBwd}_{#1}}
+\newcommand*{\desugarClausesFwdF}[1]{\mathsf{desugClausesFwd}_{#1}}
+\newcommand*{\desugarClausesBwdF}[1]{\mathsf{desugClausesBwd}_{#1}}
+
+\newcommand*{\singletonElimFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
+\newcommand*{\singletonElimBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}
+
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
-\newcommand*{\totaliseFwdF}[1]{\mathsf{generator}(#1)_*}
-\newcommand*{\totaliseBwdF}[1]{\mathsf{generator}(#1)^*}
-\newcommand*{\totalisebwd}[4]{{#1}, {#2} \totalisebwdarrow {#3}, {#4}}
-\newcommand*{\totaliseBwdHole}{\mathrel{\totalisebwdarrow_{\hole}}}
+\newcommand*{\totaliseGeq}[3]{{#1},{#2} \totalisefwdarrow\geq {#3}}
+\newcommand*{\totalisebwd}[4]{{#1} \sub{\totalisebwdarrow}{#2} {#3}, {#4}}
+
+\newcommand*{\listGenFwd}{\mathrel{R}}
+\newcommand*{\listGenBwd}[1]{\mathrel{\sub{S}{#1}}}
+\newcommand*{\listGenFwdF}[1]{\mathsf{listGenFwd}_{#1}}
+\newcommand*{\listGenBwdF}[1]{\mathsf{listGenBwd}_{#1}}
+
 \newcommand*{\comma}{\textbf{\kw{,}}}
 \newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}

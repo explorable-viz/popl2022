@@ -1,170 +1,170 @@
 \begin{figure}[H]
-\flushleft\shadebox{$\sigma, \vec{p} \dbwdarrow e$}
+\flushleft\shadebox{$\sigma \singletonElimBwd{\vec{p}} e$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-pattern-seq}}
+   lab={\ruleName{$\singletonElimBwd{}$-pattern-seq}}
 ]
 {
-   \sigma, p \dbwdarrow\geq \exLambda{\sigma'}
+   \sigma \singletonElimBwd{p}\eq \exLambda{\sigma'}
    \\
-   \sigma', \vec{p} \dbwdarrow e
+   \sigma' \singletonElimBwd{\vec{p}} e
 }
 {
-   \sigma, p \cdot \vec{p}
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{p \concat \vec{p}}
    e
 }
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\sigma, p \dbwdarrow \kappa$}
+\flushleft\shadebox{$\sigma \singletonElimBwd{p} \kappa$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-var}}
+   lab={\ruleName{$\singletonElimBwd{}$-var}}
 ]
 {
-   \sigma \geq \elimVar{x}{\kappa}
+   \sigma \eq \elimVar{x}{\kappa}
 }
 {
-   \sigma, x
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{x}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-nil}}
+   lab={\ruleName{$\singletonElimBwd{}$-nil}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma}
+   \sigma \eq \elimList{\kappa}{\sigma}
 }
 {
-   \sigma, \exNil
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\exNil}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-cons}}
+   lab={\ruleName{$\singletonElimBwd{}$-cons}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma'}
+   \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', p \dbwdarrow \tau
+   \sigma' \singletonElimBwd{p} \tau
    \\
-   \tau, p' \dbwdarrow \kappa'
+   \tau \singletonElimBwd{p'} \kappa'
 }
 {
-   \sigma, \pattCons{p}{p'}
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattCons{p}{p'}}
    \kappa'
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+   lab={\ruleName{$\singletonElimBwd{}$-non-empty-list}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma'}
+   \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', p \dbwdarrow \tau
+   \sigma' \singletonElimBwd{p} \tau
    \\
-   \tau, o \dbwdarrow \kappa'
+   \tau \singletonElimBwd{o} \kappa'
 }
 {
-   \sigma, \pattList{p}{o}
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattList{p}{o}}
    \kappa'
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-pair}}
+   lab={\ruleName{$\singletonElimBwd{}$-pair}}
 ]
 {
-   \sigma \geq \elimProd{\sigma'}
+   \sigma \eq \elimProd{\sigma'}
    \\
-   \sigma', p \dbwdarrow \tau
+   \sigma' \singletonElimBwd{p} \tau
    \\
-   \tau, p' \dbwdarrow \kappa
+   \tau \singletonElimBwd{p'} \kappa
 }
 {
-   \sigma, \pattPair{p}{p'}
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattPair{p}{p'}}
    \kappa
 }
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\sigma, o \dbwdarrow \kappa$}
+\flushleft\shadebox{$\sigma \singletonElimBwd{o} \kappa$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-rest-end}}
+   lab={\ruleName{$\singletonElimBwd{}$-list-rest-end}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma}
+   \sigma \eq \elimList{\kappa}{\sigma}
 }
 {
-   \sigma, \pattListEnd
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{\pattListEnd}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
+   lab={\ruleName{$\singletonElimBwd{}$-list-rest-cons}}
 ]
 {
-   \sigma \geq \elimList{\kappa}{\sigma'}
+   \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma', p \dbwdarrow \tau
+   \sigma' \singletonElimBwd{p} \tau
    \\
-   \tau, o \dbwdarrow \kappa'
+   \tau \singletonElimBwd{o} \kappa'
 }
 {
-   \sigma, (\pattListNext{p}{o})
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{(\pattListNext{p}{o})}
    \kappa'
 }
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\sigma, \vec{c} \dbwdarrow \vec{c}$}
+\flushleft\shadebox{$\sigma \desugarClauseBwd{\vec{c}} \vec{c}'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-clause}}
+   lab={\ruleName{$\desugarClauseBwd{}$-clause}}
 ]
 {
-   \sigma, \vec{p} \dbwdarrow e
+   \sigma \singletonElimBwd{\vec{p}} e
    \\
-   e, s \dbwdarrow s'
+   e \desugarBwd{s} s'
 }
 {
-   \sigma, \clause{p}{s}
-   \dbwdarrow
+   \sigma
+   \desugarClauseBwd{\clause{p}{s}}
    \clause{p}{s'}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dbwdarrow$-clause-seq}}
+   lab={\ruleName{$\desugarClauseBwd{}$-clause-seq}}
 ]
 {
-   \sigma, c \dbwdarrow c'
+   \sigma \desugarClauseBwd{c} c'
    \\
-   \sigma, \vec{c} \dbwdarrow \vec{c}'
+   \sigma \desugarClauseBwd{\vec{c}} \vec{c}'
 }
 {
-   \sigma, c \cdot \vec{c}
-   \dbwdarrow
-   c' \cdot \vec{c}'
+   \sigma
+   \desugarClauseBwd{c \concat \vec{c}}
+   c' \concat \vec{c}'
 }
 \end{smathpar}
 \caption{Desugaring clauses and patterns -- backward slicing}

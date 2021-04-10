@@ -1,7 +1,5 @@
 \begin{figure}[H]
 
-%% Surface terms
-
 \flushleft \shadebox{$\Gamma \vdash \vec{g}: \Delta$}
 \begin{smathpar}
    \inferrule*[right={
@@ -64,8 +62,9 @@
    {
       \Gamma \vdash s: A
       \\
-      \forall c \in \vec{c}. \
-      \Gamma \vdash c : \tyFun{A}{B}
+      \Gamma \vdash c': \tyFun{A}{B}
+      \quad
+      (\forall c' \in \vec{c})
    }
    {
       \Gamma \vdash \exMatch{s}{\vec{c}}: B
@@ -189,6 +188,16 @@
    \vspace{5pt}
    \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
    \begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \seqEmpty \dashv \seqEmpty
+   }
+   %
+   \and
+   %
    \inferrule*
    {
       \Gamma \vdash q \dashv \Gamma'

@@ -1,7 +1,6 @@
 \subsection{\thmref{surface-language:desugar:gc}, part (i)}
-Induction on the $\dbwdarrow$ derivation.
+Induction on the $\desugarBwd{}$ derivation.
 \begin{proof}
-   Suppose $s \dfwdarrow e$. Then $\desugarFwdF{s}(\desugarBwdF{s}(e')) \geq e'$.
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -10,18 +9,18 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-binary-apply}}
+            lab={\ruleName{$\desugarBwd{}$-binary-apply}}
          ]
          {
             e \eq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
             \\
-            e_1, s_1 \dbwdarrow s_1'
+            e_1 \desugarBwd{s_1} s_1'
             \\
-            e_2, s_2 \dbwdarrow s_2'
+            e_2 \desugarBwd{s_2} s_2'
          }
          {
-            e, \exBinaryApp{s_{1}}{\primOp}{s_{2}}
-            \dbwdarrow
+            e
+            \desugarBwd{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}
             \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
          }
       \end{smathpar}
@@ -30,43 +29,41 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:binary-ih1}
+   \notag
    \\
    &
-   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{dfb:binary-ih2}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\dfwdarrow$-binary-apply}}
+         lab={\ruleName{$\desugarFwd$-binary-apply}}
       ]
       {
-         s_{1}' \dfwdarrow e_{1}'
+         s_{1}' \desugarFwd e_{1}'
          \\
-         s_{2}' \dfwdarrow e_{2}'
+         s_{2}' \desugarFwd e_{2}'
       }
       {
-         \exBinaryApp{s_{1}'}{\primOp}{s_{2}'} \dfwdarrow \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'}
+         \exBinaryApp{s_{1}'}{\primOp}{s_{2}'} \desugarFwd \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'}
       }
    \end{smathpar}
    }
    &
-   \text{(\localref{dfb:binary-ih1}, \localref{dfb:binary-ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{\exApp{\exOp{\primOp}}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}} \eq e
    &
-   \text{(\localref{dfb:binary-ih1}, \localref{dfb:binary-ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -75,31 +72,31 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-nil}}
+            lab={\ruleName{$\desugarBwd{}$-nil}}
          ]
          {
             e \eq \annNil{\alpha}
          }
          {
-            e, \exNil \dbwdarrow \annNil{\alpha}
+            e  \desugarBwd{\exNil} \annNil{\alpha}
          }
       \end{smathpar}
    }
    &
-   \locallabel{dfb:nil}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\dfwdarrow$-nil}}
+         lab={\ruleName{$\desugarFwd$-nil}}
       ]
       {
          \strut
       }
       {
-         \annNil{\alpha} \dfwdarrow \annNil{\alpha}
+         \annNil{\alpha} \desugarFwd \annNil{\alpha}
       }
    \end{smathpar}
    }
@@ -110,7 +107,6 @@ Induction on the $\dbwdarrow$ derivation.
    \qedLocal
    \annNil{\alpha} \geq \annNil{\alpha} \eq e
    &
-   \text{(\localref{dfb:nil})}
    \notag
    \\
    \intertext{\crossrule}
@@ -119,18 +115,18 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-non-empty-list}}
+            lab={\ruleName{$\desugarBwd{}$-non-empty-list}}
          ]
          {
             e \eq \annCons{e_1}{e_2}{\alpha}
             \\
-            e_1, s \dbwdarrow s'
+            e_1 \desugarBwd{s} s'
             \\
-            e_2, l \dbwdarrow l'
+            e_2 \desugarBwd{l} l'
          }
          {
-            e, \exList{s}{l}
-            \dbwdarrow
+            e
+            \desugarBwd{\exList{s}{l}}
             \annList{s'}{l'}{\alpha}
          }
       \end{smathpar}
@@ -138,43 +134,41 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   s' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:nelist-ih1}
+   \notag
    \\
    &
-   l' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   l' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
-   \text{(\ref{lem:aux:desugarlistrest:gc})}
-   \locallabel{dfb:nelist-ih2}
+   \text{(\lemref{aux:desugarlistrest:gc})}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+            lab={\ruleName{$\desugarFwd$-non-empty-list}}
          ]
          {
-            s' \dfwdarrow e_{1}'
+            s' \desugarFwd e_{1}'
             \\
-            l' \dfwdarrow e_{2}'
+            l' \desugarFwd e_{2}'
          }
          {
-            \annList{s'}{l'}{\alpha} \dfwdarrow \annCons{e_{1}'}{e_{2}'}{\alpha}
+            \annList{s'}{l'}{\alpha} \desugarFwd \annCons{e_{1}'}{e_{2}'}{\alpha}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:nelist-ih1}, \localref{dfb:nelist-ih2})}
    \notag
    \\
    &
    \qedLocal
    \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha} \eq e
    &
-   \text{(\localref{dfb:nelist-ih1}, \localref{dfb:nelist-ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -183,18 +177,18 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-cons}}
+            lab={\ruleName{$\desugarBwd{}$-cons}}
          ]
          {
             e \eq \annCons{e_1}{e_2}{\alpha}
             \\
-            e_1, s_1 \dbwdarrow s_1'
+            e_1 \desugarBwd{s_1} s_1'
             \\
-            e_2, s_2 \dbwdarrow s_2'
+            e_2 \desugarBwd{s_2} s_2'
          }
          {
-            e, \exCons{s_1}{s_2}
-            \dbwdarrow
+            e
+            \desugarBwd{\exCons{s_1}{s_2}}
             \annCons{s_1'}{s_2'}{\alpha}
          }
       \end{smathpar}
@@ -202,43 +196,41 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:cons-ih1}
+   \notag
    \\
    &
-   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{dfb:cons-ih2}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-cons}}
+            lab={\ruleName{$\desugarFwd$-cons}}
          ]
          {
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
             \\
-            s_{2}' \dfwdarrow e_{2}'
+            s_{2}' \desugarFwd e_{2}'
          }
          {
-            \annCons{s_{1}'}{s_{2}'}{\alpha} \dfwdarrow \annCons{e_{1}'}{e_{2}'}{\alpha}
+            \annCons{s_{1}'}{s_{2}'}{\alpha} \desugarFwd \annCons{e_{1}'}{e_{2}'}{\alpha}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:cons-ih1}, \localref{dfb:cons-ih2})}
    \notag
    \\
    &
    \qedLocal
    \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha} \eq e
    &
-   \text{(\localref{dfb:cons-ih1}, \localref{dfb:cons-ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -247,20 +239,20 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-let-rec}}
+            lab={\ruleName{$\desugarBwd{}$-let-rec}}
          ]
          {
             e \eq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
             \\
-            \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}'
+            \sigma_i  \desugarClauseBwd{\vec{c_i}} \vec{c_i}'
             \quad
             (\forall i \numleq j)
             \\
-            e_1, s \dbwdarrow s'
+            e_1 \desugarBwd{s} s'
          }
          {
-            e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c_j}}}}{s}
-            \dbwdarrow
+            e
+            \desugarBwd{\exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}}
             \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
          }
       \end{smathpar}
@@ -268,46 +260,51 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \vec{c_i}' \dfwdarrow \sigma_{i}' \geq \sigma_{i}  \quad (\exists \sigma_{i}') \quad (\forall i \numleq j)
+   \vec{c_i}' \desugarFwd \sigma_{i}' \geq \sigma_{i}
+   \quad
+   (\forall i \numleq j)
+   \quad
+   (\exists \vec{\sigma}')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
+   \text{(\lemref{aux:clauses:gc})}
+   \notag
    \\
    &
-   s' \dfwdarrow e' \geq e \quad (\exists e')
+   s' \desugarFwd e' \geq e \quad (\exists e')
    &
    \text{(IH)}
-   \locallabel{dfb:letrec:ih2}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-let-rec}}
+            lab={\ruleName{$\desugarFwd$-let-rec}}
          ]
          {
-            \vec{c_i}' \dfwdarrow \sigma_{i}'
+            \vec{c_i}' \desugarFwd \sigma_{i}'
             \quad
             (\forall i \numleq j)
             \\
-            s' \dfwdarrow e'
+            s' \desugarFwd e'
          }
          {
             \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
-            \dfwdarrow
+            \desugarFwd
             \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:letrec:ih1}, \localref{dfb:letrec:ih2})}
    \notag
    \\
    &
    \qedLocal
-   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1} \eq e
+   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'}
+   \geq
+   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1} \eq e
    &
-   \text{(\localref{dfb:letrec:ih1}, \localref{dfb:letrec:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -316,18 +313,18 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-apply}}
+            lab={\ruleName{$\desugarBwd{}$-apply}}
          ]
          {
             e \eq \exApp{e_1}{e_2}
             \\
-            e_1, s_1 \dbwdarrow s_1'
+            e_1 \desugarBwd{s_1} s_1'
             \\
-            e_2, s_2 \dbwdarrow s_2'
+            e_2 \desugarBwd{s_2} s_2'
          }
          {
-            e, \exApp{s_1}{s_2}
-            \dbwdarrow
+            e
+            \desugarBwd{\exApp{s_1}{s_2}}
             \exApp{s_1'}{s_2'}
          }
       \end{smathpar}
@@ -335,43 +332,41 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:app:ih1}
+   \notag
    \\
    &
-   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{dfb:app:ih2}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-apply}}
+            lab={\ruleName{$\desugarFwd$-apply}}
          ]
          {
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
             \\
-            s_{2}' \dfwdarrow e_{2}'
+            s_{2}' \desugarFwd e_{2}'
          }
          {
-            \exApp{s_{1}'}{s_{2}'} \dfwdarrow \exApp{e_{1}'}{e_{2}'}
+            \exApp{s_{1}'}{s_{2}'} \desugarFwd \exApp{e_{1}'}{e_{2}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:app:ih1}, \localref{dfb:app:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{e_{1}'}{e_{2}'} \geq \exApp{e_{1}}{e_{2}} \eq e
    &
-   \text{(\localref{dfb:app:ih1}, \localref{dfb:app:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -380,21 +375,20 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-if}}
+            lab={\ruleName{$\desugarBwd{}$-if}}
          ]
          {
             e \eq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
             \\
-            e_{1}, s_{1} \dbwdarrow s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
-            e_{2}, s_{2} \dbwdarrow s_{2}'
+            e_{2} \desugarBwd{s_{2}} s_{2}'
             \\
-            e_{3}, s_{3} \dbwdarrow s_{3}'
+            e_{3} \desugarBwd{s_{3}} s_{3}'
          }
          {
-            e,
-            \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
-            \dbwdarrow
+            e
+            \desugarBwd{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}
             \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
          }
       \end{smathpar}
@@ -402,53 +396,53 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:if:ih1}
+   \notag
    \\
    &
-   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{dfb:if:ih2}
+   \notag
    \\
    &
-   s_{3}' \dfwdarrow e_{3}' \geq e_{3} \quad (\exists e_{3}')
+   s_{3}' \desugarFwd e_{3}' \geq e_{3} \quad (\exists e_{3}')
    &
    \text{(IH)}
-   \locallabel{dfb:if:ih3}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-if}}
+            lab={\ruleName{$\desugarFwd$-if}}
          ]
          {
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
             \\
-            s_{2}' \dfwdarrow e_{2}'
+            s_{2}' \desugarFwd e_{2}'
             \\
-            s_{3}' \dfwdarrow e_{3}'
+            s_{3}' \desugarFwd e_{3}'
          }
          {
             \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
-            \dfwdarrow
+            \desugarFwd
             \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:if:ih1}, \localref{dfb:if:ih2}, \localref{dfb:if:ih3})}
    \notag
    \\
    &
    \qedLocal
-   \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'} \geq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}} \eq e
+   \exApp{\exLambda{\elimBool{e_{2}'}{e_{3}'}}}{e_{1}'}
+   \geq
+   \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}} \eq e
    &
-   \text{(\localref{dfb:if:ih1}, \localref{dfb:if:ih2}, \localref{dfb:if:ih3})}
    \notag
    \\
    \intertext{\crossrule}
@@ -457,19 +451,18 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-match}}
+            lab={\ruleName{$\desugarBwd{}$-match}}
          ]
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma, \vec{c} \dbwdarrow \vec{c}'
+            \sigma \desugarClauseBwd{\vec{c}} \vec{c}'
             \\
-            e_1, s_1 \dbwdarrow s_{1}'
+            e_1 \desugarBwd{s_1} s_{1}'
          }
          {
-            e,
-            \exMatch{s_1}{\vec{c}}
-            \dbwdarrow
+            e
+            \desugarBwd{\exMatch{s_1}{\vec{c}}}
             \exMatch{s_{1}'}{\vec{c}'}
          }
       \end{smathpar}
@@ -477,45 +470,43 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:match:ih1}
+   \notag
    \\
    &
-   \vec{c}' \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
+   \vec{c}' \desugarFwd \sigma' \geq \sigma \quad (\exists \sigma')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{dfb:match:ih2}
+   \text{(\lemref{aux:clauses:gc})}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-match}}
+            lab={\ruleName{$\desugarFwd$-match}}
          ]
          {
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
             \\
-            \vec{c}' \dfwdarrow \sigma'
+            \vec{c}' \desugarFwd \sigma'
          }
          {
             \exMatch{s_{1}'}{\vec{c}'}
-            \dfwdarrow
+            \desugarFwd
             \exApp{(\exLambda{\sigma})}{e_{1}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:match:ih1}, \localref{dfb:match:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
-   \text{(\localref{dfb:match:ih1}, \localref{dfb:match:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -524,19 +515,18 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-let}}
+            lab={\ruleName{$\desugarBwd{}$-let}}
          ]
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2'
+            \sigma \desugarClauseBwd{\clauseUncurried{p}{s_2}} s_2'
             \\
-            e_1, s_1 \dbwdarrow s_1'
+            e_1 \desugarBwd{s_1} s_1'
          }
          {
-            e,
-            \exLet{p}{s_1}{s_2}
-            \dbwdarrow
+            e
+            \desugarBwd{\exLet{p}{s_1}{s_2}}
             \exLet{p}{s_1'}{s_2'}
          }
       \end{smathpar}
@@ -544,45 +534,43 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:let:ih1}
+   \notag
    \\
    &
-   \clauseUncurried{p}{s_{2}'} \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
+   \clauseUncurried{p}{s_{2}'} \desugarFwd \sigma' \geq \sigma \quad (\exists \sigma')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{dfb:let:ih2}
+   \text{(\lemref{aux:clauses:gc})}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-let}}
+            lab={\ruleName{$\desugarFwd$-let}}
          ]
          {
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
             \\
-            \clauseUncurried{p}{s_{2}'} \dfwdarrow \sigma'
+            \clauseUncurried{p}{s_{2}'} \desugarFwd \sigma'
          }
          {
             \exLet{p}{s_{1}'}{s_{2}'}
-            \dfwdarrow
+            \desugarFwd
             \exApp{(\exLambda{\sigma'})}{e_{1}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:let:ih1}, \localref{dfb:let:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
-   \text{(\localref{dfb:let:ih1}, \localref{dfb:let:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -591,19 +579,18 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-list-enum}},
+            lab={\ruleName{$\desugarBwd{}$-list-enum}},
          ]
          {
             e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
             \\
-            e_{1}, s_{1} \dbwdarrow s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
-            e_{2}, s_{2} \dbwdarrow s_{2}'
+            e_{2} \desugarBwd{s_{2}} s_{2}'
          }
          {
-            e,
-            \exListEnum{s_{1}}{s_{2}}
-            \dbwdarrow
+            e
+            \desugarBwd{\exListEnum{s_{1}}{s_{2}}}
             \exListEnum{s_{1}'}{s_{2}'}
          }
       \end{smathpar}
@@ -611,45 +598,43 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:listenum:ih1}
+   \notag
    \\
    &
-   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{dfb:listenum:ih2}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-list-enum}},
+            lab={\ruleName{$\desugarFwd$-list-enum}},
          ]
          {
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
             \\
-            s_{2}' \dfwdarrow e_{2}'
+            s_{2}' \desugarFwd e_{2}'
          }
          {
             \exListEnum{s_{1}'}{s_{2}'}
-            \dfwdarrow
+            \desugarFwd
             \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:listenum:ih1}, \localref{dfb:listenum:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{\exApp{\funEnumFromTo}{e_{1}'}}{e_{2}'} \geq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2} \eq e
    &
-   \text{(\localref{dfb:listenum:ih1}, \localref{dfb:listenum:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -657,102 +642,51 @@ Induction on the $\dbwdarrow$ derivation.
    &
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-done}}]
+         \inferrule*[lab={\ruleName{$\desugarBwd{}$-list-comp-done}}]
          {
             e \eq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'}
             \\
-            e_{1}, s_{1} \dbwdarrow s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
          }
          {
-            e,
-            \exListComp{s_{1}}{\qualDone}
-            \dbwdarrow
-            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha'}
+            e
+            \desugarBwd{\exListComp{s_{1}}{\seqEmpty}}
+            \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha'}
          }
       \end{smathpar}
    }
    \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:listcompdone:ih1}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
+         \inferrule*[lab={\ruleName{$\desugarFwd$-list-comp-done}}]
          {
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
          }
          {
-            \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha'}
-            \dfwdarrow
+            \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha'}
+            \desugarFwd
             \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:listcompdone:ih1})}
    \notag
    \\
    &
    \qedLocal
-   \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'} \geq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'} \eq e
+   \annCons{e_{1}'}{\annot{\exNil}{\alpha \join \alpha'}}{\alpha \join \alpha'}
+   \geq
+   \annCons{e_{1}}{\annNil{\alpha}}{\alpha'} \eq e
    &
-   \text{(\localref{dfb:listcompdone:ih1})}
-   \notag
-   \\
-   \intertext{\crossrule}
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   &
-   \caseDerivation{\derivationWidth}{
-      \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
-         {
-            e, \exListComp{s}{q \concat \qualDone}
-            \dbwdarrow
-            \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha}
-         }
-         {
-            e, \exListComp{s}{q}
-            \dbwdarrow
-            \annListComp{s'}{q'}{\alpha}
-         }
-      \end{smathpar}
-   }
-   \notag
-   \\
-   &
-   \annListComp{s'}{q' \concat \qualDone}{\alpha} \dfwdarrow e' \geq e \quad (\exists e')
-   &
-   \text{(IH)}
-   \locallabel{dfb:listcomplast:ih1}
-   \\
-   &
-   \qedLocal
-   \derivation{\derivationWidth}{
-      \begin{smathpar}
-         \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-last}},
-            right={$q' \neq \qualDone$}
-         ]
-         {
-            \annListComp{s'}{q' \concat \qualDone}{\alpha} \dfwdarrow e'
-         }
-         {
-            \annot{\exListComp{s'}{q'}}{\alpha} \dfwdarrow e'
-         }
-      \end{smathpar}
-   }
-   &
-   \text{(\localref{dfb:listcomplast:ih1})}
-   \notag
-   \\
-   &
-   \qedLocal
-   e' \geq e
    \notag
    \\
    \intertext{\crossrule}
@@ -761,19 +695,18 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-list-comp-guard}},
+            lab={\ruleName{$\desugarBwd{}$-list-comp-guard}},
          ]
          {
             e \eq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
             \\
-            e_2, s_2 \dbwdarrow s_2'
+            e_2 \desugarBwd{s_2} s_2'
             \\
-            e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annListComp{s_{1}'}{\vec{q}'}{\beta}
+            e_1 \desugarBwd{\exListComp{s_1}{\vec{q}}} \annListComp{s_{1}'}{\vec{q}'}{\beta}
          }
          {
-            e,
-            \exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}
-            \dbwdarrow
+            e
+            \desugarBwd{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
             \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
          }
       \end{smathpar}
@@ -781,52 +714,55 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \annListComp{s_{1}'}{\vec{q}'}{\beta} \dfwdarrow \geq e_{1}
+   \annListComp{s_{1}'}{\vec{q}'}{\beta} \desugarFwd \geq e_{1}
    &
    \text{(IH)}
    \notag
    \\
    &
-   \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta} \dfwdarrow e_{1}' \geq e_1  \quad (\exists e_{1}')
+   \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta} \desugarFwd e_{1}' \geq e_1
+   \quad
+   (\exists e_{1}')
    &
-   \text{(Monotonicity)}
-   \locallabel{dfb:listguard:ih1}
+   \text{(monotonicity)}
+   \locallabel{listguard:ih1}
    \\
    &
-   s_{2}' \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
+   s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{dfb:listguard:ih2}
+   \locallabel{listguard:ih2}
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
+            lab={\ruleName{$\desugarFwd$-list-comp-guard}}
          ]
          {
             \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta}
-            \dfwdarrow e_{1}'
+            \desugarFwd e_{1}'
             \\
-            s_{2}' \dfwdarrow e_{2}'
+            s_{2}' \desugarFwd e_{2}'
          }
          {
             \annListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}{\alpha \join \beta}
-            \dfwdarrow
+            \desugarFwd
             \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:listguard:ih1}, \localref{dfb:listguard:ih2})}
+   \text{(\localref{listguard:ih1}, \localref{listguard:ih2})}
    \notag
    \\
    &
    \qedLocal
-   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'} \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}} \eq e
+   \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'}
+   \geq
+   \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}} \eq e
    &
-   \text{(\localref{dfb:listguard:ih1}, \localref{dfb:listguard:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -835,21 +771,20 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-list-comp-decl}},
+            lab={\ruleName{$\desugarBwd{}$-list-comp-decl}},
          ]
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
-            \dbwdarrow
+            \sigma
+            \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}
             \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}}
             \\
-            e_{1}, s_{1} \dbwdarrow s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
          }
          {
-            e,
-            \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
-            \dbwdarrow
+            e
+            \desugarBwd{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
             \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}
                   {\alpha}
          }
@@ -858,45 +793,47 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \dfwdarrow \sigma' \geq \sigma \quad (\exists \sigma')
+   \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \desugarFwd \sigma'
+   \geq
+   \sigma
+   \quad
+   (\exists \sigma')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{dfb:listdecl:ih1}
+   \text{(\lemref{aux:clauses:gc})}
+   \notag
    \\
    &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{dfb:listdecl:ih2}
+   \notag
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
+            lab={\ruleName{$\desugarFwd$-list-comp-decl}}
          ]
          {
-            \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \dfwdarrow \sigma'
+            \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \desugarFwd \sigma'
             \\
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
          }
          {
             \annListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}{\alpha}
-            \dfwdarrow
+            \desugarFwd
             \exApp{(\exLambda{\sigma'})}{e_{1}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:listdecl:ih1}, \localref{dfb:listdecl:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
-   \text{(\localref{dfb:listdecl:ih1}, \localref{dfb:listdecl:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -905,23 +842,22 @@ Induction on the $\dbwdarrow$ derivation.
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dbwdarrow$-list-comp-gen}},
+            lab={\ruleName{$\desugarBwd{}$-list-comp-gen}},
          ]
          {
-            e \eq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1}
+            e \eq \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_1})}}{e_1}
             \\
-            e_{1}, s_{1} \dbwdarrow s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
             \totalisebwd{\sigma_1}{p}{\sigma_2}{\beta}
             \\
-            \sigma_{2}, p \dbwdarrow e_{2}
-            \\
-            e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+            \sigma_{2}
+            \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}}
          }
          {
-            e,
-            \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-            \dbwdarrow
+            e
+            \desugarBwd{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
             \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}
                   {\beta \join \beta'}
          }
@@ -930,85 +866,79 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'} \dfwdarrow \geq e_{2} 
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}}
+   \desugarClauseFwd
+   \sigma_{2}^\dagger
+   \quad
+   (\exists \sigma_2^\dagger)
+   &
+   \text{(\lemref{aux:list-gen:gc})}
+   \notag
+   \\
+   &
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'}}
+   \desugarClauseFwd \sigma_{2}'
+   \geq
+   \sigma_{2}^\dagger
+   \quad
+   (\exists \sigma_{2}')
+   &
+   \text{(monotonicity)}
+   \locallabel{listgen:premise-one}
+   \\
+   &
+   \totaliseGeq{\sigma_{2}^\dagger}{\beta} \sigma_{1}
+   &
+   \text{(\lemref{aux:list-gen:gc})}
+   \notag
+   \\
+   &
+   \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1}
+   \quad
+   (\exists \sigma_{1}')
+   &
+   \text{(monotonicity)}
+   \locallabel{listgen:premise-two}
+   \\
+   &
+   s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \notag
-   \\
-   &
-   \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \dfwdarrow e_{2}' \geq e_{2} \quad (\exists e_{2}')
-   &
-   \text{(Monotonicity)}
-   \locallabel{dfb:listgen:ih1}
-   \\
-   &
-   p, e_2 \dfwdarrow \geq \sigma_2
-   &
-   \text{(\ref{lem:aux:clause:gc})}
-   \notag
-   \\
-   &
-   p, e_{2}' \dfwdarrow \sigma_2' \geq \sigma_2 \quad (\exists \sigma_2')
-   &
-   \text{(Monotonicity)}
-   \locallabel{dfb:listgen:ih2}
-   \\
-   &
-   \totalise{\sigma_{2}}{\beta}{\geq}  \sigma_{1}
-   &
-   \text{(\ref{lem:aux:totalise:gc})}
-   \notag
-   \\
-   &
-   \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1} \quad (\exists \sigma_{1}')
-   &
-   \text{(Monotonicity)}
-   \locallabel{dfb:listgen:ih3}
-   \\
-   &
-   s_{1}' \dfwdarrow e_{1}' \geq e_{1} \quad (\exists e_{1}')
-   &
-   \text{(IH)}
-   \locallabel{dfb:listgen:ih4}
+   \locallabel{listgen:premise-three}
    \\
    &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
+            lab={\ruleName{$\desugarFwd$-list-comp-gen}}
          ]
          {
-            \inferrule*[]
-               {
-                  \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'} \dfwdarrow e_2'
-                  \\
-                  p, e_2' \dfwdarrow \sigma_{2}'
-               }
-               {
-                  \annot{\clauseUncurried{p}{\exListComp{s_{2}'}{\vec{q}'}}}{\beta \join \beta'} \dfwdarrow \sigma_{2}'
-               }
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'}}
+            \desugarFwd
+            \sigma_{2}'
             \\
             \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'}
             \\
-            s_{1}' \dfwdarrow e_{1}'
+            s_{1}' \desugarFwd e_{1}'
          }
          {
             \annListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}{\beta \join \beta'}
-            \dfwdarrow
+            \desugarFwd
             \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'}
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4})}
+   \text{(\localref{listgen:premise-one}, \localref{listgen:premise-two}, \localref{listgen:premise-three})}
    \notag
    \\
    &
    \qedLocal
-   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'} \geq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1} \eq e
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_{1}'})}}{e_{1}'}
+   \geq
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma_1})}}{e_1} \eq e
    &
-   \text{(\localref{dfb:listgen:ih3}, \localref{dfb:listgen:ih4})}
    \notag
 \end{flalign}
 \end{proof}

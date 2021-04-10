@@ -2,7 +2,7 @@
 \begin{proof}
    \ref{lem:core-language:env-get-put:1}
    Suppose $\vdash \rho: \Gamma$. If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$. \\
-   
+
    By induction on the proof that $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$:
 \small
 \begin{flalign}
@@ -29,7 +29,7 @@
    \qedLocal
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[ 
+      \inferrule*[
          lab={\ruleName{$\smalltriangleright$-head}}
       ]
       {
@@ -97,7 +97,7 @@
 \begin{proof}
    \ref{lem:core-language:env-get-put:2}
    Suppose $\vdash \rho: \Gamma$. If $\envLookup{\rho}{z}{v}$ and $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$ then $(u \leq v \iff \rho' \leq \rho)$. \\
-   
+
    By induction on the proof that $\envLookup{\rho}{z}{v}$, $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$.
 \small
 \begin{flalign}
@@ -130,14 +130,15 @@
    \\
    &
    \Gamma = \Gamma_{1} \concat \bind{z}{A}
+   \quad
+   (\exists \Gamma_{1}, A)
    &
-   \exists \Gamma_{1}, A
    \locallabel{decompose-gamma}
    \\
    &
-   \vdash \rho_{1}: \Gamma_{1} 
+   \vdash \rho_{1}: \Gamma_{1}
    &
-   (\localref{decompose-rho}, \localref{decompose-gamma})
+   (congruence)
    \notag
    \\
    \notag
@@ -149,7 +150,7 @@
    &
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[ 
+      \inferrule*[
          lab={\ruleName{$\smalltriangleleft$-head}}
       ]
       {
@@ -235,8 +236,9 @@
    \\
    &
    \Gamma = \Gamma_{1} \concat \bind{z'}{A}
+   \quad
+   (\exists \Gamma_{1}, A)
    &
-   \exists \Gamma_{1}, A
    \notag
    \\
    &
@@ -252,7 +254,7 @@
    &
    \derivation{\derivationWidth}{
    \begin{smathpar}
-      \inferrule*[ 
+      \inferrule*[
          lab={\ruleName{$\smalltriangleleft$-tail}},
          right={$z' \neq z$}
       ]
@@ -307,7 +309,7 @@
    \\
    &
    \qedLocal
-   \rho' \leq \rho 
+   \rho' \leq \rho
    &
    \text{(\localref{decompose-rho-tail}, \localref{decompose-rho'-tail})}
    \notag
