@@ -34,12 +34,12 @@
   \label{lem:aux:list-gen:gc}
   \item
   \begin{itemize}
-    \item Define $e, \alpha \listGenFwd{p} \sigma $ iff there exists $\sigma'$ such that $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
-    \item Define $\sigma \listGenBwd{p} e, \alpha$ iff $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma'  \desugarClauseBwd{\clauseUncurried{p}{e'}} \clauseUncurried{p}{e}$.
+    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ such that $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
+    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ such that $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \desugarClauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
   \end{itemize}
   Suppose $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
   \begin{enumerate}
-     \item $\listGenFwd{p}$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
+     \item $\listGenFwd$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
      \item $\listGenBwd{p}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\listGenBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.
      \item $\listGenFwdF{p, e, \alpha}(\listGenBwdF{p, e, \alpha}(\tau)) \geq \tau$.
      \item $\listGenBwdF{p, e, \alpha}(\listGenFwdF{p, e, \alpha}(e', \alpha')) \leq (e', \alpha')$.
