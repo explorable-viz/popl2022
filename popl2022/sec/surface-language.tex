@@ -12,5 +12,11 @@
 
 \begin{theorem}[Galois connection for desugaring]
   \label{thm:surface-language:desugar:gc}
-     Suppose $s \dfwdarrow e$. Then $\desugarFwdF{T} \adjoint \desugarBwdF{T}$.
+     Suppose $s \desugarFwd e$. Then:
+  \begin{enumerate}
+     \item $\desugarFwd$ domain-restricted to $\Below{s}$ is a monotonic function $\desugarFwdF{s}$ to $\Below{e}$.
+     \item $\desugarBwd{s}$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarBwdF{e}$ to $\Below{s}$.
+     \item $\desugarFwdF{s}(\desugarBwdF{s}(e')) \geq e'$.
+     \item $\desugarBwdF{s}(\desugarFwdF{s}(s')) \leq s'$.
+  \end{enumerate}
 \end{theorem}
