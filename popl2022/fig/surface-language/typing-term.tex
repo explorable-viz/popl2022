@@ -1,7 +1,5 @@
 \begin{figure}[H]
 
-%% Surface terms
-
 \flushleft \shadebox{$\Gamma \vdash \vec{g}: \Delta$}
 \begin{smathpar}
    \inferrule*[right={
@@ -189,6 +187,16 @@
    \vspace{5pt}
    \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
    \begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \seqEmpty \dashv \seqEmpty
+   }
+   %
+   \and
+   %
    \inferrule*
    {
       \Gamma \vdash q \dashv \Gamma'
