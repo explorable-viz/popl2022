@@ -753,7 +753,6 @@ Induction on the $\desugarBwd{}$ derivation.
    \qedLocal
    \exApp{\smash{\exLambda{\elimBool{e_{1}'}{\annNil{\alpha \join \beta}}}}}{e_{2}'} \geq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}} \eq e
    &
-   \text{(\localref{listguard:ih1}, \localref{listguard:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -786,14 +785,14 @@ Induction on the $\desugarBwd{}$ derivation.
    &
    \clauseUncurried{p}{\annListComp{s_{2}'}{\vec{q}'}{\alpha}} \desugarFwd \sigma' \geq \sigma \quad (\exists \sigma')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{listdecl:ih1}
+   \text{(\lemref{aux:clauses:gc})}
+   \notag
    \\
    &
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{listdecl:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -815,14 +814,12 @@ Induction on the $\desugarBwd{}$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{listdecl:ih1}, \localref{listdecl:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{(\exLambda{\sigma'})}{e_{1}'} \geq \exApp{(\exLambda{\sigma})}{e_1} \eq e
    &
-   \text{(\localref{listdecl:ih1}, \localref{listdecl:ih2})}
    \notag
    \\
    \intertext{\crossrule}
