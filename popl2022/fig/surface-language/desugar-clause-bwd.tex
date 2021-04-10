@@ -53,7 +53,9 @@
 {
    \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma' \compRel{\singletonElimBwd{p}}{\singletonElimBwd{p'}} \kappa'
+   \sigma' \singletonElimBwd{p} \tau
+   \\
+   \tau \singletonElimBwd{p'} \kappa'
 }
 {
    \sigma
@@ -69,7 +71,9 @@
 {
    \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma' \compRel{\singletonElimBwd{p}}{\singletonElimBwd{o}} \kappa'
+   \sigma' \singletonElimBwd{p} \tau
+   \\
+   \tau \singletonElimBwd{o} \kappa'
 }
 {
    \sigma
@@ -85,7 +89,9 @@
 {
    \sigma \eq \elimProd{\sigma'}
    \\
-   \sigma' \compRel{\singletonElimBwd{p}}{\singletonElimBwd{p'}} \kappa
+   \sigma' \singletonElimBwd{p} \tau
+   \\
+   \tau \singletonElimBwd{p'} \kappa
 }
 {
    \sigma
@@ -117,11 +123,13 @@
 {
    \sigma \eq \elimList{\kappa}{\sigma'}
    \\
-   \sigma' \compRel{\singletonElimBwd{p}}{\singletonElimBwd{o}} \kappa'
+   \sigma' \singletonElimBwd{p} \tau
+   \\
+   \tau \singletonElimBwd{o} \kappa'
 }
 {
    \sigma
-   \singletonElimBwd{\pattListNext{p}{o}}
+   \singletonElimBwd{(\pattListNext{p}{o})}
    \kappa'
 }
 \end{smathpar}
@@ -133,7 +141,9 @@
    lab={\ruleName{$\desugarBwd{}$-clause}}
 ]
 {
-   \sigma \compRel{\singletonElimBwd{\vec{p}}}{\desugarBwd{s}} s'
+   \sigma \singletonElimBwd{\vec{p}} e
+   \\
+   e \desugarBwd{s} s'
 }
 {
    \sigma
