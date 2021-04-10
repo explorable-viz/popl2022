@@ -191,23 +191,9 @@
    }
    {
       e,
-      \exListComp{s}{\qualDone}
+      \exListComp{s}{\seqEmpty}
       \dbwdarrow
-      \annot{\exListComp{s'}{\qualDone}}{\alpha \join \alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\dbwdarrow$-list-comp-last}}]
-   {
-      e, \exListComp{s}{q \concat \qualDone}
-      \dbwdarrow
-      \annot{\exListComp{s'}{q' \concat \qualDone}}{\beta}
-   }
-   {
-      e, \exListComp{s}{q}
-      \dbwdarrow
-      \annListComp{s'}{q'}{\beta}
+      \annot{\exListComp{s'}{\seqEmpty}}{\alpha \join \alpha'}
    }
    %
    \and
