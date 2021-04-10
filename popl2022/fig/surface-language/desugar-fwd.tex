@@ -1,244 +1,248 @@
 \begin{figure}[H]
-\flushleft \shadebox{$s \dfwdarrow e$}
+\flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-binary-apply}}
+      lab={\ruleName{$\desugarFwd$-binary-apply}}
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      s' \dfwdarrow e'
+      s' \desugarFwd e'
    }
    {
-      \exBinaryApp{s}{\primOp}{s'} \dfwdarrow \exApp{\exApp{\exOp{\primOp}}{e}}{e'}
+      \exBinaryApp{s}{\primOp}{s'} \desugarFwd \exApp{\exApp{\exOp{\primOp}}{e}}{e'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-nil}}
+      lab={\ruleName{$\desugarFwd$-nil}}
    ]
    {
       \strut
    }
    {
-      \annNil{\alpha} \dfwdarrow \annNil{\alpha}
+      \annNil{\alpha} \desugarFwd \annNil{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-non-empty-list}}
+      lab={\ruleName{$\desugarFwd$-non-empty-list}}
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      l \dfwdarrow e'
+      l \desugarFwd e'
    }
    {
-      \annList{s}{l}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
+      \annList{s}{l}{\alpha} \desugarFwd \annCons{e}{e'}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-cons}}
+      lab={\ruleName{$\desugarFwd$-cons}}
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      s' \dfwdarrow e'
+      s' \desugarFwd e'
    }
    {
-      \annCons{s}{s'}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
+      \annCons{s}{s'}{\alpha} \desugarFwd \annCons{e}{e'}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-let-rec}}
+      lab={\ruleName{$\desugarFwd$-let-rec}}
    ]
    {
-      \vec{c_i} \dfwdarrow \sigma_i
+      \vec{c_i} \desugarClauseFwd \sigma_i
       \quad
       (\forall i \numleq j)
       \\
-      s \dfwdarrow e
+      s \desugarFwd e
    }
    {
       \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
-      \dfwdarrow
+      \desugarFwd
       \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-apply}}
+      lab={\ruleName{$\desugarFwd$-apply}}
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      s' \dfwdarrow e'
+      s' \desugarFwd e'
    }
    {
-      \exApp{s}{s'} \dfwdarrow \exApp{e}{e'}
+      \exApp{s}{s'} \desugarFwd \exApp{e}{e'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-match}}
+      lab={\ruleName{$\desugarFwd$-match}}
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      \vec{c} \dfwdarrow \sigma
+      \vec{c} \desugarClauseFwd \sigma
    }
    {
       \exMatch{s}{\vec{c}}
-      \dfwdarrow
+      \desugarFwd
       \exApp{(\exLambda{\sigma})}{e}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-let}}
+      lab={\ruleName{$\desugarFwd$-let}}
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      \clauseUncurried{p}{s'} \dfwdarrow \sigma
+      \clauseUncurried{p}{s'} \desugarFwd \sigma
    }
    {
       \exLet{p}{s}{s'}
-      \dfwdarrow
+      \desugarFwd
       \exApp{(\exLambda{\sigma})}{e}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-if}}
+      lab={\ruleName{$\desugarFwd$-if}}
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      s' \dfwdarrow e'
+      s' \desugarFwd e'
       \\
-      s^{\twoPrime} \dfwdarrow e^{\twoPrime}
+      s^{\twoPrime} \desugarFwd e^{\twoPrime}
    }
    {
       \exIfThenElse{s}{s'}{s^{\twoPrime}}
-      \dfwdarrow
+      \desugarFwd
       \exApp{\exLambda{\elimBool{e'}{e^{\twoPrime}}}}{e}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-list-enum}},
+      lab={\ruleName{$\desugarFwd$-list-enum}},
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      s' \dfwdarrow e'
+      s' \desugarFwd e'
    }
    {
       \exListEnum{s}{s'}
-      \dfwdarrow
+      \desugarFwd
       \exApp{\exApp{\funEnumFromTo}{e}}{e'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\dfwdarrow$-list-comp-done}}]
+   \inferrule*[lab={\ruleName{$\desugarFwd$-list-comp-done}}]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
    }
    {
       \annot{\exListComp{s}{\seqEmpty}}{\alpha}
-      \dfwdarrow
+      \desugarFwd
       \annCons{e}{\annot{\exNil}{\alpha}}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-list-comp-guard}}
+      lab={\ruleName{$\desugarFwd$-list-comp-guard}}
    ]
    {
       \annListComp{s}{\vec{q}}{\alpha}
-      \dfwdarrow e
+      \desugarFwd e
       \\
-      s' \dfwdarrow e'
+      s' \desugarFwd e'
    }
    {
       \annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}
-      \dfwdarrow
+      \desugarFwd
       \exApp{\smash{\exLambda{\elimBool{e}{\annNil{\alpha}}}}}{e'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-list-comp-decl}}
+      lab={\ruleName{$\desugarFwd$-list-comp-decl}}
    ]
    {
-      \clauseUncurried{p}{\annListComp{s}{\vec{q}}{\alpha}} \dfwdarrow \sigma
+      \clauseUncurried{p}{\annListComp{s}{\vec{q}}{\alpha}}
+      \desugarClauseFwd
+      \sigma
       \\
-      s' \dfwdarrow e
+      s' \desugarFwd e
    }
    {
       \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
-      \dfwdarrow
+      \desugarFwd
       \exApp{(\exLambda{\sigma})}{e}
    }
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-list-comp-gen}}
+      lab={\ruleName{$\desugarFwd$-list-comp-gen}}
    ]
    {
-      \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha} \dfwdarrow \sigma
+      \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha}
+      \desugarClauseFwd 
+      \sigma
       \\
       \totalise{\sigma}{\alpha}{\sigma'}
       \\
-      s' \dfwdarrow e
+      s' \desugarFwd e
    }
    {
       \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
-      \dfwdarrow
+      \desugarFwd
       \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
    }
    \end{smathpar}
 
    \vspace{5pt}
-   \flushleft \shadebox{$l \dfwdarrow e$}
+   \flushleft \shadebox{$l \desugarFwd e$}
    \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-list-rest-end}}
+      lab={\ruleName{$\desugarFwd$-list-rest-end}}
    ]
    {
       \strut
    }
    {
-      \annListEnd{\alpha} \dfwdarrow \annNil{\alpha}
+      \annListEnd{\alpha} \desugarFwd \annNil{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dfwdarrow$-list-rest-cons}}
+      lab={\ruleName{$\desugarFwd$-list-rest-cons}}
    ]
    {
-      s \dfwdarrow e
+      s \desugarFwd e
       \\
-      l \dfwdarrow e'
+      l \desugarFwd e'
    }
    {
-      \annListNext{s}{l}{\alpha} \dfwdarrow \annCons{e}{e'}{\alpha}
+      (\annListNext{s}{l}{\alpha}) \desugarFwd \annCons{e}{e'}{\alpha}
    }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}

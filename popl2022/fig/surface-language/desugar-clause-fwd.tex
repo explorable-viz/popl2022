@@ -125,37 +125,37 @@
 }
 \end{smathpar}
 
-\flushleft\shadebox{$\vec{c} \dfwdarrow \sigma$ }
+\flushleft\shadebox{$\vec{c} \desugarClauseFwd \sigma$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-clause}}
+   lab={\ruleName{$\desugarClauseFwd$-clause}}
 ]
 {
-   s \dfwdarrow e
+   s \desugarFwd e
    \\
    \vec{p}, e \singletonElimFwd \sigma
 }
 {
    \clause{p}{s}
-   \dfwdarrow
+   \desugarClauseFwd
    \sigma
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\dfwdarrow$-clause-seq}}
+   lab={\ruleName{$\desugarClauseFwd$-clause-seq}}
 ]
 {
-   c \dfwdarrow \sigma
+   c \desugarClauseFwd \sigma
    \\
-   \vec{c} \dfwdarrow \sigma'
+   \vec{c} \desugarClauseFwd \sigma'
    \\
    \sigma \join \sigma' = \tau
 }
 {
-   c \cdot \vec{c}
-   \dfwdarrow
+   c \concat \vec{c}
+   \desugarClauseFwd
    \tau
 }
 \end{smathpar}

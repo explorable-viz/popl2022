@@ -259,23 +259,31 @@
 % Desugaring.
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
 \newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
+
 \newcommand*{\desugarFwd}{\dfwdarrow}
 \newcommand*{\desugarBwd}[1]{\sub{\dbwdarrow}{#1}}
 \newcommand*{\desugarFwdF}[1]{\mathsf{desugFwd}_{#1}}
 \newcommand*{\desugarBwdF}[1]{\mathsf{desugBwd}_{#1}}
+
 \newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRest}(#1)_*}
 \newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRest}(#1)^*}
+
+\newcommand*{\desugarClauseFwd}{\desugarFwd}
+\newcommand*{\desugarClauseBwd}[1]{\desugarBwd{#1}}
 \newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClause}(#1)_*}
 \newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClause}(#1)^*}
 \newcommand*{\desugarClausesFwdF}[1]{\mathsf{desugClauses}(#1)_*}
 \newcommand*{\desugarClausesBwdF}[1]{\mathsf{desugClauses}(#1)^*}
+
 \newcommand*{\singletonElimFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
 \newcommand*{\singletonElimBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}
+
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
 \newcommand*{\totaliseFwdF}[1]{\mathsf{generator}(#1)_*}
 \newcommand*{\totaliseBwdF}[1]{\mathsf{generator}(#1)^*}
 \newcommand*{\totalisebwd}[4]{{#1} \sub{\totalisebwdarrow}{#2} {#3}, {#4}}
+
 \newcommand*{\comma}{\textbf{\kw{,}}}
 \newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}

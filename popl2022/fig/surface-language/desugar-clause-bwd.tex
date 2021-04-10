@@ -135,10 +135,10 @@
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\sigma \desugarBwd{\vec{c}} \vec{c}'$}
+\flushleft\shadebox{$\sigma \desugarClauseBwd{\vec{c}} \vec{c}'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\desugarBwd{}$-clause}}
+   lab={\ruleName{$\desugarClauseBwd{}$-clause}}
 ]
 {
    \sigma \singletonElimBwd{\vec{p}} e
@@ -147,24 +147,24 @@
 }
 {
    \sigma
-   \desugarBwd{\clause{p}{s}}
+   \desugarClauseBwd{\clause{p}{s}}
    \clause{p}{s'}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\desugarBwd{}$-clause-seq}}
+   lab={\ruleName{$\desugarClauseBwd{}$-clause-seq}}
 ]
 {
-   \sigma \desugarBwd{c} c'
+   \sigma \desugarClauseBwd{c} c'
    \\
-   \sigma \desugarBwd{\vec{c}} \vec{c}'
+   \sigma \desugarClauseBwd{\vec{c}} \vec{c}'
 }
 {
    \sigma
-   \desugarBwd{c \concat \vec{c}}
-   c' \cdot \vec{c}'
+   \desugarClauseBwd{c \concat \vec{c}}
+   c' \concat \vec{c}'
 }
 \end{smathpar}
 \caption{Desugaring clauses and patterns -- backward slicing}
