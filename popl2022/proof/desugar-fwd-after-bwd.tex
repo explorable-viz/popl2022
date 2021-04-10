@@ -527,9 +527,8 @@ Induction on the $\desugarBwd{}$ derivation.
             e_1 \desugarBwd{s_1} s_1'
          }
          {
-            e,
-            \exLet{p}{s_1}{s_2}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exLet{p}{s_1}{s_2}}
             \exLet{p}{s_1'}{s_2'}
          }
       \end{smathpar}
@@ -589,14 +588,13 @@ Induction on the $\desugarBwd{}$ derivation.
          {
             e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
             \\
-            e_{1}, s_{1} \desugarBwd{} s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
-            e_{2}, s_{2} \desugarBwd{} s_{2}'
+            e_{2} \desugarBwd{s_{2}} s_{2}'
          }
          {
-            e,
-            \exListEnum{s_{1}}{s_{2}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListEnum{s_{1}}{s_{2}}}
             \exListEnum{s_{1}'}{s_{2}'}
          }
       \end{smathpar}
@@ -654,12 +652,11 @@ Induction on the $\desugarBwd{}$ derivation.
          {
             e \eq \annCons{e_{1}}{\annNil{\alpha}}{\alpha'}
             \\
-            e_{1}, s_{1} \desugarBwd{} s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
          }
          {
-            e,
-            \exListComp{s_{1}}{\qualDone}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s_{1}}{\qualDone}}
             \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha'}
          }
       \end{smathpar}
@@ -705,13 +702,13 @@ Induction on the $\desugarBwd{}$ derivation.
       \begin{smathpar}
          \inferrule*[lab={\ruleName{$\desugarBwd{}$-list-comp-last}}]
          {
-            e, \exListComp{s}{q \concat \qualDone}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s}{q \concat \qualDone}}
             \annot{\exListComp{s'}{q' \concat \qualDone}}{\alpha}
          }
          {
-            e, \exListComp{s}{q}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s}{q}}
             \annListComp{s'}{q'}{\alpha}
          }
       \end{smathpar}
@@ -759,14 +756,13 @@ Induction on the $\desugarBwd{}$ derivation.
          {
             e \eq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
             \\
-            e_2, s_2 \desugarBwd{} s_2'
+            e_2 \desugarBwd{s_2} s_2'
             \\
-            e_1, \exListComp{s_1}{\vec{q}} \desugarBwd{} \annListComp{s_{1}'}{\vec{q}'}{\beta}
+            e_1 \desugarBwd{\exListComp{s_1}{\vec{q}}} \annListComp{s_{1}'}{\vec{q}'}{\beta}
          }
          {
-            e,
-            \exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
             \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
          }
       \end{smathpar}
@@ -833,16 +829,15 @@ Induction on the $\desugarBwd{}$ derivation.
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma, \clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}
-            \desugarBwd{}
+            \sigma
+            \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}
             \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}}
             \\
-            e_{1}, s_{1} \desugarBwd{} s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
          }
          {
-            e,
-            \exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
             \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}
                   {\alpha}
          }
@@ -903,18 +898,17 @@ Induction on the $\desugarBwd{}$ derivation.
          {
             e \eq \exApp{\exApp{\kw{concatMap}}{(\exLambda{\sigma_1})}}{e_1}
             \\
-            e_{1}, s_{1} \desugarBwd{} s_{1}'
+            e_{1} \desugarBwd{s_{1}} s_{1}'
             \\
             \totalisebwd{\sigma_1}{p}{\sigma_2}{\beta}
             \\
-            \sigma_{2}, p \desugarBwd{} e_{2}
+            \sigma_{2} \desugarClauseBwd{p} e_{2}
             \\
-            e_{2}, \exListComp{s_2}{\vec{q}} \desugarBwd{} \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+            e_{2} \desugarBwd{\exListComp{s_2}{\vec{q}}} \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
          }
          {
-            e,
-            \exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}
-            \desugarBwd{}
+            e
+            \desugarBwd{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
             \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}
                   {\beta \join \beta'}
          }
