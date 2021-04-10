@@ -1,35 +1,33 @@
 \begin{figure}[H]
-\flushleft \shadebox{$e, l \dbwdarrow l$}
+\flushleft \shadebox{$e \desugarBwd{l} l'$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\dbwdarrow$-list-rest-end}}
+      lab={\ruleName{$\desugarBwd{}$-list-rest-end}}
    ]
    {
-      e \geq \annot{\exNil}{\alpha}
+      e \eq \annot{\exNil}{\alpha}
    }
    {
-      e,
-      \exListEnd
-      \dbwdarrow
+      e
+      \desugarBwd{\exListEnd}
       \annot{\exListEnd}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\dbwdarrow$-list-rest-cons}}
+      lab={\ruleName{$\desugarBwd{}$-list-rest-cons}}
    ]
    {
-      e \geq \annCons{e_1}{e_2}{\alpha}
+      e \eq \annCons{e_1}{e_2}{\alpha}
       \\
-      e_1, s \dbwdarrow s'
+      e_1 \desugarBwd{s} s'
       \\
-      e_2, l \dbwdarrow l'
+      e_2 \desugarBwd{l} l'
    }
    {
-      e,
-      (\exListNext{s}{l})
-      \dbwdarrow
+      e
+      \desugarBwd{(\exListNext{s}{l})}
       \annListNext{s'}{l'}{\alpha}
    }
 \end{smathpar}
