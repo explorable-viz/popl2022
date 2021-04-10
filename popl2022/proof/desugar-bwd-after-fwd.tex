@@ -194,13 +194,13 @@
    e_1 \desugarBwd{s_1} s_1' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{cons-ih1}
+   \notag
    \\
    &
    e_2 \desugarBwd{s_2} s_2' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{cons-ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -224,14 +224,12 @@
       \end{smathpar}
    }
    &
-   \text{(\localref{cons-ih1}, \localref{cons-ih2})}
    \notag
    \\
    &
    \qedLocal
    \annCons{s_1'}{s_2'}{\alpha} \leq \annCons{s_{1}}{s_{2}}{\alpha}
    &
-   \text{(\localref{cons-ih1}, \localref{cons-ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -265,13 +263,13 @@
    \quad (\forall i \numleq j)
    &
    \text{(\lemref{aux:clauses:gc})}
-   \locallabel{letrec:ih1}
+   \notag
    \\
    &
    e_1 \desugarBwd{s} s' \leq s \quad (\exists s')
    &
    \text{(IH)}
-   \locallabel{letrec:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -297,14 +295,12 @@
       \end{smathpar}
    }
    &
-   \text{(\localref{letrec:ih1}, \localref{letrec:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'} \leq \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
    &
-   \text{(\localref{letrec:ih1}, \localref{letrec:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -331,13 +327,13 @@
    e_1 \desugarBwd{s_1} s_1' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{app:ih1}
+   \notag
    \\
    &
    e_2 \desugarBwd{s_2} s_2' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{app:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -361,14 +357,12 @@
       \end{smathpar}
    }
    &
-   \text{(\localref{app:ih1}, \localref{app:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{s_1'}{s_2'} \leq \exApp{s_{1}}{s_{2}}
    &
-   \text{(\localref{app:ih1}, \localref{app:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -397,13 +391,13 @@
    \sigma \desugarClauseBwd{\vec{c}} \vec{c}' \leq \vec{c} \quad (\exists \vec{c}')
    &
    \text{(\lemref{aux:clauses:gc})}
-   \locallabel{match:ih1}
+   \notag
    \\
    &
    e_1 \desugarBwd{s_1} s_{1}' \leq s_1 \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{match:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -427,14 +421,12 @@
       \end{smathpar}
    }
    &
-   \text{(\localref{match:ih1}, \localref{match:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exMatch{s_{1}'}{\vec{c}'} \leq \exMatch{s_{1}}{\vec{c}}
    &
-   \text{(\localref{match:ih1}, \localref{match:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -464,13 +456,13 @@
    \quad (\exists s_2')
    &
    \text{(\lemref{aux:clauses:gc})}
-   \locallabel{let:ih1}
+   \notag
    \\
    &
    e_1 \desugarBwd{s_1} s_1' \leq s_1 \quad (\exists s_1')
    &
    \text{(IH)}
-   \locallabel{let:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -494,14 +486,12 @@
       \end{smathpar}
    }
    &
-   \text{(\localref{let:ih1}, \localref{let:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exLet{p}{s_1'}{s_2'} \leq \exLet{p}{s_{1}}{s_{2}}
    &
-   \text{(\localref{let:ih1}, \localref{let:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -532,19 +522,19 @@
    e_{1} \desugarBwd{s_{1}} s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{if:ih1}
+   \notag
    \\
    &
    e_{2} \desugarBwd{s_{2}} s_{2}' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{if:ih2}
+   \notag
    \\
    &
    e_{3} \desugarBwd{s_{3}} s_{3}' \leq s_{3} \quad (\exists s_{3}')
    &
    \text{(IH)}
-   \locallabel{if:ih3}
+   \notag
    \\
    &
    \qedLocal
@@ -570,14 +560,12 @@
       \end{smathpar}
    }
    &
-   \text{(\localref{if:ih1}, \localref{if:ih2}, \localref{if:ih3})}
    \notag
    \\
    &
    \qedLocal
    \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'} \leq \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    &
-   \text{(\localref{if:ih1}, \localref{if:ih2}, \localref{if:ih3})}
    \notag
    \\
    \intertext{\crossrule}
@@ -606,13 +594,13 @@
    e_{1} \desugarBwd{s_{1}} s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{listenum:ih1}
+   \notag
    \\
    &
    e_{2} \desugarBwd{s_{2}} s_{2}' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{listenum:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -636,14 +624,12 @@
       \end{smathpar}
    }
    &
-   \text{(\localref{listenum:ih1}, \localref{listenum:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exListEnum{s_{1}'}{s_{2}'} \leq \exListEnum{s_{1}}{s_{2}}
    &
-   \text{(\localref{listenum:ih1}, \localref{listenum:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -668,7 +654,7 @@
    e_{1} \desugarBwd{s_{1}} s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{listcompdone:ih1}
+   \notag
    \\
    &
    \qedLocal
@@ -688,14 +674,12 @@
       \end{smathpar}
    }
    &
-   \text{(\localref{listcompdone:ih1})}
    \notag
    \\
    &
    \qedLocal
    \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha} \leq \annot{\exListComp{s_{1}}{\seqEmpty}}{\alpha}
    &
-   \text{(\localref{listcompdone:ih1})}
    \notag
    \\
    \intertext{\crossrule}
