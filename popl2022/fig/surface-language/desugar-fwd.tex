@@ -203,8 +203,8 @@
       lab={\ruleName{$\desugarFwd$-list-comp-gen}}
    ]
    {
-      \annot{\clauseUncurried{p}{\exListComp{s}{\vec{q}}}}{\alpha}
-      \desugarClauseFwd 
+      \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}}}{\alpha}}
+      \desugarClauseFwd
       \sigma
       \\
       \totalise{\sigma}{\alpha}{\sigma'}

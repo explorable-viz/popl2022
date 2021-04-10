@@ -242,9 +242,9 @@
       \\
       \totalisebwd{\sigma}{p}{\sigma'}{\beta}
       \\
-      \sigma' \desugarBwd{p} e_{2}
-      \\
-      e_{2} \desugarBwd{\exListComp{s_2}{\vec{q}}} \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+      \sigma'
+      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
+      \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{{\beta'}}}
    }
    {
       e
