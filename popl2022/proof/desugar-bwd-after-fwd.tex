@@ -299,7 +299,9 @@
    \\
    &
    \qedLocal
-   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'} \leq \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
+   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+   \leq
+   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
    &
    \notag
    \\
@@ -678,7 +680,9 @@
    \\
    &
    \qedLocal
-   \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha} \leq \annot{\exListComp{s_{1}}{\seqEmpty}}{\alpha}
+   \annot{\exListComp{s_{1}'}{\seqEmpty}}{\alpha \join \alpha}
+   \leq
+   \annot{\exListComp{s_{1}}{\seqEmpty}}{\alpha}
    &
    \notag
    \\
@@ -712,7 +716,9 @@
    \notag
    \\
    &
-   e_1 \desugarBwd{\exListComp{s_1}{\vec{q}}} \annListComp{s_{1}'}{\vec{q}'}{\beta}
+   e_1
+   \desugarBwd{\exListComp{s_1}{\vec{q}}}
+   \annListComp{s_{1}'}{\vec{q}'}{\beta}
    \leq
    \annot{\exListComp{s_1}{\vec{q}}}{\alpha} \quad (\exists s_{1}', \vec{q}', \beta)
    &
