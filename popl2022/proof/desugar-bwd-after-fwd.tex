@@ -751,7 +751,9 @@
    \\
    &
    \qedLocal
-   \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta} \leq \annListComp{s_{1}}{\qualGuard{s_{2}} \concat \vec{q}}{\alpha}
+   \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
+   \leq
+   \annListComp{s_{1}}{\qualGuard{s_{2}} \concat \vec{q}}{\alpha}
    &
    \notag
    \\
@@ -822,7 +824,9 @@
    \\
    &
    \qedLocal
-   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\beta} \leq \annListComp{s_{2}}{\qualDeclaration{p}{s_{1}} \concat \vec{q}}{\alpha}
+   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\beta}
+   \leq
+   \annListComp{s_{2}}{\qualDeclaration{p}{s_{1}} \concat \vec{q}}{\alpha}
    &
    \notag
    \\
@@ -905,7 +909,9 @@
    \\
    &
    \qedLocal
-   \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}{\beta \join \beta'} \leq \annListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}{\alpha}
+   \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}{\beta \join \beta'}
+   \leq
+   \annListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}{\alpha}
    &
    \notag
 \end{flalign}

@@ -265,15 +265,15 @@
 \newcommand*{\desugarFwdF}[1]{\mathsf{desugFwd}_{#1}}
 \newcommand*{\desugarBwdF}[1]{\mathsf{desugBwd}_{#1}}
 
-\newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRest}(#1)_*}
-\newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRest}(#1)^*}
+\newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRestFwd}_{#1}}
+\newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRestBwd}_{#1}}
 
 \newcommand*{\desugarClauseFwd}{\desugarFwd}
 \newcommand*{\desugarClauseBwd}[1]{\desugarBwd{#1}}
-\newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClause}(#1)_*}
-\newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClause}(#1)^*}
-\newcommand*{\desugarClausesFwdF}[1]{\mathsf{desugClauses}(#1)_*}
-\newcommand*{\desugarClausesBwdF}[1]{\mathsf{desugClauses}(#1)^*}
+\newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClauseFwd}_{#1}}
+\newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClauseBwd}_{#1}}
+\newcommand*{\desugarClausesFwdF}[1]{\mathsf{desugClausesFwd}_{#1}}
+\newcommand*{\desugarClausesBwdF}[1]{\mathsf{desugClausesBwd}_{#1}}
 
 \newcommand*{\singletonElimFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
 \newcommand*{\singletonElimBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}
@@ -286,8 +286,8 @@
 
 \newcommand*{\listGenFwd}{\mathrel{R}}
 \newcommand*{\listGenBwd}[1]{\mathrel{\sub{S}{#1}}}
-\newcommand*{\listGenFwdF}[1]{\mathsf{listGen}(#1)_*}
-\newcommand*{\listGenBwdF}[1]{\mathsf{listGen}(#1)^*}
+\newcommand*{\listGenFwdF}[1]{\mathsf{listGenFwd}_{#1}}
+\newcommand*{\listGenBwdF}[1]{\mathsf{listGenBwd}_{#1}}
 
 \newcommand*{\comma}{\textbf{\kw{,}}}
 \newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}

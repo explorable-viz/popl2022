@@ -6,7 +6,7 @@
   \begin{enumerate}
      \item $\dfwdarrow$ domain-restricted to $\Below{l}$ is a monotonic function $\desugarListRestFwdF{l}$ to $\Below{e}$.
      \item $\dbwdarrow$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarListRestBwdF{l}$ to $\Below{l}$.
-     \item $\desugarListRestFwdF{l}(\desugarListRestBwdF{l}(e)) \geq e$.
+     \item $\desugarListRestFwdF{l}(\desugarListRestBwdF{l}(e')) \geq e'$.
      \item $\desugarListRestBwdF{l}(\desugarListRestFwdF{l}(l')) \leq l'$.
   \end{enumerate}
 \end{lemma}
@@ -14,10 +14,10 @@
   \label{lem:aux:clause:gc}
   Suppose $p, e \dfwdarrow \sigma$. Then:
   \begin{enumerate}
-     \item $\dfwdarrow$ domain-restricted to $\Below{(p, e)}$ is a monotonic function $\desugarClauseFwdF{p, e}$ to $\Below{\sigma}$.
-     \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClauseBwdF{p, e}$ to $\Below{(p, e)}$.
-     \item $\desugarClauseFwdF{p, e}(\desugarClauseBwdF{p, e}(\sigma)) \geq \sigma$.
-     \item $\desugarClauseBwdF{p, e}(\desugarClauseFwdF{p, e}(p, e)) \leq (p, e)$.
+     \item $\dfwdarrow$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarClauseFwdF{p, e}$ to $\Below{\sigma}$.
+     \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClauseBwdF{p, e}$ to $\Below{e}$.
+     \item $\desugarClauseFwdF{p, e}(\desugarClauseBwdF{p, e}(\sigma')) \geq \sigma'$.
+     \item $\desugarClauseBwdF{p, e}(\desugarClauseFwdF{p, e}(e')) \leq e'$.
   \end{enumerate}
 \end{lemma}
 \begin{lemma}[Galois connection for clauses]
@@ -26,8 +26,8 @@
   \begin{enumerate}
      \item $\dfwdarrow$ domain-restricted to $\Below{\vec{c}}$ is a monotonic function $\desugarClausesFwdF{\vec{c}}$ to $\Below{\sigma}$.
      \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClausesBwdF{\vec{c}}$ to $\Below{\vec{c}}$.
-     \item $\desugarClausesFwdF{\vec{c}}(\desugarClausesBwdF{\vec{c}}(\sigma)) \geq \sigma$.
-     \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}$.
+     \item $\desugarClausesFwdF{\vec{c}}(\desugarClausesBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
+     \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}'$.
   \end{enumerate}
 \end{lemma}
 \begin{lemma}[Galois connection for list generator]
