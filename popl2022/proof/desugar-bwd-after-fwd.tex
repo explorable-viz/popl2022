@@ -266,7 +266,7 @@
    \vec{c_i}' \leq \vec{c_i} \quad (\exists \vec{c_i}')
    \quad (\forall i \numleq j)
    &
-   \text{(\ref{lem:aux:clauses:gc})}
+   \text{(\lemref{aux:clauses:gc})}
    \locallabel{letrec:ih1}
    \\
    &
@@ -398,7 +398,7 @@
    &
    \sigma \desugarClauseBwd{\vec{c}} \vec{c}' \leq \vec{c} \quad (\exists \vec{c}')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
+   \text{(\lemref{aux:clauses:gc})}
    \locallabel{match:ih1}
    \\
    &
@@ -465,7 +465,7 @@
    \sigma \desugarClauseBwd{\clauseUncurried{p}{s_2}} s_2' \leq s_{2}
    \quad (\exists s_2')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
+   \text{(\lemref{aux:clauses:gc})}
    \locallabel{let:ih1}
    \\
    &
@@ -799,7 +799,7 @@
    \clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha} }
    \quad (\exists s_{2}', \vec{q}', \beta)
    &
-   \text{(\ref{lem:aux:clause:gc})}
+   \text{(\lemref{aux:clause:gc})}
    \locallabel{listdecl:ih1}
    \\
    &
@@ -883,13 +883,13 @@
    &
    \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta} \leq \sigma_1, \alpha \quad (\exists \sigma_1', \beta)
    &
-   \text{(\ref{lem:aux:list-gen:gc})}
+   \text{(\lemref{aux:list-gen:gc})}
    \locallabel{listgen:ih2}
    \\
    &
    \sigma_1 \singletonElimBwd{p} \leq e_2
    &
-   \text{(\ref{lem:aux:clause:gc})}
+   \text{(\lemref{aux:clause:gc})}
    \notag
    \\
    &
