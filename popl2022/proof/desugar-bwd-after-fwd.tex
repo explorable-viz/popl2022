@@ -95,7 +95,7 @@
          e \eq \annNil{\alpha}
       }
       {
-         e, \exNil \desugarBwd{} \annNil{\alpha}
+         e \desugarBwd{\exNil} \annNil{\alpha}
       }
    \end{smathpar}
    }
@@ -129,7 +129,7 @@
    \notag
    \\
    &
-   e_1, s \desugarBwd{} s' \leq s \quad (\exists s')
+   e_1 \desugarBwd{s} s' \leq s \quad (\exists s')
    &
    \text{(IH)}
    \locallabel{nelist-ih1}
