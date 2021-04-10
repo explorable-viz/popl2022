@@ -12,7 +12,7 @@
       \rho, x
       \eval
       v,
-      \bwdF{var(\rho)}
+      \bwdF{var(\rho,x)}
    }
    %
    \and
@@ -129,7 +129,7 @@
 \vspace{5mm}
 \flushleft\text{where}
 \begin{salign}
-   \bwdF{var(\rho)}
+   \bwdF{var(\rho,x)}
    &=
    \lambda\set{\hole \mapsto (\hole_\rho, \hole); u \mapsto (\envLookupBwd{\hole_\rho}{}{\bind{x}{u}}, x)}
    \\
