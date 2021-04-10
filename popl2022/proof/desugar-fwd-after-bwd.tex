@@ -14,13 +14,13 @@ Induction on the $\dbwdarrow$ derivation.
          {
             e \eq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
             \\
-            e_1, s_1 \dbwdarrow s_1'
+            e_1 \desugarBwd{s_1} s_1'
             \\
-            e_2, s_2 \dbwdarrow s_2'
+            e_2 \desugarBwd{s_2} s_2'
          }
          {
-            e, \exBinaryApp{s_{1}}{\primOp}{s_{2}}
-            \dbwdarrow
+            e 
+            \desugarBwd{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}
             \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
          }
       \end{smathpar}
