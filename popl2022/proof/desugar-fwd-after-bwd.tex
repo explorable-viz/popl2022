@@ -837,9 +837,9 @@ Induction on the $\desugarBwd{}$ derivation.
             \\
             \totalisebwd{\sigma_1}{p}{\sigma_2}{\beta}
             \\
-            \sigma_{2} \desugarClauseBwd{p} e_{2}
-            \\
-            e_{2} \desugarBwd{\exListComp{s_2}{\vec{q}}} \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}
+            \sigma_{2}
+            \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
+            \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}}
          }
          {
             e
