@@ -266,8 +266,8 @@
 \newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClause}(#1)^*}
 \newcommand*{\desugarClausesFwdF}[1]{\mathsf{desugClauses}(#1)_*}
 \newcommand*{\desugarClausesBwdF}[1]{\mathsf{desugClauses}(#1)^*}
-%\newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
-%\newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
+\newcommand*{\singletonElimFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
+\newcommand*{\singletonElimBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
