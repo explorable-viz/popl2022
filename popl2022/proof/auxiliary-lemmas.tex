@@ -34,8 +34,8 @@
   \label{lem:aux:list-gen:gc}
   \item
   \begin{itemize}
-    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ such that $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
-    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ such that $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \desugarClauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
+    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ with $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
+    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ with $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \desugarClauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
   \end{itemize}
   Suppose $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
   \begin{enumerate}
