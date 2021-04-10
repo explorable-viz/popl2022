@@ -1,6 +1,7 @@
 \subsection{\thmref{surface-language:desugar:gc}, part (i)}
 Induction on the $\dbwdarrow$ derivation.
 \begin{proof}
+\small
 \begin{flalign}
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -136,13 +137,13 @@ Induction on the $\dbwdarrow$ derivation.
    s' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{nelist-ih1}
+   \notag
    \\
    &
    l' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
-   \text{(\ref{lem:aux:desugarlistrest:gc})}
-   \locallabel{nelist-ih2}
+   \text{(\lemref{aux:desugarlistrest:gc})}
+   \notag
    \\
    &
    \qedLocal
@@ -162,14 +163,12 @@ Induction on the $\dbwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{nelist-ih1}, \localref{nelist-ih2})}
    \notag
    \\
    &
    \qedLocal
    \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha} \eq e
    &
-   \text{(\localref{nelist-ih1}, \localref{nelist-ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -200,13 +199,13 @@ Induction on the $\dbwdarrow$ derivation.
    s_{1}' \desugarFwd e_{1}' \geq e_{1} \quad (\exists e_{1}')
    &
    \text{(IH)}
-   \locallabel{cons-ih1}
+   \notag
    \\
    &
    s_{2}' \desugarFwd e_{2}' \geq e_{2} \quad (\exists e_{2}')
    &
    \text{(IH)}
-   \locallabel{cons-ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -226,14 +225,12 @@ Induction on the $\dbwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{cons-ih1}, \localref{cons-ih2})}
    \notag
    \\
    &
    \qedLocal
    \annCons{e_{1}'}{e_{2}'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha} \eq e
    &
-   \text{(\localref{cons-ih1}, \localref{cons-ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -254,7 +251,7 @@ Induction on the $\dbwdarrow$ derivation.
             e_1, s \dbwdarrow s'
          }
          {
-            e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c}_1}}{\bind{x_j}{\vec{c_j}}}}{s}
+            e, \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
             \dbwdarrow
             \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
          }
@@ -263,15 +260,20 @@ Induction on the $\dbwdarrow$ derivation.
    \notag
    \\
    &
-   \vec{c_i}' \desugarFwd \sigma_{i}' \geq \sigma_{i}  \quad (\exists \sigma_{i}') \quad (\forall i \numleq j)
+   \vec{c_i}' \desugarFwd \sigma_{i}' \geq \sigma_{i}
+   \quad
+   (\forall i \numleq j)
+   \quad
+   (\exists \vec{\sigma}')
    &
-   \text{(\ref{lem:aux:clauses:gc})}
+   \text{(\lemref{aux:clauses:gc})}
+   \notag
    \\
    &
    s' \desugarFwd e' \geq e \quad (\exists e')
    &
    \text{(IH)}
-   \locallabel{letrec:ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -295,14 +297,12 @@ Induction on the $\dbwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{letrec:ih1}, \localref{letrec:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1'}}{\bind{x_j}{\sigma_j'}}}{e'} \geq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1} \eq e
    &
-   \text{(\localref{letrec:ih1}, \localref{letrec:ih2})}
    \notag
    \\
    \intertext{\crossrule}
