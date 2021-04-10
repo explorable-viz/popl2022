@@ -1,7 +1,6 @@
 \subsection{\thmref{surface-language:desugar:gc}, part (ii)}
-Induction on the $\dfwdarrow$ derivation.
 \begin{proof}
-   Suppose $e, s \dbwdarrow s'$. Then $\desugarBwdF{s}(\desugarFwdF{s}(s')) \leq s'$.
+   Induction on the $\dfwdarrow$ derivation.
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -29,13 +28,13 @@ Induction on the $\dfwdarrow$ derivation.
    e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{dbf:binary-ih1}
+   \notag
    \\
    &
    e_{2}, s_{2} \dbwdarrow s_{2}' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{dbf:binary-ih2}
+   \notag
    \\
    &
    \qedLocal
@@ -59,14 +58,14 @@ Induction on the $\dfwdarrow$ derivation.
    \end{smathpar}
    }
    &
-   \text{(\localref{dbf:binary-ih1}, \localref{dbf:binary-ih2})}
+   \text{(\localref{binary-ih1}, \localref{binary-ih2})}
    \notag
    \\
    &
    \qedLocal
    \exBinaryApp{s_{1}'}{\primOp}{s_{2}'} \leq \exBinaryApp{s_{1}}{\primOp}{s_{2}}
    &
-   \text{(\localref{dbf:binary-ih1}, \localref{dbf:binary-ih2})}
+   \text{(\localref{binary-ih1}, \localref{binary-ih2})}
    \notag
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,13 +134,13 @@ Induction on the $\dfwdarrow$ derivation.
    e_1, s \dbwdarrow s' \leq s \quad (\exists s')
    &
    \text{(IH)}
-   \locallabel{dbf:nelist-ih1}
+   \locallabel{nelist-ih1}
    \\
    &
    e_2, l \dbwdarrow l' \leq l \quad (\exists l')
    &
    \text{(IH)}
-   \locallabel{dbf:nelist-ih2}
+   \locallabel{nelist-ih2}
    \\
    &
    \qedLocal
@@ -165,14 +164,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:nelist-ih1}, \localref{dbf:nelist-ih2})}
+   \text{(\localref{nelist-ih1}, \localref{nelist-ih2})}
    \notag
    \\
    &
    \qedLocal
    \annList{s'}{l'}{\alpha} \leq \annList{s}{l}{\alpha}
    &
-   \text{(\localref{dbf:nelist-ih1}, \localref{dbf:nelist-ih2})}
+   \text{(\localref{nelist-ih1}, \localref{nelist-ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -199,13 +198,13 @@ Induction on the $\dfwdarrow$ derivation.
    e_1, s_1 \dbwdarrow s_1' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{dbf:cons-ih1}
+   \locallabel{cons-ih1}
    \\
    &
    e_2, s_2 \dbwdarrow s_2' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{dbf:cons-ih2}
+   \locallabel{cons-ih2}
    \\
    &
    \qedLocal
@@ -229,14 +228,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:cons-ih1}, \localref{dbf:cons-ih2})}
+   \text{(\localref{cons-ih1}, \localref{cons-ih2})}
    \notag
    \\
    &
    \qedLocal
    \annCons{s_1'}{s_2'}{\alpha} \leq \annCons{s_{1}}{s_{2}}{\alpha}
    &
-   \text{(\localref{dbf:cons-ih1}, \localref{dbf:cons-ih2})}
+   \text{(\localref{cons-ih1}, \localref{cons-ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -267,13 +266,13 @@ Induction on the $\dfwdarrow$ derivation.
    \sigma_i, \vec{c_i} \dbwdarrow \vec{c_i}' \leq \vec{c_i} \quad (\exists \vec{c_i}') \quad (\forall i \numleq j)
    &
    \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{dbf:letrec:ih1}
+   \locallabel{letrec:ih1}
    \\
    &
    e_1, s \dbwdarrow s' \leq s \quad (\exists s')
    &
    \text{(IH)}
-   \locallabel{dbf:letrec:ih2}
+   \locallabel{letrec:ih2}
    \\
    &
    \qedLocal
@@ -299,14 +298,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:letrec:ih1}, \localref{dbf:letrec:ih2})}
+   \text{(\localref{letrec:ih1}, \localref{letrec:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'} \leq \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
    &
-   \text{(\localref{dbf:letrec:ih1}, \localref{dbf:letrec:ih2})}
+   \text{(\localref{letrec:ih1}, \localref{letrec:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -333,13 +332,13 @@ Induction on the $\dfwdarrow$ derivation.
    e_1, s_1 \dbwdarrow s_1' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{dbf:app:ih1}
+   \locallabel{app:ih1}
    \\
    &
    e_2, s_2 \dbwdarrow s_2' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{dbf:app:ih2}
+   \locallabel{app:ih2}
    \\
    &
    \qedLocal
@@ -363,14 +362,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:app:ih1}, \localref{dbf:app:ih2})}
+   \text{(\localref{app:ih1}, \localref{app:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exApp{s_1'}{s_2'} \leq \exApp{s_{1}}{s_{2}}
    &
-   \text{(\localref{dbf:app:ih1}, \localref{dbf:app:ih2})}
+   \text{(\localref{app:ih1}, \localref{app:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -399,13 +398,13 @@ Induction on the $\dfwdarrow$ derivation.
    \sigma, \vec{c} \dbwdarrow \vec{c}' \leq \vec{c} \quad (\exists \vec{c}')
    &
    \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{dbf:match:ih1}
+   \locallabel{match:ih1}
    \\
    &
    e_1, s_1 \dbwdarrow s_{1}' \leq s_1 \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{dbf:match:ih2}
+   \locallabel{match:ih2}
    \\
    &
    \qedLocal
@@ -430,14 +429,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:match:ih1}, \localref{dbf:match:ih2})}
+   \text{(\localref{match:ih1}, \localref{match:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exMatch{s_{1}'}{\vec{c}'} \leq \exMatch{s_{1}}{\vec{c}}
    &
-   \text{(\localref{dbf:match:ih1}, \localref{dbf:match:ih2})}
+   \text{(\localref{match:ih1}, \localref{match:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -466,13 +465,13 @@ Induction on the $\dfwdarrow$ derivation.
    \sigma, \clauseUncurried{p}{s_2} \dbwdarrow s_2' \leq s_{2} \quad (\exists s_2')
    &
    \text{(\ref{lem:aux:clauses:gc})}
-   \locallabel{dbf:let:ih1}
+   \locallabel{let:ih1}
    \\
    &
    e_1, s_1 \dbwdarrow s_1' \leq s_1 \quad (\exists s_1')
    &
    \text{(IH)}
-   \locallabel{dbf:let:ih2}
+   \locallabel{let:ih2}
    \\
    &
    \qedLocal
@@ -497,14 +496,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:let:ih1}, \localref{dbf:let:ih2})}
+   \text{(\localref{let:ih1}, \localref{let:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exLet{p}{s_1'}{s_2'} \leq \exLet{p}{s_{1}}{s_{2}}
    &
-   \text{(\localref{dbf:let:ih1}, \localref{dbf:let:ih2})}
+   \text{(\localref{let:ih1}, \localref{let:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -535,19 +534,19 @@ Induction on the $\dfwdarrow$ derivation.
    e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{dbf:if:ih1}
+   \locallabel{if:ih1}
    \\
    &
    e_{2}, s_{2} \dbwdarrow s_{2}' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{dbf:if:ih2}
+   \locallabel{if:ih2}
    \\
    &
    e_{3}, s_{3} \dbwdarrow s_{3}' \leq s_{3} \quad (\exists s_{3}')
    &
    \text{(IH)}
-   \locallabel{dbf:if:ih3}
+   \locallabel{if:ih3}
    \\
    &
    \qedLocal
@@ -574,14 +573,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:if:ih1}, \localref{dbf:if:ih2}, \localref{dbf:if:ih3})}
+   \text{(\localref{if:ih1}, \localref{if:ih2}, \localref{if:ih3})}
    \notag
    \\
    &
    \qedLocal
    \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'} \leq \exIfThenElse{s_{1}}{s_{2}}{s_{3}}
    &
-   \text{(\localref{dbf:if:ih1}, \localref{dbf:if:ih2}, \localref{dbf:if:ih3})}
+   \text{(\localref{if:ih1}, \localref{if:ih2}, \localref{if:ih3})}
    \notag
    \\
    \intertext{\crossrule}
@@ -610,13 +609,13 @@ Induction on the $\dfwdarrow$ derivation.
    e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{dbf:listenum:ih1}
+   \locallabel{listenum:ih1}
    \\
    &
    e_{2}, s_{2} \dbwdarrow s_{2}' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{dbf:listenum:ih2}
+   \locallabel{listenum:ih2}
    \\
    &
    \qedLocal
@@ -641,14 +640,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:listenum:ih1}, \localref{dbf:listenum:ih2})}
+   \text{(\localref{listenum:ih1}, \localref{listenum:ih2})}
    \notag
    \\
    &
    \qedLocal
    \exListEnum{s_{1}'}{s_{2}'} \leq \exListEnum{s_{1}}{s_{2}}
    &
-   \text{(\localref{dbf:listenum:ih1}, \localref{dbf:listenum:ih2})}
+   \text{(\localref{listenum:ih1}, \localref{listenum:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -673,7 +672,7 @@ Induction on the $\dfwdarrow$ derivation.
    e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{dbf:listcompdone:ih1}
+   \locallabel{listcompdone:ih1}
    \\
    &
    \qedLocal
@@ -694,14 +693,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:listcompdone:ih1})}
+   \text{(\localref{listcompdone:ih1})}
    \notag
    \\
    &
    \qedLocal
    \annot{\exListComp{s_{1}'}{\qualDone}}{\alpha \join \alpha} \leq \annot{\exListComp{s_{1}}{\qualDone}}{\alpha}
    &
-   \text{(\localref{dbf:listcompdone:ih1})}
+   \text{(\localref{listcompdone:ih1})}
    \notag
    \\
    \intertext{\crossrule}
@@ -746,7 +745,7 @@ Induction on the $\dfwdarrow$ derivation.
    \sigma, p \dbwdarrow \annCons{e_2'}{\annot{\exNil}{\beta'}}{\beta} \leq \annCons{e_2}{\annot{\exNil}{\alpha}}{\alpha} \quad (\exists e_2', \beta, \beta')
    &
    \text{(\ref{lem:aux:clause:gc})}
-   \locallabel{dbf:listcomplast:ih1}
+   \locallabel{listcomplast:ih1}
    \\
    &
    e_2, s \dbwdarrow \leq s
@@ -758,13 +757,13 @@ Induction on the $\dfwdarrow$ derivation.
    e_2, s \dbwdarrow s' \leq s \quad (\exists s')
    &
    \text{(Monotonicity)}
-   \locallabel{dbf:listcomplast:ih2}
+   \locallabel{listcomplast:ih2}
    \\
    &
    e_1, s_1 \dbwdarrow s_1' \leq s_1 \quad (\exists s_1')
    &
    \text{(IH)}
-   \locallabel{dbf:listcomplast:ih3}
+   \locallabel{listcomplast:ih3}
    \\
    &
    \qedLocal
@@ -806,14 +805,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:listcomplast:ih1}, \localref{dbf:listcomplast:ih2}, \localref{dbf:listcomplast:ih3})}
+   \text{(\localref{listcomplast:ih1}, \localref{listcomplast:ih2}, \localref{listcomplast:ih3})}
    \notag
    \\
    &
    \qedLocal
    \annListComp{s'}{\qualDeclaration{p}{s_1'}}{\beta \join \beta'} \leq \annListComp{s}{\qualDeclaration{p}{s_{1}}}{\alpha}
    &
-   \text{(\localref{dbf:listcomplast:ih1}, \localref{dbf:listcomplast:ih2}, \localref{dbf:listcomplast:ih3})}
+   \text{(\localref{listcomplast:ih1}, \localref{listcomplast:ih2}, \localref{listcomplast:ih3})}
    \notag
    \\
    &
@@ -848,13 +847,13 @@ Induction on the $\dfwdarrow$ derivation.
    e_2, s_2 \dbwdarrow s_2' \leq s_{2} \quad (\exists s_{2}')
    &
    \text{(IH)}
-   \locallabel{dbf:listguard:ih1}
+   \locallabel{listguard:ih1}
    \\
    &
    e_1, \exListComp{s_1}{\vec{q}} \dbwdarrow \annListComp{s_{1}'}{\vec{q}'}{\beta} \leq \annot{\exListComp{s_1}{\vec{q}}}{\alpha} \quad (\exists s_{1}', \vec{q}', \beta)
    &
    \text{(IH)}
-   \locallabel{dbf:listguard:ih2}
+   \locallabel{listguard:ih2}
    \\
    &
    \qedLocal
@@ -879,14 +878,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:listguard:ih1}, \localref{dbf:listguard:ih2})}
+   \text{(\localref{listguard:ih1}, \localref{listguard:ih2})}
    \notag
    \\
    &
    \qedLocal
    \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta} \leq \annListComp{s_{1}}{\qualGuard{s_{2}} \concat \vec{q}}{\alpha}
    &
-   \text{(\localref{dbf:listguard:ih1}, \localref{dbf:listguard:ih2})}
+   \text{(\localref{listguard:ih1}, \localref{listguard:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -917,13 +916,13 @@ Induction on the $\dfwdarrow$ derivation.
             \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}\leq \clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha} } \quad (\exists s_{2}', \vec{q}', \beta)
    &
    \text{(\ref{lem:aux:clause:gc})}
-   \locallabel{dbf:listdecl:ih1}
+   \locallabel{listdecl:ih1}
    \\
    &
    e_{1}, s_{1} \dbwdarrow s_{1}' \leq s_{1} \quad (\exists s_{1}')
    &
    \text{(IH)}
-   \locallabel{dbf:listdecl:ih2}
+   \locallabel{listdecl:ih2}
    \\
    &
    \qedLocal
@@ -950,14 +949,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:listdecl:ih1}, \localref{dbf:listdecl:ih2})}
+   \text{(\localref{listdecl:ih1}, \localref{listdecl:ih2})}
    \notag
    \\
    &
    \qedLocal
    \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}{\beta} \leq \annListComp{s_{2}}{\qualDeclaration{p}{s_{1}} \concat \vec{q}}{\alpha}
    &
-   \text{(\localref{dbf:listdecl:ih1}, \localref{dbf:listdecl:ih2})}
+   \text{(\localref{listdecl:ih1}, \localref{listdecl:ih2})}
    \notag
    \\
    \intertext{\crossrule}
@@ -996,13 +995,13 @@ Induction on the $\dfwdarrow$ derivation.
    e_1, s_1 \dbwdarrow s_1' \quad (\exists s_1')
    &
    \text{(IH)}
-   \locallabel{dbf:listgen:ih1}
+   \locallabel{listgen:ih1}
    \\
    &
    \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta} \leq \sigma_1, \alpha \quad (\exists \sigma_1', \beta)
    &
    \text{(\ref{lem:aux:list-gen:gc})}
-   \locallabel{dbf:listgen:ih2}
+   \locallabel{listgen:ih2}
    \\
    &
    \sigma_1, p \dbwdarrow \leq e_2
@@ -1014,7 +1013,7 @@ Induction on the $\dfwdarrow$ derivation.
    \sigma_1', p \dbwdarrow e_2' \leq e_2 \quad (\exists e_2')
    &
    \text{(Monotonicity)}
-   \locallabel{dbf:listgen:ih3}
+   \locallabel{listgen:ih3}
    \\
    &
    e_{2}, \exListComp{s_2}{\vec{q}} \dbwdarrow \leq \annot{\exListComp{s_{2}}{\vec{q}}}{\alpha}
@@ -1026,7 +1025,7 @@ Induction on the $\dfwdarrow$ derivation.
    e_{2}', \exListComp{s_2}{\vec{q}} \dbwdarrow \annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'} \leq \annot{\exListComp{s_2}{\vec{q}}}{\alpha}  \quad (\exists s_2', \vec{q}', \beta')
    &
    \text{(Monotonicity)}
-   \locallabel{dbf:listgen:ih4}
+   \locallabel{listgen:ih4}
    \\
    &
    \qedLocal
@@ -1055,14 +1054,14 @@ Induction on the $\dfwdarrow$ derivation.
       \end{smathpar}
    }
    &
-   \text{(\localref{dbf:listgen:ih1}, \localref{dbf:listgen:ih2}, \localref{dbf:listgen:ih3}, \localref{dbf:listgen:ih4})}
+   \text{(\localref{listgen:ih1}, \localref{listgen:ih2}, \localref{listgen:ih3}, \localref{listgen:ih4})}
    \notag
    \\
    &
    \qedLocal
    \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}{\beta \join \beta'} \leq \annListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}{\alpha}
    &
-   \text{(\localref{dbf:listgen:ih1}, \localref{dbf:listgen:ih2}, \localref{dbf:listgen:ih3}, \localref{dbf:listgen:ih4})}
+   \text{(\localref{listgen:ih1}, \localref{listgen:ih2}, \localref{listgen:ih3}, \localref{listgen:ih4})}
    \notag
 \end{flalign}
 \end{proof}
