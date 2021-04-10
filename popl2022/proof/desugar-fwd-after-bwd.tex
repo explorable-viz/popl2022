@@ -716,7 +716,7 @@ Induction on the $\desugarBwd{}$ derivation.
    &
    \annListComp{s_{1}'}{\vec{q}'}{\alpha \join \beta} \desugarFwd e_{1}' \geq e_1  \quad (\exists e_{1}')
    &
-   \text{(Monotonicity)}
+   \text{(monotonicity)}
    \locallabel{listguard:ih1}
    \\
    &
@@ -853,22 +853,24 @@ Induction on the $\desugarBwd{}$ derivation.
    \\
    &
    \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}}
-   \desugarClauseFwd\geq
-   \sigma_{2}
+   \desugarClauseFwd
+   \sigma_{2}^\dagger
+   \quad
+   (\exists \sigma_2^\dagger)
    &
-   \text{(\lemref{aux:clauses:gc})}
+   \text{(\lemref{aux:list-gen:gc})}
    \notag
    \\
    &
    \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'}}
-   \desugarClauseFwd \sigma_{2}' \geq \sigma_{2}
+   \desugarClauseFwd \sigma_{2}' \geq \sigma_{2}^\dagger
    \quad (\exists \sigma_{2}')
    &
-   \text{(Monotonicity)}
+   \text{(monotonicity)}
    \locallabel{listgen:premise-one}
    \\
    &
-   \totaliseGeq{\sigma_{2}}{\beta} \sigma_{1}
+   \totaliseGeq{\sigma_{2}^\dagger}{\beta} \sigma_{1}
    &
    \text{(\lemref{aux:list-gen:gc})}
    \notag
@@ -876,7 +878,7 @@ Induction on the $\desugarBwd{}$ derivation.
    &
    \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1} \quad (\exists \sigma_{1}')
    &
-   \text{(Monotonicity)}
+   \text{(monotonicity)}
    \locallabel{listgen:premise-two}
    \\
    &
