@@ -1,17 +1,17 @@
 \begin{figure}[H]
-\flushleft\shadebox{$\sigma, \vec{p} \dbwdarrow e$}
+\flushleft\shadebox{$\sigma \singletonElimBwd{\vec{p}} e$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\dbwdarrow$-pattern-seq}}
 ]
 {
-   \sigma, p \dbwdarrow\geq \exLambda{\sigma'}
+   \sigma \singletonElimBwd{p}\eq \exLambda{\sigma'}
    \\
-   \sigma', \vec{p} \dbwdarrow e
+   \sigma' \singletonElimBwd{\vec{p}} e
 }
 {
-   \sigma, p \cdot \vec{p}
-   \dbwdarrow
+   \sigma
+   \singletonElimBwd{p \concat \vec{p}}
    e
 }
 \end{smathpar}
