@@ -141,9 +141,9 @@
    lab={\ruleName{$\desugarBwd{}$-clause}}
 ]
 {
-   \sigma, \vec{p} \dbwdarrow e
+   \sigma \singletonElimBwd{\vec{p}} e
    \\
-   e, s \dbwdarrow s'
+   e \desugarBwd{s} s'
 }
 {
    \sigma
