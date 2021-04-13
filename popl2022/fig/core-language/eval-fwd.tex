@@ -50,18 +50,25 @@ e \eq \annNil{\alpha}
    \\
    v_2 &\eq& \evalFwdF{U}(\rho, e_2, \alpha')
 \end{array}
+\\
+\evalFwdF{\trVec{U_{i}}{x}{i}{T}{j}}(\rho,e,\alpha')
+&=&
+\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}
+&\text{where}&
+\begin{array}[t]{lll}
+   e &\eq& \annVec{e_1}{x}{e_2}{\alpha}
+   \\
+   v_1 &\eq& \evalFwdF{T}(\rho, e_1, \alpha')
+   \\
+   v_2 &\eq& \evalFwdF{U}(\rho, e_2, \alpha')
+\end{array}
 \end{array}$\\
 \vspace{3mm}
 
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
    {
-      e \eq \annVec{e_1}{x}{e_2}{\alpha}
-      \\
       \evalFwdEq{\rho}{e_2}{\alpha'}{T}
                 {\annInt{j}{\beta}}
       \\
@@ -70,8 +77,6 @@ e \eq \annNil{\alpha}
       (\forall i \numleq j)
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trVec{U_{i}}{x}{i}{T}{j}}
-              {\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
    }
    %
    \and
