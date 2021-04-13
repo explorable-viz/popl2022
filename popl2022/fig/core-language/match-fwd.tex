@@ -26,53 +26,31 @@ $\begin{array}{lllll}
    &=&
    (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
    &\text{where}&
-   (v, \sigma) \eq (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+   \begin{array}[t]{lll}
+      (v, \sigma) &\eq& (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+      \\
+      (\rho_1, \tau, \beta) &\eq& \matchFwdF{w_1}(v_1,\sigma')
+      \\
+      (\rho_2, \kappa, \beta') &\eq& \matchFwdF{w_2}(v_2,\tau)
+   \end{array}
+   \\
+   \matchFwdF{\matchNilNew}(v, \sigma)
+   &=&
+   (\seqEmpty, \kappa, \alpha)
+   &\text{where}&
+   (v, \sigma) \eq (\annNil{\alpha}, \elimList{\kappa}{\sigma'})
+   \\
+   \matchFwdF{\matchConsNew{w_1}{w_2}}(v, \sigma)
+   &=&
+   (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
+   &\text{where}&
+   \begin{array}[t]{lll}
+      (v, \sigma) &\eq& (\annCons{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
+      \\
+      (\rho_1, \tau, \beta) &\eq& \matchFwdF{w_1}(v_1,\sigma')
+      \\
+      (\rho_2, \kappa, \beta') &\eq& \matchFwdF{w_2}(v_2,\tau)
+   \end{array}
 \end{array}$
-\vspace{5mm}
-\flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}
-\begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\matchFwdS$-pair}}
-   ]
-   {
-      \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
-      \\
-      \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
-   }
-   {
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\matchFwdS$-nil}}
-   ]
-   {
-      v \eq \annNil{\alpha}
-      \\
-      \sigma \eq \elimList{\kappa}{\sigma'}
-   }
-   {
-      \matchFwd{v}{\sigma}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\matchFwdS$-cons}}
-   ]
-   {
-      v \eq \annCons{v_1}{v_2}{\alpha}
-      \\
-      \sigma \eq \elimList{\kappa}{\sigma'}
-      \\
-      \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
-      \\
-      \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
-   }
-   {
-      \matchFwd{v}{\sigma}{\matchConsNew{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
-   }
-\end{smathpar}
 \caption{Pattern-matching: forward slicing}
 \end{figure}
