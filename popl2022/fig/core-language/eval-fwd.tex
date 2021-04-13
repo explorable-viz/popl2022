@@ -26,33 +26,23 @@ e \eq \exOp{\primOp}
 \exClosure{\rho}{\seqEmpty}{\sigma}
 &\text{where}&
 e \eq \exLambda{\sigma}
-\text{ and }
-\envLookup{\rho}{\primOp}{v}
+\\
+\evalFwdF{\trInt{n}{\Gamma}}(\rho,e,\alpha')
+&=&
+\annInt{n}{\alpha \meet \alpha'}
+&\text{where}&
+e \eq \annInt{n}{\alpha}
+\\
+\evalFwdF{\trNil{\Gamma}}(\rho,e,\alpha')
+&=&
+\annNil{\alpha \meet \alpha'}
+&\text{where}&
+e \eq \annNil{\alpha}
 \end{array}$\\
 \vspace{3mm}
 
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
-   {
-      e \eq \annInt{n}{\alpha}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha'}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha \meet \alpha'}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
-   {
-      e \eq \annNil{\alpha}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha'}{\trNil{\Gamma}}{\annNil{\alpha \meet \alpha'}}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\evalFwdS$-cons}},
    ]
