@@ -1,16 +1,17 @@
 \begin{figure}[H]
+\flushleft \shadebox{$\matchBwdF{w}: \Below{(\rho,\kappa, \alpha)} \to \Below{(v,\sigma)}$}
+ where $w :: v, \sigma \match \rho, \kappa, \alpha$ \\
+ \small
+\vspace{3mm}
+$\begin{array}{lllll}
+   \matchBwdF{x}(\bind{x}{v}, \kappa, \alpha)
+   &=&
+   (\matchVarNew{x}, v, \elimVar{x}{\kappa})
+\end{array}$
+
+\vspace{5mm}
 \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
-   {
-      \strut
-   }
-   {
-      \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
    {
       \strut
