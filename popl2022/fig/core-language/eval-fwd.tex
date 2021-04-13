@@ -1,43 +1,30 @@
 \begin{figure}[H]
 \flushleft
-\shadebox{$\evalFwdF{T}: \Below{(\rho,e) \to \Below{v}}$}
+\shadebox{$\evalFwdF{T}: \Below{(\rho,e,\TT) \to \Below{v}}$}
 where $T :: \rho, e \eval v$ \\
 \small
 \vspace{3mm}
 $\begin{array}{lllll}
+\evalFwdF{\trVar{x}{\Gamma}}(\rho,e,\alpha)
+&=&
+v
+&\text{where}&
+e \eq \exVar{x}
+\text{ and }
+\envLookup{\rho}{x}{v}
+\\
+\evalFwdF{\trOp{\primOp}{\Gamma}}(\rho,e,\alpha)
+&=&
+v
+&\text{where}&
+e \eq \exOp{\primOp}
+\text{ and }
+\envLookup{\rho}{\primOp}{v}
 \end{array}$\\
 \vspace{3mm}
 
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\evalFwdS$-var}}
-   ]
-   {
-      e \eq \exVar{x}
-      \\
-      \envLookup{\rho}{x}{v}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trVar{x}{\Gamma}}{v}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\evalFwdS$-op}}
-   ]
-   {
-      e \eq \exOp{\primOp}
-      \\
-      \envLookup{\rho}{\primOp}{v}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trOp{\primOp}{\Gamma}}{v}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
    {
       e \eq \exLambda{\sigma}
