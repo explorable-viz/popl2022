@@ -2,71 +2,44 @@
 \flushleft \shadebox{$\matchFwdF{w}: \Below{(v,\sigma) \to \Below{(\rho,\kappa, \alpha)}}$}
  where $w :: v, \sigma \match \rho, \kappa, \alpha$ \\
  \small
-$\begin{array}{ll}
-   \matchFwdF{x}(v,\sigma) &=
+\vspace{3mm}
+$\begin{array}{lllll}
+   \matchFwdF{x}(v, \sigma)
+   &=&
+   (\bind{x}{v}, \kappa, \TT)
+   &\text{where}&
+   \sigma \eq \elimVar{x}{\kappa}
+   \\
+   \matchFwdF{\matchTrueNew}(v, \sigma)
+   &=&
+   (\seqEmpty, \kappa, \alpha)
+   &\text{where}&
+   (v, \sigma) \eq (\annTrue{\alpha}, \elimBool{\kappa}{\kappa'})
+   \\
+   \matchFwdF{\matchFalseNew}(v, \sigma)
+   &=&
+   (\seqEmpty, \kappa', \alpha)
+   &\text{where}&
+   (v, \sigma) \eq (\annFalse{\alpha}, \elimBool{\kappa}{\kappa'})
+   \\
+   \matchFwdF{\matchPair{w_1}{w_2}}(v, \sigma)
+   &=&
+   (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
+   &\text{where}&
+   (v, \sigma) \eq (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
 \end{array}$
 \vspace{5mm}
 \flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\matchFwdS$-var}}
-   ]
-   {
-      \sigma \eq \elimVar{x}{\kappa}
-   }
-   {
-      \matchFwd{v}{\sigma}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\matchFwdS$-true}}
-   ]
-   {
-      v \eq \annTrue{\alpha}
-      \\
-      \sigma \eq \elimBool{\kappa}{\kappa'}
-   }
-   {
-      \matchFwd{v}{\sigma}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\matchFwdS$-false}}
-   ]
-   {
-      v \eq \annFalse{\alpha}
-      \\
-      \sigma \eq \elimBool{\kappa}{\kappa'}
-   }
-   {
-      \matchFwd{v}{\sigma}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\matchFwdS$-pair}}
    ]
    {
-      v \eq \annPair{v_1}{v_2}{\alpha}
-      \\
-      \sigma \eq \elimProd{\sigma'}
-      \\
       \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
       \\
       \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
    }
    {
-      \matchFwd{v}
-               {\sigma'}
-               {\matchPair{w_1}{w_2}}
-               {\rho_1 \concat \rho_2}
-               {\kappa}
-               {\alpha \meet \beta \meet \beta'}
    }
    %
    \and
