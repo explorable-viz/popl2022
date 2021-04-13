@@ -32,10 +32,6 @@
 \input{fig/core-language/match-fwd}
 \input{fig/core-language/match-bwd}
 
-\begin{lemma}[Determinism of pattern-matching]
-   Suppose $v, \sigma \match \rho, \kappa$ and $v', \sigma' \match \rho', \kappa'$. If $v \eq v'$ and $\sigma \eq \sigma'$ then $\rho \eq \rho'$ and $\kappa \eq \kappa'$.
-\end{lemma}
-
 \begin{definition}[Forward and backward functions for pattern-matching]
    Suppose $w: v, \sigma \match \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\Bool)} \to \Below{(\rho,\kappa)}$ to be $\matchFwdR{w}$ domain-restricted to $\Below{(v,\sigma,\Bool)}$ and define $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\Bool)}$ to be $\matchBwdR{w}$ domain-restricted to $\Below{(\rho,\kappa)}$.
 \end{definition}
