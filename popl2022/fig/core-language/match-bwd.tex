@@ -4,34 +4,22 @@
  \small
 \vspace{3mm}
 $\begin{array}{lllll}
-   \matchBwdF{x}(\bind{x}{v}, \kappa, \alpha)
+   \matchBwdF{\matchVarNew{x}}(\bind{x}{v}, \kappa, \alpha)
    &=&
-   (\matchVarNew{x}, v, \elimVar{x}{\kappa})
+   (v, \elimVar{x}{\kappa})
+   \\
+   \matchBwdF{\matchTrueNew}(\seqEmpty, \kappa, \alpha)
+   &=&
+   (\annTrue{\alpha}, \elimBool{\kappa}{\hole})
+   \\
+   \matchBwdF{\matchFalseNew}(\seqEmpty, \kappa, \alpha)
+   &=&
+   (\annFalse{\alpha}, \elimBool{\hole}{\kappa})
 \end{array}$
 
 \vspace{5mm}
 \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
-   {
-      \strut
-   }
-   {
-      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrueNew}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
-   {
-      \strut
-   }
-   {
-      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
    {
       \matchBwd{\rho_2}{\kappa}{\alpha}{w_2}{v_2}{\sigma}
