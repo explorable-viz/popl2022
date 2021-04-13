@@ -20,21 +20,19 @@ v
 e \eq \exOp{\primOp}
 \text{ and }
 \envLookup{\rho}{\primOp}{v}
+\\
+\evalFwdF{\trLambda{\sigma'}}(\rho,e,\alpha)
+&=&
+\exClosure{\rho}{\seqEmpty}{\sigma}
+&\text{where}&
+e \eq \exLambda{\sigma}
+\text{ and }
+\envLookup{\rho}{\primOp}{v}
 \end{array}$\\
 \vspace{3mm}
 
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
-   {
-      e \eq \exLambda{\sigma}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trLambda{\sigma'}}{\exClosure{\rho}{\seqEmpty}{\sigma}}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
    {
       e \eq \annInt{n}{\alpha}
