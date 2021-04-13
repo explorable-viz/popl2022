@@ -15,6 +15,18 @@ $\begin{array}{lllll}
    \matchBwdF{\matchFalseNew}(\seqEmpty, \kappa, \alpha)
    &=&
    (\annFalse{\alpha}, \elimBool{\hole}{\kappa})
+   \\
+   \matchBwdF{\matchPair{w_1}{w_2}}(\rho_1 \concat \rho_2, \kappa, \alpha)
+   &=&
+   (\annPair{v_1}{v_2}{\alpha}, \elimProd{\tau})
+   &\text{where}&
+   \begin{array}[t]{lll}
+      (v, \sigma) &\eq& (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+      \\
+      (\rho_1, \tau, \beta) &\eq& \matchFwdF{w_1}(v_1,\sigma')
+      \\
+      (\rho_2, \kappa, \beta') &\eq& \matchFwdF{w_2}(v_2,\tau)
+   \end{array}
 \end{array}$
 
 \vspace{5mm}
@@ -27,12 +39,6 @@ $\begin{array}{lllll}
       \matchBwd{\rho_1}{\sigma}{\alpha}{w_1}{v_1}{\tau}
    }
    {
-      \matchBwd{\rho_1 \concat \rho_2}
-               {\kappa}
-               {\alpha}
-               {\matchPair{w_1}{w_2}}
-               {\annPair{v_1}{v_2}{\alpha}}
-               {\elimProd{\tau}}
    }
    %
    \and
