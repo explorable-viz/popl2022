@@ -5,6 +5,14 @@ where $T :: \rho, e \eval v$ \\
 \small
 \vspace{3mm}
 $\begin{array}{lllll}
+\evalFwdF{T}(\rho,\hole,\alpha)
+&=&
+v
+&\text{where}&
+\hole \neq e \eq \hole
+\text{ and }
+\evalFwdF{T}(\rho,e,\alpha) = v
+\\
 \evalFwdF{\trVar{x}{\Gamma}}(\rho,e,\alpha)
 &=&
 v
@@ -46,9 +54,9 @@ e \eq \annNil{\alpha}
 \begin{array}[t]{lll}
    e &\eq& \annCons{e_1}{e_2}{\alpha}
    \\
-   v_1 &\eq& \evalFwdF{T}(\rho, e_1, \alpha')
+   v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha')
    \\
-   v_2 &\eq& \evalFwdF{U}(\rho, e_2, \alpha')
+   v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha')
 \end{array}
 \\
 \evalFwdF{\trVec{U_{i}}{x}{i}{T}{j}}(\rho,e,\alpha')
@@ -58,29 +66,17 @@ e \eq \annNil{\alpha}
 \begin{array}[t]{lll}
    e &\eq& \annVec{e_1}{x}{e_2}{\alpha}
    \\
-   v_1 &\eq& \evalFwdF{T}(\rho, e_1, \alpha')
+   \annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha')
    \\
-   v_2 &\eq& \evalFwdF{U}(\rho, e_2, \alpha')
+   v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha')
+   \quad
+   (\forall i \numleq j)
 \end{array}
 \end{array}$\\
 \vspace{3mm}
 
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
-   {
-      \evalFwdEq{\rho}{e_2}{\alpha'}{T}
-                {\annInt{j}{\beta}}
-      \\
-      \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e_1}{\alpha'}{U_{i}}{v_{i}}
-      \quad
-      (\forall i \numleq j)
-   }
-   {
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\evalFwdS$-vector-lookup}},
       right={$i \numleq j$}
