@@ -45,28 +45,31 @@ $\begin{array}{rllrlll}
 \\
 &&&
 (\rho',e_2,\alpha') &=& \evalBwdF{U}{v_2}
-\end{array}$\\
-\vspace{10mm}
-
-$\begin{array}{lllll}
 \\
 \evalBwdF{\trVec{\vec{U}}{x}{T}{j}}(\annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha})
 &=&
 (\bigjoin\vec{\rho} \join \rho',
- \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha},
+ e^\twoPrime,
  \beta^\twoPrime)
 &
-\begin{array}[t]{lll}
-   (\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}, e_{i}, \alpha'_{i})
-   &=&
-   \evalBwdF{U_{i}}(u_{i})
-   \\
-   (\rho', e', \alpha^\twoPrime)
-   &=&
-   \evalBwdF{T}(\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}})
-   \\
-   \beta^\twoPrime &=& \alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime
-\end{array}
+(\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}, e_{i}, \alpha'_{i})
+&=&
+\evalBwdF{U_{i}}(u_{i})
+\\
+&&&
+(\rho', e', \alpha^\twoPrime)
+&=&
+\smash{\evalBwdF{T}(\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}})}
+\\
+&&&
+e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
+\\
+&&&
+\beta^\twoPrime &=& \alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime
+\end{array}$\\
+\vspace{10mm}
+
+$\begin{array}{lllll}
 \\
 \evalBwdF{\trVecLookup{T}{j}{U}{i}}(v)
 &=&
