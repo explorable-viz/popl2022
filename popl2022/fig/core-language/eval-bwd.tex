@@ -130,31 +130,21 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
 (\rho_1 \concat \rho_2 \concat \rho_3, e, \beta) &=& \evalBwdF{T'}(v)
 \\
 &&&
-(\rho,e_1,\alpha) &=& \evalBwdF{T}(\exPrimOp{\phi}{\vec{u}})
+(v', \sigma) &=& \matchBwdF{w}(\rho_3,e,\beta)
 \\
 &&&
-(\rho',e_2,\alpha') &=& \evalBwdF{U}(u')
+(\rho,e_2,\alpha) &=& \evalBwdF{U}(v')
+\\
+&&&
+(\rho_1', h) &=& \closeDefsBwdF{}(\rho_2)
+\\
+&&&
+(\rho',e_1,\alpha') &=& \evalBwdF{T}(\exClosure{\rho_1 \join \rho_1'}{h}{\sigma})
 \end{array}$\\
 \vspace{10mm}
 
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
-   \inferrule*[
-   ]
-   {
-      \matchBwd{\rho_3}{e}{\beta}{w}{v'}{\sigma}
-      \\
-      \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
-      \\
-      \rho_2 \closeDefsBwdR \rho_1', h
-      \\
-      \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
-   }
-   {
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\evalBwdS$-let-rec}}
    ]
