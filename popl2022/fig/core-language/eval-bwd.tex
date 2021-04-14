@@ -4,6 +4,7 @@ $\begin{array}{rllrlll}
 &&&
 \textit{where}
 \\
+% hole
 \evalBwdF{T}(\hole)
 &=&
 (\rho,e,\alpha)
@@ -13,30 +14,36 @@ $\begin{array}{rllrlll}
 &&&
 (\rho,e,\alpha) &=& \evalBwdF{T}(v)
 \\
+% var
 \evalBwdF{\trVar{x}{\Gamma}}(v)
 &=&
 (\rho,\exVar{x},\FF)
 &
 \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
 \\
+% op
 \evalBwdF{\trOp{\primOp}{\Gamma}}(v)
 &=&
 (\rho,\exOp{\primOp},\FF)
 &
 \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
 \\
+% fun
 \evalBwdF{\trLambda{\sigma'}}(\exClosure{\rho}{\seqEmpty}{\sigma})
 &=&
 (\rho,\exLambda{\sigma},\FF)
 \\
+% int
 \evalBwdF{\trInt{n}{\Gamma}}(\annInt{n}{\alpha})
 &=&
 (\hole_{\Gamma},\annInt{n}{\alpha},\alpha)
 \\
+% nil
 \evalBwdF{\trNil{\Gamma}}(\annNil{\alpha})
 &=&
 (\hole_{\Gamma},\annNil{\alpha},\alpha)
 \\
+% cons
 \evalBwdF{\trCons{T}{U}}(\annCons{v_1}{v_2}{\beta})
 &=&
 (\rho \join \rho', \annCons{e_1}{e_2}{\beta}, \beta^\twoPrime)
@@ -49,6 +56,7 @@ $\begin{array}{rllrlll}
 &&&
 \beta^\twoPrime &=& \beta \join \alpha \join \alpha'
 \\
+% vector
 \evalBwdF{\trVec{\vec{U}}{x}{T}{j}}(\annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha})
 &=&
 (\bigjoin\vec{\rho} \join \rho',
@@ -70,6 +78,7 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
 &&&
 \beta^\twoPrime &=& \alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime
 \\
+% vector-lookup
 \evalBwdF{\trVecLookup{T}{j}{U}{i}}(v)
 &=&
 (\rho \join \rho', \exVecLookup{e_1}{e_2}, \alpha \join \alpha')
@@ -83,36 +92,27 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
 &=&
 \evalBwdF{U}(\annInt{i}{\FF})
 \\
+% vector-len
 \evalBwdF{\trVecLen{T}{j}}(\annInt{j}{\beta})
 &=&
 (\rho, \exVecLen{e}, \alpha)
 &
 (\rho,e,\alpha) &=& \evalBwdF{T}(\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF})
+\\
+% apply-prim-unsat
+\evalBwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\exPrimOp{\phi}{\vec{u} \concat u'})
+&=&
+(\rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha')
+&
+(\rho,e_1,\alpha) &=& \evalBwdF{T}(\exPrimOp{\phi}{\vec{u}})
+\\
+&&&
+(\rho',e_2,\alpha') &=& \evalBwdF{U}(u')
 \end{array}$\\
 \vspace{10mm}
 
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply-prim-unsat}}
-   ]
-   {
-      v \eq \exPrimOp{\phi}{\vec{u} \concat u'}
-      \\
-      \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
-      \\
-      \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
-   }
-   {
-      \evalBwd{v}
-              {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\rho \join \rho'}
-              {\exApp{e_1}{e_2}}
-              {\alpha \join \alpha'}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\evalBwdS$-apply-prim-sat}}
    ]
