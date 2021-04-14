@@ -41,10 +41,10 @@ $\begin{array}{rllrlll}
 &=&
 (\rho \join \rho', \annCons{e_1}{e_2}{\beta}, \beta \join \alpha \join \alpha')
 &
-(\rho,e_1,\alpha) &=& \evalBwdF{T}{v_1}
+(\rho,e_1,\alpha) &=& \evalBwdF{T}(v_1)
 \\
 &&&
-(\rho',e_2,\alpha') &=& \evalBwdF{U}{v_2}
+(\rho',e_2,\alpha') &=& \evalBwdF{U}(v_2)
 \\
 \evalBwdF{\trVec{\vec{U}}{x}{T}{j}}(\annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha})
 &=&
@@ -66,24 +66,23 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
 \\
 &&&
 \beta^\twoPrime &=& \alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime
-\end{array}$\\
-\vspace{10mm}
-
-$\begin{array}{lllll}
 \\
 \evalBwdF{\trVecLookup{T}{j}{U}{i}}(v)
 &=&
 (\rho \join \rho', \exVecLookup{e_1}{e_2}, \alpha \join \alpha')
 &
-\begin{array}[t]{lll}
-   (\rho,e_1,\alpha)
-   &=&
-   \evalBwdF{T}(\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v})
-   \\
-   (\rho', e_2, \alpha')
-   &=&
-   \evalBwdF{U}{\annInt{i}{\FF}}
-\end{array}
+(\rho,e_1,\alpha)
+&=&
+\evalBwdF{T}(\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v})
+\\
+&&&
+(\rho', e_2, \alpha')
+&=&
+\evalBwdF{U}(\annInt{i}{\FF})
+\end{array}$\\
+\vspace{10mm}
+
+$\begin{array}{lllll}
 \\
 \evalBwdF{\trVecLookup{T}{j}{U}{i}}(\annInt{j}{\beta})
 &=&
