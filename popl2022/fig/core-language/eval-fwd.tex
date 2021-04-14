@@ -5,72 +5,93 @@ where $T :: \rho, e \eval v$ \\
 \small
 \vspace{3mm}
 $\begin{array}{lllll}
+&&&
+\textit{where}
+\\
 \evalFwdF{T}(\rho,\hole,\alpha)
 &=&
 v
-&\text{where}&
+&
 \hole \neq e \eq \hole
 \text{ and }
 \evalFwdF{T}(\rho,e,\alpha) = v
 \\
-\evalFwdF{\trVar{x}{\Gamma}}(\rho,e,\alpha)
+\evalFwdF{\trVar{x}{\Gamma}}(\rho,\exVar{x},\alpha)
 &=&
 v
-&\text{where}&
-e \eq \exVar{x}
-\text{ and }
+&
 \envLookup{\rho}{x}{v}
 \\
-\evalFwdF{\trOp{\primOp}{\Gamma}}(\rho,e,\alpha)
+\evalFwdF{\trOp{\primOp}{\Gamma}}(\rho,\exOp{\primOp},\alpha)
 &=&
 v
-&\text{where}&
-e \eq \exOp{\primOp}
-\text{ and }
+&
 \envLookup{\rho}{\primOp}{v}
 \\
-\evalFwdF{\trLambda{\sigma'}}(\rho,e,\alpha)
+\evalFwdF{\trLambda{\sigma'}}(\rho,\exLambda{\sigma},\alpha)
 &=&
 \exClosure{\rho}{\seqEmpty}{\sigma}
-&\text{where}&
-e \eq \exLambda{\sigma}
 \\
-\evalFwdF{\trInt{n}{\Gamma}}(\rho,e,\alpha')
+\evalFwdF{\trInt{n}{\Gamma}}(\rho,\annInt{n}{\alpha},\alpha')
 &=&
 \annInt{n}{\alpha \meet \alpha'}
-&\text{where}&
-e \eq \annInt{n}{\alpha}
 \\
-\evalFwdF{\trNil{\Gamma}}(\rho,e,\alpha')
+\evalFwdF{\trNil{\Gamma}}(\rho,\annNil{\alpha},\alpha')
 &=&
 \annNil{\alpha \meet \alpha'}
-&\text{where}&
-e \eq \annNil{\alpha}
 \\
-\evalFwdF{\trCons{T}{U}}(\rho,e,\alpha')
+\evalFwdF{\trCons{T}{U}}(\rho,\annCons{e_1}{e_2}{\alpha},\alpha')
 &=&
 \annCons{v_1}{v_2}{\alpha \meet \alpha'}
-&\text{where}&
+&
 \begin{array}[t]{lll}
-   e &\eq& \annCons{e_1}{e_2}{\alpha}
-   \\
    v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha')
    \\
    v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha')
 \end{array}
 \\
-\evalFwdF{\trVec{U_{i}}{x}{i}{T}{j}}(\rho,e,\alpha')
+\evalFwdF{\trVec{U_{i}}{x}{i}{T}{j}}(\rho,\annVec{e_1}{x}{e_2}{\alpha},\alpha')
 &=&
 \annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}
-&\text{where}&
+&
 \begin{array}[t]{lll}
-   e &\eq& \annVec{e_1}{x}{e_2}{\alpha}
-   \\
    \annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha')
    \\
    v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha')
    \quad
    (\forall i \numleq j)
+\end{array}
+\\
+\evalFwdF{\trVecLookup{T}{j}{U}{i}}(\rho,\exVecLookup{e_1}{e_2},\alpha)
+&=&
+v_{i}
+&
+\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} \eq \evalFwdF{T}(\rho, e_1, \alpha)
+\\
+\evalFwdF{\trVecLen{T}{j}}(\rho,\exVecLen{e'},\alpha)
+&=&
+\annInt{j}{\alpha'}
+&
+\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} \eq \evalFwdF{T}(\rho, e', \alpha)
+\\
+\evalFwdF{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,\exApp{e_1}{e_2},\alpha)
+&=&
+\exPrimOp{\phi}{\vec{v} \concat u}
+&
+\begin{array}[t]{lll}
+   \exPrimOp{\phi}{\vec{v}} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
+   \\
+   u &=& \evalFwdF{U}(\rho, e_2, \alpha)
+\end{array}
+\\
+\evalFwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(\rho,\exApp{e_1}{e_2},\alpha)
+&=&
+\evalFwdF{T'}(\rho_1 \concat \rho_2 \concat \rho_3, e', \beta)
+&
+\begin{array}[t]{lll}
+   \exPrimOp{\phi}{\vec{v}} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
+   \\
+   u &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \end{array}
 \end{array}$\\
 \vspace{3mm}
@@ -78,49 +99,12 @@ e \eq \annNil{\alpha}
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-vector-lookup}},
-      right={$i \numleq j$}
-   ]
-   {
-      e \eq \exVecLookup{e_1}{e_2}
-      \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}
-                {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
-   {
-      e \eq \exVecLen{e'}
-      \\
-      \evalFwdEq{\rho}{e'}{\alpha}{T}
-                {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trVecLen{T}{j}}
-              {\annInt{j}{\alpha'}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\evalFwdS$-apply-prim-unsat}},
       right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
    ]
    {
-      e \eq \exApp{e_1}{e_2}
-      \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
-      \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{u}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\exPrimOp{\phi}{\vec{v} \concat u}}
    }
    %
    \and
@@ -144,11 +128,8 @@ e \eq \annNil{\alpha}
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-apply}}
    ]
    {
-      e \eq \exApp{e_1}{e_2}
-      \\
       \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
       \\
       \rho_1, h \closeDefsFwdR \rho_2
@@ -156,11 +137,8 @@ e \eq \annNil{\alpha}
       \evalFwd{\rho}{e_2}{\alpha}{U}{v}
       \\
       \matchFwd{v}{\sigma}{w}{\rho_3}{e'}{\beta}
-      \\
-      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e'}{\beta}{T'}{v'}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trApp{T}{U}{\matchPlug{w}{T'}}}{v'}
    }
    %
    \and
