@@ -352,7 +352,7 @@ Induction on the $\evalBwdS$ derivation.
       }
       {
          \evalBwd{v}
-                 {\trVec{U_{i}}{x}{i}{T}{j}}
+                 {\trVecNew{\vec{U}}{x}{T}{j}}
                  {\bigjoin\vec{\rho} \join \rho'}
                  {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}}
                  {\alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime}
@@ -459,7 +459,7 @@ Induction on the $\evalBwdS$ derivation.
         \evalFwd{\bigjoin\rho \join \rho'}
                 {\annVec{\bigjoin e}{x}{e'}{\alpha}}
                 {\alpha^\dagger}
-                {\trVec{U_{i}}{x}{i}{T}{j}}
+                {\trVecNew{\vec{U}}{x}{T}{j}}
                 {\annVecVal{\vec{v}}{\annInt{j}{\beta^\dagger}}{\alpha \meet \alpha^\dagger}}
      }
    \end{smathpar}
