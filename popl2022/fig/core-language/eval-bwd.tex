@@ -108,39 +108,40 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
 \\
 &&&
 (\rho',e_2,\alpha') &=& \evalBwdF{U}(u')
+\\
+% apply-prim-sat
+\evalBwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\annInt{n'}{\beta})
+&=&
+(\rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha')
+&
+\primBwd{\phi}(\vec{n} \concat m)(\annInt{n'}{\beta}) &=& \vec{u} \concat u'
+\\
+&&&
+(\rho,e_1,\alpha) &=& \evalBwdF{T}(\exPrimOp{\phi}{\vec{u}})
+\\
+&&&
+(\rho',e_2,\alpha') &=& \evalBwdF{U}(u')
+\\
+% apply
+\evalBwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(v)
+&=&
+(\rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha')
+&
+(\rho_1 \concat \rho_2 \concat \rho_3, e, \beta) &=& \evalBwdF{T'}(v)
+\\
+&&&
+(\rho,e_1,\alpha) &=& \evalBwdF{T}(\exPrimOp{\phi}{\vec{u}})
+\\
+&&&
+(\rho',e_2,\alpha') &=& \evalBwdF{U}(u')
 \end{array}$\\
 \vspace{10mm}
 
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply-prim-sat}}
    ]
    {
-      v \eq \annInt{n'}{\beta}
-      \\
-      \primBwd{\phi}(\vec{n} \concat m)(\annInt{n'}{\beta}) = \vec{u} \concat u'
-      \\
-      \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
-      \\
-      \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
-   }
-   {
-      \evalBwd{v}
-              {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\rho \join \rho'}
-              {\exApp{e_1}{e_2}}
-              {\alpha \join \alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply}}
-   ]
-   {
-      \evalBwd{v}{T'}{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}
-      \\
       \matchBwd{\rho_3}{e}{\beta}{w}{v'}{\sigma}
       \\
       \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
@@ -150,7 +151,6 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
       \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
    }
    {
-      \evalBwd{v}{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
    }
    %
    \and
