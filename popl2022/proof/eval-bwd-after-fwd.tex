@@ -343,7 +343,7 @@ Induction on the $\evalFwdS$ derivation.
          (\forall i \numleq j)
       }
       {
-         \evalFwd{\rho}{e}{\alpha'}{\trVecNew{\vec{U}}{x}{T}{j}}
+         \evalFwd{\rho}{e}{\alpha'}{\trVec{\vec{U}}{x}{T}{j}}
                  {\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
       }
    \end{smathpar}
@@ -403,7 +403,7 @@ Induction on the $\evalFwdS$ derivation.
       }
       {
          \evalBwd{\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
-                 {\trVecNew{\vec{U}}{x}{T}{j}}
+                 {\trVec{\vec{U}}{x}{T}{j}}
                  {\bigjoin{\vec{\rho}'} \join \rho_2}
                  {\annVec{\bigjoin{\vec{e}'}}{x}{e_2'}{\alpha \meet \alpha'}}
                  {(\alpha \meet \alpha') \join {\bigjoin{\vec{\beta}'}} \join \alpha^\twoPrime}
