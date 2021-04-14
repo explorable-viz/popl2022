@@ -1,6 +1,6 @@
 \begin{figure}[H]
 \small
-$\begin{array}{rllrlll}
+$\begin{array}{lllrlll}
 &&&
 \textit{where}
 \\
@@ -140,23 +140,17 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
 \\
 &&&
 (\rho',e_1,\alpha') &=& \evalBwdF{T}(\exClosure{\rho_1 \join \rho_1'}{h}{\sigma})
+\\
+% let-rec
+\evalBwdF{\trLetRecMutual{h}{T}}(v)
+&=&
+(\rho \join \rho',\exLetRecMutual{h'}{e},\alpha)
+&
+(\rho \concat \rho_1,e,\alpha) &=& \evalBwdF{T}(v){T}
+\\
+&&&
+(\rho', h') &=& \closeDefsBwdF{}(\rho_1)
 \end{array}$\\
-\vspace{10mm}
-
-\flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
-\begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\evalBwdS$-let-rec}}
-   ]
-   {
-      \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
-      \\
-      \rho_1 \closeDefsBwdR \rho', h'
-   }
-   {
-      \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
-   }
-\end{smathpar}
 
 \vspace{5pt}
 \flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
