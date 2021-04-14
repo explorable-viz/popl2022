@@ -39,12 +39,15 @@ $\begin{array}{rllrlll}
 \\
 \evalBwdF{\trCons{T}{U}}(\annCons{v_1}{v_2}{\beta})
 &=&
-(\rho \join \rho', \annCons{e_1}{e_2}{\beta}, \beta \join \alpha \join \alpha')
+(\rho \join \rho', \annCons{e_1}{e_2}{\beta}, \beta^\twoPrime)
 &
 (\rho,e_1,\alpha) &=& \evalBwdF{T}(v_1)
 \\
 &&&
 (\rho',e_2,\alpha') &=& \evalBwdF{U}(v_2)
+\\
+&&&
+\beta^\twoPrime &=& \beta \join \alpha \join \alpha'
 \\
 \evalBwdF{\trVec{\vec{U}}{x}{T}{j}}(\annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha})
 &=&
@@ -79,17 +82,14 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
 (\rho', e_2, \alpha')
 &=&
 \evalBwdF{U}(\annInt{i}{\FF})
-\end{array}$\\
-\vspace{10mm}
-
-$\begin{array}{lllll}
 \\
 \evalBwdF{\trVecLookup{T}{j}{U}{i}}(\annInt{j}{\beta})
 &=&
 (\rho, \exVecLen{e}, \alpha)
 &
-(\rho,e,\alpha) = \evalBwdF{T}(\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF})
-\end{array}$
+(\rho,e,\alpha) &=& \evalBwdF{T}(\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF})
+\end{array}$\\
+\vspace{10mm}
 
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
