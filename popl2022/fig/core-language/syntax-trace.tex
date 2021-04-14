@@ -6,12 +6,12 @@ w
 &
 ::=
 &
-\matchVarNew{x}
+\matchVar{x}
 &
 \text{variable}
 \\
 &&&
-\matchTrueNew \mid \matchFalseNew
+\matchTrue \mid \matchFalse
 &
 \text{Boolean}
 \\
@@ -21,12 +21,12 @@ w
 \text{pair}
 \\
 &&&
-\matchNilNew
+\matchNil
 &
 \text{nil}
 \\
 &&&
-\matchConsNew{w}{w'}
+\matchCons{w}{w'}
 &
 \text{cons}
 \\[2mm]
@@ -98,7 +98,7 @@ T, U
 \text{application}
 \\
 &&&
-\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{n}}
+\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{n}}
 &
 \text{primitive application}
 \\

@@ -1,13 +1,13 @@
 $\begin{array}{lllll}
-   \matchBwdF{\matchVarNew{x}}(\bind{x}{v}, \kappa, \alpha)
+   \matchBwdF{\matchVar{x}}(\bind{x}{v}, \kappa, \alpha)
    &=&
    (v, \elimVar{x}{\kappa})
    \\
-   \matchBwdF{\matchTrueNew}(\seqEmpty, \kappa, \alpha)
+   \matchBwdF{\matchTrue}(\seqEmpty, \kappa, \alpha)
    &=&
    (\annTrue{\alpha}, \elimBool{\kappa}{\hole})
    \\
-   \matchBwdF{\matchFalseNew}(\seqEmpty, \kappa, \alpha)
+   \matchBwdF{\matchFalse}(\seqEmpty, \kappa, \alpha)
    &=&
    (\annFalse{\alpha}, \elimBool{\hole}{\kappa})
    \\
@@ -21,11 +21,11 @@ $\begin{array}{lllll}
       (v_1, \tau) &\eq& \matchBwdF{w_1}(\rho_1, \sigma, \alpha)
    \end{array}
    \\
-   \matchBwdF{\matchNilNew}(\seqEmpty,\kappa,\alpha)
+   \matchBwdF{\matchNil}(\seqEmpty,\kappa,\alpha)
    &=&
    (\annNil{\alpha}, \elimList{\kappa}{\hole})
    \\
-   \matchBwdF{\matchConsNew{w_1}{w_2}}(\rho_1 \concat \rho_2, \kappa, \alpha)
+   \matchBwdF{\matchCons{w_1}{w_2}}(\rho_1 \concat \rho_2, \kappa, \alpha)
    &=&
    (\annCons{v_1}{v_2}{\alpha}, \elimList{\hole}{\tau})
    &\text{where}&

@@ -6,7 +6,7 @@
       \strut
    }
    {
-      \explVal{\matchVarNew{x}}{v, \elimVar{x}{\kappa} \match \bind{x}{v}, \kappa}
+      \explVal{\matchVar{x}}{v, \elimVar{x}{\kappa} \match \bind{x}{v}, \kappa}
    }
    \\
    %
@@ -17,7 +17,7 @@
       \strut
    }
    {
-      \explVal{\matchTrueNew}{\exTrue, \elimBool{\kappa}{\kappa'} \match \seqEmpty, \kappa}
+      \explVal{\matchTrue}{\exTrue, \elimBool{\kappa}{\kappa'} \match \seqEmpty, \kappa}
    }
    %
    \and
@@ -27,7 +27,7 @@
       \strut
    }
    {
-      \explVal{\matchFalseNew}{\exFalse, \elimBool{\kappa}{\kappa'} \match \seqEmpty, \kappa'}
+      \explVal{\matchFalse}{\exFalse, \elimBool{\kappa}{\kappa'} \match \seqEmpty, \kappa'}
    }
    %
    \and
@@ -50,7 +50,7 @@
    }
    {
       \explVal
-         {\matchNilNew}
+         {\matchNil}
          {\exNil, \elimList{\kappa}{\sigma} \match \seqEmpty, \kappa}
    }
    %
@@ -64,7 +64,7 @@
    }
    {
       \explVal
-         {(\matchConsNew{w_1}{w_2})}
+         {(\matchCons{w_1}{w_2})}
          {\exCons{v_1}{v_2}, \elimList{\kappa}{\sigma}
          \match
          \rho_1 \concat \rho_2, \kappa'}

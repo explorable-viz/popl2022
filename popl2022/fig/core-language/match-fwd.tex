@@ -5,13 +5,13 @@ $\begin{array}{lllll}
    &\text{where}&
    \sigma \eq \elimVar{x}{\kappa}
    \\
-   \matchFwdF{\matchTrueNew}(v, \sigma)
+   \matchFwdF{\matchTrue}(v, \sigma)
    &=&
    (\seqEmpty, \kappa, \alpha)
    &\text{where}&
    (v, \sigma) \eq (\annTrue{\alpha}, \elimBool{\kappa}{\kappa'})
    \\
-   \matchFwdF{\matchFalseNew}(v, \sigma)
+   \matchFwdF{\matchFalse}(v, \sigma)
    &=&
    (\seqEmpty, \kappa', \alpha)
    &\text{where}&
@@ -29,13 +29,13 @@ $\begin{array}{lllll}
       (\rho_2, \kappa, \beta') &\eq& \matchFwdF{w_2}(v_2,\tau)
    \end{array}
    \\
-   \matchFwdF{\matchNilNew}(v, \sigma)
+   \matchFwdF{\matchNil}(v, \sigma)
    &=&
    (\seqEmpty, \kappa, \alpha)
    &\text{where}&
    (v, \sigma) \eq (\annNil{\alpha}, \elimList{\kappa}{\sigma'})
    \\
-   \matchFwdF{\matchConsNew{w_1}{w_2}}(v, \sigma)
+   \matchFwdF{\matchCons{w_1}{w_2}}(v, \sigma)
    &=&
    (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
    &\text{where}&

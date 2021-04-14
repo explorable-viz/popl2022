@@ -152,12 +152,12 @@
 % Matches.
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
 
-\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
-\newcommand*{\matchFalseNew}{\exFalse}
-\newcommand*{\matchNilNew}{\exNil}
+\newcommand*{\matchCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchFalse}{\exFalse}
+\newcommand*{\matchNil}{\exNil}
 \newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
-\newcommand*{\matchTrueNew}{\exTrue}
-\newcommand*{\matchVarNew}[1]{#1}
+\newcommand*{\matchTrue}{\exTrue}
+\newcommand*{\matchVar}[1]{#1}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
 
@@ -231,8 +231,7 @@
 
 % Traces.
 \newcommand*{\trApp}[3]{\exApp{#1}{#2} \mathrel{\smalltriangleright} {#3}}
-\newcommand*{\trAppPrim}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
-\newcommand*{\trAppPrimNew}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
+\newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
