@@ -205,8 +205,8 @@
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalFwdR{#4} #5}
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
-\newcommand*{\evalFwdF}[1]{\sub{{_{*}\mathsf{eval}}}{#1}}
-\newcommand*{\evalBwdF}[1]{\sub{{^{*}\mathsf{eval}}}{#1}}
+\newcommand*{\evalFwdF}[1]{\sub{\mathsf{evalF}}{#1}}
+\newcommand*{\evalBwdF}[1]{\sub{\mathsf{evalB}}{#1}}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchFwd}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3} #4, #5, #6}

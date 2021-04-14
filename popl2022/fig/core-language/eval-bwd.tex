@@ -1,6 +1,6 @@
 \begin{figure}[H]
 \small
-$\begin{array}{lllll}
+$\begin{array}{rllrlll}
 &&&
 \textit{where}
 \\
@@ -8,9 +8,10 @@ $\begin{array}{lllll}
 &=&
 (\rho,e,\alpha)
 &
-\hole \neq v \eq \hole
-\text{ and }
-\evalBwdF{T}(v) = (\rho,e,\alpha)
+\hole \neq v &\eq& \hole
+\\
+&&&
+(\rho,e,\alpha) &=& \evalBwdF{T}(v)
 \\
 \evalBwdF{\trVar{x}{\Gamma}}(v)
 &=&
@@ -40,11 +41,14 @@ $\begin{array}{lllll}
 &=&
 (\rho \join \rho', \annCons{e_1}{e_2}{\beta}, \beta \join \alpha \join \alpha')
 &
-\begin{array}[t]{lll}
-   (\rho,e_1,\alpha) &=& \evalBwdF{T}{v_1}
-   \\
-   (\rho',e_2,\alpha') &=& \evalBwdF{U}{v_2}
-\end{array}
+(\rho,e_1,\alpha) &=& \evalBwdF{T}{v_1}
+\\
+&&&
+(\rho',e_2,\alpha') &=& \evalBwdF{U}{v_2}
+\end{array}$\\
+\vspace{10mm}
+
+$\begin{array}{lllll}
 \\
 \evalBwdF{\trVec{\vec{U}}{x}{T}{j}}(\annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha})
 &=&
