@@ -1,4 +1,4 @@
-$\begin{array}{lllll}
+$\begin{array}{lllrlll}
 &&&
 \textit{where}
 \\
@@ -6,9 +6,10 @@ $\begin{array}{lllll}
 &=&
 v
 &
-\hole \neq e \eq \hole
-\text{ and }
-\evalFwdF{T}(\rho,e,\alpha) = v
+e \eq \hole &\neq& \hole
+\\
+&&&
+\evalFwdF{T}(\rho,e,\alpha) &=& v
 \\
 \evalFwdF{\trVar{x}{\Gamma}}(\rho,\exVar{x},\alpha)
 &=&
@@ -38,11 +39,13 @@ v
 &=&
 \annCons{v_1}{v_2}{\alpha \meet \alpha'}
 &
-\begin{array}[t]{lll}
-   v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha')
-   \\
-   v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha')
-\end{array}
+v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha')
+\\
+&&&
+v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha')
+\end{array}$\\
+
+$\begin{array}{lllll}
 \\
 \evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,\annVec{e_1}{x}{e_2}{\alpha},\alpha')
 &=&
@@ -52,8 +55,6 @@ v
    \annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha')
    \\
    v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha')
-   \quad
-   (\forall i \numleq j)
 \end{array}
 \\
 \evalFwdF{\trVecLookup{T}{j}{U}{i}}(\rho,\exVecLookup{e_1}{e_2},\alpha)
