@@ -15,22 +15,16 @@ $\begin{array}{lllll}
 (\rho,\exOp{\primOp},\FF)
 &
 \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
+\\
+\evalBwdF{\trLambda{\sigma'}}(\exClosure{\rho}{\seqEmpty}{\sigma})
+&=&
+(\rho,\exLambda{\sigma},\FF)
+&
+\envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
 \end{array}$
 
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\evalBwdS$-lambda}}
-   ]
-   {
-      v \eq \exClosure{\rho}{\seqEmpty}{\sigma}
-   }
-   {
-      \evalBwd{v}{\trLambda{\sigma'}}{\rho}{\exLambda{\sigma}}{\FF}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\evalBwdS$-int}}
    ]
