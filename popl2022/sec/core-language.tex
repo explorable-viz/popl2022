@@ -30,10 +30,18 @@
 \subsubsection{Pattern-matching}
 
 \begin{figure}[H]
-\input{fig/core-language/match-fwd}
-\input{fig/core-language/match-bwd}
-\caption{Pattern-matching: forward and backward slicing}
-\label{fig:match:fwd-bwd}
+   \flushleft
+   \shadebox{$\matchFwdF{w}: \Below{(v,\sigma) \to \Below{(\rho,\kappa, \alpha)}}$}
+   and
+   \shadebox{$\matchBwdF{w}: \Below{(\rho,\kappa, \alpha)} \to \Below{(v,\sigma)}$}
+   where $w :: v, \sigma \match \rho, \kappa, \alpha$ \\
+   \small
+   \vspace{3mm}
+   \input{fig/core-language/match-fwd}
+   \vspace{3mm}
+   \input{fig/core-language/match-bwd}
+   \caption{Pattern-matching: forward and backward slicing}
+   \label{fig:match:fwd-bwd}
 \end{figure}
 
 \begin{definition}[Forward and backward functions for pattern-matching]
@@ -65,8 +73,20 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
 
 \noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values.
 
-\input{fig/core-language/eval-fwd}
 \input{fig/core-language/eval-bwd}
+
+\begin{figure}[H]
+   \flushleft
+   \shadebox{$\evalFwdF{T}: \Below{(\rho,e,\TT) \to \Below{v}}$}
+   and
+   \shadebox{$\evalBwdF{T}: \Below{v} \to \Below{(\rho,e,\TT)}$}
+   where $T :: \rho, e \eval v$ \\
+   \small
+   \vspace{3mm}
+   \input{fig/core-language/eval-fwd}
+   \caption{Evaluation: forward and backward slicing (Boolean and pair cases omitted)}
+\end{figure}
+
 \input{fig/core-language/eval-aux}
 \input{fig/core-language/env-lookup}
 
