@@ -89,7 +89,7 @@ v_{i}
 \evalFwdF{T'}(\rho_1 \concat \rho_2 \concat \rho_3, e', \beta)
 &
 \begin{array}[t]{lll}
-   \exPrimOp{\phi}{\vec{v}} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
+   \exClosure{\rho_1}{h}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
    \\
    u &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \end{array}
@@ -130,8 +130,6 @@ v_{i}
    \inferrule*[
    ]
    {
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
-      \\
       \rho_1, h \closeDefsFwdR \rho_2
       \\
       \evalFwd{\rho}{e_2}{\alpha}{U}{v}
