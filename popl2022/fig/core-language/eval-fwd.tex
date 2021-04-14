@@ -68,15 +68,15 @@ v_{i}
 &
 \annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} \eq \evalFwdF{T}(\rho, e_1, \alpha)
 \\
-\evalFwdF{\trVecLen{T}{j}}(\rho,\exVecLen{e'},\alpha)
+\evalFwdF{\trVecLen{T}{j}}(\rho,\exVecLen{e},\alpha)
 &=&
 \annInt{j}{\alpha'}
 &
-\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} \eq \evalFwdF{T}(\rho, e', \alpha)
+\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} \eq \evalFwdF{T}(\rho,e,\alpha)
 \\
 \evalFwdF{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,\exApp{e_1}{e_2},\alpha)
 &=&
-\exPrimOp{\phi}{\vec{v} \concat u}
+\primAppF{\phi}(\vec{v} \concat u)
 &
 \begin{array}[t]{lll}
    \exPrimOp{\phi}{\vec{v}} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
@@ -91,69 +91,18 @@ v_{i}
 \begin{array}[t]{lll}
    \exClosure{\rho_1}{h}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
    \\
-   u &=& \evalFwdF{U}(\rho, e_2, \alpha)
+   \rho_2 &=& \closeDefsFwdF{}(\rho_1, h)
+   \\
+   v &=& \evalFwdF{U}(\rho,e_2,\alpha)
+   \\
+   (\rho_3,e',\beta) &=& \matchFwdF{w}(v,\sigma)
 \end{array}
-\end{array}$\\
-\vspace{3mm}
-
-\flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
-\begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\evalFwdS$-apply-prim-unsat}},
-      right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
-   ]
-   {
-   }
-   {
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\evalFwdS$-apply-prim-sat}},
-      right={$\arity{\phi} = \length{\vec{n}} + 1$}
-   ]
-   {
-      e \eq \exApp{e_1}{e_2}
-      \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
-      \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{u}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u)}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      \rho_1, h \closeDefsFwdR \rho_2
-      \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{v}
-      \\
-      \matchFwd{v}{\sigma}{w}{\rho_3}{e'}{\beta}
-   }
-   {
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={
-      \ruleName{$\evalFwdS$-let-rec}}
-   ]
-   {
-      e \eq \exLetRecMutual{h'}{e'}
-      \\
-      \rho, h' \closeDefsFwdR \rho_1
-      \\
-      \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
-   }
-\end{smathpar}
+\\
+\evalFwdF{\trLetRecMutual{h}{T}}(\rho,\exLetRecMutual{h'}{e},\alpha)
+&=&
+\evalFwdF{T}(\rho \concat \rho_1,e,\alpha)
+&
+\rho_1 = \closeDefsFwdF{}(\rho, h')
+\end{array}$
 \caption{Evaluation: forward slicing (Boolean and pair cases omitted)}
 \end{figure}
