@@ -9,7 +9,7 @@ v
 e \eq \hole &\neq& \hole
 \\
 &&&
-\evalFwdF{T}(\rho,e,\alpha) &=& v
+v &=& \evalFwdF{T}(\rho,e,\alpha)
 \\
 \evalFwdF{\trVar{x}{\Gamma}}(\rho,\exVar{x},\alpha)
 &=&
@@ -43,59 +43,64 @@ v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha')
 \\
 &&&
 v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha')
-\end{array}$\\
-
-$\begin{array}{lllll}
 \\
-\evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,\annVec{e_1}{x}{e_2}{\alpha},\alpha')
+\smash{\evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,\annVec{e_1}{x}{e_2}{\alpha},\alpha')}
 &=&
 \annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}
 &
-\begin{array}[t]{lll}
-   \annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha')
-   \\
-   v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha')
-\end{array}
+\annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha')
+\\
+&&&
+v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha')
 \\
 \evalFwdF{\trVecLookup{T}{j}{U}{i}}(\rho,\exVecLookup{e_1}{e_2},\alpha)
 &=&
 v_{i}
 &
-\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} \eq \evalFwdF{T}(\rho, e_1, \alpha)
+\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
 \\
 \evalFwdF{\trVecLen{T}{j}}(\rho,\exVecLen{e},\alpha)
 &=&
 \annInt{j}{\alpha'}
 &
-\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} \eq \evalFwdF{T}(\rho,e,\alpha)
+\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho,e,\alpha)
 \\
-\evalFwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,\exApp{e_1}{e_2},\alpha)
+\smash{\evalFwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,\exApp{e_1}{e_2},\alpha)}
 &=&
-\primAppF{\phi}(\vec{v} \concat u)
+v
 &
-\begin{array}[t]{lll}
-   \exPrimOp{\phi}{\vec{v}} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
-   \\
-   u &=& \evalFwdF{U}(\rho, e_2, \alpha)
-\end{array}
+\exPrimOp{\phi}{\vec{v}} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
+\\
+&&&
+u &=& \evalFwdF{U}(\rho, e_2, \alpha)
+\\
+&&&
+v &=& \primAppF{\phi}(\vec{v} \concat u)
 \\
 \evalFwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(\rho,\exApp{e_1}{e_2},\alpha)
 &=&
-\evalFwdF{T'}(\rho_1 \concat \rho_2 \concat \rho_3, e', \beta)
+v'
 &
-\begin{array}[t]{lll}
-   \exClosure{\rho_1}{h}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
-   \\
-   \rho_2 &=& \closeDefsFwdF{}(\rho_1, h)
-   \\
-   v &=& \evalFwdF{U}(\rho,e_2,\alpha)
-   \\
-   (\rho_3,e',\beta) &=& \matchFwdF{w}(v,\sigma)
-\end{array}
+\exClosure{\rho_1}{h}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
+\\
+&&&
+\rho_2 &=& \closeDefsFwdF{}(\rho_1, h)
+\\
+&&&
+v &=& \evalFwdF{U}(\rho,e_2,\alpha)
+\\
+&&&
+(\rho_3,e',\beta) &=& \matchFwdF{w}(v,\sigma)
+\\
+&&&
+v' &=& \evalFwdF{T'}(\rho_1 \concat \rho_2 \concat \rho_3, e', \beta)
 \\
 \evalFwdF{\trLetRecMutual{h}{T}}(\rho,\exLetRecMutual{h'}{e},\alpha)
 &=&
-\evalFwdF{T}(\rho \concat \rho_1,e,\alpha)
+v
 &
-\rho_1 = \closeDefsFwdF{}(\rho, h')
-\end{array}$
+\rho_1 &=& \closeDefsFwdF{}(\rho, h')
+\\
+&&&
+v &=& \evalFwdF{T}(\rho \concat \rho_1,e,\alpha)
+\end{array}$\\
