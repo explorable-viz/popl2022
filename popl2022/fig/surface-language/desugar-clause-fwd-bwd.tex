@@ -7,6 +7,11 @@ $\begin{array}{lll|llll}
 \textit{ where }\vec{p}, \kappa \singletonElimFwd \sigma
 &&&\textit{where}&&
 \\
+% var
+\singletonElimFwdF{\pattVar{x}}(\kappa)
+&=&
+\elimVar{x}{\kappa}
+\\[3mm]
 % hole
 \singletonElimBwdF{\vec{p}}(\hole)
 &=&
