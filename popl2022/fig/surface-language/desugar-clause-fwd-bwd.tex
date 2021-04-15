@@ -17,22 +17,16 @@ $\begin{array}{lllllll}
 \singletonElimBwdF{\vec{\pi}}(\sigma)
 &
 \hole \neq \sigma &\eq& \hole
+\\
+% var
+\singletonElimBwdF{\pattVar{x}}(\elimVar{x}{\kappa})
+&=&
+\kappa
 \end{array}$ \\
 \vspace{5mm}
 
 \flushleft\shadebox{$\sigma \singletonElimBwd{\vec{p}} \kappa$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-var}}
-]
-{
-   \sigma \eq \elimVar{x}{\kappa}
-}
-{
-   \sigma
-   \singletonElimBwd{x}
-   \kappa
-}
 %
 \and
 %
