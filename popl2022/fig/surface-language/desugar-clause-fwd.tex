@@ -3,21 +3,6 @@
 \flushleft\shadebox{$\vec{p}, \kappa \singletonElimFwd \sigma$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-seq}},
-   right={$\length{\vec{p}} \numgt 0$}
-]
-{
-   \vec{p}, e \singletonElimFwd \sigma
-   \\
-   p, \exLambda{\sigma} \singletonElimFwd \sigma'
-}
-{
-}
-\end{smathpar}
-
-\flushleft\shadebox{$\vec{c} \desugarClauseFwd \sigma$}
-\begin{smathpar}
-\inferrule*[
    lab={\ruleName{$\desugarClauseFwd$-clause}}
 ]
 {
