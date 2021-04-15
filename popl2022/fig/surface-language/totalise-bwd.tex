@@ -72,28 +72,20 @@ $\begin{array}{lllllll}
 \totaliseBwdF{p \concat p' \concat \vec{\pi}}(\sigma')
 &=&
 (\tau,\beta)
+\\
+% non-empty-list
+\totaliseBwdF{(\pattList{p}{o}) \concat \vec{\pi}}(\elimList{\annot{\exNil}{\alpha}}{\sigma'})
+&=&
+(\elimCons{\tau},\alpha \join \beta)
+&
+\totaliseBwdF{p \concat o \concat \vec{\pi}}(\sigma')
+&=&
+(\tau,\beta)
 \end{array}$ \\
 \vspace{5mm}
 
 \flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-non-empty-list}}
-]
-{
-   \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
-   \\
-   \totalisebwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
-}
-{
-   \totalisebwd{\sigma}
-               {(\pattList{p}{o}) \concat \vec{\pi}}
-               {\elimCons{\tau}}
-               {\alpha \join \beta}
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-list-rest-end}}
 ]
