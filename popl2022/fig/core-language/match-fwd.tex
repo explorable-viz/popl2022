@@ -1,49 +1,55 @@
-$\begin{array}{lllll}
+$\begin{array}{lll|lll}
+   \arrayrulecolor{lightgray}
+   \rowcolor{verylightgray}
+   \matchFwdGC{w}: \Below{(v,\sigma)} \to \Below{(\rho,\kappa, \alpha)}
+   &&\textit{ where }w :: v, \sigma \match \rho, \kappa, \alpha
+   &\textit{where}&&
+   \\
    \matchFwdF{x}(v, \sigma)
    &=&
    (\bind{x}{v}, \kappa, \TT)
-   &\text{where}&
-   \sigma \eq \elimVar{x}{\kappa}
+   &
+   \sigma &\eq& \elimVar{x}{\kappa}
    \\
    \matchFwdF{\matchTrue}(v, \sigma)
    &=&
    (\seqEmpty, \kappa, \alpha)
-   &\text{where}&
-   (v, \sigma) \eq (\annTrue{\alpha}, \elimBool{\kappa}{\kappa'})
+   &
+   (v, \sigma) &\eq& (\annTrue{\alpha}, \elimBool{\kappa}{\kappa'})
    \\
    \matchFwdF{\matchFalse}(v, \sigma)
    &=&
    (\seqEmpty, \kappa', \alpha)
-   &\text{where}&
-   (v, \sigma) \eq (\annFalse{\alpha}, \elimBool{\kappa}{\kappa'})
+   &
+   (v, \sigma) &\eq& (\annFalse{\alpha}, \elimBool{\kappa}{\kappa'})
    \\
    \matchFwdF{\matchPair{w_1}{w_2}}(v, \sigma)
    &=&
    (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
-   &\text{where}&
-   \begin{array}[t]{lll}
-      (v, \sigma) &\eq& (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
-      \\
-      (\rho_1, \tau, \beta) &\eq& \matchFwdF{w_1}(v_1,\sigma')
-      \\
-      (\rho_2, \kappa, \beta') &\eq& \matchFwdF{w_2}(v_2,\tau)
-   \end{array}
+   &
+   (v, \sigma) &\eq& (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+   \\
+   &&&
+   (\rho_1, \tau, \beta) &=& \matchFwdF{w_1}(v_1,\sigma')
+   \\
+   &&&
+   (\rho_2, \kappa, \beta') &=& \matchFwdF{w_2}(v_2,\tau)
    \\
    \matchFwdF{\matchNil}(v, \sigma)
    &=&
    (\seqEmpty, \kappa, \alpha)
-   &\text{where}&
-   (v, \sigma) \eq (\annNil{\alpha}, \elimList{\kappa}{\sigma'})
+   &
+   (v, \sigma) &\eq& (\annNil{\alpha}, \elimList{\kappa}{\sigma'})
    \\
    \matchFwdF{\matchCons{w_1}{w_2}}(v, \sigma)
    &=&
    (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
-   &\text{where}&
-   \begin{array}[t]{lll}
-      (v, \sigma) &\eq& (\annCons{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
-      \\
-      (\rho_1, \tau, \beta) &\eq& \matchFwdF{w_1}(v_1,\sigma')
-      \\
-      (\rho_2, \kappa, \beta') &\eq& \matchFwdF{w_2}(v_2,\tau)
-   \end{array}
+   &
+   (v, \sigma) &\eq& (\annCons{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
+   \\
+   &&&
+   (\rho_1, \tau, \beta) &=& \matchFwdF{w_1}(v_1,\sigma')
+   \\
+   &&&
+   (\rho_2, \kappa, \beta') &=& \matchFwdF{w_2}(v_2,\tau)
 \end{array}$\\
