@@ -53,4 +53,41 @@ $\begin{array}{lll|lll}
    \\
    &&&
    (\rho_2, \kappa, \beta') &=& \matchFwdF{w_2}(v_2,\tau)
+   \\[3mm]
+   %
+   %
+   %
+   \matchBwdF{\matchVar{x}}(\bind{x}{v}, \kappa, \alpha)
+   &=&
+   (v, \elimVar{x}{\kappa})
+   \\
+   \matchBwdF{\matchTrue}(\seqEmpty, \kappa, \alpha)
+   &=&
+   (\annTrue{\alpha}, \elimBool{\kappa}{\hole})
+   \\
+   \matchBwdF{\matchFalse}(\seqEmpty, \kappa, \alpha)
+   &=&
+   (\annFalse{\alpha}, \elimBool{\hole}{\kappa})
+   \\
+   \matchBwdF{\matchPair{w_1}{w_2}}(\rho_1 \concat \rho_2, \kappa, \alpha)
+   &=&
+   (\annPair{v_1}{v_2}{\alpha}, \elimProd{\tau})
+   &
+   (v_2, \sigma) &\eq& \matchBwdF{w_2}(\rho_2, \kappa, \alpha)
+   \\
+   &&&
+   (v_1, \tau) &\eq& \matchBwdF{w_1}(\rho_1, \sigma, \alpha)
+   \\
+   \matchBwdF{\matchNil}(\seqEmpty,\kappa,\alpha)
+   &=&
+   (\annNil{\alpha}, \elimList{\kappa}{\hole})
+   \\
+   \matchBwdF{\matchCons{w_1}{w_2}}(\rho_1 \concat \rho_2, \kappa, \alpha)
+   &=&
+   (\annCons{v_1}{v_2}{\alpha}, \elimList{\hole}{\tau})
+   &
+   (v_2, \sigma) &\eq& \matchBwdF{w_2}(\rho_2, \kappa, \alpha)
+   \\
+   &&&
+   (v_1, \tau) &\eq& \matchBwdF{w_1}(\rho_1, \sigma, \alpha)
 \end{array}$\\
