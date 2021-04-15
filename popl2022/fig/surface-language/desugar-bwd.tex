@@ -72,28 +72,17 @@ $\begin{array}{lll|llll}
    \exMatch{\desugarBwdF{s}(e')}{\vec{c}'}
    &
    \vec{c}' &=& \desugarClausesBwdF{\vec{c}}(\sigma)
+   \\
+   % let
+   \desugarBwdF{\exLet{p}{s_1}{s_2}}(\exApp{(\exLambda{\sigma})}{e'})
+   &=&
+   \exLet{p}{\desugarBwdF{s_1}(e')}{s_2'}
+   &
+   s_2' &=& \desugarClausesBwdF{\clauseUncurried{p}{s_2}}(\sigma) 
 \end{array}$\\[3mm]
 
 \flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-let}}
-   ]
-   {
-      e \eq \exApp{(\exLambda{\sigma})}{e'}
-      \\
-      \sigma \desugarBwd{\clauseUncurried{p}{s_2}} s_2'
-      \\
-      e' \desugarBwd{s_1} s_1'
-   }
-   {
-      e
-      \desugarBwd{\exLet{p}{s_1}{s_2}}
-      \exLet{p}{s_1'}{s_2'}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\desugarBwd{}$-list-enum}},
    ]
