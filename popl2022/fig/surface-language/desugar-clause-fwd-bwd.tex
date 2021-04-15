@@ -125,6 +125,11 @@ $\begin{array}{lll|llll}
 \desugarClausesFwdF{\clause{\vec{p}}{s}}(\clause{\vec{p}}{s'})
 &=&
 \singletonElimFwdF{\vec{p}}(\desugarFwdF{s}(s'))
+\\
+% clause-seq
+\desugarClausesFwdF{c \concat \vec{c}}(c' \concat \vec{c}')
+&=&
+\desugarClausesFwdF{c}(c') \join \desugarClausesFwdF{\vec{c}}(\vec{c}')
 \end{array}$ \\
 
 \vspace{5pt}

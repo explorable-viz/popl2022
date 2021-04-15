@@ -2,21 +2,6 @@
 \begin{figure}[H]
 \flushleft\shadebox{$\vec{p}, \kappa \singletonElimFwd \sigma$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\desugarClauseFwd$-clause-seq}}
-]
-{
-   c \desugarClauseFwd \sigma
-   \\
-   \vec{c} \desugarClauseFwd \sigma'
-   \\
-   \sigma \join \sigma' = \tau
-}
-{
-   c \concat \vec{c}
-   \desugarClauseFwd
-   \tau
-}
 \end{smathpar}
 \caption{Desugaring clauses and patterns --- forward slicing}
 \end{figure}
