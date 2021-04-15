@@ -37,44 +37,23 @@ $\begin{array}{lllllll}
 \singletonElimBwdF{\pattList{p}{o}}(\elimList{\kappa}{\sigma'})
 &=&
 \singletonElimBwdF{o}(\singletonElimBwdF{p}(\sigma'))
+\\
+% pair
+\singletonElimBwdF{\pattPair{p}{p'}}(\elimProd{\sigma})
+&=&
+\singletonElimBwdF{p'}(\singletonElimBwdF{p}(\sigma))
+\\
+% seq
+\singletonElimBwdF{p \concat \vec{p}}(\sigma)
+&=&
+\singletonElimBwdF{\vec{p}}(\sigma')
+&
+\length{\vec{p}} \numgt 0
+\\
+&&&
+\singletonElimBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
 \end{array}$ \\
 \vspace{5mm}
-
-\flushleft\shadebox{$\sigma \singletonElimBwd{\vec{p}} \kappa$}
-\begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-pair}}
-]
-{
-   \sigma \eq \elimProd{\sigma'}
-   \\
-   \sigma' \singletonElimBwd{p} \tau
-   \\
-   \tau \singletonElimBwd{p'} \kappa
-}
-{
-   \sigma
-   \singletonElimBwd{\pattPair{p}{p'}}
-   \kappa
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-seq}},
-   right={$\length{\vec{p}} \numgt 0$}
-]
-{
-   \sigma \singletonElimBwd{p}\eq \exLambda{\sigma'}
-   \\
-   \sigma' \singletonElimBwd{\vec{p}} e
-}
-{
-   \sigma
-   \singletonElimBwd{p \concat \vec{p}}
-   e
-}
-\end{smathpar}
 
 \vspace{5pt}
 \flushleft\shadebox{$\sigma \singletonElimBwd{o} \kappa$}
