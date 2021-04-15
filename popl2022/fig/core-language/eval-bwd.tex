@@ -1,10 +1,12 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\evalBwdF{T}: \Below{v} \to \Below{(\rho,e,\TT)}$}
-where $T :: \rho, e \eval v$ \\
 \small
-$\begin{array}{lllrlll}
-&&&
-\textit{where}
+$\begin{array}{lll|llll}
+\arrayrulecolor{lightgray}
+&&&\textit{where}
+\\
+\rowcolor{verylightgray}
+\evalBwdF{T} &::& \Below{v} \to \Below{(\rho,e,\TT)}
+&T &::& \rho, e \eval v
 \\
 % hole
 \evalBwdF{T}(\hole)
@@ -85,9 +87,12 @@ e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
 &=&
 (\rho \join \rho', \exVecLookup{e_1}{e_2}, \alpha \join \alpha')
 &
+v' &=& \mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}
+\\
+&&&
 (\rho,e_1,\alpha)
 &=&
-\evalBwdF{T}(\mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v})
+\evalBwdF{T}(v')
 \\
 &&&
 (\rho', e_2, \alpha')
