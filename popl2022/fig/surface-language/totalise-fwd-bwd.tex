@@ -12,6 +12,13 @@ $\begin{array}{lllllll}
 \\
 % expr
 \totaliseFwdF{\seqEmpty}(e,\alpha) &=& e
+\\
+% var
+\totaliseFwdF{\seqEmpty}(\elimVar{x}{\kappa},\alpha)
+&=&
+\elimVar{x}{\kappa'}
+&
+\totaliseFwdF{}(\kappa,\alpha) &=& \kappa'
 \end{array}$ \\
 \vspace{3mm}
 
