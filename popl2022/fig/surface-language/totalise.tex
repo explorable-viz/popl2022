@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\totalise{\kappa}{\alpha}{\kappa}'$}
+\flushleft \shadebox{$\explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\totalisefwdarrow$-expr}}
@@ -8,7 +8,7 @@
    \strut
 }
 {
-   \totalise{e}{\alpha}{e}
+   \explVal{\seqEmpty}{e \totalisefwdarrow e}
 }
 \and
 %
@@ -16,10 +16,10 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-var}}
 ]
 {
-   \totalise{\kappa}{\alpha}{\kappa'}
+   \explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
 }
 {
-   \totalise{\elimVar{x}{\kappa}}{\alpha}{\elimVar{x}{\kappa'}}
+   \explVal{\pattVar{x} \concat \vec{\pi}}{\elimVar{x}{\kappa} \totalisefwdarrow \elimVar{x}{\kappa'}}
 }
 \and
 %
@@ -27,10 +27,11 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-true}}
 ]
 {
-   \totalise{\kappa}{\alpha}{\kappa'}
+   \explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
 }
 {
-   \totalise{\elimBoolTrue{\kappa}}{\alpha}{\elimBool{\kappa'}{\annot{\exNil}{\alpha}}}
+   \explVal{\pattTrue \concat \vec{\pi}}
+           {\elimBoolTrue{\kappa} \totalisefwdarrow \elimBool{\kappa'}{\exNil}}
 }
 \and
 %
@@ -38,10 +39,11 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-false}}
 ]
 {
-   \totalise{\kappa}{\alpha}{\kappa'}
+   \explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
 }
 {
-   \totalise{\elimBoolFalse{\kappa}}{\alpha}{\elimBool{\annot{\exNil}{\alpha}}{\kappa'}}
+   \explVal{\pattFalse \concat \vec{\pi}}
+           {\elimBoolFalse{\kappa} \totalisefwdarrow \elimBool{\exNil}{\kappa'}}
 }
 \and
 %
@@ -66,7 +68,7 @@
 {
    \totalise{\elimNil{\kappa}}
             {\alpha}
-            {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
+            {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\exNil}}}}
 }
 \and
 %
@@ -77,8 +79,8 @@
    \totalise{\sigma}{\alpha}{\sigma'}
 }
 {
-   \totalise{\elimCons{\sigma}}{\alpha}{\elimList{\annot{\exNil}{\alpha}}{\tau}}
+   \totalise{\elimCons{\sigma}}{\alpha}{\elimList{\exNil}{\tau}}
 }
 \end{smathpar}
-\caption{Totalise --- forward slicing}
+\caption{Totalise}
 \end{figure}
