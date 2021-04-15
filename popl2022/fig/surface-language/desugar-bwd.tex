@@ -100,51 +100,32 @@ $\begin{array}{lll|llll}
    \\
    &&&
    \annListComp{s_{1}'}{\vec{q}'}{\beta} &=& \desugarBwdF{\exListComp{s_1}{\vec{q}}}(e_1)
-\end{array}$\\[3mm]
-
-\flushleft \shadebox{$e \desugarBwd{s} s'$}
-\begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-list-comp-decl}},
-   ]
-   {
-      e \eq \exApp{(\exLambda{\sigma})}{e'}
-      \\
-      \sigma
-      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}
-      \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
-      \\
-      e' \desugarBwd{s_{1}} s_{1}'
-   }
-   {
-      e
-      \desugarBwd{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
-      \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}
-            {\beta}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-list-comp-gen}},
-   ]
-   {
-      e \eq \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e_1}
-      \\
-      e_{1} \desugarBwd{s_{1}} s_{1}'
-      \\
-      \totalisebwd{\sigma}{p}{\sigma'}{\beta}
-      \\
-      \sigma'
-      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
-      \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{{\beta'}}}
-   }
-   {
-      e
-      \desugarBwd{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
-      \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}
-            {\beta \join \beta'}
-   }
-\end{smathpar}
+   \\
+   % list-comp-decl
+   \desugarBwdF{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
+               (\exApp{(\exLambda{\sigma})}{e'})
+   &=&
+   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{\desugarBwdF{s_{1}}(e')} \concat \vec{q}'}}
+         {\beta}
+   \\
+   &&&
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+   &=&
+   \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}(\sigma)
+   \\
+   % list-comp-gen
+   \desugarBwdF{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
+               (\exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e_1})
+   &=&
+   \annot{\exListComp{s_{2}'}{\qualGenerator{p}{\desugarBwdF{s_{1}}(e_{1})} \concat \vec{q}'}}
+         {\beta \join \beta'}
+   &
+   (\sigma',\beta) &=& \totaliseBwdF{p}(\sigma)
+   \\
+   &&&
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{{\beta'}}}
+   &=&
+   \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}(\sigma')
+\end{array}$
 \caption{Desugaring terms -- backward slicing (selected rules)}
 \end{figure}
