@@ -1,4 +1,23 @@
 \begin{figure}[H]
+\small
+$\begin{array}{lll|llll}
+   \arrayrulecolor{lightgray}
+   &&&\textit{where}
+   \\
+   \rowcolor{verylightgray}
+   \desugarBwdF{s} &::& \Below{e} \to \Below{s}
+   & s \desugarFwd e
+   &&
+   \\
+   % hole
+   \desugarBwdF{s}(\hole)
+   &=&
+   \desugarBwdF{s}(e)
+   &
+   \hole \neq e &\eq& \hole
+   \\
+\end{array}$\\[3mm]
+
 \flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
    \inferrule*[
