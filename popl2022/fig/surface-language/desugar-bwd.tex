@@ -43,39 +43,35 @@ $\begin{array}{lll|llll}
    g_i &=& \bind{x_i}{\vec{c_i}}
    \\
    &&&
-   \desugarClausesBwdF{\vec{c_i}}(\sigma_i) &=& \vec{c_i}'
+   \vec{c_i}' &=& \desugarClausesBwdF{\vec{c_i}}(\sigma_i)
    \\
    &&&
-   \desugarBwdF{s}(e') &=& s'
+    s' &=& \desugarBwdF{s}(e')
    \\
    % apply
    \desugarBwdF{\exApp{s_1}{s_2}}(\exApp{e_1}{e_2})
    &=&
    \exApp{\desugarBwdF{s_1}(e_1)}{\desugarBwdF{s_2}(e_2)}
+   \\
+   % if
+   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{e}{e_{1}})
+   &=&
+   \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+   &
+   e &=& \exLambda{\elimBool{e_{2}}{e_{3}}}
+   \\
+   &&&
+   s_{1}' &=& \desugarBwdF{s_{1}}(e_{1})
+   \\
+   &&&
+   s_{2}' &=& \desugarBwdF{s_{2}}(e_{2})
+   \\
+   &&&
+   s_{3}' &=& \desugarBwdF{s_{3}}(e_{3})
 \end{array}$\\[3mm]
 
 \flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-if}}
-   ]
-   {
-      e \eq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
-      \\
-      e_{1} \desugarBwd{s_{1}} s_{1}'
-      \\
-      e_{2} \desugarBwd{s_{2}} s_{2}'
-      \\
-      e_{3} \desugarBwd{s_{3}} s_{3}'
-   }
-   {
-      e
-      \desugarBwd{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}
-      \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\desugarBwd{}$-match}}
    ]
