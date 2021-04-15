@@ -1,0 +1,163 @@
+
+\begin{figure}[H]
+\flushleft\shadebox{$p, \kappa \singletonElimFwd \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\singletonElimFwd$-var}}
+]
+{
+   \strut
+}
+{
+   x, \kappa
+   \singletonElimFwd
+   \elimVar{x}{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\singletonElimFwd$-nil}}
+]
+{
+   \strut
+}
+{
+   \pattNil, \kappa
+   \singletonElimFwd
+   \elimNil{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\singletonElimFwd$-cons}}
+]
+{
+   p', \kappa \singletonElimFwd \sigma
+   \\
+   p, \sigma \singletonElimFwd \sigma'
+}
+{
+   \pattCons{p}{p'}, \kappa
+   \singletonElimFwd
+   \elimCons{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\singletonElimFwd$-non-empty-list}}
+]
+{
+   o, \kappa \singletonElimFwd \sigma
+   \\
+   p, \sigma \singletonElimFwd \sigma'
+}
+{
+   \pattList{p}{o}, \kappa
+   \singletonElimFwd
+   \elimCons{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\singletonElimFwd$-pair}}
+]
+{
+   p', \kappa \singletonElimFwd \sigma
+   \\
+   p, \sigma \singletonElimFwd \sigma'
+}
+{
+   \pattPair{p}{p'}, \kappa
+   \singletonElimFwd
+   \elimProd{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\singletonElimFwd$-seq}},
+   right={$\length{\vec{p}} \numgt 0$}
+]
+{
+   \vec{p}, e \singletonElimFwd \sigma
+   \\
+   p, \exLambda{\sigma} \singletonElimFwd \sigma'
+}
+{
+   p \concat \vec{p}, e
+   \singletonElimFwd
+   \sigma'
+}
+\end{smathpar}
+
+\flushleft\shadebox{$o, \kappa \singletonElimFwd \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\singletonElimFwd$-list-rest-end}}
+]
+{
+   \strut
+}
+{
+   \pattListEnd, \kappa
+   \singletonElimFwd
+   \elimNil{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\singletonElimFwd$-list-rest-cons}}
+]
+{
+   o, \kappa \singletonElimFwd \sigma
+   \\
+   p, \sigma \singletonElimFwd \sigma'
+}
+{
+   (\pattListNext{p}{o}), \kappa
+   \singletonElimFwd
+   \elimCons{\sigma'}
+}
+\end{smathpar}
+
+\flushleft\shadebox{$\vec{c} \desugarClauseFwd \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\desugarClauseFwd$-clause}}
+]
+{
+   s \desugarFwd e
+   \\
+   \vec{p}, e \singletonElimFwd \sigma
+}
+{
+   \clause{p}{s}
+   \desugarClauseFwd
+   \sigma
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\desugarClauseFwd$-clause-seq}}
+]
+{
+   c \desugarClauseFwd \sigma
+   \\
+   \vec{c} \desugarClauseFwd \sigma'
+   \\
+   \sigma \join \sigma' = \tau
+}
+{
+   c \concat \vec{c}
+   \desugarClauseFwd
+   \tau
+}
+\end{smathpar}
+\caption{Desugaring clauses and patterns --- forward slicing}
+\end{figure}
