@@ -109,7 +109,7 @@
 \newcommand*{\annVecVal}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;{#2}\matrixRBrack_{#3}}
 
 % Clause
-\newcommand*{\clause}[2]{\seq{{#1}}\equal{#2}}
+\newcommand*{\clause}[2]{{#1}\equal{#2}}
 \newcommand*{\clauseUncurried}[2]{{#1}\equal{#2}}
 
 % Qualifiers
@@ -266,8 +266,8 @@
 
 \newcommand*{\desugarFwd}{\dfwdarrow}
 \newcommand*{\desugarBwd}[1]{\sub{\dbwdarrow}{#1}}
-\newcommand*{\desugarFwdF}[1]{\fwdF{desugFwd}{#1}}
-\newcommand*{\desugarBwdF}[1]{\bwdF{desugBwd}{#1}}
+\newcommand*{\desugarFwdF}[1]{\fwdF{desug}{#1}}
+\newcommand*{\desugarBwdF}[1]{\bwdF{desug}{#1}}
 
 \newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRestFwd}_{#1}}
 \newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRestBwd}_{#1}}
@@ -276,8 +276,10 @@
 \newcommand*{\desugarClauseBwd}[1]{\desugarBwd{#1}}
 \newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClauseFwd}_{#1}}
 \newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClauseBwd}_{#1}}
-\newcommand*{\desugarClausesFwdF}[1]{\mathsf{desugClausesFwd}_{#1}}
-\newcommand*{\desugarClausesBwdF}[1]{\mathsf{desugClausesBwd}_{#1}}
+\newcommand*{\desugarClausesFwd}{\desugarFwd}
+\newcommand*{\desugarClausesFwdF}[1]{\fwdF{desugClauses}{#1}}
+\newcommand*{\desugarClausesBwdF}[1]{\bwdF{desugClauses}{#1}}
+\newcommand*{\desugarClausesGC}[1]{\GC{desugClauses}{#1}}
 
 \newcommand*{\singletonElimFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
 \newcommand*{\singletonElimBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}

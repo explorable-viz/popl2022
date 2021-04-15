@@ -3,22 +3,6 @@
 \flushleft\shadebox{$\vec{p}, \kappa \singletonElimFwd \sigma$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\desugarClauseFwd$-clause}}
-]
-{
-   s \desugarFwd e
-   \\
-   \vec{p}, e \singletonElimFwd \sigma
-}
-{
-   \clause{p}{s}
-   \desugarClauseFwd
-   \sigma
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\desugarClauseFwd$-clause-seq}}
 ]
 {

@@ -115,6 +115,16 @@ $\begin{array}{lll|llll}
 \singletonElimBwdF{\pattListNext{p}{o}}(\elimList{\kappa}{\sigma'})
 &=&
 \singletonElimBwdF{o}(\singletonElimBwdF{p}(\sigma'))
+\\[3mm]
+\rowcolor{verylightgray}
+\desugarClausesGC{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}
+&&\textit{ where }\vec{c} \desugarClausesFwd \sigma
+&&&
+\\
+% clause
+\desugarClausesFwdF{\clause{\vec{p}}{s}}(\clause{\vec{p}}{s'})
+&=&
+\singletonElimFwdF{\vec{p}}(\desugarFwdF{s}(s'))
 \end{array}$ \\
 
 \vspace{5pt}
@@ -130,8 +140,8 @@ $\begin{array}{lll|llll}
 }
 {
    \sigma
-   \desugarClauseBwd{\clause{p}{s}}
-   \clause{p}{s'}
+   \desugarClauseBwd{\clause{\vec{p}}{s}}
+   \clause{\vec{p}}{s'}
 }
 %
 \and
