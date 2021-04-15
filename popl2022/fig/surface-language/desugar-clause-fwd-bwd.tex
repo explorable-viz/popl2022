@@ -52,9 +52,8 @@ $\begin{array}{lllllll}
 \\
 &&&
 \singletonElimBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
-\\ \vspace{3mm}
-
-% list-rest-end
+\\
+\arrayrulecolor{verylightgray}\hline
 % hole
 \singletonElimBwdF{o}(\hole)
 &=&
@@ -62,31 +61,18 @@ $\begin{array}{lllllll}
 &
 \hole \neq \sigma &\eq& \hole
 \\
+% list-rest-end
 \singletonElimBwdF{\pattListEnd}(\elimList{\kappa}{\sigma})
 &=&
 \kappa
+\\
+% list-rest-cons
+\singletonElimBwdF{(\pattListNext{p}{o})}(\elimList{\kappa}{\sigma'})
+&=&
+\singletonElimBwdF{o}(\singletonElimBwdF{p}(\sigma'))
+\\
+\arrayrulecolor{verylightgray}\hline
 \end{array}$ \\
-\vspace{5mm}
-
-\vspace{5pt}
-\flushleft\shadebox{$\sigma \singletonElimBwd{o} \kappa$}
-\begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-list-rest-cons}}
-]
-{
-   \sigma \eq \elimList{\kappa}{\sigma'}
-   \\
-   \sigma' \singletonElimBwd{p} \tau
-   \\
-   \tau \singletonElimBwd{o} \kappa'
-}
-{
-   \sigma
-   \singletonElimBwd{(\pattListNext{p}{o})}
-   \kappa'
-}
-\end{smathpar}
 
 \vspace{5pt}
 \flushleft\shadebox{$\sigma \desugarClauseBwd{\vec{c}} \vec{c}'$}
