@@ -734,7 +734,7 @@ Induction on the $\evalBwdS$ derivation.
       {
          v \eq \annInt{n'}{\beta}
          \\
-         \primBwd{\phi}(\vec{n} \concat m)(\annInt{n'}{\beta}) = \vec{u} \concat u'
+         \primBwd{\phi}{\vec{n} \concat m}(\annInt{n'}{\beta}) = \vec{u} \concat u'
          \\
          \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
          \\
@@ -818,7 +818,7 @@ Induction on the $\evalBwdS$ derivation.
                  {\exApp{e_1}{e_2}}
                  {\alpha \join \alpha'}
                  {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-                 {\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat v')}
+                 {\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat v')}
       }
    \end{smathpar}
    }
@@ -828,8 +828,8 @@ Induction on the $\evalBwdS$ derivation.
    \\
    &
    \qedLocal
-   \primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat v') \geq
-   \primFwd{\phi}(\vec{n} \concat m)(\vec{u} \concat u') \geq \annInt{n'}{\beta} \eq v
+   \primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat v') \geq
+   \primFwd{\phi}{\vec{n} \concat m}(\vec{u} \concat u') \geq \annInt{n'}{\beta} \eq v
    &
    \text{monotonicity; \defrefShort{core-language:primop-gc}}
    \notag
