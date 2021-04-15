@@ -1,6 +1,19 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\totaliseBwdF{\vec{\pi}}: \Below{\kappa} \to \Below{\kappa',\TT}$}
+\flushleft
+\shadebox{$\totaliseBwdF{\vec{\pi}}: \Below{\kappa} \to \Below{(\kappa',\TT)}$}
+and
+\shadebox{$\totaliseFwdF{\vec{\pi}}: \Below{(\kappa',\TT)} \to \Below{(\kappa)}$}
 where $\kappa \sub{\totalisefwdarrow}{\vec{\pi}} \kappa'$ \\
+
+\small
+$\begin{array}{lllllll}
+&&&
+\textit{where}
+\\
+% expr
+\totaliseFwdF{\seqEmpty}(e,\alpha) &=& e
+\end{array}$ \\
+\vspace{3mm}
 
 \small
 $\begin{array}{lllllll}
@@ -102,5 +115,5 @@ $\begin{array}{lllllll}
 &=&
 (\tau,\beta)
 \end{array}$
-\caption{Totalise --- backward slicing}
+\caption{Totalise --- forward and backward slicing}
 \end{figure}
