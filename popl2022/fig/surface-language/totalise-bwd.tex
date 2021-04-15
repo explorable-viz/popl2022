@@ -3,7 +3,7 @@
 where $\kappa \totalisefwdarrow \kappa'$ \\
 
 \small
-$\begin{array}{lllrlll}
+$\begin{array}{lllllll}
 &&&
 \textit{where}
 \\
@@ -28,45 +28,28 @@ $\begin{array}{lllrlll}
 &=&
 (\kappa',\alpha)
 \\
+% true
+\totaliseBwdF{\pattTrue \concat \vec{\pi}}(\elimBool{\kappa_1}{\annot{\exNil}{\alpha}})
+&=&
+(\elimBoolTrue{\kappa_1'}, \alpha \join \beta)
+&
+\totaliseBwdF{\vec{\pi}}(\kappa_1)
+&=&
+(\kappa_1',\beta)
+\\
+% false
+\totaliseBwdF{\pattFalse \concat \vec{\pi}}(\elimBool{\annot{\exNil}{\alpha}}{\kappa_2})
+&=&
+(\elimBoolFalse{\kappa_2'}, \alpha \join \beta)
+&
+\totaliseBwdF{\vec{\pi}}(\kappa_2)
+&=&
+(\kappa_2',\beta)
 \end{array}$ \\
 \vspace{5mm}
 
 \flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-true}}
-]
-{
-   \sigma \eq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}}
-   \\
-   \totalisebwd{\kappa_1}{\vec{\pi}}{\kappa_1'}{\beta}
-}
-{
-   \totalisebwd{\sigma}
-               {\pattTrue \concat \vec{\pi}}
-               {\elimBoolTrue{\kappa_1'}}
-               {\alpha \join \beta}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-false}}
-]
-{
-   \sigma \eq \elimBool{\annot{\exNil}{\alpha}}{\kappa_2}
-   \\
-   \totalisebwd{\kappa_2}{\vec{\pi}}{\kappa_2'}{\beta}
-}
-{
-   \totalisebwd{\sigma}
-               {\pattFalse \concat \vec{\pi}}
-               {\elimBoolFalse{\kappa_2'}}
-               {\alpha \join \beta}
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-prod}}
 ]
