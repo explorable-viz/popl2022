@@ -4,13 +4,23 @@ $\begin{array}{lll|llll}
 \arrayrulecolor{lightgray}
 \rowcolor{verylightgray}
 \singletonElimGC{\vec{p}}: \Below{\kappa} \to \Below{\sigma}
-\textit{ where }\vec{p}, \kappa \singletonElimFwd \sigma
-&&&\textit{where}&&
+&&\textit{ where }\vec{p}, \kappa \singletonElimFwd \sigma
+&\textit{where}&&
 \\
 % var
 \singletonElimFwdF{\pattVar{x}}(\kappa)
 &=&
 \elimVar{x}{\kappa}
+\\
+% nil
+\singletonElimFwdF{\pattVar{x}}(\kappa)
+&=&
+\elimNil{\kappa}
+\\
+% cons
+\singletonElimFwdF{\pattCons{p}{p'}}(\kappa)
+&=&
+\elimCons{\singletonElimFwdF{p}(\singletonElimFwdF{p'}(\kappa))}
 \\[3mm]
 % hole
 \singletonElimBwdF{\vec{p}}(\hole)
@@ -56,8 +66,8 @@ $\begin{array}{lll|llll}
 \\
 \rowcolor{verylightgray}
 \singletonElimGC{o}: \Below{\kappa} \to \Below{\sigma}
-\textit{ where }o, \kappa \singletonElimFwd \sigma
-&&&&&
+&&\textit{ where }o, \kappa \singletonElimFwd \sigma
+&&&
 \\
 % list-rest-end
 \singletonElimFwdF{\pattListEnd}(\kappa)

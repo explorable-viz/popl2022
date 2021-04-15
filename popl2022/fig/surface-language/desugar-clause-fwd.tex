@@ -3,36 +3,6 @@
 \flushleft\shadebox{$\vec{p}, \kappa \singletonElimFwd \sigma$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-nil}}
-]
-{
-   \strut
-}
-{
-   \pattNil, \kappa
-   \singletonElimFwd
-   \elimNil{\kappa}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-cons}}
-]
-{
-   p', \kappa \singletonElimFwd \sigma
-   \\
-   p, \sigma \singletonElimFwd \sigma'
-}
-{
-   \pattCons{p}{p'}, \kappa
-   \singletonElimFwd
-   \elimCons{\sigma'}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\singletonElimFwd$-non-empty-list}}
 ]
 {
