@@ -40,6 +40,13 @@ $\begin{array}{lllllll}
 \elimProd{\sigma'}
 &
 \totaliseFwdF{p \concat p' \concat \vec{\pi}}{(\sigma,\alpha)} &=& \sigma'
+\\
+% nil
+\totaliseFwdF{\pattNil \concat \vec{\pi}}(\elimNil{\kappa},\alpha)
+&=&
+\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
+&
+\totaliseFwdF{\vec{\pi}}{(\kappa,\alpha)} &=& \kappa'
 \end{array}$ \\
 \vspace{3mm}
 

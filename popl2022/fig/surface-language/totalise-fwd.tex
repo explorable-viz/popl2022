@@ -2,20 +2,6 @@
 \flushleft \shadebox{$\totalise{\kappa}{\alpha}{\kappa}'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\totalisefwdarrow$-elim-nil}}
-]
-{
-   \\
-   \totalise{\kappa}{\alpha}{\kappa'}
-}
-{
-   \totalise{\elimNil{\kappa}}
-            {\alpha}
-            {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
-}
-\and
-%
-\inferrule*[
    lab={\ruleName{$\totalisefwdarrow$-elim-cons}}
 ]
 {
