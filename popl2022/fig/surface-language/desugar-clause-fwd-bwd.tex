@@ -52,26 +52,25 @@ $\begin{array}{lllllll}
 \\
 &&&
 \singletonElimBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
+\\ \vspace{3mm}
+
+% list-rest-end
+% hole
+\singletonElimBwdF{o}(\hole)
+&=&
+\singletonElimBwdF{o}(\sigma)
+&
+\hole \neq \sigma &\eq& \hole
+\\
+\singletonElimBwdF{\pattListEnd}(\elimList{\kappa}{\sigma})
+&=&
+\kappa
 \end{array}$ \\
 \vspace{5mm}
 
 \vspace{5pt}
 \flushleft\shadebox{$\sigma \singletonElimBwd{o} \kappa$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-list-rest-end}}
-]
-{
-   \sigma \eq \elimList{\kappa}{\sigma}
-}
-{
-   \sigma
-   \singletonElimBwd{\pattListEnd}
-   \kappa
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\singletonElimBwd{}$-list-rest-cons}}
 ]
