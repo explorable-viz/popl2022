@@ -46,7 +46,7 @@ $\begin{array}{lllllll}
 &=&
 (\kappa_2',\beta)
 \\
-% false
+% prod
 \totaliseBwdF{\pattPair{p}{p'} \concat \vec{\pi}}(\elimProd{\sigma'})
 &=&
 (\elimProd{\tau},\beta)
@@ -54,28 +54,20 @@ $\begin{array}{lllllll}
 \totaliseBwdF{p \concat p' \concat \vec{\pi}}(\sigma')
 &=&
 (\tau,\beta)
+\\
+% nil
+\totaliseBwdF{\pattNil \concat \vec{\pi}}(\elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}})
+&=&
+(\elimNil{\kappa'},\alpha \join \beta)
+&
+\totaliseBwdF{\vec{\pi}}(\kappa)
+&=&
+(\kappa',\beta)
 \end{array}$ \\
 \vspace{5mm}
 
 \flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-nil}}
-]
-{
-   \sigma \eq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
-   \\
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
-}
-{
-   \totalisebwd{\sigma}
-               {\pattNil \concat \vec{\pi}}
-               {\elimNil{\kappa'}}
-               {\alpha \join \beta}
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-cons}}
 ]
