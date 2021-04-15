@@ -22,64 +22,26 @@ $\begin{array}{lllllll}
 \singletonElimBwdF{\pattVar{x}}(\elimVar{x}{\kappa})
 &=&
 \kappa
+\\
+% nil
+\singletonElimBwdF{\pattNil}(\elimList{\kappa}{\sigma})
+&=&
+\kappa
+\\
+% cons
+\singletonElimBwdF{\pattCons{p}{p'}}(\elimList{\kappa}{\sigma'})
+&=&
+\singletonElimBwdF{p'}(\singletonElimBwdF{p}(\sigma'))
+\\
+% non-empty-list
+\singletonElimBwdF{\pattList{p}{o}}(\elimList{\kappa}{\sigma'})
+&=&
+\singletonElimBwdF{o}(\singletonElimBwdF{p}(\sigma'))
 \end{array}$ \\
 \vspace{5mm}
 
 \flushleft\shadebox{$\sigma \singletonElimBwd{\vec{p}} \kappa$}
 \begin{smathpar}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-nil}}
-]
-{
-   \sigma \eq \elimList{\kappa}{\sigma}
-}
-{
-   \sigma
-   \singletonElimBwd{\exNil}
-   \kappa
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-cons}}
-]
-{
-   \sigma \eq \elimList{\kappa}{\sigma'}
-   \\
-   \sigma' \singletonElimBwd{p} \tau
-   \\
-   \tau \singletonElimBwd{p'} \kappa'
-}
-{
-   \sigma
-   \singletonElimBwd{\pattCons{p}{p'}}
-   \kappa'
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-non-empty-list}}
-]
-{
-   \sigma \eq \elimList{\kappa}{\sigma'}
-   \\
-   \sigma' \singletonElimBwd{p} \tau
-   \\
-   \tau \singletonElimBwd{o} \kappa'
-}
-{
-   \sigma
-   \singletonElimBwd{\pattList{p}{o}}
-   \kappa'
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\singletonElimBwd{}$-pair}}
 ]
