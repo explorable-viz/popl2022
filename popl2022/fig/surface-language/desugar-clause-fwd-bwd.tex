@@ -1,18 +1,11 @@
 \begin{figure}[H]
-
-\flushleft
-\begin{tabularx}{\textwidth}{lL{3cm}L{6.3cm}}
-\rowcolor{verylightgray}
-$\singletonElimGC{\vec{p}}: \Below{\kappa} \to \Below{\sigma}$
-&
-where $\vec{p}, \kappa \singletonElimFwd \sigma$
-&
-\end{tabularx}
-
 \small
-$\begin{array}{lllllll}
-&&&
-\textit{where}
+$\begin{array}{lll|llll}
+\arrayrulecolor{lightgray}
+\rowcolor{verylightgray}
+\singletonElimGC{\vec{p}}: \Below{\kappa} \to \Below{\sigma}
+\textit{ where }\vec{p}, \kappa \singletonElimFwd \sigma
+&&&\textit{where}&&
 \\
 % hole
 \singletonElimBwdF{\vec{p}}(\hole)
@@ -56,7 +49,11 @@ $\begin{array}{lllllll}
 &&&
 \singletonElimBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
 \\
-\arrayrulecolor{verylightgray}\hline
+\rowcolor{verylightgray}
+\singletonElimGC{o}: \Below{\kappa} \to \Below{\sigma}
+\textit{ where }o, \kappa \singletonElimFwd \sigma
+&&&&&
+\\
 % hole
 \singletonElimBwdF{o}(\hole)
 &=&
