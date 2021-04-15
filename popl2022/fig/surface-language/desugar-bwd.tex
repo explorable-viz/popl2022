@@ -115,17 +115,45 @@ $\begin{array}{lll|llll}
    \\
    % list-comp-gen
    \desugarBwdF{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
-               (\exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e_1})
+               (\exApp{e}{e_1})
    &=&
    \annot{\exListComp{s_{2}'}{\qualGenerator{p}{\desugarBwdF{s_{1}}(e_{1})} \concat \vec{q}'}}
          {\beta \join \beta'}
    &
+   e &=& \exApp{\funConcatMap}{(\exLambda{\sigma})}
+   \\
+   &&&
    (\sigma',\beta) &=& \totaliseBwdF{p}(\sigma)
    \\
    &&&
    \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{{\beta'}}}
    &=&
    \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}(\sigma')
+   \\[3mm]
+   %
+   %
+   %
+   \rowcolor{verylightgray}
+   \desugarBwdF{l} &::& \Below{e} \to \Below{l}
+   & l \desugarFwd e
+   &&
+   \\
+   % hole
+   \desugarBwdF{l}(\hole)
+   &=&
+   \desugarBwdF{l}(e)
+   &
+   \hole \neq e &\eq& \hole
+   \\
+   % list-rest-end
+   \desugarBwdF{\exListEnd}(\annot{\exNil}{\alpha})
+   &=&
+   \annot{\exListEnd}{\alpha}
+   \\
+   % rest-rest-cons
+   \desugarBwdF{\exListNext{s}{l}}(\annCons{e_1}{e_2}{\alpha})
+   &=&
+   \annListNext{\desugarBwdF{s}(e_1)}{\desugarBwdF{l}(e_2)}{\alpha}
 \end{array}$
 \caption{Desugaring terms -- backward slicing (selected rules)}
 \end{figure}
