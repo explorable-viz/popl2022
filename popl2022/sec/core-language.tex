@@ -57,17 +57,17 @@
 
 \paragraph{Primitive operations}
 
-Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection $(\primFwdBool{\phi}(\vec{n}), \primBwdBool{\phi}(\vec{n}))$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}(\vec{n}), \primBwd{\phi}(\vec{n}))$ between $\Below{\vec{\annInt{n}{\TT}}}$ and $\Below{\annInt{\phi(\vec{n})}{\TT}}$ by defining
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}}$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}(\vec{n}), \primBwd{\phi}(\vec{n}))$ between $\Below{\vec{\annInt{n}{\TT}}}$ and $\Below{\annInt{\phi(\vec{n})}{\TT}}$ by defining
 \begin{definition}
 \label{def:core-language:primop-gc}
 \begin{salign}
    \primFwd{\phi}(\vec{n})(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
    \text{ where }
-   \primFwdBool{\phi}(\vec{n})(\vec{\alpha}) = \beta
+   \primFwdBool{\phi}{\vec{n}}(\vec{\alpha}) = \beta
    \\
    \primBwd{\phi}(\vec{n})(\annInt{m}{\beta}) &= \vec{\annInt{n}{\alpha}}
    \text{ where }
-   \primBwdBool{\phi}(\vec{n})(\beta) = \vec{\alpha}
+   \primBwdBool{\phi}{\vec{n}}(\beta) = \vec{\alpha}
 \end{salign}
 \end{definition}
 

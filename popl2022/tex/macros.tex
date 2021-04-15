@@ -38,9 +38,9 @@
 % Primitives.
 \newcommand*{\primOp}{\oplus}
 \newcommand*{\primFwd}[1]{\fwdF{#1}{}}
-\newcommand*{\primFwdBool}[1]{{#1}^{\Bool}_{\mathsf{fwd}}}
+\newcommand*{\primFwdBool}[2]{\fwdF{{#1}^{\Bool}}{#2}}
 \newcommand*{\primBwd}[1]{\bwdF{#1}{}}
-\newcommand*{\primBwdBool}[1]{{#1}^{\Bool}_{\mathsf{bwd}}}
+\newcommand*{\primBwdBool}[2]{\bwdF{{#1}^{\Bool}}{#2}}
 \newcommand*{\primAppF}[1]{\fwdF{primApp}{#1}}
 
 % Prelude functions
