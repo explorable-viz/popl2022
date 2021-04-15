@@ -70,6 +70,16 @@ $\begin{array}{lll|llll}
 \singletonElimBwdF{(\pattListNext{p}{o})}(\elimList{\kappa}{\sigma'})
 &=&
 \singletonElimBwdF{o}(\singletonElimBwdF{p}(\sigma'))
+\\[3mm]
+% list-rest-end
+\singletonElimFwdF{\pattListEnd}(\kappa)
+&=&
+\elimNil{\kappa}
+\\
+% list-rest-cons
+\singletonElimFwdF{(\pattListNext{p}{o})}(\kappa)
+&=&
+\elimCons{\singletonElimFwdF{p}(\singletonElimFwdF{o}(\kappa))}
 \end{array}$ \\
 
 \vspace{5pt}
