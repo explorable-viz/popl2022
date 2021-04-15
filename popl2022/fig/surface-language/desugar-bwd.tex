@@ -16,28 +16,14 @@ $\begin{array}{lll|llll}
    &
    \hole \neq e &\eq& \hole
    \\
+   % binary-apply
+   \desugarBwdF{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}(\exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}})
+   &=&
+   \exBinaryApp{\desugarBwdF{s_1}(e_1)}{\primOp}{\desugarBwdF{s_2}(e_2)}
 \end{array}$\\[3mm]
 
 \flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-binary-apply}}
-   ]
-   {
-      e \eq \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
-      \\
-      e_1, s_1 \desugarBwd{} s_1'
-      \\
-      e_2, s_2 \desugarBwd{} s_2'
-   }
-   {
-      e
-      \desugarBwd{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}
-      \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\desugarBwd{}$-nil}}
    ]
