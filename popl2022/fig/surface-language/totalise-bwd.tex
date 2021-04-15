@@ -81,28 +81,21 @@ $\begin{array}{lllllll}
 \totaliseBwdF{p \concat o \concat \vec{\pi}}(\sigma')
 &=&
 (\tau,\beta)
+\\
+% list-rest-end
+\totaliseBwdF{(\pattListEnd \concat \vec{\pi}}
+             (\elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}})
+&=&
+(\elimNil{\kappa'},\alpha \join \beta)
+&
+\totaliseBwdF{\vec{\pi}}(\kappa)
+&=&
+(\kappa',\beta)
 \end{array}$ \\
 \vspace{5mm}
 
 \flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-list-rest-end}}
-]
-{
-   \sigma \eq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
-   \\
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
-}
-{
-   \totalisebwd{\sigma}
-               {\pattListEnd \concat \vec{\pi}}
-               {\elimNil{\kappa'}}
-               {\alpha \join \beta}
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-list-rest-cons}}
 ]
