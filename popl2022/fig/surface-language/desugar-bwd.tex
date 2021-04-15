@@ -54,11 +54,11 @@ $\begin{array}{lll|llll}
    \exApp{\desugarBwdF{s_1}(e_1)}{\desugarBwdF{s_2}(e_2)}
    \\
    % if
-   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{e}{e_{1}})
+   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{(\exLambda{\sigma})}{e_{1}})
    &=&
    \exIfThenElse{\desugarBwdF{s_{1}}(e_{1})}{s_{2}'}{s_{3}'}
    &
-   e &=& \exLambda{\elimBool{e_{2}}{e_{3}}}
+   \sigma &=& \elimBool{e_{2}}{e_{3}}
    \\
    &&&
    s_{2}' &=& \desugarBwdF{s_{2}}(e_{2})
@@ -89,28 +89,21 @@ $\begin{array}{lll|llll}
    \desugarBwdF{\exListComp{s}{\seqEmpty}}(\annCons{e}{\annNil{\alpha}}{\alpha'})
    &=&
    \annot{\exListComp{\desugarBwdF{s}(e)}{\seqEmpty}}{\alpha \join \alpha'}
+   \\
+   % list-comp-guard
+   \desugarBwdF{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
+              (\exApp{(\exLambda{\sigma})}{e_{2}})
+   &=&
+   \annot{\exListComp{s_{1}'}{\qualGuard{\desugarBwdF{s_2}(e_2)} \concat \vec{q}'}}{\alpha \join \beta}
+   &
+   \sigma &=& \elimBool{e_{1}}{\annNil{\alpha}}
+   \\
+   &&&
+   \annListComp{s_{1}'}{\vec{q}'}{\beta} &=& \desugarBwdF{\exListComp{s_1}{\vec{q}}}(e_1)
 \end{array}$\\[3mm]
 
 \flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-list-comp-guard}},
-   ]
-   {
-      e \eq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
-      \\
-      e_2 \desugarBwd{s_2} s_2'
-      \\
-      e_1 \desugarBwd{\exListComp{s_1}{\vec{q}}} \annListComp{s_{1}'}{\vec{q}'}{\beta}
-   }
-   {
-      e
-      \desugarBwd{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
-      \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\desugarBwd{}$-list-comp-decl}},
    ]
