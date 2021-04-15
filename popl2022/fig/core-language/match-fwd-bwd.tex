@@ -3,7 +3,7 @@ $\begin{array}{lll|lll}
    &&&\textit{where}
    \\
    \rowcolor{verylightgray}
-   \matchFwdGC{w} &::& \Below{(v,\sigma)} \to \Below{(\rho,\kappa, \alpha)}
+   \matchFwdF{w} &::& \Below{(v,\sigma)} \to \Below{(\rho,\kappa, \alpha)}
    &w &::& v, \sigma \match \rho, \kappa, \alpha
    \\
    \matchFwdF{x}(v, \sigma)
@@ -53,10 +53,14 @@ $\begin{array}{lll|lll}
    \\
    &&&
    (\rho_2, \kappa, \beta') &=& \matchFwdF{w_2}(v_2,\tau)
-   \\[3mm]
-   %
-   %
-   %
+\end{array}$\\[3mm]
+
+$\begin{array}{lll|lll}
+   \arrayrulecolor{lightgray}
+   \rowcolor{verylightgray}
+   \matchBwdF{w} &::& \Below{(\rho,\kappa, \alpha)} \to \Below{(v,\sigma)}
+   &w &::& v, \sigma \match \rho, \kappa, \alpha
+   \\
    \matchBwdF{\matchVar{x}}(\bind{x}{v}, \kappa, \alpha)
    &=&
    (v, \elimVar{x}{\kappa})
