@@ -20,12 +20,26 @@ $\begin{array}{lllllll}
 &
 \totaliseFwdF{\vec{\pi}}(\kappa,\alpha) &=& \kappa'
 \\
+% true
+\totaliseFwdF{\pattTrue \concat \vec{\pi}}(\elimBoolTrue{\kappa},\alpha)
+&=&
+\elimBool{\kappa'}{\annot{\exNil}{\alpha}}
+&
+\totaliseFwdF{\vec{\pi}}(\kappa,\alpha) &=& \kappa'
+\\
 % false
 \totaliseFwdF{\pattFalse \concat \vec{\pi}}(\elimBoolFalse{\kappa},\alpha)
 &=&
 \elimBool{\annot{\exNil}{\alpha}}{\kappa'}
 &
 \totaliseFwdF{\vec{\pi}}(\kappa,\alpha) &=& \kappa'
+\\
+% prod
+\totaliseFwdF{\pattPair{p}{p'} \concat \vec{\pi}}(\elimProd{\sigma},\alpha)
+&=&
+\elimProd{\sigma'}
+&
+\totaliseFwdF{p \concat p' \concat \vec{\pi}}{(\sigma,\alpha)} &=& \sigma'
 \end{array}$ \\
 \vspace{3mm}
 

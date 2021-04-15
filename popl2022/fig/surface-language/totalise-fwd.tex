@@ -2,39 +2,6 @@
 \flushleft \shadebox{$\totalise{\kappa}{\alpha}{\kappa}'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\totalisefwdarrow$-elim-true}}
-]
-{
-   \totalise{\kappa}{\alpha}{\kappa'}
-}
-{
-   \totalise{\elimBoolTrue{\kappa}}{\alpha}{\elimBool{\kappa'}{\annot{\exNil}{\alpha}}}
-}
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\totalisefwdarrow$-elim-false}}
-]
-{
-   \totalise{\kappa}{\alpha}{\kappa'}
-}
-{
-   \totalise{\elimBoolFalse{\kappa}}{\alpha}{\elimBool{\annot{\exNil}{\alpha}}{\kappa'}}
-}
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\totalisefwdarrow$-elim-prod}}
-]
-{
-   \totalise{\sigma}{\alpha}{\sigma'}
-}
-{
-   \totalise{\elimProd{\sigma}}{\alpha}{\elimProd{\sigma'}}
-}
-\and
-%
-\inferrule*[
    lab={\ruleName{$\totalisefwdarrow$-elim-nil}}
 ]
 {
