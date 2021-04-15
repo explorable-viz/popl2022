@@ -13,7 +13,7 @@ $\begin{array}{lll|llll}
 \elimVar{x}{\kappa}
 \\
 % nil
-\singletonElimFwdF{\pattVar{x}}(\kappa)
+\singletonElimFwdF{\pattNil}(\kappa)
 &=&
 \elimNil{\kappa}
 \\
@@ -21,6 +21,26 @@ $\begin{array}{lll|llll}
 \singletonElimFwdF{\pattCons{p}{p'}}(\kappa)
 &=&
 \elimCons{\singletonElimFwdF{p}(\singletonElimFwdF{p'}(\kappa))}
+\\
+% non-empty-list
+\singletonElimFwdF{\pattList{p}{o}}(\kappa)
+&=&
+\elimCons{\singletonElimFwdF{p}(\singletonElimFwdF{o}(\kappa))}
+\\
+% pair
+\singletonElimFwdF{\pattPair{p}{p'}}(\kappa)
+&=&
+\elimProd{\singletonElimFwdF{p}(\singletonElimFwdF{p'}(\kappa))}
+\\
+% seq
+\singletonElimFwdF{p \concat \vec{p}}(e)
+&=&
+\singletonElimFwdF{p}(\exLambda{\sigma})
+&
+\length{\vec{p}} \numgt 0
+\\
+&&&
+\singletonElimFwdF{\vec{p}}(e) &=& \sigma
 \\[3mm]
 % hole
 \singletonElimBwdF{\vec{p}}(\hole)
@@ -75,7 +95,7 @@ $\begin{array}{lll|llll}
 \elimNil{\kappa}
 \\
 % list-rest-cons
-\singletonElimFwdF{(\pattListNext{p}{o})}(\kappa)
+\singletonElimFwdF{\pattListNext{p}{o}}(\kappa)
 &=&
 \elimCons{\singletonElimFwdF{p}(\singletonElimFwdF{o}(\kappa))}
 \\[3mm]
@@ -92,7 +112,7 @@ $\begin{array}{lll|llll}
 \kappa
 \\
 % list-rest-cons
-\singletonElimBwdF{(\pattListNext{p}{o})}(\elimList{\kappa}{\sigma'})
+\singletonElimBwdF{\pattListNext{p}{o}}(\elimList{\kappa}{\sigma'})
 &=&
 \singletonElimBwdF{o}(\singletonElimBwdF{p}(\sigma'))
 \end{array}$ \\

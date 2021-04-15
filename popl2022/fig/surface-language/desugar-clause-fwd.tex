@@ -3,38 +3,6 @@
 \flushleft\shadebox{$\vec{p}, \kappa \singletonElimFwd \sigma$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-non-empty-list}}
-]
-{
-   o, \kappa \singletonElimFwd \sigma
-   \\
-   p, \sigma \singletonElimFwd \sigma'
-}
-{
-   \pattList{p}{o}, \kappa
-   \singletonElimFwd
-   \elimCons{\sigma'}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-pair}}
-]
-{
-   p', \kappa \singletonElimFwd \sigma
-   \\
-   p, \sigma \singletonElimFwd \sigma'
-}
-{
-   \pattPair{p}{p'}, \kappa
-   \singletonElimFwd
-   \elimProd{\sigma'}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\singletonElimFwd$-seq}},
    right={$\length{\vec{p}} \numgt 0$}
 ]
@@ -44,9 +12,6 @@
    p, \exLambda{\sigma} \singletonElimFwd \sigma'
 }
 {
-   p \concat \vec{p}, e
-   \singletonElimFwd
-   \sigma'
 }
 \end{smathpar}
 
