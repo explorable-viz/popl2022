@@ -45,25 +45,20 @@ $\begin{array}{lllllll}
 \totaliseBwdF{\vec{\pi}}(\kappa_2)
 &=&
 (\kappa_2',\beta)
+\\
+% false
+\totaliseBwdF{\pattPair{p}{p'} \concat \vec{\pi}}(\elimProd{\sigma'})
+&=&
+(\elimProd{\tau},\beta)
+&
+\totaliseBwdF{p \concat p' \concat \vec{\pi}}(\sigma')
+&=&
+(\tau,\beta)
 \end{array}$ \\
 \vspace{5mm}
 
 \flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-prod}}
-]
-{
-   \sigma \eq \elimProd{\sigma'}
-   \\
-   \totalisebwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
-}
-{
-   \totalisebwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\tau}}{\beta}
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-nil}}
 ]
