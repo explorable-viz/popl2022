@@ -13,10 +13,9 @@
   \label{lem:aux:clause:gc}
   Suppose $p, e \dfwdarrow \sigma$. Then:
   \begin{enumerate}
-     \item $\dfwdarrow$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarClauseFwdF{p, e}$ to $\Below{\sigma}$.
-     \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClauseBwdF{p, e}$ to $\Below{e}$.
-     \item $\desugarClauseFwdF{p, e}(\desugarClauseBwdF{p, e}(\sigma')) \geq \sigma'$.
-     \item $\desugarClauseBwdF{p, e}(\desugarClauseFwdF{p, e}(e')) \leq e'$.
+     \item $\clauseFwdF{\clause{p}{e}}$ and $\clauseBwdF{\clause{p}{e}}$ are monotonic.
+     \item $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
+     \item $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(e')) \leq e'$.
   \end{enumerate}
 \end{lemma}
 \begin{lemma}[Galois connection for clauses]
@@ -32,10 +31,10 @@
   \label{lem:aux:list-gen:gc}
   \item
   \begin{itemize}
-    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ with $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
-    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ with $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \desugarClauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
+    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ with $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
+    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ with $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \clauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
   \end{itemize}
-  Suppose $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
+  Suppose $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
   \begin{enumerate}
      \item $\listGenFwd$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
      \item $\listGenBwd{\clauseUncurried{p}{e}}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\listGenBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.
