@@ -3,118 +3,118 @@
 $\begin{array}{lll|llll}
 \arrayrulecolor{lightgray}
 \rowcolor{verylightgray}
-\singletonElimGC{\vec{p}}: \Below{\kappa} \to \Below{\sigma}
-&&\textit{ where }\vec{p}, \kappa \singletonElimFwd \sigma
+\clauseGC{\vec{p}}: \Below{\kappa} \to \Below{\sigma}
+&&\textit{ where }\vec{p}, \kappa \clauseFwd \sigma
 &\textit{where}&&
 \\
 % var
-\singletonElimFwdF{\pattVar{x}}(\kappa)
+\clauseFwdF{\pattVar{x}}(\kappa)
 &=&
 \elimVar{x}{\kappa}
 \\
 % nil
-\singletonElimFwdF{\pattNil}(\kappa)
+\clauseFwdF{\pattNil}(\kappa)
 &=&
 \elimNil{\kappa}
 \\
 % cons
-\singletonElimFwdF{\pattCons{p}{p'}}(\kappa)
+\clauseFwdF{\pattCons{p}{p'}}(\kappa)
 &=&
-\elimCons{\singletonElimFwdF{p}(\singletonElimFwdF{p'}(\kappa))}
+\elimCons{\clauseFwdF{p}(\clauseFwdF{p'}(\kappa))}
 \\
 % non-empty-list
-\singletonElimFwdF{\pattList{p}{o}}(\kappa)
+\clauseFwdF{\pattList{p}{o}}(\kappa)
 &=&
-\elimCons{\singletonElimFwdF{p}(\singletonElimFwdF{o}(\kappa))}
+\elimCons{\clauseFwdF{p}(\clauseFwdF{o}(\kappa))}
 \\
 % pair
-\singletonElimFwdF{\pattPair{p}{p'}}(\kappa)
+\clauseFwdF{\pattPair{p}{p'}}(\kappa)
 &=&
-\elimProd{\singletonElimFwdF{p}(\singletonElimFwdF{p'}(\kappa))}
+\elimProd{\clauseFwdF{p}(\clauseFwdF{p'}(\kappa))}
 \\
 % seq
-\singletonElimFwdF{p \concat \vec{p}}(e)
+\clauseFwdF{p \concat \vec{p}}(e)
 &=&
-\singletonElimFwdF{p}(\exLambda{\sigma})
+\clauseFwdF{p}(\exLambda{\sigma})
 &
 \length{\vec{p}} \numgt 0
 \\
 &&&
-\singletonElimFwdF{\vec{p}}(e) &=& \sigma
+\clauseFwdF{\vec{p}}(e) &=& \sigma
 \\[3mm]
 % hole
-\singletonElimBwdF{\vec{p}}(\hole)
+\clauseBwdF{\vec{p}}(\hole)
 &=&
-\singletonElimBwdF{\vec{p}}(\sigma)
+\clauseBwdF{\vec{p}}(\sigma)
 &
 \hole \neq \sigma &\eq& \hole
 \\
 % var
-\singletonElimBwdF{\pattVar{x}}(\elimVar{x}{\kappa})
+\clauseBwdF{\pattVar{x}}(\elimVar{x}{\kappa})
 &=&
 \kappa
 \\
 % nil
-\singletonElimBwdF{\pattNil}(\elimList{\kappa}{\sigma})
+\clauseBwdF{\pattNil}(\elimList{\kappa}{\sigma})
 &=&
 \kappa
 \\
 % cons
-\singletonElimBwdF{\pattCons{p}{p'}}(\elimList{\kappa}{\sigma'})
+\clauseBwdF{\pattCons{p}{p'}}(\elimList{\kappa}{\sigma'})
 &=&
-\singletonElimBwdF{p'}(\singletonElimBwdF{p}(\sigma'))
+\clauseBwdF{p'}(\clauseBwdF{p}(\sigma'))
 \\
 % non-empty-list
-\singletonElimBwdF{\pattList{p}{o}}(\elimList{\kappa}{\sigma'})
+\clauseBwdF{\pattList{p}{o}}(\elimList{\kappa}{\sigma'})
 &=&
-\singletonElimBwdF{o}(\singletonElimBwdF{p}(\sigma'))
+\clauseBwdF{o}(\clauseBwdF{p}(\sigma'))
 \\
 % pair
-\singletonElimBwdF{\pattPair{p}{p'}}(\elimProd{\sigma})
+\clauseBwdF{\pattPair{p}{p'}}(\elimProd{\sigma})
 &=&
-\singletonElimBwdF{p'}(\singletonElimBwdF{p}(\sigma))
+\clauseBwdF{p'}(\clauseBwdF{p}(\sigma))
 \\
 % seq
-\singletonElimBwdF{p \concat \vec{p}}(\sigma)
+\clauseBwdF{p \concat \vec{p}}(\sigma)
 &=&
-\singletonElimBwdF{\vec{p}}(\sigma')
+\clauseBwdF{\vec{p}}(\sigma')
 &
 \length{\vec{p}} \numgt 0
 \\
 &&&
-\singletonElimBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
+\clauseBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
 \\
 \rowcolor{verylightgray}
-\singletonElimGC{o}: \Below{\kappa} \to \Below{\sigma}
-&&\textit{ where }o, \kappa \singletonElimFwd \sigma
+\clauseGC{o}: \Below{\kappa} \to \Below{\sigma}
+&&\textit{ where }o, \kappa \clauseFwd \sigma
 &&&
 \\
 % list-rest-end
-\singletonElimFwdF{\pattListEnd}(\kappa)
+\clauseFwdF{\pattListEnd}(\kappa)
 &=&
 \elimNil{\kappa}
 \\
 % list-rest-cons
-\singletonElimFwdF{\pattListNext{p}{o}}(\kappa)
+\clauseFwdF{\pattListNext{p}{o}}(\kappa)
 &=&
-\elimCons{\singletonElimFwdF{p}(\singletonElimFwdF{o}(\kappa))}
+\elimCons{\clauseFwdF{p}(\clauseFwdF{o}(\kappa))}
 \\[3mm]
 % hole
-\singletonElimBwdF{o}(\hole)
+\clauseBwdF{o}(\hole)
 &=&
-\singletonElimBwdF{o}(\sigma)
+\clauseBwdF{o}(\sigma)
 &
 \hole \neq \sigma &\eq& \hole
 \\
 % list-rest-end
-\singletonElimBwdF{\pattListEnd}(\elimList{\kappa}{\sigma})
+\clauseBwdF{\pattListEnd}(\elimList{\kappa}{\sigma})
 &=&
 \kappa
 \\
 % list-rest-cons
-\singletonElimBwdF{\pattListNext{p}{o}}(\elimList{\kappa}{\sigma'})
+\clauseBwdF{\pattListNext{p}{o}}(\elimList{\kappa}{\sigma'})
 &=&
-\singletonElimBwdF{o}(\singletonElimBwdF{p}(\sigma'))
+\clauseBwdF{o}(\clauseBwdF{p}(\sigma'))
 \\[3mm]
 \rowcolor{verylightgray}
 \desugarClausesGC{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}
@@ -124,7 +124,7 @@ $\begin{array}{lll|llll}
 % clause
 \desugarClausesFwdF{\clause{\vec{p}}{s}}(\clause{\vec{p}}{s'})
 &=&
-\singletonElimFwdF{\vec{p}}(\desugarFwdF{s}(s'))
+\clauseFwdF{\vec{p}}(\desugarFwdF{s}(s'))
 \\
 % clause-seq
 \desugarClausesFwdF{c \concat \vec{c}}(c' \concat \vec{c}')
@@ -134,7 +134,7 @@ $\begin{array}{lll|llll}
 % clause
 \desugarClausesBwdF{\clause{\vec{p}}{s}}(\sigma)
 &=&
-\clause{\vec{p}}{\desugarBwdF{s}(\singletonElimBwdF{\vec{p}}(\sigma))}
+\clause{\vec{p}}{\desugarBwdF{s}(\clauseBwdF{\vec{p}}(\sigma))}
 \\
 % clause-seq
 \desugarClausesBwdF{c \concat \vec{c}}(\sigma)

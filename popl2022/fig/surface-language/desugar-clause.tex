@@ -1,126 +1,126 @@
 
 \begin{figure}[H]
-\flushleft\shadebox{$p, \kappa \singletonElimFwd \sigma$}
+\flushleft\shadebox{$p, \kappa \clauseFwd \sigma$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-var}}
+   lab={\ruleName{$\clauseFwd$-var}}
 ]
 {
    \strut
 }
 {
    x, \kappa
-   \singletonElimFwd
+   \clauseFwd
    \elimVar{x}{\kappa}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-nil}}
+   lab={\ruleName{$\clauseFwd$-nil}}
 ]
 {
    \strut
 }
 {
    \pattNil, \kappa
-   \singletonElimFwd
+   \clauseFwd
    \elimNil{\kappa}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-cons}}
+   lab={\ruleName{$\clauseFwd$-cons}}
 ]
 {
-   p', \kappa \singletonElimFwd \sigma
+   p', \kappa \clauseFwd \sigma
    \\
-   p, \sigma \singletonElimFwd \sigma'
+   p, \sigma \clauseFwd \sigma'
 }
 {
    \pattCons{p}{p'}, \kappa
-   \singletonElimFwd
+   \clauseFwd
    \elimCons{\sigma'}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-non-empty-list}}
+   lab={\ruleName{$\clauseFwd$-non-empty-list}}
 ]
 {
-   o, \kappa \singletonElimFwd \sigma
+   o, \kappa \clauseFwd \sigma
    \\
-   p, \sigma \singletonElimFwd \sigma'
+   p, \sigma \clauseFwd \sigma'
 }
 {
    \pattList{p}{o}, \kappa
-   \singletonElimFwd
+   \clauseFwd
    \elimCons{\sigma'}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-pair}}
+   lab={\ruleName{$\clauseFwd$-pair}}
 ]
 {
-   p', \kappa \singletonElimFwd \sigma
+   p', \kappa \clauseFwd \sigma
    \\
-   p, \sigma \singletonElimFwd \sigma'
+   p, \sigma \clauseFwd \sigma'
 }
 {
    \pattPair{p}{p'}, \kappa
-   \singletonElimFwd
+   \clauseFwd
    \elimProd{\sigma'}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-seq}},
+   lab={\ruleName{$\clauseFwd$-seq}},
    right={$\length{\vec{p}} \numgt 0$}
 ]
 {
-   \vec{p}, e \singletonElimFwd \sigma
+   \vec{p}, e \clauseFwd \sigma
    \\
-   p, \exLambda{\sigma} \singletonElimFwd \sigma'
+   p, \exLambda{\sigma} \clauseFwd \sigma'
 }
 {
    p \concat \vec{p}, e
-   \singletonElimFwd
+   \clauseFwd
    \sigma'
 }
 \end{smathpar}
 
-\flushleft\shadebox{$o, \kappa \singletonElimFwd \sigma$}
+\flushleft\shadebox{$o, \kappa \clauseFwd \sigma$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-list-rest-end}}
+   lab={\ruleName{$\clauseFwd$-list-rest-end}}
 ]
 {
    \strut
 }
 {
    \pattListEnd, \kappa
-   \singletonElimFwd
+   \clauseFwd
    \elimNil{\kappa}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-list-rest-cons}}
+   lab={\ruleName{$\clauseFwd$-list-rest-cons}}
 ]
 {
-   o, \kappa \singletonElimFwd \sigma
+   o, \kappa \clauseFwd \sigma
    \\
-   p, \sigma \singletonElimFwd \sigma'
+   p, \sigma \clauseFwd \sigma'
 }
 {
    (\pattListNext{p}{o}), \kappa
-   \singletonElimFwd
+   \clauseFwd
    \elimCons{\sigma'}
 }
 \end{smathpar}
@@ -133,7 +133,7 @@
 {
    s \desugarFwd e
    \\
-   \vec{p}, e \singletonElimFwd \sigma
+   \vec{p}, e \clauseFwd \sigma
 }
 {
    \clause{\vec{p}}{s}
