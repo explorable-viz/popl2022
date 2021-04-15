@@ -94,37 +94,6 @@
 }
 \end{smathpar}
 
-\flushleft\shadebox{$o, \kappa \singletonElimFwd \sigma$}
-\begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-list-rest-end}}
-]
-{
-   \strut
-}
-{
-   \pattListEnd, \kappa
-   \singletonElimFwd
-   \elimNil{\kappa}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\singletonElimFwd$-list-rest-cons}}
-]
-{
-   o, \kappa \singletonElimFwd \sigma
-   \\
-   p, \sigma \singletonElimFwd \sigma'
-}
-{
-   (\pattListNext{p}{o}), \kappa
-   \singletonElimFwd
-   \elimCons{\sigma'}
-}
-\end{smathpar}
-
 \flushleft\shadebox{$\vec{c} \desugarClauseFwd \sigma$}
 \begin{smathpar}
 \inferrule*[
