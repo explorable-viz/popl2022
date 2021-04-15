@@ -215,9 +215,12 @@
 \newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \sub{\matchBwdS}{#4}\leq #5, #6}
 \newcommand*{\matchFwdR}[1]{\matchFwdS_{\hspace{-0.2em}#1}}
 \newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
-\newcommand*{\matchFwdF}[1]{\sub{{_{*}\mathsf{match}}}{#1}}
-\newcommand*{\matchBwdF}[1]{\sub{{^{*}\mathsf{match}}}{#1}}
+\newcommand*{\matchFwdF}[1]{\fwdF{match}{#1}}
+\newcommand*{\matchBwdF}[1]{\bwdF{match}{#1}}
 \newcommand*{\matchBwdR}[1]{\matchBwdS_{#1}}
+
+\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\smalltriangleright}{#2}}
+\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{#2}}
 
 \newcommand*{\bind}[2]{(#1:#2)}
 \renewcommand*{\vec}[1]{\vv{#1}}
