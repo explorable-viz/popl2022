@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\totaliseBwdF{\vec{\pi}}: \Below{\kappa} \to \Below{\kappa'}$}
+\flushleft \shadebox{$\totaliseBwdF{\vec{\pi}}: \Below{\kappa} \to \Below{\kappa',\TT}$}
 where $\kappa \totalisefwdarrow \kappa'$ \\
 
 \small
@@ -14,37 +14,25 @@ $\begin{array}{lllrlll}
 &
 \hole \neq \kappa &\eq& \hole
 \\
+% empty
+\totaliseBwdF{\seqEmpty}(\kappa)
+&=&
+(\kappa,\FF)
+\\
+% var
+\totaliseBwdF{\pattVar{x} \concat \vec{\pi}}(\elimVar{x}{\kappa})
+&=&
+(\elimVar{x}{\kappa'},\alpha)
+&
+\totaliseBwdF{\vec{\pi}}(\kappa)
+&=&
+(\kappa',\alpha)
+\\
 \end{array}$ \\
 \vspace{5mm}
 
 \flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-empty}}
-]
-{
-   \strut
-}
-{
-   \totalisebwd{\kappa}{\seqEmpty}{\kappa}{\FF}
-}
-%
-\and
-%
-\inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-var}}
-]
-{
-   \sigma \eq \elimVar{x}{\kappa}
-   \\
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
-}
-{
-   \totalisebwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa'}}{\alpha}
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-true}}
 ]
