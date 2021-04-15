@@ -47,6 +47,13 @@ $\begin{array}{lllllll}
 \elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
 &
 \totaliseFwdF{\vec{\pi}}{(\kappa,\alpha)} &=& \kappa'
+\\
+% cons
+\totaliseFwdF{\pattCons{p}{p'} \concat \vec{\pi}}(\elimCons{\sigma},\alpha)
+&=&
+\elimList{\annot{\exNil}{\alpha}}{\tau}
+&
+\totaliseFwdF{p \concat p' \concat \vec{\pi}}{(\sigma,\alpha)} &=& \sigma'
 \end{array}$ \\
 \vspace{3mm}
 
