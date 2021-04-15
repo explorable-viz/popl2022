@@ -37,11 +37,11 @@
 
 % Primitives.
 \newcommand*{\primOp}{\oplus}
-\newcommand*{\primFwd}[1]{{#1}_{\mathsf{fwd}}}
+\newcommand*{\primFwd}[1]{\fwdF{#1}{}}
 \newcommand*{\primFwdBool}[1]{{#1}^{\Bool}_{\mathsf{fwd}}}
-\newcommand*{\primBwd}[1]{{#1}_{\mathsf{bwd}}}
+\newcommand*{\primBwd}[1]{\bwdF{#1}{}}
 \newcommand*{\primBwdBool}[1]{{#1}^{\Bool}_{\mathsf{bwd}}}
-\newcommand*{\primAppF}[1]{\sub{{_{*}\mathsf{primApp}}}{#1}}
+\newcommand*{\primAppF}[1]{\fwdF{primApp}{#1}}
 
 % Prelude functions
 \newcommand*{\funConcatMap}{\exVar{\kw{concatMap}}}
@@ -205,8 +205,8 @@
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalFwdR{#4} #5}
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
-\newcommand*{\evalFwdF}[1]{\sub{\mathsf{evalF}}{#1}}
-\newcommand*{\evalBwdF}[1]{\sub{\mathsf{evalB}}{#1}}
+\newcommand*{\evalFwdF}[1]{\fwdF{eval}{#1}}
+\newcommand*{\evalBwdF}[1]{\bwdF{eval}{#1}}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchFwd}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3} #4, #5, #6}
@@ -265,8 +265,8 @@
 
 \newcommand*{\desugarFwd}{\dfwdarrow}
 \newcommand*{\desugarBwd}[1]{\sub{\dbwdarrow}{#1}}
-\newcommand*{\desugarFwdF}[1]{\mathsf{desugFwd}_{#1}}
-\newcommand*{\desugarBwdF}[1]{\mathsf{desugBwd}_{#1}}
+\newcommand*{\desugarFwdF}[1]{\fwdF{desugFwd}{#1}}
+\newcommand*{\desugarBwdF}[1]{\bwdF{desugBwd}{#1}}
 
 \newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRestFwd}_{#1}}
 \newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRestBwd}_{#1}}
