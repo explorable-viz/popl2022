@@ -62,13 +62,11 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-nil}}
 ]
 {
-   \\
-   \totalise{\kappa}{\alpha}{\kappa'}
+   \explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
 }
 {
-   \totalise{\elimNil{\kappa}}
-            {\alpha}
-            {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\exNil}}}}
+   \explVal{\pattNil \concat \vec{\pi}}
+           {\elimNil{\kappa} \totalisefwdarrow \elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\exNil}}}}
 }
 \and
 %
@@ -76,11 +74,11 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-cons}}
 ]
 {
-   \totalise{\sigma}{\alpha}{\sigma'}
+   \explVal{p \concat p' \concat \vec{\pi}}{\sigma \totalisefwdarrow \sigma'}
 }
 {
-   \totalise{\elimCons{\sigma}}{\alpha}{\elimList{\exNil}{\sigma'}}
+   \explVal{\pattCons{p}{p'} \concat \vec{\pi}}{\elimCons{\sigma} \totalisefwdarrow \elimList{\exNil}{\sigma'}}
 }
 \end{smathpar}
-\caption{Totalise}
+\caption{$\kappa$ is a singleton eliminator (with patterns $\protect\vec{\pi}$) which totalises to $\kappa'$}
 \end{figure}
