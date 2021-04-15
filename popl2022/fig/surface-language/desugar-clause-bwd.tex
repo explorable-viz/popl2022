@@ -1,23 +1,5 @@
 \begin{figure}[H]
-\flushleft\shadebox{$\sigma \singletonElimBwd{\vec{p}} e$}
-\begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\singletonElimBwd{}$-pattern-seq}}
-]
-{
-   \sigma \singletonElimBwd{p}\eq \exLambda{\sigma'}
-   \\
-   \sigma' \singletonElimBwd{\vec{p}} e
-}
-{
-   \sigma
-   \singletonElimBwd{p \concat \vec{p}}
-   e
-}
-\end{smathpar}
-
-\vspace{5pt}
-\flushleft\shadebox{$\sigma \singletonElimBwd{p} \kappa$}
+\flushleft\shadebox{$\sigma \singletonElimBwd{\vec{p}} \kappa$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\singletonElimBwd{}$-var}}
@@ -97,6 +79,23 @@
    \sigma
    \singletonElimBwd{\pattPair{p}{p'}}
    \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\singletonElimBwd{}$-seq}},
+   right={$\length{\vec{p}} \numgt 0$}
+]
+{
+   \sigma \singletonElimBwd{p}\eq \exLambda{\sigma'}
+   \\
+   \sigma' \singletonElimBwd{\vec{p}} e
+}
+{
+   \sigma
+   \singletonElimBwd{p \concat \vec{p}}
+   e
 }
 \end{smathpar}
 
