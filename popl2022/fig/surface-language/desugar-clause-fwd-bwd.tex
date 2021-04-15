@@ -130,27 +130,16 @@ $\begin{array}{lll|llll}
 \desugarClausesFwdF{c \concat \vec{c}}(c' \concat \vec{c}')
 &=&
 \desugarClausesFwdF{c}(c') \join \desugarClausesFwdF{\vec{c}}(\vec{c}')
+\\[3mm]
+% clause
+\desugarClausesBwdF{\clause{\vec{p}}{s}}(\sigma)
+&=&
+\clause{\vec{p}}{\desugarBwdF{s}(\singletonElimBwdF{\vec{p}}(\sigma))}
 \end{array}$ \\
 
 \vspace{5pt}
 \flushleft\shadebox{$\sigma \desugarClauseBwd{\vec{c}} \vec{c}'$}
 \begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\desugarClauseBwd{}$-clause}}
-]
-{
-   \sigma \singletonElimBwd{\vec{p}} e
-   \\
-   e \desugarBwd{s} s'
-}
-{
-   \sigma
-   \desugarClauseBwd{\clause{\vec{p}}{s}}
-   \clause{\vec{p}}{s'}
-}
-%
-\and
-%
 \inferrule*[
    lab={\ruleName{$\desugarClauseBwd{}$-clause-seq}}
 ]
