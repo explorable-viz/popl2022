@@ -78,43 +78,21 @@ $\begin{array}{lll|llll}
    &=&
    \exLet{p}{\desugarBwdF{s_1}(e')}{s_2'}
    &
-   s_2' &=& \desugarClausesBwdF{\clauseUncurried{p}{s_2}}(\sigma) 
+   s_2' &=& \desugarClausesBwdF{\clauseUncurried{p}{s_2}}(\sigma)
+   \\
+   % list-enum
+   \desugarBwdF{\exListEnum{s_{1}}{s_{2}}}(\exApp{\exApp{\funEnumFromTo}{e_1}}{e_2})
+   &=&
+   \exListEnum{\desugarBwdF{s_{1}}(e_{1})}{\desugarBwdF{s_{2}}(e_{2})}
+   \\
+   % list-comp-done
+   \desugarBwdF{\exListComp{s}{\seqEmpty}}(\annCons{e}{\annNil{\alpha}}{\alpha'})
+   &=&
+   \annot{\exListComp{\desugarBwdF{s}(e)}{\seqEmpty}}{\alpha \join \alpha'}
 \end{array}$\\[3mm]
 
 \flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-list-enum}},
-   ]
-   {
-      e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
-      \\
-      e_{1} \desugarBwd{s_{1}} s_{1}'
-      \\
-      e_{2} \desugarBwd{s_{2}} s_{2}'
-   }
-   {
-      e
-      \desugarBwd{\exListEnum{s_{1}}{s_{2}}}
-      \exListEnum{s_{1}'}{s_{2}'}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\desugarBwd{}$-list-comp-done}}]
-   {
-      e \eq \annCons{e'}{\annNil{\alpha}}{\alpha'}
-      \\
-      e' \desugarBwd{s} s'
-   }
-   {
-      e
-      \desugarBwd{\exListComp{s}{\seqEmpty}}
-      \annot{\exListComp{s'}{\seqEmpty}}{\alpha \join \alpha'}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\desugarBwd{}$-list-comp-guard}},
    ]
