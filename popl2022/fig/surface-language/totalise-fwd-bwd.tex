@@ -3,7 +3,7 @@
 \shadebox{$\totaliseBwdF{\vec{\pi}}: \Below{\kappa} \to \Below{(\kappa',\TT)}$}
 and
 \shadebox{$\totaliseFwdF{\vec{\pi}}: \Below{(\kappa',\TT)} \to \Below{(\kappa)}$}
-where $\kappa \sub{\totalisefwdarrow}{\vec{\pi}} \kappa'$ \\
+where $\explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}$ \\
 
 \small
 $\begin{array}{lllllll}
@@ -14,11 +14,18 @@ $\begin{array}{lllllll}
 \totaliseFwdF{\seqEmpty}(e,\alpha) &=& e
 \\
 % var
-\totaliseFwdF{\seqEmpty}(\elimVar{x}{\kappa},\alpha)
+\totaliseFwdF{\pattVar{x} \concat \vec{\pi}}(\elimVar{x}{\kappa},\alpha)
 &=&
 \elimVar{x}{\kappa'}
 &
-\totaliseFwdF{}(\kappa,\alpha) &=& \kappa'
+\totaliseFwdF{\vec{\pi}}(\kappa,\alpha) &=& \kappa'
+\\
+% false
+\totaliseFwdF{\pattFalse \concat \vec{\pi}}(\elimBoolFalse{\kappa},\alpha)
+&=&
+\elimBool{\annot{\exNil}{\alpha}}{\kappa'}
+&
+\totaliseFwdF{\vec{\pi}}(\kappa,\alpha) &=& \kappa'
 \end{array}$ \\
 \vspace{3mm}
 

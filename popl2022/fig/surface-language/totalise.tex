@@ -2,6 +2,28 @@
 \flushleft \shadebox{$\totalise{\kappa}{\alpha}{\kappa}'$}
 \begin{smathpar}
 \inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-expr}}
+]
+{
+   \strut
+}
+{
+   \totalise{e}{\alpha}{e}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-elim-var}}
+]
+{
+   \totalise{\kappa}{\alpha}{\kappa'}
+}
+{
+   \totalise{\elimVar{x}{\kappa}}{\alpha}{\elimVar{x}{\kappa'}}
+}
+\and
+%
+\inferrule*[
    lab={\ruleName{$\totalisefwdarrow$-elim-true}}
 ]
 {
