@@ -51,10 +51,10 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-prod}}
 ]
 {
-   \totalise{\sigma}{\alpha}{\sigma'}
+   \explVal{\vec{\pi}}{\sigma \totalisefwdarrow \sigma'}
 }
 {
-   \totalise{\elimProd{\sigma}}{\alpha}{\elimProd{\sigma'}}
+   \explVal{\vec{\pi}}{\elimProd{\sigma} \totalisefwdarrow \elimProd{\sigma'}}
 }
 \and
 %
@@ -79,7 +79,7 @@
    \totalise{\sigma}{\alpha}{\sigma'}
 }
 {
-   \totalise{\elimCons{\sigma}}{\alpha}{\elimList{\exNil}{\tau}}
+   \totalise{\elimCons{\sigma}}{\alpha}{\elimList{\exNil}{\sigma'}}
 }
 \end{smathpar}
 \caption{Totalise}
