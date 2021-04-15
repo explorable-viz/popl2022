@@ -20,40 +20,18 @@ $\begin{array}{lll|llll}
    \desugarBwdF{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}(\exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}})
    &=&
    \exBinaryApp{\desugarBwdF{s_1}(e_1)}{\primOp}{\desugarBwdF{s_2}(e_2)}
+   \\
+   % nil
+   \desugarBwdF{\exNil}(\annNil{\alpha}) &=& \annNil{\alpha}
+   \\
+   % non-empty-list
+   \desugarBwdF{\exList{s}{l}}(\annCons{e_1}{e_2}{\alpha})
+   &=&
+   \annList{\desugarBwdF{s}(e_1)}{\desugarBwdF{l}(e_2)}{\alpha}
 \end{array}$\\[3mm]
 
 \flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-nil}}
-   ]
-   {
-      e \eq \annNil{\alpha}
-   }
-   {
-      e \desugarBwd{\exNil} \annNil{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-non-empty-list}}
-   ]
-   {
-      e \eq \annCons{e_1}{e_2}{\alpha}
-      \\
-      e_1 \desugarBwd{s} s'
-      \\
-      e_2 \desugarBwd{l} l'
-   }
-   {
-      e
-      \desugarBwd{\exList{s}{l}}
-      \annList{s'}{l'}{\alpha}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\desugarBwd{}$-cons}}
    ]
