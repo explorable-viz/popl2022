@@ -28,44 +28,34 @@ $\begin{array}{lll|llll}
    \desugarBwdF{\exList{s}{l}}(\annCons{e_1}{e_2}{\alpha})
    &=&
    \annList{\desugarBwdF{s}(e_1)}{\desugarBwdF{l}(e_2)}{\alpha}
+   \\
+   % cons
+   \desugarBwdF{\exCons{s_1}{s_2}}(\annCons{e_1}{e_2}{\alpha})
+   &=&
+   \annCons{\desugarBwdF{s_1}(e_1)}{\desugarBwdF{s_2}(e_2)}{\alpha}
+   \\
+   % let-rec
+   \desugarBwdF{\exLetRecMutual{\vec{g}}{s}}
+               (\exLetRecMutual{\vec{\bind{x}{\sigma}}}{e'})
+   &=&
+   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+   &
+   g_i &=& \bind{x_i}{\vec{c_i}}
+   \\
+   &&&
+   \desugarBwdF{s}(e') &=& s'
 \end{array}$\\[3mm]
 
 \flushleft \shadebox{$e \desugarBwd{s} s'$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-cons}}
    ]
    {
-      e \eq \annCons{e_1}{e_2}{\alpha}
-      \\
-      e_1 \desugarBwd{s_1} s_1'
-      \\
-      e_2 \desugarBwd{s_2} s_2'
-   }
-   {
-      e
-      \desugarBwd{\exCons{s_1}{s_2}}
-      \annCons{s_1'}{s_2'}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarBwd{}$-let-rec}}
-   ]
-   {
-      e \eq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e'}
-      \\
       \sigma_i  \desugarClauseBwd{\vec{c_i}} \vec{c_i}'
       \quad
       (\forall i \numleq j)
-      \\
-      e' \desugarBwd{s} s'
    }
    {
-      e
-      \desugarBwd{\exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}}
-      \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
    }
    %
    \and
