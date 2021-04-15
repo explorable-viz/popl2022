@@ -1,10 +1,12 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\evalFwdF{T}: \Below{(\rho,e,\TT) \to \Below{v}}$}
-where $T :: \rho, e \eval v$ \\
 \small
-$\begin{array}{lllrlll}
-&&&
-\textit{where}
+$\begin{array}{lll|llll}
+\arrayrulecolor{lightgray}
+&&&\textit{where}
+\\
+\rowcolor{verylightgray}
+\evalFwdF{T} &::& \Below{(\rho,e,\TT) \to \Below{v}}
+&T &::& \rho, e \eval v
 \\
 \evalFwdF{T}(\rho,\hole,\alpha)
 &=&
