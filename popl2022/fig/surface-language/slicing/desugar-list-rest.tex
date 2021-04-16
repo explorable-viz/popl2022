@@ -9,6 +9,16 @@ $\begin{array}{lll|llll}
    & l \desugarFwd e
    &&
    \\
+   % list-rest-end
+   \desugarFwdF{\exListEnd}(\annot{\exListEnd}{\alpha})
+   &=&
+   \annot{\exNil}{\alpha}
+   \\
+   % rest-rest-cons
+   \desugarFwdF{\exListNext{s}{l}}(\annListNext{s_1}{s_2}{\alpha})
+   &=&
+   \annCons{\desugarFwdF{s}(s_1)}{\desugarFwdF{l}(s_2)}{\alpha}
+   \\[3mm]
    % hole
    \desugarBwdF{l}(\hole)
    &=&
