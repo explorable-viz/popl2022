@@ -3,15 +3,14 @@
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\desugarFwd$-apply}}
+      lab={\ruleName{$\desugarFwd$-if}}
    ]
    {
-      s \desugarFwd e
-      \\
       s' \desugarFwd e'
+      \\
+      s^{\twoPrime} \desugarFwd e^{\twoPrime}
    }
    {
-      \exApp{s}{s'} \desugarFwd \exApp{e}{e'}
    }
    %
    \and
@@ -44,24 +43,6 @@
       \exLet{p}{s}{s'}
       \desugarFwd
       \exApp{(\exLambda{\sigma})}{e}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-if}}
-   ]
-   {
-      s \desugarFwd e
-      \\
-      s' \desugarFwd e'
-      \\
-      s^{\twoPrime} \desugarFwd e^{\twoPrime}
-   }
-   {
-      \exIfThenElse{s}{s'}{s^{\twoPrime}}
-      \desugarFwd
-      \exApp{\exLambda{\elimBool{e'}{e^{\twoPrime}}}}{e}
    }
    %
    \and

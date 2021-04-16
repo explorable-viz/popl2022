@@ -45,6 +45,13 @@ $\begin{array}{lll|llll}
    \desugarFwdF{\exApp{t_1}{t_2}}(\exApp{s_1}{s_2})
    &=&
    \exApp{\desugarFwdF{t_1}(s_1)}{\desugarFwdF{t_2}(s_2)}
+   \\
+   % if
+   \desugarFwdF{\exIfThenElse{t_1}{t_2}{t_3}}(s)
+   &=&
+   \exApp{\exLambda{\elimBool{e_1}{e_2}}}{\desugarFwdF{t}(s_1)}
+   &
+   s &=& \exIfThenElse{s_1}{s_2}{s_3}
    \\[3mm]
    %
    %
@@ -94,7 +101,7 @@ $\begin{array}{lll|llll}
    \exApp{\desugarBwdF{s_1}(e_1)}{\desugarBwdF{s_2}(e_2)}
    \\
    % if
-   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{(\exLambda{\sigma})}{e_{1}})
+   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{\exLambda{\sigma}}{e_{1}})
    &=&
    \exIfThenElse{\desugarBwdF{s_{1}}(e_{1})}{s_{2}'}{s_{3}'}
    &
@@ -104,14 +111,14 @@ $\begin{array}{lll|llll}
    s_{2}',s_{3}' &=& \desugarBwdF{s_{2}}(e_{2}), \desugarBwdF{s_{3}}(e_{3})
    \\
    % match
-   \desugarBwdF{\exMatch{s}{\vec{c}}}(\exApp{(\exLambda{\sigma})}{e'})
+   \desugarBwdF{\exMatch{s}{\vec{c}}}(\exApp{\exLambda{\sigma}}{e'})
    &=&
    \exMatch{\desugarBwdF{s}(e')}{\vec{c}'}
    &
    \vec{c}' &=& \desugarClausesBwdF{\vec{c}}(\sigma)
    \\
    % let
-   \desugarBwdF{\exLet{p}{s_1}{s_2}}(\exApp{(\exLambda{\sigma})}{e'})
+   \desugarBwdF{\exLet{p}{s_1}{s_2}}(\exApp{\exLambda{\sigma}}{e'})
    &=&
    \exLet{p}{\desugarBwdF{s_1}(e')}{s_2'}
    &
@@ -129,7 +136,7 @@ $\begin{array}{lll|llll}
    \\
    % list-comp-guard
    \desugarBwdF{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
-              (\exApp{(\exLambda{\sigma})}{e_{2}})
+              (\exApp{\exLambda{\sigma}}{e_{2}})
    &=&
    \annot{\exListComp{s_{1}'}{\qualGuard{\desugarBwdF{s_2}(e_2)} \concat \vec{q}'}}{\alpha \join \beta}
    &
@@ -140,7 +147,7 @@ $\begin{array}{lll|llll}
    \\
    % list-comp-decl
    \desugarBwdF{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
-               (\exApp{(\exLambda{\sigma})}{e'})
+               (\exApp{\exLambda{\sigma}}{e'})
    &=&
    \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{\desugarBwdF{s_{1}}(e')} \concat \vec{q}'}}
          {\beta}
@@ -156,7 +163,7 @@ $\begin{array}{lll|llll}
    \annot{\exListComp{s_{2}'}{\qualGenerator{p}{\desugarBwdF{s_1}(e_{1})} \concat \vec{q}'}}
          {\beta \join \beta'}
    &
-   e &=& \exApp{\funConcatMap}{(\exLambda{\sigma})}
+   e &=& \exApp{\funConcatMap}{\exLambda{\sigma}}
    \\
    &&&
    (\sigma',\beta) &=& \totaliseBwdF{p}(\sigma)
