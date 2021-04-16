@@ -49,10 +49,21 @@ $\begin{array}{lll|llll}
    % if
    \desugarFwdF{\exIfThenElse{t_1}{t_2}{t_3}}(s)
    &=&
-   \exApp{\exLambda{\elimBool{e_1}{e_2}}}{\desugarFwdF{t}(s_1)}
+   \exApp{\exLambda{\elimBool{e_2}{e_3}}}{\desugarFwdF{t}(s_1)}
    &
    s &=& \exIfThenElse{s_1}{s_2}{s_3}
-   \\[3mm]
+   \\
+   &&&
+   e_2, e_3 &=& \desugarFwdF{t_2}(s_2), \desugarFwdF{t_3}(s_3)
+   \\
+   % match
+   \desugarFwdF{\exMatch{t}{\vec{c}}}(\exMatch{s}{\vec{c}'})
+   &=&
+   \exApp{\exLambda{\sigma}}{\desugarFwdF{t}(s)}
+   &
+   \sigma &=& \desugarClausesFwdF{\vec{c}}(\vec{c}')
+   \\[1mm]
+   \hline
    %
    %
    %

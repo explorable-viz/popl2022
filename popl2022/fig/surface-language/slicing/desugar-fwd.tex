@@ -3,35 +3,6 @@
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\desugarFwd$-if}}
-   ]
-   {
-      s' \desugarFwd e'
-      \\
-      s^{\twoPrime} \desugarFwd e^{\twoPrime}
-   }
-   {
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-match}}
-   ]
-   {
-      s \desugarFwd e
-      \\
-      \vec{c} \desugarClauseFwd \sigma
-   }
-   {
-      \exMatch{s}{\vec{c}}
-      \desugarFwd
-      \exApp{(\exLambda{\sigma})}{e}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\desugarFwd$-let}}
    ]
    {
