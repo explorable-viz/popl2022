@@ -99,7 +99,7 @@
 \newcommand*{\annCons}[3]{{#1}\,\symCons_{\hspace{-0.1em}#3}\,{#2}}
 \newcommand*{\annFalse}[1]{\kw{false}_{#1}}
 \newcommand*{\annList}[3]{\kw{[}_{#3}\;#1 \ #2}
-\newcommand*{\annListComp}[3]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}_{#3}}
+\newcommand*{\annListComp}[3]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\kw{]}_{#3}}
 \newcommand*{\annInt}[2]{#1_{#2}}
 \newcommand*{\annMatrix}[5]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack_{#5}}
 \newcommand*{\annNil}[1]{\kw{[]}_{#1}}
@@ -267,8 +267,8 @@
 
 \newcommand*{\desugarFwd}{\dfwdarrow}
 \newcommand*{\desugarBwd}[1]{\sub{\dbwdarrow}{#1}}
-\newcommand*{\desugarFwdF}[1]{\fwdF{desug}{#1}}
-\newcommand*{\desugarBwdF}[1]{\bwdF{desug}{#1}}
+\newcommand*{\desugarFwdF}[1]{\fwdF{dsg}{#1}}
+\newcommand*{\desugarBwdF}[1]{\bwdF{dsg}{#1}}
 
 \newcommand*{\desugarListRestFwdF}[1]{\fwdF{desug}{#1}}
 \newcommand*{\desugarListRestBwdF}[1]{\bwdF{desug}{#1}}
