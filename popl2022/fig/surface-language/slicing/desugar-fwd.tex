@@ -2,38 +2,6 @@
 
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-let}}
-   ]
-   {
-      s \desugarFwd e
-      \\
-      \clauseUncurried{p}{s'} \desugarFwd \sigma
-   }
-   {
-      \exLet{p}{s}{s'}
-      \desugarFwd
-      \exApp{(\exLambda{\sigma})}{e}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-list-enum}},
-   ]
-   {
-      s \desugarFwd e
-      \\
-      s' \desugarFwd e'
-   }
-   {
-      \exListEnum{s}{s'}
-      \desugarFwd
-      \exApp{\exApp{\funEnumFromTo}{e}}{e'}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\desugarFwd$-list-comp-done}}]
    {
       s \desugarFwd e

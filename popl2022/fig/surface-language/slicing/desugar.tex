@@ -62,6 +62,18 @@ $\begin{array}{lll|llll}
    \exApp{\exLambda{\sigma}}{\desugarFwdF{t}(s)}
    &
    \sigma &=& \desugarClausesFwdF{\vec{c}}(\vec{c}')
+   \\
+   % let
+   \desugarFwdF{\exLet{p}{t}{t'}}(\exLet{p}{s}{s'})
+   &=&
+   \exApp{\exLambda{\sigma}}{\desugarFwdF{t}(s)}
+   &
+   \sigma &=& \desugarClausesFwdF{\clauseUncurried{p}{s'}}(\clauseUncurried{p}{t'})
+   \\
+   % list-enum
+   \desugarFwdF{\exListEnum{t}{t'}}(\exListEnum{s}{s'})
+   &=&
+   \exApp{\exApp{\funEnumFromTo}{\desugarFwdF{t}(s)}}{\desugarFwdF{t'}(s')}
    \\[1mm]
    \hline
    %
