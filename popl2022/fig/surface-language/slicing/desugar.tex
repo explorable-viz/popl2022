@@ -90,6 +90,11 @@ $\begin{array}{lll|llll}
    \\
    &&&
    e' &=& \desugarFwdF{t'}(s')
+   \\
+   \desugarFwdF{\exListComp{t}{\qualDeclaration{p}{t'} \concat \vec{q}}}
+               (\annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha})
+   &=&
+   \exApp{(\exLambda{\sigma})}{e}
    \\[1mm]
    \hline
    %

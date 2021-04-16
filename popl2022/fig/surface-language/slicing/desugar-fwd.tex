@@ -12,10 +12,7 @@
       \\
       s' \desugarFwd e
    }
-   {
-      \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
-      \desugarFwd
-      \exApp{(\exLambda{\sigma})}{e}
+   {      
    }
    \and
    %
@@ -37,33 +34,5 @@
       \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
    }
    \end{smathpar}
-
-   \vspace{5pt}
-   \flushleft \shadebox{$l \desugarFwd e$}
-   \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-list-rest-end}}
-   ]
-   {
-      \strut
-   }
-   {
-      \annListEnd{\alpha} \desugarFwd \annNil{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-list-rest-cons}}
-   ]
-   {
-      s \desugarFwd e
-      \\
-      l \desugarFwd e'
-   }
-   {
-      (\annListNext{s}{l}{\alpha}) \desugarFwd \annCons{e}{e'}{\alpha}
-   }
-\end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}
 \end{figure}
