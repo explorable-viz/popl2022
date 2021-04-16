@@ -3,20 +3,6 @@
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\desugarFwd$-list-comp-decl}}
-   ]
-   {
-      \clauseUncurried{p}{\annListComp{s}{\vec{q}}{\alpha}}
-      \desugarClauseFwd
-      \sigma
-      \\
-      s' \desugarFwd e
-   }
-   {      
-   }
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\desugarFwd$-list-comp-gen}}
    ]
    {

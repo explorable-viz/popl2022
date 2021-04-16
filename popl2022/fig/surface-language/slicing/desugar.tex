@@ -82,19 +82,25 @@ $\begin{array}{lll|llll}
    \\
    % list-comp-guard
    \desugarFwdF{\exListComp{t}{\qualGuard{t'} \concat \vec{q}}}
-               (\annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha})
+               (\annListComp{s}{\qualGuard{s'} \concat \vec{q}'}{\alpha})
    &=&
    \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
    &
-   e &=& \desugarFwdF{\exListComp{s}{\vec{q}}}(\annListComp{s}{\vec{q}}{\alpha})
+   e &=& \desugarFwdF{\exListComp{t}{\vec{q}}}(\annListComp{s}{\vec{q}'}{\alpha})
    \\
    &&&
    e' &=& \desugarFwdF{t'}(s')
    \\
-   \desugarFwdF{\exListComp{t}{\qualDeclaration{p}{t'} \concat \vec{q}}}
-               (\annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha})
+   \desugarFwdF{\exListComp{t_1}{\qualDeclaration{p}{t_2} \concat \vec{q}}}
+               (s)
    &=&
-   \exApp{(\exLambda{\sigma})}{e}
+   \exApp{\exLambda{\sigma}}{\desugarFwdF{t_2}(s_2)}
+   &
+   s &=& \annListComp{s_1}{\qualDeclaration{p}{s_2} \concat \vec{q}}{\alpha}
+   \\
+   &&&
+   \sigma &=& \desugarClausesFwdF{\clauseUncurried{p}{\exListComp{t_1}{\vec{q}}}}
+                                 (\clauseUncurried{p}{\annListComp{s_1}{\vec{q}}{\alpha}})
    \\[1mm]
    \hline
    %
