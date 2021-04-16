@@ -130,7 +130,7 @@
 \newcommand*{\pattPair}[2]{\exPair{#1}{#2}}
 
 % Eliminators.
-\newcommand*{\elimmapsto}{:}
+\newcommand*{\elimmapsto}{{:}\;}
 \newcommand*{\branchCons}[1]{(\symCons)\elimmapsto{#1}}
 \newcommand*{\branchNil}[1]{\exNil\elimmapsto{#1}}
 \newcommand*{\branchTrue}[1]{\exTrue\elimmapsto{#1}}
@@ -224,7 +224,7 @@
 \newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\smalltriangleright}{#2}}
 \newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{#2}}
 
-\newcommand*{\bind}[2]{(#1:#2)}
+\newcommand*{\bind}[2]{(#1{:}\;#2)}
 \renewcommand*{\vec}[1]{\vv{#1}}
 \newcommand*{\seq}[1]{\vv{#1}}
 \newcommand*{\seqRange}[2]{\seqRangeOp{#1}{#2}{\concat}}
