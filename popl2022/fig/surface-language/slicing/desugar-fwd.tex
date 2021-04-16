@@ -1,33 +1,7 @@
 \begin{figure}[H]
 
-\small
-$\begin{array}{lll|llll}
-   \arrayrulecolor{lightgray}
-   &&&\textit{where}
-   \\
-   \rowcolor{verylightgray}
-   \desugarFwdF{s} &::& \Below{s} \to \Below{e}
-   & s \desugarFwd e
-   &&
-   \\
-\end{array}$\\[3mm]
-
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-binary-apply}}
-   ]
-   {
-      s \desugarFwd e
-      \\
-      s' \desugarFwd e'
-   }
-   {
-      \exBinaryApp{s}{\primOp}{s'} \desugarFwd \exApp{\exApp{\exOp{\primOp}}{e}}{e'}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\desugarFwd$-nil}}
    ]

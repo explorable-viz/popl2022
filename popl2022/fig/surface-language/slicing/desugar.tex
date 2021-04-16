@@ -12,7 +12,7 @@ $\begin{array}{lll|llll}
    % binary-apply
    \desugarFwdF{\exBinaryApp{t}{\primOp}{t'}}(\exBinaryApp{s}{\primOp}{s'})
    &=&
-   \exApp{\exApp{\exOp{\primOp}}{e}}{e'}
+   \exApp{\exApp{\exOp{\primOp}}{\desugarFwdF{t}(s)}}{\desugarFwdF{t'}(s')}
    \\[3mm]
    % hole
    \desugarBwdF{s}(\hole)
