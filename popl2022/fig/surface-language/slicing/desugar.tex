@@ -5,7 +5,7 @@ $\begin{array}{lll|llll}
    &&&\textit{where}
    \\
    \rowcolor{verylightgray}
-   \desugarGC{s} &::& \Below{e} \to \Below{s}
+   \desugarFwdF{s} &::& \Below{e} \to \Below{s}
    & s \desugarFwd e
    &&
    \\
@@ -101,11 +101,26 @@ $\begin{array}{lll|llll}
    &&&
    \sigma &=& \desugarClausesFwdF{\clauseUncurried{p}{\exListComp{t_1}{\vec{q}}}}
                                  (\clauseUncurried{p}{\annListComp{s_1}{\vec{q}}{\alpha}})
-   \\[1mm]
-   \hline
-   %
-   %
-   %
+   \\
+   \desugarFwdF{\exListComp{t}{\qualGenerator{p}{t'} \concat \vec{q}'}}
+               (\annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha})
+   &=&
+   \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
+   &
+   \sigma &=&
+   \desugarClausesFwdF{\clauseUncurried{p}{\exListComp{t}{\vec{q}'}}}
+                      (\clauseUncurried{p}{\annListComp{s}{\vec{q}}{\alpha}})
+\end{array}$\\[3mm]
+
+$\begin{array}{lll|llll}
+   \arrayrulecolor{lightgray}
+   &&&\textit{where}
+   \\
+   \rowcolor{verylightgray}
+   \desugarBwdF{s} &::& \Below{s} \to \Below{e}
+   & s \desugarFwd e
+   &&
+   \\
    % hole
    \desugarBwdF{s}(\hole)
    &=&

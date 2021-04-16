@@ -6,18 +6,11 @@
       lab={\ruleName{$\desugarFwd$-list-comp-gen}}
    ]
    {
-      \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}}}{\alpha}}
-      \desugarClauseFwd
-      \sigma
-      \\
       \totalise{\sigma}{\alpha}{\sigma'}
       \\
       s' \desugarFwd e
    }
    {
-      \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
-      \desugarFwd
-      \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
    }
    \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}
