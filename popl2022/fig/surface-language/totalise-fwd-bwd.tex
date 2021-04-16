@@ -1,14 +1,13 @@
 \begin{figure}[H]
-\flushleft
-\shadebox{$\totaliseBwdF{\vec{\pi}}: \Below{\kappa} \to \Below{(\kappa',\TT)}$}
-and
-\shadebox{$\totaliseFwdF{\vec{\pi}}: \Below{(\kappa',\TT)} \to \Below{(\kappa)}$}
-where $\explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}$ \\
-
 \small
-$\begin{array}{lllllll}
-&&&
-\textit{where}
+$\begin{array}{lll|llll}
+\arrayrulecolor{lightgray}
+&&&\textit{where}
+\\
+\rowcolor{verylightgray}
+\totaliseGC{\vec{\pi}} &::& \Below{\kappa} \to \Below{(\kappa',\TT)}
+&\explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
+&&
 \\
 % expr
 \totaliseFwdF{\seqEmpty}(e,\alpha) &=& e
@@ -54,14 +53,14 @@ $\begin{array}{lllllll}
 \elimList{\annot{\exNil}{\alpha}}{\tau}
 &
 \totaliseFwdF{p \concat p' \concat \vec{\pi}}{(\sigma,\alpha)} &=& \sigma'
-\end{array}$ \\
-\vspace{3mm}
-
-\small
-$\begin{array}{lllllll}
-&&&
-\textit{where}
-\\
+%\end{array}$ \\
+%\vspace{3mm}
+%
+%\small
+%$\begin{array}{lll|llll}
+%&&&
+%\textit{where}
+\\[3mm]
 % hole
 \totaliseBwdF{\vec{\pi}}(\hole)
 &=&
