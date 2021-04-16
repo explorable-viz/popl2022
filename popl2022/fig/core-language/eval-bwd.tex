@@ -154,16 +154,7 @@ v' &=& \mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}
 \\
 &&&
 (\rho', h') &=& \closeDefsBwdF{}(\rho_1)
-\end{array}$\\
-
-\vspace{5pt}
-\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
-\begin{salign}
-   \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_i: \exClosure{\rho_i}{h_i}{\sigma_i}}
-   &\closeDefsBwdR
-   \bigjoin\vec{\rho},
-   (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin\vec{h}}
-\end{salign}
+\end{array}$
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \label{fig:eval:bwd}
 \end{figure}

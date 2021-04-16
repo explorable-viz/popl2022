@@ -1,5 +1,21 @@
 \begin{figure}[H]
 \small
+$\begin{array}{lll|llll}
+\arrayrulecolor{lightgray}
+&&&\textit{where}
+\\
+\rowcolor{verylightgray}
+\closeDefsGC{\rho,h} &::& \Below{(\rho, h)} \to \Below{\rho'}
+&\rho, h \closeDefsR \rho'
+&&
+\\
+\closeDefsBwdF{}
+              (\seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_i: \exClosure{\rho_i}{h_i}{\sigma_i}})
+&=&
+\bigjoin\vec{\rho}, (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin\vec{h}}
+\end{array}$\\[3mm]
+
+\small
 $\begin{array}{lllll}
 &&&
 \textit{where}
