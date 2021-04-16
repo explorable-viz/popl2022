@@ -79,6 +79,17 @@ $\begin{array}{lll|llll}
    \desugarFwdF{\exListComp{t}{\seqEmpty}}(\annListComp{s}{\seqEmpty}{\alpha})
    &=&
    \annCons{\desugarFwdF{t}(s)}{\annNil{\alpha}}{\alpha}
+   \\
+   % list-comp-guard
+   \desugarFwdF{\exListComp{t}{\qualGuard{t'} \concat \vec{q}}}
+               (\annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha})
+   &=&
+   \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
+   &
+   e &=& \desugarFwdF{\exListComp{s}{\vec{q}}}(\annListComp{s}{\vec{q}}{\alpha})
+   \\
+   &&&
+   e' &=& \desugarFwdF{t'}(s')
    \\[1mm]
    \hline
    %
