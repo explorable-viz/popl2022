@@ -1,0 +1,153 @@
+\begin{figure}[H]
+\small
+$\begin{array}{lll|llll}
+\arrayrulecolor{lightgray}
+&&&\textit{where}
+\\
+\rowcolor{verylightgray}
+\clauseGC{\vec{p}} &::& \Below{\kappa} \to \Below{\sigma}
+&\vec{p}, \kappa \clauseFwd \sigma
+&&
+\\
+% var
+\clauseFwdF{\pattVar{x}}(\kappa)
+&=&
+\elimVar{x}{\kappa}
+\\
+% nil
+\clauseFwdF{\pattNil}(\kappa)
+&=&
+\elimNil{\kappa}
+\\
+% cons
+\clauseFwdF{\pattCons{p}{p'}}(\kappa)
+&=&
+\elimCons{\clauseFwdF{p}(\clauseFwdF{p'}(\kappa))}
+\\
+% non-empty-list
+\clauseFwdF{\pattList{p}{o}}(\kappa)
+&=&
+\elimCons{\clauseFwdF{p}(\clauseFwdF{o}(\kappa))}
+\\
+% pair
+\clauseFwdF{\pattPair{p}{p'}}(\kappa)
+&=&
+\elimProd{\clauseFwdF{p}(\clauseFwdF{p'}(\kappa))}
+\\
+% seq
+\clauseFwdF{p \concat \vec{p}}(e)
+&=&
+\clauseFwdF{p}(\exLambda{\sigma})
+&
+\length{\vec{p}} \numgt 0
+\\
+&&&
+\clauseFwdF{\vec{p}}(e) &=& \sigma
+\\[3mm]
+% hole
+\clauseBwdF{\vec{p}}(\hole)
+&=&
+\clauseBwdF{\vec{p}}(\sigma)
+&
+\hole \neq \sigma &\eq& \hole
+\\
+% var
+\clauseBwdF{\pattVar{x}}(\elimVar{x}{\kappa})
+&=&
+\kappa
+\\
+% nil
+\clauseBwdF{\pattNil}(\elimList{\kappa}{\sigma})
+&=&
+\kappa
+\\
+% cons
+\clauseBwdF{\pattCons{p}{p'}}(\elimList{\kappa}{\sigma'})
+&=&
+\clauseBwdF{p'}(\clauseBwdF{p}(\sigma'))
+\\
+% non-empty-list
+\clauseBwdF{\pattList{p}{o}}(\elimList{\kappa}{\sigma'})
+&=&
+\clauseBwdF{o}(\clauseBwdF{p}(\sigma'))
+\\
+% pair
+\clauseBwdF{\pattPair{p}{p'}}(\elimProd{\sigma})
+&=&
+\clauseBwdF{p'}(\clauseBwdF{p}(\sigma))
+\\
+% seq
+\clauseBwdF{p \concat \vec{p}}(\sigma)
+&=&
+\clauseBwdF{\vec{p}}(\sigma')
+&
+\length{\vec{p}} \numgt 0
+\\
+&&&
+\clauseBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
+\\[3mm]
+%
+%
+%
+\rowcolor{verylightgray}
+\clauseGC{o} &::& \Below{\kappa} \to \Below{\sigma}
+&o, \kappa \clauseFwd \sigma
+&&
+\\
+% list-rest-end
+\clauseFwdF{\pattListEnd}(\kappa)
+&=&
+\elimNil{\kappa}
+\\
+% list-rest-cons
+\clauseFwdF{\pattListNext{p}{o}}(\kappa)
+&=&
+\elimCons{\clauseFwdF{p}(\clauseFwdF{o}(\kappa))}
+\\[3mm]
+% hole
+\clauseBwdF{o}(\hole)
+&=&
+\clauseBwdF{o}(\sigma)
+&
+\hole \neq \sigma &\eq& \hole
+\\
+% list-rest-end
+\clauseBwdF{\pattListEnd}(\elimList{\kappa}{\sigma})
+&=&
+\kappa
+\\
+% list-rest-cons
+\clauseBwdF{\pattListNext{p}{o}}(\elimList{\kappa}{\sigma'})
+&=&
+\clauseBwdF{o}(\clauseBwdF{p}(\sigma'))
+\\[3mm]
+%
+%
+%
+\rowcolor{verylightgray}
+\desugarClausesGC{\vec{c}} &::& \Below{\vec{c}} \to \Below{\sigma}
+&\vec{c} \desugarClausesFwd \sigma
+&&
+\\
+% clause
+\desugarClausesFwdF{\clause{\vec{p}}{s}}(\clause{\vec{p}}{s'})
+&=&
+\clauseFwdF{\vec{p}}(\desugarFwdF{s}(s'))
+\\
+% clause-seq
+\desugarClausesFwdF{c \concat \vec{c}}(c' \concat \vec{c}')
+&=&
+\desugarClausesFwdF{c}(c') \join \desugarClausesFwdF{\vec{c}}(\vec{c}')
+\\[3mm]
+% clause
+\desugarClausesBwdF{\clause{\vec{p}}{s}}(\sigma)
+&=&
+\clause{\vec{p}}{\desugarBwdF{s}(\clauseBwdF{\vec{p}}(\sigma))}
+\\
+% clause-seq
+\desugarClausesBwdF{c \concat \vec{c}}(\sigma)
+&=&
+\desugarClausesBwdF{c}(\sigma) \concat \desugarClausesBwdF{\vec{c}}(\sigma)
+\end{array}$
+\caption{Desugaring clauses -- forward and backward slicing}
+\end{figure}

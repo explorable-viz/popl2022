@@ -1,0 +1,134 @@
+\begin{figure}[H]
+\small
+$\begin{array}{lll|llll}
+   \arrayrulecolor{lightgray}
+   &&&\textit{where}
+   \\
+   \rowcolor{verylightgray}
+   \desugarGC{s} &::& \Below{e} \to \Below{s}
+   & s \desugarFwd e
+   &&
+   \\
+   % hole
+   \desugarBwdF{s}(\hole)
+   &=&
+   \desugarBwdF{s}(e)
+   &
+   \hole \neq e &\eq& \hole
+   \\
+   % binary-apply
+   \desugarBwdF{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}(\exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}})
+   &=&
+   \exBinaryApp{\desugarBwdF{s_1}(e_1)}{\primOp}{\desugarBwdF{s_2}(e_2)}
+   \\
+   % nil
+   \desugarBwdF{\exNil}(\annNil{\alpha}) &=& \annNil{\alpha}
+   \\
+   % non-empty-list
+   \desugarBwdF{\exList{s}{l}}(\annCons{e_1}{e_2}{\alpha})
+   &=&
+   \annList{\desugarBwdF{s}(e_1)}{\desugarBwdF{l}(e_2)}{\alpha}
+   \\
+   % cons
+   \desugarBwdF{\exCons{s_1}{s_2}}(\annCons{e_1}{e_2}{\alpha})
+   &=&
+   \annCons{\desugarBwdF{s_1}(e_1)}{\desugarBwdF{s_2}(e_2)}{\alpha}
+   \\
+   % let-rec
+   \desugarBwdF{\exLetRecMutual{\vec{g}}{s}}
+               (\exLetRecMutual{\vec{\bind{x}{\sigma}}}{e'})
+   &=&
+   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+   &
+   g_i &=& \bind{x_i}{\vec{c_i}}
+   \\
+   &&&
+   \vec{c_i}' &=& \desugarClausesBwdF{\vec{c_i}}(\sigma_i)
+   \\
+   &&&
+    s' &=& \desugarBwdF{s}(e')
+   \\
+   % apply
+   \desugarBwdF{\exApp{s_1}{s_2}}(\exApp{e_1}{e_2})
+   &=&
+   \exApp{\desugarBwdF{s_1}(e_1)}{\desugarBwdF{s_2}(e_2)}
+   \\
+   % if
+   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{(\exLambda{\sigma})}{e_{1}})
+   &=&
+   \exIfThenElse{\desugarBwdF{s_{1}}(e_{1})}{s_{2}'}{s_{3}'}
+   &
+   \sigma &=& \elimBool{e_{2}}{e_{3}}
+   \\
+   &&&
+   s_{2}' &=& \desugarBwdF{s_{2}}(e_{2})
+   \\
+   &&&
+   s_{3}' &=& \desugarBwdF{s_{3}}(e_{3})
+   \\
+   % match
+   \desugarBwdF{\exMatch{s}{\vec{c}}}(\exApp{(\exLambda{\sigma})}{e'})
+   &=&
+   \exMatch{\desugarBwdF{s}(e')}{\vec{c}'}
+   &
+   \vec{c}' &=& \desugarClausesBwdF{\vec{c}}(\sigma)
+   \\
+   % let
+   \desugarBwdF{\exLet{p}{s_1}{s_2}}(\exApp{(\exLambda{\sigma})}{e'})
+   &=&
+   \exLet{p}{\desugarBwdF{s_1}(e')}{s_2'}
+   &
+   s_2' &=& \desugarClausesBwdF{\clauseUncurried{p}{s_2}}(\sigma)
+   \\
+   % list-enum
+   \desugarBwdF{\exListEnum{s_{1}}{s_{2}}}(\exApp{\exApp{\funEnumFromTo}{e_1}}{e_2})
+   &=&
+   \exListEnum{\desugarBwdF{s_{1}}(e_{1})}{\desugarBwdF{s_{2}}(e_{2})}
+   \\
+   % list-comp-done
+   \desugarBwdF{\exListComp{s}{\seqEmpty}}(\annCons{e}{\annNil{\alpha}}{\alpha'})
+   &=&
+   \annot{\exListComp{\desugarBwdF{s}(e)}{\seqEmpty}}{\alpha \join \alpha'}
+   \\
+   % list-comp-guard
+   \desugarBwdF{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
+              (\exApp{(\exLambda{\sigma})}{e_{2}})
+   &=&
+   \annot{\exListComp{s_{1}'}{\qualGuard{\desugarBwdF{s_2}(e_2)} \concat \vec{q}'}}{\alpha \join \beta}
+   &
+   \sigma &=& \elimBool{e_{1}}{\annNil{\alpha}}
+   \\
+   &&&
+   \annListComp{s_{1}'}{\vec{q}'}{\beta} &=& \desugarBwdF{\exListComp{s_1}{\vec{q}}}(e_1)
+   \\
+   % list-comp-decl
+   \desugarBwdF{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
+               (\exApp{(\exLambda{\sigma})}{e'})
+   &=&
+   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{\desugarBwdF{s_{1}}(e')} \concat \vec{q}'}}
+         {\beta}
+   &
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+   &=&
+   \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}(\sigma)
+   \\
+   % list-comp-gen
+   \desugarBwdF{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
+               (\exApp{e}{e_1})
+   &=&
+   \annot{\exListComp{s_{2}'}{\qualGenerator{p}{\desugarBwdF{s_1}(e_{1})} \concat \vec{q}'}}
+         {\beta \join \beta'}
+   &
+   e &=& \exApp{\funConcatMap}{(\exLambda{\sigma})}
+   \\
+   &&&
+   (\sigma',\beta) &=& \totaliseBwdF{p}(\sigma)
+   \\
+   &&&
+   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{{\beta'}}}
+   &=&
+   \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}(\sigma')
+   \\
+\end{array}$
+\caption{Desugaring terms -- backward slicing (selected rules)}
+\end{figure}
