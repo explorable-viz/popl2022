@@ -2,10 +2,12 @@
 \small
 $\begin{array}{lll|llll}
 \arrayrulecolor{lightgray}
+&&&\textit{where}
+\\
 \rowcolor{verylightgray}
-\clauseGC{\vec{p}}: \Below{\kappa} \to \Below{\sigma}
-&&\textit{ where }\vec{p}, \kappa \clauseFwd \sigma
-&\textit{where}&&
+\clauseGC{\vec{p}} &::& \Below{\kappa} \to \Below{\sigma}
+&\vec{p}, \kappa \clauseFwd \sigma
+&&
 \\
 % var
 \clauseFwdF{\pattVar{x}}(\kappa)
@@ -83,11 +85,14 @@ $\begin{array}{lll|llll}
 \\
 &&&
 \clauseBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
-\\
+\\[3mm]
+%
+%
+%
 \rowcolor{verylightgray}
-\clauseGC{o}: \Below{\kappa} \to \Below{\sigma}
-&&\textit{ where }o, \kappa \clauseFwd \sigma
-&&&
+\clauseGC{o} &::& \Below{\kappa} \to \Below{\sigma}
+&o, \kappa \clauseFwd \sigma
+&&
 \\
 % list-rest-end
 \clauseFwdF{\pattListEnd}(\kappa)
@@ -116,10 +121,13 @@ $\begin{array}{lll|llll}
 &=&
 \clauseBwdF{o}(\clauseBwdF{p}(\sigma'))
 \\[3mm]
+%
+%
+%
 \rowcolor{verylightgray}
-\desugarClausesGC{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}
-&&\textit{ where }\vec{c} \desugarClausesFwd \sigma
-&&&
+\desugarClausesGC{\vec{c}} &::& \Below{\vec{c}} \to \Below{\sigma}
+&\vec{c} \desugarClausesFwd \sigma
+&&
 \\
 % clause
 \desugarClausesFwdF{\clause{\vec{p}}{s}}(\clause{\vec{p}}{s'})
@@ -141,5 +149,5 @@ $\begin{array}{lll|llll}
 &=&
 \desugarClausesBwdF{c}(\sigma) \concat \desugarClausesBwdF{\vec{c}}(\sigma)
 \end{array}$
-\caption{Desugaring clauses and patterns -- forward and backward slicing}
+\caption{Desugaring clauses -- forward and backward slicing}
 \end{figure}
