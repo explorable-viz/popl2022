@@ -3,52 +3,6 @@
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\desugarFwd$-non-empty-list}}
-   ]
-   {
-      s \desugarFwd e
-      \\
-      l \desugarFwd e'
-   }
-   {
-      \annList{s}{l}{\alpha} \desugarFwd \annCons{e}{e'}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-cons}}
-   ]
-   {
-      s \desugarFwd e
-      \\
-      s' \desugarFwd e'
-   }
-   {
-      \annCons{s}{s'}{\alpha} \desugarFwd \annCons{e}{e'}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarFwd$-let-rec}}
-   ]
-   {
-      \vec{c_i} \desugarClauseFwd \sigma_i
-      \quad
-      (\forall i \numleq j)
-      \\
-      s \desugarFwd e
-   }
-   {
-      \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
-      \desugarFwd
-      \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\desugarFwd$-apply}}
    ]
    {

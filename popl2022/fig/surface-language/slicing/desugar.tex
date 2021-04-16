@@ -21,6 +21,25 @@ $\begin{array}{lll|llll}
    \desugarFwdF{\exList{t}{l}}(\annList{s}{l'}{\alpha})
    &=&
    \annCons{\desugarFwdF{t}(s)}{\desugarFwdF{l}(l')}{\alpha}
+   \\
+   % cons
+   \desugarFwdF{\exCons{t_1}{t_2}}(\annCons{s_1}{s_2}{\alpha})
+   &=&
+   \annCons{\desugarFwdF{t_1}(s_1)}{\desugarFwdF{t_2}(s_2)}{\alpha}
+   \\
+   % let-rec
+   \desugarFwdF{\exLetRecMutual{\vec{g}}{t}}
+               (\exLetRecMutual{\vec{g}'}{s})
+   &=&
+   \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e})
+   &
+   (g_i,g'_i) &=& (\bind{x_i}{\vec{c_i}}, \bind{x_i}{\vec{c_i}'})
+   \\
+   &&&
+   \sigma_i &=& \desugarClausesFwdF{\vec{c_i}}(\vec{c_i}')
+   \\
+   &&&
+   e &=& \desugarFwdF{t}(s)
    \\[3mm]
    %
    %
