@@ -13,7 +13,18 @@ $\begin{array}{lll|llll}
    \desugarFwdF{\exBinaryApp{t}{\primOp}{t'}}(\exBinaryApp{s}{\primOp}{s'})
    &=&
    \exApp{\exApp{\exOp{\primOp}}{\desugarFwdF{t}(s)}}{\desugarFwdF{t'}(s')}
+   \\
+   % nil
+   \desugarFwdF{\exNil}(\annNil{\alpha}) &=& \annNil{\alpha}
+   \\
+   % non-empty-list
+   \desugarFwdF{\exList{t}{l}}(\annList{s}{l'}{\alpha})
+   &=&
+   \annCons{\desugarFwdF{t}(s)}{\desugarFwdF{l}(l')}{\alpha}
    \\[3mm]
+   %
+   %
+   %
    % hole
    \desugarBwdF{s}(\hole)
    &=&

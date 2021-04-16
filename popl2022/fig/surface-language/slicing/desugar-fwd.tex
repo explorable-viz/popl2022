@@ -3,18 +3,6 @@
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\desugarFwd$-nil}}
-   ]
-   {
-      \strut
-   }
-   {
-      \annNil{\alpha} \desugarFwd \annNil{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\desugarFwd$-non-empty-list}}
    ]
    {
