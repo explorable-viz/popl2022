@@ -9,6 +9,11 @@ $\begin{array}{lll|llll}
    & s \desugarFwd e
    &&
    \\
+   % binary-apply
+   \desugarFwdF{}(\exBinaryApp{s}{\primOp}{s'})
+   &=&
+   \exApp{\exApp{\exOp{\primOp}}{e}}{e'}
+   \\[3mm]
    % hole
    \desugarBwdF{s}(\hole)
    &=&
@@ -130,5 +135,5 @@ $\begin{array}{lll|llll}
    \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}(\sigma')
    \\
 \end{array}$
-\caption{Desugaring terms -- forward and backward slicing}
+\caption{Desugaring terms --- forward and backward slicing}
 \end{figure}
