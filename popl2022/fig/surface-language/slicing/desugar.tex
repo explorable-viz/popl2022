@@ -74,6 +74,11 @@ $\begin{array}{lll|llll}
    \desugarFwdF{\exListEnum{t}{t'}}(\exListEnum{s}{s'})
    &=&
    \exApp{\exApp{\funEnumFromTo}{\desugarFwdF{t}(s)}}{\desugarFwdF{t'}(s')}
+   \\
+   % list-comp-done
+   \desugarFwdF{\exListComp{t}{\seqEmpty}}(\annListComp{s}{\seqEmpty}{\alpha})
+   &=&
+   \annCons{\desugarFwdF{t}(s)}{\annNil{\alpha}}{\alpha}
    \\[1mm]
    \hline
    %

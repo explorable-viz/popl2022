@@ -2,18 +2,6 @@
 
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\desugarFwd$-list-comp-done}}]
-   {
-      s \desugarFwd e
-   }
-   {
-      \annot{\exListComp{s}{\seqEmpty}}{\alpha}
-      \desugarFwd
-      \annCons{e}{\annot{\exNil}{\alpha}}{\alpha}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\desugarFwd$-list-comp-guard}}
    ]
