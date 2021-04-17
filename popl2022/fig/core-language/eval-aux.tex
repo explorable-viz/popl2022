@@ -1,0 +1,39 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\envLookup{\rho}{z}{v}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-head}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envLookup{(\rho \concat \bind{z}{v})}{z}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-tail}},
+      right={$z' \neq z$}
+   ]
+   {
+      \envLookup{\rho}{z}{v}
+   }
+   {
+      \envLookup{(\rho \concat \bind{z'}{u})}{z}{v}
+   }
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft\shadebox{$\rho, h \closeDefsR \rho'$}
+\begin{salign}
+   \rho, h
+   &\closeDefsR
+   \seqRange{\bind{x_1}{\exClosure{\rho}{h}{\sigma_1}}}{\bind{x_j}{\exClosure{\rho}{h}{\sigma_j}}}
+   \\
+   & \text{where $h = \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}$}
+\end{salign}
+\caption{Evaluation -- auxiliary functions}
+\label{eval-aux}
+\end{figure}

@@ -11,6 +11,7 @@
 \subsection{Evaluation}
 \input{fig/core-language/match}
 \input{fig/core-language/eval}
+\input{fig/core-language/eval-aux}
 
 \subsection{Forward and backward slicing}
 \input{fig/core-language/leq-value-elim}
@@ -83,7 +84,7 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for recursive bindings]
-   Suppose $\rho, h \closeDefsFwdR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ by the equations in \figref{eval-aux}.
+   Suppose $\rho, h \closeDefsFwdR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ by the equations in \figref{slicing:eval-aux}.
 \end{definition}
 
 \begin{theorem}[Galois connection for recursive bindings]
