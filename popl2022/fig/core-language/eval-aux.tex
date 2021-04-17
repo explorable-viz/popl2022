@@ -8,10 +8,14 @@ $\begin{array}{lll|llll}
 \envLookupGC{\rho,z} &::& \Below{\rho} \to \Below{v}
 &\envLookup{\rho}{z}{v}
 &&
-\\[3mm]
-\envLookupFwdF{\rho,z}(\rho',z) &=& u
+\\
+\envLookupFwdF{\rho \concat \bind{z}{v},z}(\rho' \concat \bind{z}{u},z) &=& u
+\\
+\envLookupFwdF{\rho \concat \bind{z'}{v},z}(\rho' \concat \bind{z'}{u},z)
+&=&
+\envLookupFwdF{\rho,z}(\rho',z)
 &
-\envLookup{\rho'}{z}{u}
+z &\neq& z'
 \\
 %
 %
