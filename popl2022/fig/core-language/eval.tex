@@ -173,18 +173,18 @@
    %
    \inferrule*[lab={\ruleName{$\eval$-apply}}]
    {
-      \explVal{T}{\rho, e \eval \exClosure{\rho_1}{h}{\sigma}}
+      \explVal{T}{\rho, e \eval \exClosure{\rho_1}{\vec{\bind{x}{\sigma}}}{\sigma'}}
       \\
-      \rho_1, h \closeDefsR \rho_2
+      \rho_1, \vec{\bind{x}{\sigma}} \closeDefsR \rho_2
       \\
       \explVal{U}{\rho, e' \eval v}
       \\
-      \explVal{w}{v, \sigma \match \rho_3, e_1}
+      \explVal{w}{v, \sigma' \match \rho_3, e_1}
       \\
       \explVal{T'}{\rho_1 \concat \rho_2 \concat \rho_3, e_1 \eval v'}
    }
    {
-      \explVal{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho, \exApp{e}{e'} \eval v'}
+      \explVal{\trAppNew{T}{\rho_1}{\vec{\bind{x}{\sigma}}}{U}{w}{T'}}{\rho, \exApp{e}{e'} \eval v'}
    }
    %
    \and
