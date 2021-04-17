@@ -69,9 +69,12 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
 \input{fig/core-language/slicing/eval-fwd}
 \input{fig/core-language/slicing/eval-bwd}
 \input{fig/core-language/slicing/eval-aux}
-\input{fig/core-language/env-lookup}
 
-\begin{lemma}[Hole environment]
+\begin{definition}[Hole environment]
+Define $\hole_{\vec{\bind{z}{A}}} = \vec{\bind{z}{\hole}}$
+\end{definition}
+
+\begin{lemma}[Least environment for $\Gamma$]
 \label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\Gamma} \leq \rho$.
 \end{lemma}
 
