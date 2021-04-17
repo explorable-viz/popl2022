@@ -37,7 +37,7 @@
 \end{figure}
 
 \begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \match \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\Bool)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\Bool)}$ as given in \figref{match:fwd-bwd}.
+   Suppose $w: v, \sigma \match \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ as given in \figref{match:fwd-bwd}.
 \end{definition}
 
 \begin{theorem}[Galois connection for pattern-matching]
@@ -80,10 +80,6 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
    \item \label{lem:core-language:env-get-put:1} If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$.
    \item \label{lem:core-language:env-get-put:2} If $\envLookup{\rho}{z}{v}$ and $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$ then $(u \leq v \iff \rho' \leq \rho)$.
 \end{enumerate}
-\end{lemma}
-
-\begin{lemma}[Determinism of recursive binding]
-    Suppose $\rho_1, h \closeDefsR \rho_2$ and $\rho_1', h' \closeDefsR \rho_2'$. If $\rho_1 \eq \rho_1'$ and $h \eq h'$ then $\rho_2 \eq \rho_2'$.
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for recursive bindings]
