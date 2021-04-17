@@ -94,7 +94,7 @@ e &\eq& \exApp{e_1}{e_2}
 \\
 &&&
 u &=& \evalFwdF{U}(\rho, e_2, \alpha)
-\\
+\\\rho_1 \concat \rho_2 \concat \rho_3
 % apply
 \evalFwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(\rho,e,\alpha)
 &=&
@@ -106,7 +106,7 @@ e &\eq& \exApp{e_1}{e_2}
 \exClosure{\rho_1}{h}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
 \\
 &&&
-\rho_2 &=& \closeDefsFwdF{}(\rho_1, h)
+\rho_2 &=& \closeDefsFwdF{?,?}(\rho_1, h)
 \\
 &&&
 v &=& \evalFwdF{U}(\rho,e_2,\alpha)
