@@ -43,6 +43,7 @@
 \newcommand*{\primBwd}[2]{\bwdF{#1}{#2}}
 \newcommand*{\primBwdBool}[2]{\bwdF{{#1}^{\Bool}}{#2}}
 \newcommand*{\primAppF}[1]{\fwdF{primApp}{#1}}
+\newcommand*{\primAppGC}[1]{\GC{primApp}{#1}}
 
 % Prelude functions
 \newcommand*{\funConcatMap}{\exVar{\kw{concatMap}}}
@@ -225,7 +226,7 @@
 \newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\smalltriangleright}{#2}}
 \newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{#2}}
 
-\newcommand*{\bind}[2]{(#1{:}\;#2)}
+\newcommand*{\bind}[2]{#1{:}\;#2}
 \renewcommand*{\vec}[1]{\vv{#1}}
 \newcommand*{\seq}[1]{\vv{#1}}
 \newcommand*{\seqRange}[2]{\seqRangeOp{#1}{#2}{\concat}}
