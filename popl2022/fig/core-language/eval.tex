@@ -156,8 +156,8 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-apply-prim-unsat}},
-      right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
+      lab={\ruleName{$\eval$-apply-prim}},
+      right={$\arity{\phi} \numgeq \length{\vec{n}} + 1$}
    ]
    {
       \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\vec{n}}}
@@ -167,22 +167,6 @@
    {
       \explVal{\trAppPrim{T}{\phi}{\vec{n}}{U}{m}}
               {\rho, \exApp{e}{e'} \eval \exPrimOp{\phi}{\vec{n} \concat m}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\eval$-apply-prim-sat}},
-      right={$\arity{\phi} = \length{\vec{n}} + 1$}
-   ]
-   {
-      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\vec{n}}}
-      \\
-      \explVal{U}{\rho, e' \eval \exInt{m}}
-   }
-   {
-      \explVal{\trAppPrim{T}{\phi}{\vec{n}}{U}{m}}
-              {\rho, \exApp{e}{e'} \eval \phi(\vec{n} \concat m)}
    }
    %
    \and

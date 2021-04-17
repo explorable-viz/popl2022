@@ -80,7 +80,8 @@
 \newcommand*{\exOp}[1]{\kw{(}{#1}\kw{)}}
 \newcommand*{\exPair}[2]{\kw{(}#1,#2\kw{)}}
 \newcommand*{\exPrim}[1]{#1}
-\newcommand*{\exPrimOp}[2]{\kw{pr}({#1},{#2})} % value form, analogous to closures
+%\newcommand*{\exPrimOp}[2]{\kw{pr}({#1},{#2})} % value form, analogous to closures
+\newcommand*{\exPrimOp}[2]{{#1}({#2})} % value form, analogous to closures
 \newcommand*{\exRec}[2]{{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
@@ -187,6 +188,7 @@
 \newcommand*{\numleq}{\oldleq}
 \newcommand*{\numgeq}{\oldgeq}
 \newcommand*{\numgt}{>}
+\newcommand*{\numlt}{<}
 \renewcommand*{\leq}{\sqsubseteq}
 \renewcommand*{\geq}{\sqsupseteq}
 \newcommand{\eq}{\doteq}
