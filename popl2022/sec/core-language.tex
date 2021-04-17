@@ -78,11 +78,15 @@ Define $\hole_{\vec{\bind{z}{A}}} = \vec{\bind{z}{\hole}}$
 \label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\Gamma} \leq \rho$.
 \end{lemma}
 
-\begin{lemma}[Environment get-put]
-\label{lem:core-language:env-get-put}Suppose $\vdash \rho: \Gamma$.
+\begin{definition}[Forward and backward functions for environment lookup]
+   Suppose $\envLookup{\rho}{z}{v}$. Then define $\envLookupFwdF{\rho,z}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,z}: \Below{v} \to \Below{\rho}$ by the equations in \figref{slicing:eval-aux}.
+\end{definition}
+
+\begin{lemma}[Galois connection for environment]
+\label{lem:core-language:env-get-put}Suppose $\envLookup{\rho}{z}{v}$.
 \begin{enumerate}
-   \item \label{lem:core-language:env-get-put:1} If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$.
-   \item \label{lem:core-language:env-get-put:2} If $\envLookup{\rho}{z}{v}$ and $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$ then $(u \leq v \iff \rho' \leq \rho)$.
+   \item \label{lem:core-language:env-get-put:1} $\envLookupFwdF{\rho,z}(\envLookupBwdF{\rho,z}(v)) \geq v$.
+   \item \label{lem:core-language:env-get-put:2} $\envLookupBwdF{\rho,z}(\envLookupFwdF{\rho,z}(\rho')) \leq \rho'$.
 \end{enumerate}
 \end{lemma}
 
