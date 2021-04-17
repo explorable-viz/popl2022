@@ -227,5 +227,31 @@
    \\
    & \text{where $h = \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}$}
 \end{salign}
+
+\flushleft \shadebox{$\envLookup{\rho}{z}{v}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-head}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envLookup{(\rho \concat \bind{z}{v})}{z}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-tail}},
+      right={$z' \neq z$}
+   ]
+   {
+      \envLookup{\rho}{z}{v}
+   }
+   {
+      \envLookup{(\rho \concat \bind{z'}{u})}{z}{v}
+   }
+\end{smathpar}
 \caption{Evaluation}
 \end{figure}

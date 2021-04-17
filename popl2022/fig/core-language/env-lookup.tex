@@ -2,35 +2,7 @@
 \flushleft \shadebox{$\hole_{\Gamma} = \rho$}
 \begin{salign}
    \hole_{\vec{\bind{z}{A}}} &= \vec{\bind{z}{\hole}}
-%   \hole_{\seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}} &= \seqRange{\bind{z_1}{\hole}}{\bind{z_n}{\hole}}
 \end{salign}
-\\[2mm]
-
-\flushleft \shadebox{$\envLookup{\rho}{z}{v}$}
-\begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\smalltriangleright$-head}}
-   ]
-   {
-      \strut
-   }
-   {
-      \envLookup{(\rho \concat \bind{z}{v})}{z}{v}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\smalltriangleright$-tail}},
-      right={$z' \neq z$}
-   ]
-   {
-      \envLookup{\rho}{z}{v}
-   }
-   {
-      \envLookup{(\rho \concat \bind{z'}{u})}{z}{v}
-   }
-\end{smathpar}
 \\[2mm]
 
 \flushleft \shadebox{$\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$}
