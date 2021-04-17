@@ -75,7 +75,7 @@ u &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \\
 \evalFwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(\rho,\exApp{e_1}{e_2},\alpha)
 &=&
-v'
+\evalFwdF{T'}(\rho', e', \beta)
 &
 \exClosure{\rho_1}{h}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
 \\
@@ -89,7 +89,7 @@ v &=& \evalFwdF{U}(\rho,e_2,\alpha)
 (\rho_3,e',\beta) &=& \matchFwdF{w}(v,\sigma)
 \\
 &&&
-v' &=& \evalFwdF{T'}(\rho_1 \concat \rho_2 \concat \rho_3, e', \beta)
+\rho' &=& \rho_1 \concat \rho_2 \concat \rho_3
 \\
 \evalFwdF{\trLetRecMutual{h}{T}}(\rho,\exLetRecMutual{h'}{e},\alpha)
 &=&
