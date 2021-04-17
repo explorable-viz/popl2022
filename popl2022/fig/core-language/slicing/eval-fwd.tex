@@ -9,74 +9,100 @@ $\begin{array}{lll|llll}
 &T &::& \rho, e \eval v
 \\
 % var
-\evalFwdF{\trVar{x}{\rho}}(\rho',\exVar{x},\alpha)
+\smash{\evalFwdF{\trVar{x}{\rho'}}(\rho,e,\alpha)}
 &=&
-\envLookupFwdF{\rho,x}(\rho',x)
+\envLookupFwdF{\rho',x}(\rho,x)
+&
+e &\eq& \exVar{x}
 \\
 % lambda
-\evalFwdF{\trLambda{\sigma'}}(\rho,\exLambda{\sigma},\alpha)
+\evalFwdF{\trLambda{\sigma'}}(\rho,e,\alpha)
 &=&
 \exClosure{\rho}{\seqEmpty}{\sigma}
+&
+e &\eq& \exLambda{\sigma}
 \\
 % int
-\evalFwdF{\trInt{n}{\Gamma}}(\rho,\annInt{n}{\alpha},\alpha')
+\evalFwdF{\trInt{n}{\Gamma}}(\rho,e,\alpha)
 &=&
 \annInt{n}{\alpha \meet \alpha'}
+&
+e &\eq& \annInt{n}{\alpha'}
 \\
 % nil
-\evalFwdF{\trNil{\Gamma}}(\rho,\annNil{\alpha},\alpha')
+\evalFwdF{\trNil{\Gamma}}(\rho,e,\alpha)
 &=&
 \annNil{\alpha \meet \alpha'}
+&
+e &\eq& \annNil{\alpha'}
 \\
 % cons
-\evalFwdF{\trCons{T}{U}}(\rho,\annCons{e_1}{e_2}{\alpha},\alpha')
+\evalFwdF{\trCons{T}{U}}(\rho,e,\alpha)
 &=&
 \annCons{v_1}{v_2}{\alpha \meet \alpha'}
 &
-v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha')
+e &\eq& \annCons{e_1}{e_2}{\alpha'}
 \\
 &&&
-v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha')
+v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha)
+\\
+&&&
+v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \\
 % vector
-\smash{\evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,\annVec{e_1}{x}{e_2}{\alpha},\alpha')}
+\smash{\evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,e,\alpha)}
 &=&
-\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}
+\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha}
 &
-\annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha')
+e &\eq& \annVec{e_1}{x}{e_2}{\alpha'}
 \\
 &&&
-v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha')
+\annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha)
+\\
+&&&
+v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha)
 \\
 % vector-lookup
-\evalFwdF{\trVecLookup{T}{j}{U}{i}}(\rho,\exVecLookup{e_1}{e_2},\alpha)
+\evalFwdF{\trVecLookup{T}{j}{U}{i}}(\rho,e,\alpha)
 &=&
 v_{i}
 &
+e &\eq& \exVecLookup{e_1}{e_2}
+\\
+&&&
 \annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
 \\
 % vector-len
-\evalFwdF{\trVecLen{T}{j}}(\rho,\exVecLen{e},\alpha)
+\evalFwdF{\trVecLen{T}{j}}(\rho,e,\alpha)
 &=&
 \annInt{j}{\alpha'}
 &
-\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho,e,\alpha)
+e &\eq& \exVecLen{e'}
+\\
+&&&
+\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho,e',\alpha)
 \\
 % apply-prim
-\smash{\evalFwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,\exApp{e_1}{e_2},\alpha)}
+\smash{\evalFwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,e,\alpha)}
 &=&
 \primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)
 &
+e &\eq& \exApp{e_1}{e_2}
+\\
+&&&
 \exPrimOp{\phi}{\vec{v}} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
 \\
 &&&
 u &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \\
 % apply
-\evalFwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(\rho,\exApp{e_1}{e_2},\alpha)
+\evalFwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(\rho,e,\alpha)
 &=&
-\evalFwdF{T'}(\rho', e', \beta)
+\evalFwdF{T'}(\rho_1 \concat \rho_2 \concat \rho_3, e', \beta)
 &
+e &\eq& \exApp{e_1}{e_2}
+\\
+&&&
 \exClosure{\rho_1}{h}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
 \\
 &&&
@@ -88,15 +114,15 @@ v &=& \evalFwdF{U}(\rho,e_2,\alpha)
 &&&
 (\rho_3,e',\beta) &=& \matchFwdF{w}(v,\sigma)
 \\
-&&&
-\rho' &=& \rho_1 \concat \rho_2 \concat \rho_3
-\\
 % let-rec
-\evalFwdF{\trLetRecMutual{h}{T}}(\rho,\exLetRecMutual{h'}{e},\alpha)
+\evalFwdF{\trLetRecMutual{h}{T}}(\rho,e,\alpha)
 &=&
 \evalFwdF{T}(\rho \concat \rho_1,e,\alpha)
 &
-\rho_1 &=& \closeDefsFwdF{}(\rho, h')
+e &\eq& \exLetRecMutual{h'}{e'}
+\\
+&&&
+\rho_1 &=& \closeDefsFwdF{?,h}(\rho, h')
 \end{array}$
 \caption{Evaluation: forward slicing (Boolean and pair cases omitted)}
 \label{fig:eval:fwd}
