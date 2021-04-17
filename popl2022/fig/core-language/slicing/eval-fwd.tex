@@ -8,32 +8,27 @@ $\begin{array}{lll|llll}
 \evalFwdF{T} &::& \Below{(\rho,e,\TT)} \to \Below{v}
 &T &::& \rho, e \eval v
 \\
-\evalFwdF{T}(\rho,\hole,\alpha)
-&=&
-\evalFwdF{T}(\rho,e,\alpha)
-&
-e \eq \hole &\neq& \hole
-\\
+% var
 \evalFwdF{\trVar{x}{\rho}}(\rho',\exVar{x},\alpha)
 &=&
 \envLookupFwdF{\rho,x}(\rho',x)
 \\
-\evalFwdF{\trOp{\primOp}{\rho}}(\rho',\exOp{\primOp},\alpha)
-&=&
-\envLookupFwdF{\rho,\primOp}(\rho',\primOp)
-\\
+% lambda
 \evalFwdF{\trLambda{\sigma'}}(\rho,\exLambda{\sigma},\alpha)
 &=&
 \exClosure{\rho}{\seqEmpty}{\sigma}
 \\
+% int
 \evalFwdF{\trInt{n}{\Gamma}}(\rho,\annInt{n}{\alpha},\alpha')
 &=&
 \annInt{n}{\alpha \meet \alpha'}
 \\
+% nil
 \evalFwdF{\trNil{\Gamma}}(\rho,\annNil{\alpha},\alpha')
 &=&
 \annNil{\alpha \meet \alpha'}
 \\
+% cons
 \evalFwdF{\trCons{T}{U}}(\rho,\annCons{e_1}{e_2}{\alpha},\alpha')
 &=&
 \annCons{v_1}{v_2}{\alpha \meet \alpha'}
@@ -43,6 +38,7 @@ v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha')
 &&&
 v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha')
 \\
+% vector
 \smash{\evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,\annVec{e_1}{x}{e_2}{\alpha},\alpha')}
 &=&
 \annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}
@@ -52,18 +48,21 @@ v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha')
 &&&
 v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha')
 \\
+% vector-lookup
 \evalFwdF{\trVecLookup{T}{j}{U}{i}}(\rho,\exVecLookup{e_1}{e_2},\alpha)
 &=&
 v_{i}
 &
 \annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
 \\
+% vector-len
 \evalFwdF{\trVecLen{T}{j}}(\rho,\exVecLen{e},\alpha)
 &=&
 \annInt{j}{\alpha'}
 &
 \annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho,e,\alpha)
 \\
+% apply-prim
 \smash{\evalFwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,\exApp{e_1}{e_2},\alpha)}
 &=&
 \primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)
@@ -73,6 +72,7 @@ v_{i}
 &&&
 u &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \\
+% apply
 \evalFwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(\rho,\exApp{e_1}{e_2},\alpha)
 &=&
 \evalFwdF{T'}(\rho', e', \beta)
@@ -91,6 +91,7 @@ v &=& \evalFwdF{U}(\rho,e_2,\alpha)
 &&&
 \rho' &=& \rho_1 \concat \rho_2 \concat \rho_3
 \\
+% let-rec
 \evalFwdF{\trLetRecMutual{h}{T}}(\rho,\exLetRecMutual{h'}{e},\alpha)
 &=&
 \evalFwdF{T}(\rho \concat \rho_1,e,\alpha)

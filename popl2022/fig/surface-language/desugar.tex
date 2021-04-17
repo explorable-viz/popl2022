@@ -98,7 +98,7 @@
    {
       \exMatch{s}{\vec{c}}
       \desugarFwd
-      \exApp{(\exLambda{\sigma})}{e}
+      \exApp{\exLambda{\sigma}}{e}
    }
    %
    \and
@@ -114,7 +114,7 @@
    {
       \exLet{p}{s}{s'}
       \desugarFwd
-      \exApp{(\exLambda{\sigma})}{e}
+      \exApp{\exLambda{\sigma}}{e}
    }
    %
    \and
@@ -177,7 +177,7 @@
    {
       \exListComp{s}{\qualGuard{s'} \concat \vec{q}}
       \desugarFwd
-      \exApp{\smash{\exLambda{\elimBool{e}{\exNil}}}}{e'}
+      \exApp{\exLambda{\elimBool{e}{\exNil}}}{e'}
    }
    %
    \and
@@ -195,7 +195,7 @@
    {
       \exListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}
       \desugarFwd
-      \exApp{(\exLambda{\sigma})}{e}
+      \exApp{\exLambda{\sigma}}{e}
    }
    \and
    %
@@ -214,7 +214,7 @@
    {
       \exListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}
       \desugarFwd
-      \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{e}
+      \exApp{\exApp{\funConcatMap}{\exLambda{\sigma'}}}{e}
    }
    \end{smathpar}
 
