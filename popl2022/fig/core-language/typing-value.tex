@@ -5,10 +5,10 @@
 {
    \vdash v_i: A_i
    \quad
-   (\forall i \numleq n)
+   (\forall i \numleq \length{\vec{z}})
 }
 {
-   \vdash \seqRange{\bind{z_1}{v_1}}{\bind{z_n}{v_n}}: \seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}
+   \vdash \vec{\bind{z}{v}}: \vec{\bind{z}{A}}
 }
 \end{smathpar}
 \\[2mm]
@@ -23,7 +23,8 @@
       (\forall i \numleq j)
    }
    {
-      \Gamma \vdash \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}: \Delta
+      \Gamma \vdash \vec{\bind{x}{\sigma}}: \Delta
+      % \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}: \Delta
    }
 \end{smathpar}
 \\[2mm]
