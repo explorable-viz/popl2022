@@ -15,8 +15,17 @@ $\begin{array}{lll|llll}
 &=&
 \envLookupFwdF{\rho,z}(\rho',z)
 &
-z &\neq& z'
+z \neq z'
+\\[3mm]
+\envLookupBwdF{\rho \concat \bind{z}{v},z}(\bind{z}{u})
+&=&
+\hole_{\Gamma} \concat \bind{z}{u}
 \\
+\envLookupBwdF{\rho \concat \bind{z'}{v},z}(\bind{z}{u})
+&=&
+\envLookupBwdF{\rho}(\bind{z}{u}) \concat \bind{z'}{\hole}
+&
+z \neq z'
 \\[3mm]
 %
 %
