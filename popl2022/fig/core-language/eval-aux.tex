@@ -9,12 +9,15 @@ $\begin{array}{lll|llll}
 &\rho, h \closeDefsR \rho'
 &&
 \\
-\closeDefsBwdF{}
-              (\seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_i: \exClosure{\rho_i}{h_i}{\sigma_i}})
+\closeDefsBwdF{}(\vec{\bind{x}{v}})
 &=&
-\bigjoin\vec{\rho}, (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin\vec{h}}
+\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}
+&
+v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
 \end{array}$\\[3mm]
-
+%
+%
+%
 \small
 $\begin{array}{lllll}
 &&&
