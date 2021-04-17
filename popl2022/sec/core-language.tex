@@ -83,7 +83,7 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for recursive bindings]
-   Suppose $\rho, h \closeDefsFwdR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ to be $\closeDefsFwdR$ domain-restricted to $\Below{(\rho, h)}$ and define $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsBwdR$ domain-restricted to $\Below{\rho'}$.
+   Suppose $\rho, h \closeDefsFwdR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ by the equations in \figref{eval-aux}.
 \end{definition}
 
 \begin{theorem}[Galois connection for recursive bindings]
@@ -92,7 +92,7 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \
 \end{theorem}
 
 \begin{definition}[Forward and backward functions for evaluation]
-   Suppose $T: \rho, e \eval v$. Define $\evalFwdF{T}: \Below{(\rho, e, \Bool)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \Bool)}$ by the equations in \figrefTwo{eval:fwd}{eval:bwd}.
+   Suppose $T: \rho, e \eval v$. Define $\evalFwdF{T}: \Below{(\rho, e, \TT)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \TT)}$ by the equations in \figrefTwo{eval:fwd}{eval:bwd}.
 \end{definition}
 
 \begin{theorem}[Galois connection for evaluation]
