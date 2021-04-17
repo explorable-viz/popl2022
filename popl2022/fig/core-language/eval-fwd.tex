@@ -10,18 +10,13 @@ $\begin{array}{lll|llll}
 \\
 \evalFwdF{T}(\rho,\hole,\alpha)
 &=&
-v
+\evalFwdF{T}(\rho,e,\alpha)
 &
 e \eq \hole &\neq& \hole
 \\
-&&&
-v &=& \evalFwdF{T}(\rho,e,\alpha)
-\\
-\evalFwdF{\trVar{x}{\Gamma}}(\rho,\exVar{x},\alpha)
+\evalFwdF{\trVar{x}{\rho}}(\rho',\exVar{x},\alpha)
 &=&
-v
-&
-\envLookup{\rho}{x}{v}
+\envLookupFwdF{\rho,x}(\rho',x)
 \\
 \evalFwdF{\trOp{\primOp}{\Gamma}}(\rho,\exOp{\primOp},\alpha)
 &=&
