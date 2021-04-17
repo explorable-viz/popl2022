@@ -103,22 +103,12 @@ v' &=& \mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}
 &
 (\rho,e,\alpha) &=& \evalBwdF{T}(\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF})
 \\
-% apply-prim-unsat
-\evalBwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\exPrimOp{\phi}{\vec{u} \concat u'})
+% apply-prim
+\evalBwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(v)
 &=&
 (\rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha')
 &
-(\rho,e_1,\alpha) &=& \evalBwdF{T}(\exPrimOp{\phi}{\vec{u}})
-\\
-&&&
-(\rho',e_2,\alpha') &=& \evalBwdF{U}(u')
-\\
-% apply-prim-sat
-\evalBwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\annInt{n'}{\beta})
-&=&
-(\rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha')
-&
-\primBwd{\phi}{\vec{n} \concat m}(\annInt{n'}{\beta}) &=& \vec{u} \concat u'
+\primBwd{\phi}{\vec{n} \concat m}(v) &=& \vec{u} \concat u'
 \\
 &&&
 (\rho,e_1,\alpha) &=& \evalBwdF{T}(\exPrimOp{\phi}{\vec{u}})
