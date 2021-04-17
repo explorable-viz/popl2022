@@ -18,11 +18,11 @@ h' &=& \vec{\bind{x}{\sigma}}
 &&&
 v_i &=& \exClosure{\rho'}{h'}{\sigma_i}
 \\
-\closeDefsBwdF{}(\vec{\bind{x}{v}})
+\closeDefsBwdF{\rho,h}(\vec{\bind{x}{v}})
 &=&
-\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}
+\bigjoin\vec{\rho}', \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}'}
 &
-v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
+v_i &=& \exClosure{\rho'_i}{h'_i}{\sigma_i}
 \end{array}$\\[3mm]
 %
 %
