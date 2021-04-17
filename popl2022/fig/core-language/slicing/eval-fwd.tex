@@ -96,17 +96,17 @@ e &\eq& \exApp{e_1}{e_2}
 u &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \\
 % apply
-\evalFwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(\rho,e,\alpha)
+\evalFwdF{\trAppNew{T}{\rho_0}{\vec{\bind{x}{\sigma_0}}}{U}{w}{T'}}(\rho,e,\alpha)
 &=&
 \evalFwdF{T'}(\rho_1 \concat \rho_2 \concat \rho_3, e', \beta)
 &
 e &\eq& \exApp{e_1}{e_2}
 \\
 &&&
-\exClosure{\rho_1}{h}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
+\exClosure{\rho_1}{\vec{\bind{x}{\tau}}}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
 \\
 &&&
-\rho_2 &=& \closeDefsFwdF{?,?}(\rho_1, h)
+\rho_2 &=& \closeDefsFwdF{\rho_0,\vec{\bind{x}{\sigma_0}}}(\rho_1, h)
 \\
 &&&
 v &=& \evalFwdF{U}(\rho,e_2,\alpha)
