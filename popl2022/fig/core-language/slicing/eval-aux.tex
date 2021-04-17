@@ -49,26 +49,6 @@ v_i &=& \exClosure{\rho'}{h'}{\sigma_i}
 \bigjoin\vec{\rho}', \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}'}
 &
 v_i &=& \exClosure{\rho'_i}{h'_i}{\sigma_i}
-\\[3mm]
-%
-%
-%
-\rowcolor{verylightgray}
-\primAppGC{\phi} &::& \Below{(\rho, h)} \to \Below{\rho'}
-&
-&&
-\\
-\primAppF{\phi}(\vec{v})
-&=&
-\exPrimOp{\phi}{\vec{v}}
-&
-\arity{\phi} &\numgt& \length{\vec{v}}
-\\
-\primAppF{\phi}(\vec{v})
-&=&
-\primFwd{\phi}{\vec{n}}(\vec{v})
-&
-\arity{\phi} &=& \length{\vec{n}}
 \end{array}$
 \caption{Auxiliary functions: forward and backward slicing}
 \label{fig:slicing:eval-aux}
