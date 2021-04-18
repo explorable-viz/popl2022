@@ -50,7 +50,7 @@
 
 \paragraph{Primitive operations}
 
-Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n} \in \dom{\phi}$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}{\vec{n}}, \primBwd{\phi}{\vec{n}})$ between $\Below{\vec{n}}$ and $\Below{\phi(\vec{n})}$ by defining
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ with $\length{\vec{n}} = i$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}{\vec{n}}, \primBwd{\phi}{\vec{n}})$ between $\Below{\vec{n}}$ and $\Below{\phi(\vec{n})}$ by defining
 \begin{definition}
 \label{def:core-language:primop-gc}
 \begin{salign}

@@ -4,14 +4,14 @@
    \inferrule*[
    ]
    {
-      \sigma_i \leq \sigma'_i
+      \sigma_i \leq \tau_i
       \quad
-      (\forall i \numleq j)
+      (\forall i \numleq \length{\vec{x}})
    }
    {
-      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}
+      \vec{\bind{x}{\sigma}}
       \leq
-      \seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_j}{\sigma'_j}}
+      \vec{\bind{x}{\tau}}
    }
    %
    \and
@@ -21,10 +21,10 @@
    {
       \sigma_i \leq \hole
       \quad
-      (\forall i \numleq j)
+      (\forall i \numleq \length{x})
    }
    {
-      \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}} \leq \hole
+      \vec{\bind{x}{\sigma}} \leq \hole
    }
 \end{smathpar}
 
@@ -235,10 +235,10 @@
    {
       v_i \leq \hole
       \quad
-      (\forall i \numleq j)
+      (\forall i \numleq \length{\vec{v}})
    }
    {
-      \exPrimOp{\phi}{\seqRange{v_1}{v_j}} \leq \hole
+      \exPrimOp{\phi}{\vec{v}} \leq \hole
    }
    %
    \and
@@ -261,7 +261,7 @@
    \inferrule*[
    ]
    {
-      \rho \leq \hole_{\Gamma}
+      \rho \leq \sub{\hole}{\rho}
       \\
       h \leq \hole
       \\

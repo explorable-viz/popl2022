@@ -14,19 +14,6 @@
    %
    \and
    %
-   \inferrule*[
-      lab={\ruleName{$\eval$-op}},
-      right={$\vdash \rho: \Gamma$}
-   ]
-   {
-      \envLookup{\rho}{\primOp}{v}
-   }
-   {
-      \explVal{\trOp{\primOp}{\Gamma}}{\rho, \exOp{\primOp} \eval v}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\eval$-lambda}}]
    {
       \strut
