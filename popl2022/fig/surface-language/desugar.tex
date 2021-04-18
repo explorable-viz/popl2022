@@ -2,6 +2,18 @@
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\desugarFwd$-op}}
+   ]
+   {
+      \strut
+   }
+   {
+      \exOp{\primOp} \desugarFwd \primOp
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\desugarFwd$-binary-apply}}
    ]
    {
