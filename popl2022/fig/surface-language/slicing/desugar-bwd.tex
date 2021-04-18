@@ -72,11 +72,9 @@ $\begin{array}{lll|llll}
    s_2 &=& \desugarBwdF{t_2}(e_2)
    \\
    % match
-   \desugarBwdF{\exMatch{s}{\vec{c}}}(\exApp{\exLambda{\sigma}}{e})
+   \desugarBwdF{\exMatch{t}{\vec{c}}}(\exApp{\exLambda{\sigma}}{e})
    &=&
-   \exMatch{\desugarBwdF{s}(e)}{\vec{c}'}
-   &
-   \vec{c}' &=& \desugarClausesBwdF{\vec{c}}(\sigma)
+   \exMatch{\desugarBwdF{t}(e)}{\desugarClausesBwdF{\vec{c}}(\sigma)}
    \\
    % let
    \desugarBwdF{\exLet{p}{s}{s'}}(\exApp{\exLambda{\sigma}}{e})
