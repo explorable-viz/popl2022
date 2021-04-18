@@ -59,9 +59,9 @@ $\begin{array}{lll|llll}
    \exApp{\desugarBwdF{s'}(e')}{\desugarBwdF{s'}(e')}
    \\
    % if
-   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{\exLambda{\sigma}}{e})
+   \desugarBwdF{\exIfThenElse{s}{s_1}{s_2}}(\exApp{\exLambda{\sigma}}{e})
    &=&
-   \exIfThenElse{\desugarBwdF{s_{1}}(e)}{s_{2}'}{s_{3}'}
+   \exIfThenElse{\desugarBwdF{s}(e)}{s_1'}{s_2'}
    &
    \sigma &=& \elimBool{e_1}{e_2}
    \\
@@ -72,16 +72,16 @@ $\begin{array}{lll|llll}
    s_2' &=& \desugarBwdF{s_2}(e_2)
    \\
    % match
-   \desugarBwdF{\exMatch{s}{\vec{c}}}(\exApp{\exLambda{\sigma}}{e'})
+   \desugarBwdF{\exMatch{s}{\vec{c}}}(\exApp{\exLambda{\sigma}}{e})
    &=&
-   \exMatch{\desugarBwdF{s}(e')}{\vec{c}'}
+   \exMatch{\desugarBwdF{s}(e)}{\vec{c}'}
    &
    \vec{c}' &=& \desugarClausesBwdF{\vec{c}}(\sigma)
    \\
    % let
-   \desugarBwdF{\exLet{p}{s_1}{s_2}}(\exApp{\exLambda{\sigma}}{e'})
+   \desugarBwdF{\exLet{p}{s_1}{s_2}}(\exApp{\exLambda{\sigma}}{e})
    &=&
-   \exLet{p}{\desugarBwdF{s_1}(e')}{s_2'}
+   \exLet{p}{\desugarBwdF{s_1}(e)}{s_2'}
    &
    s_2' &=& \desugarClausesBwdF{\clauseUncurried{p}{s_2}}(\sigma)
    \\
