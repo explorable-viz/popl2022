@@ -16,8 +16,13 @@ $\begin{array}{lll|llll}
    &
    e \eq e'
    \\
+   % op
+   \desugarBwdF{\exOp{\primOp}}(\primOp)
+   &=&
+   \exOp{\primOp}
+   \\
    % binary-apply
-   \desugarBwdF{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}(\exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}})
+   \desugarBwdF{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}(\exApp{\exApp{\primOp}{e_{1}}}{e_{2}})
    &=&
    \exBinaryApp{\desugarBwdF{s_1}(e_1)}{\primOp}{\desugarBwdF{s_2}(e_2)}
    \\
