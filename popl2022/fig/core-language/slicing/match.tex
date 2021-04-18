@@ -6,6 +6,12 @@ $\begin{array}{lll|lll}
    \matchFwdF{w} &::& \Below{(v,\sigma)} \to \Below{(\rho,\kappa, \alpha)}
    &w &::& v, \sigma \match \rho, \kappa, \alpha
    \\
+   \matchFwdF{w}(v,\sigma)
+   &=&
+   \matchFwdF{w}(u,\sigma')
+   &
+   (v,\sigma) \eq (u,\sigma')
+   \\
    \matchFwdF{x}(v, \elimVar{x}{\kappa})
    &=&
    (\bind{x}{v}, \kappa, \TT)
@@ -46,6 +52,12 @@ $\begin{array}{lll|lll}
    \rowcolor{verylightgray}
    \matchBwdF{w} &::& \Below{(\rho,\kappa, \alpha)} \to \Below{(v,\sigma)}
    &w &::& v, \sigma \match \rho, \kappa, \alpha
+   \\
+   \matchBwdF{w}(\rho, \kappa, \alpha)
+   &=&
+   \matchBwdF{w}(\rho', \kappa', \alpha)
+   &
+   (\rho, \kappa) \eq (\rho', \kappa')
    \\
    \matchBwdF{\matchVar{x}}(\bind{x}{v}, \kappa, \alpha)
    &=&
