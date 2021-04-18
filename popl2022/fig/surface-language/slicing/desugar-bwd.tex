@@ -10,9 +10,9 @@ $\begin{array}{lll|llll}
    &&
    \\
    % hole
-   \desugarBwdF{s}(e)
+   \desugarBwdF{t}(e)
    &=&
-   \desugarBwdF{s}(e')
+   \desugarBwdF{t}(e')
    &
    e \eq e'
    \\
@@ -22,22 +22,22 @@ $\begin{array}{lll|llll}
    \exOp{\primOp}
    \\
    % binary-apply
-   \desugarBwdF{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}(\exApp{\exApp{\primOp}{e_{1}}}{e_{2}})
+   \desugarBwdF{\exBinaryApp{s}{\primOp}{s'}}(\exApp{\exApp{\primOp}{e}}{e'})
    &=&
-   \exBinaryApp{\desugarBwdF{s_1}(e_1)}{\primOp}{\desugarBwdF{s_2}(e_2)}
+   \exBinaryApp{\desugarBwdF{s}(e)}{\primOp}{\desugarBwdF{s'}(e')}
    \\
    % nil
    \desugarBwdF{\exNil}(\annNil{\alpha}) &=& \annNil{\alpha}
    \\
    % non-empty-list
-   \desugarBwdF{\exList{s}{l}}(\annCons{e_1}{e_2}{\alpha})
+   \desugarBwdF{\exList{s}{l}}(\annCons{e}{e'}{\alpha})
    &=&
-   \annList{\desugarBwdF{s}(e_1)}{\desugarBwdF{l}(e_2)}{\alpha}
+   \annList{\desugarBwdF{s}(e)}{\desugarBwdF{l}(e')}{\alpha}
    \\
    % cons
-   \desugarBwdF{\exCons{s_1}{s_2}}(\annCons{e_1}{e_2}{\alpha})
+   \desugarBwdF{\exCons{s}{s'}}(\annCons{e}{e'}{\alpha})
    &=&
-   \annCons{\desugarBwdF{s_1}(e_1)}{\desugarBwdF{s_2}(e_2)}{\alpha}
+   \annCons{\desugarBwdF{s}(e)}{\desugarBwdF{s'}(e')}{\alpha}
    \\
    % let-rec
    \desugarBwdF{\exLetRecMutual{\vec{g}}{s}}
@@ -54,19 +54,22 @@ $\begin{array}{lll|llll}
     s' &=& \desugarBwdF{s}(e')
    \\
    % apply
-   \desugarBwdF{\exApp{s_1}{s_2}}(\exApp{e_1}{e_2})
+   \desugarBwdF{\exApp{s}{s'}}(\exApp{e}{e'})
    &=&
-   \exApp{\desugarBwdF{s_1}(e_1)}{\desugarBwdF{s_2}(e_2)}
+   \exApp{\desugarBwdF{s'}(e')}{\desugarBwdF{s'}(e')}
    \\
    % if
-   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{\exLambda{\sigma}}{e_{1}})
+   \desugarBwdF{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}(\exApp{\exLambda{\sigma}}{e})
    &=&
-   \exIfThenElse{\desugarBwdF{s_{1}}(e_{1})}{s_{2}'}{s_{3}'}
+   \exIfThenElse{\desugarBwdF{s_{1}}(e)}{s_{2}'}{s_{3}'}
    &
-   \sigma &=& \elimBool{e_{2}}{e_{3}}
+   \sigma &=& \elimBool{e_1}{e_2}
    \\
    &&&
-   s_{2}',s_{3}' &=& \desugarBwdF{s_{2}}(e_{2}), \desugarBwdF{s_{3}}(e_{3})
+   s_1' &=& \desugarBwdF{s_1}(e_1)
+   \\
+   &&&
+   s_2' &=& \desugarBwdF{s_2}(e_2)
    \\
    % match
    \desugarBwdF{\exMatch{s}{\vec{c}}}(\exApp{\exLambda{\sigma}}{e'})

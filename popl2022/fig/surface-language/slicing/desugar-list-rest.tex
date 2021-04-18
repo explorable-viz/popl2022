@@ -5,9 +5,16 @@ $\begin{array}{lll|llll}
    &&&\textit{where}
    \\
    \rowcolor{verylightgray}
-   \desugarGC{l} &::& \Below{e} \to \Below{l}
+   \desugarGC{l} &::& \Below{l} \to \Below{e}
    & l \desugarFwd e
    &&
+   \\
+   % hole
+   \desugarFwdF{l}(l')
+   &=&
+   \desugarBwdF{l}(l^\twoPrime)
+   &
+   l' \eq l^\twoPrime
    \\
    % list-rest-end
    \desugarFwdF{\exListEnd}(\annot{\exListEnd}{\alpha})
@@ -15,16 +22,16 @@ $\begin{array}{lll|llll}
    \annot{\exNil}{\alpha}
    \\
    % rest-rest-cons
-   \desugarFwdF{\exListNext{s}{l}}(\annListNext{s_1}{s_2}{\alpha})
+   \desugarFwdF{(\exListNext{t}{l})}(\annListNext{s}{l'}{\alpha})
    &=&
-   \annCons{\desugarFwdF{s}(s_1)}{\desugarFwdF{l}(s_2)}{\alpha}
+   \annCons{\desugarFwdF{t}(s)}{\desugarFwdF{l}(l')}{\alpha}
    \\[3mm]
    % hole
-   \desugarBwdF{l}(\hole)
-   &=&
    \desugarBwdF{l}(e)
+   &=&
+   \desugarBwdF{l}(e')
    &
-   \hole \neq e &\eq& \hole
+   e \eq e'
    \\
    % list-rest-end
    \desugarBwdF{\exListEnd}(\annot{\exNil}{\alpha})
@@ -32,9 +39,9 @@ $\begin{array}{lll|llll}
    \annot{\exListEnd}{\alpha}
    \\
    % rest-rest-cons
-   \desugarBwdF{\exListNext{s}{l}}(\annCons{e_1}{e_2}{\alpha})
+   \desugarBwdF{(\exListNext{t}{l})}(\annCons{e}{e'}{\alpha})
    &=&
-   \annListNext{\desugarBwdF{s}(e_1)}{\desugarBwdF{l}(e_2)}{\alpha}
+   \annListNext{\desugarBwdF{s}(e)}{\desugarBwdF{l}(e')}{\alpha}
 \end{array}$
 \caption{Desugaring ``list rest'' terms --- forward and backward slicing}
 \end{figure}
