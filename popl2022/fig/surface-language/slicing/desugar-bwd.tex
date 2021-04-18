@@ -10,11 +10,11 @@ $\begin{array}{lll|llll}
    &&
    \\
    % hole
-   \desugarBwdF{s}(\hole)
-   &=&
    \desugarBwdF{s}(e)
+   &=&
+   \desugarBwdF{s}(e')
    &
-   \hole \neq e &\eq& \hole
+   e \eq e'
    \\
    % binary-apply
    \desugarBwdF{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}(\exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}})
