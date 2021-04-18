@@ -22,28 +22,28 @@ $\begin{array}{lll|llll}
    \exOp{\primOp}
    \\
    % binary-apply
-   \desugarBwdF{\exBinaryApp{s}{\primOp}{s'}}(\exApp{\exApp{\primOp}{e}}{e'})
+   \desugarBwdF{\exBinaryApp{t}{\primOp}{t'}}(\exApp{\exApp{\primOp}{e}}{e'})
    &=&
-   \exBinaryApp{\desugarBwdF{s}(e)}{\primOp}{\desugarBwdF{s'}(e')}
+   \exBinaryApp{\desugarBwdF{t}(e)}{\primOp}{\desugarBwdF{t'}(e')}
    \\
    % nil
    \desugarBwdF{\exNil}(\annNil{\alpha}) &=& \annNil{\alpha}
    \\
    % non-empty-list
-   \desugarBwdF{\exList{s}{l}}(\annCons{e}{e'}{\alpha})
+   \desugarBwdF{\exList{t}{l}}(\annCons{e}{e'}{\alpha})
    &=&
-   \annList{\desugarBwdF{s}(e)}{\desugarBwdF{l}(e')}{\alpha}
+   \annList{\desugarBwdF{t}(e)}{\desugarBwdF{l}(e')}{\alpha}
    \\
    % cons
-   \desugarBwdF{\exCons{s}{s'}}(\annCons{e}{e'}{\alpha})
+   \desugarBwdF{\exCons{t}{t'}}(\annCons{e}{e'}{\alpha})
    &=&
-   \annCons{\desugarBwdF{s}(e)}{\desugarBwdF{s'}(e')}{\alpha}
+   \annCons{\desugarBwdF{t}(e)}{\desugarBwdF{t'}(e')}{\alpha}
    \\
    % let-rec
-   \desugarBwdF{\exLetRecMutual{\vec{g}}{s}}
+   \desugarBwdF{\exLetRecMutual{\vec{g}}{t}}
                (\exLetRecMutual{\vec{\bind{x}{\sigma}}}{e'})
    &=&
-   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s}
    &
    g_i &=& \bind{x_i}{\vec{c_i}}
    \\
@@ -51,12 +51,12 @@ $\begin{array}{lll|llll}
    \vec{c_i}' &=& \desugarClausesBwdF{\vec{c_i}}(\sigma_i)
    \\
    &&&
-    s' &=& \desugarBwdF{s}(e')
+   s &=& \desugarBwdF{t}(e')
    \\
    % apply
-   \desugarBwdF{\exApp{s}{s'}}(\exApp{e}{e'})
+   \desugarBwdF{\exApp{t}{t'}}(\exApp{e}{e'})
    &=&
-   \exApp{\desugarBwdF{s'}(e')}{\desugarBwdF{s'}(e')}
+   \exApp{\desugarBwdF{t}(e)}{\desugarBwdF{t'}(e')}
    \\
    % if
    \desugarBwdF{\exIfThenElse{s}{s_1}{s_2}}(\exApp{\exLambda{\sigma}}{e})
@@ -79,11 +79,11 @@ $\begin{array}{lll|llll}
    \vec{c}' &=& \desugarClausesBwdF{\vec{c}}(\sigma)
    \\
    % let
-   \desugarBwdF{\exLet{p}{s_1}{s_2}}(\exApp{\exLambda{\sigma}}{e})
+   \desugarBwdF{\exLet{p}{s}{s'}}(\exApp{\exLambda{\sigma}}{e})
    &=&
-   \exLet{p}{\desugarBwdF{s_1}(e)}{s_2'}
+   \exLet{p}{\desugarBwdF{s}(e)}{t'}
    &
-   s_2' &=& \desugarClausesBwdF{\clauseUncurried{p}{s_2}}(\sigma)
+   t' &=& \desugarClausesBwdF{\clauseUncurried{p}{s'}}(\sigma)
    \\
    % list-enum
    \desugarBwdF{\exListEnum{s_{1}}{s_{2}}}(\exApp{\exApp{\funEnumFromTo}{e_1}}{e_2})
