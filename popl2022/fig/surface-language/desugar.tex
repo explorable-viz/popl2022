@@ -22,7 +22,7 @@
       s' \desugarFwd e'
    }
    {
-      \exBinaryApp{s}{\primOp}{s'} \desugarFwd \exApp{\exApp{\exOp{\primOp}}{e}}{e'}
+      \exBinaryApp{s}{\primOp}{s'} \desugarFwd \exApp{\exApp{\primOp}{e}}{e'}
    }
    %
    \and
@@ -80,7 +80,7 @@
    {
       \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}
       \desugarFwd
-      \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e}
+      \exLetRecMutual{\vec{\bind{x}{\sigma}}}{e}
    }
    %
    \and
