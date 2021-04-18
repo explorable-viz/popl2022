@@ -9,23 +9,23 @@ $\begin{array}{lll|llll}
 &\envLookup{\rho}{z}{v}
 &&
 \\
-\envLookupFwdF{\rho \concat \bind{z}{v},z}(\rho' \concat \bind{z}{u},z) &=& u
+\envLookupFwdF{\rho \concat \bind{x}{v},x}(\rho' \concat \bind{x}{u},x) &=& u
 \\
-\envLookupFwdF{\rho \concat \bind{z'}{v},z}(\rho' \concat \bind{z'}{u},z)
+\envLookupFwdF{\rho \concat \bind{y}{v},x}(\rho' \concat \bind{y}{u},x)
 &=&
-\envLookupFwdF{\rho,z}(\rho',z)
+\envLookupFwdF{\rho,x}(\rho',x)
 &
-z \neq z'
+x \neq y
 \\[3mm]
-\envLookupBwdF{\rho \concat \bind{z}{v},z}(\bind{z}{u})
+\envLookupBwdF{\rho \concat \bind{x}{v},x}(u)
 &=&
-\hole_{\Gamma} \concat \bind{z}{u}
+\sub{\hole}{\rho} \concat \bind{x}{u}
 \\
-\envLookupBwdF{\rho \concat \bind{z'}{v},z}(\bind{z}{u})
+\envLookupBwdF{\rho \concat \bind{y}{v},x}(u)
 &=&
-\envLookupBwdF{\rho}(\bind{z}{u}) \concat \bind{z'}{\hole}
+\envLookupBwdF{\rho}(u) \concat \bind{y}{\hole}
 &
-z \neq z'
+x \neq y
 \\[3mm]
 %
 %
