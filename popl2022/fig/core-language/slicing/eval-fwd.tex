@@ -8,55 +8,48 @@ $\begin{array}{lll|llll}
 \evalFwdF{T} &::& \Below{(\rho,e,\TT)} \to \Below{v}
 &T &::& \rho, e \eval v
 \\
+% hole
+\evalFwdF{T}(\rho,e,\alpha)
+&=&
+\evalFwdF{T}(\rho',e',\alpha)
+&
+(\rho, e) &\eq& (\rho',e')
+\\
 % var
-\smash{\evalFwdF{\trVar{x}{\rho'}}(\rho,e,\alpha)}
+\smash{\evalFwdF{\trVar{x}{\rho'}}(\rho,\exVar{x},\alpha)}
 &=&
 \envLookupFwdF{\rho',x}(\rho,x)
-&
-e &\eq& \exVar{x}
 \\
 % lambda
-\evalFwdF{\trLambda{\sigma'}}(\rho,e,\alpha)
+\evalFwdF{\trLambda{\sigma'}}(\rho,\exLambda{\sigma},\alpha)
 &=&
 \exClosure{\rho}{\seqEmpty}{\sigma}
-&
-e &\eq& \exLambda{\sigma}
 \\
 % int
-\evalFwdF{\trInt{n}{\Gamma}}(\rho,e,\alpha)
+\evalFwdF{\trInt{n}{\Gamma}}(\rho,\annInt{n}{\alpha'},\alpha)
 &=&
 \annInt{n}{\alpha \meet \alpha'}
-&
-e &\eq& \annInt{n}{\alpha'}
 \\
 % nil
-\evalFwdF{\trNil{\Gamma}}(\rho,e,\alpha)
+\evalFwdF{\trNil{\Gamma}}(\rho,\annNil{\alpha'},\alpha)
 &=&
 \annNil{\alpha \meet \alpha'}
-&
-e &\eq& \annNil{\alpha'}
 \\
 % cons
-\evalFwdF{\trCons{T}{U}}(\rho,e,\alpha)
+\evalFwdF{\trCons{T}{U}}(\rho,\annCons{e_1}{e_2}{\alpha'},\alpha)
 &=&
 \annCons{v_1}{v_2}{\alpha \meet \alpha'}
 &
-e &\eq& \annCons{e_1}{e_2}{\alpha'}
-\\
-&&&
 v_1 &=& \evalFwdF{T}(\rho, e_1, \alpha)
 \\
 &&&
 v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \\
 % vector
-\smash{\evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,e,\alpha)}
+\smash{\evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,\annVec{e_1}{x}{e_2}{\alpha'},\alpha)}
 &=&
 \annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha}
 &
-e &\eq& \annVec{e_1}{x}{e_2}{\alpha'}
-\\
-&&&
 \annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha)
 \\
 &&&
