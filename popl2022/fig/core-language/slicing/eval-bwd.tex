@@ -18,9 +18,7 @@ v \eq u
 % var
 \evalBwdF{\trVar{x}{\rho}}(v)
 &=&
-(\rho',\exVar{x},\FF)
-&
-\rho' &=& \envLookupBwdF{\rho,x}(v)
+(\envLookupBwdF{\rho,x}(v),\exVar{x},\FF)
 \\
 % fun
 \evalBwdF{\trLambda{\sigma'}}(\exClosure{\rho}{\seqEmpty}{\sigma})
