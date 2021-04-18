@@ -9,11 +9,11 @@ $\begin{array}{lll|llll}
 &T &::& \rho, e \eval v
 \\
 % hole
-\evalBwdF{T}(\hole)
-&=&
 \evalBwdF{T}(v)
+&=&
+\evalBwdF{T}(u)
 &
-\hole \neq v &\eq& \hole
+v \eq u
 \\
 % var
 \evalBwdF{\trVar{x}{\rho}}(v)
