@@ -16,9 +16,9 @@ $\begin{array}{lll|llll}
 (\rho, e) &\eq& (\rho',e')
 \\
 % var
-\smash{\evalFwdF{\trVar{x}{\rho'}}(\rho,\exVar{x},\alpha)}
+\smash{\evalFwdF{\trVar{x}{\rho}}(\rho',\exVar{x},\alpha)}
 &=&
-\envLookupFwdF{\rho',x}(\rho,x)
+\envLookupFwdF{\rho,x}(\rho',x)
 \\
 % lambda
 \evalFwdF{\trLambda{\sigma'}}(\rho,\exLambda{\sigma},\alpha)
@@ -26,12 +26,12 @@ $\begin{array}{lll|llll}
 \exClosure{\rho}{\seqEmpty}{\sigma}
 \\
 % int
-\evalFwdF{\trInt{n}{\Gamma}}(\rho,\annInt{n}{\alpha'},\alpha)
+\evalFwdF{\trInt{n}{\rho}}(\rho',\annInt{n}{\alpha'},\alpha)
 &=&
 \annInt{n}{\alpha \meet \alpha'}
 \\
 % nil
-\evalFwdF{\trNil{\Gamma}}(\rho,\annNil{\alpha'},\alpha)
+\evalFwdF{\trNil{\rho}}(\rho',\annNil{\alpha'},\alpha)
 &=&
 \annNil{\alpha \meet \alpha'}
 \\

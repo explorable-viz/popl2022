@@ -2,8 +2,7 @@
 \flushleft \shadebox{$\explVal{T}{\rho, e \eval v}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\eval$-var}},
-      right={$\vdash \rho: \Gamma$}
+      lab={\ruleName{$\eval$-var}}
    ]
    {
       \envLookup{\rho}{x}{v}
@@ -27,40 +26,37 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-true}},
-      right={$\vdash \rho: \Gamma$}
+      lab={\ruleName{$\eval$-true}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trTrue{\Gamma}}{\rho, \exTrue \eval \exTrue}
+      \explVal{\trTrue{\rho}}{\rho, \exTrue \eval \exTrue}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-false}},
-      right={$\vdash \rho: \Gamma$}
+      lab={\ruleName{$\eval$-false}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trFalse{\Gamma}}{\rho, \exFalse \eval \exFalse}
+      \explVal{\trFalse{\rho}}{\rho, \exFalse \eval \exFalse}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-int}},
-      right={$\vdash \rho: \Gamma$}
+      lab={\ruleName{$\eval$-int}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trInt{n}{\Gamma}}{\rho, \exInt{n} \eval \exInt{n}}
+      \explVal{\trInt{n}{\rho}}{\rho, \exInt{n} \eval \exInt{n}}
    }
    %
    \and
@@ -78,14 +74,13 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-nil}},
-      right={$\vdash \rho: \Gamma$}
+      lab={\ruleName{$\eval$-nil}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trNil{\Gamma}}{\rho, \exNil \eval \exNil}
+      \explVal{\trNil{\rho}}{\rho, \exNil \eval \exNil}
    }
    %
    \and

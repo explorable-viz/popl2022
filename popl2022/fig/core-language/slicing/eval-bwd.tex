@@ -26,14 +26,14 @@ v \eq u
 (\rho,\exLambda{\sigma},\FF)
 \\
 % int
-\evalBwdF{\trInt{n}{\Gamma}}(\annInt{n}{\alpha})
+\evalBwdF{\trInt{n}{\rho}}(\annInt{n}{\alpha})
 &=&
-(\hole_{\Gamma},\annInt{n}{\alpha},\alpha)
+(\holeEnv{\rho},\annInt{n}{\alpha},\alpha)
 \\
 % nil
-\evalBwdF{\trNil{\Gamma}}(\annNil{\alpha})
+\evalBwdF{\trNil{\rho}}(\annNil{\alpha})
 &=&
-(\hole_{\Gamma},\annNil{\alpha},\alpha)
+(\holeEnv{\rho},\annNil{\alpha},\alpha)
 \\
 % cons
 \evalBwdF{\trCons{T}{U}}(\annCons{v_1}{v_2}{\beta})
