@@ -9,6 +9,11 @@ $\begin{array}{lll|llll}
    & s \desugarFwd e
    &&
    \\
+   % hole
+   \desugarFwdF{t}(s) &=& \desugarFwdF{t}(s')
+   &
+   s \eq s'
+   \\
    % binary-apply
    \desugarFwdF{\exBinaryApp{t}{\primOp}{t'}}(\exBinaryApp{s}{\primOp}{s'})
    &=&
