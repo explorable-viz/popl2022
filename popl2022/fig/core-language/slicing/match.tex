@@ -6,49 +6,35 @@ $\begin{array}{lll|lll}
    \matchFwdF{w} &::& \Below{(v,\sigma)} \to \Below{(\rho,\kappa, \alpha)}
    &w &::& v, \sigma \match \rho, \kappa, \alpha
    \\
-   \matchFwdF{x}(v, \sigma)
+   \matchFwdF{x}(v, \elimVar{x}{\kappa})
    &=&
    (\bind{x}{v}, \kappa, \TT)
-   &
-   \sigma &\eq& \elimVar{x}{\kappa}
    \\
-   \matchFwdF{\matchTrue}(v, \sigma)
+   \matchFwdF{\matchTrue}(\annTrue{\alpha}, \elimBool{\kappa}{\kappa'})
    &=&
    (\seqEmpty, \kappa, \alpha)
-   &
-   (v, \sigma) &\eq& (\annTrue{\alpha}, \elimBool{\kappa}{\kappa'})
    \\
-   \matchFwdF{\matchFalse}(v, \sigma)
+   \matchFwdF{\matchFalse}(\annFalse{\alpha}, \elimBool{\kappa}{\kappa'})
    &=&
    (\seqEmpty, \kappa', \alpha)
-   &
-   (v, \sigma) &\eq& (\annFalse{\alpha}, \elimBool{\kappa}{\kappa'})
    \\
-   \matchFwdF{\matchPair{w_1}{w_2}}(v, \sigma)
+   \matchFwdF{\matchPair{w_1}{w_2}}(\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
    &=&
    (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
    &
-   (v, \sigma) &\eq& (\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
-   \\
-   &&&
    (\rho_1, \tau, \beta) &=& \matchFwdF{w_1}(v_1,\sigma')
    \\
    &&&
    (\rho_2, \kappa, \beta') &=& \matchFwdF{w_2}(v_2,\tau)
    \\
-   \matchFwdF{\matchNil}(v, \sigma)
+   \matchFwdF{\matchNil}(\annNil{\alpha}, \elimList{\kappa}{\sigma'})
    &=&
    (\seqEmpty, \kappa, \alpha)
-   &
-   (v, \sigma) &\eq& (\annNil{\alpha}, \elimList{\kappa}{\sigma'})
    \\
-   \matchFwdF{\matchCons{w_1}{w_2}}(v, \sigma)
+   \matchFwdF{\matchCons{w_1}{w_2}}(\annCons{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
    &=&
    (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
    &
-   (v, \sigma) &\eq& (\annCons{v_1}{v_2}{\alpha}, \elimList{\kappa}{\sigma'})
-   \\
-   &&&
    (\rho_1, \tau, \beta) &=& \matchFwdF{w_1}(v_1,\sigma')
    \\
    &&&
