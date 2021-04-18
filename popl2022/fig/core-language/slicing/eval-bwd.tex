@@ -22,13 +22,6 @@ v \eq u
 &
 \rho' &=& \envLookupBwdF{\rho,x}(v)
 \\
-% op
-\evalBwdF{\trOp{\primOp}{\rho}}(v)
-&=&
-(\rho',\exOp{\primOp},\FF)
-&
-\rho' &=& \envLookupBwdF{\rho,\primOp}(v)
-\\
 % fun
 \evalBwdF{\trLambda{\sigma'}}(\exClosure{\rho}{\seqEmpty}{\sigma})
 &=&
