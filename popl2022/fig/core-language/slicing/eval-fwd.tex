@@ -48,7 +48,7 @@ v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha)
 % vector
 \smash{\evalFwdF{\trVec{\vec{U}}{x}{T}{j}}(\rho,\annVec{e_1}{x}{e_2}{\alpha'},\alpha)}
 &=&
-\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha}
+\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}
 &
 \annInt{j}{\beta} &\eq& \evalFwdF{T}(\rho, e_2, \alpha)
 \\
@@ -56,46 +56,34 @@ v_2 &=& \evalFwdF{U}(\rho, e_2, \alpha)
 v_{i} &=& \evalFwdF{U_{i}}(\rho \concat \bind{x}{i_{\beta}}, e_1, \alpha)
 \\
 % vector-lookup
-\evalFwdF{\trVecLookup{T}{j}{U}{i}}(\rho,e,\alpha)
+\evalFwdF{\trVecLookup{T}{j}{U}{i}}(\rho,\exVecLookup{e_1}{e_2},\alpha)
 &=&
 v_{i}
 &
-e &\eq& \exVecLookup{e_1}{e_2}
-\\
-&&&
 \annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
 \\
 % vector-len
-\evalFwdF{\trVecLen{T}{j}}(\rho,e,\alpha)
+\evalFwdF{\trVecLen{T}{j}}(\rho,\exVecLen{e'},\alpha)
 &=&
 \annInt{j}{\alpha'}
 &
-e &\eq& \exVecLen{e'}
-\\
-&&&
 \annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta} &\eq& \evalFwdF{T}(\rho,e',\alpha)
 \\
 % apply-prim
-\smash{\evalFwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,e,\alpha)}
+\smash{\evalFwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(\rho,\exApp{e_1}{e_2},\alpha)}
 &=&
 \primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)
 &
-e &\eq& \exApp{e_1}{e_2}
-\\
-&&&
 \exPrimOp{\phi}{\vec{v}} &\eq& \evalFwdF{T}(\rho, e_1, \alpha)
 \\
 &&&
 u &=& \evalFwdF{U}(\rho, e_2, \alpha)
 \\
 % apply
-\evalFwdF{\trAppNew{T}{\rho_0}{\vec{\bind{x}{\sigma_0}}}{U}{w}{T'}}(\rho,e,\alpha)
+\evalFwdF{\trAppNew{T}{\rho_0}{\vec{\bind{x}{\sigma_0}}}{U}{w}{T'}}(\rho,\exApp{e_1}{e_2},\alpha)
 &=&
 \evalFwdF{T'}(\rho_1 \concat \rho_2 \concat \rho_3, e', \beta)
 &
-e &\eq& \exApp{e_1}{e_2}
-\\
-&&&
 \exClosure{\rho_1}{\vec{\bind{x}{\tau}}}{\sigma} &\eq& \evalFwdF{T}(\rho,e_1,\alpha)
 \\
 &&&
@@ -108,13 +96,10 @@ v &=& \evalFwdF{U}(\rho,e_2,\alpha)
 (\rho_3,e',\beta) &=& \matchFwdF{w}(v,\sigma)
 \\
 % let-rec
-\evalFwdF{\trLetRecMutual{h}{T}}(\rho,e,\alpha)
+\evalFwdF{\trLetRecMutual{h}{T}}(\rho,\exLetRecMutual{h'}{e'},\alpha)
 &=&
 \evalFwdF{T}(\rho \concat \rho_1,e,\alpha)
 &
-e &\eq& \exLetRecMutual{h'}{e'}
-\\
-&&&
 \rho_1 &=& \closeDefsFwdF{?,h}(\rho, h')
 \end{array}$
 \caption{Evaluation: forward slicing (Boolean and pair cases omitted)}
