@@ -14,10 +14,15 @@ $\begin{array}{lll|llll}
    &
    s \eq s'
    \\
+   % op
+   \desugarFwdF{\exOp{\primOp}}(\exOp{\primOp})
+   &=&
+   \primOp
+   \\
    % binary-apply
    \desugarFwdF{\exBinaryApp{t}{\primOp}{t'}}(\exBinaryApp{s}{\primOp}{s'})
    &=&
-   \exApp{\exApp{\exOp{\primOp}}{\desugarFwdF{t}(s)}}{\desugarFwdF{t'}(s')}
+   \exApp{\exApp{\primOp}{\desugarFwdF{t}(s)}}{\desugarFwdF{t'}(s')}
    \\
    % nil
    \desugarFwdF{\exNil}(\annNil{\alpha}) &=& \annNil{\alpha}
