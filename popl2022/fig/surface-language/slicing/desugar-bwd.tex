@@ -77,21 +77,21 @@ $\begin{array}{lll|llll}
    \exMatch{\desugarBwdF{t}(e)}{\desugarClausesBwdF{\vec{c}}(\sigma)}
    \\
    % let
-   \desugarBwdF{\exLet{p}{s}{s'}}(\exApp{\exLambda{\sigma}}{e})
+   \desugarBwdF{\exLet{p}{t}{t'}}(\exApp{\exLambda{\sigma}}{e})
    &=&
-   \exLet{p}{\desugarBwdF{s}(e)}{t'}
+   \exLet{p}{\desugarBwdF{t}(e)}{s'}
    &
-   t' &=& \desugarClausesBwdF{\clauseUncurried{p}{s'}}(\sigma)
+   s' &=& \desugarClausesBwdF{\clauseUncurried{p}{t'}}(\sigma)
    \\
    % list-enum
-   \desugarBwdF{\exListEnum{s_{1}}{s_{2}}}(\exApp{\exApp{\funEnumFromTo}{e_1}}{e_2})
+   \desugarBwdF{\exListEnum{t}{t'}}(\exApp{\exApp{\funEnumFromTo}{e}}{e'})
    &=&
-   \exListEnum{\desugarBwdF{s_{1}}(e_{1})}{\desugarBwdF{s_{2}}(e_{2})}
+   \exListEnum{\desugarBwdF{t}(e)}{\desugarBwdF{t'}(e')}
    \\
    % list-comp-done
-   \desugarBwdF{\exListComp{s}{\seqEmpty}}(\annCons{e}{\annNil{\alpha}}{\alpha'})
+   \desugarBwdF{\exListComp{t}{\seqEmpty}}(\annCons{e}{\annNil{\alpha}}{\alpha'})
    &=&
-   \annot{\exListComp{\desugarBwdF{s}(e)}{\seqEmpty}}{\alpha \join \alpha'}
+   \annot{\exListComp{\desugarBwdF{t}(e)}{\seqEmpty}}{\alpha \join \alpha'}
    \\
    % list-comp-guard
    \desugarBwdF{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
