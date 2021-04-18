@@ -94,26 +94,26 @@ $\begin{array}{lll|llll}
    \annot{\exListComp{\desugarBwdF{t}(e)}{\seqEmpty}}{\alpha \join \alpha'}
    \\
    % list-comp-guard
-   \desugarBwdF{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
-              (\exApp{\exLambda{\sigma}}{e_{2}})
+   \desugarBwdF{\exListComp{t}{\qualGuard{t'} \concat \vec{q}}}
+              (\exApp{\exLambda{\sigma}}{e})
    &=&
-   \annot{\exListComp{s_{1}'}{\qualGuard{\desugarBwdF{s_2}(e_2)} \concat \vec{q}'}}{\alpha \join \beta}
+   \annot{\exListComp{s'}{\qualGuard{\desugarBwdF{t'}(e)} \concat \vec{q}'}}{\alpha \join \beta}
    &
-   \sigma &=& \elimBool{e_{1}}{\annNil{\alpha}}
+   \sigma &=& \elimBool{e'}{\annNil{\alpha}}
    \\
    &&&
-   \annListComp{s_{1}'}{\vec{q}'}{\beta} &=& \desugarBwdF{\exListComp{s_1}{\vec{q}}}(e_1)
+   \annListComp{s'}{\vec{q}'}{\beta} &=& \desugarBwdF{\exListComp{t'}{\vec{q}}}(e')
    \\
    % list-comp-decl
-   \desugarBwdF{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
-               (\exApp{\exLambda{\sigma}}{e'})
+   \desugarBwdF{\exListComp{t}{\qualDeclaration{p}{t'} \concat \vec{q}}}
+               (\exApp{\exLambda{\sigma}}{e})
    &=&
-   \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{\desugarBwdF{s_{1}}(e')} \concat \vec{q}'}}
+   \annot{\exListComp{s}{\qualDeclaration{p}{\desugarBwdF{t'}(e)} \concat \vec{q}'}}
          {\beta}
    &
-   \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+   \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}'}}{\beta}}
    &=&
-   \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}(\sigma)
+   \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{t}{\vec{q}}}}(\sigma)
    \\
    % list-comp-gen
    \desugarBwdF{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
