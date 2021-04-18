@@ -59,17 +59,17 @@ $\begin{array}{lll|llll}
    \exApp{\desugarBwdF{t}(e)}{\desugarBwdF{t'}(e')}
    \\
    % if
-   \desugarBwdF{\exIfThenElse{s}{s_1}{s_2}}(\exApp{\exLambda{\sigma}}{e})
+   \desugarBwdF{\exIfThenElse{t}{t_1}{t_2}}(\exApp{\exLambda{\sigma}}{e})
    &=&
-   \exIfThenElse{\desugarBwdF{s}(e)}{s_1'}{s_2'}
+   \exIfThenElse{\desugarBwdF{t}(e)}{s_1}{s_2}
    &
    \sigma &=& \elimBool{e_1}{e_2}
    \\
    &&&
-   s_1' &=& \desugarBwdF{s_1}(e_1)
+   s_1 &=& \desugarBwdF{t_1}(e_1)
    \\
    &&&
-   s_2' &=& \desugarBwdF{s_2}(e_2)
+   s_2 &=& \desugarBwdF{t_2}(e_2)
    \\
    % match
    \desugarBwdF{\exMatch{s}{\vec{c}}}(\exApp{\exLambda{\sigma}}{e})
