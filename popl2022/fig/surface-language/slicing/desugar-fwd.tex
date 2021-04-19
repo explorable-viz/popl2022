@@ -33,9 +33,9 @@ $\begin{array}{lll|llll}
    \annCons{\desugarFwdF{t}(s)}{\desugarFwdF{l}(l')}{\alpha}
    \\
    % cons
-   \desugarFwdF{\exCons{t_1}{t_2}}(\annCons{s_1}{s_2}{\alpha})
+   \desugarFwdF{\exCons{t}{t'}}(\annCons{s}{s'}{\alpha})
    &=&
-   \annCons{\desugarFwdF{t_1}(s_1)}{\desugarFwdF{t_2}(s_2)}{\alpha}
+   \annCons{\desugarFwdF{t}(s)}{\desugarFwdF{t'}(s')}{\alpha}
    \\
    % let-rec
    \desugarFwdF{\exLetRecMutual{\vec{g}}{t}}
@@ -43,7 +43,7 @@ $\begin{array}{lll|llll}
    &=&
    \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e}
    &
-   g_i,g'_i &=& \bind{x_i}{\vec{c_i}}, \bind{x_i}{\vec{c_i}'}
+   (g_i,g'_i) &=& (\bind{x_i}{\vec{c_i}}, \bind{x_i}{\vec{c_i}'})
    \\
    &&&
    \sigma_i &=& \desugarClausesFwdF{\vec{c_i}}(\vec{c_i}')
@@ -52,16 +52,16 @@ $\begin{array}{lll|llll}
    e &=& \desugarFwdF{t}(s)
    \\
    % apply
-   \desugarFwdF{\exApp{t_1}{t_2}}(\exApp{s_1}{s_2})
+   \desugarFwdF{\exApp{t}{t'}}(\exApp{s}{s'})
    &=&
-   \exApp{\desugarFwdF{t_1}(s_1)}{\desugarFwdF{t_2}(s_2)}
+   \exApp{\desugarFwdF{t}(s)}{\desugarFwdF{t'}(s')}
    \\
    % if
-   \desugarFwdF{\exIfThenElse{t_1}{t_2}{t_3}}(s)
+   \desugarFwdF{\exIfThenElse{t}{t_1}{t_2}}(s)
    &=&
-   \exApp{\exLambda{\elimBool{e_2}{e_3}}}{\desugarFwdF{t}(s_1)}
+   \exApp{\exLambda{\elimBool{e_1}{e_2}}}{\desugarFwdF{t}(s)}
    &
-   s &=& \exIfThenElse{s_1}{s_2}{s_3}
+   s &=& \exIfThenElse{s'}{s_1}{s_2}
    \\
    &&&
    e_2, e_3 &=& \desugarFwdF{t_2}(s_2), \desugarFwdF{t_3}(s_3)
@@ -101,25 +101,28 @@ $\begin{array}{lll|llll}
    &&&
    e' &=& \desugarFwdF{t'}(s')
    \\
-   \desugarFwdF{\exListComp{t_1}{\qualDeclaration{p}{t_2} \concat \vec{q}}}
+   \desugarFwdF{\exListComp{t}{\qualDeclaration{p}{t'} \concat \vec{q}}}
                (s)
    &=&
-   \exApp{\exLambda{\sigma}}{\desugarFwdF{t_2}(s_2)}
+   \exApp{\exLambda{\clauseFwdF{p}(e)}}{\desugarFwdF{t'}(s')}
    &
-   s &=& \annListComp{s_1}{\qualDeclaration{p}{s_2} \concat \vec{q}}{\alpha}
+   s &=& \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
    \\
    &&&
-   \sigma &=& \desugarClausesFwdF{\clauseUncurried{p}{\exListComp{t_1}{\vec{q}}}}
-                                 (\clauseUncurried{p}{\annListComp{s_1}{\vec{q}}{\alpha}})
+   e &=&
+   \desugarFwdF{\exListComp{t}{\vec{q}}}(\annListComp{s}{\vec{q}}{\alpha})
    \\
    \desugarFwdF{\exListComp{t}{\qualGenerator{p}{t'} \concat \vec{q}'}}
                (\annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha})
    &=&
    \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma'})}}{\desugarFwdF{t'}(s')}
    &
+   e &=&
+   \desugarFwdF{\exListComp{t}{\vec{q}'}}(\annListComp{s}{\vec{q}}{\alpha})
+   \\
+   &&&
    \sigma &=&
-   \desugarClausesFwdF{\clauseUncurried{p}{\exListComp{t}{\vec{q}'}}}
-                      (\clauseUncurried{p}{\annListComp{s}{\vec{q}}{\alpha}})
+   \clauseFwdF{p}(e)
    \\
    &&&
    \sigma' &=& \totaliseFwdF{p}(\sigma,\alpha)

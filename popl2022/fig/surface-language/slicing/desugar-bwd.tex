@@ -128,10 +128,14 @@ $\begin{array}{lll|llll}
    (\sigma',\beta) &=& \totaliseBwdF{p}(\sigma)
    \\
    &&&
-   \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}'}}{{\beta'}}}
+   e
    &=&
-   \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{t}{\vec{q}}}}(\sigma')
+   \clauseBwdF{p}(\sigma')
    \\
+   &&&
+   \annot{\exListComp{s}{\vec{q}'}}{{\beta'}}
+   &=&
+   \desugarBwdF{\exListComp{t}{\vec{q}}}(e)
 \end{array}$
 \caption{Desugaring terms --- backward slicing}
 \end{figure}

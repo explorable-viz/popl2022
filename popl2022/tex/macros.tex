@@ -229,8 +229,8 @@
 \newcommand*{\matchGC}[1]{\GC{match}{#1}}
 
 \newcommand*{\GC}[2]{\sub{\mathsf{#1}}{#2}}
-\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\smalltriangleright}{#2}}
-\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{#2}}
+\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\hspace{-0.05em}\smalltriangleright}{\hspace{-0.04em}#2}}
+\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{\hspace{-0.08em}#2}}
 
 \newcommand*{\bind}[2]{#1{:}\;#2}
 \renewcommand*{\vec}[1]{\vv{#1}}
@@ -277,9 +277,9 @@
 
 \newcommand*{\desugarFwd}{\dfwdarrow}
 \newcommand*{\desugarBwd}[1]{\sub{\dbwdarrow}{#1}}
-\newcommand*{\desugarFwdF}[1]{\fwdF{dsg}{#1}}
-\newcommand*{\desugarBwdF}[1]{\bwdF{dsg}{#1}}
-\newcommand*{\desugarGC}[1]{\GC{dsg}{#1}}
+\newcommand*{\desugarFwdF}[1]{\fwdF{dsg}{#1}\hspace{-0.05em}}
+\newcommand*{\desugarBwdF}[1]{\bwdF{dsg}{#1}\hspace{-0.11em}}
+\newcommand*{\desugarGC}[1]{\GC{dsg}{#1}\hspace{-0.11em}}
 
 \newcommand*{\desugarListRestFwdF}[1]{\fwdF{desug}{#1}}
 \newcommand*{\desugarListRestBwdF}[1]{\bwdF{desug}{#1}}
