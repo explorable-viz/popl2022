@@ -57,14 +57,14 @@ $\begin{array}{lll|llll}
    \exApp{\desugarFwdF{t}(s)}{\desugarFwdF{t'}(s')}
    \\
    % if
-   \desugarFwdF{\exIfThenElse{t}{t_1}{t_2}}(s^\dagger)
+   \desugarFwdF{\exIfThenElse{t}{t_1}{t_2}}(\exIfThenElse{s}{s_1}{s_2})
    &=&
-   \exApp{\exLambda{\elimBool{e_1}{e_2}}}{\desugarFwdF{t}(s)}
+   \exApp{\exLambda{\elimBool{e_1}{e_2}}}{e}
    &
-   s^\dagger &=& \exIfThenElse{s}{s_1}{s_2}
+   (e_1, e_2) &=& (\desugarFwdF{t_1}(s_1), \desugarFwdF{t_2}(s_2))
    \\
    &&&
-   (e_1, e_2) &=& (\desugarFwdF{t_1}(s_1), \desugarFwdF{t_2}(s_2))
+   e &=& \desugarFwdF{t}(s)
    \\
    % match
    \desugarFwdF{\exMatch{t}{\vec{c}}}(\exMatch{s}{\vec{c}'})
@@ -83,7 +83,9 @@ $\begin{array}{lll|llll}
    % list-enum
    \desugarFwdF{\exListEnum{t}{t'}}(\exListEnum{s}{s'})
    &=&
-   \exApp{\exApp{\funEnumFromTo}{\desugarFwdF{t}(s)}}{\desugarFwdF{t'}(s')}
+   \exApp{\exApp{\funEnumFromTo}{e}}{e'}
+   &
+   (e,e') &=& (\desugarFwdF{t}(s),\desugarFwdF{t'}(s'))
    \\
    % list-comp-done
    \desugarFwdF{\exListComp{t}{\seqEmpty}}(\annListComp{s}{\seqEmpty}{\alpha})
@@ -103,13 +105,10 @@ $\begin{array}{lll|llll}
    \\
    % list-comp-decl
    \desugarFwdF{\exListComp{t}{\qualDeclaration{p}{t'} \concat \vec{q}}}
-               (s^\dagger)
+               (\annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha})
    &=&
    \exApp{\exLambda{\clauseFwdF{p}(e)}}{\desugarFwdF{t'}(s')}
    &
-   s^\dagger &=& \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
-   \\
-   &&&
    e &=&
    \desugarFwdF{\exListComp{t}{\vec{q}}}(\annListComp{s}{\vec{q}}{\alpha})
    \\
