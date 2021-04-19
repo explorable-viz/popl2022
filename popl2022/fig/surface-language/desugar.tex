@@ -198,9 +198,9 @@
       lab={\ruleName{$\desugarFwd$-list-comp-decl}}
    ]
    {
-      \clauseUncurried{p}{\exListComp{s}{\vec{q}}}
-      \desugarClauseFwd
-      \sigma
+      \exListComp{s}{\vec{q}} \desugarFwd e
+      \\
+      p, e \clauseFwd \sigma
       \\
       s' \desugarFwd e
    }
@@ -215,9 +215,9 @@
       lab={\ruleName{$\desugarFwd$-list-comp-gen}}
    ]
    {
-      \clauseUncurried{p}{\exListComp{s}{\vec{q}}}
-      \desugarClauseFwd
-      \sigma
+      \exListComp{s}{\vec{q}} \desugarFwd e
+      \\
+      p, e\clauseFwd \sigma
       \\
       \sigma \totalisefwdarrow \sigma'
       \\
