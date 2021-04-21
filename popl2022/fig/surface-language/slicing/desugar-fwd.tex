@@ -241,7 +241,7 @@
       \strut
    }
    {
-      \exListEnd \desugarFwd \exNil
+      \annListEnd{\alpha} \desugarFwd \annNil{\alpha}
    }
    %
    \and
@@ -255,7 +255,7 @@
       r \desugarFwd e'
    }
    {
-      \exListNext{s}{r} \desugarFwd \exCons{e}{e'}
+      \annListNext{s}{r}{\alpha} \desugarFwd \annCons{e}{e'}{\alpha}
    }
 \end{smathpar}
 \caption{Desugaring -- forward slicing (selected rules)}
