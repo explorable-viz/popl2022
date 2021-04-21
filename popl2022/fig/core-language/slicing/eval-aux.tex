@@ -3,12 +3,14 @@
 \vspace{5pt}
 \flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
 \begin{salign}
-   \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_i: \exClosure{\rho_i}{h_i}{\sigma_i}}
+   \vec{\bind{x}{v}}
    &\closeDefsBwdR
-   \bigjoin\vec{\rho},
-   (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin\vec{h}}
+   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   &
+   \text{ where }
+   v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
 \end{salign}
-   
+
 \small
 $\begin{array}{lll|llll}
 \arrayrulecolor{lightgray}
