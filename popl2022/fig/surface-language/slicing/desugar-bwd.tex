@@ -183,7 +183,7 @@
    {
       \annCons{e}{\annNil{\alpha}}{\alpha'}
       \desugarBwd{\exListComp{t}{\seqEmpty}}
-      \annot{\exListComp{s}{\seqEmpty}}{\alpha \join \alpha'}
+      \annListComp{s}{\seqEmpty}{\alpha \join \alpha'}
    }
    %
    \and
@@ -199,7 +199,7 @@
    {
       \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
       \desugarBwd{\exListComp{t}{\qualGuard{t'} \concat \vec{q}}}
-      \annot{\exListComp{s}{\qualGuard{s'} \concat \vec{q}'}}{\alpha \join \beta}
+      \annListComp{s}{\qualGuard{s'} \concat \vec{q}'}{\alpha \join \beta}
    }
    %
    \and
@@ -212,15 +212,14 @@
       \\
       e'
       \desugarBwd{\exListComp{t'}{\vec{q}}}
-      \annot{\exListComp{s'}{\vec{q}'}}{\beta}
+      \annListComp{s'}{\vec{q}'}{\beta}
       \\
       e \desugarBwd{t} s
    }
    {
       \exApp{\exLambda{\sigma}}{e}
       \desugarBwd{\exListComp{t'}{\qualDeclaration{p}{t} \concat \vec{q}}}
-      \annot{\exListComp{s'}{\qualDeclaration{p}{s} \concat \vec{q}'}}
-            {\beta}
+      \annListComp{s'}{\qualDeclaration{p}{s} \concat \vec{q}'}{\beta}
    }
    %
    \and
@@ -229,19 +228,21 @@
       lab={\ruleName{$\desugarBwd{}$-list-comp-gen}},
    ]
    {
-      e_{1} \desugarBwd{s_{1}} s_{1}'
+      e \desugarBwd{t} s
       \\
       \totalisebwd{\sigma}{p}{\sigma'}{\beta}
       \\
       \sigma'
-      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
-      \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{{\beta'}}}
+      \clauseBwd{p}
+      e
+      \\
+      \desugarBwd{\exListComp{t'}{\vec{q}}}
+      \annListComp{s'}{\vec{q}'}{\beta'}
    }
    {
-      \exApp{\exApp{\funConcatMap}{\exLambda{\sigma}}}{e_1}
-      \desugarBwd{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
-      \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}
-            {\beta \join \beta'}
+      \exApp{\exApp{\funConcatMap}{\exLambda{\sigma}}}{e}
+      \desugarBwd{\exListComp{t'}{\qualGenerator{p}{t} \concat \vec{q}}}
+      \annListComp{s'}{\qualGenerator{p}{s} \concat \vec{q}'}{\beta \join \beta'}
    }
 \end{smathpar}
 \caption{Desugaring terms -- backward slicing (selected rules)}
