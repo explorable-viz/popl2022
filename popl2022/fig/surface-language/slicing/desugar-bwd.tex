@@ -192,14 +192,14 @@
       lab={\ruleName{$\desugarBwd{}$-list-comp-guard}},
    ]
    {
-      e_2 \desugarBwd{s_2} s_2'
+      e' \desugarBwd{t'} s'
       \\
-      e_1 \desugarBwd{\exListComp{s_1}{\vec{q}}} \annListComp{s_{1}'}{\vec{q}'}{\beta}
+      e \desugarBwd{\exListComp{t}{\vec{q}}} \annListComp{s}{\vec{q}'}{\beta}
    }
    {
-      \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
-      \desugarBwd{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
-      \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
+      \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
+      \desugarBwd{\exListComp{t}{\qualGuard{t'} \concat \vec{q}}}
+      \annot{\exListComp{s}{\qualGuard{s'} \concat \vec{q}'}}{\alpha \join \beta}
    }
    %
    \and
