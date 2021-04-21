@@ -96,10 +96,10 @@
    {
       \Gamma \vdash s : A
       \\
-      \Gamma \vdash l : \tyList{A}
+      \Gamma \vdash r : \tyList{A}
    }
    {
-      \Gamma \vdash \exList{s}{l} : \tyList{A}
+      \Gamma \vdash \exList{s}{r} : \tyList{A}
    }
    %
    \and
@@ -129,7 +129,7 @@
 
    % List rest
    \vspace{5pt}
-   \flushleft \shadebox{$\Gamma \vdash l: \tyList{A}$}
+   \flushleft \shadebox{$\Gamma \vdash r: \tyList{A}$}
    \begin{smathpar}
    \inferrule*
    {
@@ -145,18 +145,28 @@
    {
       \Gamma \vdash s : A
       \\
-      \Gamma \vdash l : \tyList{A}
+      \Gamma \vdash r : \tyList{A}
    }
    {
-      \Gamma \vdash \exListNext{s}{l} : \tyList{A}
+      \Gamma \vdash \exListNext{s}{r} : \tyList{A}
    }
    \end{smathpar}
 
    \vspace{0.1em}
    %% Qualifiers
 
-   \flushleft \shadebox{$\Gamma \vdash q \dashv \Delta $}
+   \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
    \begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \seqEmpty \dashv \seqEmpty
+   }
+   %
+   \and
+   %
    \inferrule*
    {
       \Gamma \vdash s: \tyBool
@@ -188,23 +198,12 @@
    {
       \Gamma \vdash \qualDeclaration{p}{s} \dashv \Delta
    }
-   \end{smathpar}
-
-   % Qualifier sequence
-   \vspace{5pt}
-   \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
-   \begin{smathpar}
-   \inferrule*
-   {
-      \strut
-   }
-   {
-      \Gamma \vdash \seqEmpty \dashv \seqEmpty
-   }
    %
    \and
    %
-   \inferrule*
+   \inferrule*[
+      right={$\length{\vec{q}} \numgt 0$}
+   ]
    {
       \Gamma \vdash q \dashv \Gamma'
       \\
