@@ -2,18 +2,6 @@
 \flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-eq}}
-]
-{
-   \kappa \mathrel{\eq\sub{\totalisebwdarrow}{\vec{\pi}}} \kappa', \alpha
-}
-{
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\totalisebwdarrow$-empty}}
 ]
 {
@@ -36,6 +24,7 @@
 {
    \totalisebwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa'}}{\alpha}
 }
+\\
 %
 \and
 %
