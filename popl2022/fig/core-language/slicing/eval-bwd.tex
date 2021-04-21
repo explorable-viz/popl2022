@@ -14,18 +14,6 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-op}}
-   ]
-   {
-      \envLookupBwd{\rho}{\Gamma}{\bind{\primOp}{v}}
-   }
-   {
-      \evalBwd{v}{\trOp{\primOp}{\Gamma}}{\rho}{\exOp{\primOp}}{\FF}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\evalBwdS$-lambda}}
    ]
    {
@@ -141,7 +129,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply-prim-unsat}}
+      lab={\ruleName{$\evalBwdS$-apply-prim}}
    ]
    {
       v \eq \exPrimOp{\phi}{\vec{u} \concat u'}
