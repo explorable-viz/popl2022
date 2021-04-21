@@ -18,13 +18,15 @@
    %
    \inferrule*[
       lab={\ruleName{$\smalltriangleleft$-tail}},
-      right={$z \neq z'$}
+      right={$x \neq y$}
    ]
    {
-      \envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}
+      \envLookupBwd{\rho}{\rho',x}{u}
    }
    {
-      \envLookupBwd{\rho \concat \bind{z'}{\hole}}{\Gamma \concat \bind{z'}{A}}{\bind{z}{v}}
+      \envLookupBwd{\rho \concat \bind{y}{\hole}}
+                   {\rho' \concat \bind{y}{v},x}
+                   {u}
    }
 \end{smathpar}
 
