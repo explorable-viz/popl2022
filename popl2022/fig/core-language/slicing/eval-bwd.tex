@@ -132,29 +132,7 @@
       lab={\ruleName{$\evalBwdS$-apply-prim}}
    ]
    {
-      v \eq \exPrimOp{\phi}{\vec{u} \concat u'}
-      \\
-      \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
-      \\
-      \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
-   }
-   {
-      \evalBwd{v}
-              {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\rho \join \rho'}
-              {\exApp{e_1}{e_2}}
-              {\alpha \join \alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply-prim-sat}}
-   ]
-   {
-      v \eq \annInt{n'}{\beta}
-      \\
-      \primBwd{\phi}(\vec{n} \concat m)(\annInt{n'}{\beta}) = \vec{u} \concat u'
+      \primBwd{\phi}{\vec{n} \concat m}(v) = \vec{u} \concat u'
       \\
       \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
       \\
