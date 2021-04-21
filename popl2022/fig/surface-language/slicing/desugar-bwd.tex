@@ -75,7 +75,7 @@
    %
    \inferrule*[
       lab={\ruleName{$\desugarBwd{}$-let-rec}},
-      right={$(g_i,g'_i) = (\bind{x_i}{\vec{c_i}},\bind{x_i}{\vec{c_i}'})$}
+      right={$\forall i \numleq \length{\vec{x}}.(g_i,g'_i) = (\bind{x_i}{\vec{c_i}},\bind{x_i}{\vec{c_i}'})$}
    ]
    {
       \sigma_i \desugarClauseBwd{\vec{c_i}} \vec{c_i}'
