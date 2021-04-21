@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\envLookup{\rho}{z}{v}$}
+\flushleft \shadebox{$\envLookup{\rho}{x}{v}$}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\smalltriangleright$-head}}
@@ -8,20 +8,20 @@
       \strut
    }
    {
-      \envLookup{(\rho \concat \bind{z}{v})}{z}{v}
+      \envLookup{(\rho \concat \bind{x}{v})}{x}{v}
    }
    %
    \and
    %
    \inferrule*[
       lab={\ruleName{$\smalltriangleright$-tail}},
-      right={$z' \neq z$}
+      right={$x \neq y$}
    ]
    {
-      \envLookup{\rho}{z}{v}
+      \envLookup{\rho}{x}{v}
    }
    {
-      \envLookup{(\rho \concat \bind{z'}{u})}{z}{v}
+      \envLookup{(\rho \concat \bind{y}{u})}{x}{v}
    }
 \end{smathpar}
 
