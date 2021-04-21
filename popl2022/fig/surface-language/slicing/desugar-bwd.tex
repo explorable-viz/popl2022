@@ -208,9 +208,11 @@
       lab={\ruleName{$\desugarBwd{}$-list-comp-decl}},
    ]
    {
-      \sigma
-      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{t'}{\vec{q}}}}
-      \clauseUncurried{p}{\annot{\exListComp{s'}{\vec{q}'}}{\beta}}
+      \sigma \clauseBwd{p} e'
+      \\
+      e'
+      \desugarBwd{\exListComp{t'}{\vec{q}}}
+      \annot{\exListComp{s'}{\vec{q}'}}{\beta}
       \\
       e \desugarBwd{t} s
    }
