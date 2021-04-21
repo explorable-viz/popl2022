@@ -34,7 +34,7 @@
       \strut
    }
    {
-      \exNil \desugarFwd \exNil
+      \annNil{\alpha} \desugarFwd \annNil{\alpha}
    }
    %
    \and
@@ -259,5 +259,5 @@
       \exListNext{s}{r} \desugarFwd \exCons{e}{e'}
    }
 \end{smathpar}
-\caption{Desugaring -- selected rules}
+\caption{Desugaring -- forward slicing (selected rules)}
 \end{figure}
