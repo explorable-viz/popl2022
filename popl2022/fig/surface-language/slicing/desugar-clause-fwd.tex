@@ -1,0 +1,163 @@
+
+\begin{figure}[H]
+\flushleft\shadebox{$p, \kappa \clauseFwd \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\clauseFwd$-var}}
+]
+{
+   \strut
+}
+{
+   x, \kappa
+   \clauseFwd
+   \elimVar{x}{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseFwd$-nil}}
+]
+{
+   \strut
+}
+{
+   \pattNil, \kappa
+   \clauseFwd
+   \elimNil{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseFwd$-cons}}
+]
+{
+   p', \kappa \clauseFwd \sigma
+   \\
+   p, \sigma \clauseFwd \sigma'
+}
+{
+   \pattCons{p}{p'}, \kappa
+   \clauseFwd
+   \elimCons{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseFwd$-non-empty-list}}
+]
+{
+   o, \kappa \clauseFwd \sigma
+   \\
+   p, \sigma \clauseFwd \sigma'
+}
+{
+   \pattList{p}{o}, \kappa
+   \clauseFwd
+   \elimCons{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseFwd$-pair}}
+]
+{
+   p', \kappa \clauseFwd \sigma
+   \\
+   p, \sigma \clauseFwd \sigma'
+}
+{
+   \pattPair{p}{p'}, \kappa
+   \clauseFwd
+   \elimProd{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseFwd$-seq}},
+   right={$\length{\vec{p}} \numgt 0$}
+]
+{
+   \vec{p}, e \clauseFwd \sigma
+   \\
+   p, \exLambda{\sigma} \clauseFwd \sigma'
+}
+{
+   p \concat \vec{p}, e
+   \clauseFwd
+   \sigma'
+}
+\end{smathpar}
+
+\flushleft\shadebox{$o, \kappa \clauseFwd \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\clauseFwd$-list-rest-end}}
+]
+{
+   \strut
+}
+{
+   \pattListEnd, \kappa
+   \clauseFwd
+   \elimNil{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseFwd$-list-rest-cons}}
+]
+{
+   o, \kappa \clauseFwd \sigma
+   \\
+   p, \sigma \clauseFwd \sigma'
+}
+{
+   (\pattListNext{p}{o}), \kappa
+   \clauseFwd
+   \elimCons{\sigma'}
+}
+\end{smathpar}
+
+\flushleft\shadebox{$\vec{c} \desugarClauseFwd \sigma$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\desugarClauseFwd$-clause}}
+]
+{
+   s \desugarFwd e
+   \\
+   \vec{p}, e \clauseFwd \sigma
+}
+{
+   \clause{\vec{p}}{s}
+   \desugarClauseFwd
+   \sigma
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\desugarClauseFwd$-clause-seq}}
+]
+{
+   c \desugarClauseFwd \sigma
+   \\
+   \vec{c} \desugarClauseFwd \sigma'
+   \\
+   \sigma \join \sigma' = \tau
+}
+{
+   c \concat \vec{c}
+   \desugarClauseFwd
+   \tau
+}
+\end{smathpar}
+\caption{Desugaring clauses -- forward slicing}
+\end{figure}

@@ -3,12 +3,10 @@
 \flushleft \shadebox{$\Gamma \vdash \vec{g}: \Delta$}
 \begin{smathpar}
    \inferrule*[right={
-      \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_j}{\tyFun{A_j}{B_j}}}$}
+      \textnormal{$\Delta = \vec{\bind{x}{\tyFun{A}{B}}}$}
    }]
    {
-      \Gamma \concat \Delta \vdash c': \tyFun{A_i}{B_i}
-      \quad
-      (\forall c' \in \vec{c_i})
+      \Gamma \concat \Delta \vdash \vec{c_i}: \tyFun{A_i}{B_i}
       \quad
       (\forall i \numleq j)
    }
@@ -20,7 +18,17 @@
 \vspace{5pt}
 \flushleft \shadebox{$\Gamma \vdash s: A$}
 \begin{smathpar}
-   \inferrule*[right={$\primOp: \tyFun{\tyInt^2}{\tyInt} \in \Gamma$}]
+   \inferrule*[right={$\primOp: A \in \Gamma$}]
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \exOp{\primOp}: A
+   }
+   %
+   \and
+   %
+   \inferrule*[right={$\primOp: \tyFun{\tyProd{\tyInt}{\tyInt}}{\tyInt} \in \Gamma$}]
    {
       \Gamma \vdash s: \tyInt
       \\
@@ -48,12 +56,12 @@
    {
       \Gamma \vdash s: \tyBool
       \\
-      \Gamma \vdash s': A
+      \Gamma \vdash s_1: A
       \\
-      \Gamma \vdash s^{\twoPrime}: A
+      \Gamma \vdash s_2: A
    }
    {
-      \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
+      \Gamma \vdash \exIfThenElse{s}{s_1}{s_2}: A
    }
    %
    \and
@@ -62,9 +70,7 @@
    {
       \Gamma \vdash s: A
       \\
-      \Gamma \vdash c': \tyFun{A}{B}
-      \quad
-      (\forall c' \in \vec{c})
+      \Gamma \vdash \vec{c}: \tyFun{A}{B}
    }
    {
       \Gamma \vdash \exMatch{s}{\vec{c}}: B
@@ -90,10 +96,10 @@
    {
       \Gamma \vdash s : A
       \\
-      \Gamma \vdash l : \tyList{A}
+      \Gamma \vdash r : \tyList{A}
    }
    {
-      \Gamma \vdash \exList{s}{l} : \tyList{A}
+      \Gamma \vdash \exList{s}{r} : \tyList{A}
    }
    %
    \and
@@ -123,7 +129,7 @@
 
    % List rest
    \vspace{5pt}
-   \flushleft \shadebox{$\Gamma \vdash l: \tyList{A}$}
+   \flushleft \shadebox{$\Gamma \vdash r: \tyList{A}$}
    \begin{smathpar}
    \inferrule*
    {
@@ -139,18 +145,28 @@
    {
       \Gamma \vdash s : A
       \\
-      \Gamma \vdash l : \tyList{A}
+      \Gamma \vdash r : \tyList{A}
    }
    {
-      \Gamma \vdash \exListNext{s}{l} : \tyList{A}
+      \Gamma \vdash \exListNext{s}{r} : \tyList{A}
    }
    \end{smathpar}
 
    \vspace{0.1em}
    %% Qualifiers
 
-   \flushleft \shadebox{$\Gamma \vdash q \dashv \Delta $}
+   \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
    \begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \seqEmpty \dashv \seqEmpty
+   }
+   %
+   \and
+   %
    \inferrule*
    {
       \Gamma \vdash s: \tyBool
@@ -182,23 +198,12 @@
    {
       \Gamma \vdash \qualDeclaration{p}{s} \dashv \Delta
    }
-   \end{smathpar}
-
-   % Qualifier sequence
-   \vspace{5pt}
-   \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
-   \begin{smathpar}
-   \inferrule*
-   {
-      \strut
-   }
-   {
-      \Gamma \vdash \seqEmpty \dashv \seqEmpty
-   }
    %
    \and
    %
-   \inferrule*
+   \inferrule*[
+      right={$\length{\vec{q}} \numgt 0$}
+   ]
    {
       \Gamma \vdash q \dashv \Gamma'
       \\

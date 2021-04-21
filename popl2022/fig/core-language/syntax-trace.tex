@@ -6,12 +6,12 @@ w
 &
 ::=
 &
-\matchVarNew{x}
+\matchVar{x}
 &
 \text{variable}
 \\
 &&&
-\matchTrueNew \mid \matchFalseNew
+\matchTrue \mid \matchFalse
 &
 \text{Boolean}
 \\
@@ -21,12 +21,12 @@ w
 \text{pair}
 \\
 &&&
-\matchNilNew
+\matchNil
 &
 \text{nil}
 \\
 &&&
-\matchConsNew{w}{w'}
+\matchCons{w}{w'}
 &
 \text{cons}
 \\[2mm]
@@ -36,24 +36,19 @@ T, U
 &
 ::=
 &
-\trVar{x}{\Gamma}
+\trVar{x}{\rho}
 &
 \text{variable}
 \\
 &&&
-\trOp{\primOp}{\Gamma}
-&
-\text{first-class operator}
-\\
-&&&
-\trTrue{\Gamma}
+\trTrue{\rho}
 \mid
-\trFalse{\Gamma}
+\trFalse{\rho}
 &
 \text{Boolean}
 \\
 &&&
-\trInt{n}{\Gamma}
+\trInt{n}{\rho}
 &
 \text{integer}
 \\
@@ -63,7 +58,7 @@ T, U
 \text{pair}
 \\
 &&&
-\trNil{\Gamma}
+\trNil{\rho}
 &
 \text{nil}
 \\
@@ -73,7 +68,7 @@ T, U
 \text{cons}
 \\
 &&&
-\trVec{T_{i}}{x}{i}{U}{j}
+\trVec{\vec{U}}{x}{T}{j}
 &
 \text{vector of length $j$}
 \\
@@ -93,17 +88,17 @@ T, U
 \text{anonymous function}
 \\
 &&&
-\trApp{T}{U}{\matchPlug{w}{T'}}
+\trAppNew{T}{\rho}{h}{U}{w}{T'}
 &
 \text{application}
 \\
 &&&
-\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{n}}
+\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{n}}
 &
 \text{primitive application}
 \\
 &&&
-\trLetRecMutual{h}{T}
+\trLetRecMutualNew{\rho}{h}{T}
 &
 \text{recursive let}
 \end{syntaxfig}

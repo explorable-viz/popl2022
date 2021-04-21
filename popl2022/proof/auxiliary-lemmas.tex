@@ -4,8 +4,7 @@
   \label{lem:aux:desugarlistrest:gc}
   Suppose $l \dfwdarrow e$. Then:
   \begin{enumerate}
-     \item $\dfwdarrow$ domain-restricted to $\Below{l}$ is a monotonic function $\desugarListRestFwdF{l}$ to $\Below{e}$.
-     \item $\dbwdarrow$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarListRestBwdF{l}$ to $\Below{l}$.
+     \item $\desugarListRestFwdF{l}$ and $\desugarListRestBwdF{l}$ are monotonic.
      \item $\desugarListRestFwdF{l}(\desugarListRestBwdF{l}(e')) \geq e'$.
      \item $\desugarListRestBwdF{l}(\desugarListRestFwdF{l}(l')) \leq l'$.
   \end{enumerate}
@@ -14,18 +13,16 @@
   \label{lem:aux:clause:gc}
   Suppose $p, e \dfwdarrow \sigma$. Then:
   \begin{enumerate}
-     \item $\dfwdarrow$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarClauseFwdF{p, e}$ to $\Below{\sigma}$.
-     \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClauseBwdF{p, e}$ to $\Below{e}$.
-     \item $\desugarClauseFwdF{p, e}(\desugarClauseBwdF{p, e}(\sigma')) \geq \sigma'$.
-     \item $\desugarClauseBwdF{p, e}(\desugarClauseFwdF{p, e}(e')) \leq e'$.
+     \item $\clauseFwdF{\clause{p}{e}}$ and $\clauseBwdF{\clause{p}{e}}$ are monotonic.
+     \item $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
+     \item $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(e')) \leq e'$.
   \end{enumerate}
 \end{lemma}
 \begin{lemma}[Galois connection for clauses]
   \label{lem:aux:clauses:gc}
   Suppose $\vec{c} \dfwdarrow \sigma$. Then:
   \begin{enumerate}
-     \item $\dfwdarrow$ domain-restricted to $\Below{\vec{c}}$ is a monotonic function $\desugarClausesFwdF{\vec{c}}$ to $\Below{\sigma}$.
-     \item $\dbwdarrow$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\desugarClausesBwdF{\vec{c}}$ to $\Below{\vec{c}}$.
+     \item $\desugarClausesFwdF{\vec{c}}$ and $\desugarClausesBwdF{\vec{c}}$ are monotonic.
      \item $\desugarClausesFwdF{\vec{c}}(\desugarClausesBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
      \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}'$.
   \end{enumerate}
@@ -34,10 +31,10 @@
   \label{lem:aux:list-gen:gc}
   \item
   \begin{itemize}
-    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ with $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
-    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ with $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \desugarClauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
+    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ with $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
+    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ with $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \clauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
   \end{itemize}
-  Suppose $\clauseUncurried{p}{e} \desugarClauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
+  Suppose $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
   \begin{enumerate}
      \item $\listGenFwd$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
      \item $\listGenBwd{\clauseUncurried{p}{e}}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\listGenBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.

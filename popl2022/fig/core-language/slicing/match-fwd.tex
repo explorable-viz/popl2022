@@ -8,7 +8,7 @@
       \sigma \eq \elimVar{x}{\kappa}
    }
    {
-      \matchFwd{v}{\sigma}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
+      \matchFwd{v}{\sigma}{\matchVar{x}}{\bind{x}{v}}{\kappa}{\TT}
    }
    %
    \and
@@ -22,7 +22,7 @@
       \sigma \eq \elimBool{\kappa}{\kappa'}
    }
    {
-      \matchFwd{v}{\sigma}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
+      \matchFwd{v}{\sigma}{\matchTrue}{\seqEmpty}{\kappa}{\alpha}
    }
    %
    \and
@@ -36,7 +36,7 @@
       \sigma \eq \elimBool{\kappa}{\kappa'}
    }
    {
-      \matchFwd{v}{\sigma}{\matchFalseNew}{\seqEmpty}{\kappa'}{\alpha}
+      \matchFwd{v}{\sigma}{\matchFalse}{\seqEmpty}{\kappa'}{\alpha}
    }
    %
    \and
@@ -73,7 +73,7 @@
       \sigma \eq \elimList{\kappa}{\sigma'}
    }
    {
-      \matchFwd{v}{\sigma}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
+      \matchFwd{v}{\sigma}{\matchNil}{\seqEmpty}{\kappa}{\alpha}
    }
    %
    \and
@@ -91,7 +91,7 @@
       \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
    }
    {
-      \matchFwd{v}{\sigma}{\matchConsNew{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
+      \matchFwd{v}{\sigma}{\matchCons{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}

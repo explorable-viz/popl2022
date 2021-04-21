@@ -1,0 +1,45 @@
+\begin{figure}[H]
+
+\flushleft \shadebox{$\envLookupBwd{\rho}{\rho',x}{v}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\envLookupBwdS$-head}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envLookupBwd{\hole_{\rho} \concat \bind{x}{u}}
+                   {\rho \concat \bind{x}{v},x}
+                   {u}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\envLookupBwdS$-tail}},
+      right={$x \neq y$}
+   ]
+   {
+      \envLookupBwd{\rho}{\rho',x}{u}
+   }
+   {
+      \envLookupBwd{\rho \concat \bind{y}{\hole}}
+                   {\rho' \concat \bind{y}{v},x}
+                   {u}
+   }
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
+\begin{salign}
+   \vec{\bind{x}{v}}
+   &\closeDefsBwdR
+   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   &
+   \text{ where }
+   v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
+\end{salign}
+\caption{Auxiliary functions: forward and backward slicing}
+\label{fig:slicing:eval-aux}
+\end{figure}

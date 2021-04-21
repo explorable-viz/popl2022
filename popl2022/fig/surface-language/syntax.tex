@@ -1,13 +1,31 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Surface term}
+\mbox{Identifier}
 &
-s
+x, y
 &
 ::=
 &
-...
+\ldots
+\\
+&&&
+\primOp
 &
+\text{operator name}
+\\
+\mbox{Surface term}
+&
+s, t
+&
+::=
+&
+\ldots
+&
+\\
+&&&
+\exOp{\primOp}
+&
+\text{first-class operator}
 \\
 &&&
 \exBinaryApp{s}{\primOp}{s'}
@@ -35,7 +53,7 @@ s
 \text{structured let}
 \\
 &&&
-\annList{s}{l}{\alpha}
+\annList{s}{r}{\alpha}
 &
 \text{non-empty list}
 \\
@@ -50,9 +68,9 @@ s
 \text{list comprehension}
 \\[2mm]
 
-\mbox{List rest}
+\mbox{List rest term}
 &
-l
+r
 &
 ::=
 &
@@ -61,7 +79,7 @@ l
 \text{end}
 \\
 &&&
-\annListNext{s}{l}{\alpha}
+\annListNext{s}{r}{\alpha}
 &
 \text{cons}
 \\[2mm]
@@ -72,7 +90,7 @@ g
 &
 ::=
 &
-x: \vec{c}
+\vec{x: \vec{c}}
 \\[2mm]
 
 \mbox{Clause}
@@ -81,7 +99,7 @@ c
 &
 ::=
 &
-\clause{p}{s}
+\clause{\vec{p}}{s}
 \\[2mm]
 
 \mbox{Pattern}

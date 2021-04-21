@@ -1,0 +1,38 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\envLookup{\rho}{x}{v}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-head}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envLookup{(\rho \concat \bind{x}{v})}{x}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\smalltriangleright$-tail}},
+      right={$x \neq y$}
+   ]
+   {
+      \envLookup{\rho}{x}{v}
+   }
+   {
+      \envLookup{(\rho \concat \bind{y}{u})}{x}{v}
+   }
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft\shadebox{$\rho, h \closeDefsR \rho'$}
+\begin{salign}
+   \rho, h
+   &\closeDefsR
+   \seqRange{\bind{x_1}{\exClosure{\rho}{h}{\sigma_1}}}{\bind{x_j}{\exClosure{\rho}{h}{\sigma_j}}}
+   & \text{where $h = \vec{\bind{x}{\sigma}}$}
+\end{salign}
+\caption{Evaluation -- auxiliary relations}
+\label{eval-aux}
+\end{figure}

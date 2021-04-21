@@ -29,18 +29,21 @@
 \newcommand*{\closeDefsR}{\mathrel{\closeDefsArrow}}
 \newcommand*{\closeDefsFwdR}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
 \newcommand*{\closeDefsBwdR}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsArrow$}}}
-\newcommand*{\closeDefsFwdF}[1]{\mathsf{recFwd}_{#1}}
-\newcommand*{\closeDefsBwdF}[1]{\mathsf{recBwd}_{#1}}
+\newcommand*{\closeDefsFwdF}[1]{\fwdF{rec}{#1}}
+\newcommand*{\closeDefsBwdF}[1]{\bwdF{rec}{#1}}
+\newcommand*{\closeDefsGC}[1]{\GC{rec}{#1}}
 
 % Misc. syntax.
 \newcommand*{\trace}[2]{\textcolor{gray}{#1}\mathrel{\textcolor{gray}{::}}{#2}}
 
 % Primitives.
 \newcommand*{\primOp}{\oplus}
-\newcommand*{\primFwd}[1]{{#1}_{\mathsf{fwd}}}
-\newcommand*{\primFwdBool}[1]{{#1}^{\Bool}_{\mathsf{fwd}}}
-\newcommand*{\primBwd}[1]{{#1}_{\mathsf{bwd}}}
-\newcommand*{\primBwdBool}[1]{{#1}^{\Bool}_{\mathsf{bwd}}}
+\newcommand*{\primFwd}[2]{\fwdF{#1}{#2}}
+\newcommand*{\primFwdBool}[2]{\fwdF{{#1}_{\Bool}}{#2}}
+\newcommand*{\primBwd}[2]{\bwdF{#1}{#2}}
+\newcommand*{\primBwdBool}[2]{\bwdF{{#1}_{\Bool}}{#2}}
+\newcommand*{\primAppF}[1]{\fwdF{primApp}{#1}}
+\newcommand*{\primAppGC}[1]{\GC{primApp}{#1}}
 
 % Prelude functions
 \newcommand*{\funConcatMap}{\exVar{\kw{concatMap}}}
@@ -65,7 +68,7 @@
 \newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exList}[2]{\kw{[}\;#1 \ #2}
-\newcommand*{\exListComp}[2]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}}
+\newcommand*{\exListComp}[2]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\kw{]}}
 \newcommand*{\exListEnum}[2]{\kw{[}\,{#1}\;\kw{..}\;{#2}\,\kw{]}}
 \newcommand*{\exLambda}[1]{\uplambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
@@ -77,7 +80,8 @@
 \newcommand*{\exOp}[1]{\kw{(}{#1}\kw{)}}
 \newcommand*{\exPair}[2]{\kw{(}#1,#2\kw{)}}
 \newcommand*{\exPrim}[1]{#1}
-\newcommand*{\exPrimOp}[2]{\kw{pr}({#1},{#2})} % value form, analogous to closures
+%\newcommand*{\exPrimOp}[2]{\kw{pr}({#1},{#2})} % value form, analogous to closures
+\newcommand*{\exPrimOp}[2]{{#1}({#2})} % value form, analogous to closures
 \newcommand*{\exRec}[2]{{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
@@ -98,7 +102,7 @@
 \newcommand*{\annCons}[3]{{#1}\,\symCons_{\hspace{-0.1em}#3}\,{#2}}
 \newcommand*{\annFalse}[1]{\kw{false}_{#1}}
 \newcommand*{\annList}[3]{\kw{[}_{#3}\;#1 \ #2}
-\newcommand*{\annListComp}[3]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\,\kw{]}_{#3}}
+\newcommand*{\annListComp}[3]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\kw{]}_{#3}}
 \newcommand*{\annInt}[2]{#1_{#2}}
 \newcommand*{\annMatrix}[5]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack_{#5}}
 \newcommand*{\annNil}[1]{\kw{[]}_{#1}}
@@ -108,7 +112,7 @@
 \newcommand*{\annVecVal}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;{#2}\matrixRBrack_{#3}}
 
 % Clause
-\newcommand*{\clause}[2]{\seq{{#1}}\equal{#2}}
+\newcommand*{\clause}[2]{{#1}\equal{#2}}
 \newcommand*{\clauseUncurried}[2]{{#1}\equal{#2}}
 
 % Qualifiers
@@ -129,7 +133,7 @@
 \newcommand*{\pattPair}[2]{\exPair{#1}{#2}}
 
 % Eliminators.
-\newcommand*{\elimmapsto}{:}
+\newcommand*{\elimmapsto}{{:}\;}
 \newcommand*{\branchCons}[1]{(\symCons)\elimmapsto{#1}}
 \newcommand*{\branchNil}[1]{\exNil\elimmapsto{#1}}
 \newcommand*{\branchTrue}[1]{\exTrue\elimmapsto{#1}}
@@ -151,12 +155,12 @@
 % Matches.
 \newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
 
-\newcommand*{\matchConsNew}[2]{\exCons{#1}{#2}}
-\newcommand*{\matchFalseNew}{\exFalse}
-\newcommand*{\matchNilNew}{\exNil}
+\newcommand*{\matchCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchFalse}{\exFalse}
+\newcommand*{\matchNil}{\exNil}
 \newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
-\newcommand*{\matchTrueNew}{\exTrue}
-\newcommand*{\matchVarNew}[1]{#1}
+\newcommand*{\matchTrue}{\exTrue}
+\newcommand*{\matchVar}[1]{#1}
 
 \newcommand*{\interpret}[1]{\hat{#1}}
 
@@ -184,14 +188,23 @@
 \newcommand*{\numleq}{\oldleq}
 \newcommand*{\numgeq}{\oldgeq}
 \newcommand*{\numgt}{>}
+\newcommand*{\numlt}{<}
 \renewcommand*{\leq}{\sqsubseteq}
 \renewcommand*{\geq}{\sqsupseteq}
 \newcommand{\eq}{\doteq}
 
 % Environments.
-\newcommand*{\envLookup}[3]{{#1}\mathrel{\smalltriangleright}\bind{#2}{#3}}
-\newcommand*{\envLookupBwd}[3]{{#1}\mathrel{\sub{\smalltriangleleft}{#2}}{#3}}
-\newcommand*{\mapUpdate}[3]{{#1}\mathrel{\smalltriangleleft}\bind{#2}{#3}}
+\newcommand*{\envLookupS}{\mathrel{\filledtriangleright}}
+\newcommand*{\envLookupR}{\envLookupS}
+\newcommand*{\envLookupBwdS}{\filledtriangleleft}
+\newcommand*{\envLookupBwdR}[1]{\mathrel{\sub{\envLookupBwdS}{#1}}}
+\newcommand*{\envLookup}[3]{{#1}\envLookupR\bind{#2}{#3}}
+\newcommand*{\envLookupFwdF}[1]{\fwdF{lookup}{#1}}
+\newcommand*{\envLookupBwdF}[1]{\bwdF{lookup}{#1}}
+\newcommand*{\envLookupGC}[1]{\GC{lookup}{#1}}
+\newcommand*{\envLookupBwd}[3]{{#1}\envLookupBwdR{#2}{#3}}
+\newcommand*{\mapUpdate}[3]{{#1}\mathrel{\filledtriangleleft}\bind{#2}{#3}}
+\newcommand*{\holeEnv}[1]{\sub{\hole}{#1}}
 
 % Evaluation.
 \newcommand*{\eval}{\mathrel{\Rightarrow}}
@@ -204,8 +217,8 @@
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalFwdR{#4} #5}
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
-\newcommand*{\evalFwdF}[1]{\mathsf{evalFwd}_{#1}}
-\newcommand*{\evalBwdF}[1]{\mathsf{evalBwd}_{#1}}
+\newcommand*{\evalFwdF}[1]{\fwdF{eval}{#1}}
+\newcommand*{\evalBwdF}[1]{\bwdF{eval}{#1}}
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
 \newcommand*{\matchFwd}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3} #4, #5, #6}
@@ -214,11 +227,16 @@
 \newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \sub{\matchBwdS}{#4}\leq #5, #6}
 \newcommand*{\matchFwdR}[1]{\matchFwdS_{\hspace{-0.2em}#1}}
 \newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
-\newcommand*{\matchFwdF}[1]{\mathsf{matchFwd}_{#1}}
-\newcommand*{\matchBwdF}[1]{\mathsf{matchBwd}_{#1}}
+\newcommand*{\matchFwdF}[1]{\fwdF{match}{#1}}
+\newcommand*{\matchBwdF}[1]{\bwdF{match}{#1}}
 \newcommand*{\matchBwdR}[1]{\matchBwdS_{#1}}
+\newcommand*{\matchGC}[1]{\GC{match}{#1}}
 
-\newcommand*{\bind}[2]{(#1:#2)}
+\newcommand*{\GC}[2]{\sub{\mathsf{#1}}{#2}}
+\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\hspace{-0.05em}\smalltriangleright}{\hspace{-0.04em}#2}}
+\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{\hspace{-0.08em}#2}}
+
+\newcommand*{\bind}[2]{#1{:}\;#2}
 \renewcommand*{\vec}[1]{\vv{#1}}
 \newcommand*{\seq}[1]{\vv{#1}}
 \newcommand*{\seqRange}[2]{\seqRangeOp{#1}{#2}{\concat}}
@@ -229,9 +247,9 @@
 \newcommand*{\length}[1]{|#1|}
 
 % Traces.
-\newcommand*{\trApp}[3]{\exApp{#1}{#2} \mathrel{\smalltriangleright} {#3}}
-\newcommand*{\trAppPrim}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
-\newcommand*{\trAppPrimNew}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
+\newcommand*{\trApp}[3]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {#3}}
+\newcommand*{\trAppNew}[6]{\exApp{\sub{#1}{#2,#3}}{#4} \mathrel{\filledtriangleright} {\bind{#5}{#6}}}
+\newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
@@ -240,6 +258,7 @@
 \newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
 \newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
 \newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
+\newcommand*{\trLetRecMutualNew}[3]{\sub{\kw{let}}{#1}\;{#2}\;\kw{in}\;{#3}}
 \newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
 \newcommand*{\trNil}[1]{\sub{\exNil}{#1}}
@@ -248,7 +267,7 @@
 \newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
 \newcommand*{\trVar}[2]{\sub{#1}{#2}}
-\newcommand*{\trVec}[5]{\exVec{#1}{\bind{#2}{#3}}{\sub{#4}{#5}}}
+\newcommand*{\trVec}[4]{\exVec{#1}{#2}{\sub{#3}{#4}}}
 \newcommand*{\trVecLookup}[4]{\exVecLookup{\sub{#1}{#2}}{\sub{#3}{#4}}}
 \newcommand*{\trVecLen}[2]{\exVecLen{\sub{#1}{#2}}}
 
@@ -262,27 +281,36 @@
 
 \newcommand*{\desugarFwd}{\dfwdarrow}
 \newcommand*{\desugarBwd}[1]{\sub{\dbwdarrow}{#1}}
-\newcommand*{\desugarFwdF}[1]{\mathsf{desugFwd}_{#1}}
-\newcommand*{\desugarBwdF}[1]{\mathsf{desugBwd}_{#1}}
+\newcommand*{\desugarFwdF}[1]{\fwdF{dsg}{#1}\hspace{-0.05em}}
+\newcommand*{\desugarBwdF}[1]{\bwdF{dsg}{#1}\hspace{-0.11em}}
+\newcommand*{\desugarGC}[1]{\GC{dsg}{#1}\hspace{-0.11em}}
 
-\newcommand*{\desugarListRestFwdF}[1]{\mathsf{desugListRestFwd}_{#1}}
-\newcommand*{\desugarListRestBwdF}[1]{\mathsf{desugListRestBwd}_{#1}}
+\newcommand*{\desugarListRestFwdF}[1]{\fwdF{desug}{#1}}
+\newcommand*{\desugarListRestBwdF}[1]{\bwdF{desug}{#1}}
 
 \newcommand*{\desugarClauseFwd}{\desugarFwd}
 \newcommand*{\desugarClauseBwd}[1]{\desugarBwd{#1}}
 \newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClauseFwd}_{#1}}
 \newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClauseBwd}_{#1}}
-\newcommand*{\desugarClausesFwdF}[1]{\mathsf{desugClausesFwd}_{#1}}
-\newcommand*{\desugarClausesBwdF}[1]{\mathsf{desugClausesBwd}_{#1}}
+\newcommand*{\desugarClausesFwd}{\desugarFwd}
+\newcommand*{\desugarClausesFwdF}[1]{\fwdF{eqns}{#1}}
+\newcommand*{\desugarClausesBwdF}[1]{\bwdF{eqns}{#1}}
+\newcommand*{\desugarClausesGC}[1]{\GC{eqns}{#1}}
 
-\newcommand*{\singletonElimFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
-\newcommand*{\singletonElimBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}
+\newcommand*{\clauseFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
+\newcommand*{\clauseBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}
+\newcommand*{\clauseFwdF}[1]{\fwdF{clause}{#1}}
+\newcommand*{\clauseBwdF}[1]{\bwdF{clause}{#1}}
+\newcommand*{\clauseGC}[1]{\GC{clause}{#1}}
 
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
 \newcommand*{\totaliseGeq}[3]{{#1},{#2} \totalisefwdarrow\geq {#3}}
 \newcommand*{\totalisebwd}[4]{{#1} \sub{\totalisebwdarrow}{#2} {#3}, {#4}}
+\newcommand*{\totaliseFwdF}[1]{\fwdF{totalise}{#1}}
+\newcommand*{\totaliseBwdF}[1]{\bwdF{totalise}{#1}}
+\newcommand*{\totaliseGC}[1]{\GC{totalise}{#1}}
 
 \newcommand*{\listGenFwd}{\mathrel{R}}
 \newcommand*{\listGenBwd}[1]{\mathrel{\sub{S}{#1}}}
@@ -290,4 +318,4 @@
 \newcommand*{\listGenBwdF}[1]{\mathsf{listGenBwd}_{#1}}
 
 \newcommand*{\comma}{\textbf{\kw{,}}}
-\newcommand*{\equal}{\mathrel{\textbf{\kw{=}}}}
+\newcommand*{\equal}{\mathrel{\kw{=}}}

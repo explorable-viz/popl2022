@@ -24,6 +24,7 @@
 {
    \totalisebwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa'}}{\alpha}
 }
+\\
 %
 \and
 %
@@ -31,14 +32,14 @@
    lab={\ruleName{$\totalisebwdarrow$-true}}
 ]
 {
-   \sigma \eq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}}
+   \sigma \eq \elimBool{\kappa}{\annot{\exNil}{\alpha}}
    \\
-   \totalisebwd{\kappa_1}{\vec{\pi}}{\kappa_1'}{\beta}
+   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
    \totalisebwd{\sigma}
                {\pattTrue \concat \vec{\pi}}
-               {\elimBoolTrue{\kappa_1'}}
+               {\elimBoolTrue{\kappa'}}
                {\alpha \join \beta}
 }
 %
@@ -48,14 +49,14 @@
    lab={\ruleName{$\totalisebwdarrow$-false}}
 ]
 {
-   \sigma \eq \elimBool{\annot{\exNil}{\alpha}}{\kappa_2}
+   \sigma \eq \elimBool{\annot{\exNil}{\alpha}}{\kappa}
    \\
-   \totalisebwd{\kappa_2}{\vec{\pi}}{\kappa_2'}{\beta}
+   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
    \totalisebwd{\sigma}
                {\pattFalse \concat \vec{\pi}}
-               {\elimBoolFalse{\kappa_2'}}
+               {\elimBoolFalse{\kappa'}}
                {\alpha \join \beta}
 }
 %

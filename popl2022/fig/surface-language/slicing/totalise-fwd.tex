@@ -1,0 +1,85 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-expr}}
+]
+{
+   \strut
+}
+{
+   \explVal{\seqEmpty}{e, \alpha \totalisefwdarrow e}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-elim-var}}
+]
+{
+   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
+}
+{
+   \explVal{\pattVar{x} \concat \vec{\pi}}{\elimVar{x}{\kappa}, \alpha \totalisefwdarrow \elimVar{x}{\kappa'}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-elim-true}}
+]
+{
+   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
+}
+{
+   \explVal{\pattTrue \concat \vec{\pi}}
+           {\elimBoolTrue{\kappa}, \alpha \totalisefwdarrow \elimBool{\kappa'}{\annNil{\alpha}}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-elim-false}}
+]
+{
+   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
+}
+{
+   \explVal{\pattFalse \concat \vec{\pi}}
+           {\elimBoolFalse{\kappa}, \alpha \totalisefwdarrow \elimBool{\annNil{\alpha}}{\kappa'}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-elim-prod}}
+]
+{
+   \explVal{p \concat p' \concat \vec{\pi}}{\sigma, \alpha \totalisefwdarrow \sigma'}
+}
+{
+   \explVal{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma}, \alpha \totalisefwdarrow \elimProd{\sigma'}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-elim-nil}}
+]
+{
+   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
+}
+{
+   \explVal{\pattNil \concat \vec{\pi}}
+           {\elimNil{\kappa}, \alpha \totalisefwdarrow \elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha}}}}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totalisefwdarrow$-elim-cons}}
+]
+{
+   \explVal{p \concat p' \concat \vec{\pi}}{\sigma, \alpha \totalisefwdarrow \sigma'}
+}
+{
+   \explVal{(\pattCons{p}{p'}) \concat \vec{\pi}}
+           {\elimCons{\sigma}, \alpha \totalisefwdarrow \elimList{\annNil{\alpha}}{\sigma'}}
+}
+\end{smathpar}
+\caption{Totalise -- forward slicing}
+\end{figure}

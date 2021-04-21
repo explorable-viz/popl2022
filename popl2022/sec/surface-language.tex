@@ -2,21 +2,20 @@
 \input{fig/surface-language/syntax}
 \input{fig/surface-language/typing-term}
 \input{fig/surface-language/typing-pattern}
-\input{fig/surface-language/desugar-fwd}
-\input{fig/surface-language/desugar-bwd}
-\input{fig/surface-language/desugar-list-rest-bwd}
-\input{fig/surface-language/desugar-clause-fwd}
-\input{fig/surface-language/desugar-clause-bwd}
-\input{fig/surface-language/totalise-fwd}
-\input{fig/surface-language/totalise-bwd}
+
+\input{fig/surface-language/slicing/desugar-fwd}
+\input{fig/surface-language/slicing/desugar-clause-fwd}
+\input{fig/surface-language/slicing/totalise-fwd}
+
+\input{fig/surface-language/slicing/desugar-bwd}
+\input{fig/surface-language/slicing/desugar-clause-bwd}
+\input{fig/surface-language/slicing/totalise-bwd}
+
+\begin{definition}[Forward and backward functions for desugaring]
+     Suppose $s \desugarFwd e$. Define $\desugarFwdF{s}: \Below{s} \to \Below{e}$ and $\desugarBwdF{s}: \Below{e} \to \Below{s}$ to be $\desugarFwd$ and $\desugarBwd{s}$ domain-restricted to $\Below{s}$ and $\Below{e}$ respectively.
+\end{definition}
 
 \begin{theorem}[Galois connection for desugaring]
   \label{thm:surface-language:desugar:gc}
-     Suppose $s \desugarFwd e$. Then:
-  \begin{enumerate}
-     \item $\desugarFwd$ domain-restricted to $\Below{s}$ is a monotonic function $\desugarFwdF{s}$ to $\Below{e}$.
-     \item $\desugarBwd{s}$ domain-restricted to $\Below{e}$ is a monotonic function $\desugarBwdF{s}$ to $\Below{s}$.
-     \item $\desugarFwdF{s}(\desugarBwdF{s}(e')) \geq e'$.
-     \item $\desugarBwdF{s}(\desugarFwdF{s}(s')) \leq s'$.
-  \end{enumerate}
+     Suppose $s \desugarFwd e$. Then $\desugarFwdF{s} \adjoint \desugarBwdF{s}$.
 \end{theorem}

@@ -14,7 +14,7 @@ Induction on the $\matchBwdS$ derivation.
          \strut
       }
       {
-         \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVarNew{x}}{v}{\elimVar{x}{\kappa}}
+         \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVar{x}}{v}{\elimVar{x}{\kappa}}
       }
    \end{smathpar}
    }
@@ -32,7 +32,7 @@ Induction on the $\matchBwdS$ derivation.
          \strut
       }
       {
-         \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVarNew{x}}{\bind{x}{v}}{\kappa}{\TT}
+         \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVar{x}}{\bind{x}{v}}{\kappa}{\TT}
       }
    \end{smathpar}
    }
@@ -56,7 +56,7 @@ Induction on the $\matchBwdS$ derivation.
          \strut
       }
       {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrueNew}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
       }
    \end{smathpar}
    }
@@ -74,7 +74,7 @@ Induction on the $\matchBwdS$ derivation.
          \strut
       }
       {
-         \matchFwd{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}{\matchTrueNew}{\seqEmpty}{\kappa}{\alpha}
+         \matchFwd{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}{\matchTrue}{\seqEmpty}{\kappa}{\alpha}
       }
    \end{smathpar}
    }
@@ -91,7 +91,7 @@ Induction on the $\matchBwdS$ derivation.
          \strut
       }
       {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalseNew}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
       }
    \end{smathpar}
    }
@@ -109,7 +109,7 @@ Induction on the $\matchBwdS$ derivation.
          \strut
       }
       {
-         \matchFwd{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}{\matchFalseNew}{\seqEmpty}{\kappa}{\alpha}
+         \matchFwd{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}{\matchFalse}{\seqEmpty}{\kappa}{\alpha}
       }
    \end{smathpar}
    }
@@ -203,7 +203,7 @@ Induction on the $\matchBwdS$ derivation.
          \strut
       }
       {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNilNew}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNil}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
       }
    \end{smathpar}
    }
@@ -221,7 +221,7 @@ Induction on the $\matchBwdS$ derivation.
          \strut
       }
       {
-         \matchFwd{\annNil{\alpha}}{\elimList{\kappa}{\hole}}{\matchNilNew}{\seqEmpty}{\kappa}{\alpha}
+         \matchFwd{\annNil{\alpha}}{\elimList{\kappa}{\hole}}{\matchNil}{\seqEmpty}{\kappa}{\alpha}
       }
    \end{smathpar}
    }
@@ -241,7 +241,7 @@ Induction on the $\matchBwdS$ derivation.
       }
       {
          \matchBwd{\rho_1 \concat \rho_2}
-                  {\kappa}{\alpha}{\matchConsNew{w}{w'}}{\annCons{v}{v'}{\alpha}}{\elimList{\hole}{\tau}}
+                  {\kappa}{\alpha}{\matchCons{w}{w'}}{\annCons{v}{v'}{\alpha}}{\elimList{\hole}{\tau}}
       }
    \end{smathpar}
    }
@@ -290,7 +290,7 @@ Induction on the $\matchBwdS$ derivation.
       {
          \matchFwd{\annCons{v}{v'}{\alpha}}
                   {\elimList{\hole}{\tau}}
-                  {\matchConsNew{w}{w'}}
+                  {\matchCons{w}{w'}}
                   {\rho_1' \concat \rho_2'}{\kappa'}{\alpha \meet \beta \meet \beta'}
       }
    \end{smathpar}

@@ -5,25 +5,25 @@
 {
    \vdash v_i: A_i
    \quad
-   (\forall i \numleq n)
+   (\forall i \numleq \length{\vec{x}})
 }
 {
-   \vdash \seqRange{\bind{z_1}{v_1}}{\bind{z_n}{v_n}}: \seqRange{\bind{z_1}{A_1}}{\bind{z_n}{A_n}}
+   \vdash \vec{\bind{x}{v}}: \vec{\bind{x}{A}}
 }
 \end{smathpar}
 \\[2mm]
 \flushleft \shadebox{$\Gamma \vdash h: \Delta$}
 \begin{smathpar}
    \inferrule*[right={
-      \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_j}{\tyFun{A_j}{B_j}}}$}
+      \textnormal{$\Delta = \vec{\bind{x}{\tyFun{A}{B}}}$}
    }]
    {
       \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
       \quad
-      (\forall i \numleq j)
+      (\forall i \numleq \length{\vec{x}})
    }
    {
-      \Gamma \vdash \seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}: \Delta
+      \Gamma \vdash \vec{\bind{x}{\sigma}}: \Delta
    }
 \end{smathpar}
 \\[2mm]

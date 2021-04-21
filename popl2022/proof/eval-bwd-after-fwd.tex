@@ -343,7 +343,7 @@ Induction on the $\evalFwdS$ derivation.
          (\forall i \numleq j)
       }
       {
-         \evalFwd{\rho}{e}{\alpha'}{\trVec{U_{i}}{x}{i}{T}{j}}
+         \evalFwd{\rho}{e}{\alpha'}{\trVec{\vec{U}}{x}{T}{j}}
                  {\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
       }
    \end{smathpar}
@@ -403,7 +403,7 @@ Induction on the $\evalFwdS$ derivation.
       }
       {
          \evalBwd{\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
-                 {\trVec{U_{i}}{x}{i}{T}{j}}
+                 {\trVec{\vec{U}}{x}{T}{j}}
                  {\bigjoin{\vec{\rho}'} \join \rho_2}
                  {\annVec{\bigjoin{\vec{e}'}}{x}{e_2'}{\alpha \meet \alpha'}}
                  {(\alpha \meet \alpha') \join {\bigjoin{\vec{\beta}'}} \join \alpha^\twoPrime}
@@ -609,7 +609,7 @@ Induction on the $\evalFwdS$ derivation.
          \evalFwd{\rho}{e_2}{\alpha}{U}{u}
       }
       {
-         \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+         \evalFwd{\rho}{e}{\alpha}{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
                  {\exPrimOp{\phi}{\vec{v} \concat u}}
       }
    \end{smathpar}
@@ -651,7 +651,7 @@ Induction on the $\evalFwdS$ derivation.
       }
       {
          \evalBwd{\exPrimOp{\phi}{\vec{v} \concat u}}
-                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
                  {\rho_1 \join \rho_2}
                  {\exApp{e_1'}{e_2'}}
                  {\beta \join \beta'}
@@ -687,8 +687,8 @@ Induction on the $\evalFwdS$ derivation.
          \evalFwd{\rho}{e_2}{\alpha}{U}{u}
       }
       {
-         \evalFwd{\rho}{e}{\alpha}{\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-                 {\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u)}
+         \evalFwd{\rho}{e}{\alpha}{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)}
       }
    \end{smathpar}
    }
@@ -696,7 +696,7 @@ Induction on the $\evalFwdS$ derivation.
    \notag
    \\
    &
-   \primBwd{\phi}(\vec{n} \concat m)(\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u))
+   \primBwd{\phi}{\vec{n} \concat m}(\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u))
    =
    \vec{u} \concat u'
    \leq
@@ -735,7 +735,7 @@ Induction on the $\evalFwdS$ derivation.
          lab={\ruleName{$\evalBwdS$-apply-prim-sat}}
       ]
       {
-         \primBwd{\phi}(\vec{n} \concat m)(\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u))
+         \primBwd{\phi}{\vec{n} \concat m}(\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u))
          =
          \vec{u} \concat u'
          \\
@@ -744,8 +744,8 @@ Induction on the $\evalFwdS$ derivation.
          \evalBwd{u'}{U}{\rho_2}{e_2'}{\beta'}
       }
       {
-         \evalBwd{\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u)}
-                 {\trAppPrimNew{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+         \evalBwd{\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)}
+                 {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
                  {\rho_1 \join \rho_2}
                  {\exApp{e_1'}{e_2'}}
                  {\beta \join \beta'}

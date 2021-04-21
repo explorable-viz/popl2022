@@ -86,7 +86,7 @@
 
 %% Clauses
 
-\flushleft \shadebox{$\Gamma \vdash c : A $}
+\flushleft \shadebox{$\Gamma \vdash \vec{c}: \tyFun{A}{B}$}
 \begin{smathpar}
 \inferrule*
 {
@@ -104,13 +104,26 @@
 {
    p : A \dashv \Gamma'
    \\
-   \Gamma \cdot \Gamma' \vdash \clause{p}{s} : B
+   \Gamma \cdot \Gamma' \vdash \clause{\vec{p}}{s} : B
 }
 {
    \Gamma \vdash \clauseUncurried{p \cdot \vec{p}}{s} : \tyFun{A}{B}
 }
+%
+\and
+%
+\inferrule*[
+   right={$\length{\vec{c}} \numgt 1$}
+]
+{
+   \Gamma \vdash c_i: \tyFun{A}{B}
+   \quad
+   (\forall i \in \length{\vec{c}})
+}
+{
+   \Gamma \vdash \vec{c}: \tyFun{A}{B}
+}
 \end{smathpar}
-
 
 \caption{Typing rules for patterns and clauses}
 \end{figure}
