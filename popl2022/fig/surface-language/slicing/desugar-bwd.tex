@@ -84,12 +84,12 @@
       \quad
       (\forall i \numleq \length{\vec{x}})
       \\
-      e \desugarBwd{s} s'
+      e \desugarBwd{t} s
    }
    {
       \exLetRecMutual{\vec{\bind{x}{\sigma}}}{e}
-      \desugarBwd{\exLetRecMutual{\vec{g}}{s}}
-      \exLetRecMutual{\vec{g}'}{s'}
+      \desugarBwd{\exLetRecMutual{\vec{g}}{t}}
+      \exLetRecMutual{\vec{g}'}{s}
    }
    %
    \and
@@ -98,14 +98,14 @@
       lab={\ruleName{$\desugarBwd{}$-apply}}
    ]
    {
-      e_1 \desugarBwd{s_1} s_1'
+      e \desugarBwd{t} s
       \\
-      e_2 \desugarBwd{s_2} s_2'
+      e' \desugarBwd{t'} s'
    }
    {
-      \exApp{e_1}{e_2}
-      \desugarBwd{\exApp{s_1}{s_2}}
-      \exApp{s_1'}{s_2'}
+      \exApp{e}{e'}
+      \desugarBwd{\exApp{t}{t'}}
+      \exApp{s}{s'}
    }
    %
    \and
@@ -114,14 +114,14 @@
       lab={\ruleName{$\desugarBwd{}$-if}}
    ]
    {
-      e_{1} \desugarBwd{s_{1}} s_{1}'
+      e \desugarBwd{t} s
       \\
-      e_{2} \desugarBwd{s_{2}} s_{2}'
+      e_1 \desugarBwd{t_1} s_1
       \\
-      e_{3} \desugarBwd{s_{3}} s_{3}'
+      e_2 \desugarBwd{t_2} s_2
    }
    {
-      \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+      \exApp{\exLambda{\elimBool{e_1}{e_2}}}{e}
       \desugarBwd{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}
       \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
    }
