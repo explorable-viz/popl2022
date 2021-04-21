@@ -148,7 +148,9 @@
       lab={\ruleName{$\desugarBwd{}$-let}}
    ]
    {
-      \sigma \desugarBwd{\clauseUncurried{p}{t'}} s'
+      \sigma \clauseBwd{p} e'
+      \\
+      e' \desugarBwd{t'} s'
       \\
       e \desugarBwd{t} s
    }
