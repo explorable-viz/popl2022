@@ -79,14 +79,14 @@
       lab={\ruleName{$\desugarBwd{}$-let-rec}}
    ]
    {
-      \sigma_i  \desugarClauseBwd{\vec{c_i}} \vec{c_i}'
+      \sigma_i \desugarClauseBwd{\vec{c_i}} \vec{c_i}'
       \quad
       (\forall i \numleq j)
       \\
-      e' \desugarBwd{s} s'
+      e \desugarBwd{s} s'
    }
    {
-      \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e'}
+      \exLetRecMutual{\vec{\bind{x}{\sigma}}}{e}
       \desugarBwd{\exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}}
       \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
    }
