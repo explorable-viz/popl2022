@@ -8,7 +8,7 @@
    \strut
 }
 {
-   \explVal{\seqEmpty}{e \totalisefwdarrow e}
+   \explVal{\seqEmpty}{e, \alpha \totalisefwdarrow e}
 }
 \and
 %
@@ -16,10 +16,10 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-var}}
 ]
 {
-   \explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
+   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
 }
 {
-   \explVal{\pattVar{x} \concat \vec{\pi}}{\elimVar{x}{\kappa} \totalisefwdarrow \elimVar{x}{\kappa'}}
+   \explVal{\pattVar{x} \concat \vec{\pi}}{\elimVar{x}{\kappa}, \alpha \totalisefwdarrow \elimVar{x}{\kappa'}}
 }
 \and
 %
@@ -27,11 +27,11 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-true}}
 ]
 {
-   \explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
+   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
 }
 {
    \explVal{\pattTrue \concat \vec{\pi}}
-           {\elimBoolTrue{\kappa} \totalisefwdarrow \elimBool{\kappa'}{\exNil}}
+           {\elimBoolTrue{\kappa}, \alpha \totalisefwdarrow \elimBool{\kappa'}{\annNil{\alpha}}}
 }
 \and
 %
@@ -39,11 +39,11 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-false}}
 ]
 {
-   \explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
+   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
 }
 {
    \explVal{\pattFalse \concat \vec{\pi}}
-           {\elimBoolFalse{\kappa} \totalisefwdarrow \elimBool{\exNil}{\kappa'}}
+           {\elimBoolFalse{\kappa}, \alpha \totalisefwdarrow \elimBool{\annNil{\alpha}}{\kappa'}}
 }
 \and
 %
@@ -51,10 +51,10 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-prod}}
 ]
 {
-   \explVal{p \concat p' \concat \vec{\pi}}{\sigma \totalisefwdarrow \sigma'}
+   \explVal{p \concat p' \concat \vec{\pi}}{\sigma, \alpha \totalisefwdarrow \sigma'}
 }
 {
-   \explVal{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma} \totalisefwdarrow \elimProd{\sigma'}}
+   \explVal{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma}, \alpha \totalisefwdarrow \elimProd{\sigma'}}
 }
 \and
 %
@@ -62,11 +62,11 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-nil}}
 ]
 {
-   \explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
+   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
 }
 {
    \explVal{\pattNil \concat \vec{\pi}}
-           {\elimNil{\kappa} \totalisefwdarrow \elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\exNil}}}}
+           {\elimNil{\kappa}, \alpha \totalisefwdarrow \elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha}}}}}
 }
 \and
 %
@@ -74,11 +74,12 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-cons}}
 ]
 {
-   \explVal{p \concat p' \concat \vec{\pi}}{\sigma \totalisefwdarrow \sigma'}
+   \explVal{p \concat p' \concat \vec{\pi}}{\sigma, \alpha \totalisefwdarrow \sigma'}
 }
 {
-   \explVal{(\pattCons{p}{p'}) \concat \vec{\pi}}{\elimCons{\sigma} \totalisefwdarrow \elimList{\exNil}{\sigma'}}
+   \explVal{(\pattCons{p}{p'}) \concat \vec{\pi}}
+           {\elimCons{\sigma}, \alpha \totalisefwdarrow \elimList{\annNil{\alpha}}{\sigma'}}
 }
 \end{smathpar}
-\caption{$\kappa$ is a singleton continuation (with patterns $\protect\vec{\pi}$) which totalises to $\kappa'$}
+\caption{Totalise -- forward slicing}
 \end{figure}
