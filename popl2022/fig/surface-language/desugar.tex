@@ -45,10 +45,10 @@
    {
       s \desugarFwd e
       \\
-      l \desugarFwd e'
+      r \desugarFwd e'
    }
    {
-      \exList{s}{l} \desugarFwd \exCons{e}{e'}
+      \exList{s}{r} \desugarFwd \exCons{e}{e'}
    }
    %
    \and
@@ -121,7 +121,9 @@
    {
       s \desugarFwd e
       \\
-      \clauseUncurried{p}{s'} \desugarFwd \sigma
+      s' \desugarFwd e'
+      \\
+      p, e' \clauseFwd \sigma
    }
    {
       \exLet{p}{s}{s'}
@@ -231,7 +233,7 @@
    \end{smathpar}
 
    \vspace{5pt}
-   \flushleft \shadebox{$l \desugarFwd e$}
+   \flushleft \shadebox{$r \desugarFwd e$}
    \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\desugarFwd$-list-rest-end}}
@@ -251,10 +253,10 @@
    {
       s \desugarFwd e
       \\
-      l \desugarFwd e'
+      r \desugarFwd e'
    }
    {
-      \exListNext{s}{l} \desugarFwd \exCons{e}{e'}
+      \exListNext{s}{r} \desugarFwd \exCons{e}{e'}
    }
 \end{smathpar}
 \caption{Desugaring -- selected rules}
