@@ -180,15 +180,6 @@
       \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
    }
 \end{smathpar}
-
-\vspace{5pt}
-\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
-\begin{salign}
-   \seqRange{x_1: \exClosure{\rho_1}{h_1}{\sigma_1}}{x_i: \exClosure{\rho_i}{h_i}{\sigma_i}}
-   &\closeDefsBwdR
-   \bigjoin\vec{\rho},
-   (\seqRange{x_1: \sigma_1}{x_i: \sigma_i}) \join {\bigjoin\vec{h}}
-\end{salign}
 \caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
 \label{fig:eval:bwd}
 \end{figure}
