@@ -28,7 +28,7 @@
    %
    \and
    %
-   \inferrule*[right={$\primOp: \tyFun{\tyInt^2}{\tyInt} \in \Gamma$}]
+   \inferrule*[right={$\primOp: \tyFun{\tyProd{\tyInt}{\tyInt}}{\tyInt} \in \Gamma$}]
    {
       \Gamma \vdash s: \tyInt
       \\
@@ -56,12 +56,12 @@
    {
       \Gamma \vdash s: \tyBool
       \\
-      \Gamma \vdash s': A
+      \Gamma \vdash s_1: A
       \\
-      \Gamma \vdash s^{\twoPrime}: A
+      \Gamma \vdash s_2: A
    }
    {
-      \Gamma \vdash \exIfThenElse{s}{s'}{s^{\twoPrime}}: A
+      \Gamma \vdash \exIfThenElse{s}{s_1}{s_2}: A
    }
    %
    \and
@@ -70,9 +70,7 @@
    {
       \Gamma \vdash s: A
       \\
-      \Gamma \vdash c': \tyFun{A}{B}
-      \quad
-      (\forall c' \in \vec{c})
+      \Gamma \vdash \vec{c}: \tyFun{A}{B}
    }
    {
       \Gamma \vdash \exMatch{s}{\vec{c}}: B
