@@ -45,12 +45,12 @@
    lab={\ruleName{$\clauseBwd{}$-cons}}
 ]
 {
-   \sigma' \clauseBwd{p} \tau
+   \sigma \clauseBwd{p} \tau
    \\
    \tau \clauseBwd{p'} \kappa'
 }
 {
-   \elimList{\kappa}{\sigma'}
+   \elimList{\kappa}{\sigma}
    \clauseBwd{\pattCons{p}{p'}}
    \kappa'
 }
@@ -61,12 +61,12 @@
    lab={\ruleName{$\clauseBwd{}$-non-empty-list}}
 ]
 {
-   \sigma' \clauseBwd{p} \tau
+   \sigma \clauseBwd{p} \tau
    \\
    \tau \clauseBwd{o} \kappa'
 }
 {
-   \elimList{\kappa}{\sigma'}
+   \elimList{\kappa}{\sigma}
    \clauseBwd{\pattList{p}{o}}
    \kappa'
 }
@@ -77,12 +77,12 @@
    lab={\ruleName{$\clauseBwd{}$-pair}}
 ]
 {
-   \sigma' \clauseBwd{p} \tau
+   \sigma \clauseBwd{p} \tau
    \\
    \tau \clauseBwd{p'} \kappa
 }
 {
-   \elimProd{\sigma'}
+   \elimProd{\sigma}
    \clauseBwd{\pattPair{p}{p'}}
    \kappa
 }
