@@ -1,23 +1,5 @@
 \begin{figure}[H]
-\flushleft\shadebox{$\sigma \clauseBwd{\vec{p}} e$}
-\begin{smathpar}
-\inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-pattern-seq}}
-]
-{
-   \sigma \clauseBwd{p}\eq \exLambda{\sigma'}
-   \\
-   \sigma' \clauseBwd{\vec{p}} e
-}
-{
-   \sigma
-   \clauseBwd{p \concat \vec{p}}
-   e
-}
-\end{smathpar}
-
-\vspace{5pt}
-\flushleft\shadebox{$\sigma \clauseBwd{p} \kappa$}
+\flushleft\shadebox{$\sigma \clauseBwd{\vec{p}} \kappa$}
 \begin{smathpar}
 \inferrule*[
    lab={\ruleName{$\clauseBwd{}$-eq}}
@@ -49,10 +31,10 @@
    lab={\ruleName{$\clauseBwd{}$-nil}}
 ]
 {
-   \sigma \eq \elimList{\kappa}{\sigma}
+   \strut
 }
 {
-   \sigma
+   \elimList{\kappa}{\sigma}
    \clauseBwd{\exNil}
    \kappa
 }
@@ -63,14 +45,12 @@
    lab={\ruleName{$\clauseBwd{}$-cons}}
 ]
 {
-   \sigma \eq \elimList{\kappa}{\sigma'}
-   \\
    \sigma' \clauseBwd{p} \tau
    \\
    \tau \clauseBwd{p'} \kappa'
 }
 {
-   \sigma
+   \elimList{\kappa}{\sigma'}
    \clauseBwd{\pattCons{p}{p'}}
    \kappa'
 }
@@ -81,14 +61,12 @@
    lab={\ruleName{$\clauseBwd{}$-non-empty-list}}
 ]
 {
-   \sigma \eq \elimList{\kappa}{\sigma'}
-   \\
    \sigma' \clauseBwd{p} \tau
    \\
    \tau \clauseBwd{o} \kappa'
 }
 {
-   \sigma
+   \elimList{\kappa}{\sigma'}
    \clauseBwd{\pattList{p}{o}}
    \kappa'
 }
@@ -99,16 +77,31 @@
    lab={\ruleName{$\clauseBwd{}$-pair}}
 ]
 {
-   \sigma \eq \elimProd{\sigma'}
-   \\
    \sigma' \clauseBwd{p} \tau
    \\
    \tau \clauseBwd{p'} \kappa
 }
 {
-   \sigma
+   \elimProd{\sigma'}
    \clauseBwd{\pattPair{p}{p'}}
    \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-seq}},
+   right={$\length{\vec{p}} \numgt 0$}
+]
+{
+   \sigma \clauseBwd{p}\eq \exLambda{\sigma'}
+   \\
+   \sigma' \clauseBwd{\vec{p}} e
+}
+{
+   \sigma
+   \clauseBwd{p \concat \vec{p}}
+   e
 }
 \end{smathpar}
 
