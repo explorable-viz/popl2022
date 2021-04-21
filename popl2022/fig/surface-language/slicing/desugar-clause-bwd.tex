@@ -1,98 +1,183 @@
 \begin{figure}[H]
-\small
-$\begin{array}{lll|llll}
-\arrayrulecolor{lightgray}
-&&&\textit{where}
-\\
-\rowcolor{verylightgray}
-\clauseGC{\vec{p}} &::& \Below{\kappa} \to \Below{\sigma}
-&\vec{p}, \kappa \clauseFwd \sigma
-&&
-\\
-% hole
-\clauseBwdF{\vec{p}}(\hole)
-&=&
-\clauseBwdF{\vec{p}}(\sigma)
-&
-\hole \neq \sigma &\eq& \hole
-\\
-% var
-\clauseBwdF{\pattVar{x}}(\elimVar{x}{\kappa})
-&=&
-\kappa
-\\
-% nil
-\clauseBwdF{\pattNil}(\elimList{\kappa}{\sigma})
-&=&
-\kappa
-\\
-% cons
-\clauseBwdF{\pattCons{p}{p'}}(\elimList{\kappa}{\sigma'})
-&=&
-\clauseBwdF{p'}(\clauseBwdF{p}(\sigma'))
-\\
-% non-empty-list
-\clauseBwdF{\pattList{p}{o}}(\elimList{\kappa}{\sigma'})
-&=&
-\clauseBwdF{o}(\clauseBwdF{p}(\sigma'))
-\\
-% pair
-\clauseBwdF{\pattPair{p}{p'}}(\elimProd{\sigma})
-&=&
-\clauseBwdF{p'}(\clauseBwdF{p}(\sigma))
-\\
-% seq
-\clauseBwdF{p \concat \vec{p}}(\sigma)
-&=&
-\clauseBwdF{\vec{p}}(\sigma')
-&
-\length{\vec{p}} \numgt 0
-\\
-&&&
-\clauseBwdF{p}(\sigma) &\eq& \exLambda{\sigma'}
-\\[3mm]
+\flushleft\shadebox{$\sigma \clauseBwd{\vec{p}} e$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-pattern-seq}}
+]
+{
+   \sigma \clauseBwd{p}\eq \exLambda{\sigma'}
+   \\
+   \sigma' \clauseBwd{\vec{p}} e
+}
+{
+   \sigma
+   \clauseBwd{p \concat \vec{p}}
+   e
+}
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft\shadebox{$\sigma \clauseBwd{p} \kappa$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-eq}}
+]
+{
+   \sigma \mathrel{\eq\clauseBwd{p}} \kappa
+}
+{
+   \sigma \clauseBwd{p} \kappa
+}
 %
+\and
 %
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-var}}
+]
+{
+   \strut
+}
+{
+   \elimVar{x}{\kappa}
+   \clauseBwd{x}
+   \kappa
+}
 %
-\rowcolor{verylightgray}
-\clauseGC{o} &::& \Below{\kappa} \to \Below{\sigma}
-&o, \kappa \clauseFwd \sigma
-&&
-\\
-% hole
-\clauseBwdF{o}(\hole)
-&=&
-\clauseBwdF{o}(\sigma)
-&
-\hole \neq \sigma &\eq& \hole
-\\
-% list-rest-end
-\clauseBwdF{\pattListEnd}(\elimList{\kappa}{\sigma})
-&=&
-\kappa
-\\
-% list-rest-cons
-\clauseBwdF{\pattListNext{p}{o}}(\elimList{\kappa}{\sigma'})
-&=&
-\clauseBwdF{o}(\clauseBwdF{p}(\sigma'))
-\\[3mm]
+\and
 %
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-nil}}
+]
+{
+   \sigma \eq \elimList{\kappa}{\sigma}
+}
+{
+   \sigma
+   \clauseBwd{\exNil}
+   \kappa
+}
 %
+\and
 %
-\rowcolor{verylightgray}
-\desugarClausesGC{\vec{c}} &::& \Below{\vec{c}} \to \Below{\sigma}
-&\vec{c} \desugarClausesFwd \sigma
-&&
-\\
-% clause
-\desugarClausesBwdF{\clause{\vec{p}}{s}}(\sigma)
-&=&
-\clause{\vec{p}}{\desugarBwdF{s}(\clauseBwdF{\vec{p}}(\sigma))}
-\\
-% clause-seq
-\desugarClausesBwdF{c \concat \vec{c}}(\sigma)
-&=&
-\desugarClausesBwdF{c}(\sigma) \concat \desugarClausesBwdF{\vec{c}}(\sigma)
-\end{array}$
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-cons}}
+]
+{
+   \sigma \eq \elimList{\kappa}{\sigma'}
+   \\
+   \sigma' \clauseBwd{p} \tau
+   \\
+   \tau \clauseBwd{p'} \kappa'
+}
+{
+   \sigma
+   \clauseBwd{\pattCons{p}{p'}}
+   \kappa'
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-non-empty-list}}
+]
+{
+   \sigma \eq \elimList{\kappa}{\sigma'}
+   \\
+   \sigma' \clauseBwd{p} \tau
+   \\
+   \tau \clauseBwd{o} \kappa'
+}
+{
+   \sigma
+   \clauseBwd{\pattList{p}{o}}
+   \kappa'
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-pair}}
+]
+{
+   \sigma \eq \elimProd{\sigma'}
+   \\
+   \sigma' \clauseBwd{p} \tau
+   \\
+   \tau \clauseBwd{p'} \kappa
+}
+{
+   \sigma
+   \clauseBwd{\pattPair{p}{p'}}
+   \kappa
+}
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft\shadebox{$\sigma \clauseBwd{o} \kappa$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-list-rest-end}}
+]
+{
+   \sigma \eq \elimList{\kappa}{\sigma}
+}
+{
+   \sigma
+   \clauseBwd{\pattListEnd}
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseBwd{}$-list-rest-cons}}
+]
+{
+   \sigma \eq \elimList{\kappa}{\sigma'}
+   \\
+   \sigma' \clauseBwd{p} \tau
+   \\
+   \tau \clauseBwd{o} \kappa'
+}
+{
+   \sigma
+   \clauseBwd{(\pattListNext{p}{o})}
+   \kappa'
+}
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft\shadebox{$\sigma \desugarClauseBwd{\vec{c}} \vec{c}'$}
+\begin{smathpar}
+\inferrule*[
+   lab={\ruleName{$\desugarClauseBwd{}$-clause}}
+]
+{
+   \sigma \clauseBwd{\vec{p}} e
+   \\
+   e \desugarBwd{s} s'
+}
+{
+   \sigma
+   \desugarClauseBwd{\clause{p}{s}}
+   \clause{p}{s'}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\desugarClauseBwd{}$-clause-seq}}
+]
+{
+   \sigma \desugarClauseBwd{c} c'
+   \\
+   \sigma \desugarClauseBwd{\vec{c}} \vec{c}'
+}
+{
+   \sigma
+   \desugarClauseBwd{c \concat \vec{c}}
+   c' \concat \vec{c}'
+}
+\end{smathpar}
 \caption{Desugaring clauses -- backward slicing}
 \end{figure}
