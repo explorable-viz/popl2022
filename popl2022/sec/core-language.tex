@@ -79,7 +79,7 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for environment lookup]
-   Suppose $\envLookup{\rho}{x}{v}$. Then define $\envLookupFwdF{\rho,x}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,x}: \Below{v} \to \Below{\rho}$ to be $\envLookupR$ and $\envLookupBwdR{\rho,x}$.
+   Suppose $\envLookup{\rho}{x}{v}$. Then define $\envLookupFwdF{\rho,x}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,x}: \Below{v} \to \Below{\rho}$ to be $\envLookupR$ and $\envLookupBwdR{\rho,x}$ restricted to $\Below{\rho}$ and $\Below{v}$ respectively.
 \end{definition}
 
 \begin{lemma}[Galois connection for environment]
