@@ -2,6 +2,20 @@
 \flushleft \shadebox{$s \desugarFwd e$}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\desugarFwd$-equiv}}
+   ]
+   {
+      s \eq s'
+      \\
+      s' \desugarFwd e
+   }
+   {
+      s \desugarFwd e
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\desugarFwd$-op}}
    ]
    {
