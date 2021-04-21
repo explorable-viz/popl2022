@@ -9,58 +9,6 @@ $\begin{array}{lll|llll}
 &\explVal{\vec{\pi}}{\kappa \totalisefwdarrow \kappa'}
 &&
 \\
-% expr
-\totaliseFwdF{\seqEmpty}(e,\alpha) &=& e
-\\
-% var
-\totaliseFwdF{\pattVar{x} \concat \vec{\pi}}(\elimVar{x}{\kappa},\alpha)
-&=&
-\elimVar{x}{\kappa'}
-&
-\totaliseFwdF{\vec{\pi}}(\kappa,\alpha) &=& \kappa'
-\\
-% true
-\totaliseFwdF{\pattTrue \concat \vec{\pi}}(\elimBoolTrue{\kappa},\alpha)
-&=&
-\elimBool{\kappa'}{\annot{\exNil}{\alpha}}
-&
-\totaliseFwdF{\vec{\pi}}(\kappa,\alpha) &=& \kappa'
-\\
-% false
-\totaliseFwdF{\pattFalse \concat \vec{\pi}}(\elimBoolFalse{\kappa},\alpha)
-&=&
-\elimBool{\annot{\exNil}{\alpha}}{\kappa'}
-&
-\totaliseFwdF{\vec{\pi}}(\kappa,\alpha) &=& \kappa'
-\\
-% prod
-\totaliseFwdF{\pattPair{p}{p'} \concat \vec{\pi}}(\elimProd{\sigma},\alpha)
-&=&
-\elimProd{\sigma'}
-&
-\totaliseFwdF{p \concat p' \concat \vec{\pi}}{(\sigma,\alpha)} &=& \sigma'
-\\
-% nil
-\totaliseFwdF{\pattNil \concat \vec{\pi}}(\elimNil{\kappa},\alpha)
-&=&
-\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
-&
-\totaliseFwdF{\vec{\pi}}{(\kappa,\alpha)} &=& \kappa'
-\\
-% cons
-\totaliseFwdF{\pattCons{p}{p'} \concat \vec{\pi}}(\elimCons{\sigma},\alpha)
-&=&
-\elimList{\annot{\exNil}{\alpha}}{\tau}
-&
-\totaliseFwdF{p \concat p' \concat \vec{\pi}}{(\sigma,\alpha)} &=& \sigma'
-%\end{array}$ \\
-%\vspace{3mm}
-%
-%\small
-%$\begin{array}{lll|llll}
-%&&&
-%\textit{where}
-\\[3mm]
 % hole
 \totaliseBwdF{\vec{\pi}}(\hole)
 &=&
