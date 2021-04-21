@@ -19,14 +19,14 @@
       lab={\ruleName{$\desugarBwd{}$-binary-apply}}
    ]
    {
-      e, \desugarBwd{t} s
+      e \desugarBwd{t} s
       \\
-      e', \desugarBwd{t'} s'
+      e' \desugarBwd{t'} s'
    }
    {
-      \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
-      \desugarBwd{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}
-      \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
+      \exApp{\exApp{\exOp{\primOp}}{e}}{e'}
+      \desugarBwd{\exBinaryApp{t}{\primOp}{t'}}
+      \exBinaryApp{s}{\primOp}{s'}
    }
    %
    \and
@@ -47,14 +47,14 @@
       lab={\ruleName{$\desugarBwd{}$-non-empty-list}}
    ]
    {
-      e_1 \desugarBwd{s} s'
+      e \desugarBwd{t} s
       \\
-      e_2 \desugarBwd{l} l'
+      e' \desugarBwd{r} r'
    }
    {
-      \annCons{e_1}{e_2}{\alpha}
-      \desugarBwd{\exList{s}{l}}
-      \annList{s'}{l'}{\alpha}
+      \annCons{e}{e'}{\alpha}
+      \desugarBwd{\exList{t}{r}}
+      \annList{s}{r'}{\alpha}
    }
    %
    \and
@@ -63,14 +63,14 @@
       lab={\ruleName{$\desugarBwd{}$-cons}}
    ]
    {
-      e_1 \desugarBwd{s_1} s_1'
+      e \desugarBwd{t} s
       \\
-      e_2 \desugarBwd{s_2} s_2'
+      e' \desugarBwd{t'} s'
    }
    {
-      \annCons{e_1}{e_2}{\alpha}
-      \desugarBwd{\exCons{s_1}{s_2}}
-      \annCons{s_1'}{s_2'}{\alpha}
+      \annCons{e}{e'}{\alpha}
+      \desugarBwd{\exCons{t}{t'}}
+      \annCons{s}{s'}{\alpha}
    }
    %
    \and
