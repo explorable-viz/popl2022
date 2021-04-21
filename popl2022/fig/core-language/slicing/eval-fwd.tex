@@ -110,8 +110,7 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-apply-prim}},
-      right={$\arity{\phi} \numgt \length{\vec{n}} + 1$}
+      lab={\ruleName{$\evalFwdS$-apply-prim}}
    ]
    {
       e \eq \exApp{e_1}{e_2}
@@ -123,24 +122,6 @@
    {
       \evalFwd{\rho}{e}{\alpha}{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
               {\exPrimOp{\phi}{\vec{v} \concat u}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\evalFwdS$-apply-prim-sat}},
-      right={$\arity{\phi} = \length{\vec{n}} + 1$}
-   ]
-   {
-      e \eq \exApp{e_1}{e_2}
-      \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
-      \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{u}
-   }
-   {
-      \evalFwd{\rho}{e}{\alpha}{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\primFwd{\phi}(\vec{n} \concat m)(\vec{v} \concat u)}
    }
    %
    \and
