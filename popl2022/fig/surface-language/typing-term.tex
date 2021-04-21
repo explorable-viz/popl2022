@@ -3,12 +3,10 @@
 \flushleft \shadebox{$\Gamma \vdash \vec{g}: \Delta$}
 \begin{smathpar}
    \inferrule*[right={
-      \textnormal{$\Delta = \seqRange{\bind{x_1}{\tyFun{A_1}{B_1}}}{\bind{x_j}{\tyFun{A_j}{B_j}}}$}
+      \textnormal{$\Delta = \vec{\bind{x}{\tyFun{A}{B}}}$}
    }]
    {
-      \Gamma \concat \Delta \vdash c': \tyFun{A_i}{B_i}
-      \quad
-      (\forall c' \in \vec{c_i})
+      \Gamma \concat \Delta \vdash \vec{c_i}: \tyFun{A_i}{B_i}
       \quad
       (\forall i \numleq j)
    }
