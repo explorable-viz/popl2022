@@ -1,141 +1,263 @@
 \begin{figure}[H]
-\small
-$\begin{array}{lll|llll}
-   \arrayrulecolor{lightgray}
-   &&&\textit{where}
-   \\
-   \rowcolor{verylightgray}
-   \desugarBwdF{s} &::& \Below{s} \to \Below{e}
-   & s \desugarFwd e
-   &&
-   \\
-   % hole
-   \desugarBwdF{t}(e)
-   &=&
-   \desugarBwdF{t}(e')
-   &
-   e \eq e'
-   \\
-   % op
-   \desugarBwdF{\exOp{\primOp}}(\primOp)
-   &=&
-   \exOp{\primOp}
-   \\
-   % binary-apply
-   \desugarBwdF{\exBinaryApp{t}{\primOp}{t'}}(\exApp{\exApp{\primOp}{e}}{e'})
-   &=&
-   \exBinaryApp{\desugarBwdF{t}(e)}{\primOp}{\desugarBwdF{t'}(e')}
-   \\
-   % nil
-   \desugarBwdF{\exNil}(\annNil{\alpha}) &=& \annNil{\alpha}
-   \\
-   % non-empty-list
-   \desugarBwdF{\exList{t}{l}}(\annCons{e}{e'}{\alpha})
-   &=&
-   \annList{\desugarBwdF{t}(e)}{\desugarBwdF{l}(e')}{\alpha}
-   \\
-   % cons
-   \desugarBwdF{\exCons{t}{t'}}(\annCons{e}{e'}{\alpha})
-   &=&
-   \annCons{\desugarBwdF{t}(e)}{\desugarBwdF{t'}(e')}{\alpha}
-   \\
-   % let-rec
-   \desugarBwdF{\exLetRecMutual{\vec{g}}{t}}
-               (\exLetRecMutual{\vec{\bind{x}{\sigma}}}{e'})
-   &=&
-   \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s}
-   &
-   g_i &=& \bind{x_i}{\vec{c_i}}
-   \\
-   &&&
-   \vec{c_i}' &=& \desugarClausesBwdF{\vec{c_i}}(\sigma_i)
-   \\
-   &&&
-   s &=& \desugarBwdF{t}(e')
-   \\
-   % apply
-   \desugarBwdF{\exApp{t}{t'}}(\exApp{e}{e'})
-   &=&
-   \exApp{\desugarBwdF{t}(e)}{\desugarBwdF{t'}(e')}
-   \\
-   % if
-   \desugarBwdF{\exIfThenElse{t}{t_1}{t_2}}(\exApp{\exLambda{\sigma}}{e})
-   &=&
-   \exIfThenElse{\desugarBwdF{t}(e)}{s_1}{s_2}
-   &
-   \sigma &=& \elimBool{e_1}{e_2}
-   \\
-   &&&
-   s_1 &=& \desugarBwdF{t_1}(e_1)
-   \\
-   &&&
-   s_2 &=& \desugarBwdF{t_2}(e_2)
-   \\
-   % match
-   \desugarBwdF{\exMatch{t}{\vec{c}}}(\exApp{\exLambda{\sigma}}{e})
-   &=&
-   \exMatch{\desugarBwdF{t}(e)}{\desugarClausesBwdF{\vec{c}}(\sigma)}
-   \\
-   % let
-   \desugarBwdF{\exLet{p}{t}{t'}}(\exApp{\exLambda{\sigma}}{e})
-   &=&
-   \exLet{p}{\desugarBwdF{t}(e)}{s'}
-   &
-   s' &=& \desugarClausesBwdF{\clauseUncurried{p}{t'}}(\sigma)
-   \\
-   % list-enum
-   \desugarBwdF{\exListEnum{t}{t'}}(\exApp{\exApp{\funEnumFromTo}{e}}{e'})
-   &=&
-   \exListEnum{\desugarBwdF{t}(e)}{\desugarBwdF{t'}(e')}
-   \\
-   % list-comp-done
-   \desugarBwdF{\exListComp{t}{\seqEmpty}}(\annCons{e}{\annNil{\alpha}}{\alpha'})
-   &=&
-   \annot{\exListComp{\desugarBwdF{t}(e)}{\seqEmpty}}{\alpha \join \alpha'}
-   \\
-   % list-comp-guard
-   \desugarBwdF{\exListComp{t}{\qualGuard{t'} \concat \vec{q}}}
-              (\exApp{\exLambda{\sigma}}{e})
-   &=&
-   \annot{\exListComp{s'}{\qualGuard{\desugarBwdF{t'}(e)} \concat \vec{q}'}}{\alpha \join \beta}
-   &
-   \sigma &=& \elimBool{e'}{\annNil{\alpha}}
-   \\
-   &&&
-   \annListComp{s'}{\vec{q}'}{\beta} &=& \desugarBwdF{\exListComp{t'}{\vec{q}}}(e')
-   \\
-   % list-comp-decl
-   \desugarBwdF{\exListComp{t}{\qualDeclaration{p}{t'} \concat \vec{q}}}
-               (\exApp{\exLambda{\sigma}}{e})
-   &=&
-   \annot{\exListComp{s}{\qualDeclaration{p}{\desugarBwdF{t'}(e)} \concat \vec{q}'}}
-         {\beta}
-   &
-   \clauseUncurried{p}{\annot{\exListComp{s}{\vec{q}'}}{\beta}}
-   &=&
-   \desugarClausesBwdF{\clauseUncurried{p}{\exListComp{t}{\vec{q}}}}(\sigma)
-   \\
-   % list-comp-gen
-   \desugarBwdF{\exListComp{t}{\qualGenerator{p}{t'} \concat \vec{q}}}
-               (\exApp{e}{e'})
-   &=&
-   \annot{\exListComp{s}{\qualGenerator{p}{\desugarBwdF{t'}(e')} \concat \vec{q}'}}
-         {\beta \join \beta'}
-   &
-   e &=& \exApp{\funConcatMap}{\exLambda{\sigma}}
-   \\
-   &&&
-   (\sigma',\beta) &=& \totaliseBwdF{p}(\sigma)
-   \\
-   &&&
-   e
-   &=&
-   \clauseBwdF{p}(\sigma')
-   \\
-   &&&
-   \annot{\exListComp{s}{\vec{q}'}}{{\beta'}}
-   &=&
-   \desugarBwdF{\exListComp{t}{\vec{q}}}(e)
-\end{array}$
-\caption{Desugaring terms --- backward slicing}
+\flushleft \shadebox{$e \desugarBwd{s} s'$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-eq}}
+   ]
+   {
+      e \eq e'
+      \\
+      e' \desugarBwd{s} s'
+   }
+   {
+      e \desugarBwd{s} s'
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-binary-apply}}
+   ]
+   {
+      e_1, \desugarBwd{s_1} s_1'
+      \\
+      e_2, \desugarBwd{s_2} s_2'
+   }
+   {
+      \exApp{\exApp{\exOp{\primOp}}{e_{1}}}{e_{2}}
+      \desugarBwd{\exBinaryApp{s_{1}}{\primOp}{s_{2}}}
+      \exBinaryApp{s_{1}'}{\primOp}{s_{2}'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-nil}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha} \desugarBwd{\exNil} \annNil{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-non-empty-list}}
+   ]
+   {
+      e_1 \desugarBwd{s} s'
+      \\
+      e_2 \desugarBwd{l} l'
+   }
+   {
+      \annCons{e_1}{e_2}{\alpha}
+      \desugarBwd{\exList{s}{l}}
+      \annList{s'}{l'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-cons}}
+   ]
+   {
+      e_1 \desugarBwd{s_1} s_1'
+      \\
+      e_2 \desugarBwd{s_2} s_2'
+   }
+   {
+      \annCons{e_1}{e_2}{\alpha}
+      \desugarBwd{\exCons{s_1}{s_2}}
+      \annCons{s_1'}{s_2'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-let-rec}}
+   ]
+   {
+      \sigma_i  \desugarClauseBwd{\vec{c_i}} \vec{c_i}'
+      \quad
+      (\forall i \numleq j)
+      \\
+      e' \desugarBwd{s} s'
+   }
+   {
+      \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e'}
+      \desugarBwd{\exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{s}}
+      \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-apply}}
+   ]
+   {
+      e \eq \exApp{e_1}{e_2}
+      \\
+      e_1 \desugarBwd{s_1} s_1'
+      \\
+      e_2 \desugarBwd{s_2} s_2'
+   }
+   {
+      e
+      \desugarBwd{\exApp{s_1}{s_2}}
+      \exApp{s_1'}{s_2'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-if}}
+   ]
+   {
+      e \eq \exApp{\exLambda{\elimBool{e_{2}}{e_{3}}}}{e_{1}}
+      \\
+      e_{1} \desugarBwd{s_{1}} s_{1}'
+      \\
+      e_{2} \desugarBwd{s_{2}} s_{2}'
+      \\
+      e_{3} \desugarBwd{s_{3}} s_{3}'
+   }
+   {
+      e
+      \desugarBwd{\exIfThenElse{s_{1}}{s_{2}}{s_{3}}}
+      \exIfThenElse{s_{1}'}{s_{2}'}{s_{3}'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-match}}
+   ]
+   {
+      e \eq \exApp{(\exLambda{\sigma})}{e'}
+      \\
+      \sigma \desugarClauseBwd{\vec{c}} \vec{c}'
+      \\
+      e' \desugarBwd{s} s'
+   }
+   {
+      e
+      \desugarBwd{\exMatch{s}{\vec{c}}}
+      \exMatch{s'}{\vec{c}'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-let}}
+   ]
+   {
+      e \eq \exApp{(\exLambda{\sigma})}{e'}
+      \\
+      \sigma \desugarBwd{\clauseUncurried{p}{s_2}} s_2'
+      \\
+      e' \desugarBwd{s_1} s_1'
+   }
+   {
+      e
+      \desugarBwd{\exLet{p}{s_1}{s_2}}
+      \exLet{p}{s_1'}{s_2'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-list-enum}},
+   ]
+   {
+      e \eq \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
+      \\
+      e_{1} \desugarBwd{s_{1}} s_{1}'
+      \\
+      e_{2} \desugarBwd{s_{2}} s_{2}'
+   }
+   {
+      e
+      \desugarBwd{\exListEnum{s_{1}}{s_{2}}}
+      \exListEnum{s_{1}'}{s_{2}'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\desugarBwd{}$-list-comp-done}}]
+   {
+      e \eq \annCons{e'}{\annNil{\alpha}}{\alpha'}
+      \\
+      e' \desugarBwd{s} s'
+   }
+   {
+      e
+      \desugarBwd{\exListComp{s}{\seqEmpty}}
+      \annot{\exListComp{s'}{\seqEmpty}}{\alpha \join \alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-list-comp-guard}},
+   ]
+   {
+      e \eq \exApp{\exLambda{\elimBool{e_{1}}{\annNil{\alpha}}}}{e_{2}}
+      \\
+      e_2 \desugarBwd{s_2} s_2'
+      \\
+      e_1 \desugarBwd{\exListComp{s_1}{\vec{q}}} \annListComp{s_{1}'}{\vec{q}'}{\beta}
+   }
+   {
+      e
+      \desugarBwd{\exListComp{s_1}{\qualGuard{s_2} \concat \vec{q}}}
+      \annot{\exListComp{s_{1}'}{\qualGuard{s_{2}'} \concat \vec{q}'}}{\alpha \join \beta}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-list-comp-decl}},
+   ]
+   {
+      e \eq \exApp{(\exLambda{\sigma})}{e'}
+      \\
+      \sigma
+      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}
+      \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+      \\
+      e' \desugarBwd{s_{1}} s_{1}'
+   }
+   {
+      e
+      \desugarBwd{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
+      \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}
+            {\beta}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-list-comp-gen}},
+   ]
+   {
+      e \eq \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e_1}
+      \\
+      e_{1} \desugarBwd{s_{1}} s_{1}'
+      \\
+      \totalisebwd{\sigma}{p}{\sigma'}{\beta}
+      \\
+      \sigma'
+      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
+      \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{{\beta'}}}
+   }
+   {
+      e
+      \desugarBwd{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
+      \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}
+            {\beta \join \beta'}
+   }
+\end{smathpar}
+\caption{Desugaring terms -- backward slicing (selected rules)}
 \end{figure}
