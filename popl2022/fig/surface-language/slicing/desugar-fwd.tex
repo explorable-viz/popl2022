@@ -48,7 +48,7 @@
       r \desugarFwd e'
    }
    {
-      \exList{s}{r} \desugarFwd \exCons{e}{e'}
+      \annList{s}{r}{\alpha} \desugarFwd \annCons{e}{e'}{\alpha}
    }
    %
    \and
@@ -62,7 +62,7 @@
       s' \desugarFwd e'
    }
    {
-      \exCons{s}{s'} \desugarFwd \exCons{e}{e'}
+      \annCons{s}{s'}{\alpha} \desugarFwd \annCons{e}{e'}{\alpha}
    }
    %
    \and
@@ -172,9 +172,9 @@
       s \desugarFwd e
    }
    {
-      \exListComp{s}{\seqEmpty}
+      \annListComp{s}{\seqEmpty}{\alpha}
       \desugarFwd
-      \exCons{e}{\exNil}
+      \annCons{e}{\annNil{\alpha}}{\alpha}
    }
    %
    \and
@@ -183,15 +183,14 @@
       lab={\ruleName{$\desugarFwd$-list-comp-guard}}
    ]
    {
-      \exListComp{s}{\vec{q}}
-      \desugarFwd e
+      \annListComp{s}{\vec{q}}{\alpha} \desugarFwd e
       \\
       s' \desugarFwd e'
    }
    {
-      \exListComp{s}{\qualGuard{s'} \concat \vec{q}}
+      \annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}
       \desugarFwd
-      \exApp{\exLambda{\elimBool{e}{\exNil}}}{e'}
+      \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
    }
    %
    \and
@@ -200,14 +199,14 @@
       lab={\ruleName{$\desugarFwd$-list-comp-decl}}
    ]
    {
-      \exListComp{s}{\vec{q}} \desugarFwd e
+      \annListComp{s}{\vec{q}}{\alpha} \desugarFwd e
       \\
       p, e \clauseFwd \sigma
       \\
       s' \desugarFwd e
    }
    {
-      \exListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}
+      \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
       \desugarFwd
       \exApp{\exLambda{\sigma}}{e}
    }
@@ -217,16 +216,16 @@
       lab={\ruleName{$\desugarFwd$-list-comp-gen}}
    ]
    {
-      \exListComp{s}{\vec{q}} \desugarFwd e
+      \annListComp{s}{\vec{q}}{\alpha} \desugarFwd e
       \\
-      p, e\clauseFwd \sigma
+      p, e \clauseFwd \sigma
       \\
-      \sigma \totalisefwdarrow \sigma'
+      \sigma, \alpha \totalisefwdarrow \sigma'
       \\
       s' \desugarFwd e
    }
    {
-      \exListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}
+      \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
       \desugarFwd
       \exApp{\exApp{\funConcatMap}{\exLambda{\sigma'}}}{e}
    }
