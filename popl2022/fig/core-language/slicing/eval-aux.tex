@@ -40,35 +40,6 @@
    \text{ where }
    v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
 \end{salign}
-
-\small
-$\begin{array}{lll|llll}
-\arrayrulecolor{lightgray}
-&&&\textit{where}
-\\
-\rowcolor{verylightgray}
-\envLookupGC{\rho,z} &::& \Below{\rho} \to \Below{v}
-&\envLookup{\rho}{z}{v}
-&&
-\\
-\envLookupFwdF{\rho \concat \bind{x}{v},x}(\rho' \concat \bind{x}{u},x) &=& u
-\\
-\envLookupFwdF{\rho \concat \bind{y}{v},x}(\rho' \concat \bind{y}{u},x)
-&=&
-\envLookupFwdF{\rho,x}(\rho',x)
-&
-x \neq y
-\\[3mm]
-\envLookupBwdF{\rho \concat \bind{x}{v},x}(u)
-&=&
-\sub{\hole}{\rho} \concat \bind{x}{u}
-\\
-\envLookupBwdF{\rho \concat \bind{y}{v},x}(u)
-&=&
-\envLookupBwdF{\rho}(u) \concat \bind{y}{\hole}
-&
-x \neq y
-\end{array}$
 \caption{Auxiliary functions: forward and backward slicing}
 \label{fig:slicing:eval-aux}
 \end{figure}
