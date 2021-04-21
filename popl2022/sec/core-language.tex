@@ -91,7 +91,7 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for recursive bindings]
-   Suppose $\rho, h \closeDefsFwdR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ by the equations in \figref{slicing:eval-aux}.
+   Suppose $\rho, h \closeDefsFwdR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsFwdR$ and $\closeDefsBwdR$ restricted to $\Below{(\rho, h)}$ and $\Below{\rho'}$ respectively.
 \end{definition}
 
 \begin{theorem}[Galois connection for recursive bindings]
