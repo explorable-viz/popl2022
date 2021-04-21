@@ -246,5 +246,37 @@
       \annListComp{s'}{\qualGenerator{p}{s} \concat \vec{q}'}{\beta \join \beta'}
    }
 \end{smathpar}
-\caption{Desugaring terms -- backward slicing (selected rules)}
+
+\vspace{3mm}
+\flushleft \shadebox{$e \desugarBwd{r} r'$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-list-rest-end}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annot{\exNil}{\alpha}
+      \desugarBwd{\exListEnd}
+      \annot{\exListEnd}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwd{}$-list-rest-cons}}
+   ]
+   {
+      e \desugarBwd{t} s
+      \\
+      e' \desugarBwd{r} r'
+   }
+   {
+      \annCons{e}{e'}{\alpha}
+      \desugarBwd{(\exListNext{t}{r})}
+      (\annListNext{s}{r'}{\alpha})
+   }
+\end{smathpar}
+\caption{Desugaring -- backward slicing (selected rules)}
 \end{figure}
