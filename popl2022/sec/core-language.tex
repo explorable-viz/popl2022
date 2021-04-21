@@ -30,12 +30,8 @@
 
 \subsubsection{Pattern-matching}
 
-\begin{figure}[H]
-   \small
-   \input{fig/core-language/slicing/match}
-   \caption{Pattern-matching: forward and backward slicing}
-   \label{fig:match:fwd-bwd}
-\end{figure}
+\input{fig/core-language/slicing/match-fwd}
+\input{fig/core-language/slicing/match-bwd}
 
 \begin{lemma}[Determinism of pattern-matching]
    Suppose $v, \sigma \match \rho, \kappa$ and $v', \sigma' \match \rho', \kappa'$. If $v \eq v'$ and $\sigma \eq \sigma'$ then $\rho \eq \rho'$ and $\kappa \eq \kappa'$.
