@@ -166,26 +166,26 @@
       lab={\ruleName{$\desugarBwd{}$-list-enum}},
    ]
    {
-      e_{1} \desugarBwd{s_{1}} s_{1}'
+      e \desugarBwd{t} s
       \\
-      e_{2} \desugarBwd{s_{2}} s_{2}'
+      e' \desugarBwd{t'} s'
    }
    {
-      \exApp{\exApp{\funEnumFromTo}{e_1}}{e_2}
-      \desugarBwd{\exListEnum{s_{1}}{s_{2}}}
-      \exListEnum{s_{1}'}{s_{2}'}
+      \exApp{\exApp{\funEnumFromTo}{e}}{e'}
+      \desugarBwd{\exListEnum{t}{t'}}
+      \exListEnum{s}{s'}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\desugarBwd{}$-list-comp-done}}]
    {
-      e' \desugarBwd{s} s'
+      e \desugarBwd{t} s
    }
    {
-      \annCons{e'}{\annNil{\alpha}}{\alpha'}
-      \desugarBwd{\exListComp{s}{\seqEmpty}}
-      \annot{\exListComp{s'}{\seqEmpty}}{\alpha \join \alpha'}
+      \annCons{e}{\annNil{\alpha}}{\alpha'}
+      \desugarBwd{\exListComp{t}{\seqEmpty}}
+      \annot{\exListComp{s}{\seqEmpty}}{\alpha \join \alpha'}
    }
    %
    \and
