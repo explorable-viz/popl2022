@@ -1,6 +1,6 @@
 \begin{figure}[H]
 
-\flushleft \shadebox{$\envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}$}
+\flushleft \shadebox{$\envLookupBwd{\rho}{\rho',x}{v}$}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\smalltriangleleft$-head}}
@@ -9,7 +9,9 @@
       \strut
    }
    {
-      \envLookupBwd{\hole_{\Gamma} \concat \bind{x}{u}}{\Gamma \concat \bind{x}{A}}{\bind{x}{u}}
+      \envLookupBwd{\hole_{\rho} \concat \bind{x}{u}}
+                   {\rho \concat \bind{x}{v},x}
+                   {u}
    }
    %
    \and
