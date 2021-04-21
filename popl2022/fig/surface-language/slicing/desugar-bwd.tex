@@ -209,15 +209,15 @@
    ]
    {
       \sigma
-      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}
-      \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta}}
+      \desugarClauseBwd{\clauseUncurried{p}{\exListComp{t'}{\vec{q}}}}
+      \clauseUncurried{p}{\annot{\exListComp{s'}{\vec{q}'}}{\beta}}
       \\
-      e' \desugarBwd{s_{1}} s_{1}'
+      e \desugarBwd{t} s
    }
    {
-      \exApp{(\exLambda{\sigma})}{e'}
-      \desugarBwd{\exListComp{s_2}{\qualDeclaration{p}{s_1} \concat \vec{q}}}
-      \annot{\exListComp{s_{2}'}{\qualDeclaration{p}{s_{1}'} \concat \vec{q}'}}
+      \exApp{\exLambda{\sigma}}{e}
+      \desugarBwd{\exListComp{t'}{\qualDeclaration{p}{t} \concat \vec{q}}}
+      \annot{\exListComp{s'}{\qualDeclaration{p}{s} \concat \vec{q}'}}
             {\beta}
    }
    %
@@ -236,7 +236,7 @@
       \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{{\beta'}}}
    }
    {
-      \exApp{\exApp{\funConcatMap}{(\exLambda{\sigma})}}{e_1}
+      \exApp{\exApp{\funConcatMap}{\exLambda{\sigma}}}{e_1}
       \desugarBwd{\exListComp{s_{2}}{\qualGenerator{p}{s_{1}} \concat \vec{q}}}
       \annot{\exListComp{s_{2}'}{\qualGenerator{p}{s_{1}'} \concat \vec{q}'}}
             {\beta \join \beta'}
