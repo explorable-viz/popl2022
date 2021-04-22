@@ -26,6 +26,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: dante-ev/latex-action@latest
-    - name: build
-      run: |
-        cd popl2022 && ./build.sh
+      with:
+        entrypoint: ./popl2022/build.sh
+        
