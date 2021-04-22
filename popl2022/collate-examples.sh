@@ -2,13 +2,7 @@
 set -e
 
 post_process () {
-   echo sed -i .bak 's/>=/$\\numgeq$/' $1
-   sed -i .bak 's/>=/$\\numgeq$/' $1
-   sed -i .bak 's/<=/$\\numleq$/' $1
-   sed -i .bak 's/<-/$\\leftarrow$/' $1
-   sed -i .bak 's/\[|/\$\\langle$/' $1
-   sed -i .bak 's/\|]/$\\rangle$/' $1
-   rm $1.bak
+   sed -f ../sed-commands $1 > $1.mod
 }
 
 rm -rf fluid
