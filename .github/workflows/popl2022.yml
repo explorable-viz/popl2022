@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        submodules: false
+        submodules: true
     - name: build
       run: |
         brew install --cask mactex
