@@ -22,10 +22,12 @@ jobs:
         cd popl2022 && ./build.sh
 
   popl2022-docker:
+    defaults:
+      run:
+        working-directory: popl2022
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
     - uses: dante-ev/latex-action@latest
       with:
-        entrypoint: ./popl2022/build.sh
-        
+        entrypoint: ./build.sh
