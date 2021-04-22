@@ -12,9 +12,9 @@ on:
 
 jobs:
   popl2022:
-    runs-on: ubuntu-18.04
+    runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v2
-    - uses: dante-ev/latex-action@latest
-      with:
-        entrypoint: ./popl2022/build.sh
+    - name: mactex-setup
+      run: |
+        brew install --cask mactex
