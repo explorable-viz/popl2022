@@ -12,6 +12,12 @@ rm -rf fluid
 mkdir fluid
 pushd fluid
 wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/lib/convolution.fld
+sed -i .bak 's/>=/$\\numgeq$/' convolution.fld
+sed -i .bak 's/<=/$\\numleq$/' convolution.fld
+sed -i .bak 's/<-/$\\leftarrow$/' convolution.fld
+sed -i .bak 's/\[|/\$\\langle$/' convolution.fld
+sed -i .bak 's/\|]/$\\rangle$/' convolution.fld
+rm *.bak
 popd
 
 $PDFLATEX $TARGET
