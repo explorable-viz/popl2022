@@ -15,9 +15,18 @@ jobs:
     runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v2
-    - name: mactex-setup
+    - name: build
       run: |
         brew install --cask mactex
         eval "$(/usr/libexec/path_helper)"
+        cd popl2022 && ./build.sh
+
+  popl2022-docker:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: dante-ev/latex-action
+    - name: build
+      run: |
         cd popl2022 && ./build.sh
         
