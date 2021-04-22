@@ -27,6 +27,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: true
     - uses: dante-ev/latex-action@latest
       with:
         entrypoint: ./popl2022/build.sh
