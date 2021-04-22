@@ -3,6 +3,9 @@ set -e
 
 post_process () {
    local bak='.bak'
+   echo $bak
+   echo $1
+   echo sed -i $bak 's/>=/$\\numgeq$/' $1
    sed -i $bak 's/>=/$\\numgeq$/' $1
    sed -i $bak 's/<=/$\\numleq$/' $1
    sed -i $bak 's/<-/$\\leftarrow$/' $1
