@@ -1,3 +1,4 @@
+#!/bin/bash
 PDFLATEX="pdflatex -file-line-error -halt-on-error"
 TARGET=main
 
