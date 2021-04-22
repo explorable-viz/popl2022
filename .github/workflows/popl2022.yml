@@ -27,6 +27,4 @@ jobs:
     - uses: actions/checkout@v2
     - uses: dante-ev/latex-action@latest
       with:
-        working_directory: ./popl2022
-        entrypoint: ./build.sh
-        
+        entrypoint: ./popl2022/build.sh
