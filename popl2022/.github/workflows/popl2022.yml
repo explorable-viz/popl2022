@@ -1,0 +1,20 @@
+name: popl2022
+
+on:
+  push:
+    paths-ignore:
+    - '**/*.pdf'
+    - '**/README.md'
+  pull_request:
+    paths-ignore:
+    - '**/*.pdf'
+    - '**/README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: test
+      run: |
+        make
