@@ -23,6 +23,8 @@ mkdir fluid
 pushd fluid
 wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/lib/convolution.fld
 post_process convolution.fld
+wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/slicing/conv-extend.fld
+post_process conv-extend.fld
 popd
 
 $PDFLATEX $TARGET
