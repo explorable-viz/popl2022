@@ -2,16 +2,13 @@
 set -e
 
 post_process () {
-   local bak='.bak'
-   echo $bak
-   echo $1
-   echo sed -i $bak 's/>=/$\\numgeq$/' $1
-   sed -i $bak 's/>=/$\\numgeq$/' $1
-   sed -i $bak 's/<=/$\\numleq$/' $1
-   sed -i $bak 's/<-/$\\leftarrow$/' $1
-   sed -i $bak 's/\[|/\$\\langle$/' $1
-   sed -i $bak 's/\|]/$\\rangle$/' $1
-   rm $1$bak
+   echo sed -i .bak 's/>=/$\\numgeq$/' $1
+   sed -i .bak 's/>=/$\\numgeq$/' $1
+   sed -i .bak 's/<=/$\\numleq$/' $1
+   sed -i .bak 's/<-/$\\leftarrow$/' $1
+   sed -i .bak 's/\[|/\$\\langle$/' $1
+   sed -i .bak 's/\|]/$\\rangle$/' $1
+   rm $1.bak
 }
 
 rm -rf fluid
