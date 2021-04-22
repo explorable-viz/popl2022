@@ -1,4 +1,7 @@
 #!/bin/bash
+set -e # not perfect but better than nothing
+
+# make sure script runs in directory that contains it
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $HERE
 
