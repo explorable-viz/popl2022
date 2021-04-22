@@ -1,4 +1,4 @@
-name: popl2022
+name: build
 
 on:
   push:
@@ -11,10 +11,10 @@ on:
     - '**/README.md'
 
 jobs:
-  build:
+  popl2022:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - name: make
-      run: |
-        cd popl2022 && make
+    - uses: dante-ev/latex-action@latest
+      with:
+        entrypoint: ./popl2020/build.sh
