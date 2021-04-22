@@ -2,4 +2,4 @@ s/>=/$\\numgeq$/
 s/<=/$\\numleq$/
 s/<-/$\\leftarrow$/
 s/\[|/\$\\langle$/
-s/\|]/$\\rangle$/
+s/|\]/$\\rangle$/
