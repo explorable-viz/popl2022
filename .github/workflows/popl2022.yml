@@ -15,5 +15,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+    - name: make
       run: |
         cd popl2022 && make
