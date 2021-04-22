@@ -20,3 +20,6 @@ jobs:
     - uses: dante-ev/latex-action@latest
       with:
         entrypoint: ./popl2022/build.sh
+    - uses: actions/upload-artifact@v2
+      with:
+        path: ./popl2022/main.pdf
