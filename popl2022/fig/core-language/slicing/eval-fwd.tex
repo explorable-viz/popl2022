@@ -9,7 +9,7 @@
       e \eq \exVar{x}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trVar{x}{\Gamma}}{v}
+      \evalFwd{\rho}{e}{\alpha}{\trVar{x}{\rho}}{v}
    }
    %
    \and
@@ -29,7 +29,7 @@
       e \eq \annInt{n}{\alpha}
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha \meet \alpha'}}
+      \evalFwd{\rho}{e}{\alpha'}{\trInt{n}{\rho}}{\annInt{n}{\alpha \meet \alpha'}}
    }
    %
    \and
@@ -39,7 +39,7 @@
       e \eq \annNil{\alpha}
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trNil{\Gamma}}{\annNil{\alpha \meet \alpha'}}
+      \evalFwd{\rho}{e}{\alpha'}{\trNil{\rho}}{\annNil{\alpha \meet \alpha'}}
    }
    %
    \and
