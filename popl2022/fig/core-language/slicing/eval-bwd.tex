@@ -141,22 +141,19 @@
       lab={\ruleName{$\evalBwdS$-vector-length}}
    ]
    {
-      v \eq \annInt{j}{\beta}
-      \\
       \evalBwd{\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
    }
    {
-      \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
+      \evalBwd{\annInt{j}{\beta}}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply-prim}}
+      lab={\ruleName{$\evalBwdS$-apply-prim}},
+      right={$\primBwd{\phi}{\vec{n} \concat m}(v) = \vec{u} \concat u'$}
    ]
    {
-      \primBwd{\phi}{\vec{n} \concat m}(v) = \vec{u} \concat u'
-      \\
       \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
       \\
       \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
