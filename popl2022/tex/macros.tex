@@ -247,7 +247,7 @@
 \newcommand*{\length}[1]{|#1|}
 
 % Traces.
-\newcommand*{\trAppNew}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
+\newcommand*{\trApp}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
 \newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
@@ -257,7 +257,6 @@
 \newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
 \newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
 \newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
-\newcommand*{\trLetRecMutualNew}[3]{\sub{\kw{let}}{#1}\;{#2}\;\kw{in}\;{#3}}
 \newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
 \newcommand*{\trNil}[1]{\sub{\exNil}{#1}}

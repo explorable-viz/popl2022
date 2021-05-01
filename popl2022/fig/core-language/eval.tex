@@ -179,7 +179,7 @@
       \explVal{T}{\rho \concat \rho', e \eval v}
    }
    {
-      \explVal{\trLetRecMutualNew{\rho}{h}{T}}{\rho, \exLetRecMutual{h}{e} \eval v}
+      \explVal{\trLetRecMutual{h}{T}}{\rho, \exLetRecMutual{h}{e} \eval v}
    }
 \end{smathpar}
 \caption{Term $e$ evaluates in environment $\rho$ to value $v$ (witnessed by $T$)}
