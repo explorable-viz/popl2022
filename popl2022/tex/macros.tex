@@ -274,11 +274,14 @@
 \newcommand*{\desugarClausesBwdF}[1]{\bwdF{clauses}{#1}}
 \newcommand*{\desugarClausesGC}[1]{\GC{clauses}{#1}}
 
-\newcommand*{\clauseFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
-\newcommand*{\clauseBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}
-\newcommand*{\clauseFwdF}[1]{\fwdF{clause}{#1}}
-\newcommand*{\clauseBwdF}[1]{\bwdF{clause}{#1}}
-\newcommand*{\clauseGC}[1]{\GC{clause}{#1}}
+\newcommand*{\clauseS}{\rightharpoonup}
+\newcommand*{\clauseBwdS}{\mathrel{{\rotatebox[origin=c]{-45}{$\clauseS$}}}}
+\newcommand*{\clauseFwdR}{\mathrel{{\rotatebox[origin=c]{45}{$\clauseS$}}}}
+\newcommand*{\clauseBwdR}[1]{\sub{\clauseBwdS}{#1}}
+\newcommand*{\clauseN}{clause}
+\newcommand*{\clauseFwdF}[1]{\fwdF{\clauseN}{#1}}
+\newcommand*{\clauseBwdF}[1]{\bwdF{\clauseN}{#1}}
+\newcommand*{\clauseGC}[1]{\GC{\clauseN}{#1}}
 
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}

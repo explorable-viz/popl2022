@@ -123,7 +123,7 @@
       \\
       s' \desugarFwdR e'
       \\
-      p, e' \clauseFwd \sigma
+      p, e' \clauseFwdR \sigma
    }
    {
       \exLet{p}{s}{s'}
@@ -201,7 +201,7 @@
    {
       \annListComp{s}{\vec{q}}{\alpha} \desugarFwdR e
       \\
-      p, e \clauseFwd \sigma
+      p, e \clauseFwdR \sigma
       \\
       s' \desugarFwdR e
    }
@@ -218,7 +218,7 @@
    {
       \annListComp{s}{\vec{q}}{\alpha} \desugarFwdR e
       \\
-      p, e \clauseFwd \sigma
+      p, e \clauseFwdR \sigma
       \\
       \totaliseFwd{\sigma}{\alpha}{p}{\sigma'}
       \\

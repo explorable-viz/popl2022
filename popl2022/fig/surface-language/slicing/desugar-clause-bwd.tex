@@ -1,150 +1,150 @@
 \begin{figure}[H]
-\flushleft\shadebox{$\sigma \clauseBwd{\vec{p}} \kappa$}
+\flushleft\shadebox{$\sigma \clauseBwdR{\vec{p}} \kappa$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-eq}}
+   lab={\ruleName{$\clauseBwdS$-eq}}
 ]
 {
-   \sigma \mathrel{\eq\clauseBwd{\vec{p}}} \kappa
+   \sigma \mathrel{\eq\clauseBwdR{\vec{p}}} \kappa
 }
 {
-   \sigma \clauseBwd{\vec{p}} \kappa
+   \sigma \clauseBwdR{\vec{p}} \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-var}}
+   lab={\ruleName{$\clauseBwdS$-var}}
 ]
 {
    \strut
 }
 {
    \elimVar{x}{\kappa}
-   \clauseBwd{x}
+   \clauseBwdR{x}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-nil}}
+   lab={\ruleName{$\clauseBwdS$-nil}}
 ]
 {
    \strut
 }
 {
    \elimList{\kappa}{\sigma}
-   \clauseBwd{\exNil}
+   \clauseBwdR{\exNil}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-cons}}
+   lab={\ruleName{$\clauseBwdS$-cons}}
 ]
 {
-   \sigma \clauseBwd{p} \tau
+   \sigma \clauseBwdR{p} \tau
    \\
-   \tau \clauseBwd{p'} \kappa'
+   \tau \clauseBwdR{p'} \kappa'
 }
 {
    \elimList{\kappa}{\sigma}
-   \clauseBwd{\pattCons{p}{p'}}
+   \clauseBwdR{\pattCons{p}{p'}}
    \kappa'
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-non-empty-list}}
+   lab={\ruleName{$\clauseBwdS$-non-empty-list}}
 ]
 {
-   \sigma \clauseBwd{p} \tau
+   \sigma \clauseBwdR{p} \tau
    \\
-   \tau \clauseBwd{o} \kappa'
+   \tau \clauseBwdR{o} \kappa'
 }
 {
    \elimList{\kappa}{\sigma}
-   \clauseBwd{\pattList{p}{o}}
+   \clauseBwdR{\pattList{p}{o}}
    \kappa'
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-pair}}
+   lab={\ruleName{$\clauseBwdS$-pair}}
 ]
 {
-   \sigma \clauseBwd{p} \tau
+   \sigma \clauseBwdR{p} \tau
    \\
-   \tau \clauseBwd{p'} \kappa
+   \tau \clauseBwdR{p'} \kappa
 }
 {
    \elimProd{\sigma}
-   \clauseBwd{\pattPair{p}{p'}}
+   \clauseBwdR{\pattPair{p}{p'}}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-seq}},
+   lab={\ruleName{$\clauseBwdS$-seq}},
    right={$\length{\vec{p}} \numgt 0$}
 ]
 {
-   \sigma \clauseBwd{p}\eq \exLambda{\sigma'}
+   \sigma \clauseBwdR{p}\eq \exLambda{\sigma'}
    \\
-   \sigma' \clauseBwd{\vec{p}} e
+   \sigma' \clauseBwdR{\vec{p}} e
 }
 {
    \sigma
-   \clauseBwd{p \concat \vec{p}}
+   \clauseBwdR{p \concat \vec{p}}
    e
 }
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\sigma \clauseBwd{o} \kappa$}
+\flushleft\shadebox{$\sigma \clauseBwdR{o} \kappa$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-list-rest-eq}}
+   lab={\ruleName{$\clauseBwdS$-list-rest-eq}}
 ]
 {
-   \sigma \mathrel{\eq\clauseBwd{o}} \kappa
+   \sigma \mathrel{\eq\clauseBwdR{o}} \kappa
 }
 {
-   \sigma \clauseBwd{o} \kappa
+   \sigma \clauseBwdR{o} \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-list-rest-end}}
+   lab={\ruleName{$\clauseBwdS$-list-rest-end}}
 ]
 {
    \strut
 }
 {
    \elimList{\kappa}{\sigma}
-   \clauseBwd{\pattListEnd}
+   \clauseBwdR{\pattListEnd}
    \kappa
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwd{}$-list-rest-cons}}
+   lab={\ruleName{$\clauseBwdS$-list-rest-cons}}
 ]
 {
-   \sigma \clauseBwd{p} \tau
+   \sigma \clauseBwdR{p} \tau
    \\
-   \tau \clauseBwd{o} \kappa'
+   \tau \clauseBwdR{o} \kappa'
 }
 {
    \elimList{\kappa}{\sigma}
-   \clauseBwd{(\pattListNext{p}{o})}
+   \clauseBwdR{(\pattListNext{p}{o})}
    \kappa'
 }
 \end{smathpar}
@@ -156,7 +156,7 @@
    lab={\ruleName{$\desugarClauseBwd{}$-clause}}
 ]
 {
-   \sigma \clauseBwd{\vec{p}} e
+   \sigma \clauseBwdR{\vec{p}} e
    \\
    e \desugarBwdR{s} s'
 }

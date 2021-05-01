@@ -146,7 +146,7 @@
       lab={\ruleName{$\desugarBwdR{}$-let}}
    ]
    {
-      \sigma \clauseBwd{p} e'
+      \sigma \clauseBwdR{p} e'
       \\
       e' \desugarBwdR{t'} s'
       \\
@@ -208,7 +208,7 @@
       lab={\ruleName{$\desugarBwdR{}$-list-comp-decl}},
    ]
    {
-      \sigma \clauseBwd{p} e'
+      \sigma \clauseBwdR{p} e'
       \\
       e'
       \desugarBwdR{\exListComp{t'}{\vec{q}}}
@@ -233,7 +233,7 @@
       \totalisebwd{\sigma}{p}{\sigma'}{\beta}
       \\
       \sigma'
-      \clauseBwd{p}
+      \clauseBwdR{p}
       e'
       \\
       e'
