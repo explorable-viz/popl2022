@@ -277,9 +277,10 @@
 \newcommand*{\clausesBwdS}{\desugarBwdS}
 \newcommand*{\clausesFwdR}{\desugarFwdR}
 \newcommand*{\clausesBwdR}[1]{\desugarBwdR{#1}}
-\newcommand*{\clausesFwdF}[1]{\fwdF{clauses}{#1}}
-\newcommand*{\desugarClausesBwdF}[1]{\bwdF{clauses}{#1}}
-\newcommand*{\desugarClausesGC}[1]{\GC{clauses}{#1}}
+\newcommand*{\clausesN}{clauses}
+\newcommand*{\clausesFwdF}[1]{\fwdF{\clausesN}{#1}}
+\newcommand*{\clausesBwdF}[1]{\bwdF{\clausesN}{#1}}
+\newcommand*{\desugarClausesGC}[1]{\GC{\clausesN}{#1}}
 
 \newcommand*{\totalisefwdarrow}{\nearrow}
 \newcommand*{\totalisebwdarrow}{\searrow}

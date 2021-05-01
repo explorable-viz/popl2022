@@ -29,16 +29,16 @@
 \end{lemma}
 
 \begin{definition}
-   Suppose $\vec{c} \clauseFwdR \sigma$. Define $\desugarClausesFwdF{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}$ and $\desugarClausesBwdF{\vec{c}}: \Below{\sigma} \to \Below{\vec{c}}$ to be $\clauseFwdR$ domain-restricted to $\Below{\vec{c}}$ and $\clauseBwdR{\vec{c}}$ domain-restricted to $\Below{\sigma}$ respectively.
+   Suppose $\vec{c} \clauseFwdR \sigma$. Define $\clausesFwdF{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}$ and $\clausesBwdF{\vec{c}}: \Below{\sigma} \to \Below{\vec{c}}$ to be $\clauseFwdR$ domain-restricted to $\Below{\vec{c}}$ and $\clauseBwdR{\vec{c}}$ domain-restricted to $\Below{\sigma}$ respectively.
 \end{definition}
 
 \begin{lemma}[Galois connection for clauses]
   \label{lem:aux:clauses:gc}
-  Suppose $\vec{c} \clauseFwdR \sigma$. Then:
+  Suppose $\vec{c} \clausesFwdR \sigma$. Then:
   \begin{enumerate}
-     \item $\desugarClausesFwdF{\vec{c}}$ and $\desugarClausesBwdF{\vec{c}}$ are monotonic.
-     \item $\desugarClausesFwdF{\vec{c}}(\desugarClausesBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
-     \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}'$.
+     \item $\clausesFwdF{\vec{c}}$ and $\clausesBwdF{\vec{c}}$ are monotonic.
+     \item $\clausesFwdF{\vec{c}}(\clausesBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
+     \item $\clausesBwdF{\vec{c}}(\clausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}'$.
   \end{enumerate}
 \end{lemma}
 
