@@ -1,7 +1,7 @@
 \subsection{Auxiliary lemmas}
 
 \begin{definition}
-   Suppose $r \dfwdarrow e$. Define $\desugarListRestFwdF{r}: \Below{r} \to \Below{e}$ and $\desugarListRestBwdF{r}: \Below{e} \to \Below{r}$ to be $\desugarFwd$ domain-restricted to $\Below{r}$ and $\desugarBwd{r}$ domain-restricted to $\Below{e}$ respectively. Then:
+   Suppose $r \dfwdarrow e$. Define $\desugarListRestFwdF{r}: \Below{r} \to \Below{e}$ and $\desugarListRestBwdF{r}: \Below{e} \to \Below{r}$ to be $\desugarFwd$ domain-restricted to $\Below{r}$ and $\desugarBwd{r}$ domain-restricted to $\Below{e}$ respectively.
 \end{definition}
 
 \begin{lemma}[Galois connection for desugaring list rest]
@@ -15,7 +15,7 @@
 \end{lemma}
 
 \begin{definition}
-   Suppose $p, e \clauseFwd \sigma$. Define $\clauseFwdF{\clause{p}{e}}: \Below{(p,e)} \to \Below{\sigma}$ and $\clauseBwdF{\clause{p}{e}}: \Below{\sigma} \to \Below{(p,e)}$ to be $\clauseFwd$ domain-restricted to $\Below{(p,e)}$ and $\clauseBwd{p}$ domain-restricted to $\Below{\sigma}$ respectively. Then:
+   Suppose $p, e \clauseFwd \sigma$. Define $\clauseFwdF{\clause{p}{e}}: \Below{(p,e)} \to \Below{\sigma}$ and $\clauseBwdF{\clause{p}{e}}: \Below{\sigma} \to \Below{(p,e)}$ to be $\clauseFwd$ domain-restricted to $\Below{(p,e)}$ and $\clauseBwd{p}$ domain-restricted to $\Below{\sigma}$ respectively.
 \end{definition}
 
 \begin{lemma}[Galois connection for clause]
@@ -29,7 +29,7 @@
 \end{lemma}
 
 \begin{definition}
-   Suppose $\vec{c} \clauseFwd \sigma$. Define $\desugarClausesFwdF{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}$ and $\desugarClausesBwdF{\vec{c}}: \Below{\sigma} \to \Below{\vec{c}}$ to be $\clauseFwd$ domain-restricted to $\Below{\vec{c}}$ and $\clauseBwd{\vec{c}}$ domain-restricted to $\Below{\sigma}$ respectively. Then:
+   Suppose $\vec{c} \clauseFwd \sigma$. Define $\desugarClausesFwdF{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}$ and $\desugarClausesBwdF{\vec{c}}: \Below{\sigma} \to \Below{\vec{c}}$ to be $\clauseFwd$ domain-restricted to $\Below{\vec{c}}$ and $\clauseBwd{\vec{c}}$ domain-restricted to $\Below{\sigma}$ respectively.
 \end{definition}
 
 \begin{lemma}[Galois connection for clauses]
@@ -42,7 +42,11 @@
   \end{enumerate}
 \end{lemma}
 
-\begin{lemma}[Galois connection for list generator]
+\begin{definition}
+   Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Define $\totaliseFwdF{\kappa,\alpha}: \Below{(\kappa,\alpha)} \to \Below{\kappa'}$ and $\totaliseBwdF{\kappa,\alpha}: \Below{\kappa'} \to \Below{(\kappa,\alpha)}$ to be $\totaliseFwdR{\vec{\pi}}$ domain-restricted to $\Below{(\kappa,\alpha)}$ and $\totaliseBwdR{\vec{\pi}}$ domain-restricted to $\Below{\kappa'}$ respectively.
+\end{definition}
+
+\begin{lemma}[Galois connection for totalise]
   \label{lem:aux:list-gen:gc}
   \item
   Suppose $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:

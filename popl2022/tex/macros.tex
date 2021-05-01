@@ -305,11 +305,13 @@
 \newcommand*{\totalisebwdarrow}{\searrow}
 \newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
 \newcommand*{\totaliseGeq}[3]{{#1},{#2} \totalisefwdarrow\geq {#3}}
-\newcommand*{\totalisebwd}[4]{{#1} \sub{\totalisebwdarrow}{#2} {#3}, {#4}}
+\newcommand*{\totaliseBwdR}[1]{\sub{\totalisebwdarrow}{#1}}
+\newcommand*{\totalisebwd}[4]{{#1} \totaliseBwdR{#2} {#3}, {#4}}
 \newcommand*{\totaliseFwdF}[1]{\fwdF{totalise}{#1}}
 \newcommand*{\totaliseBwdF}[1]{\bwdF{totalise}{#1}}
 \newcommand*{\totaliseGC}[1]{\GC{totalise}{#1}}
-\newcommand*{\totaliseFwd}[4]{{#1},{#2} \sub{\totalisefwdarrow}{\hspace{-0.12em}#3} {#4}}
+\newcommand*{\totaliseFwdR}[1]{\sub{\totalisefwdarrow}{\hspace{-0.12em}#1}}
+\newcommand*{\totaliseFwd}[4]{{#1},{#2} \totaliseFwdR{#3} {#4}}
 
 \newcommand*{\listGenFwd}{\mathrel{R}}
 \newcommand*{\listGenBwd}[1]{\mathrel{\sub{S}{#1}}}
