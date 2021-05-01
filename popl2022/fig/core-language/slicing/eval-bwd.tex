@@ -48,10 +48,14 @@
       lab={\ruleName{$\evalBwdS$-int}}
    ]
    {
-      v \eq \annInt{n}{\alpha}
+      \strut
    }
    {
-      \evalBwd{v}{\trInt{n}{\rho}}{\hole_{\rho}}{\annInt{n}{\alpha}}{\alpha}
+      \evalBwd{\annInt{n}{\alpha}}
+              {\trInt{n}{\rho}}
+              {\hole_{\rho}}
+              {\annInt{n}{\alpha}}
+              {\alpha}
    }
    %
    \and
@@ -60,10 +64,14 @@
       lab={\ruleName{$\evalBwdS$-nil}}
    ]
    {
-      v \eq \annNil{\alpha}
+      \strut
    }
    {
-      \evalBwd{v}{\trNil{\rho}}{\hole_{\rho}}{\annNil{\alpha}}{\alpha}
+      \evalBwd{\annNil{\alpha}}
+              {\trNil{\rho}}
+              {\hole_{\rho}}
+              {\annNil{\alpha}}
+              {\alpha}
    }
    %
    \and
@@ -72,17 +80,15 @@
       lab={\ruleName{$\evalBwdS$-cons}}
    ]
    {
-      v \eq \annCons{v_1}{v_2}{\beta}
+      \evalBwd{v}{T}{\rho}{e}{\alpha}
       \\
-      \evalBwd{v_1}{T}{\rho}{e_1}{\alpha}
-      \\
-      \evalBwd{v_2}{U}{\rho'}{e_2}{\alpha'}
+      \evalBwd{v'}{U}{\rho'}{e'}{\alpha'}
    }
    {
-      \evalBwd{v}
+      \evalBwd{\annCons{v}{v'}{\beta}}
               {\trCons{T}{U}}
               {\rho \join \rho'}
-              {\annCons{e_1}{e_2}{\beta}}
+              {\annCons{e}{e'}{\beta}}
               {\beta \join \alpha \join \alpha'}
    }
    %
@@ -92,8 +98,6 @@
       lab={\ruleName{$\evalBwdS$-vector}}
    ]
    {
-      v \eq \annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}
-      \\
       \evalBwd{u_{i}}
               {U_{i}}
               {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
@@ -109,7 +113,7 @@
               {\alpha^\twoPrime}
    }
    {
-      \evalBwd{v}
+      \evalBwd{\annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}}
               {\trVec{\vec{U}}{x}{T}{j}}
               {\bigjoin\vec{\rho} \join \rho'}
               {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}}
