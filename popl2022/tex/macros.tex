@@ -194,11 +194,11 @@
 \newcommand{\eq}{\doteq}
 
 % Environments.
-\newcommand*{\envLookupS}{\mathrel{\filledtriangleright}}
+\newcommand*{\envLookupS}{\in}
 \newcommand*{\envLookupR}{\envLookupS}
-\newcommand*{\envLookupBwdS}{\filledtriangleleft}
+\newcommand*{\envLookupBwdS}{\ni}
 \newcommand*{\envLookupBwdR}[1]{\mathrel{\sub{\envLookupBwdS}{#1}}}
-\newcommand*{\envLookup}[3]{{#1}\envLookupR\bind{#2}{#3}}
+\newcommand*{\envLookup}[3]{\bind{#2}{#3}\envLookupR{#1}}
 \newcommand*{\envLookupFwdF}[1]{\fwdF{lookup}{#1}}
 \newcommand*{\envLookupBwdF}[1]{\bwdF{lookup}{#1}}
 \newcommand*{\envLookupGC}[1]{\GC{lookup}{#1}}

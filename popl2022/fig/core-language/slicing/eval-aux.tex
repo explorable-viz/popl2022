@@ -1,6 +1,6 @@
 \begin{figure}[H]
 
-\flushleft \shadebox{$\envLookupBwd{\rho}{\rho',x}{v}$}
+\flushleft \shadebox{$\envLookupBwd{\rho'}{\rho,x}{v}$}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\envLookupBwdS$-head}}
@@ -21,11 +21,11 @@
       right={$x \neq y$}
    ]
    {
-      \envLookupBwd{\rho}{\rho',x}{u}
+      \envLookupBwd{\rho'}{\rho,x}{u}
    }
    {
-      \envLookupBwd{\rho \concat \bind{y}{\hole}}
-                   {\rho' \concat \bind{y}{v},x}
+      \envLookupBwd{\rho' \concat \bind{y}{\hole}}
+                   {\rho \concat \bind{y}{v},x}
                    {u}
    }
 \end{smathpar}

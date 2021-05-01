@@ -2,12 +2,11 @@
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-var}}
+      lab={\ruleName{$\evalFwdS$-var}},
+      right={$\envLookup{\rho}{x}{v}$}
    ]
    {
       e \eq \exVar{x}
-      \\
-      \envLookup{\rho}{x}{v}
    }
    {
       \evalFwd{\rho}{e}{\alpha}{\trVar{x}{\Gamma}}{v}
