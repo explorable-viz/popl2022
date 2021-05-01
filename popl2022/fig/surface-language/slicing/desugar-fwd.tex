@@ -71,7 +71,7 @@
       lab={\ruleName{$\desugarFwdR$-let-rec}}
    ]
    {
-      \vec{c_i} \desugarClauseFwd \sigma_i
+      \vec{c_i} \clausesFwdR \sigma_i
       \quad
       (\forall i \numleq j)
       \\
@@ -105,7 +105,7 @@
    {
       s \desugarFwdR e
       \\
-      \vec{c} \desugarClauseFwd \sigma
+      \vec{c} \clausesFwdR \sigma
    }
    {
       \exMatch{s}{\vec{c}}

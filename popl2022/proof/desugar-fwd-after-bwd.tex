@@ -244,7 +244,7 @@ Induction on the $\desugarBwdR{}$ derivation.
          {
             e \eq \exLetRecMutual{\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}}}{e_1}
             \\
-            \sigma_i  \desugarClauseBwd{\vec{c_i}} \vec{c_i}'
+            \sigma_i \clausesBwdR{\vec{c_i}} \vec{c_i}'
             \quad
             (\forall i \numleq j)
             \\
@@ -456,7 +456,7 @@ Induction on the $\desugarBwdR{}$ derivation.
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma \desugarClauseBwd{\vec{c}} \vec{c}'
+            \sigma \clausesBwdR{\vec{c}} \vec{c}'
             \\
             e_1 \desugarBwdR{s_1} s_{1}'
          }
@@ -520,7 +520,7 @@ Induction on the $\desugarBwdR{}$ derivation.
          {
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
-            \sigma \desugarClauseBwd{\clauseUncurried{p}{s_2}} s_2'
+            \sigma \clausesBwdR{\clauseUncurried{p}{s_2}} s_2'
             \\
             e_1 \desugarBwdR{s_1} s_1'
          }
@@ -777,7 +777,7 @@ Induction on the $\desugarBwdR{}$ derivation.
             e \eq \exApp{(\exLambda{\sigma})}{e_1}
             \\
             \sigma
-            \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}
+            \clausesBwdR{\clauseUncurried{p}{\exListComp{s_{2}}{\vec{q}}}}
             \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\alpha}}
             \\
             e_{1} \desugarBwdR{s_{1}} s_{1}'
@@ -852,7 +852,7 @@ Induction on the $\desugarBwdR{}$ derivation.
             \totalisebwd{\sigma_1}{p}{\sigma_2}{\beta}
             \\
             \sigma_{2}
-            \desugarClauseBwd{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
+            \clausesBwdR{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
             \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}}
          }
          {
@@ -867,7 +867,7 @@ Induction on the $\desugarBwdR{}$ derivation.
    \\
    &
    \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta'}}
-   \desugarClauseFwd
+   \clausesFwdR
    \sigma_{2}^\dagger
    \quad
    (\exists \sigma_2^\dagger)
@@ -877,7 +877,7 @@ Induction on the $\desugarBwdR{}$ derivation.
    \\
    &
    \clauseUncurried{p}{\annot{\exListComp{s_{2}'}{\vec{q}'}}{\beta \join \beta'}}
-   \desugarClauseFwd \sigma_{2}'
+   \clausesFwdR \sigma_{2}'
    \geq
    \sigma_{2}^\dagger
    \quad
