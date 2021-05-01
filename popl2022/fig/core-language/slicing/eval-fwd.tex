@@ -127,13 +127,14 @@
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
    {
-      e \eq \exVecLen{e'}
-      \\
-      \evalFwdEq{\rho}{e'}{\alpha}{T}
+      \evalFwdEq{\rho}{e}{\alpha}{T}
                 {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trVecLen{T}{j}}
+      \evalFwd{\rho}
+              {\exVecLen{e}}
+              {\alpha}
+              {\trVecLen{T}{j}}
               {\annInt{j}{\alpha'}}
    }
    %
