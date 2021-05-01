@@ -34,11 +34,11 @@
 \input{fig/core-language/slicing/match-bwd}
 
 \begin{lemma}[Determinism of pattern-matching]
-   Suppose $v, \sigma \match \rho, \kappa$ and $v', \sigma' \match \rho', \kappa'$. If $v \eq v'$ and $\sigma \eq \sigma'$ then $\rho \eq \rho'$ and $\kappa \eq \kappa'$.
+   Suppose $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \match \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
+   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
 \end{definition}
 
 \begin{theorem}[Galois connection for pattern-matching]
