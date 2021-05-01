@@ -3,13 +3,13 @@
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\evalBwdS$-var}},
-      right={$\envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}$}
+      right={$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}
    ]
    {
       \strut
    }
    {
-      \evalBwd{v}{\trVar{x}{\Gamma}}{\rho}{\exVar{x}}{\FF}
+      \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\FF}
    }
    %
    \and
@@ -92,7 +92,7 @@
    }
    {
       \evalBwd{v}
-              {\trVec{U_{i}}{x}{i}{T}{j}}
+              {\trVec{U_{i}}{x}{T}{j}}
               {\bigjoin\vec{\rho} \join \rho'}
               {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}}
               {\alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime}
