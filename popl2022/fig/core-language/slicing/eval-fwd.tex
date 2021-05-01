@@ -2,44 +2,70 @@
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\evalFwdS$-eq}}
+   ]
+   {
+      e \eq e'
+      \\
+      \evalFwd{\rho}{e'}{\alpha}{T}{v}
+   }
+   {
+      \evalFwd{\rho}{e}{\alpha}{T}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\evalFwdS$-var}},
       right={$\envLookup{\rho}{x}{v}$}
    ]
    {
-      e \eq \exVar{x}
+      \strut
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trVar{x}{\rho}}{v}
+      \evalFwd{\rho}{\exVar{x}}{\alpha}{\trVar{x}{\rho}}{v}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
    {
-      e \eq \exLambda{\sigma}
+      \strut
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trLambda{\sigma'}}{\exClosure{\rho}{\seqEmpty}{\sigma}}
+      \evalFwd{\rho}
+              {\exLambda{\sigma}}
+              {\alpha}
+              {\trLambda{\sigma'}}
+              {\exClosure{\rho}{\seqEmpty}{\sigma}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
    {
-      e \eq \annInt{n}{\alpha}
+      \strut
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trInt{n}{\rho}}{\annInt{n}{\alpha \meet \alpha'}}
+      \evalFwd{\rho}
+              {\annInt{n}{\alpha}}
+              {\alpha'}
+              {\trInt{n}{\rho}}
+              {\annInt{n}{\alpha \meet \alpha'}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
    {
-      e \eq \annNil{\alpha}
+      \strut
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trNil{\rho}}{\annNil{\alpha \meet \alpha'}}
+      \evalFwd{\rho}
+              {\annNil{\alpha}}
+              {\alpha'}
+              {\trNil{\rho}}
+              {\annNil{\alpha \meet \alpha'}}
    }
    %
    \and
@@ -48,14 +74,16 @@
       lab={\ruleName{$\evalFwdS$-cons}},
    ]
    {
-      e \eq \annCons{e_1}{e_2}{\alpha}
-      \\
       \evalFwd{\rho}{e_1}{\alpha'}{T}{v_1}
       \\
       \evalFwd{\rho}{e_2}{\alpha'}{U}{v_2}
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trCons{T}{U}}{\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
+      \evalFwd{\rho}
+              {\annCons{e_1}{e_2}{\alpha}}
+              {\alpha'}
+              {\trCons{T}{U}}
+              {\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
    }
    %
    \and
