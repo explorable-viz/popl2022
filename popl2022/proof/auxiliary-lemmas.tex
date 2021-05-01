@@ -28,9 +28,13 @@
   \end{enumerate}
 \end{lemma}
 
+\begin{definition}
+   Suppose $\vec{c} \clauseFwd \sigma$. Define $\desugarClausesFwdF{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}$ and $\desugarClausesBwdF{\vec{c}}: \Below{\sigma} \to \Below{\vec{c}}$ to be $\clauseFwd$ domain-restricted to $\Below{\vec{c}}$ and $\clauseBwd{\vec{c}}$ domain-restricted to $\Below{\sigma}$ respectively. Then:
+\end{definition}
+
 \begin{lemma}[Galois connection for clauses]
   \label{lem:aux:clauses:gc}
-  Suppose $\vec{c} \dfwdarrow \sigma$. Then:
+  Suppose $\vec{c} \clauseFwd \sigma$. Then:
   \begin{enumerate}
      \item $\desugarClausesFwdF{\vec{c}}$ and $\desugarClausesBwdF{\vec{c}}$ are monotonic.
      \item $\desugarClausesFwdF{\vec{c}}(\desugarClausesBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
@@ -41,10 +45,6 @@
 \begin{lemma}[Galois connection for list generator]
   \label{lem:aux:list-gen:gc}
   \item
-  \begin{itemize}
-    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ with $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
-    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ with $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \clauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
-  \end{itemize}
   Suppose $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
   \begin{enumerate}
      \item $\listGenFwd$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
