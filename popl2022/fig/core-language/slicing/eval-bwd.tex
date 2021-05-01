@@ -2,10 +2,11 @@
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-var}}
+      lab={\ruleName{$\evalBwdS$-var}},
+      right={$\envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}$}
    ]
    {
-      \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
+      \strut
    }
    {
       \evalBwd{v}{\trVar{x}{\Gamma}}{\rho}{\exVar{x}}{\FF}
