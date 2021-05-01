@@ -841,7 +841,7 @@
          {
             \clauseUncurried{p}{\annot{\exListComp{s_{2}}{\vec{q}}}{\alpha}} \desugarFwdR \sigma_{1}
             \\
-            \totalise{\sigma_{1}}{\alpha}{p}{\sigma_{2}}
+            \totaliseFwd{\sigma_{1}}{\alpha}{p}{\sigma_{2}}
             \\
             s_{1} \desugarFwdR e_{1}
          }
@@ -861,7 +861,7 @@
    \notag
    \\
    &
-   \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta}\text{ with } \beta \leq \alpha
+   \totaliseBwd{\sigma_2}{p}{\sigma_1'}{\beta}\text{ with } \beta \leq \alpha
    \quad
    (\exists \sigma_1', \beta)
    &
@@ -891,7 +891,7 @@
             \\
             e_{1} \desugarBwdR{s_{1}} s_{1}'
             \\
-            \totalisebwd{\sigma_2}{p}{\sigma_1'}{\beta}
+            \totaliseBwd{\sigma_2}{p}{\sigma_1'}{\beta}
             \\
             \sigma_{1}'
             \clausesBwdR{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}

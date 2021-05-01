@@ -849,7 +849,7 @@ Induction on the $\desugarBwdR{}$ derivation.
             \\
             e_{1} \desugarBwdR{s_{1}} s_{1}'
             \\
-            \totalisebwd{\sigma_1}{p}{\sigma_2}{\beta}
+            \totaliseBwd{\sigma_1}{p}{\sigma_2}{\beta}
             \\
             \sigma_{2}
             \clausesBwdR{\clauseUncurried{p}{\exListComp{s_2}{\vec{q}}}}
@@ -893,7 +893,7 @@ Induction on the $\desugarBwdR{}$ derivation.
    \notag
    \\
    &
-   \totalise{\sigma_{2}'}{\beta \join \beta'}{p}{\sigma_{1}'} \geq \sigma_{1}
+   \totaliseFwd{\sigma_{2}'}{\beta \join \beta'}{p}{\sigma_{1}'} \geq \sigma_{1}
    \quad
    (\exists \sigma_{1}')
    &
@@ -918,7 +918,7 @@ Induction on the $\desugarBwdR{}$ derivation.
             \desugarFwdR
             \sigma_{2}'
             \\
-            \totalise{\sigma_{2}'}{\beta \join \beta'}{p}{\sigma_{1}'}
+            \totaliseFwd{\sigma_{2}'}{\beta \join \beta'}{p}{\sigma_{1}'}
             \\
             s_{1}' \desugarFwdR e_{1}'
          }
