@@ -90,17 +90,18 @@
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
    {
-      e \eq \annVec{e_1}{x}{e_2}{\alpha}
-      \\
-      \evalFwdEq{\rho}{e_2}{\alpha'}{T}
+      \evalFwdEq{\rho}{e'}{\alpha'}{T}
                 {\annInt{j}{\beta}}
       \\
-      \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e_1}{\alpha'}{U_{i}}{v_{i}}
+      \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e}{\alpha'}{U_{i}}{v_{i}}
       \quad
       (\forall i \numleq j)
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trVec{\vec{U}}{x}{T}{j}}
+      \evalFwd{\rho}
+              {\annVec{e}{x}{e'}{\alpha}}
+              {\alpha'}
+              {\trVec{\vec{U}}{x}{T}{j}}
               {\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
    }
    %
@@ -111,13 +112,15 @@
       right={$i \numleq j$}
    ]
    {
-      e \eq \exVecLookup{e_1}{e_2}
-      \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}
+      \evalFwdEq{\rho}{e}{\alpha}{T}
                 {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i}}
+      \evalFwd{\rho}
+              {\exVecLookup{e}{e'}}
+              {\alpha}
+              {\trVecLookup{T}{j}{U}{i}}
+              {v_{i}}
    }
    %
    \and
