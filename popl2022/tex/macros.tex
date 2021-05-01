@@ -254,16 +254,16 @@
 \newcommand*{\desugarS}{\twoheadrightarrow}
 \newcommand*{\desugarFwdS}{\mathrel{{\rotatebox[origin=c]{45}{$\desugarS$}}}}
 \newcommand*{\desugarBwdS}{\mathrel{{\rotatebox[origin=c]{-45}{$\desugarS$}}}}
-
 \newcommand*{\desugarFwdR}{\desugarFwdS}
 \newcommand*{\desugarBwdR}[1]{\sub{\desugarBwdS}{#1}}
-\newcommand*{\desugarN}{dsg}
+\newcommand*{\desugarN}{desug}
 \newcommand*{\desugarFwdF}[1]{\fwdF{\desugarN}{#1}\hspace{-0.05em}}
 \newcommand*{\desugarBwdF}[1]{\bwdF{\desugarN}{#1}\hspace{-0.11em}}
 \newcommand*{\desugarGC}[1]{\GC{\desugarN}{#1}\hspace{-0.11em}}
 
-\newcommand*{\desugarListRestFwdF}[1]{\fwdF{desug}{#1}}
-\newcommand*{\desugarListRestBwdF}[1]{\bwdF{desug}{#1}}
+\newcommand*{\listRestN}{\desugarN}
+\newcommand*{\listRestFwdF}[1]{\fwdF{\listRestN}{#1}}
+\newcommand*{\listRestBwdF}[1]{\bwdF{\listRestN}{#1}}
 
 \newcommand*{\desugarClauseFwd}{\desugarFwdR}
 \newcommand*{\desugarClauseBwd}[1]{\desugarBwdR{#1}}

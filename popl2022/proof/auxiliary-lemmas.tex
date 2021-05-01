@@ -1,16 +1,16 @@
 \subsection{Auxiliary lemmas}
 
 \begin{definition}
-   Suppose $r \desugarFwdR e$. Define $\desugarListRestFwdF{r}: \Below{r} \to \Below{e}$ and $\desugarListRestBwdF{r}: \Below{e} \to \Below{r}$ to be $\desugarFwdR$ domain-restricted to $\Below{r}$ and $\desugarBwdR{r}$ domain-restricted to $\Below{e}$ respectively.
+   Suppose $r \desugarFwdR e$. Define $\listRestFwdF{r}: \Below{r} \to \Below{e}$ and $\listRestBwdF{r}: \Below{e} \to \Below{r}$ to be $\desugarFwdR$ domain-restricted to $\Below{r}$ and $\desugarBwdR{r}$ domain-restricted to $\Below{e}$ respectively.
 \end{definition}
 
 \begin{lemma}[Galois connection for desugaring list rest]
   \label{lem:aux:desugarlistrest:gc}
   Suppose $r \desugarFwdR e$. Then:
   \begin{enumerate}
-     \item $\desugarListRestFwdF{r}$ and $\desugarListRestBwdF{r}$ are monotonic.
-     \item $\desugarListRestFwdF{r}(\desugarListRestBwdF{r}(e')) \geq e'$.
-     \item $\desugarListRestBwdF{r}(\desugarListRestFwdF{r}(r')) \leq r'$.
+     \item $\listRestFwdF{r}$ and $\listRestBwdF{r}$ are monotonic.
+     \item $\listRestFwdF{r}(\listRestBwdF{r}(e')) \geq e'$.
+     \item $\listRestBwdF{r}(\listRestFwdF{r}(r')) \leq r'$.
   \end{enumerate}
 \end{lemma}
 
