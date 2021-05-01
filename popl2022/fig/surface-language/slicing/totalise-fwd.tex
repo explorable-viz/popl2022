@@ -8,7 +8,7 @@
    \strut
 }
 {
-   \explVal{\seqEmpty}{e, \alpha \totalisefwdarrow e}
+   \totaliseFwd{e}{\alpha}{\seqEmpty}{e}
 }
 \and
 %
@@ -16,10 +16,13 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-var}}
 ]
 {
-   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
+   \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
 }
 {
-   \explVal{\pattVar{x} \concat \vec{\pi}}{\elimVar{x}{\kappa}, \alpha \totalisefwdarrow \elimVar{x}{\kappa'}}
+   \totaliseFwd{\elimVar{x}{\kappa}}
+               {\alpha}
+               {\pattVar{x} \concat \vec{\pi}}
+               {\elimVar{x}{\kappa'}}
 }
 \and
 %
@@ -27,11 +30,13 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-true}}
 ]
 {
-   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
+   \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
 }
 {
-   \explVal{\pattTrue \concat \vec{\pi}}
-           {\elimBoolTrue{\kappa}, \alpha \totalisefwdarrow \elimBool{\kappa'}{\annNil{\alpha}}}
+   \totaliseFwd{\elimBoolTrue{\kappa}}
+               {\alpha}
+               {\pattTrue \concat \vec{\pi}}
+               {\elimBool{\kappa'}{\annNil{\alpha}}}
 }
 \and
 %
@@ -39,11 +44,13 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-false}}
 ]
 {
-   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
+   \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
 }
 {
-   \explVal{\pattFalse \concat \vec{\pi}}
-           {\elimBoolFalse{\kappa}, \alpha \totalisefwdarrow \elimBool{\annNil{\alpha}}{\kappa'}}
+   \totaliseFwd{\elimBoolFalse{\kappa}}
+               {\alpha}
+               {\pattFalse \concat \vec{\pi}}
+               {\elimBool{\annNil{\alpha}}{\kappa'}}
 }
 \and
 %
@@ -51,10 +58,13 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-prod}}
 ]
 {
-   \explVal{p \concat p' \concat \vec{\pi}}{\sigma, \alpha \totalisefwdarrow \sigma'}
+   \totaliseFwd{\sigma}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma'}
 }
 {
-   \explVal{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma}, \alpha \totalisefwdarrow \elimProd{\sigma'}}
+   \totaliseFwd{\elimProd{\sigma}}
+               {\alpha}
+               {\pattPair{p}{p'} \concat \vec{\pi}}
+               {\elimProd{\sigma'}}
 }
 \and
 %
@@ -62,11 +72,13 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-nil}}
 ]
 {
-   \explVal{\vec{\pi}}{\kappa, \alpha \totalisefwdarrow \kappa'}
+   \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
 }
 {
-   \explVal{\pattNil \concat \vec{\pi}}
-           {\elimNil{\kappa}, \alpha \totalisefwdarrow \elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha}}}}}
+   \totaliseFwd{\elimNil{\kappa}}
+               {\alpha}
+               {\pattNil \concat \vec{\pi}}
+               {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha}}}}}
 }
 \and
 %
@@ -74,11 +86,13 @@
    lab={\ruleName{$\totalisefwdarrow$-elim-cons}}
 ]
 {
-   \explVal{p \concat p' \concat \vec{\pi}}{\sigma, \alpha \totalisefwdarrow \sigma'}
+   \totaliseFwd{\sigma}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma'}
 }
 {
-   \explVal{(\pattCons{p}{p'}) \concat \vec{\pi}}
-           {\elimCons{\sigma}, \alpha \totalisefwdarrow \elimList{\annNil{\alpha}}{\sigma'}}
+   \totaliseFwd{\elimCons{\sigma}}
+               {\alpha}
+               {(\pattCons{p}{p'}) \concat \vec{\pi}}
+               {\elimList{\annNil{\alpha}}{\sigma'}}
 }
 \end{smathpar}
 \caption{Totalise -- forward slicing}
