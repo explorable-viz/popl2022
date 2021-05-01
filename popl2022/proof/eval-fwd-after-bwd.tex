@@ -854,7 +854,7 @@ Induction on the $\evalBwdS$ derivation.
         \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
      }
      {
-        \evalBwd{v}{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
+        \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
      }
    \end{smathpar}
    }
@@ -961,7 +961,7 @@ Induction on the $\evalBwdS$ derivation.
         \evalFwd{\rho^\dagger \concat \rho_2' \concat \rho_3'}{e'}{\beta'}{T'}{u}
      }
      {
-        \evalFwd{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}{\trApp{T}{U}{\matchPlug{w}{T'}}}{u}
+        \evalFwd{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}{\trApp{T}{U}{w}{T'}}{u}
      }
    \end{smathpar}
    }
