@@ -236,17 +236,17 @@
 \newcommand*{\evalBwdF}[1]{\bwdF{\evalN}{#1}}
 
 \newcommand*{\matchS}{\rightsquigarrow}
+\newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\matchS$}}}
+\newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\matchS$}}}
 \newcommand*{\matchR}{\matchS}
-\newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
-\newcommand*{\matchFwd}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3} #4, #5, #6}
-\newcommand*{\matchFwdGeq}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3}\geq #4, #5, #6}
+\newcommand*{\matchFwdR}[1]{\sub{\matchFwdS}{\hspace{-0.2em}#1}}
+\newcommand*{\matchBwdR}[1]{\sub{\matchBwdS}{#1}}
+\newcommand*{\matchFwd}[6]{#1, #2 \matchFwdR{#3} #4, #5, #6}
+\newcommand*{\matchFwdGeq}[6]{#1, #2 \matchFwdR{#3}\geq #4, #5, #6}
 \newcommand*{\matchBwd}[6]{#1, #2, #3 \sub{\matchBwdS}{#4} #5, #6}
 \newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \sub{\matchBwdS}{#4}\leq #5, #6}
-\newcommand*{\matchFwdR}[1]{\matchFwdS_{\hspace{-0.2em}#1}}
-\newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
 \newcommand*{\matchFwdF}[1]{\fwdF{match}{#1}}
 \newcommand*{\matchBwdF}[1]{\bwdF{match}{#1}}
-\newcommand*{\matchBwdR}[1]{\matchBwdS_{#1}}
 \newcommand*{\matchGC}[1]{\GC{match}{#1}}
 
 \newcommand*{\bind}[2]{#1{:}\;#2}
