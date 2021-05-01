@@ -287,9 +287,9 @@
 \newcommand*{\totaliseFwd}[4]{{#1},{#2} \totaliseFwdR{#3} {#4}}
 \newcommand*{\totaliseBwd}[4]{{#1} \totaliseBwdR{#2} {#3}, {#4}}
 \newcommand*{\totaliseGeq}[4]{{#1},{#2} \totaliseFwdR{#3}\geq {#4}}
-\newcommand*{\totaliseFwdF}[1]{\fwdF{totalise}{#1}}
-\newcommand*{\totaliseBwdF}[1]{\bwdF{totalise}{#1}}
-\newcommand*{\totaliseGC}[1]{\GC{totalise}{#1}}
+\newcommand*{\totaliseN}{totalise}
+\newcommand*{\totaliseFwdF}[1]{\fwdF{\totaliseN}{#1}}
+\newcommand*{\totaliseBwdF}[1]{\bwdF{\totaliseN}{#1}}
 
 \newcommand*{\bind}[2]{#1{:}\;#2}
 \renewcommand*{\vec}[1]{\vv{#1}}
