@@ -243,48 +243,12 @@
 \newcommand*{\matchBwdR}[1]{\sub{\matchBwdS}{#1}}
 \newcommand*{\matchFwd}[6]{#1, #2 \matchFwdR{#3} #4, #5, #6}
 \newcommand*{\matchFwdGeq}[6]{#1, #2 \matchFwdR{#3}\geq #4, #5, #6}
-\newcommand*{\matchBwd}[6]{#1, #2, #3 \sub{\matchBwdS}{#4} #5, #6}
-\newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \sub{\matchBwdS}{#4}\leq #5, #6}
-\newcommand*{\matchFwdF}[1]{\fwdF{match}{#1}}
-\newcommand*{\matchBwdF}[1]{\bwdF{match}{#1}}
-\newcommand*{\matchGC}[1]{\GC{match}{#1}}
-
-\newcommand*{\bind}[2]{#1{:}\;#2}
-\renewcommand*{\vec}[1]{\vv{#1}}
-\newcommand*{\seq}[1]{\vv{#1}}
-\newcommand*{\seqRange}[2]{\seqRangeOp{#1}{#2}{\concat}}
-\newcommand*{\setRange}[2]{\set{{#1 .. {#2}}}}
-\newcommand*{\seqRangeOp}[3]{{#1} #3 .. #3 {#2}}
-
-\newcommand*{\arity}[1]{\mathsf{arity}(#1)}
-\newcommand*{\length}[1]{|#1|}
-
-% Traces.
-\newcommand*{\trApp}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
-\newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
-\newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
-\newcommand*{\trCons}[2]{\exCons{#1}{#2}}
-\newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
-\newcommand*{\trInt}[2]{\sub{\exInt{#1}}{#2}}
-\newcommand*{\trLambda}[1]{\exLambda{#1}}
-\newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
-\newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
-\newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
-\newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
-\newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
-\newcommand*{\trNil}[1]{\sub{\exNil}{#1}}
-\newcommand*{\trOp}[2]{\sub{\exOp{#1}}{#2}}
-\newcommand*{\trPair}[2]{\exPair{#1}{#2}}
-\newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
-\newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
-\newcommand*{\trVar}[2]{\sub{#1}{#2}}
-\newcommand*{\trVec}[4]{\exVec{#1}{#2}{\sub{#3}{#4}}}
-\newcommand*{\trVecLookup}[4]{\exVecLookup{\sub{#1}{#2}}{\sub{#3}{#4}}}
-\newcommand*{\trVecLen}[2]{\exVecLen{\sub{#1}{#2}}}
-
-\newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{\textcolor{gray}{::}}{#2}}
-
-\newcommand*{\compRel}[2]{\mathrel{{#1}\hspace{-0.2em}{#2}}}
+\newcommand*{\matchBwd}[6]{#1, #2, #3 \matchBwdR{#4} #5, #6}
+\newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \matchBwdR{#4}\leq #5, #6}
+\newcommand*{\matchN}{match}
+\newcommand*{\matchFwdF}[1]{\fwdF{\matchN}{#1}}
+\newcommand*{\matchBwdF}[1]{\bwdF{\matchN}{#1}}
+\newcommand*{\matchGC}[1]{\GC{\matchN}{#1}}
 
 % Desugaring.
 \newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
@@ -330,6 +294,43 @@
 \newcommand*{\listGenBwd}[1]{\mathrel{\sub{S}{#1}}}
 \newcommand*{\listGenFwdF}[1]{\mathsf{listGenFwd}_{#1}}
 \newcommand*{\listGenBwdF}[1]{\mathsf{listGenBwd}_{#1}}
+
+\newcommand*{\bind}[2]{#1{:}\;#2}
+\renewcommand*{\vec}[1]{\vv{#1}}
+\newcommand*{\seq}[1]{\vv{#1}}
+\newcommand*{\seqRange}[2]{\seqRangeOp{#1}{#2}{\concat}}
+\newcommand*{\setRange}[2]{\set{{#1 .. {#2}}}}
+\newcommand*{\seqRangeOp}[3]{{#1} #3 .. #3 {#2}}
+
+\newcommand*{\arity}[1]{\mathsf{arity}(#1)}
+\newcommand*{\length}[1]{|#1|}
+
+% Traces.
+\newcommand*{\trApp}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
+\newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
+\newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
+\newcommand*{\trCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
+\newcommand*{\trInt}[2]{\sub{\exInt{#1}}{#2}}
+\newcommand*{\trLambda}[1]{\exLambda{#1}}
+\newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
+\newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
+\newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
+\newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
+\newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
+\newcommand*{\trNil}[1]{\sub{\exNil}{#1}}
+\newcommand*{\trOp}[2]{\sub{\exOp{#1}}{#2}}
+\newcommand*{\trPair}[2]{\exPair{#1}{#2}}
+\newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
+\newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
+\newcommand*{\trVar}[2]{\sub{#1}{#2}}
+\newcommand*{\trVec}[4]{\exVec{#1}{#2}{\sub{#3}{#4}}}
+\newcommand*{\trVecLookup}[4]{\exVecLookup{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trVecLen}[2]{\exVecLen{\sub{#1}{#2}}}
+
+\newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{\textcolor{gray}{::}}{#2}}
+
+\newcommand*{\compRel}[2]{\mathrel{{#1}\hspace{-0.2em}{#2}}}
 
 \newcommand*{\comma}{\textbf{\kw{,}}}
 \newcommand*{\equal}{\mathrel{\kw{=}}}
