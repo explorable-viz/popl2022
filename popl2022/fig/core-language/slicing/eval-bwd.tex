@@ -2,6 +2,20 @@
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\evalBwdS$-eq}}
+   ]
+   {
+      v \eq v'
+      \\
+      \evalBwd{v'}{T}{\rho}{e}{\alpha}
+   }
+   {
+      \evalBwd{v}{T}{\rho}{e}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\evalBwdS$-var}},
       right={$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}
    ]
