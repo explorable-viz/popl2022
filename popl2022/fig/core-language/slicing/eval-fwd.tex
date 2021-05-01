@@ -74,16 +74,16 @@
       lab={\ruleName{$\evalFwdS$-cons}},
    ]
    {
-      \evalFwd{\rho}{e_1}{\alpha'}{T}{v_1}
+      \evalFwd{\rho}{e}{\alpha'}{T}{v}
       \\
-      \evalFwd{\rho}{e_2}{\alpha'}{U}{v_2}
+      \evalFwd{\rho}{e'}{\alpha'}{U}{v'}
    }
    {
       \evalFwd{\rho}
-              {\annCons{e_1}{e_2}{\alpha}}
+              {\annCons{e}{e'}{\alpha}}
               {\alpha'}
               {\trCons{T}{U}}
-              {\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
+              {\annCons{v}{v'}{\alpha \meet \alpha'}}
    }
    %
    \and
