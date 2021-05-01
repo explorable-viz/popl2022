@@ -199,10 +199,17 @@
 
 % Conventions for relational notation:
 % -S            raw symbol for relation
+% -[Fwd/Bwd]S   raw fwd/bwd symbol
 % -[Fwd/Bwd]R   symbol for relation (at a specific index, if it has any)
+% -[Fwd/Bwd]    macro for entire relational judgement
 % -N            raw name for function
 % -[Fwd/Bwd]F   name of corresponding function at a particular index
 % -GC           name of Galois connection at a particular index
+
+% Helpers
+\newcommand*{\GC}[2]{\sub{\mathsf{#1}}{#2}}
+\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\hspace{-0.05em}\smalltriangleright}{\hspace{-0.04em}#2}}
+\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{\hspace{-0.08em}#2}}
 
 % Evaluation.
 \newcommand*{\closeDefsS}{\twoheadrightarrow}
@@ -213,9 +220,10 @@
 \newcommand*{\closeDefsBwdF}[1]{\bwdF{\closeDefsN}{#1}}
 \newcommand*{\closeDefsGC}[1]{\GC{\closeDefsN}{#1}}
 
-\newcommand*{\eval}{\mathrel{\Rightarrow}}
-\newcommand*{\evalFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
-\newcommand*{\evalBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
+\newcommand*{\evalS}{\Rightarrow}
+\newcommand*{\evalFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\evalS$}}}
+\newcommand*{\evalBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\evalS$}}}
+\newcommand*{\evalR}{\evalS}
 \newcommand*{\evalBwdR}[1]{\sub{\evalBwdS}{#1}}
 \newcommand*{\evalFwdR}[1]{\sub{\evalFwdS}{\hspace{-0.2em}#1}}
 \newcommand*{\evalBwd}[5]{#1 \evalBwdR{#2} #3, #4, #5}
@@ -223,8 +231,9 @@
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalFwdR{#4} #5}
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
-\newcommand*{\evalFwdF}[1]{\fwdF{eval}{#1}}
-\newcommand*{\evalBwdF}[1]{\bwdF{eval}{#1}}
+\newcommand*{\evalN}{eval}
+\newcommand*{\evalFwdF}[1]{\fwdF{\evalN}{#1}}
+\newcommand*{\evalBwdF}[1]{\bwdF{\evalN}{#1}}
 
 \newcommand*{\match}{\rightsquigarrow}
 \newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
@@ -238,10 +247,6 @@
 \newcommand*{\matchBwdF}[1]{\bwdF{match}{#1}}
 \newcommand*{\matchBwdR}[1]{\matchBwdS_{#1}}
 \newcommand*{\matchGC}[1]{\GC{match}{#1}}
-
-\newcommand*{\GC}[2]{\sub{\mathsf{#1}}{#2}}
-\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\hspace{-0.05em}\smalltriangleright}{\hspace{-0.04em}#2}}
-\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{\hspace{-0.08em}#2}}
 
 \newcommand*{\bind}[2]{#1{:}\;#2}
 \renewcommand*{\vec}[1]{\vv{#1}}

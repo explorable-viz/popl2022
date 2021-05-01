@@ -1,186 +1,186 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\explVal{T}{\rho, e \eval v}$}
+\flushleft \shadebox{$\explVal{T}{\rho, e \evalR v}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\eval$-var}},
+      lab={\ruleName{$\evalR$-var}},
       right={$\envLookup{\rho}{x}{v}$}
    ]
    {
       \strut
    }
    {
-      \explVal{\trVar{x}{\rho}}{\rho, x \eval v}
+      \explVal{\trVar{x}{\rho}}{\rho, x \evalR v}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-lambda}}]
+   \inferrule*[lab={\ruleName{$\evalR$-lambda}}]
    {
       \strut
    }
    {
       \explVal
          {\trLambda{\sigma}}
-         {\rho, \exLambda{\sigma} \eval \exClosure{\rho}{\seqEmpty}{\sigma}}
+         {\rho, \exLambda{\sigma} \evalR \exClosure{\rho}{\seqEmpty}{\sigma}}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-true}}
+      lab={\ruleName{$\evalR$-true}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trTrue{\rho}}{\rho, \exTrue \eval \exTrue}
+      \explVal{\trTrue{\rho}}{\rho, \exTrue \evalR \exTrue}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-false}}
+      lab={\ruleName{$\evalR$-false}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trFalse{\rho}}{\rho, \exFalse \eval \exFalse}
+      \explVal{\trFalse{\rho}}{\rho, \exFalse \evalR \exFalse}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-int}}
+      lab={\ruleName{$\evalR$-int}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trInt{n}{\rho}}{\rho, \exInt{n} \eval \exInt{n}}
+      \explVal{\trInt{n}{\rho}}{\rho, \exInt{n} \evalR \exInt{n}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-pair}}]
+   \inferrule*[lab={\ruleName{$\evalR$-pair}}]
    {
-      \explVal{T}{\rho, e \eval v}
+      \explVal{T}{\rho, e \evalR v}
       \\
-      \explVal{U}{\rho, e' \eval v'}
+      \explVal{U}{\rho, e' \evalR v'}
    }
    {
-      \explVal{\trPair{T}{U}}{\rho, \exPair{e}{e'} \eval \exPair{v}{v'}}
+      \explVal{\trPair{T}{U}}{\rho, \exPair{e}{e'} \evalR \exPair{v}{v'}}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-nil}}
+      lab={\ruleName{$\evalR$-nil}}
    ]
    {
       \strut
    }
    {
-      \explVal{\trNil{\rho}}{\rho, \exNil \eval \exNil}
+      \explVal{\trNil{\rho}}{\rho, \exNil \evalR \exNil}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-cons}}]
+   \inferrule*[lab={\ruleName{$\evalR$-cons}}]
    {
-      \explVal{T}{\rho, e \eval v}
+      \explVal{T}{\rho, e \evalR v}
       \\
-      \explVal{U}{\rho, e' \eval v'}
+      \explVal{U}{\rho, e' \evalR v'}
    }
    {
-      \explVal{\trCons{T}{U}}{\rho, \exCons{e}{e'} \eval \exCons{v}{v'}}
+      \explVal{\trCons{T}{U}}{\rho, \exCons{e}{e'} \evalR \exCons{v}{v'}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-vector}}]
+   \inferrule*[lab={\ruleName{$\evalR$-vector}}]
    {
-      \explVal{T}{\rho, e' \eval j}
+      \explVal{T}{\rho, e' \evalR j}
       \\
-      \explVal{U_{i}}{\rho \concat \bind{x}{i}, e \eval v_{i}}
+      \explVal{U_{i}}{\rho \concat \bind{x}{i}, e \evalR v_{i}}
       \quad
       (\forall i \numleq j)
    }
    {
       \explVal{\trVec{\vec{U}}{x}{T}{j}}
-              {\rho, \exVec{e}{x}{e'} \eval \exVec{v_{i}}{i}{j}}
+              {\rho, \exVec{e}{x}{e'} \evalR \exVec{v_{i}}{i}{j}}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-vector-lookup}},
+      lab={\ruleName{$\evalR$-vector-lookup}},
       right={$i \numleq j$}
    ]
    {
-      \explVal{T}{\rho, e \eval \exVec{v_{i}}{i}{j}}
+      \explVal{T}{\rho, e \evalR \exVec{v_{i}}{i}{j}}
       \\
-      \explVal{U}{\rho, e' \eval i}
+      \explVal{U}{\rho, e' \evalR i}
    }
    {
-      \explVal{\trVecLookup{T}{j}{U}{i}}{\rho, \exVecLookup{e}{e'} \eval v_{i}}
+      \explVal{\trVecLookup{T}{j}{U}{i}}{\rho, \exVecLookup{e}{e'} \evalR v_{i}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-vector-length}}]
+   \inferrule*[lab={\ruleName{$\evalR$-vector-length}}]
    {
-      \explVal{T}{\rho, e \eval \exVec{v_{i}}{i}{j}}
+      \explVal{T}{\rho, e \evalR \exVec{v_{i}}{i}{j}}
    }
    {
-      \explVal{\trVecLen{T}{j}}{\rho, \exVecLen{e} \eval j}
+      \explVal{\trVecLen{T}{j}}{\rho, \exVecLen{e} \evalR j}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-apply-prim}}
+      lab={\ruleName{$\evalR$-apply-prim}}
    ]
    {
-      \explVal{T}{\rho, e \eval \exPrimOp{\phi}{\vec{n}}}
+      \explVal{T}{\rho, e \evalR \exPrimOp{\phi}{\vec{n}}}
       \\
-      \explVal{U}{\rho, e' \eval \exInt{m}}
+      \explVal{U}{\rho, e' \evalR \exInt{m}}
    }
    {
       \explVal{\trAppPrim{T}{\phi}{\vec{n}}{U}{m}}
-              {\rho, \exApp{e}{e'} \eval \exPrimOp{\phi}{\vec{n} \concat m}}
+              {\rho, \exApp{e}{e'} \evalR \exPrimOp{\phi}{\vec{n} \concat m}}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\eval$-apply}}]
+   \inferrule*[lab={\ruleName{$\evalR$-apply}}]
    {
-      \explVal{T}{\rho, e \eval \exClosure{\rho_1}{h}{\sigma'}}
+      \explVal{T}{\rho, e \evalR \exClosure{\rho_1}{h}{\sigma'}}
       \\
       \rho_1, h \closeDefsR \rho_2
       \\
-      \explVal{U}{\rho, e' \eval v}
+      \explVal{U}{\rho, e' \evalR v}
       \\
       \explVal{w}{v, \sigma' \match \rho_3, e^\twoPrime}
       \\
-      \explVal{T'}{\rho_1 \concat \rho_2 \concat \rho_3, e^\twoPrime \eval v'}
+      \explVal{T'}{\rho_1 \concat \rho_2 \concat \rho_3, e^\twoPrime \evalR v'}
    }
    {
-      \explVal{\trApp{T}{U}{w}{T'}}{\rho, \exApp{e}{e'} \eval v'}
+      \explVal{\trApp{T}{U}{w}{T'}}{\rho, \exApp{e}{e'} \evalR v'}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\eval$-let-rec}}
+      lab={\ruleName{$\evalR$-let-rec}}
    ]
    {
       \rho, h \closeDefsR \rho'
       \\
-      \explVal{T}{\rho \concat \rho', e \eval v}
+      \explVal{T}{\rho \concat \rho', e \evalR v}
    }
    {
-      \explVal{\trLetRecMutual{h}{T}}{\rho, \exLetRecMutual{h}{e} \eval v}
+      \explVal{\trLetRecMutual{h}{T}}{\rho, \exLetRecMutual{h}{e} \evalR v}
    }
 \end{smathpar}
 \caption{Term $e$ evaluates in environment $\rho$ to value $v$ (witnessed by $T$)}
