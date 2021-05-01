@@ -32,10 +32,14 @@
       lab={\ruleName{$\evalBwdS$-lambda}}
    ]
    {
-      v \eq \exClosure{\rho}{\seqEmpty}{\sigma}
+      \strut
    }
    {
-      \evalBwd{v}{\trLambda{\sigma'}}{\rho}{\exLambda{\sigma}}{\FF}
+      \evalBwd{\exClosure{\rho}{\seqEmpty}{\sigma}}
+              {\trLambda{\sigma'}}
+              {\rho}
+              {\exLambda{\sigma}}
+              {\FF}
    }
    %
    \and
