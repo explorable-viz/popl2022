@@ -15,7 +15,7 @@
 \end{lemma}
 
 \begin{definition}
-   Suppose $p, e \clauseFwd \sigma$. Define $\clauseFwdF{\clause{p}{e}}: \Below{e} \to \Below{\sigma}$ and $\clauseBwdF{\clause{p}{e}}: \Below{\sigma} \to \Below{(p,e)}$ to be $\clauseFwd$ domain-restricted to $\Below{(p,e)}$ and $\clauseBwd{p}$ domain-restricted to $\Below{\sigma}$ respectively. Then:
+   Suppose $p, e \clauseFwd \sigma$. Define $\clauseFwdF{\clause{p}{e}}: \Below{(p,e)} \to \Below{\sigma}$ and $\clauseBwdF{\clause{p}{e}}: \Below{\sigma} \to \Below{(p,e)}$ to be $\clauseFwd$ domain-restricted to $\Below{(p,e)}$ and $\clauseBwd{p}$ domain-restricted to $\Below{\sigma}$ respectively. Then:
 \end{definition}
 
 \begin{lemma}[Galois connection for clause]
@@ -24,7 +24,7 @@
   \begin{enumerate}
      \item $\clauseFwdF{\clause{p}{e}}$ and $\clauseBwdF{\clause{p}{e}}$ are monotonic.
      \item $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
-     \item $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(e')) \leq e'$.
+     \item $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
   \end{enumerate}
 \end{lemma}
 
