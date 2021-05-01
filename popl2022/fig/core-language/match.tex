@@ -1,73 +1,72 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\explVal{w}{v, \sigma \match \rho, \kappa}$}
+\flushleft \shadebox{$\explVal{w}{v, \sigma \matchR \rho, \kappa}$}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\match$-var}}]
+   \inferrule*[lab={\ruleName{$\matchR$-var}}]
    {
       \strut
    }
    {
-      \explVal{\matchVar{x}}{v, \elimVar{x}{\kappa} \match \bind{x}{v}, \kappa}
+      \explVal{\matchVar{x}}{v, \elimVar{x}{\kappa} \matchR \bind{x}{v}, \kappa}
    }
-   \\
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\match$-true}}]
+   \inferrule*[lab={\ruleName{$\matchR$-true}}]
    {
       \strut
    }
    {
-      \explVal{\matchTrue}{\exTrue, \elimBool{\kappa}{\kappa'} \match \seqEmpty, \kappa}
+      \explVal{\matchTrue}{\exTrue, \elimBool{\kappa}{\kappa'} \matchR \seqEmpty, \kappa}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\match$-false}}]
+   \inferrule*[lab={\ruleName{$\matchR$-false}}]
    {
       \strut
    }
    {
-      \explVal{\matchFalse}{\exFalse, \elimBool{\kappa}{\kappa'} \match \seqEmpty, \kappa'}
+      \explVal{\matchFalse}{\exFalse, \elimBool{\kappa}{\kappa'} \matchR \seqEmpty, \kappa'}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\match$-pair}}]
+   \inferrule*[lab={\ruleName{$\matchR$-pair}}]
    {
-      \explVal{w_1}{v_1, \sigma \match \rho_1, \tau}
+      \explVal{w}{v, \sigma \matchR \rho, \tau}
       \\
-      \explVal{w_2}{v_2, \tau \match, \rho_2, \kappa}
+      \explVal{w'}{v', \tau \matchR, \rho', \kappa}
    }
    {
-      \explVal{\matchPair{w_1}{w_2}}{\exPair{v_1}{v_2}, \elimProd{\sigma} \match \rho_1 \concat \rho_2, \kappa}
+      \explVal{\matchPair{w}{w'}}{\exPair{v}{v'}, \elimProd{\sigma} \matchR \rho \concat \rho', \kappa}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\match$-nil}}]
+   \inferrule*[lab={\ruleName{$\matchR$-nil}}]
    {
       \strut
    }
    {
       \explVal
          {\matchNil}
-         {\exNil, \elimList{\kappa}{\sigma} \match \seqEmpty, \kappa}
+         {\exNil, \elimList{\kappa}{\sigma} \matchR \seqEmpty, \kappa}
    }
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\match$-cons}}]
+   \inferrule*[lab={\ruleName{$\matchR$-cons}}]
    {
-      \explVal{w_1}{v_1, \sigma \match \rho_1, \tau}
+      \explVal{w}{v, \sigma \matchR \rho, \tau}
       \\
-      \explVal{w_2}{v_2, \tau \match \rho_2, \kappa'}
+      \explVal{w'}{v', \tau \matchR \rho', \kappa'}
    }
    {
       \explVal
-         {(\matchCons{w_1}{w_2})}
-         {\exCons{v_1}{v_2}, \elimList{\kappa}{\sigma}
-         \match
-         \rho_1 \concat \rho_2, \kappa'}
+         {(\matchCons{w}{w'})}
+         {\exCons{v}{v'}, \elimList{\kappa}{\sigma}
+         \matchR
+         \rho \concat \rho', \kappa'}
    }
 \end{smathpar}
 \caption{Pattern-matching}

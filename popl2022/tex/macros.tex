@@ -24,15 +24,6 @@
 \newcommand*{\override}{\reloverrideleft}
 \newcommand*{\seqEmpty}{\varepsilon}
 
-% Misc.
-\newcommand*{\closeDefsArrow}{\twoheadrightarrow}
-\newcommand*{\closeDefsR}{\mathrel{\closeDefsArrow}}
-\newcommand*{\closeDefsFwdR}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsArrow$}}}
-\newcommand*{\closeDefsBwdR}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsArrow$}}}
-\newcommand*{\closeDefsFwdF}[1]{\fwdF{rec}{#1}}
-\newcommand*{\closeDefsBwdF}[1]{\bwdF{rec}{#1}}
-\newcommand*{\closeDefsGC}[1]{\GC{rec}{#1}}
-
 % Misc. syntax.
 \newcommand*{\trace}[2]{\textcolor{gray}{#1}\mathrel{\textcolor{gray}{::}}{#2}}
 
@@ -194,22 +185,45 @@
 \newcommand{\eq}{\doteq}
 
 % Environments.
-\newcommand*{\envLookupS}{\mathrel{\filledtriangleright}}
+\newcommand*{\envLookupS}{\in}
 \newcommand*{\envLookupR}{\envLookupS}
-\newcommand*{\envLookupBwdS}{\filledtriangleleft}
+\newcommand*{\envLookupBwdS}{\ni}
 \newcommand*{\envLookupBwdR}[1]{\mathrel{\sub{\envLookupBwdS}{#1}}}
-\newcommand*{\envLookup}[3]{{#1}\envLookupR\bind{#2}{#3}}
+\newcommand*{\envLookup}[3]{\bind{#2}{#3}\envLookupR{#1}}
 \newcommand*{\envLookupFwdF}[1]{\fwdF{lookup}{#1}}
 \newcommand*{\envLookupBwdF}[1]{\bwdF{lookup}{#1}}
 \newcommand*{\envLookupGC}[1]{\GC{lookup}{#1}}
 \newcommand*{\envLookupBwd}[3]{{#1}\envLookupBwdR{#2}{#3}}
-\newcommand*{\mapUpdate}[3]{{#1}\mathrel{\filledtriangleleft}\bind{#2}{#3}}
+\newcommand*{\mapUpdate}[3]{{#1}\reloverrideleft\bind{#2}{#3}}
 \newcommand*{\holeEnv}[1]{\sub{\hole}{#1}}
 
+% Conventions for relational notation:
+% -S            raw symbol for relation
+% -[Fwd/Bwd]S   raw fwd/bwd symbol
+% -[Fwd/Bwd]R   symbol for relation (at a specific index, if it has any)
+% -[Fwd/Bwd]    macro for entire relational judgement
+% -N            raw name for function
+% -[Fwd/Bwd]F   name of corresponding function at a particular index
+% -GC           name of Galois connection at a particular index
+
+% Helpers
+\newcommand*{\GC}[2]{\sub{\mathsf{#1}}{#2}}
+\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\hspace{-0.05em}\smalltriangleright}{\hspace{-0.04em}#2}}
+\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{\hspace{-0.08em}#2}}
+
 % Evaluation.
-\newcommand*{\eval}{\mathrel{\Rightarrow}}
-\newcommand*{\evalFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\eval$}}}
-\newcommand*{\evalBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\eval$}}}
+\newcommand*{\closeDefsS}{\twoheadrightarrow}
+\newcommand*{\closeDefsR}{\closeDefsS}
+\newcommand*{\closeDefsBwdR}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsS$}}}
+\newcommand*{\closeDefsN}{rec}
+\newcommand*{\closeDefsFwdF}[1]{\fwdF{\closeDefsN}{#1}}
+\newcommand*{\closeDefsBwdF}[1]{\bwdF{\closeDefsN}{#1}}
+\newcommand*{\closeDefsGC}[1]{\GC{\closeDefsN}{#1}}
+
+\newcommand*{\evalS}{\Rightarrow}
+\newcommand*{\evalFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\evalS$}}}
+\newcommand*{\evalBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\evalS$}}}
+\newcommand*{\evalR}{\evalS}
 \newcommand*{\evalBwdR}[1]{\sub{\evalBwdS}{#1}}
 \newcommand*{\evalFwdR}[1]{\sub{\evalFwdS}{\hspace{-0.2em}#1}}
 \newcommand*{\evalBwd}[5]{#1 \evalBwdR{#2} #3, #4, #5}
@@ -217,24 +231,65 @@
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalFwdR{#4} #5}
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
-\newcommand*{\evalFwdF}[1]{\fwdF{eval}{#1}}
-\newcommand*{\evalBwdF}[1]{\bwdF{eval}{#1}}
-\newcommand*{\match}{\rightsquigarrow}
-\newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\rightsquigarrow$}}}
-\newcommand*{\matchFwd}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3} #4, #5, #6}
-\newcommand*{\matchFwdGeq}[6]{#1, #2 \sub{\matchFwdS}{\hspace{-0.2em}#3}\geq #4, #5, #6}
-\newcommand*{\matchBwd}[6]{#1, #2, #3 \sub{\matchBwdS}{#4} #5, #6}
-\newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \sub{\matchBwdS}{#4}\leq #5, #6}
-\newcommand*{\matchFwdR}[1]{\matchFwdS_{\hspace{-0.2em}#1}}
-\newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\rightsquigarrow$}}}
-\newcommand*{\matchFwdF}[1]{\fwdF{match}{#1}}
-\newcommand*{\matchBwdF}[1]{\bwdF{match}{#1}}
-\newcommand*{\matchBwdR}[1]{\matchBwdS_{#1}}
-\newcommand*{\matchGC}[1]{\GC{match}{#1}}
+\newcommand*{\evalN}{eval}
+\newcommand*{\evalFwdF}[1]{\fwdF{\evalN}{#1}}
+\newcommand*{\evalBwdF}[1]{\bwdF{\evalN}{#1}}
 
-\newcommand*{\GC}[2]{\sub{\mathsf{#1}}{#2}}
-\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\hspace{-0.05em}\smalltriangleright}{\hspace{-0.04em}#2}}
-\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{\hspace{-0.08em}#2}}
+\newcommand*{\matchS}{\rightsquigarrow}
+\newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\matchS$}}}
+\newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\matchS$}}}
+\newcommand*{\matchR}{\matchS}
+\newcommand*{\matchFwdR}[1]{\sub{\matchFwdS}{\hspace{-0.2em}#1}}
+\newcommand*{\matchBwdR}[1]{\sub{\matchBwdS}{#1}}
+\newcommand*{\matchFwd}[6]{#1, #2 \matchFwdR{#3} #4, #5, #6}
+\newcommand*{\matchFwdGeq}[6]{#1, #2 \matchFwdR{#3}\geq #4, #5, #6}
+\newcommand*{\matchBwd}[6]{#1, #2, #3 \matchBwdR{#4} #5, #6}
+\newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \matchBwdR{#4}\leq #5, #6}
+\newcommand*{\matchN}{match}
+\newcommand*{\matchFwdF}[1]{\fwdF{\matchN}{#1}}
+\newcommand*{\matchBwdF}[1]{\bwdF{\matchN}{#1}}
+\newcommand*{\matchGC}[1]{\GC{\matchN}{#1}}
+
+% Desugaring.
+\newcommand*{\desugarS}{\twoheadrightarrow}
+\newcommand*{\desugarFwdS}{\mathrel{{\rotatebox[origin=c]{45}{$\desugarS$}}}}
+\newcommand*{\desugarBwdS}{\mathrel{{\rotatebox[origin=c]{-45}{$\desugarS$}}}}
+\newcommand*{\desugarFwdR}{\desugarFwdS}
+\newcommand*{\desugarBwdR}[1]{\sub{\desugarBwdS}{#1}}
+\newcommand*{\desugarN}{desug}
+\newcommand*{\desugarFwdF}[1]{\fwdF{\desugarN}{#1}\hspace{-0.05em}}
+\newcommand*{\desugarBwdF}[1]{\bwdF{\desugarN}{#1}\hspace{-0.11em}}
+\newcommand*{\desugarGC}[1]{\GC{\desugarN}{#1}\hspace{-0.11em}}
+
+\newcommand*{\listRestN}{\desugarN}
+\newcommand*{\listRestFwdF}[1]{\fwdF{\listRestN}{#1}}
+\newcommand*{\listRestBwdF}[1]{\bwdF{\listRestN}{#1}}
+
+\newcommand*{\clauseS}{\rightharpoonup}
+\newcommand*{\clauseBwdS}{\mathrel{{\rotatebox[origin=c]{-45}{$\clauseS$}}}}
+\newcommand*{\clauseFwdR}{\mathrel{{\rotatebox[origin=c]{45}{$\clauseS$}}}}
+\newcommand*{\clauseBwdR}[1]{\sub{\clauseBwdS}{#1}}
+\newcommand*{\clauseN}{clause}
+\newcommand*{\clauseFwdF}[1]{\fwdF{\clauseN}{#1}}
+\newcommand*{\clauseBwdF}[1]{\bwdF{\clauseN}{#1}}
+
+\newcommand*{\clausesBwdS}{\desugarBwdS}
+\newcommand*{\clausesFwdR}{\desugarFwdR}
+\newcommand*{\clausesBwdR}[1]{\desugarBwdR{#1}}
+\newcommand*{\clausesN}{clauses}
+\newcommand*{\clausesFwdF}[1]{\fwdF{\clausesN}{#1}}
+\newcommand*{\clausesBwdF}[1]{\bwdF{\clausesN}{#1}}
+
+\newcommand*{\totaliseFwdS}{\nearrow}
+\newcommand*{\totaliseBwdS}{\searrow}
+\newcommand*{\totaliseFwdR}[1]{\sub{\totaliseFwdS}{\hspace{-0.12em}#1}}
+\newcommand*{\totaliseBwdR}[1]{\sub{\totaliseBwdS}{#1}}
+\newcommand*{\totaliseFwd}[4]{{#1},{#2} \totaliseFwdR{#3} {#4}}
+\newcommand*{\totaliseBwd}[4]{{#1} \totaliseBwdR{#2} {#3}, {#4}}
+\newcommand*{\totaliseGeq}[4]{{#1},{#2} \totaliseFwdR{#3}\geq {#4}}
+\newcommand*{\totaliseN}{totalise}
+\newcommand*{\totaliseFwdF}[1]{\fwdF{\totaliseN}{#1}}
+\newcommand*{\totaliseBwdF}[1]{\bwdF{\totaliseN}{#1}}
 
 \newcommand*{\bind}[2]{#1{:}\;#2}
 \renewcommand*{\vec}[1]{\vv{#1}}
@@ -247,24 +302,20 @@
 \newcommand*{\length}[1]{|#1|}
 
 % Traces.
-\newcommand*{\trApp}[3]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {#3}}
-\newcommand*{\trAppNew}[6]{\exApp{\sub{#1}{#2,#3}}{#4} \mathrel{\filledtriangleright} {\bind{#5}{#6}}}
+\newcommand*{\trApp}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
 \newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
 \newcommand*{\trInt}[2]{\sub{\exInt{#1}}{#2}}
 \newcommand*{\trLambda}[1]{\exLambda{#1}}
-\newcommand*{\trLet}[3]{\exLet{#1}{#2}{#3}}
 \newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
 \newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
-\newcommand*{\trLetRecMutualNew}[3]{\sub{\kw{let}}{#1}\;{#2}\;\kw{in}\;{#3}}
 \newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
 \newcommand*{\trNil}[1]{\sub{\exNil}{#1}}
 \newcommand*{\trOp}[2]{\sub{\exOp{#1}}{#2}}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
-\newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
 \newcommand*{\trVar}[2]{\sub{#1}{#2}}
 \newcommand*{\trVec}[4]{\exVec{#1}{#2}{\sub{#3}{#4}}}
@@ -274,48 +325,6 @@
 \newcommand*{\explVal}[2]{{\textcolor{gray}{#1}}\mathrel{\textcolor{gray}{::}}{#2}}
 
 \newcommand*{\compRel}[2]{\mathrel{{#1}\hspace{-0.2em}{#2}}}
-
-% Desugaring.
-\newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
-\newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
-
-\newcommand*{\desugarFwd}{\dfwdarrow}
-\newcommand*{\desugarBwd}[1]{\sub{\dbwdarrow}{#1}}
-\newcommand*{\desugarFwdF}[1]{\fwdF{dsg}{#1}\hspace{-0.05em}}
-\newcommand*{\desugarBwdF}[1]{\bwdF{dsg}{#1}\hspace{-0.11em}}
-\newcommand*{\desugarGC}[1]{\GC{dsg}{#1}\hspace{-0.11em}}
-
-\newcommand*{\desugarListRestFwdF}[1]{\fwdF{desug}{#1}}
-\newcommand*{\desugarListRestBwdF}[1]{\bwdF{desug}{#1}}
-
-\newcommand*{\desugarClauseFwd}{\desugarFwd}
-\newcommand*{\desugarClauseBwd}[1]{\desugarBwd{#1}}
-\newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClauseFwd}_{#1}}
-\newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClauseBwd}_{#1}}
-\newcommand*{\desugarClausesFwd}{\desugarFwd}
-\newcommand*{\desugarClausesFwdF}[1]{\fwdF{eqns}{#1}}
-\newcommand*{\desugarClausesBwdF}[1]{\bwdF{eqns}{#1}}
-\newcommand*{\desugarClausesGC}[1]{\GC{eqns}{#1}}
-
-\newcommand*{\clauseFwd}{\mathrel{{\rotatebox[origin=c]{45}{$\rightharpoonup$}}}}
-\newcommand*{\clauseBwd}[1]{\sub{\mathrel{{\rotatebox[origin=c]{-45}{$\rightharpoonup$}}}}{#1}}
-\newcommand*{\clauseFwdF}[1]{\fwdF{clause}{#1}}
-\newcommand*{\clauseBwdF}[1]{\bwdF{clause}{#1}}
-\newcommand*{\clauseGC}[1]{\GC{clause}{#1}}
-
-\newcommand*{\totalisefwdarrow}{\nearrow}
-\newcommand*{\totalisebwdarrow}{\searrow}
-\newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
-\newcommand*{\totaliseGeq}[3]{{#1},{#2} \totalisefwdarrow\geq {#3}}
-\newcommand*{\totalisebwd}[4]{{#1} \sub{\totalisebwdarrow}{#2} {#3}, {#4}}
-\newcommand*{\totaliseFwdF}[1]{\fwdF{totalise}{#1}}
-\newcommand*{\totaliseBwdF}[1]{\bwdF{totalise}{#1}}
-\newcommand*{\totaliseGC}[1]{\GC{totalise}{#1}}
-
-\newcommand*{\listGenFwd}{\mathrel{R}}
-\newcommand*{\listGenBwd}[1]{\mathrel{\sub{S}{#1}}}
-\newcommand*{\listGenFwdF}[1]{\mathsf{listGenFwd}_{#1}}
-\newcommand*{\listGenBwdF}[1]{\mathsf{listGenBwd}_{#1}}
 
 \newcommand*{\comma}{\textbf{\kw{,}}}
 \newcommand*{\equal}{\mathrel{\kw{=}}}

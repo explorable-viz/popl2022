@@ -1,43 +1,43 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
+\flushleft \shadebox{$\totaliseBwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-empty}}
+   lab={\ruleName{$\totaliseBwdS$-empty}}
 ]
 {
    \strut
 }
 {
-   \totalisebwd{\kappa}{\seqEmpty}{\kappa}{\FF}
+   \totaliseBwd{\kappa}{\seqEmpty}{\kappa}{\FF}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-var}}
+   lab={\ruleName{$\totaliseBwdS$-var}}
 ]
 {
    \sigma \eq \elimVar{x}{\kappa}
    \\
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
+   \totaliseBwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
 }
 {
-   \totalisebwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa'}}{\alpha}
+   \totaliseBwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa'}}{\alpha}
 }
 \\
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-true}}
+   lab={\ruleName{$\totaliseBwdS$-true}}
 ]
 {
    \sigma \eq \elimBool{\kappa}{\annot{\exNil}{\alpha}}
    \\
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
+   \totaliseBwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
-   \totalisebwd{\sigma}
+   \totaliseBwd{\sigma}
                {\pattTrue \concat \vec{\pi}}
                {\elimBoolTrue{\kappa'}}
                {\alpha \join \beta}
@@ -46,15 +46,15 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-false}}
+   lab={\ruleName{$\totaliseBwdS$-false}}
 ]
 {
    \sigma \eq \elimBool{\annot{\exNil}{\alpha}}{\kappa}
    \\
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
+   \totaliseBwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
-   \totalisebwd{\sigma}
+   \totaliseBwd{\sigma}
                {\pattFalse \concat \vec{\pi}}
                {\elimBoolFalse{\kappa'}}
                {\alpha \join \beta}
@@ -63,29 +63,29 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-prod}}
+   lab={\ruleName{$\totaliseBwdS$-prod}}
 ]
 {
    \sigma \eq \elimProd{\sigma'}
    \\
-   \totalisebwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
+   \totaliseBwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totalisebwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\tau}}{\beta}
+   \totaliseBwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\tau}}{\beta}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-nil}}
+   lab={\ruleName{$\totaliseBwdS$-nil}}
 ]
 {
    \sigma \eq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
    \\
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
+   \totaliseBwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
-   \totalisebwd{\sigma}
+   \totaliseBwd{\sigma}
                {\pattNil \concat \vec{\pi}}
                {\elimNil{\kappa'}}
                {\alpha \join \beta}
@@ -94,15 +94,15 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-cons}}
+   lab={\ruleName{$\totaliseBwdS$-cons}}
 ]
 {
    \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
    \\
-   \totalisebwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
+   \totaliseBwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totalisebwd{\sigma}
+   \totaliseBwd{\sigma}
                {(\pattCons{p}{p'}) \concat \vec{\pi}}
                {\elimCons{\tau}}
                {\alpha \join \beta}
@@ -111,15 +111,15 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-non-empty-list}}
+   lab={\ruleName{$\totaliseBwdS$-non-empty-list}}
 ]
 {
    \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
    \\
-   \totalisebwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
+   \totaliseBwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totalisebwd{\sigma}
+   \totaliseBwd{\sigma}
                {(\pattList{p}{o}) \concat \vec{\pi}}
                {\elimCons{\tau}}
                {\alpha \join \beta}
@@ -128,15 +128,15 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-list-rest-end}}
+   lab={\ruleName{$\totaliseBwdS$-list-rest-end}}
 ]
 {
    \sigma \eq \elimList{\kappa}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
    \\
-   \totalisebwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
+   \totaliseBwd{\kappa}{\vec{\pi}}{\kappa'}{\beta}
 }
 {
-   \totalisebwd{\sigma}
+   \totaliseBwd{\sigma}
                {\pattListEnd \concat \vec{\pi}}
                {\elimNil{\kappa'}}
                {\alpha \join \beta}
@@ -145,15 +145,15 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totalisebwdarrow$-list-rest-cons}}
+   lab={\ruleName{$\totaliseBwdS$-list-rest-cons}}
 ]
 {
    \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
    \\
-   \totalisebwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
+   \totaliseBwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totalisebwd{\sigma}
+   \totaliseBwd{\sigma}
                {(\pattListNext{p}{o}) \concat \vec{\pi}}
                {\elimCons{\tau}}
                {\alpha \join \beta}

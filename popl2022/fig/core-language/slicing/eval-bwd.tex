@@ -2,13 +2,28 @@
 \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-var}}
+      lab={\ruleName{$\evalBwdS$-eq}}
    ]
    {
-      \envLookupBwd{\rho}{\Gamma}{\bind{x}{v}}
+      v \eq v'
+      \\
+      \evalBwd{v'}{T}{\rho}{e}{\alpha}
    }
    {
-      \evalBwd{v}{\trVar{x}{\Gamma}}{\rho}{\exVar{x}}{\FF}
+      \evalBwd{v}{T}{\rho}{e}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalBwdS$-var}},
+      right={$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}
+   ]
+   {
+      \strut
+   }
+   {
+      \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\FF}
    }
    %
    \and
@@ -17,10 +32,14 @@
       lab={\ruleName{$\evalBwdS$-lambda}}
    ]
    {
-      v \eq \exClosure{\rho}{\seqEmpty}{\sigma}
+      \strut
    }
    {
-      \evalBwd{v}{\trLambda{\sigma'}}{\rho}{\exLambda{\sigma}}{\FF}
+      \evalBwd{\exClosure{\rho}{\seqEmpty}{\sigma}}
+              {\trLambda{\sigma'}}
+              {\rho}
+              {\exLambda{\sigma}}
+              {\FF}
    }
    %
    \and
@@ -29,10 +48,14 @@
       lab={\ruleName{$\evalBwdS$-int}}
    ]
    {
-      v \eq \annInt{n}{\alpha}
+      \strut
    }
    {
-      \evalBwd{v}{\trInt{n}{\Gamma}}{\hole_{\Gamma}}{\annInt{n}{\alpha}}{\alpha}
+      \evalBwd{\annInt{n}{\alpha}}
+              {\trInt{n}{\rho}}
+              {\hole_{\rho}}
+              {\annInt{n}{\alpha}}
+              {\alpha}
    }
    %
    \and
@@ -41,10 +64,14 @@
       lab={\ruleName{$\evalBwdS$-nil}}
    ]
    {
-      v \eq \annNil{\alpha}
+      \strut
    }
    {
-      \evalBwd{v}{\trNil{\Gamma}}{\hole_{\Gamma}}{\annNil{\alpha}}{\alpha}
+      \evalBwd{\annNil{\alpha}}
+              {\trNil{\rho}}
+              {\hole_{\rho}}
+              {\annNil{\alpha}}
+              {\alpha}
    }
    %
    \and
@@ -53,17 +80,15 @@
       lab={\ruleName{$\evalBwdS$-cons}}
    ]
    {
-      v \eq \annCons{v_1}{v_2}{\beta}
+      \evalBwd{v}{T}{\rho}{e}{\alpha}
       \\
-      \evalBwd{v_1}{T}{\rho}{e_1}{\alpha}
-      \\
-      \evalBwd{v_2}{U}{\rho'}{e_2}{\alpha'}
+      \evalBwd{v'}{U}{\rho'}{e'}{\alpha'}
    }
    {
-      \evalBwd{v}
+      \evalBwd{\annCons{v}{v'}{\beta}}
               {\trCons{T}{U}}
               {\rho \join \rho'}
-              {\annCons{e_1}{e_2}{\beta}}
+              {\annCons{e}{e'}{\beta}}
               {\beta \join \alpha \join \alpha'}
    }
    %
@@ -73,8 +98,6 @@
       lab={\ruleName{$\evalBwdS$-vector}}
    ]
    {
-      v \eq \annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}
-      \\
       \evalBwd{u_{i}}
               {U_{i}}
               {\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}}
@@ -90,8 +113,8 @@
               {\alpha^\twoPrime}
    }
    {
-      \evalBwd{v}
-              {\trVec{U_{i}}{x}{i}{T}{j}}
+      \evalBwd{\annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha}}
+              {\trVec{\vec{U}}{x}{T}{j}}
               {\bigjoin\vec{\rho} \join \rho'}
               {\annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}}
               {\alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime}
@@ -118,22 +141,19 @@
       lab={\ruleName{$\evalBwdS$-vector-length}}
    ]
    {
-      v \eq \annInt{j}{\beta}
-      \\
       \evalBwd{\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF}}{T}{\rho}{e}{\alpha}
    }
    {
-      \evalBwd{v}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
+      \evalBwd{\annInt{j}{\beta}}{\trVecLen{T}{j}}{\rho}{\exVecLen{e}}{\alpha}
    }
    %
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply-prim}}
+      lab={\ruleName{$\evalBwdS$-apply-prim}},
+      right={$\primBwd{\phi}{\vec{n} \concat m}(v) = \vec{u} \concat u'$}
    ]
    {
-      \primBwd{\phi}{\vec{n} \concat m}(v) = \vec{u} \concat u'
-      \\
       \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
       \\
       \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
@@ -163,7 +183,7 @@
       \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
    }
    {
-      \evalBwd{v}{\trApp{T}{U}{\matchPlug{w}{T'}}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
+      \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
    }
    %
    \and

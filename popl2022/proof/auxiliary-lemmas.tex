@@ -1,44 +1,58 @@
 \subsection{Auxiliary lemmas}
 
+\begin{definition}
+   Suppose $r \desugarFwdR e$. Define $\listRestFwdF{r}: \Below{r} \to \Below{e}$ and $\listRestBwdF{r}: \Below{e} \to \Below{r}$ to be $\desugarFwdR$ domain-restricted to $\Below{r}$ and $\desugarBwdR{r}$ domain-restricted to $\Below{e}$ respectively.
+\end{definition}
+
 \begin{lemma}[Galois connection for desugaring list rest]
   \label{lem:aux:desugarlistrest:gc}
-  Suppose $l \dfwdarrow e$. Then:
+  Suppose $r \desugarFwdR e$. Then:
   \begin{enumerate}
-     \item $\desugarListRestFwdF{l}$ and $\desugarListRestBwdF{l}$ are monotonic.
-     \item $\desugarListRestFwdF{l}(\desugarListRestBwdF{l}(e')) \geq e'$.
-     \item $\desugarListRestBwdF{l}(\desugarListRestFwdF{l}(l')) \leq l'$.
+     \item $\listRestFwdF{r}$ and $\listRestBwdF{r}$ are monotonic.
+     \item $\listRestFwdF{r}(\listRestBwdF{r}(e')) \geq e'$.
+     \item $\listRestBwdF{r}(\listRestFwdF{r}(r')) \leq r'$.
   \end{enumerate}
 \end{lemma}
+
+\begin{definition}
+   Suppose $p, e \clauseFwdR \sigma$. Define $\clauseFwdF{\clause{p}{e}}: \Below{(p,e)} \to \Below{\sigma}$ and $\clauseBwdF{\clause{p}{e}}: \Below{\sigma} \to \Below{(p,e)}$ to be $\clauseFwdR$ domain-restricted to $\Below{(p,e)}$ and $\clauseBwdR{p}$ domain-restricted to $\Below{\sigma}$ respectively.
+\end{definition}
+
 \begin{lemma}[Galois connection for clause]
   \label{lem:aux:clause:gc}
-  Suppose $p, e \dfwdarrow \sigma$. Then:
+  Suppose $p, e \clauseFwdR \sigma$. Then:
   \begin{enumerate}
      \item $\clauseFwdF{\clause{p}{e}}$ and $\clauseBwdF{\clause{p}{e}}$ are monotonic.
      \item $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
-     \item $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(e')) \leq e'$.
+     \item $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
   \end{enumerate}
 \end{lemma}
+
+\begin{definition}
+   Suppose $\vec{c} \clauseFwdR \sigma$. Define $\clausesFwdF{\vec{c}}: \Below{\vec{c}} \to \Below{\sigma}$ and $\clausesBwdF{\vec{c}}: \Below{\sigma} \to \Below{\vec{c}}$ to be $\clauseFwdR$ domain-restricted to $\Below{\vec{c}}$ and $\clauseBwdR{\vec{c}}$ domain-restricted to $\Below{\sigma}$ respectively.
+\end{definition}
+
 \begin{lemma}[Galois connection for clauses]
   \label{lem:aux:clauses:gc}
-  Suppose $\vec{c} \dfwdarrow \sigma$. Then:
+  Suppose $\vec{c} \clausesFwdR \sigma$. Then:
   \begin{enumerate}
-     \item $\desugarClausesFwdF{\vec{c}}$ and $\desugarClausesBwdF{\vec{c}}$ are monotonic.
-     \item $\desugarClausesFwdF{\vec{c}}(\desugarClausesBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
-     \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}'$.
+     \item $\clausesFwdF{\vec{c}}$ and $\clausesBwdF{\vec{c}}$ are monotonic.
+     \item $\clausesFwdF{\vec{c}}(\clausesBwdF{\vec{c}}(\sigma')) \geq \sigma'$.
+     \item $\clausesBwdF{\vec{c}}(\clausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}'$.
   \end{enumerate}
 \end{lemma}
-\begin{lemma}[Galois connection for list generator]
+
+\begin{definition}
+   Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Define $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}: \Below{(\kappa,\alpha)} \to \Below{\kappa'}$ and $\totaliseBwdF{\kappa,\alpha,\vec{\pi}}: \Below{\kappa'} \to \Below{(\kappa,\alpha)}$ to be $\totaliseFwdR{\vec{\pi}}$ domain-restricted to $\Below{(\kappa,\alpha)}$ and $\totaliseBwdR{\vec{\pi}}$ domain-restricted to $\Below{\kappa'}$ respectively.
+\end{definition}
+
+\begin{lemma}[Galois connection for totalise]
   \label{lem:aux:list-gen:gc}
   \item
-  \begin{itemize}
-    \item Define $e, \alpha \listGenFwd \sigma $ iff there exists $\sigma'$ with $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$.
-    \item Define $\sigma \listGenBwd{\clauseUncurried{p}{e}} e', \alpha$ iff there exists $\sigma'$ with $\totalisebwd{\sigma}{p}{\sigma'}{\alpha}$ and $\sigma' \clauseBwd{\clauseUncurried{p}{e}} \clauseUncurried{p}{e'}$.
-  \end{itemize}
-  Suppose $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
+  Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then:
   \begin{enumerate}
-     \item $\listGenFwd$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
-     \item $\listGenBwd{\clauseUncurried{p}{e}}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\listGenBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.
-     \item $\listGenFwdF{p, e, \alpha}(\listGenBwdF{p, e, \alpha}(\tau)) \geq \tau$.
-     \item $\listGenBwdF{p, e, \alpha}(\listGenFwdF{p, e, \alpha}(e', \alpha')) \leq (e', \alpha')$.
+     \item $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}$ and $\totaliseBwdF{\kappa,\alpha,\vec{\pi}}$ are monotonic.
+     \item $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger})) \geq \smash{\kappa^\dagger}$.
+     \item $\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger}, \alpha')) \leq (\smash{\kappa^\dagger}, \alpha')$.
   \end{enumerate}
 \end{lemma}

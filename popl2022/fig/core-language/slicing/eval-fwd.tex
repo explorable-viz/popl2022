@@ -2,45 +2,70 @@
 \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-var}}
+      lab={\ruleName{$\evalFwdS$-eq}}
    ]
    {
-      e \eq \exVar{x}
+      e \eq e'
       \\
-      \envLookup{\rho}{x}{v}
+      \evalFwd{\rho}{e'}{\alpha}{T}{v}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trVar{x}{\Gamma}}{v}
+      \evalFwd{\rho}{e}{\alpha}{T}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-var}},
+      right={$\envLookup{\rho}{x}{v}$}
+   ]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}{\exVar{x}}{\alpha}{\trVar{x}{\rho}}{v}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
    {
-      e \eq \exLambda{\sigma}
+      \strut
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trLambda{\sigma'}}{\exClosure{\rho}{\seqEmpty}{\sigma}}
+      \evalFwd{\rho}
+              {\exLambda{\sigma}}
+              {\alpha}
+              {\trLambda{\sigma'}}
+              {\exClosure{\rho}{\seqEmpty}{\sigma}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
    {
-      e \eq \annInt{n}{\alpha}
+      \strut
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trInt{n}{\Gamma}}{\annInt{n}{\alpha \meet \alpha'}}
+      \evalFwd{\rho}
+              {\annInt{n}{\alpha}}
+              {\alpha'}
+              {\trInt{n}{\rho}}
+              {\annInt{n}{\alpha \meet \alpha'}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
    {
-      e \eq \annNil{\alpha}
+      \strut
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trNil{\Gamma}}{\annNil{\alpha \meet \alpha'}}
+      \evalFwd{\rho}
+              {\annNil{\alpha}}
+              {\alpha'}
+              {\trNil{\rho}}
+              {\annNil{\alpha \meet \alpha'}}
    }
    %
    \and
@@ -49,31 +74,34 @@
       lab={\ruleName{$\evalFwdS$-cons}},
    ]
    {
-      e \eq \annCons{e_1}{e_2}{\alpha}
+      \evalFwd{\rho}{e}{\alpha'}{T}{v}
       \\
-      \evalFwd{\rho}{e_1}{\alpha'}{T}{v_1}
-      \\
-      \evalFwd{\rho}{e_2}{\alpha'}{U}{v_2}
+      \evalFwd{\rho}{e'}{\alpha'}{U}{v'}
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trCons{T}{U}}{\annCons{v_1}{v_2}{\alpha \meet \alpha'}}
+      \evalFwd{\rho}
+              {\annCons{e}{e'}{\alpha}}
+              {\alpha'}
+              {\trCons{T}{U}}
+              {\annCons{v}{v'}{\alpha \meet \alpha'}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
    {
-      e \eq \annVec{e_1}{x}{e_2}{\alpha}
-      \\
-      \evalFwdEq{\rho}{e_2}{\alpha'}{T}
+      \evalFwdEq{\rho}{e'}{\alpha'}{T}
                 {\annInt{j}{\beta}}
       \\
-      \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e_1}{\alpha'}{U_{i}}{v_{i}}
+      \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e}{\alpha'}{U_{i}}{v_{i}}
       \quad
       (\forall i \numleq j)
    }
    {
-      \evalFwd{\rho}{e}{\alpha'}{\trVec{U_{i}}{x}{i}{T}{j}}
+      \evalFwd{\rho}
+              {\annVec{e}{x}{e'}{\alpha}}
+              {\alpha'}
+              {\trVec{\vec{U}}{x}{T}{j}}
               {\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
    }
    %
@@ -84,26 +112,29 @@
       right={$i \numleq j$}
    ]
    {
-      e \eq \exVecLookup{e_1}{e_2}
-      \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}
+      \evalFwdEq{\rho}{e}{\alpha}{T}
                 {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trVecLookup{T}{j}{U}{i}}{v_{i}}
+      \evalFwd{\rho}
+              {\exVecLookup{e}{e'}}
+              {\alpha}
+              {\trVecLookup{T}{j}{U}{i}}
+              {v_{i}}
    }
    %
    \and
    %
    \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
    {
-      e \eq \exVecLen{e'}
-      \\
-      \evalFwdEq{\rho}{e'}{\alpha}{T}
+      \evalFwdEq{\rho}{e}{\alpha}{T}
                 {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trVecLen{T}{j}}
+      \evalFwd{\rho}
+              {\exVecLen{e}}
+              {\alpha}
+              {\trVecLen{T}{j}}
               {\annInt{j}{\alpha'}}
    }
    %
@@ -113,14 +144,15 @@
       lab={\ruleName{$\evalFwdS$-apply-prim}}
    ]
    {
-      e \eq \exApp{e_1}{e_2}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
       \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
-      \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{u}
+      \evalFwd{\rho}{e'}{\alpha}{U}{u}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+      \evalFwd{\rho}
+              {\exApp{e}{e'}}
+              {\alpha}
+              {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
               {\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)}
    }
    %
@@ -130,20 +162,18 @@
       lab={\ruleName{$\evalFwdS$-apply}}
    ]
    {
-      e \eq \exApp{e_1}{e_2}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
       \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
+      \rho_1, h \closeDefsR \rho_2
       \\
-      \rho_1, h \closeDefsFwdR \rho_2
+      \evalFwd{\rho}{e'}{\alpha}{U}{v}
       \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{v}
+      \matchFwd{v}{\sigma}{w}{\rho_3}{e^\twoPrime}{\beta}
       \\
-      \matchFwd{v}{\sigma}{w}{\rho_3}{e'}{\beta}
-      \\
-      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e'}{\beta}{T'}{v'}
+      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\beta}{T'}{v'}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trApp{T}{U}{\matchPlug{w}{T'}}}{v'}
+      \evalFwd{\rho}{\exApp{e}{e'}}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
    }
    %
    \and
@@ -152,14 +182,12 @@
       \ruleName{$\evalFwdS$-let-rec}}
    ]
    {
-      e \eq \exLetRecMutual{h'}{e'}
+      \rho, h' \closeDefsR \rho'
       \\
-      \rho, h' \closeDefsFwdR \rho_1
-      \\
-      \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
+      \evalFwd{\rho \concat \rho'}{e}{\alpha}{T}{v}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
+      \evalFwd{\rho}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
    }
 \end{smathpar}
 \caption{Evaluation: forward slicing (Boolean and pair cases omitted)}

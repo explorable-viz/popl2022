@@ -34,11 +34,11 @@
 \input{fig/core-language/slicing/match-bwd}
 
 \begin{lemma}[Determinism of pattern-matching]
-   Suppose $v, \sigma \match \rho, \kappa$ and $v', \sigma' \match \rho', \kappa'$. If $v \eq v'$ and $\sigma \eq \sigma'$ then $\rho \eq \rho'$ and $\kappa \eq \kappa'$.
+   Suppose $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \match \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
+   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
 \end{definition}
 
 \begin{theorem}[Galois connection for pattern-matching]
@@ -91,7 +91,7 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for recursive bindings]
-   Suppose $\rho, h \closeDefsFwdR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsFwdR$ and $\closeDefsBwdR$ restricted to $\Below{(\rho, h)}$ and $\Below{\rho'}$ respectively.
+   Suppose $\rho, h \closeDefsR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsR$ and $\closeDefsBwdR$ restricted to $\Below{(\rho, h)}$ and $\Below{\rho'}$ respectively.
 \end{definition}
 
 \begin{theorem}[Galois connection for recursive bindings]
@@ -100,7 +100,7 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
 \end{theorem}
 
 \begin{definition}[Forward and backward functions for evaluation]
-   Suppose $T: \rho, e \eval v$. Define $\evalFwdF{T}: \Below{(\rho, e, \TT)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \TT)}$ to be $\evalFwdR{T}$ and $\evalBwdR{T}$ restricted to $\Below{(\rho, e, \TT)}$ and $\Below{v}$ respectively.
+   Suppose $T: \rho, e \evalR v$. Define $\evalFwdF{T}: \Below{(\rho, e, \TT)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \TT)}$ to be $\evalFwdR{T}$ and $\evalBwdR{T}$ restricted to $\Below{(\rho, e, \TT)}$ and $\Below{v}$ respectively.
 \end{definition}
 
 \begin{theorem}[Galois connection for evaluation]

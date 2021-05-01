@@ -2,13 +2,27 @@
 \flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\matchFwdS$-eq}}
+   ]
+   {
+      (v,\sigma) \eq (v',\sigma')
+      \\
+      \matchFwd{v'}{\sigma'}{w}{\rho}{\kappa}{\alpha}
+   }
+   {
+      \matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\matchFwdS$-var}}
    ]
    {
-      \sigma \eq \elimVar{x}{\kappa}
+      \strut
    }
    {
-      \matchFwd{v}{\sigma}{\matchVar{x}}{\bind{x}{v}}{\kappa}{\TT}
+      \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVar{x}}{\bind{x}{v}}{\kappa}{\TT}
    }
    %
    \and
@@ -17,12 +31,13 @@
       lab={\ruleName{$\matchFwdS$-true}}
    ]
    {
-      v \eq \annTrue{\alpha}
-      \\
-      \sigma \eq \elimBool{\kappa}{\kappa'}
+      \strut
    }
    {
-      \matchFwd{v}{\sigma}{\matchTrue}{\seqEmpty}{\kappa}{\alpha}
+      \matchFwd{\annTrue{\alpha}}
+               {\elimBool{\kappa}{\kappa'}}
+               {\matchTrue}
+               {\seqEmpty}{\kappa}{\alpha}
    }
    %
    \and
@@ -31,12 +46,13 @@
       lab={\ruleName{$\matchFwdS$-false}}
    ]
    {
-      v \eq \annFalse{\alpha}
-      \\
-      \sigma \eq \elimBool{\kappa}{\kappa'}
+      \strut
    }
    {
-      \matchFwd{v}{\sigma}{\matchFalse}{\seqEmpty}{\kappa'}{\alpha}
+      \matchFwd{\annFalse{\alpha}}
+               {\elimBool{\kappa}{\kappa'}}
+               {\matchFalse}
+               {\seqEmpty}{\kappa'}{\alpha}
    }
    %
    \and
@@ -45,19 +61,15 @@
       lab={\ruleName{$\matchFwdS$-pair}}
    ]
    {
-      v \eq \annPair{v_1}{v_2}{\alpha}
+      \matchFwd{v}{\sigma}{w}{\rho}{\sigma'}{\beta}
       \\
-      \sigma \eq \elimProd{\sigma'}
-      \\
-      \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
-      \\
-      \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
+      \matchFwd{v}{\sigma'}{w'}{\rho'}{\kappa}{\beta'}
    }
    {
-      \matchFwd{v}
-               {\sigma'}
-               {\matchPair{w_1}{w_2}}
-               {\rho_1 \concat \rho_2}
+      \matchFwd{\annPair{v}{v'}{\alpha}}
+               {\elimProd{\sigma}}
+               {\matchPair{w}{w'}}
+               {\rho \concat \rho'}
                {\kappa}
                {\alpha \meet \beta \meet \beta'}
    }
@@ -68,12 +80,13 @@
       lab={\ruleName{$\matchFwdS$-nil}}
    ]
    {
-      v \eq \annNil{\alpha}
-      \\
-      \sigma \eq \elimList{\kappa}{\sigma'}
+      \strut
    }
    {
-      \matchFwd{v}{\sigma}{\matchNil}{\seqEmpty}{\kappa}{\alpha}
+      \matchFwd{\annNil{\alpha}}
+               {\elimList{\kappa}{\sigma'}}
+               {\matchNil}
+               {\seqEmpty}{\kappa}{\alpha}
    }
    %
    \and
@@ -82,16 +95,15 @@
       lab={\ruleName{$\matchFwdS$-cons}}
    ]
    {
-      v \eq \annCons{v_1}{v_2}{\alpha}
+      \matchFwd{v}{\sigma}{w}{\rho}{\tau}{\beta}
       \\
-      \sigma \eq \elimList{\kappa}{\sigma'}
-      \\
-      \matchFwd{v_1}{\sigma'}{w_1}{\rho_1}{\tau}{\beta}
-      \\
-      \matchFwd{v_2}{\tau}{w_2}{\rho_2}{\kappa}{\beta'}
+      \matchFwd{v'}{\tau}{w'}{\rho'}{\kappa}{\beta'}
    }
    {
-      \matchFwd{v}{\sigma}{\matchCons{w_1}{w_2}}{\rho_1 \concat \rho_2}{\kappa}{\alpha \meet \beta \meet \beta'}
+      \matchFwd{\annCons{v}{v'}{\alpha}}
+               {\elimList{\kappa}{\sigma}}
+               {\matchCons{w}{w'}}
+               {\rho \concat \rho'}{\kappa}{\alpha \meet \beta \meet \beta'}
    }
 \end{smathpar}
 \caption{Pattern-matching: forward slicing}

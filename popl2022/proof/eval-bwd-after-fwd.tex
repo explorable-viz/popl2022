@@ -779,7 +779,7 @@ Induction on the $\evalFwdS$ derivation.
          \\
          \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
          \\
-         \rho_1, h \closeDefsFwdR \rho_2
+         \rho_1, h \closeDefsR \rho_2
          \\
          \evalFwd{\rho}{e_2}{\alpha}{U}{v}
          \\
@@ -788,7 +788,7 @@ Induction on the $\evalFwdS$ derivation.
          \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e'}{\beta}{T'}{v'}
       }
       {
-         \evalFwd{\rho}{e}{\alpha}{\trApp{T}{U}{\matchPlug{w}{T'}}}{v'}
+         \evalFwd{\rho}{e}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
       }
    \end{smathpar}
    }
@@ -893,7 +893,7 @@ Induction on the $\evalFwdS$ derivation.
       }
       {
          \evalBwd{v'}
-                 {\trApp{T}{U}{\matchPlug{w}{T'}}}
+                 {\trApp{T}{U}{w}{T'}}
                  {\rho^\dagger \join \rho^\ddagger}
                  {\exApp{e_1'}{e_2'}}
                  {\alpha' \join \alpha^\twoPrime}
@@ -923,7 +923,7 @@ Induction on the $\evalFwdS$ derivation.
       {
          e \eq \exLetRecMutual{h'}{e'}
          \\
-         \rho, h' \closeDefsFwdR \rho_1
+         \rho, h' \closeDefsR \rho_1
          \\
          \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
       }
