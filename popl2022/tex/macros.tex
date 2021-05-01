@@ -280,16 +280,16 @@
 \newcommand*{\clausesFwdF}[1]{\fwdF{\clausesN}{#1}}
 \newcommand*{\clausesBwdF}[1]{\bwdF{\clausesN}{#1}}
 
-\newcommand*{\totalisefwdarrow}{\nearrow}
-\newcommand*{\totalisebwdarrow}{\searrow}
-\newcommand*{\totalise}[3]{{#1},{#2} \totalisefwdarrow {#3}}
-\newcommand*{\totaliseGeq}[3]{{#1},{#2} \totalisefwdarrow\geq {#3}}
-\newcommand*{\totaliseBwdR}[1]{\sub{\totalisebwdarrow}{#1}}
+\newcommand*{\totaliseFwdS}{\nearrow}
+\newcommand*{\totaliseBwdS}{\searrow}
+\newcommand*{\totaliseFwdR}[1]{\sub{\totaliseFwdS}{\hspace{-0.12em}#1}}
+\newcommand*{\totaliseBwdR}[1]{\sub{\totaliseBwdS}{#1}}
+\newcommand*{\totaliseBlah}[4]{{#1},{#2} \totaliseFwdR{#3} {#4}}
+\newcommand*{\totaliseGeqBlah}[4]{{#1},{#2} \totaliseFwdR{#3}\geq {#4}}
 \newcommand*{\totalisebwd}[4]{{#1} \totaliseBwdR{#2} {#3}, {#4}}
 \newcommand*{\totaliseFwdF}[1]{\fwdF{totalise}{#1}}
 \newcommand*{\totaliseBwdF}[1]{\bwdF{totalise}{#1}}
 \newcommand*{\totaliseGC}[1]{\GC{totalise}{#1}}
-\newcommand*{\totaliseFwdR}[1]{\sub{\totalisefwdarrow}{\hspace{-0.12em}#1}}
 \newcommand*{\totaliseFwd}[4]{{#1},{#2} \totaliseFwdR{#3} {#4}}
 
 \newcommand*{\bind}[2]{#1{:}\;#2}
@@ -317,7 +317,6 @@
 \newcommand*{\trNil}[1]{\sub{\exNil}{#1}}
 \newcommand*{\trOp}[2]{\sub{\exOp{#1}}{#2}}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
-%\newcommand*{\trRec}[2]{\kw{rec}\,{#1}{#2}}
 \newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
 \newcommand*{\trVar}[2]{\sub{#1}{#2}}
 \newcommand*{\trVec}[4]{\exVec{#1}{#2}{\sub{#3}{#4}}}

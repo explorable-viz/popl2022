@@ -887,13 +887,13 @@ Induction on the $\desugarBwdR{}$ derivation.
    \locallabel{listgen:premise-one}
    \\
    &
-   \totaliseGeq{\sigma_{2}^\dagger}{\beta} \sigma_{1}
+   \totaliseGeqBlah{\sigma_{2}^\dagger}{\beta}{p}{\sigma_{1}}
    &
    \text{(\lemref{aux:list-gen:gc})}
    \notag
    \\
    &
-   \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'} \geq \sigma_{1}
+   \totaliseBlah{\sigma_{2}'}{\beta \join \beta'}{p}{\sigma_{1}'} \geq \sigma_{1}
    \quad
    (\exists \sigma_{1}')
    &
@@ -918,7 +918,7 @@ Induction on the $\desugarBwdR{}$ derivation.
             \desugarFwdR
             \sigma_{2}'
             \\
-            \totalise{\sigma_{2}'}{\beta \join \beta'}{\sigma_{1}'}
+            \totaliseBlah{\sigma_{2}'}{\beta \join \beta'}{p}{\sigma_{1}'}
             \\
             s_{1}' \desugarFwdR e_{1}'
          }
