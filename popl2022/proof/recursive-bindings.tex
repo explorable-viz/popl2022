@@ -1,0 +1,41 @@
+\subsection{\thmref{core-language:closeDefs:gc}, part (i)}
+\begin{proof}
+   Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h}(\closeDefsBwdF{\rho,h}(\rho')) \geq \rho'$.
+\small
+\flushleft\shadebox{$\rho, h \closeDefsR \rho'$}
+\begin{salign}
+   \rho, h
+   &\closeDefsR
+   \seqRange{\bind{x_1}{\exClosure{\rho}{h}{\sigma_1}}}{\bind{x_j}{\exClosure{\rho}{h}{\sigma_j}}}
+   & \text{where $h = \vec{\bind{x}{\sigma}}$}
+\end{salign}
+\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
+\begin{salign}
+   \vec{\bind{x}{v}}
+   &\closeDefsBwdR
+   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   &
+   \text{ where }
+   v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
+\end{salign}
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+   \begin{smathpar}
+      \inferrule*[
+         lab={}
+      ]
+      {
+        \strut
+      }
+      {
+        \strut
+      }
+   \end{smathpar}
+   }
+   &
+   \notag
+\end{flalign}
+\end{proof}
