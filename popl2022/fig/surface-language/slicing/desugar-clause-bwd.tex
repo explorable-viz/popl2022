@@ -150,10 +150,10 @@
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft\shadebox{$\sigma \desugarClauseBwd{\vec{c}} \vec{c}'$}
+\flushleft\shadebox{$\sigma \clausesBwdR{\vec{c}} \vec{c}'$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\desugarClauseBwd{}$-clause}}
+   lab={\ruleName{$\clausesBwdS$-clause}}
 ]
 {
    \sigma \clauseBwdR{\vec{p}} e
@@ -162,23 +162,23 @@
 }
 {
    \sigma
-   \desugarClauseBwd{\clause{p}{s}}
+   \clausesBwdR{\clause{p}{s}}
    \clause{p}{s'}
 }
 %
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\desugarClauseBwd{}$-clause-seq}}
+   lab={\ruleName{$\clausesBwdS$-clause-seq}}
 ]
 {
-   \sigma \desugarClauseBwd{c} c'
+   \sigma \clausesBwdR{c} c'
    \\
-   \sigma \desugarClauseBwd{\vec{c}} \vec{c}'
+   \sigma \clausesBwdR{\vec{c}} \vec{c}'
 }
 {
    \sigma
-   \desugarClauseBwd{c \concat \vec{c}}
+   \clauseBwdR{c \concat \vec{c}}
    c' \concat \vec{c}'
 }
 \end{smathpar}

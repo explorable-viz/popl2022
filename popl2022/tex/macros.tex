@@ -265,8 +265,6 @@
 \newcommand*{\listRestFwdF}[1]{\fwdF{\listRestN}{#1}}
 \newcommand*{\listRestBwdF}[1]{\bwdF{\listRestN}{#1}}
 
-%\newcommand*{\desugarClauseFwd}{\desugarFwdR}
-%\newcommand*{\desugarClauseBwd}[1]{\desugarBwdR{#1}}
 \newcommand*{\desugarClauseFwdF}[1]{\mathsf{desugClauseFwd}_{#1}}
 \newcommand*{\desugarClauseBwdF}[1]{\mathsf{desugClauseBwd}_{#1}}
 
@@ -279,6 +277,7 @@
 \newcommand*{\clauseBwdF}[1]{\bwdF{\clauseN}{#1}}
 \newcommand*{\clauseGC}[1]{\GC{\clauseN}{#1}}
 
+\newcommand*{\clausesBwdS}{\desugarBwdS}
 \newcommand*{\clausesFwdR}{\desugarFwdR}
 \newcommand*{\clausesBwdR}[1]{\desugarBwdR{#1}}
 \newcommand*{\desugarClausesFwdF}[1]{\fwdF{clauses}{#1}}
