@@ -43,17 +43,16 @@
 \end{lemma}
 
 \begin{definition}
-   Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Define $\totaliseFwdF{\kappa,\alpha}: \Below{(\kappa,\alpha)} \to \Below{\kappa'}$ and $\totaliseBwdF{\kappa,\alpha}: \Below{\kappa'} \to \Below{(\kappa,\alpha)}$ to be $\totaliseFwdR{\vec{\pi}}$ domain-restricted to $\Below{(\kappa,\alpha)}$ and $\totaliseBwdR{\vec{\pi}}$ domain-restricted to $\Below{\kappa'}$ respectively.
+   Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Define $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}: \Below{(\kappa,\alpha)} \to \Below{\kappa'}$ and $\totaliseBwdF{\kappa,\alpha,\vec{\pi}}: \Below{\kappa'} \to \Below{(\kappa,\alpha)}$ to be $\totaliseFwdR{\vec{\pi}}$ domain-restricted to $\Below{(\kappa,\alpha)}$ and $\totaliseBwdR{\vec{\pi}}$ domain-restricted to $\Below{\kappa'}$ respectively.
 \end{definition}
 
 \begin{lemma}[Galois connection for totalise]
   \label{lem:aux:list-gen:gc}
   \item
-  Suppose $\clauseUncurried{p}{e} \clauseFwd \sigma'$ and $\totalise{\sigma'}{\alpha}{\sigma}$. Then:
+  Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then:
   \begin{enumerate}
-     \item $\listGenFwd$ domain-restricted to $\Below{(e, \alpha)}$ is a monotonic function $\listGenFwdF{p, e, \alpha}$ to $\Below{\sigma}$.
-     \item $\listGenBwd{\clauseUncurried{p}{e}}$ domain-restricted to $\Below{\sigma}$ is a monotonic function $\listGenBwdF{p, e, \alpha}$ to $\Below{(e, \alpha)}$.
-     \item $\listGenFwdF{p, e, \alpha}(\listGenBwdF{p, e, \alpha}(\tau)) \geq \tau$.
-     \item $\listGenBwdF{p, e, \alpha}(\listGenFwdF{p, e, \alpha}(e', \alpha')) \leq (e', \alpha')$.
+     \item $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}$ and $\totaliseBwdF{\kappa,\alpha,\vec{\pi}}$ are monotonic.
+     \item $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger})) \geq \smash{\kappa^\dagger}$.
+     \item $\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger}, \alpha')) \leq (\smash{\kappa^\dagger}, \alpha')$.
   \end{enumerate}
 \end{lemma}
