@@ -2,6 +2,20 @@
 \flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\matchFwdS$-eq}}
+   ]
+   {
+      (v,\sigma) \eq (v',\sigma')
+      \\
+      \matchFwd{v'}{\sigma'}{w}{\rho}{\kappa}{\alpha}
+   }
+   {
+      \matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\matchFwdS$-var}}
    ]
    {
