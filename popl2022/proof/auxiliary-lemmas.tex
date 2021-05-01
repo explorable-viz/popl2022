@@ -1,23 +1,33 @@
 \subsection{Auxiliary lemmas}
 
+\begin{definition}
+   Suppose $r \dfwdarrow e$. Define $\desugarListRestFwdF{r}: \Below{r} \to \Below{e}$ and $\desugarListRestBwdF{r}: \Below{e} \to \Below{r}$ to be $\desugarFwd$ domain-restricted to $\Below{r}$ and $\desugarBwd{r}$ domain-restricted to $\Below{e}$ respectively. Then:
+\end{definition}
+
 \begin{lemma}[Galois connection for desugaring list rest]
   \label{lem:aux:desugarlistrest:gc}
-  Suppose $l \dfwdarrow e$. Then:
+  Suppose $r \dfwdarrow e$. Then:
   \begin{enumerate}
-     \item $\desugarListRestFwdF{l}$ and $\desugarListRestBwdF{l}$ are monotonic.
-     \item $\desugarListRestFwdF{l}(\desugarListRestBwdF{l}(e')) \geq e'$.
-     \item $\desugarListRestBwdF{l}(\desugarListRestFwdF{l}(l')) \leq l'$.
+     \item $\desugarListRestFwdF{r}$ and $\desugarListRestBwdF{r}$ are monotonic.
+     \item $\desugarListRestFwdF{r}(\desugarListRestBwdF{r}(e')) \geq e'$.
+     \item $\desugarListRestBwdF{r}(\desugarListRestFwdF{r}(r')) \leq r'$.
   \end{enumerate}
 \end{lemma}
+
+\begin{definition}
+   Suppose $p, e \clauseFwd \sigma$. Define $\clauseFwdF{\clause{p}{e}}: \Below{e} \to \Below{\sigma}$ and $\clauseBwdF{\clause{p}{e}}: \Below{\sigma} \to \Below{(p,e)}$ to be $\clauseFwd$ domain-restricted to $\Below{(p,e)}$ and $\clauseBwd{p}$ domain-restricted to $\Below{\sigma}$ respectively. Then:
+\end{definition}
+
 \begin{lemma}[Galois connection for clause]
   \label{lem:aux:clause:gc}
-  Suppose $p, e \dfwdarrow \sigma$. Then:
+  Suppose $p, e \clauseFwd \sigma$. Then:
   \begin{enumerate}
      \item $\clauseFwdF{\clause{p}{e}}$ and $\clauseBwdF{\clause{p}{e}}$ are monotonic.
      \item $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
      \item $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(e')) \leq e'$.
   \end{enumerate}
 \end{lemma}
+
 \begin{lemma}[Galois connection for clauses]
   \label{lem:aux:clauses:gc}
   Suppose $\vec{c} \dfwdarrow \sigma$. Then:
@@ -27,6 +37,7 @@
      \item $\desugarClausesBwdF{\vec{c}}(\desugarClausesFwdF{\vec{c}}(\vec{c})) \leq \vec{c}'$.
   \end{enumerate}
 \end{lemma}
+
 \begin{lemma}[Galois connection for list generator]
   \label{lem:aux:list-gen:gc}
   \item
