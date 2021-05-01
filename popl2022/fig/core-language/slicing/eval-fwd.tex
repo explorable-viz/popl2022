@@ -144,14 +144,15 @@
       lab={\ruleName{$\evalFwdS$-apply-prim}}
    ]
    {
-      e \eq \exApp{e_1}{e_2}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
       \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
-      \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{u}
+      \evalFwd{\rho}{e'}{\alpha}{U}{u}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+      \evalFwd{\rho}
+              {\exApp{e}{e'}}
+              {\alpha}
+              {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
               {\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)}
    }
    %
@@ -161,20 +162,18 @@
       lab={\ruleName{$\evalFwdS$-apply}}
    ]
    {
-      e \eq \exApp{e_1}{e_2}
-      \\
-      \evalFwdEq{\rho}{e_1}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
       \\
       \rho_1, h \closeDefsFwdR \rho_2
       \\
-      \evalFwd{\rho}{e_2}{\alpha}{U}{v}
+      \evalFwd{\rho}{e'}{\alpha}{U}{v}
       \\
-      \matchFwd{v}{\sigma}{w}{\rho_3}{e'}{\beta}
+      \matchFwd{v}{\sigma}{w}{\rho_3}{e^\twoPrime}{\beta}
       \\
-      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e'}{\beta}{T'}{v'}
+      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\beta}{T'}{v'}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
+      \evalFwd{\rho}{\exApp{e}{e'}}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
    }
    %
    \and
@@ -183,14 +182,12 @@
       \ruleName{$\evalFwdS$-let-rec}}
    ]
    {
-      e \eq \exLetRecMutual{h'}{e'}
+      \rho, h' \closeDefsFwdR \rho'
       \\
-      \rho, h' \closeDefsFwdR \rho_1
-      \\
-      \evalFwd{\rho \concat \rho_1}{e'}{\alpha}{T}{v}
+      \evalFwd{\rho \concat \rho'}{e}{\alpha}{T}{v}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{\trLetRecMutual{h}{T}}{v}
+      \evalFwd{\rho}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
    }
 \end{smathpar}
 \caption{Evaluation: forward slicing (Boolean and pair cases omitted)}
