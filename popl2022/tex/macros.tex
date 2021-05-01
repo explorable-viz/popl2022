@@ -251,14 +251,16 @@
 \newcommand*{\matchGC}[1]{\GC{\matchN}{#1}}
 
 % Desugaring.
-\newcommand*{\dfwdarrow}{\mathrel{{\rotatebox[origin=c]{45}{$\twoheadrightarrow$}}}}
-\newcommand*{\dbwdarrow}{\mathrel{{\rotatebox[origin=c]{-45}{$\twoheadrightarrow$}}}}
+\newcommand*{\desugarS}{\twoheadrightarrow}
+\newcommand*{\desugarFwdS}{\mathrel{{\rotatebox[origin=c]{45}{$\desugarS$}}}}
+\newcommand*{\desugarBwdS}{\mathrel{{\rotatebox[origin=c]{-45}{$\desugarS$}}}}
 
-\newcommand*{\desugarFwdR}{\dfwdarrow}
-\newcommand*{\desugarBwdR}[1]{\sub{\dbwdarrow}{#1}}
-\newcommand*{\desugarFwdF}[1]{\fwdF{dsg}{#1}\hspace{-0.05em}}
-\newcommand*{\desugarBwdF}[1]{\bwdF{dsg}{#1}\hspace{-0.11em}}
-\newcommand*{\desugarGC}[1]{\GC{dsg}{#1}\hspace{-0.11em}}
+\newcommand*{\desugarFwdR}{\desugarFwdS}
+\newcommand*{\desugarBwdR}[1]{\sub{\desugarBwdS}{#1}}
+\newcommand*{\desugarN}{dsg}
+\newcommand*{\desugarFwdF}[1]{\fwdF{\desugarN}{#1}\hspace{-0.05em}}
+\newcommand*{\desugarBwdF}[1]{\bwdF{\desugarN}{#1}\hspace{-0.11em}}
+\newcommand*{\desugarGC}[1]{\GC{\desugarN}{#1}\hspace{-0.11em}}
 
 \newcommand*{\desugarListRestFwdF}[1]{\fwdF{desug}{#1}}
 \newcommand*{\desugarListRestBwdF}[1]{\bwdF{desug}{#1}}
