@@ -1,20 +1,6 @@
 \newpage
 
 \subsection{\thmref{core-language:closeDefs:gc}, part (i)}
-\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
-\begin{salign}
-   &\vec{\bind{x}{\exClosure{\rho}{h}{\sigma}}}
-   \closeDefsBwdR
-   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
-\end{salign}
-\flushleft\shadebox{$\rho, h \closeDefsR \rho'$}
-\begin{salign}
-   &\rho, h
-   \closeDefsR
-   \seqRange{\bind{x_1}{\exClosure{\rho}{h}{\sigma_1}}}{\bind{x_j}{\exClosure{\rho}{h}{\sigma_j}}}
-   & \text{where $h = \vec{\bind{x}{\sigma}}$}
-\end{salign}
-\vspace{5pt}
 Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h}(\closeDefsBwdF{\rho,h}(\rho')) \geq \rho'$.
 \begin{proof}
 \small
@@ -44,6 +30,7 @@ Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h}(\closeDefsBwd
    \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{ \vec{\bind{x}{\tau}} }{\tau_1}}}
             {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{ \vec{\bind{x}{\tau}} }{\tau_j}}}
    &
+   \text{(\defref{core-language:closeDefs})}
    \notag
    \\
    &
@@ -107,6 +94,7 @@ Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsBwdF{\rho,h}(\closeDefsFwd
    \closeDefsBwdR
    (\rho, \vec{\bind{x}{\sigma}} \join h) = (\rho, h)
    &
+   \text{(\defref{core-language:closeDefs-bwd})}
    \notag
    \\
    &
