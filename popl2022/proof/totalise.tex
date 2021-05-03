@@ -1,0 +1,359 @@
+\newpage
+
+\subsection{\lemref{aux:list-gen:gc}}
+\begin{proof} \ref{lem:aux:totalise:gc:2} Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger})) \geq \smash{\kappa^\dagger}$.
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+        lab={\ruleName{$\totaliseBwdS$-var}}
+      ]
+      {
+         \sigma \eq \elimVar{x}{\kappa_1}
+         \\
+         \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\alpha}
+      }
+      {
+         \totaliseBwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa_2}}{\alpha}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-var}}
+   ]
+   {
+      \totaliseFwd{\kappa_2}{\alpha}{\vec{\pi}}{\kappa_1'}
+   }
+   {
+      \totaliseFwd{\elimVar{x}{\kappa_2}}
+                  {\alpha}
+                  {\pattVar{x} \concat \vec{\pi}}
+                  {\elimVar{x}{\kappa_1'}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   {\elimVar{x}{\kappa_1'}} \geq {\elimVar{x}{\kappa_1}} \eq \sigma
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\totaliseBwdS$-true}}
+      ]
+      {
+         \sigma \eq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}}
+         \\
+         \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\beta}
+      }
+      {
+         \totaliseBwd{\sigma}
+                     {\pattTrue \concat \vec{\pi}}
+                     {\elimBoolTrue{\kappa_2}}
+                     {\alpha \join \beta}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-true}}
+   ]
+   {
+      \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'}
+   }
+   {
+      \totaliseFwd{\elimBoolTrue{\kappa_2}}
+                  {\alpha \join \beta}
+                  {\pattTrue \concat \vec{\pi}}
+                  {\elimBool{\kappa_1'}{\annNil{\alpha \join \beta}}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimBool{\kappa_1'}{\annNil{\alpha \join \beta}} \geq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}} \eq \sigma
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\totaliseBwdS$-false}}
+      ]
+      {
+         \sigma \eq \elimBool{\annot{\exNil}{\alpha}}{\kappa_1}
+         \\
+         \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\beta}
+      }
+      {
+         \totaliseBwd{\sigma}
+                     {\pattFalse \concat \vec{\pi}}
+                     {\elimBoolFalse{\kappa_2}}
+                     {\alpha \join \beta}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-false}}
+   ]
+   {
+      \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'}
+   }
+   {
+      \totaliseFwd{\elimBoolFalse{\kappa_2}}
+                  {\alpha \join \beta}
+                  {\pattFalse \concat \vec{\pi}}
+                  {\elimBool{\annNil{\alpha \join \beta}}{\kappa_1'}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimBool{\annNil{\alpha \join \beta}}{\kappa_1'} \geq \elimBool{\annot{\exNil}{\alpha}}{\kappa_1} \eq \sigma
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\totaliseBwdS$-prod}}
+      ]
+      {
+         \sigma \eq \elimProd{\sigma_1}
+         \\
+         \totaliseBwd{\sigma_1}{p \concat p' \concat \vec{\pi}}{\sigma_2}{\alpha}
+      }
+      {
+         \totaliseBwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma_2}}{\alpha}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\sigma_2}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-prod}}
+   ]
+   {
+      \totaliseFwd{\sigma_2}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma_1'}
+   }
+   {
+      \totaliseFwd{\elimProd{\sigma_2}}
+                  {\alpha}
+                  {\pattPair{p}{p'} \concat \vec{\pi}}
+                  {\elimProd{\sigma_1'}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimProd{\sigma_1'} \geq \elimProd{\sigma_1} \eq \sigma
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\totaliseBwdS$-nil}}
+      ]
+      {
+         \sigma \eq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
+         \\
+         \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\beta}
+      }
+      {
+         \totaliseBwd{\sigma}
+                     {\pattNil \concat \vec{\pi}}
+                     {\elimNil{\kappa_2}}
+                     {\alpha \join \beta}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-nil}}
+   ]
+   {
+      \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'}
+   }
+   {
+      \totaliseFwd{\elimNil{\kappa_2}}
+                  {\alpha \join \beta}
+                  {\pattNil \concat \vec{\pi}}
+                  {\elimList{\kappa_1'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha \join \beta}}}}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimList{\kappa_1'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha \join \beta}}}} \geq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}} \eq \sigma
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\totaliseBwdS$-cons}}
+      ]
+      {
+         \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
+         \\
+         \totaliseBwd{\sigma_1}{p \concat p' \concat \vec{\pi}}{\sigma_2}{\beta}
+      }
+      {
+         \totaliseBwd{\sigma}
+                     {(\pattCons{p}{p'}) \concat \vec{\pi}}
+                     {\elimCons{\sigma_2}}
+                     {\alpha \join \beta}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat p' \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-cons}}
+   ]
+   {
+      \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat p' \concat \vec{\pi}}{\sigma_1'}
+   }
+   {
+      \totaliseFwd{\elimCons{\sigma_2}}
+                  {\alpha \join \beta}
+                  {(\pattCons{p}{p'}) \concat \vec{\pi}}
+                  {\elimList{\annNil{\alpha \join \beta}}{\sigma_1'}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1} \eq \sigma
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\totaliseBwdS$-non-empty-list}}
+      ]
+      {
+         \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
+         \\
+         \totaliseBwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
+      }
+      {
+         \totaliseBwd{\sigma}
+                     {(\pattList{p}{o}) \concat \vec{\pi}}
+                     {\elimCons{\tau}}
+                     {\alpha \join \beta}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat p' \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-cons}}
+   ]
+   {
+      \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat p' \concat \vec{\pi}}{\sigma_1'}
+   }
+   {
+      \totaliseFwd{\elimCons{\sigma_2}}
+                  {\alpha \join \beta}
+                  {(\pattCons{p}{p'}) \concat \vec{\pi}}
+                  {\elimList{\annNil{\alpha \join \beta}}{\sigma_1'}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1} \eq \sigma
+   &
+   \notag
+\end{flalign}
+\end{proof}
