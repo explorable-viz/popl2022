@@ -25,52 +25,57 @@ Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h}(\closeDefsBwd
    \vec{\bind{x}{\exClosure{\rho}{h}{\sigma}}}
    \closeDefsBwdR
    (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   \quad
+   \text{where} \vec{h} = \seqRange{\vec{\bind{x_1}{\sigma_1'}}}{\vec{\bind{x_j}{\sigma_j'}}}
    &
    \text{(Suppose)}
    \notag
    \\
    &
-   \vec{h} = \seqRange{\vec{\bind{x_1}{\sigma_1'}}}{\vec{\bind{x_j}{\sigma_j'}}}
-   &
-   \notag 
-   \\
-   &
-   \sigma''_i = \sigma_{1, i}' \join .. \join \sigma_{j, i}'
+   \vec{\bind{x}{\tau}} = \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}
+   \quad 
+   (\exists \vec{\tau})
    &
    \notag
    \\
    &
-   \tau_i = \sigma_i \join \sigma_i''
-   &
-   \notag
-   \\
-   &
-   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   (\bigjoin\vec{\rho},  \vec{\bind{x}{\tau}})
    \closeDefsR
-   \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\tau_1}}}
-            {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\tau_j}}}
+   \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{ \vec{\bind{x}{\tau}} }{\tau_1}}}
+            {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{ \vec{\bind{x}{\tau}} }{\tau_j}}}
    &
    \notag
    \\
    &
-   \bigjoin\vec{\rho} \geq \rho
+   \bigjoin\vec{\rho} \geq \rho_i 
+   \quad
+   (\forall i \numleq j)
    &
    \locallabel{recbindbtf:1}
    \\
    &
-   \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}} \geq h
+   \vec{\bind{x}{\tau}} \geq h_i
+   \quad
+   (\forall i \numleq j)
    &
    \locallabel{recbindbtf:2}
    \\
    &
-   \sigma_i \join \sigma_i'' \geq \sigma_i
+   \tau_i = \sigma_i \join \sigma_{1, i}' \join .. \join \sigma_{j, i}'
+   \quad
+   (\forall i \numleq j) 
+   &
+   \notag
+   \\
+   &
+   \tau_i \geq \sigma_i
    &
    \locallabel{recbindbtf:3}
    \\
    &
    \qedLocal
-   \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\tau_1}}}
-   {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\tau_j}}}
+   \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\tau}}}{\tau_1}}}
+   {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\tau}}}{\tau_j}}}
    \geq
    \vec{\bind{x}{\exClosure{\rho}{h}{\sigma}}}
    &
@@ -94,17 +99,19 @@ Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsBwdF{\rho,h}(\closeDefsFwd
    \hspace{5pt}
    \text{where $h = \vec{\bind{x}{\sigma}}$}
    &
+   \text{(Suppose)}
    \notag
    \\
    &
    \seqRange{\bind{x_1}{\exClosure{\rho}{h}{\sigma_1}}}{\bind{x_j}{\exClosure{\rho}{h}{\sigma_j}}}
    \closeDefsBwdR
-   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   (\rho, \vec{\bind{x}{\sigma}} \join h) = (\rho, h)
    &
+   \notag
    \\
    &
    \qedLocal
-   \rho, h \leq (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   (\rho, h) \leq (\rho, h)
    \notag
 \end{flalign}
 \end{proof}
