@@ -75,7 +75,7 @@
 %
 \inferrule*[
    lab={\ruleName{$\clauseBwdS$-pair}}
-]
+] 
 {
    \sigma \clauseBwdR{p} \tau
    \\
@@ -140,12 +140,12 @@
 {
    \sigma \clauseBwdR{p} \tau
    \\
-   \tau \clauseBwdR{o} \kappa'
+   \tau \clauseBwdR{o} \kappa
 }
 {
-   \elimList{\kappa}{\sigma}
+   \elimCons{\sigma}
    \clauseBwdR{(\pattListNext{p}{o})}
-   \kappa'
+   \kappa
 }
 \end{smathpar}
 
