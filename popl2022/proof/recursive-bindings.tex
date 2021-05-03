@@ -15,8 +15,8 @@
    & \text{where $h = \vec{\bind{x}{\sigma}}$}
 \end{salign}
 \vspace{5pt}
+Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h}(\closeDefsBwdF{\rho,h}(\rho')) \geq \rho'$.
 \begin{proof}
-   Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h}(\closeDefsBwdF{\rho,h}(\rho')) \geq \rho'$.
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -26,6 +26,7 @@
    \closeDefsBwdR
    (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
    &
+   \text{(Suppose)}
    \notag
    \\
    &
@@ -49,8 +50,8 @@
 
 
 \subsection{\thmref{core-language:closeDefs:gc}, part (ii)}
+Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsBwdF{\rho,h}(\closeDefsFwdF{\rho,h}(\rho, h)) \leq (\rho, h)$.
 \begin{proof}
-   Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsBwdF{\rho,h}(\closeDefsFwdF{\rho,h}(\rho, h)) \leq (\rho, h)$.
 \small
 \begin{flalign}
    \intertext{\crossrule}

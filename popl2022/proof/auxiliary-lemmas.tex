@@ -22,9 +22,9 @@
   \label{lem:aux:clause:gc}
   Suppose $p, e \clauseFwdR \sigma$. Then:
   \begin{enumerate}
-     \item $\clauseFwdF{\clause{p}{e}}$ and $\clauseBwdF{\clause{p}{e}}$ are monotonic.
-     \item $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
-     \item $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
+     \item \label{lem:aux:clause:gc:1} $\clauseFwdF{\clause{p}{e}}$ and $\clauseBwdF{\clause{p}{e}}$ are monotonic.
+     \item \label{lem:aux:clause:gc:2} $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
+     \item \label{lem:aux:clause:gc:3} $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
   \end{enumerate}
 \end{lemma}
 
