@@ -1,0 +1,220 @@
+\subsection{\lemref{aux:desugarlistrest:gc}}
+\begin{proof}
+  \ref{lem:aux:desugarlistrest:gc:2}
+  Suppose $r \desugarFwdR e$. Then $\listRestFwdF{r}(\listRestBwdF{r}(e')) \geq e'$.
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\desugarBwdR{}$-list-rest-end}}
+         ]
+         {
+            \strut
+         }
+         {
+            \annot{\exNil}{\alpha}
+            \desugarBwdR{\exListEnd}
+            \annot{\exListEnd}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\desugarFwdR$-list-rest-end}}
+         ]
+         {
+            \strut
+         }
+         {
+            \annListEnd{\alpha} \desugarFwdR \annNil{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annNil{\alpha} \geq \annNil{\alpha}  
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\desugarBwdR{}$-list-rest-cons}}
+         ]
+         {
+            e_1 \desugarBwdR{t} s
+            \\
+            e_2 \desugarBwdR{r} r
+         }
+         {
+            \annCons{e_1}{e_2}{\alpha}
+            \desugarBwdR{(\exListNext{t}{r})}
+            (\annListNext{s}{r}{\alpha})
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   s \desugarFwdR e_1' \geq e_1 \quad (\exists e_1')
+   &
+   \notag
+   \\
+   &
+   r \desugarFwdR e_2' \geq e_2 \quad (\exists e_2')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\desugarFwdR$-list-rest-cons}}
+         ]
+         {
+            s \desugarFwdR e_1'
+            \\
+            r \desugarFwdR e_2'
+         }
+         {
+            (\annListNext{s}{r}{\alpha}) \desugarFwdR \annCons{e_1'}{e_2'}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annCons{e_1'}{e_2'}{\alpha} \geq \annCons{e_1}{e_2}{\alpha}
+   &
+   \notag
+\end{flalign}
+\end{proof}
+
+\begin{proof}
+  \ref{lem:aux:desugarlistrest:gc:3}
+  Suppose $r \desugarFwdR e$. Then $\listRestBwdF{r}(\listRestFwdF{r}(r')) \leq r'$.
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\desugarFwdR$-list-rest-end}}
+         ]
+         {
+            \strut
+         }
+         {
+            \annListEnd{\alpha} \desugarFwdR \annNil{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\desugarBwdR{}$-list-rest-end}}
+         ]
+         {
+            \strut
+         }
+         {
+            \annot{\exNil}{\alpha}
+            \desugarBwdR{\exListEnd}
+            \annot{\exListEnd}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \annot{\exListEnd}{\alpha} \leq \annot{\exListEnd}{\alpha}
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\desugarFwdR$-list-rest-cons}}
+         ]
+         {
+            s \desugarFwdR e_1
+            \\
+            r \desugarFwdR e_2
+         }
+         {
+            (\annListNext{s}{r}{\alpha}) \desugarFwdR \annCons{e_1}{e_2}{\alpha}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   e_1 \desugarBwdR{t} s' \leq s \quad (\exists s')
+   &
+   \notag
+   \\
+   &
+   e_2 \desugarBwdR{r} r' \leq r \quad (\exists r')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\desugarBwdR{}$-list-rest-cons}}
+         ]
+         {
+            e_1 \desugarBwdR{t} s'
+            \\
+            e_2 \desugarBwdR{r} r'
+         }
+         {
+            \annCons{e_1}{e_2}{\alpha}
+            \desugarBwdR{(\exListNext{t}{r})}
+            (\annListNext{s'}{r'}{\alpha})
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   (\annListNext{s'}{r'}{\alpha}) \leq (\annListNext{s}{r}{\alpha})
+   &
+   \notag
+\end{flalign}
+\end{proof}

@@ -1,0 +1,559 @@
+\subsection{\lemref{aux:clause:gc}}
+\begin{proof}
+  \ref{lem:aux:clause:gc:2}
+  Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-var}}
+         ]
+         {
+            \strut
+         }
+         {
+            \elimVar{x}{\kappa}
+            \clauseBwdR{x}
+            \kappa
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-var}}
+         ]
+         {
+            \strut
+         }
+         {
+            x, \kappa
+            \clauseFwdR
+            \elimVar{x}{\kappa}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimVar{x}{\kappa} \geq \elimVar{x}{\kappa}
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-nil}}
+         ]
+         {
+            \strut
+         }
+         {
+            \elimList{\kappa}{\sigma}
+            \clauseBwdR{\exNil}
+            \kappa
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-nil}}
+         ]
+         {
+            \strut
+         }
+         {
+            \pattNil, \kappa
+            \clauseFwdR
+            \elimNil{\kappa}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-cons}}
+         ]
+         {
+            \sigma \clauseBwdR{p} \tau
+            \\
+            \tau \clauseBwdR{p'} \kappa'
+         }
+         {
+            \elimList{\kappa}{\sigma}
+            \clauseBwdR{\pattCons{p}{p'}}
+            \kappa'
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   p', \kappa' \clauseFwdR \tau' \geq \tau \quad (\exists \tau')
+   &
+   \notag
+   \\
+   &
+   p, \sigma \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-cons}}
+         ]
+         {
+            p', \kappa' \clauseFwdR \tau'
+            \\
+            p, \tau' \clauseFwdR \sigma'
+         }
+         {
+            \pattCons{p}{p'}, \kappa'
+            \clauseFwdR
+            \elimCons{\sigma'}
+         } 
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-non-empty-list}}
+         ]
+         {
+            \sigma \clauseBwdR{p} \tau
+            \\
+            \tau \clauseBwdR{o} \kappa'
+         }
+         {
+            \elimList{\kappa}{\sigma}
+            \clauseBwdR{\pattList{p}{o}}
+            \kappa'
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   o, \kappa' \clauseFwdR \tau' \geq \tau \quad (\exists \tau')
+   &
+   \notag
+   \\
+   &
+   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \notag 
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-non-empty-list}}
+         ]
+         {
+            o, \kappa' \clauseFwdR \tau'
+            \\
+            p, \tau' \clauseFwdR \sigma'
+         }
+         {
+            \pattList{p}{o}, \kappa'
+            \clauseFwdR
+            \elimCons{\sigma'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-pair}}
+         ]
+         {
+            \sigma \clauseBwdR{p} \tau
+            \\
+            \tau \clauseBwdR{p'} \kappa
+         }
+         {
+            \elimProd{\sigma}
+            \clauseBwdR{\pattPair{p}{p'}}
+            \kappa
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   p', \kappa \clauseFwdR \tau' \geq \tau \quad (\exists \tau')
+   &
+   \notag
+   \\
+   &
+   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-pair}}
+         ]
+         {
+            p', \kappa \clauseFwdR \tau'
+            \\
+            p, \tau' \clauseFwdR \sigma'
+         }
+         {
+            \pattPair{p}{p'}, \kappa
+            \clauseFwdR
+            \elimProd{\sigma'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimProd{\sigma'} \geq \elimProd{\sigma}
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-seq}},
+            right={$\length{\vec{p}} \numgt 0$}
+         ]
+         {
+            \sigma \clauseBwdR{p}\eq \exLambda{\tau}
+            \\
+            \tau \clauseBwdR{\vec{p}} e
+         }
+         {
+            \sigma
+            \clauseBwdR{p \concat \vec{p}}
+            e
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \vec{p}, e \clauseFwdR \tau' \geq \tau \quad (\exists \tau')
+   &
+   \notag
+   \\
+   &
+   p, \exLambda{\tau'} \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-seq}},
+            right={$\length{\vec{p}} \numgt 0$}
+         ]
+         {
+            \vec{p}, e \clauseFwdR \tau'
+            \\
+            p, \exLambda{\tau'} \clauseFwdR \sigma'
+         }
+         {
+            p \concat \vec{p}, e
+            \clauseFwdR
+            \sigma'
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \sigma' \geq \sigma
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-list-rest-end}}
+         ]
+         {
+            \strut
+         }
+         {
+            \elimList{\kappa}{\sigma}
+            \clauseBwdR{\pattListEnd}
+            \kappa
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-list-rest-end}}
+         ]
+         {
+            \strut
+         }
+         {
+            \pattListEnd, \kappa
+            \clauseFwdR
+            \elimNil{\kappa}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-list-rest-cons}}
+         ]
+         {
+            \sigma \clauseBwdR{p} \tau
+            \\
+            \tau \clauseBwdR{o} \kappa'
+         }
+         {
+            \elimList{\kappa}{\sigma}
+            \clauseBwdR{(\pattListNext{p}{o})}
+            \kappa'
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-list-rest-cons}}
+         ]
+         {
+            o, \kappa' \clauseFwdR \tau'
+            \\
+            p, \tau' \clauseFwdR \sigma'
+         }
+         {
+            (\pattListNext{p}{o}), \kappa'
+            \clauseFwdR
+            \elimCons{\sigma'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+\end{flalign}
+\end{proof}
+
+
+
+
+
+\begin{proof}
+  \ref{lem:aux:clause:gc:3}
+  Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-var}}
+         ]
+         {
+            \strut
+         }
+         {
+            x, \kappa
+            \clauseFwdR
+            \elimVar{x}{\kappa}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-var}}
+         ]
+         {
+            \strut
+         }
+         {
+            \elimVar{x}{\kappa}
+            \clauseBwdR{x}
+            \kappa
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimVar{x}{\kappa} \leq \elimVar{x}{\kappa}
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-nil}}
+         ]
+         {
+            \strut
+         }
+         {
+            \pattNil, \kappa
+            \clauseFwdR
+            \elimNil{\kappa}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-nil}}
+         ]
+         {
+            \strut
+         }
+         {
+            \elimList{\kappa}{\sigma}
+            \clauseBwdR{\exNil}
+            \kappa
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-cons}}
+         ]
+         {
+            p', \kappa \clauseFwdR \sigma
+            \\
+            p, \sigma \clauseFwdR \sigma'
+         }
+         {
+            \pattCons{p}{p'}, \kappa
+            \clauseFwdR
+            \elimCons{\sigma'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-cons}}
+         ]
+         {
+            \sigma \clauseBwdR{p} \tau
+            \\
+            \tau \clauseBwdR{p'} \kappa'
+         }
+         {
+            \elimList{\kappa}{\sigma}
+            \clauseBwdR{\pattCons{p}{p'}}
+            \kappa'
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+\end{flalign}
+\end{proof}
