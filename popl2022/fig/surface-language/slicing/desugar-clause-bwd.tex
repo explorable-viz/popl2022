@@ -34,7 +34,7 @@
    \strut
 }
 {
-   \elimList{\kappa}{\sigma}
+   \elimNil{\kappa}
    \clauseBwdR{\exNil}
    \kappa
 }
@@ -47,15 +47,15 @@
 {
    \sigma \clauseBwdR{p} \tau
    \\
-   \tau \clauseBwdR{p'} \kappa'
+   \tau \clauseBwdR{p'} \kappa
 }
 {
-   \elimList{\kappa}{\sigma}
+   \elimCons{\sigma}
    \clauseBwdR{\pattCons{p}{p'}}
-   \kappa'
+   \kappa
 }
 %
-\and
+\and 
 %
 \inferrule*[
    lab={\ruleName{$\clauseBwdS$-non-empty-list}}
@@ -63,12 +63,12 @@
 {
    \sigma \clauseBwdR{p} \tau
    \\
-   \tau \clauseBwdR{o} \kappa'
+   \tau \clauseBwdR{o} \kappa
 }
 {
-   \elimList{\kappa}{\sigma}
+   \elimCons{\sigma}
    \clauseBwdR{\pattList{p}{o}}
-   \kappa'
+   \kappa
 }
 %
 \and
@@ -127,7 +127,7 @@
    \strut
 }
 {
-   \elimList{\kappa}{\sigma}
+   \elimNil{\kappa}
    \clauseBwdR{\pattListEnd}
    \kappa
 }
