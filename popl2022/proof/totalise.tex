@@ -313,14 +313,14 @@
          lab={\ruleName{$\totaliseBwdS$-non-empty-list}}
       ]
       {
-         \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma'}
+         \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
          \\
-         \totaliseBwd{\sigma'}{p \concat o \concat \vec{\pi}}{\tau}{\beta}
+         \totaliseBwd{\sigma_1}{p \concat o \concat \vec{\pi}}{\sigma_2}{\beta}
       }
       {
          \totaliseBwd{\sigma}
                      {(\pattList{p}{o}) \concat \vec{\pi}}
-                     {\elimCons{\tau}}
+                     {\elimCons{\sigma_2}}
                      {\alpha \join \beta}
       }
     \end{smathpar}
@@ -329,22 +329,124 @@
    \notag
    \\
    &
-   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat p' \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat o \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
    &
    \notag
    \\
    &
    \qedLocal
    \inferrule*[
-      lab={\ruleName{$\totaliseFwdS$-elim-cons}}
+      lab={\ruleName{$\totaliseFwdS$-elim-non-empty-list}}
    ]
    {
-      \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat p' \concat \vec{\pi}}{\sigma_1'}
+      \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat o \concat \vec{\pi}}{\sigma_1'}
    }
    {
       \totaliseFwd{\elimCons{\sigma_2}}
                   {\alpha \join \beta}
-                  {(\pattCons{p}{p'}) \concat \vec{\pi}}
+                  {(\pattList{p}{o}) \concat \vec{\pi}}
+                  {\elimList{\annNil{\alpha \join \beta}}{\sigma_1'}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1} \eq \sigma
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\totaliseBwdS$-list-rest-end}}
+      ]
+      {
+         \sigma \eq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
+         \\
+         \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\beta}
+      }
+      {
+         \totaliseBwd{\sigma}
+                     {\pattListEnd \concat \vec{\pi}}
+                     {\elimNil{\kappa_2}}
+                     {\alpha \join \beta}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-list-rest-end}}
+   ]
+   {
+      \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'}
+   }
+   {
+      \totaliseFwd{\elimNil{\kappa_2}}
+                  {\alpha \join \beta}
+                  {\pattListEnd \concat \vec{\pi}}
+                  {\elimList{\kappa_1'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha \join \beta}}}}}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimList{\kappa_1'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha \join \beta}}}} \geq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}} \eq \sigma
+   &
+   \notag
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+    \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\totaliseBwdS$-list-rest-cons}}
+      ]
+      {
+         \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
+         \\
+         \totaliseBwd{\sigma_1}{p \concat o \concat \vec{\pi}}{\sigma_2}{\beta}
+      }
+      {
+         \totaliseBwd{\sigma}
+                     {(\pattListNext{p}{o}) \concat \vec{\pi}}
+                     {\elimCons{\sigma_2}}
+                     {\alpha \join \beta}
+      }
+    \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat o \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \inferrule*[
+      lab={\ruleName{$\totaliseFwdS$-elim-list-rest-cons}}
+   ]
+   {
+      \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat o \concat \vec{\pi}}{\sigma_1'}
+   }
+   {
+      \totaliseFwd{\elimCons{\sigma_2}}
+                  {\alpha \join \beta}
+                  {(\pattListNext{p}{o}) \concat \vec{\pi}}
                   {\elimList{\annNil{\alpha \join \beta}}{\sigma_1'}}
    }
    &
