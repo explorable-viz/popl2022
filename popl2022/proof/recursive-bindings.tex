@@ -30,20 +30,51 @@ Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h}(\closeDefsBwd
    \notag
    \\
    &
-   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
-   \closeDefsR
-   \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\sigma_1}}}
-            {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\sigma_j}}}
+   \vec{h} = \seqRange{\vec{\bind{x_1}{\sigma_1'}}}{\vec{\bind{x_j}{\sigma_j'}}}
+   &
+   \notag 
+   \\
+   &
+   \sigma''_i = \sigma_{1, i}' \join .. \join \sigma_{j, i}'
    &
    \notag
    \\
    &
+   \tau_i = \sigma_i \join \sigma_i''
+   &
+   \notag
+   \\
+   &
+   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   \closeDefsR
+   \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\tau_1}}}
+            {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\tau_j}}}
+   &
+   \notag
+   \\
+   &
+   \bigjoin\vec{\rho} \geq \rho
+   &
+   \locallabel{recbindbtf:1}
+   \\
+   &
+   \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}} \geq h
+   &
+   \locallabel{recbindbtf:2}
+   \\
+   &
+   \sigma_i \join \sigma_i'' \geq \sigma_i
+   &
+   \locallabel{recbindbtf:3}
+   \\
+   &
    \qedLocal
-   \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\sigma_1}}}
-   {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\sigma_j}}}
+   \seqRange{\bind{x_1}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\tau_1}}}
+   {\bind{x_j}{\exClosure{\bigjoin\vec{\rho}}{\vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}}{\tau_j}}}
    \geq
    \vec{\bind{x}{\exClosure{\rho}{h}{\sigma}}}
    &
+   \text{(\localref{recbindbtf:1}, \localref{recbindbtf:2}, \localref{recbindbtf:3})}
    \notag
 \end{flalign}
 \end{proof}
