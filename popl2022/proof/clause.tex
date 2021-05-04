@@ -1,7 +1,7 @@
 \subsection{\lemref{aux:clause:gc}}
+Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
 \begin{proof}
   \ref{lem:aux:clause:gc:2}
-  Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -128,9 +128,15 @@
    \notag
    \\
    &
-   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   p, \tau \clauseFwdR \geq \sigma 
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -146,7 +152,7 @@
             p, \tau' \clauseFwdR \sigma'
          }
          {
-            \pattCons{p}{p'}, \kappa'
+            \pattCons{p}{p'}, \kappa
             \clauseFwdR
             \elimCons{\sigma'}
          } 
@@ -190,9 +196,15 @@
    \notag
    \\
    &
-   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   p, \tau \clauseFwdR \geq \sigma
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(Monotonicity)}
    \notag 
    \\
    &
@@ -253,9 +265,15 @@
    \notag
    \\
    &
-   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   p, \tau \clauseFwdR \geq \sigma
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -317,9 +335,15 @@
    \notag
    \\
    &
-   p, \exLambda{\tau'} \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   p, \exLambda{\tau} \clauseFwdR \geq \sigma
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   p, \exLambda{\tau'} \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -428,9 +452,15 @@
    \notag
    \\
    &
-   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   p, \tau \clauseFwdR \geq \sigma
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -463,13 +493,10 @@
 \end{flalign}
 \end{proof}
 
-
-
-
-
+\noindent
+Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
 \begin{proof}
   \ref{lem:aux:clause:gc:3}
-  Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -595,9 +622,15 @@
    \notag
    \\
    &
-   \tau' \clauseBwdR{p'} \kappa' \leq \kappa \quad (\exists \kappa')
+   \tau \clauseBwdR{p'} \leq \kappa
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \tau' \clauseBwdR{p'} \kappa' \leq \kappa \quad (\exists \kappa')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -658,9 +691,15 @@
    \notag
    \\
    &
-   \tau' \clauseBwdR{o} \kappa' \leq \kappa \quad (\exists \kappa')
+   \tau \clauseBwdR{o} \leq \kappa
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \tau' \clauseBwdR{o} \kappa' \leq \kappa \quad (\exists \kappa')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -721,9 +760,15 @@
    \notag
    \\
    &
-   \tau' \clauseBwdR{p'} \kappa' \leq \kappa \quad (\exists \kappa')
+   \tau \clauseBwdR{p'} \leq \kappa
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \tau' \clauseBwdR{p'} \kappa' \leq \kappa \quad (\exists \kappa')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -785,9 +830,15 @@
    \notag
    \\
    &
-   \tau' \clauseBwdR{\vec{p}} e' \leq e \quad (\exists e')
+   \tau \clauseBwdR{\vec{p}} \leq e
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \tau' \clauseBwdR{\vec{p}} e' \leq e \quad (\exists e')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -896,9 +947,15 @@
    \notag
    \\
    &
-   \tau' \clauseBwdR{o} \kappa' \leq \kappa \quad (\exists \kappa')
+   \tau \clauseBwdR{o} \leq \kappa
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \tau' \clauseBwdR{o} \kappa' \leq \kappa \quad (\exists \kappa')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &

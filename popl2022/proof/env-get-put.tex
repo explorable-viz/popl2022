@@ -1,9 +1,9 @@
 \subsection{\lemref{core-language:env-get-put}}
+If $\envLookupBwd{\rho}{\rho'}{\bind{x}{v}}$ then $\envLookup{\rho}{x}{v}$. 
+ 
 \begin{proof}
    \ref{lem:core-language:env-get-put:1}
-   Suppose $\vdash \rho: \Gamma$. If $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$ then $\envLookup{\rho}{z}{v}$. \\
-
-   By induction on the proof that $\envLookupBwd{\rho}{\Gamma}{\bind{z}{v}}$:
+   By induction on the proof that $\envLookupBwd{\rho}{\rho'}{\bind{x}{v}}$:
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -12,13 +12,13 @@
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\smalltriangleleft$-head}}
+         lab={\ruleName{$\envLookupBwdS$-head}}
       ]
       {
         \strut
       }
       {
-        \envLookupBwd{\hole_{\Gamma'} \concat \bind{z}{v}}{\Gamma' \concat \bind{z}{A}}{\bind{z}{v}}
+        \envLookupBwd{(\hole_{\rho'} \concat \bind{x}{v})}{\rho' \concat \bind{x}{u}}{\bind{x}{v}}
       }
    \end{smathpar}
    }
@@ -30,13 +30,13 @@
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\smalltriangleright$-head}}
+         lab={\ruleName{$\envLookupS$-head}}
       ]
       {
         \strut
       }
       {
-        \envLookup{\hole_{\Gamma'} \concat \bind{z}{v}}{z}{v}
+        \envLookup{\hole_{\rho'} \concat \bind{x}{v}}{x}{v}
       }
    \end{smathpar}
    }
@@ -49,14 +49,14 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\smalltriangleleft$-tail}},
-            right={$z \neq z'$}
+            lab={\ruleName{$\envLookupBwdS$-tail}},
+            right={$x \neq x'$}
          ]
          {
-            \envLookupBwd{\rho'}{\Gamma'}{\bind{z}{v}}
+            \envLookupBwd{\rho}{\rho'}{\bind{x}{v}}
          }
          {
-            \envLookupBwd{\rho' \concat \bind{z'}{\hole}}{\Gamma' \concat \bind{z'}{A}}{\bind{z}{v}}
+            \envLookupBwd{(\rho \concat \bind{x'}{\hole})}{\rho' \concat \bind{x'}{u}}{\bind{x}{v}}
          }
       \end{smathpar}
    }
@@ -64,7 +64,7 @@
    \notag
    \\
    &
-   \envLookup{\rho'}{z}{v}
+   \envLookup{\rho}{x}{v}
    &
    \text{IH}
    \locallabel{lookup-ih}
@@ -74,31 +74,28 @@
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\smalltriangleright$-tail}},
-            right={$z' \neq z$}
+            lab={\ruleName{$\envLookupS$-tail}},
+            right={$x' \neq x$}
          ]
          {
-            \envLookup{\rho'}{z}{v}
+            \envLookup{\rho}{x}{v}
          }
          {
-            \envLookup{(\rho' \concat \bind{z'}{\hole})}{z}{v}
+            \envLookup{(\rho \concat \bind{x'}{\hole})}{x}{v}
          }
       \end{smathpar}
    }
    &
    (\localref{lookup-ih})
    \notag
-   \\
-   \intertext{\crossrule}
-   \notag
 \end{flalign}
 \end{proof}
 
+\noindent
+If $\envLookup{\rho}{x}{v}$ then $\exists \rho'$ such that $\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$ and $\rho' \leq \rho$. 
 \begin{proof}
    \ref{lem:core-language:env-get-put:2}
-   Suppose $\vdash \rho: \Gamma$. If $\envLookup{\rho}{z}{v}$ and $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$ then $(u \leq v \iff \rho' \leq \rho)$. \\
-
-   By induction on the proof that $\envLookup{\rho}{z}{v}$, $\envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}$.
+   By induction on the proof that $\envLookup{\rho}{x}{v}$.
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -107,57 +104,32 @@
    \caseDerivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\smalltriangleright$-head}}
+         lab={\ruleName{$\envLookupS$-head}}
       ]
       {
          \strut
       }
       {
-         \envLookup{(\rho_{1} \concat \bind{z}{v})}{z}{v}
+         \envLookup{(\rho \concat \bind{x}{v})}{x}{v}
       }
    \end{smathpar}
    }
    &
-   \notag
-   \\
-   &
-   \text{where}
-   \notag
-   \\
-   &
-   \rho = \rho_{1} \concat \bind{z}{v}
-   \locallabel{decompose-rho}
-   \\
-   &
-   \Gamma = \Gamma_{1} \concat \bind{z}{A}
-   \quad
-   (\exists \Gamma_{1}, A)
-   &
-   \locallabel{decompose-gamma}
-   \\
-   &
-   \vdash \rho_{1}: \Gamma_{1}
-   &
-   (congruence)
-   \notag
-   \\
-   \notag
-   \\
-   &
-   \text{The \ruleName{$\smalltriangleleft$} proof is of the following form:}
    \notag
    \\
    &
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\smalltriangleleft$-head}}
+         lab={\ruleName{$\envLookupBwdS$-head}}
       ]
       {
-        \strut
+         \strut
       }
       {
-         \envLookupBwd{\rho'}{\Gamma}{\bind{z}{u}}
+         \envLookupBwd{(\hole_{\rho} \concat \bind{x}{v})}
+                      {\rho \concat \bind{x}{u}}
+                      {\bind{x}{v}}
       }
    \end{smathpar}
    }
@@ -165,45 +137,9 @@
    \notag
    \\
    &
-   \text{where}
-   \notag
-   \\
-   &
-   \rho' = \hole_{\Gamma_{1}} \concat \bind{z}{u}
-   \locallabel{rho-prime-bwd}
-   \\
-   \notag
-   \\
-   &
-   \text{1. Suppose $u \leq v$:}
-   \notag
-   \\
-   &
-   \hole_{\Gamma_{1}} \leq \rho_{1}
-   &
-   \text{
-   	(\lemref{core-language:hole-env})
-   }
-   \notag
-   \\
-   &
    \qedLocal
-   \hole_{\Gamma_{1}} \concat \bind{z}{u} \leq \rho_{1} \concat \bind{z}{v}
-   \notag
-   \\
+   (\hole_{\rho} \concat \bind{x}{v}) \leq (\rho \concat \bind{x}{v})
    &
-   \text{2. Suppose $\rho' \leq \rho$:}
-   \notag
-   \\
-   &
-   \hole_{\Gamma_{1}} \concat \bind{z}{u} \leq \rho_{1} \concat \bind{z}{v}
-   &
-   \text{(\localref{decompose-rho}, \localref{rho-prime-bwd})}
-   \notag
-   \\
-   &
-   \qedLocal
-   u \leq v
    \notag
    \\
    \intertext{\crossrule}
@@ -212,14 +148,14 @@
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\smalltriangleright$-tail}},
-            right={$z' \neq z$}
+            lab={\ruleName{$\envLookupS$-tail}},
+            right={$x' \neq x$}
          ]
          {
-            \envLookup{\rho_1}{z}{v}
+            \envLookup{\rho}{x}{v}
          }
          {
-            \envLookup{(\rho_1 \concat \bind{z'}{v'})}{z}{v}
+            \envLookup{(\rho \concat \bind{x'}{u})}{x}{v}
          }
       \end{smathpar}
    }
@@ -227,42 +163,23 @@
    \notag
    \\
    &
-   \text{where}
-   \notag
-   \\
+   \rho \geq \envLookupBwd{\rho'}{\rho}{\bind{x}{v}} \quad (\exists \rho')
    &
-   \rho = \rho_{1} \concat \bind{z'}{v'}
-   \locallabel{decompose-rho-tail}
-   \\
-   &
-   \Gamma = \Gamma_{1} \concat \bind{z'}{A}
-   \quad
-   (\exists \Gamma_{1}, A)
-   &
-   \notag
-   \\
-   &
-   \vdash \rho_{1} : \Gamma_{1}
-   \notag
-   \\
-   \notag
-   \\
-   &
-   \text{The \ruleName{$\smalltriangleleft$} proof is of the following form:}
+   \text{(IH)}
    \notag
    \\
    &
    \derivation{\derivationWidth}{
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\smalltriangleleft$-tail}},
-         right={$z' \neq z$}
+         lab={\ruleName{$\envLookupBwdS$-tail}},
+         right={$x' \neq x$}
       ]
       {
-         \envLookupBwd{\rho_2}{\Gamma_1}{\bind{z}{u}}
+         \envLookupBwd{\rho'}{\rho}{\bind{x}{v}}
       }
       {
-         \envLookupBwd{\rho'}{\Gamma_1 \concat \bind{z'}{A}}{\bind{z}{u}}
+         \envLookupBwd{(\rho' \concat \bind{x'}{\hole})}{\rho \concat \bind{x'}{u}}{\bind{x}{v}}
       }
    \end{smathpar}
    }
@@ -270,71 +187,9 @@
    \notag
    \\
    &
-   \text{where}
-   \notag
-   \\
-   &
-   \rho' = \rho_{2} \concat \bind{z'}{\hole'}
-   \locallabel{decompose-rho'-tail}
-   \\
-   &
-   \vdash \rho_{2} : \Gamma_{1}
-   \notag
-   \\
-   \notag
-   \\
-   &
-   u \leq v \iff \rho_2 \leq \rho_1
-   &
-   \text{IH}
-   \locallabel{ih-tail}
-   \\
-   \notag
-   \\
-   &
-   \text{1. Suppose $u \leq v$:}
-   \notag
-   \\
-   &
-   \rho_{2} \leq \rho_{1}
-   &
-   \text{(\localref{ih-tail})}
-   \notag
-   \\
-   &
-   \rho_{2} \concat \bind{z'}{\hole} \leq \rho_{1} \concat \bind{z'}{v'}
-   &
-   \text{Congruence}
-   \notag
-   \\
-   &
    \qedLocal
-   \rho' \leq \rho
+   (\rho' \concat \bind{x'}{\hole}) \leq (\rho \concat \bind{x'}{u})
    &
-   \text{(\localref{decompose-rho-tail}, \localref{decompose-rho'-tail})}
-   \notag
-   \\
-   &
-   \text{2. Suppose $\rho' \leq \rho$:}
-   \notag
-   \\
-   &
-   \rho_{2} \concat \bind{z'}{\hole} \leq \rho_{1} \concat \bind{z'}{v'}
-   &
-   \text{(\localref{decompose-rho-tail}, \localref{decompose-rho'-tail})}
-   \notag
-   \\
-   &
-   \rho_{2} \leq \rho_{1}
-   &
-   \text{Congruence}
-   \notag
-   \\
-   &
-   \qedLocal
-   u \leq v
-   &
-   \text{(\localref{ih-tail})}
    \notag
 \end{flalign}
 \end{proof}

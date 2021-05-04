@@ -1,7 +1,9 @@
 \newpage
 
 \subsection{\lemref{aux:list-gen:gc}}
-\begin{proof} \ref{lem:aux:totalise:gc:2} Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger})) \geq \smash{\kappa^\dagger}$.
+Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger})) \geq \smash{\kappa^\dagger}$.
+\begin{proof} 
+\ref{lem:aux:totalise:gc:2} 
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -13,12 +15,10 @@
         lab={\ruleName{$\totaliseBwdS$-var}}
       ]
       {
-         \sigma \eq \elimVar{x}{\kappa_1}
-         \\
          \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\alpha}
       }
       {
-         \totaliseBwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa_2}}{\alpha}
+         \totaliseBwd{\elimVar{x}{\kappa_1}}{x \concat \vec{\pi}}{\elimVar{x}{\kappa_2}}{\alpha}
       }
     \end{smathpar}
    }
@@ -54,7 +54,7 @@
    \\
    &
    \qedLocal
-   {\elimVar{x}{\kappa_1'}} \geq {\elimVar{x}{\kappa_1}} \eq \sigma
+   {\elimVar{x}{\kappa_1'}} \geq {\elimVar{x}{\kappa_1}}
    &
    \notag
    \intertext{\crossrule}
@@ -66,12 +66,10 @@
          lab={\ruleName{$\totaliseBwdS$-true}}
       ]
       {
-         \sigma \eq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}}
-         \\
          \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\beta}
       }
       {
-         \totaliseBwd{\sigma}
+         \totaliseBwd{\elimBool{\kappa_1}{\annot{\exNil}{\alpha}}}
                      {\pattTrue \concat \vec{\pi}}
                      {\elimBoolTrue{\kappa_2}}
                      {\alpha \join \beta}
@@ -82,9 +80,15 @@
    \notag
    \\
    &
-   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   \totaliseFwdGeq{\kappa_2}{\beta}{\vec{\pi}}{\kappa_1}
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -110,7 +114,7 @@
    \\
    &
    \qedLocal
-   \elimBool{\kappa_1'}{\annNil{\alpha \join \beta}} \geq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}} \eq \sigma
+   \elimBool{\kappa_1'}{\annNil{\alpha \join \beta}} \geq \elimBool{\kappa_1}{\annot{\exNil}{\alpha}}
    &
    \notag
    \intertext{\crossrule}
@@ -122,12 +126,10 @@
          lab={\ruleName{$\totaliseBwdS$-false}}
       ]
       {
-         \sigma \eq \elimBool{\annot{\exNil}{\alpha}}{\kappa_1}
-         \\
          \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\beta}
       }
       {
-         \totaliseBwd{\sigma}
+         \totaliseBwd{\elimBool{\annot{\exNil}{\alpha}}{\kappa_1}}
                      {\pattFalse \concat \vec{\pi}}
                      {\elimBoolFalse{\kappa_2}}
                      {\alpha \join \beta}
@@ -138,9 +140,15 @@
    \notag
    \\
    &
-   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   \totaliseFwdGeq{\kappa_2}{\beta}{\vec{\pi}}{\kappa_1}
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -166,7 +174,7 @@
    \\
    &
    \qedLocal
-   \elimBool{\annNil{\alpha \join \beta}}{\kappa_1'} \geq \elimBool{\annot{\exNil}{\alpha}}{\kappa_1} \eq \sigma
+   \elimBool{\annNil{\alpha \join \beta}}{\kappa_1'} \geq \elimBool{\annot{\exNil}{\alpha}}{\kappa_1}
    &
    \notag
    \intertext{\crossrule}
@@ -178,12 +186,10 @@
          lab={\ruleName{$\totaliseBwdS$-prod}}
       ]
       {
-         \sigma \eq \elimProd{\sigma_1}
-         \\
          \totaliseBwd{\sigma_1}{p \concat p' \concat \vec{\pi}}{\sigma_2}{\alpha}
       }
       {
-         \totaliseBwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma_2}}{\alpha}
+         \totaliseBwd{\elimProd{\sigma_1}}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma_2}}{\alpha}
       }
     \end{smathpar}
    }
@@ -219,7 +225,7 @@
    \\
    &
    \qedLocal
-   \elimProd{\sigma_1'} \geq \elimProd{\sigma_1} \eq \sigma
+   \elimProd{\sigma_1'} \geq \elimProd{\sigma_1}
    &
    \notag
    \intertext{\crossrule}
@@ -231,12 +237,10 @@
          lab={\ruleName{$\totaliseBwdS$-nil}}
       ]
       {
-         \sigma \eq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
-         \\
          \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\beta}
       }
       {
-         \totaliseBwd{\sigma}
+         \totaliseBwd{\elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
                      {\pattNil \concat \vec{\pi}}
                      {\elimNil{\kappa_2}}
                      {\alpha \join \beta}
@@ -247,9 +251,15 @@
    \notag
    \\
    &
-   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   \totaliseFwdGeq{\kappa_2}{\beta}{\vec{\pi}}{\kappa_1}
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -275,7 +285,7 @@
    \\
    &
    \qedLocal
-   \elimList{\kappa_1'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha \join \beta}}}} \geq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}} \eq \sigma
+   \elimList{\kappa_1'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha \join \beta}}}} \geq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}} \eq
    &
    \notag
    \intertext{\crossrule}
@@ -287,12 +297,10 @@
          lab={\ruleName{$\totaliseBwdS$-cons}}
       ]
       {
-         \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
-         \\
          \totaliseBwd{\sigma_1}{p \concat p' \concat \vec{\pi}}{\sigma_2}{\beta}
       }
       {
-         \totaliseBwd{\sigma}
+         \totaliseBwd{\elimList{\annot{\exNil}{\alpha}}{\sigma_1}}
                      {(\pattCons{p}{p'}) \concat \vec{\pi}}
                      {\elimCons{\sigma_2}}
                      {\alpha \join \beta}
@@ -303,9 +311,15 @@
    \notag
    \\
    &
-   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat p' \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   \totaliseFwdGeq{\sigma_2}{\beta}{p \concat p' \concat \vec{\pi}}{\sigma_1}
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat p' \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -331,7 +345,7 @@
    \\
    &
    \qedLocal
-   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1} \eq \sigma
+   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
    &
    \notag
    \intertext{\crossrule}
@@ -343,12 +357,10 @@
          lab={\ruleName{$\totaliseBwdS$-non-empty-list}}
       ]
       {
-         \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
-         \\
          \totaliseBwd{\sigma_1}{p \concat o \concat \vec{\pi}}{\sigma_2}{\beta}
       }
       {
-         \totaliseBwd{\sigma}
+         \totaliseBwd{\elimList{\annot{\exNil}{\alpha}}{\sigma_1}}
                      {(\pattList{p}{o}) \concat \vec{\pi}}
                      {\elimCons{\sigma_2}}
                      {\alpha \join \beta}
@@ -359,9 +371,15 @@
    \notag
    \\
    &
-   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat o \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   \totaliseFwdGeq{\sigma_2}{\beta}{p \concat o \concat \vec{\pi}}{\sigma_1}
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat o \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -387,7 +405,7 @@
    \\
    &
    \qedLocal
-   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1} \eq \sigma
+   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
    &
    \notag
    \intertext{\crossrule}
@@ -399,12 +417,10 @@
          lab={\ruleName{$\totaliseBwdS$-list-rest-end}}
       ]
       {
-         \sigma \eq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
-         \\
          \totaliseBwd{\kappa_1}{\vec{\pi}}{\kappa_2}{\beta}
       }
       {
-         \totaliseBwd{\sigma}
+         \totaliseBwd{\elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
                      {\pattListEnd \concat \vec{\pi}}
                      {\elimNil{\kappa_2}}
                      {\alpha \join \beta}
@@ -415,9 +431,15 @@
    \notag
    \\
    &
-   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   \totaliseFwdGeq{\kappa_2}{\beta}{\vec{\pi}}{\kappa_1}
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'} \geq \kappa_1 \quad (\exists \kappa_1')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -443,7 +465,7 @@
    \\
    &
    \qedLocal
-   \elimList{\kappa_1'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha \join \beta}}}} \geq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}} \eq \sigma
+   \elimList{\kappa_1'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha \join \beta}}}} \geq \elimList{\kappa_1}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
    &
    \notag
    \intertext{\crossrule}
@@ -455,12 +477,10 @@
          lab={\ruleName{$\totaliseBwdS$-list-rest-cons}}
       ]
       {
-         \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
-         \\
          \totaliseBwd{\sigma_1}{p \concat o \concat \vec{\pi}}{\sigma_2}{\beta}
       }
       {
-         \totaliseBwd{\sigma}
+         \totaliseBwd{\elimList{\annot{\exNil}{\alpha}}{\sigma_1}}
                      {(\pattListNext{p}{o}) \concat \vec{\pi}}
                      {\elimCons{\sigma_2}}
                      {\alpha \join \beta}
@@ -471,9 +491,15 @@
    \notag
    \\
    &
-   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat o \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   \totaliseFwdGeq{\sigma_2}{\beta}{p \concat o \concat \vec{\pi}}{\sigma_1}
    &
    \text{(IH)}
+   \notag
+   \\
+   &
+   \totaliseFwd{\sigma_2}{\alpha \join \beta}{p \concat o \concat \vec{\pi}}{\sigma_1'} \geq \sigma_1 \quad (\exists \sigma_1')
+   &
+   \text{(Monotonicity)}
    \notag
    \\
    &
@@ -499,13 +525,16 @@
    \\
    &
    \qedLocal
-   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1} \eq \sigma
+   \elimList{\annNil{\alpha \join \beta}}{\sigma_1'} \geq \elimList{\annot{\exNil}{\alpha}}{\sigma_1}
    &
    \notag
 \end{flalign}
 \end{proof}
 
-\begin{proof} \ref{lem:aux:totalise:gc:3} Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger}, \alpha')) \leq (\smash{\kappa^\dagger}, \alpha')$.
+\noindent
+Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseBwdF{\kappa,\alpha,\vec{\pi}}(\totaliseFwdF{\kappa,\alpha,\vec{\pi}}(\smash{\kappa^\dagger}, \alpha')) \leq (\smash{\kappa^\dagger}, \alpha')$.
+\begin{proof} 
+   \ref{lem:aux:totalise:gc:3} 
    \small
    \begin{flalign}
       \intertext{\crossrule}
@@ -544,12 +573,10 @@
                lab={\ruleName{$\totaliseBwdS$-var}}
             ]
             {
-               \sigma \eq \elimVar{x}{\kappa_2}
-               \\
                \totaliseBwd{\kappa_2}{\vec{\pi}}{\kappa_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}{x \concat \vec{\pi}}{\elimVar{x}{\kappa_1'}}{\beta}
+               \totaliseBwd{\elimVar{x}{\kappa_2}}{x \concat \vec{\pi}}{\elimVar{x}{\kappa_1'}}{\beta}
             }
          \end{smathpar}
       }
@@ -597,12 +624,10 @@
                lab={\ruleName{$\totaliseBwdS$-true}}
             ]
             {
-               \sigma \eq \elimBool{\kappa_2}{\annot{\exNil}{\alpha}}
-               \\
                \totaliseBwd{\kappa_2}{\vec{\pi}}{\kappa_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}
+               \totaliseBwd{\elimBool{\kappa_2}{\annot{\exNil}{\alpha}}}
                            {\pattTrue \concat \vec{\pi}}
                            {\elimBoolTrue{\kappa_1'}}
                            {\alpha \join \beta}
@@ -653,12 +678,10 @@
                lab={\ruleName{$\totaliseBwdS$-false}}
             ]
             {
-               \sigma \eq \elimBool{\annot{\exNil}{\alpha}}{\kappa_2}
-               \\
                \totaliseBwd{\kappa_2}{\vec{\pi}}{\kappa_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}
+               \totaliseBwd{\elimBool{\annot{\exNil}{\alpha}}{\kappa_2}}
                            {\pattFalse \concat \vec{\pi}}
                            {\elimBoolFalse{\kappa_1'}}
                            {\alpha \join \beta}
@@ -709,12 +732,10 @@
                lab={\ruleName{$\totaliseBwdS$-prod}}
             ]
             {
-               \sigma \eq \elimProd{\sigma_2}
-               \\
                \totaliseBwd{\sigma_2}{p \concat p' \concat \vec{\pi}}{\sigma_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma_1'}}{\beta}
+               \totaliseBwd{\elimProd{\sigma_2}}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\sigma_1'}}{\beta}
             }
          \end{smathpar}
       }
@@ -762,12 +783,10 @@
                lab={\ruleName{$\totaliseBwdS$-nil}}
             ]
             {
-               \sigma \eq \elimList{\kappa_2}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
-               \\
                \totaliseBwd{\kappa_2}{\vec{\pi}}{\kappa_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}
+               \totaliseBwd{\elimList{\kappa_2}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
                            {\pattNil \concat \vec{\pi}}
                            {\elimNil{\kappa_1'}}
                            {\alpha \join \beta}
@@ -818,12 +837,10 @@
                lab={\ruleName{$\totaliseBwdS$-cons}}
             ]
             {
-               \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_2}
-               \\
                \totaliseBwd{\sigma_2}{p \concat p' \concat \vec{\pi}}{\sigma_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}
+               \totaliseBwd{\elimList{\annot{\exNil}{\alpha}}{\sigma_2}}
                            {(\pattCons{p}{p'}) \concat \vec{\pi}}
                            {\elimCons{\sigma_1'}}
                            {\alpha \join \beta}
@@ -874,12 +891,10 @@
                lab={\ruleName{$\totaliseBwdS$-non-empty-list}}
             ]
             {
-               \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_2}
-               \\
                \totaliseBwd{\sigma_2}{p \concat o \concat \vec{\pi}}{\sigma_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}
+               \totaliseBwd{\elimList{\annot{\exNil}{\alpha}}{\sigma_2}}
                            {(\pattList{p}{o}) \concat \vec{\pi}}
                            {\elimCons{\sigma_1'}}
                            {\alpha \join \beta}
@@ -930,12 +945,10 @@
                lab={\ruleName{$\totaliseBwdS$-list-rest-end}}
             ]
             {
-               \sigma \eq \elimList{\kappa_2}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}
-               \\
                \totaliseBwd{\kappa_2}{\vec{\pi}}{\kappa_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}
+               \totaliseBwd{\elimList{\kappa_2}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
                            {\pattListEnd \concat \vec{\pi}}
                            {\elimNil{\kappa_1'}}
                            {\alpha \join \beta}
@@ -986,12 +999,10 @@
                lab={\ruleName{$\totaliseBwdS$-list-rest-cons}}
             ]
             {
-               \sigma \eq \elimList{\annot{\exNil}{\alpha}}{\sigma_2}
-               \\
                \totaliseBwd{\sigma_2}{p \concat o \concat \vec{\pi}}{\sigma_1'}{\beta}
             }
             {
-               \totaliseBwd{\sigma}
+               \totaliseBwd{\elimList{\annot{\exNil}{\alpha}}{\sigma_2}}
                            {(\pattListNext{p}{o}) \concat \vec{\pi}}
                            {\elimCons{\sigma_1'}}
                            {\alpha \join \beta}
