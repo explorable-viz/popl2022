@@ -94,6 +94,48 @@
                {(\pattCons{p}{p'}) \concat \vec{\pi}}
                {\elimList{\annNil{\alpha}}{\sigma'}}
 }
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totaliseFwdS$-elim-non-empty-list}}
+]
+{
+   \totaliseFwd{\sigma}{\alpha}{p \concat o \concat \vec{\pi}}{\sigma'}
+}
+{
+   \totaliseFwd{\elimCons{\sigma}}
+               {\alpha}
+               {(\pattList{p}{o}) \concat \vec{\pi}}
+               {\elimList{\annNil{\alpha}}{\sigma'}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totaliseFwdS$-elim-list-rest-end}}
+]
+{
+   \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
+}
+{
+   \totaliseFwd{\elimNil{\kappa}}
+               {\alpha}
+               {\pattListEnd \concat \vec{\pi}}
+               {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annot{\exNil}{\alpha}}}}}
+}
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totaliseFwdS$-elim-list-rest-cons}}
+]
+{
+   \totaliseFwd{\sigma}{\alpha}{p \concat o \concat \vec{\pi}}{\sigma'}
+}
+{
+   \totaliseFwd{\elimCons{\sigma}}
+               {\alpha}
+               {(\pattListNext{p}{o}) \concat \vec{\pi}}
+               {\elimList{\annNil{\alpha}}{\sigma'}}
+}
 \end{smathpar}
 \caption{Totalise -- forward slicing}
 \end{figure}
