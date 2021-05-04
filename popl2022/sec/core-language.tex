@@ -84,14 +84,14 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
 \end{lemma}
 
 \begin{definition}[Forward and backward functions for environment lookup]
-   Suppose $\envLookup{\rho}{x}{v}$. Then define $\envLookupFwdF{\rho,x}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,x}: \Below{v} \to \Below{\rho}$ to be $\envLookupR$ and $\envLookupBwdR{\rho,x}$ restricted to $\Below{\rho}$ and $\Below{v}$ respectively.
+   Suppose $\envLookup{\rho}{x}{v}$. Then define $\envLookupFwdF{\rho,x}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,x}: \Below{v} \to \Below{\rho}$ to be $\bind{x}{-}\envLookupR$ and $\envLookupBwdR{\rho}\bind{x}{-}$ restricted to $\Below{\rho}$ and $\Below{v}$ respectively.
 \end{definition}
 
 \begin{lemma}[Galois connection for environment]
-\label{lem:core-language:env-get-put}Suppose $\envLookup{\rho}{z}{v}$.
+\label{lem:core-language:env-get-put}Suppose $\envLookup{\rho}{x}{v}$.
 \begin{enumerate}
-   \item \label{lem:core-language:env-get-put:1} $\envLookupFwdF{\rho,z}(\envLookupBwdF{\rho,z}(v)) \geq v$.
-   \item \label{lem:core-language:env-get-put:2} $\envLookupBwdF{\rho,z}(\envLookupFwdF{\rho,z}(\rho')) \leq \rho'$.
+   \item \label{lem:core-language:env-get-put:1} $\envLookupFwdF{\rho,x}(\envLookupBwdF{\rho,x}(v)) \geq v$.
+   \item \label{lem:core-language:env-get-put:2} $\envLookupBwdF{\rho,x}(\envLookupFwdF{\rho,x}(\rho')) \leq \rho'$.
 \end{enumerate}
 \end{lemma}
 
