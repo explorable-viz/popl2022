@@ -17,6 +17,34 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\clauseFwdR$-true}}
+]
+{
+   \strut
+}
+{
+   \pattTrue, \kappa
+   \clauseFwdR
+   \elimBoolTrue{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseFwdR$-false}}
+]
+{
+   \strut
+}
+{
+   \pattFalse, \kappa
+   \clauseFwdR
+   \elimBoolFalse{\kappa}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\clauseFwdR$-nil}}
 ]
 {
