@@ -21,7 +21,35 @@
 }
 {
    \elimVar{x}{\kappa}
-   \clauseBwdR{x}
+   \clauseBwdR{\pattVar{x}}
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseBwdS$-true}}
+]
+{
+   \strut
+}
+{
+   \elimBoolTrue{\kappa}
+   \clauseBwdR{\pattTrue}
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseBwdS$-false}}
+]
+{
+   \strut
+}
+{
+   \elimBoolFalse{\kappa}
+   \clauseBwdR{\pattFalse}
    \kappa
 }
 %
@@ -35,7 +63,7 @@
 }
 {
    \elimNil{\kappa}
-   \clauseBwdR{\exNil}
+   \clauseBwdR{\pattNil}
    \kappa
 }
 %
@@ -55,7 +83,7 @@
    \kappa
 }
 %
-\and 
+\and
 %
 \inferrule*[
    lab={\ruleName{$\clauseBwdS$-non-empty-list}}
@@ -75,7 +103,7 @@
 %
 \inferrule*[
    lab={\ruleName{$\clauseBwdS$-pair}}
-] 
+]
 {
    \sigma \clauseBwdR{p} \tau
    \\
@@ -169,7 +197,8 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clausesBwdS$-clause-seq}}
+   lab={\ruleName{$\clausesBwdS$-clause-seq}},
+   right={$\length{\vec{c}} \numgt 0$}
 ]
 {
    \sigma \clausesBwdR{c} c'
