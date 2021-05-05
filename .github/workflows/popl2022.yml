@@ -19,6 +19,7 @@ jobs:
       with:
         submodules: true
     - run: |
+        cd popl2022
         source collate-examples.sh
     - uses: dante-ev/latex-action@latest
       with:
