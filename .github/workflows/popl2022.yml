@@ -14,7 +14,6 @@ jobs:
   popl2022:
     runs-on: windows-latest
     steps:
-    - uses: nanasess/setup-chromedriver@v1.0.1
     - uses: browser-actions/setup-chrome@latest
     - uses: actions/checkout@v2
       with:
