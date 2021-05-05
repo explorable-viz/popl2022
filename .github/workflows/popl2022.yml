@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-18.04
   steps:
     - uses: browser-actions/setup-chrome@latest
-    - run: chrome --version
     - uses: actions/checkout@v2
       with:
         submodules: true
