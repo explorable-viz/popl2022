@@ -18,7 +18,7 @@ download_image () {
    ext=png
    image=~/Downloads/$1.$2
    rm -f $image
-   open http://f.luid.org/new/
+   xdg-open http://f.luid.org/new/
    until [ -f $image ]
    do
         sleep 1
