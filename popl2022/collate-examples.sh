@@ -19,7 +19,6 @@ download_image () {
    folder=~/Downloads
    image=$folder/$1.$2
    echo $image
-   mkdir $folder
    chrome --headless --disable-gpu --no-sandbox http://f.luid.org/new/
    until [ -f $image ]
    do
