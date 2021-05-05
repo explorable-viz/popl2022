@@ -13,7 +13,9 @@ on:
 jobs:
   popl2022:
     runs-on: ubuntu-18.04
-    steps:
+  steps:
+    - uses: browser-actions/setup-chrome@latest
+    - run: chrome --version
     - uses: actions/checkout@v2
       with:
         submodules: true
