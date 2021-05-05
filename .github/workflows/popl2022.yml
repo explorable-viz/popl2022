@@ -12,8 +12,9 @@ on:
 
 jobs:
   popl2022:
-    runs-on: windows-latest
+    runs-on: ubuntu-18.04
     steps:
+    - uses: nanasess/setup-chromedriver@v1.0.1
     - uses: browser-actions/setup-chrome@latest
     - uses: actions/checkout@v2
       with:
@@ -21,7 +22,7 @@ jobs:
     - name: collate-examples
       run: |
         cd popl2022
-        bash collate-examples.sh
+        source collate-examples.sh
     - uses: dante-ev/latex-action@latest
       with:
         entrypoint: ./popl2022/build.sh
