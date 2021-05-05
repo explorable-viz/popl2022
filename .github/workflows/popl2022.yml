@@ -18,7 +18,8 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: true
-    - run: |
+    - name: collate-examples
+      run: |
         cd popl2022
         source collate-examples.sh
     - uses: dante-ev/latex-action@latest
