@@ -17,7 +17,7 @@ popd
 download_image () {
    ext=png
    image=~/Downloads/$1.$2
-   rm $image
+   rm -f $image
    open http://f.luid.org/new/
    until [ -f $image ]
    do
