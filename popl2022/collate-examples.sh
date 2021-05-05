@@ -16,14 +16,15 @@ popd
 
 download_image () {
    ext=png
-   image=~/Downloads/$1.$2
+   folder=~/Downloads
+   image=$folder/$1.$2
    echo $image
-   rm -f $image
+   mkdir $folder
    chrome --headless --disable-gpu --no-sandbox http://f.luid.org/new/
    until [ -f $image ]
    do
         sleep 1
-        ls -la ~/Downloads
+        ls -la $folder
    done
    echo "Found $1.$2"
    exit
