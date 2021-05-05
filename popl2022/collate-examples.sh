@@ -19,7 +19,7 @@ download_image () {
    image=~/Downloads/$1.$2
    echo $image
    rm -f $image
-   chrome --headless http://f.luid.org/new/ --disable-gpu --no-sandbox
+   chrome --headless --disable-gpu --no-sandbox http://f.luid.org/new/
    until [ -f $image ]
    do
         sleep 1
