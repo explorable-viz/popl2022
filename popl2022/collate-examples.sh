@@ -17,11 +17,13 @@ popd
 download_image () {
    ext=png
    image=~/Downloads/$1.$2
+   echo $image
    rm -f $image
    chrome --headless http://f.luid.org/new/ --disable-gpu --no-sandbox
    until [ -f $image ]
    do
         sleep 1
+        ls -la ~/Downloads
    done
    echo "Found $1.$2"
    exit
