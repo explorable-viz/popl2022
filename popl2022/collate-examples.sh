@@ -19,7 +19,7 @@ download_image () {
    folder=~/Downloads
    image=$folder/$1.$2
    echo $image
-   chrome --headless --disable-gpu --no-sandbox http://f.luid.org/new/
+   chrome --headless --user-data-dir=C:/tmp --disable-gpu --no-sandbox http://f.luid.org/new/
    until [ -f $image ]
    do
         sleep 1
