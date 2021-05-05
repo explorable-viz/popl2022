@@ -18,7 +18,7 @@ download_image () {
    ext=png
    image=~/Downloads/$1.$2
    rm -f $image
-   chrome --headless http://f.luid.org/new/
+   chrome --headless http://f.luid.org/new/ --disable-gpu
    until [ -f $image ]
    do
         sleep 1
