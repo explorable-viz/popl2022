@@ -14,7 +14,7 @@ jobs:
   popl2022:
     runs-on: ubuntu-18.04
     steps:
-    - uses: nanasess/setup-chromedriver@latest
+    - uses: nanasess/setup-chromedriver@v1.0.1
     - uses: browser-actions/setup-chrome@latest
     - uses: actions/checkout@v2
       with:
