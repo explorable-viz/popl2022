@@ -14,7 +14,7 @@ wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example
 post_process conv-extend.fld
 popd
 
-# Sounds like ChromeDriver needs to be configured to enable headless downloads, but not sure how to do that.
+# Need ChromeDriver for headless downloads; need to figure that out.
 download_image () {
    ext=png
    folder=~/Downloads
