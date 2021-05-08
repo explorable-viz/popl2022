@@ -201,9 +201,11 @@
    right={$\vec{c} \neq \seqEmpty$}
 ]
 {
-   \sigma \clausesBwdR{c} c'
+   \sigma \eq \sigma' \disjjoin \tau
    \\
-   \sigma \clausesBwdR{\vec{c}} \vec{c}'
+   \sigma' \clausesBwdR{c} c'
+   \\
+   \tau \clausesBwdR{\vec{c}} \vec{c}'
 }
 {
    \sigma
