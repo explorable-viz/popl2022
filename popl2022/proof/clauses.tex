@@ -31,13 +31,13 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \quad
    (\exists e')
    &
-   \text{(\thmref{surface-language:desugar:gc})}
+   \text{\thmref{surface-language:desugar:gc}}
    \locallabel{fwd-bwd:clause:one}
    \\
    &
    \vec{p}, e \clauseFwdR\geq \sigma
    &
-   \text{(\lemref{aux:clause:gc})}
+   \text{\lemref{aux:clause:gc}}
    \notag
    \\
    &
@@ -108,6 +108,26 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \quad
    (\exists \sigma^\dagger)
    &
+   \text{IH}
+   \locallabel{fwd-bwd:clause-seq:one}
+   \\
+   &
+   \vec{c}' \clausesFwdR \tau' \geq \tau
+   \quad
+   (\exists \tau')
+   &
+   \text{IH}
+   \locallabel{fwd-bwd:clause-seq:two}
+   \\
+   &
+   \sigma^\dagger \disjjoin \tau' = \sigma^\ddagger
+   \quad
+   (\exists \sigma^\ddagger)
+   &
+   \text{
+      $\sigma' \disjjoin \tau$ defined;
+      (\localref{fwd-bwd:clause-seq:one}, \localref{fwd-bwd:clause-seq:two})
+   }
    \notag
    \\
    &
@@ -139,6 +159,7 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \qedLocal
    \sigma^\ddagger \geq \sigma
    &
+   \text{monotonicity of $\disjjoin$}
    \notag
 \end{flalign}
 \end{proof}
