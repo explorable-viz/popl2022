@@ -1,4 +1,35 @@
 \begin{figure}[H]
+\begin{syntaxfig}
+   \mbox{Eliminator}
+   &
+   \sigma
+   &
+   ::=
+   &
+   \ldots
+   \\
+   &&&
+   \elimTrue{\kappa}
+   &
+   \text{true}
+   \\
+   &&&
+   \elimFalse{\kappa}
+   &
+   \text{false}
+   \\
+   &&&
+   \elimNil{\kappa}
+   &
+   \text{nil}
+   \\
+   &&&
+   \elimCons{\sigma}
+   &
+   \text{cons}
+\end{syntaxfig}
+\vspace{3mm}
+
 \flushleft\shadebox{$\sigma \disjjoin \sigma'$}
 \begin{salign}
    (\elimVar{x}{\sigma}) \disjjoin (\elimVar{x}{\sigma'})
@@ -57,6 +88,6 @@
     &=
     \elimProd{\sigma \disjjoin \sigma'}
 \end{salign}
-\caption{Disjoint join of partial eliminators}
+\caption{Partial eliminators and disjoint join of partial eliminators}
 \label{fig:surface-language:disjoin-join-elim}
 \end{figure}
