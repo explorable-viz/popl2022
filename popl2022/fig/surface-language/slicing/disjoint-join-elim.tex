@@ -1,0 +1,16 @@
+\begin{figure}[H]
+\flushleft\shadebox{$\sigma \disjjoin \sigma'$}
+\begin{salign}
+   (\elimVar{x}{\kappa}) \join (\elimVar{x}{\kappa'}) &= \elimVar{x}{\kappa \join \kappa'}
+   \\
+   \elimBool{\kappa_1}{\kappa_2} \join \elimBool{\kappa_1'}{\kappa_2'}
+   &=
+   \elimBool{\kappa_1 \join \kappa_1'}{\kappa_2 \join \kappa_2'}
+   \\
+   (\elimProd{\sigma}) \join (\elimProd{\sigma'}) &= \elimProd{(\sigma \join \sigma')}
+   \\
+   \elimList{\kappa}{\sigma} \join \elimList{\kappa'}{\sigma'} &=
+   \elimList{\kappa \join \kappa'}{\sigma \join \sigma'}
+\end{salign}
+\caption{Disjoint join of (partial) eliminators}
+\end{figure}
