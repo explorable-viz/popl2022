@@ -164,3 +164,51 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \notag
 \end{flalign}
 \end{proof}
+Suppose $\vec{c} \clausesFwdR \sigma$. We show $\sigma \clausesBwdR{\vec{c}}\leq \vec{c}$.
+\begin{proof}
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesFwdR$-clause}}
+         ]
+         {
+            s \desugarFwdR e
+            \\
+            \vec{p}, e \clauseFwdR \sigma
+         }
+         {
+            \clause{\vec{p}}{s}
+            \clausesFwdR
+            \sigma
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesBwdS$-clause}}
+         ]
+         {
+            \sigma \clauseBwdR{\vec{p}} e
+            \\
+            e \desugarBwdR{s} s'
+         }
+         {
+            \sigma
+            \clausesBwdR{\clause{\vec{p}}{s}}
+            \clause{\vec{p}}{s'}
+         }
+      \end{smathpar}
+   }
+\end{flalign}
+\end{proof}
