@@ -269,6 +269,22 @@ Suppose $\vec{c} \clausesFwdR \sigma$. We show $\sigma \clausesBwdR{\vec{c}}\leq
    \notag
    \\
    &
+   \sigma \clausesBwdR{c} c' \leq c
+   \quad
+   (\exists c')
+   &
+   \text{IH}
+   \locallabel{bwd-fwd:clause-seq:one}
+   \\
+   &
+   \sigma' \clausesBwdR{\vec{c}} \vec{c}' \leq \vec{c}
+   \quad
+   (\exists \vec{c}')
+   &
+   \text{IH}
+   \locallabel{bwd-fwd:clause-seq:two}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
@@ -277,28 +293,27 @@ Suppose $\vec{c} \clausesFwdR \sigma$. We show $\sigma \clausesBwdR{\vec{c}}\leq
             right={$\vec{c} \neq \seqEmpty$}
          ]
          {
-            \sigma \eq \sigma' \disjjoin \tau
+            \tau \eq \sigma' \disjjoin \sigma
             \\
-            \sigma' \clausesBwdR{c} c'
+            \sigma \clausesBwdR{c} c'
             \\
-            \tau \clausesBwdR{\vec{c}} \vec{c}'
+            \sigma' \clausesBwdR{\vec{c}} \vec{c}'
          }
          {
-            \sigma
+            \tau
             \clauseBwdR{c \concat \vec{c}}
             c' \concat \vec{c}'
          }
       \end{smathpar}
    }
    &
-   \text{(\localref{fwd-bwd:clause-seq:one}, \localref{fwd-bwd:clause-seq:two})}
+   \text{(\localref{bwd-fwd:clause-seq:one}, \localref{bwd-fwd:clause-seq:two})}
    \notag
    \\
    &
    \qedLocal
-   \sigma^\ddagger \geq \sigma
+   c' \concat \vec{c}' \leq c \concat \vec{c}
    &
-   \text{monotonicity of $\disjjoin$}
    \notag
 \end{flalign}
 \end{proof}
