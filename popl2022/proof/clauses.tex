@@ -192,6 +192,26 @@ Suppose $\vec{c} \clausesFwdR \sigma$. We show $\sigma \clausesBwdR{\vec{c}}\leq
    \notag
    \\
    &
+   \sigma \clauseBwdR{\vec{p}} e' \leq e
+   \quad
+   (\exists e')
+   &
+   \text{\lemref{aux:clause:gc}}
+   \locallabel{bwd-fwd:clause:one}
+   \\
+   &
+   e \desugarBwdR{s}\leq s
+   &
+   \text{\thmref{surface-language:desugar:gc}}
+   \notag
+   \\
+   &
+   e' \desugarBwdR{s} s' \leq s
+   &
+   \text{monotonicity}
+   \locallabel{bwd-fwd:clause:two}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
@@ -199,9 +219,9 @@ Suppose $\vec{c} \clausesFwdR \sigma$. We show $\sigma \clausesBwdR{\vec{c}}\leq
             lab={\ruleName{$\clausesBwdS$-clause}}
          ]
          {
-            \sigma \clauseBwdR{\vec{p}} e
+            \sigma \clauseBwdR{\vec{p}} e'
             \\
-            e \desugarBwdR{s} s'
+            e' \desugarBwdR{s} s'
          }
          {
             \sigma
@@ -210,5 +230,16 @@ Suppose $\vec{c} \clausesFwdR \sigma$. We show $\sigma \clausesBwdR{\vec{c}}\leq
          }
       \end{smathpar}
    }
+   &
+   \text{
+      (\localref{bwd-fwd:clause:one}, \localref{bwd-fwd:clause:two})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   s' \leq s
+   &
+   \notag
 \end{flalign}
 \end{proof}
