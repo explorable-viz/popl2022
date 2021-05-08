@@ -83,15 +83,20 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \caseDerivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\clauseBwdS$-nil}}
+            lab={\ruleName{$\clausesBwdS$-clause-seq}},
+            right={$\vec{c} \neq \seqEmpty$}
          ]
          {
-            \strut
+            \sigma \eq \sigma' \disjjoin \tau
+            \\
+            \sigma' \clausesBwdR{c} c'
+            \\
+            \tau \clausesBwdR{\vec{c}} \vec{c}'
          }
          {
-            \elimNil{\kappa}
-            \clauseBwdR{\exNil}
-            \kappa
+            \sigma
+            \clauseBwdR{c \concat \vec{c}}
+            c' \concat \vec{c}'
          }
       \end{smathpar}
    }
@@ -103,15 +108,20 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \derivation{\derivationWidth}{
       \begin{smathpar}
          \inferrule*[
-            lab={\ruleName{$\clauseFwdR$-nil}}
+            lab={\ruleName{$\clausesFwdR$-clause-seq}},
+            right={$\vec{c}' \neq \seqEmpty$}
          ]
          {
-            \strut
+            c' \clausesFwdR \sigma^\dagger
+            \\
+            \vec{c}' \clausesFwdR \tau'
+            \\
+            \sigma^\dagger \disjjoin \tau' = \sigma^\ddagger
          }
          {
-            \pattNil, \kappa
-            \clauseFwdR
-            \elimNil{\kappa}
+            c' \concat \vec{c}'
+            \clausesFwdR
+            \sigma^\ddagger
          }
       \end{smathpar}
    }
@@ -120,7 +130,7 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \\
    &
    \qedLocal
-   \elimNil{\kappa} \geq \elimNil{\kappa}
+   \sigma^\ddagger \geq \sigma
    &
    \notag
 \end{flalign}
