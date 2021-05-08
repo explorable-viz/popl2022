@@ -1,7 +1,6 @@
-\subsection{\lemref{aux:clause:gc}}
-Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
+\subsection{\lemref{aux:clause:gc}, part (i)}
+Suppose $\sigma \clauseBwdR{\vec{p}} e$. We show $\vec{p},e \clauseFwdR \sigma' \geq \sigma$.
 \begin{proof}
-  \ref{lem:aux:clause:gc:2}
 \small
 \begin{flalign}
    \intertext{\crossrule}
@@ -494,9 +493,8 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{
 \end{proof}
 
 \noindent
-Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
+Suppose $\vec{p}, e \clauseFwdR \sigma$. We show $\sigma \clauseBwdR{\vec{p}} e' \leq e$.
 \begin{proof}
-  \ref{lem:aux:clause:gc:3}
 \small
 \begin{flalign}
    \intertext{\crossrule}

@@ -1,0 +1,104 @@
+\subsection{\lemref{aux:clauses:gc}}
+Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\geq \sigma$.
+\begin{proof}
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesBwdS$-clause}}
+         ]
+         {
+            \sigma \clauseBwdR{\vec{p}} e
+            \\
+            e \desugarBwdR{s} s'
+         }
+         {
+            \sigma
+            \clausesBwdR{\clause{\vec{p}}{s}}
+            \clause{\vec{p}}{s'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesFwdR$-clause}}
+         ]
+         {
+            s \desugarFwdR e
+            \\
+            \vec{p}, e \clauseFwdR \sigma
+         }
+         {
+            \clause{\vec{p}}{s}
+            \clausesFwdR
+            \sigma
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimVar{x}{\kappa} \geq \elimVar{x}{\kappa}
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseBwdS$-nil}}
+         ]
+         {
+            \strut
+         }
+         {
+            \elimNil{\kappa}
+            \clauseBwdR{\exNil}
+            \kappa
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clauseFwdR$-nil}}
+         ]
+         {
+            \strut
+         }
+         {
+            \pattNil, \kappa
+            \clauseFwdR
+            \elimNil{\kappa}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \elimNil{\kappa} \geq \elimNil{\kappa}
+   &
+   \notag
+\end{flalign}
+\end{proof}
