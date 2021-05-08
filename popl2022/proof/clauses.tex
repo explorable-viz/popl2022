@@ -34,14 +34,14 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
             lab={\ruleName{$\clausesFwdR$-clause}}
          ]
          {
-            s \desugarFwdR e
+            s' \desugarFwdR e'
             \\
-            \vec{p}, e \clauseFwdR \sigma
+            \vec{p}, e' \clauseFwdR \sigma'
          }
          {
-            \clause{\vec{p}}{s}
+            \clause{\vec{p}}{s'}
             \clausesFwdR
-            \sigma
+            \sigma'
          }
       \end{smathpar}
    }
@@ -50,7 +50,7 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \\
    &
    \qedLocal
-   \elimVar{x}{\kappa} \geq \elimVar{x}{\kappa}
+   \sigma' \geq \sigma
    &
    \notag
    \\
