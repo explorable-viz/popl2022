@@ -128,7 +128,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{
    \notag
    \\
    &
-   p, \tau \clauseFwdR \geq \sigma 
+   p, \tau \clauseFwdR \geq \sigma
    &
    \text{(IH)}
    \notag
@@ -155,7 +155,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{
             \pattCons{p}{p'}, \kappa
             \clauseFwdR
             \elimCons{\sigma'}
-         } 
+         }
       \end{smathpar}
    }
    &
@@ -205,7 +205,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{
    p, \tau' \clauseFwdR \sigma' \geq \sigma \quad (\exists \sigma')
    &
    \text{(Monotonicity)}
-   \notag 
+   \notag
    \\
    &
    \qedLocal
@@ -311,7 +311,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{
       \begin{smathpar}
          \inferrule*[
             lab={\ruleName{$\clauseBwdS$-seq}},
-            right={$\length{\vec{p}} \numgt 0$}
+            right={$\vec{p} \neq \seqEmpty$}
          ]
          {
             \sigma \clauseBwdR{p}\eq \exLambda{\tau}
@@ -352,7 +352,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{
       \begin{smathpar}
          \inferrule*[
             lab={\ruleName{$\clauseFwdR$-seq}},
-            right={$\length{\vec{p}} \numgt 0$}
+            right={$\vec{p} \neq \seqEmpty$}
          ]
          {
             \vec{p}, e \clauseFwdR \tau'
@@ -659,7 +659,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
    \qedLocal
    (\pattCons{p}{p'}, \kappa') \leq (\pattCons{p}{p'}, \kappa)
    &
-   \notag 
+   \notag
    \\
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -728,7 +728,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
    \qedLocal
    (\pattList{p}{o}, \kappa') \leq (\pattList{p}{o}, \kappa)
    &
-   \notag 
+   \notag
    \\
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -777,7 +777,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
       \begin{smathpar}
          \inferrule*[
             lab={\ruleName{$\clauseBwdS$-pair}}
-         ] 
+         ]
          {
             \sigma \clauseBwdR{p} \tau'
             \\
@@ -797,7 +797,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
    \qedLocal
    (\pattPair{p}{p'}, \kappa') \leq (\pattPair{p}{p'}, \kappa)
    &
-   \notag 
+   \notag
    \\
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -806,7 +806,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
       \begin{smathpar}
          \inferrule*[
             lab={\ruleName{$\clauseFwdR$-seq}},
-            right={$\length{\vec{p}} \numgt 0$}
+            right={$\vec{p} \neq \seqEmpty$}
          ]
          {
             \vec{p}, e \clauseFwdR \tau
@@ -847,7 +847,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
       \begin{smathpar}
          \inferrule*[
             lab={\ruleName{$\clauseBwdS$-seq}},
-            right={$\length{\vec{p}} \numgt 0$}
+            right={$\vec{p} \neq \seqEmpty$}
          ]
          {
             \sigma \clauseBwdR{p}\eq \exLambda{\tau'}
@@ -868,7 +868,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
    \qedLocal
    (p \concat \vec{p}, e') \leq (p \concat \vec{p}, e)
    &
-   \notag 
+   \notag
    \\
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -915,7 +915,7 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
    \qedLocal
    (\pattListEnd, \kappa) \leq (\pattListEnd, \kappa)
    &
-   \notag 
+   \notag
    \\
    \intertext{\crossrule}
    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -984,6 +984,6 @@ Suppose $p, e \clauseFwdR \sigma$. Then $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{
    \qedLocal
    (\pattListNext{p}{o}, \kappa') \leq (\pattListNext{p}{o}, \kappa)
    &
-   \notag 
+   \notag
 \end{flalign}
 \end{proof}
