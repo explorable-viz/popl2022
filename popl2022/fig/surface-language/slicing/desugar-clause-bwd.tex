@@ -34,7 +34,7 @@
    \strut
 }
 {
-   \elimBoolTrue{\kappa}
+   \elimTrue{\kappa}
    \clauseBwdR{\pattTrue}
    \kappa
 }
@@ -48,7 +48,7 @@
    \strut
 }
 {
-   \elimBoolFalse{\kappa}
+   \elimFalse{\kappa}
    \clauseBwdR{\pattFalse}
    \kappa
 }
@@ -119,7 +119,7 @@
 %
 \inferrule*[
    lab={\ruleName{$\clauseBwdS$-seq}},
-   right={$\length{\vec{p}} \numgt 0$}
+   right={$\vec{p} \neq \seqEmpty$}
 ]
 {
    \sigma \clauseBwdR{p}\eq \exLambda{\sigma'}
@@ -198,7 +198,7 @@
 %
 \inferrule*[
    lab={\ruleName{$\clausesBwdS$-clause-seq}},
-   right={$\length{\vec{c}} \numgt 0$}
+   right={$\vec{c} \neq \seqEmpty$}
 ]
 {
    \sigma \clausesBwdR{c} c'

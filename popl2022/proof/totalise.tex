@@ -71,7 +71,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseFwdF{
       {
          \totaliseBwd{\elimBool{\kappa_1}{\annot{\exNil}{\alpha}}}
                      {\pattTrue \concat \vec{\pi}}
-                     {\elimBoolTrue{\kappa_2}}
+                     {\elimTrue{\kappa_2}}
                      {\alpha \join \beta}
       }
     \end{smathpar}
@@ -102,7 +102,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseFwdF{
             \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'}
          }
          {
-            \totaliseFwd{\elimBoolTrue{\kappa_2}}
+            \totaliseFwd{\elimTrue{\kappa_2}}
                         {\alpha \join \beta}
                         {\pattTrue \concat \vec{\pi}}
                         {\elimBool{\kappa_1'}{\annNil{\alpha \join \beta}}}
@@ -131,7 +131,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseFwdF{
       {
          \totaliseBwd{\elimBool{\annot{\exNil}{\alpha}}{\kappa_1}}
                      {\pattFalse \concat \vec{\pi}}
-                     {\elimBoolFalse{\kappa_2}}
+                     {\elimFalse{\kappa_2}}
                      {\alpha \join \beta}
       }
     \end{smathpar}
@@ -162,7 +162,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseFwdF{
             \totaliseFwd{\kappa_2}{\alpha \join \beta}{\vec{\pi}}{\kappa_1'}
          }
          {
-            \totaliseFwd{\elimBoolFalse{\kappa_2}}
+            \totaliseFwd{\elimFalse{\kappa_2}}
                         {\alpha \join \beta}
                         {\pattFalse \concat \vec{\pi}}
                         {\elimBool{\annNil{\alpha \join \beta}}{\kappa_1'}}
@@ -600,7 +600,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseBwdF{
                \totaliseFwd{\kappa_1}{\alpha}{\vec{\pi}}{\kappa_2}
             }
             {
-               \totaliseFwd{\elimBoolTrue{\kappa_1}}
+               \totaliseFwd{\elimTrue{\kappa_1}}
                            {\alpha}
                            {\pattTrue \concat \vec{\pi}}
                            {\elimBool{\kappa_2}{\annNil{\alpha}}}
@@ -629,7 +629,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseBwdF{
             {
                \totaliseBwd{\elimBool{\kappa_2}{\annot{\exNil}{\alpha}}}
                            {\pattTrue \concat \vec{\pi}}
-                           {\elimBoolTrue{\kappa_1'}}
+                           {\elimTrue{\kappa_1'}}
                            {\alpha \join \beta}
             }
          \end{smathpar}
@@ -639,7 +639,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseBwdF{
       \\
       &
       \qedLocal
-      (\elimBoolTrue{\kappa_1'}, \alpha \join \beta) \leq (\elimBoolTrue{\kappa_1}, \alpha)
+      (\elimTrue{\kappa_1'}, \alpha \join \beta) \leq (\elimTrue{\kappa_1}, \alpha)
       &
       \notag
       \intertext{\crossrule}
@@ -654,7 +654,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseBwdF{
                \totaliseFwd{\kappa_1}{\alpha}{\vec{\pi}}{\kappa_2}
             }
             {
-               \totaliseFwd{\elimBoolFalse{\kappa_1}}
+               \totaliseFwd{\elimFalse{\kappa_1}}
                            {\alpha}
                            {\pattFalse \concat \vec{\pi}}
                            {\elimBool{\annNil{\alpha}}{\kappa_2}}
@@ -683,7 +683,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseBwdF{
             {
                \totaliseBwd{\elimBool{\annot{\exNil}{\alpha}}{\kappa_2}}
                            {\pattFalse \concat \vec{\pi}}
-                           {\elimBoolFalse{\kappa_1'}}
+                           {\elimFalse{\kappa_1'}}
                            {\alpha \join \beta}
             }
          \end{smathpar}
@@ -693,7 +693,7 @@ Suppose $\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$. Then $\totaliseBwdF{
       \\
       &
       \qedLocal
-      (\elimBoolFalse{\kappa_1'}, \alpha \join \beta) \leq (\elimBoolFalse{\kappa_1}, \alpha)
+      (\elimFalse{\kappa_1'}, \alpha \join \beta) \leq (\elimFalse{\kappa_1}, \alpha)
       &
       \notag
       \intertext{\crossrule}

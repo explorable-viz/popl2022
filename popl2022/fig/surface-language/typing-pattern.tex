@@ -100,28 +100,29 @@
 %
 \and
 %
-\inferrule*
+\inferrule*[
+   right={$\vec{p} \neq \seqEmpty$}
+]
 {
    p : A \dashv \Gamma'
    \\
    \Gamma \cdot \Gamma' \vdash \clause{\vec{p}}{s} : B
 }
 {
-   \Gamma \vdash \clauseUncurried{p \cdot \vec{p}}{s} : \tyFun{A}{B}
+   \Gamma \vdash \clauseUncurried{(p \cdot \vec{p})}{s} : \tyFun{A}{B}
 }
 %
 \and
 %
 \inferrule*[
-   right={$\length{\vec{c}} \numgt 1$}
 ]
 {
    \Gamma \vdash c_i: \tyFun{A}{B}
    \quad
-   (\forall i \in \length{\vec{c}})
+   (\forall i \numleq j)
 }
 {
-   \Gamma \vdash \vec{c}: \tyFun{A}{B}
+   \Gamma \vdash \seqRange{c_1}{c_{j + 1}}: \tyFun{A}{B}
 }
 \end{smathpar}
 

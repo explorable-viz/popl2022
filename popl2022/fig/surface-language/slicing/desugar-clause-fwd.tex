@@ -25,7 +25,7 @@
 {
    \pattTrue, \kappa
    \clauseFwdR
-   \elimBoolTrue{\kappa}
+   \elimTrue{\kappa}
 }
 %
 \and
@@ -39,7 +39,7 @@
 {
    \pattFalse, \kappa
    \clauseFwdR
-   \elimBoolFalse{\kappa}
+   \elimFalse{\kappa}
 }
 %
 \and
@@ -108,7 +108,7 @@
 %
 \inferrule*[
    lab={\ruleName{$\clauseFwdR$-seq}},
-   right={$\length{\vec{p}} \numgt 0$}
+   right={$\vec{p} \neq \seqEmpty$}
 ]
 {
    \vec{p}, e \clauseFwdR \sigma
@@ -173,7 +173,7 @@
 %
 \inferrule*[
    lab={\ruleName{$\clausesFwdR$-clause-seq}},
-   right={$\length{\vec{c}} \numgt 0$}
+   right={$\vec{c} \neq \seqEmpty$}
 ]
 {
    c \clausesFwdR \sigma
