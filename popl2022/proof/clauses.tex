@@ -241,5 +241,64 @@ Suppose $\vec{c} \clausesFwdR \sigma$. We show $\sigma \clausesBwdR{\vec{c}}\leq
    s' \leq s
    &
    \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesFwdR$-clause-seq}},
+            right={$\vec{c} \neq \seqEmpty$}
+         ]
+         {
+            c \clausesFwdR \sigma
+            \\
+            \vec{c} \clausesFwdR \sigma'
+            \\
+            \sigma \disjjoin \sigma' = \tau
+         }
+         {
+            c \concat \vec{c}
+            \clausesFwdR
+            \tau
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesBwdS$-clause-seq}},
+            right={$\vec{c} \neq \seqEmpty$}
+         ]
+         {
+            \sigma \eq \sigma' \disjjoin \tau
+            \\
+            \sigma' \clausesBwdR{c} c'
+            \\
+            \tau \clausesBwdR{\vec{c}} \vec{c}'
+         }
+         {
+            \sigma
+            \clauseBwdR{c \concat \vec{c}}
+            c' \concat \vec{c}'
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{fwd-bwd:clause-seq:one}, \localref{fwd-bwd:clause-seq:two})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \sigma^\ddagger \geq \sigma
+   &
+   \text{monotonicity of $\disjjoin$}
+   \notag
 \end{flalign}
 \end{proof}
