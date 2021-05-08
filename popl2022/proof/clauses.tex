@@ -27,6 +27,28 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
    \notag
    \\
    &
+   s' \desugarFwdR e' \geq e
+   \quad
+   (\exists e')
+   &
+   \text{(\thmref{surface-language:desugar:gc})}
+   \locallabel{fwd-bwd:clause:one}
+   \\
+   &
+   \vec{p}, e \clauseFwdR\geq \sigma
+   &
+   \text{(\lemref{aux:clause:gc})}
+   \notag
+   \\
+   &
+   \vec{p}, e' \clauseFwdR \sigma' \geq \sigma
+   \quad
+   (\exists \sigma')
+   &
+   \text{monotonicity}
+   \locallabel{fwd-bwd:clause:two}
+   \\
+   &
    \qedLocal
    \derivation{\derivationWidth}{
       \begin{smathpar}
@@ -46,6 +68,7 @@ Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\
       \end{smathpar}
    }
    &
+   (\localref{fwd-bwd:clause:one}, \localref{fwd-bwd:clause:two})
    \notag
    \\
    &
