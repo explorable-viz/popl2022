@@ -1,0 +1,319 @@
+\subsection{\lemref{aux:clauses:gc}}
+Suppose $\sigma \clausesBwdR{\vec{c}} \vec{c}'$. We show $\vec{c}' \clausesFwdR\geq \sigma$.
+\begin{proof}
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesBwdS$-clause}}
+         ]
+         {
+            \sigma \clauseBwdR{\vec{p}} e
+            \\
+            e \desugarBwdR{s} s'
+         }
+         {
+            \sigma
+            \clausesBwdR{\clause{\vec{p}}{s}}
+            \clause{\vec{p}}{s'}
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   s' \desugarFwdR e' \geq e
+   \quad
+   (\exists e')
+   &
+   \text{\thmref{surface-language:desugar:gc}}
+   \locallabel{fwd-bwd:clause:one}
+   \\
+   &
+   \vec{p}, e \clauseFwdR\geq \sigma
+   &
+   \text{\lemref{aux:clause:gc}}
+   \notag
+   \\
+   &
+   \vec{p}, e' \clauseFwdR \sigma' \geq \sigma
+   \quad
+   (\exists \sigma')
+   &
+   \text{monotonicity}
+   \locallabel{fwd-bwd:clause:two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesFwdR$-clause}}
+         ]
+         {
+            s' \desugarFwdR e'
+            \\
+            \vec{p}, e' \clauseFwdR \sigma'
+         }
+         {
+            \clause{\vec{p}}{s'}
+            \clausesFwdR
+            \sigma'
+         }
+      \end{smathpar}
+   }
+   &
+   (\localref{fwd-bwd:clause:one}, \localref{fwd-bwd:clause:two})
+   \notag
+   \\
+   &
+   \qedLocal
+   \sigma' \geq \sigma
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesBwdS$-clause-seq}},
+            right={$\vec{c} \neq \seqEmpty$}
+         ]
+         {
+            \sigma \eq \sigma' \disjjoin \tau
+            \\
+            \sigma' \clausesBwdR{c} c'
+            \\
+            \tau \clausesBwdR{\vec{c}} \vec{c}'
+         }
+         {
+            \sigma
+            \clauseBwdR{c \concat \vec{c}}
+            c' \concat \vec{c}'
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   c' \clausesFwdR \sigma^\dagger \geq \sigma'
+   \quad
+   (\exists \sigma^\dagger)
+   &
+   \text{IH}
+   \locallabel{fwd-bwd:clause-seq:one}
+   \\
+   &
+   \vec{c}' \clausesFwdR \tau' \geq \tau
+   \quad
+   (\exists \tau')
+   &
+   \text{IH}
+   \locallabel{fwd-bwd:clause-seq:two}
+   \\
+   &
+   \sigma^\dagger \disjjoin \tau' = \sigma^\ddagger
+   \quad
+   (\exists \sigma^\ddagger)
+   &
+   \text{
+      $\sigma' \disjjoin \tau$ defined;
+      (\localref{fwd-bwd:clause-seq:one}, \localref{fwd-bwd:clause-seq:two})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesFwdR$-clause-seq}},
+            right={$\vec{c}' \neq \seqEmpty$}
+         ]
+         {
+            c' \clausesFwdR \sigma^\dagger
+            \\
+            \vec{c}' \clausesFwdR \tau'
+            \\
+            \sigma^\dagger \disjjoin \tau' = \sigma^\ddagger
+         }
+         {
+            c' \concat \vec{c}'
+            \clausesFwdR
+            \sigma^\ddagger
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{fwd-bwd:clause-seq:one}, \localref{fwd-bwd:clause-seq:two})}
+   \notag
+   \\
+   &
+   \qedLocal
+   \sigma^\ddagger \geq \sigma
+   &
+   \text{monotonicity of $\disjjoin$}
+   \notag
+\end{flalign}
+\end{proof}
+Suppose $\vec{c} \clausesFwdR \sigma$. We show $\sigma \clausesBwdR{\vec{c}}\leq \vec{c}$.
+\begin{proof}
+\small
+\begin{flalign}
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesFwdR$-clause}}
+         ]
+         {
+            s \desugarFwdR e
+            \\
+            \vec{p}, e \clauseFwdR \sigma
+         }
+         {
+            \clause{\vec{p}}{s}
+            \clausesFwdR
+            \sigma
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \sigma \clauseBwdR{\vec{p}} e' \leq e
+   \quad
+   (\exists e')
+   &
+   \text{\lemref{aux:clause:gc}}
+   \locallabel{bwd-fwd:clause:one}
+   \\
+   &
+   e \desugarBwdR{s}\leq s
+   &
+   \text{\thmref{surface-language:desugar:gc}}
+   \notag
+   \\
+   &
+   e' \desugarBwdR{s} s' \leq s
+   &
+   \text{monotonicity}
+   \locallabel{bwd-fwd:clause:two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesBwdS$-clause}}
+         ]
+         {
+            \sigma \clauseBwdR{\vec{p}} e'
+            \\
+            e' \desugarBwdR{s} s'
+         }
+         {
+            \sigma
+            \clausesBwdR{\clause{\vec{p}}{s}}
+            \clause{\vec{p}}{s'}
+         }
+      \end{smathpar}
+   }
+   &
+   \text{
+      (\localref{bwd-fwd:clause:one}, \localref{bwd-fwd:clause:two})
+   }
+   \notag
+   \\
+   &
+   \qedLocal
+   s' \leq s
+   &
+   \notag
+   \\
+   \intertext{\crossrule}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   &
+   \caseDerivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesFwdR$-clause-seq}},
+            right={$\vec{c} \neq \seqEmpty$}
+         ]
+         {
+            c \clausesFwdR \sigma
+            \\
+            \vec{c} \clausesFwdR \sigma'
+            \\
+            \sigma \disjjoin \sigma' = \tau
+         }
+         {
+            c \concat \vec{c}
+            \clausesFwdR
+            \tau
+         }
+      \end{smathpar}
+   }
+   &
+   \notag
+   \\
+   &
+   \sigma \clausesBwdR{c} c' \leq c
+   \quad
+   (\exists c')
+   &
+   \text{IH}
+   \locallabel{bwd-fwd:clause-seq:one}
+   \\
+   &
+   \sigma' \clausesBwdR{\vec{c}} \vec{c}' \leq \vec{c}
+   \quad
+   (\exists \vec{c}')
+   &
+   \text{IH}
+   \locallabel{bwd-fwd:clause-seq:two}
+   \\
+   &
+   \qedLocal
+   \derivation{\derivationWidth}{
+      \begin{smathpar}
+         \inferrule*[
+            lab={\ruleName{$\clausesBwdS$-clause-seq}},
+            right={$\vec{c} \neq \seqEmpty$}
+         ]
+         {
+            \tau \eq \sigma' \disjjoin \sigma
+            \\
+            \sigma \clausesBwdR{c} c'
+            \\
+            \sigma' \clausesBwdR{\vec{c}} \vec{c}'
+         }
+         {
+            \tau
+            \clauseBwdR{c \concat \vec{c}}
+            c' \concat \vec{c}'
+         }
+      \end{smathpar}
+   }
+   &
+   \text{(\localref{bwd-fwd:clause-seq:one}, \localref{bwd-fwd:clause-seq:two})}
+   \notag
+   \\
+   &
+   \qedLocal
+   c' \concat \vec{c}' \leq c \concat \vec{c}
+   &
+   \notag
+\end{flalign}
+\end{proof}

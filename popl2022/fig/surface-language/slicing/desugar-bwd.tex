@@ -74,20 +74,19 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\desugarBwdR{}$-let-rec}},
-      right={$\forall i \numleq \length{\vec{x}}.(g_i,g'_i) = (\bind{x_i}{\vec{c_i}},\bind{x_i}{\vec{c_i}'})$}
+      lab={\ruleName{$\desugarBwdR{}$-let-rec}}
    ]
    {
       \sigma_i \clausesBwdR{\vec{c_i}} \vec{c_i}'
       \quad
-      (\forall i \numleq \length{\vec{x}})
+      (\forall i \numleq j)
       \\
       e \desugarBwdR{t} s
    }
    {
       \exLetRecMutual{\vec{\bind{x}{\sigma}}}{e}
-      \desugarBwdR{\exLetRecMutual{\vec{g}}{t}}
-      \exLetRecMutual{\vec{g}'}{s}
+      \desugarBwdR{\exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}}{t}}
+      \exLetRecMutual{\seqRange{\bind{x_1}{\vec{c_1}'}}{\bind{x_j}{\vec{c_j}'}}}{s}
    }
    %
    \and

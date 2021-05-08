@@ -69,9 +69,8 @@
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{[]}}
 \newcommand*{\exOp}[1]{\kw{(}{#1}\kw{)}}
-\newcommand*{\exPair}[2]{\kw{(}#1,#2\kw{)}}
+\newcommand*{\exPair}[2]{\kw{(}#1\comma#2\kw{)}}
 \newcommand*{\exPrim}[1]{#1}
-%\newcommand*{\exPrimOp}[2]{\kw{pr}({#1},{#2})} % value form, analogous to closures
 \newcommand*{\exPrimOp}[2]{{#1}({#2})} % value form, analogous to closures
 \newcommand*{\exRec}[2]{{#1}{#2}}
 \newcommand*{\exTrue}{\kw{true}}
@@ -133,10 +132,10 @@
 \newcommand*{\elimNil}[1]{\{\branchNil{#1}\}}
 \newcommand*{\elimCons}[1]{\{\branchCons{#1}\}}
 \newcommand*{\elimBool}[2]{\{\branchTrue{#1}, \branchFalse{#2}\}}
-\newcommand*{\elimBoolTrue}[1]{\{\branchTrue{#1}\}}
-\newcommand*{\elimBoolFalse}[1]{\{\branchFalse{#1}\}}
+\newcommand*{\elimTrue}[1]{\{\branchTrue{#1}\}}
+\newcommand*{\elimFalse}[1]{\{\branchFalse{#1}\}}
 \newcommand*{\elimList}[2]{\{\branchNil{#1},\branchCons{#2}\}}
-\newcommand*{\elimProd}[1]{\kw{prod}\;#1}
+\newcommand*{\elimProd}[1]{\{\exPair{}{}\elimmapsto{#1}\}} %{\kw{prod}\;#1}
 \newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches..
 
 \newcommand*{\singleton}[2]{#1[#2]}
@@ -328,3 +327,6 @@
 
 \newcommand*{\comma}{\textbf{\kw{,}}}
 \newcommand*{\equal}{\mathrel{\kw{=}}}
+
+\newcommand*{\disjjoin}{\mathbin{\ooalign{$\join$\cr%
+   \hfil\raise0.42ex\hbox{$\scriptscriptstyle+$}\hfil\cr}}}

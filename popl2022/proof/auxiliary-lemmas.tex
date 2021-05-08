@@ -15,16 +15,16 @@
 \end{lemma}
 
 \begin{definition}
-   Suppose $p, e \clauseFwdR \sigma$. Define $\clauseFwdF{\clause{p}{e}}: \Below{(p,e)} \to \Below{\sigma}$ and $\clauseBwdF{\clause{p}{e}}: \Below{\sigma} \to \Below{(p,e)}$ to be $\clauseFwdR$ domain-restricted to $\Below{(p,e)}$ and $\clauseBwdR{p}$ domain-restricted to $\Below{\sigma}$ respectively.
+   Suppose $\vec{p}, e \clauseFwdR \sigma$. Define $\clauseFwdF{\clause{\vec{p}}{e}}: \Below{e} \to \Below{\sigma}$ so that $\clauseFwdF{\clause{p}{e}}(e') = \sigma'$ iff $p, e' \clauseFwdR \sigma'$ and $\clauseBwdF{\clause{\vec{p}}{e}}: \Below{\sigma} \to \Below{e}$ so that $\clauseBwdF{\clause{\vec{p}}{e}}(\sigma') = e'$ iff $\sigma' \clauseBwdR{p} e'$.
 \end{definition}
 
 \begin{lemma}[Galois connection for clause]
   \label{lem:aux:clause:gc}
-  Suppose $p, e \clauseFwdR \sigma$. Then:
+  Suppose $\vec{p}, e \clauseFwdR \sigma$. Then:
   \begin{enumerate}
-     \item \label{lem:aux:clause:gc:1} $\clauseFwdF{\clause{p}{e}}$ and $\clauseBwdF{\clause{p}{e}}$ are monotonic.
-     \item \label{lem:aux:clause:gc:2} $\clauseFwdF{\clause{p}{e}}(\clauseBwdF{\clause{p}{e}}(\sigma')) \geq \sigma'$.
-     \item \label{lem:aux:clause:gc:3} $\clauseBwdF{\clause{p}{e}}(\clauseFwdF{\clause{p}{e}}(p,e')) \leq (p,e')$.
+     \item \label{lem:aux:clause:gc:1} $\clauseFwdF{\clause{\vec{p}}{e}}$ and $\clauseBwdF{\clause{\vec{p}}{e}}$ are monotonic.
+     \item \label{lem:aux:clause:gc:2} $\clauseFwdF{\clause{\vec{p}}{e}}(\clauseBwdF{\clause{\vec{p}}{e}}(\sigma')) \geq \sigma'$.
+     \item \label{lem:aux:clause:gc:3} $\clauseBwdF{\clause{\vec{p}}{e}}(\clauseFwdF{\clause{\vec{p}}{e}}(e')) \leq (e')$.
   \end{enumerate}
 \end{lemma}
 

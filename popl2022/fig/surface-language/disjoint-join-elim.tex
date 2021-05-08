@@ -1,0 +1,93 @@
+\begin{figure}[H]
+\begin{syntaxfig}
+   \mbox{Eliminator}
+   &
+   \sigma
+   &
+   ::=
+   &
+   \ldots
+   \\
+   &&&
+   \elimTrue{\kappa}
+   &
+   \text{true}
+   \\
+   &&&
+   \elimFalse{\kappa}
+   &
+   \text{false}
+   \\
+   &&&
+   \elimNil{\kappa}
+   &
+   \text{nil}
+   \\
+   &&&
+   \elimCons{\sigma}
+   &
+   \text{cons}
+\end{syntaxfig}
+\vspace{3mm}
+
+\flushleft\shadebox{$\sigma \disjjoin \sigma'$}
+\begin{salign}
+   (\elimVar{x}{\sigma}) \disjjoin (\elimVar{x}{\sigma'})
+   &=
+   \elimVar{x}{\sigma \disjjoin \sigma'}
+   \\
+   \elimTrue{\sigma} \disjjoin \elimTrue{\sigma'}
+   &=
+   \elimTrue{\sigma \disjjoin \sigma'}
+   \\
+   \elimFalse{\tau} \disjjoin \elimFalse{\tau'}
+   &=
+   \elimFalse{\tau \disjjoin \tau'}
+   \\
+   \elimTrue{\kappa} \disjjoin \elimFalse{\kappa'}
+   &=
+   \elimBool{\kappa}{\kappa'}
+   \\
+   \elimTrue{\sigma} \disjjoin \elimBool{\sigma'}{\kappa}
+   &=
+   \elimBool{\sigma \disjjoin \sigma'}{\kappa}
+   \\
+   \elimFalse{\tau} \disjjoin \elimBool{\kappa}{\tau'}
+   &=
+   \elimBool{\kappa}{\tau \disjjoin \tau'}
+   \\
+   \elimBool{\sigma}{\tau} \disjjoin \elimBool{\sigma'}{\tau'}
+   &=
+   \elimBool{\sigma \disjjoin \sigma'}{\tau \disjjoin \tau'}
+   \\
+   \elimNil{\sigma} \disjjoin \elimNil{\sigma'}
+   &=
+   \elimNil{\sigma \disjjoin \sigma'}
+   \\
+   \elimCons{\tau} \disjjoin \elimCons{\tau'}
+   &=
+   \elimCons{\tau \disjjoin \tau'}
+   \\
+   \elimNil{\kappa} \disjjoin \elimCons{\kappa'}
+   &=
+   \elimList{\kappa}{\kappa'}
+   \\
+   \elimNil{\sigma} \disjjoin \elimList{\sigma'}{\kappa}
+   &=
+   \elimBool{\sigma \disjjoin \sigma'}{\kappa}
+   \\
+   \elimCons{\tau} \disjjoin \elimList{\kappa}{\tau'}
+   &=
+   \elimList{\kappa}{\tau \disjjoin \tau'}
+   \\
+   \elimList{\sigma}{\tau} \disjjoin \elimList{\sigma'}{\tau'}
+   &=
+   \elimList{\sigma \disjjoin \sigma'}{\tau \disjjoin \tau'}
+   \\
+   \elimProd{\sigma} \disjjoin \elimProd{\sigma'}
+    &=
+    \elimProd{\sigma \disjjoin \sigma'}
+\end{salign}
+\caption{Partial eliminators and disjoint join of partial eliminators}
+\label{fig:surface-language:disjoin-join-elim}
+\end{figure}
