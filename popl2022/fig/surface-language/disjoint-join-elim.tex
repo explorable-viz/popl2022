@@ -30,8 +30,12 @@
 \end{syntaxfig}
 \vspace{3mm}
 
-\flushleft\shadebox{$\sigma \disjjoin \sigma'$}
+\flushleft\shadebox{$\kappa \disjjoin \kappa'$}
 \begin{salign}
+   \exLambda{\sigma} \disjjoin \exLambda{\sigma'}
+   &=
+   \exLambda{(\sigma \disjjoin \sigma')}
+   \\[3mm]
    (\elimVar{x}{\sigma}) \disjjoin (\elimVar{x}{\sigma'})
    &=
    \elimVar{x}{\sigma \disjjoin \sigma'}
