@@ -5,6 +5,7 @@
 - today: get up to speed with paper and people's availability
 - 8 weeks until deadline (8 July)
 - check Tomas and Meng can build paper (submodule needed)
+  - Roly to fix build scripts
 - goal: draft by mid-June to send to James Cheney
 - "core" of a paper in place:
   - substantial implementation
@@ -17,5 +18,6 @@
   - additional example & formalisation of "linked" visualisations
     - could use the TypeScript implementation? 
     - are there other idiomatic ways we can use the analysis?
-- how to organise moving forward?
-- meet again in 2 weeks' time?
+- how to organise moving forward
+  - write introduction first, starting with notes/bullet points on GitHub issue
+- meet again 20 May
