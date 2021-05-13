@@ -12,6 +12,10 @@
   - formalism + proofs
 - still need:
   - write-up: motivation, problem, design decisions, evaluation, ..
+    - explain things in terms of "comprehension questions" one might have?
+    - but also in terms of slicing
   - additional example & formalisation of "linked" visualisations
+    - could use the TypeScript implementation? 
+    - are there other idiomatic ways we can use the analysis?
 - how to organise moving forward?
 - meet again in 2 weeks' time?
