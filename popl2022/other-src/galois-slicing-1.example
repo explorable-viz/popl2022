@@ -1,4 +1,5 @@
-let (x, y) = ((*@\codeSel{4}@*), 12);
-    (a, b) = (16, 16);
-in ((*@\codeSel{x / a}@*), y / b)
-=> ((*@\codeSel{0.25}@*), 0.75)
+let (x, y) = (*@\codeSel{(2, 3)}@*);
+    sum = (*@\codeSel{x + y}@*) in
+if (*@\codeSel{sum == 0}@*) then (0, 0)
+            else (*@\codeSel{(}@*)x / sum, y / sum(*@\codeSel{)}@*)
+(*@$\Rightarrow$@*) (*@\codeSel{(}@*)0.4, 0.6(*@\codeSel{)}@*)

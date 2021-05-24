@@ -19,13 +19,13 @@ The fine-grained relationship between visual elements and data intuitively has t
 
 These considerations points towards \emph{Galois connections} as a way of formalising these dynamic input-output relations, and indeed in the program slicing literature, dynamic analyses based on Galois connections have been developed for pure functional programs \cite{perera12a}, functional programs with effects \cite{ricciotti17}, and \piCalculus \cite{perera16d}. These ``Galois slicing'' techniques have the flavour of what we need, but are unable to compute the kind of sufficiency relation we just outlined. To see the problem, we briefly outline how Galois slicing works. The idea is generalise the notion of program and value to \emph{program slices} and \emph{value slices}, program and values where some subexpressions have been replaced by hole $\hole$. A program slice ``evaluates'' to a \emph{value slice}, a value where some subvalues have been replaced by $\hole$, and dual to this, a value slice induces a (minimal) program slice. One can then extend this basic framework to focus on
 
-The problem with this approach is that it does not readily extend to a notion of ``selection'' where the part of the output (or input) of interest is not a prefix of the entire output (or input). For example, if we consider the following program, which has the value \lstinline{(0.25, 0.75)}:
+The problem with this approach is that it does not readily extend to a notion of selection where the part of the output of interest is not a prefix of the output, but rather a prefix of some subtree. For example, if we consider the following program, which has the value \lstinline{(0.25, 0.75)}:
 
 \begin{figure}[H]
    \small
    \begin{subfigure}{0.45\textwidth}
       {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/galois-slicing-1.example}}
-   \caption{Wurble}
+   \caption{Slicing with respect to the spine $\exPair{\hole}{\hole}$}
    \end{subfigure}
    \begin{subfigure}{0.45\textwidth}
       {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/galois-slicing-2.example}}
@@ -33,7 +33,7 @@ The problem with this approach is that it does not readily extend to a notion of
    \end{subfigure}
 \end{figure}
 
-The problem is that the parts of the program selected by differential slicing underapproximate the parts actually needed for the selected part of the output, because differential slicing only includes a part of the program if they are uniquely needed for the selected output.
+\noindent Because differential slicing includes a program part if is needed \emph{only} by the selected output, in general it underapproximates the parts actually needed for the selected output. In this example, \lstinline{2} and \lstinline{3} are both needed to compute the spine containing the subtree of interest, and so the differential slice does not include them. Differential slicing based on tree prefixes is thus not a suitable technique for computing data dependencies.
 
 \subsection{Linking cognate visualisations}
 
