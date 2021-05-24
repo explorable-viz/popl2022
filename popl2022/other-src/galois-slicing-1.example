@@ -1,3 +1,4 @@
-let (x, y) = (4, 12);
-   sum = x + y
-in ((*@x / sum@*), y / sum)
+let (x, y) = ((*@\codeSel{4}@*), 12);
+    (a, b) = (16, 16);
+in ((*@\codeSel{x / a}@*), y / b)
+=> ((*@\codeSel{0.25}@*), 0.75)

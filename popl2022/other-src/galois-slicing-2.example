@@ -1,0 +1,4 @@
+let (x, y) = (2, 3);
+    sum = x + y in
+if sum == 0 then (0, 0)
+            else (x / sum, y / sum)
