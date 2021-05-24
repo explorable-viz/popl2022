@@ -16,3 +16,24 @@ Data, curated by journalists, scientists and policy makers into charts and other
 \end{figure}
 
 Building this sort of ``data-linked'' visualisation by hand is possible, but is a significant undertaking, requiring intimate knowledge of the computational relationship between chart and data, and programming effort to expose that information to the reader. Manual approaches are also unlikely to be correct and lead to brittle solutions that need to be changed whenever the application logic changes. Given that a visualisation is a view computed from a data source, it seems plausible that we might adapt techniques from program analysis and data provenance to provide a runtime infrastructure that automatically supports linked selections. Then the data scientist or visualisation designer can concern themselves with cleaning, aggregating and presenting data, leaving the infrastructure to take care of linking visualisations to the underlying data sources.
+
+\subsection{Linking visualisations to each other}
+
+It is also common to use more than one view to present distinct but related aspects of data. (We say visualisations are \emph{cognate} when they are related in this way.) Geospatial applications like GeoDa \cite{anselin06} and charting libraries like Plotly provide a view coordination feature called \emph{brushing and linking} \cite{becker87}, where selections in one chart automatically select corresponding elements in the other, as an aid to comprehension. In \figref{introduction:vis-linking} below, selecting a bar on the left automatically selects all the related visual elements on the right. Although such coordination features are highly desirable, they are either baked into specific applications, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover the linking is opaque, providing no direct way for the reader to see the data which underpins the relationship.
+
+\begin{figure}[H]
+   {\includegraphics[scale=0.14]{fig/example/vis-linking.png}}
+   \caption{Linking cognate visualisations via common data dependencies}
+   \label{fig:introduction:vis-linking}
+\end{figure}
+
+\subsection{Our contributions}
+
+In this paper, we develop new language-based data provenance techniques for visual computations, building on existing techniques from the program slicing literature. Our specific contributions are as follows:
+
+\begin{itemize}
+   \item[--] a summary of \emph{Galois slicing}, a program slicing framework with round-tripping properties appropriate to our problem, and an analysis of its shortcomings (\secref{background})
+   \item[--] a new dependency analysis inspired by Galois slicing, addressing these shortcomings, for a core calculus with lists and arrays (\secref{core-language})
+   \item[--] a surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of the Galois dependency analysis to desugaring (\secref{surface-language})
+   \item[--] an implementation of Fluid in PureScript and a discussion and evaluation of the implementation (\secref{implementation})
+\end{itemize}
