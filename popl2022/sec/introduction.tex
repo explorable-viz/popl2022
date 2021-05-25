@@ -18,9 +18,17 @@ To address this, much work in data visualization has been done to assist analyst
 [TODO: Talk more about the motivation for linking and the existing libraries for this.]
 However, because data visualization libraries cannot analyze the host language, they resort to using internal DSLs where normal data transformation is encoded not as normal host language calculations, but as operations in the DSL. Wouldn't it be nice if we could write code to produce data visualization in a standard programming language and then be able to question how the structured output relates to structured inputs using a clever PL technique? For example, consider the following linked visualization example (Figure X):
 
-let data = [ ... ]
-let barchart = data |> some transformation
-let linechart = data |> some other transformation
+\begin{figure}[H]
+   {\includegraphics[scale=0.14]{fig/example/vis-linking.png}}
+   \begin{lstlistings}
+      let data = [ ... ]
+      let barchart = data |> some transformation
+      let linechart = data |> some other transformation
+   \end{lstlistings}
+   \caption{Linking cognate visualisations via common data dependencies}
+   \label{fig:introduction:vis-linking}
+\end{figure}
+
 
 Here, the code is written in normal programming language. The technique presented in this paper makes it possible to auotmatically link the barchart to the linechart. This is done by propagating information backwards, from the barchart to the data and then forwards, from the data to the linechart. Moreover, our method has nice theoretical properties, meaning that (some good things).
 
@@ -33,12 +41,6 @@ Building this sort of ``data-linked'' visualisation by hand is possible, but is 
 \subsection{Linking visualisations to each other}
 
 It is also common to use more than one view to present distinct but related aspects of data. (We say visualisations are \emph{cognate} when they are related in this way.) Geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly provide a view coordination feature called \emph{brushing and linking}~\cite{becker87}, where selections in one chart automatically select corresponding elements in the other, as an aid to comprehension. In \figref{introduction:vis-linking} below, selecting a bar on the left automatically selects all the related visual elements on the right. Although such coordination features are highly desirable, they are either baked into specific applications, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover the linking is opaque, providing no direct way for the reader to see the data which underpins the relationship.
-
-\begin{figure}[H]
-   {\includegraphics[scale=0.14]{fig/example/vis-linking.png}}
-   \caption{Linking cognate visualisations via common data dependencies}
-   \label{fig:introduction:vis-linking}
-\end{figure}
 
 \subsection{Our contributions}
 
