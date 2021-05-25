@@ -2,11 +2,14 @@
 
 Programming languages researchers have developed a variety of tools and methods for helping programmers understand programs, ranging from provenance techniques and taint tracking to dataflow analysis and program slicing \Todo{citations}. These tools have a wide range of applications, including security, optimisation and program comprehension \Todo{citations}. With programs operating on \Todo{blah}, it is increasingly important to make it easy to understand and explore how programs transform richly structured inputs into richly structured outputs. For example visualisation code turns tables of data into charts and other graphics; array computations operate on large multidimensional structures; compilers turn abstract syntax trees into compiled code. These sorts of problem domain require analysis tools that let us focus on a particular part of the output to see what parts of the input contribute to it, as well as to see what part of the input affects what part of the output. \Todo{Some evidence that we need this.}
 
-These problems are no longer just relevant to programmers. Every day we consume data, curated by journalists, scientists and policy makers into charts and other visual summaries, which informs our understanding of the world around us. But charts can be hard to interpret correctly, even with access to the relevant data source. For the sake of transparency and trust, it is vital that content consumers, as well as content creators, are able to easily see how aspects of the visual output relate both to data, and to other charts generated from the same data. Innocent (but devastating) mistakes such as transposing two columns of data have gone unnoticed for several years, even in widely cited papers~\cite{miller06}. Less innocent mistakes are deployed by politicians to mislead voters~\cite{fullfact19}. Understanding and trusting a visualisation, even for an expert, means knowing what its visual attributes actually \emph{represent}.
+These problems are no longer just relevant to programmers. Every day we consume data, curated by journalists, scientists and policy makers into charts and other visual summaries, which informs our understanding of the world around us. But charts can be hard to interpret correctly, even with access to the relevant data source. For the sake of transparency and trust, it is vital that content consumers, as well as content creators, are able to easily see how aspects of the visual output relate both to data, and to other charts generated from the same data. Innocent (but devastating) mistakes such as transposing two columns of data have gone unnoticed for several years, even in widely cited papers~\cite{miller06}. Less innocent mistakes are deployed by politicians to mislead voters~\cite{fullfact19}. Understanding and trusting a visualisation, even for an expert, means knowing what its visual attributes actually \emph{represent}, which in turn involves the following two comprehension challenges:
 
-From a program analysis perspective, there are two interesting problems. In the first problem, we want to be able to focus on a visual element and see what inputs contribute to it. This is a matter of selecting a part of the structured output and performing a backwards analysis that identifies parts of the input data and perhaps parts of the program that contribute to the selected output. In the second, more challenging problem, we want to understand how two charts produced from the same data relate. We want to be able to focus on a visual element in one output chart and see what aspects of a different chart are computed using related inputs. This is a matter of again selecting a part of the structured output and performing a backwards analysis to identify the required inputs, but also then performing a forwards analysis to identify dependent parts of the other output.
+\begin{enumerate}
+  \item Identifying the mapping between data source and visual elements in the visualisation
+  \item Understanding how different views of the same data are related
+\end{enumerate}
 
-In this case, we need a more sophisticated approach that supports both backwards and forwards analysis.
+From a program analysis perspective, each of these presents an interesting analysis problem. For (1), we want to be able to focus on a visual element and see what inputs contribute to it. This is a matter of selecting a part of the structured output and performing a backwards analysis that identifies parts of the input data and perhaps parts of the program that contribute to the selected output. (2) is more challenging; we want to be able to focus on a visual element in one chart or graphic and see what aspects of a different chart are computed using related inputs. This is a matter of again selecting a part of the structured output and performing a backwards analysis to identify the required inputs, but then also performing a forwards analysis to identify dependent parts of the other output.
 
 [ORIGINAL VERSION]
 
@@ -23,20 +26,7 @@ Here, the code is written in normal programming language. The technique presente
 
 \section{Introduction}
 
-which in turn involves the following two comprehension challenges:
-
-\begin{enumerate}
-  \item Identifying the mapping between data source and visual elements in the visualisation
-  \item Understanding how different views of the same data are related
-\end{enumerate}
-
-\noindent Even with the data and source code used to create the visualisation to hand, answering questions such as these is difficult, requiring time and expertise. The basic problem is that visualisations are opaque, disconnected from the data and computations used to create them. This situation would be significantly imporved if visualisations allowed a reader to explore the relationship to the underlying data through the visualisation itself, revealing the relevant connections on a need-to-know basis, as the reader interacts with it (\figref{introduction:data-linking} below):
-
-\begin{figure}[H]
-   {\includegraphics[scale=0.07]{fig/example/data-linking.png}}
-   \caption{Data visualisation with fine-grained data linking}
-   \label{fig:introduction:data-linking}
-\end{figure}
+\noindent Even with the data and source code used to create the visualisation to hand, answering questions such as these is difficult, requiring time and expertise. The basic problem is that visualisations are opaque, disconnected from the data and computations used to create them. This situation would be significantly imporved if visualisations allowed a reader to explore the relationship to the underlying data through the visualisation itself, revealing the relevant connections on a need-to-know basis, as the reader interacts with it (see left-hand side of \figref{introduction:viz-linking} below):
 
 Building this sort of ``data-linked'' visualisation by hand is possible, but is a significant undertaking, requiring intimate knowledge of the computational relationship between chart and data, and programming effort to expose that information to the reader. Manual approaches are also unlikely to be correct and lead to brittle solutions that need to be changed whenever the application logic changes. Given that a visualisation is a view computed from a data source, it seems plausible that we might adapt techniques from program analysis and data provenance to provide a runtime infrastructure that automatically supports linked selections. Then the data scientist or visualisation designer can concern themselves with cleaning, aggregating and presenting data, leaving the infrastructure to take care of linking visualisations to the underlying data sources.
 
