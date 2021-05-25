@@ -1,3 +1,29 @@
+\section{Introduction - Alternative take}
+
+Much programming langauge research has been focused on building tools that help programmers and users understand their programs. This includes large body of work on provenance and taint tracking, data flow analysis and program slicing. These techniques have a wide range of applications ranging from security to optimization. A program understanding problem that is becoming increasingly important, for example in data science and scientific computing, is understanding how programs transform richly structured inputs into richly structured outputs. This includes data visualization tools, turning tables of data into visualizations, but also compilers, turning abstract syntax trees into compiled code. For such problems, we need analysis tools that let us focus on particular part of the output, see what parts of input contribute to it, as well as to see what part of the input affects what part of the output.
+
+One area where this is particularly important is data visualization. Journalists, scientists and policy makers use data visualization to turn input data into visual summaries, but charts can be hard to intepret correctly. A key part of understanding and trusting a visualization means knowing what data the visual attributes actually represent. To address this, much work in data visualization has been done to assist analysts understand the mapping between data source and visual elements in the visualization and understand how different views of the same data are related. This is typically done through data visualization lirbaries that do not utilize rich program analysis techniques.
+
+[TODO: Talk more about the motivation for linking and the existing libraries for this.]
+However, because data visualization libraries cannot analyze the host language, they resort to using internal DSLs where normal data transformation is encoded not as normal host language calculations, but as operations in the DSL. Wouldn't it be nice if we could write code to produce data visualization in a standard programming language and then be able to question how the structured output relates to structured inputs using a clever PL technique? For example, consider the following linked visualization example (Figure X):
+
+let data = [ ... ]
+let barchart = data |> some transformation
+let linechart = data |> some other transformation
+
+Here, the code is written in normal programming language. The technique presented in this paper makes it possible to auotmatically link the barchart to the linechart. This is done by propagating information backwards, from the barchart to the data and then forwards, from the data to the linechart. Moreover, our method has nice theoretical properties, meaning that (some good things).
+
+We develop a new framework that:
+
+\begin{itemize}
+\item Can be applied in different ways to implement different kinds of explanations (maybe mention the other backward/forward combinations and negation)
+\item Can handle rich programming languages
+\item Has nice theoretical foundations
+\end{itemize}
+
+
+
+
 \section{Introduction}
 
 Data, curated by journalists, scientists and policy makers into charts and other visual summaries, is how we understand the changing world around us. But charts can be hard to interpret correctly, even with access to the relevant data source. Innocent (but devastating) mistakes such as transposing two columns of data may go unnoticed for several years, even in widely cited papers~\cite{miller06}. Less innocent mistakes are deployed by politicians to mislead voters~\cite{fullfact19}. Understanding and trusting a visualisation, even for an expert, means knowing what its visual attributes actually \emph{represent}, which in turn involves the following two comprehension challenges:
