@@ -21,17 +21,6 @@ let linechart = data |> some other transformation
 
 Here, the code is written in normal programming language. The technique presented in this paper makes it possible to auotmatically link the barchart to the linechart. This is done by propagating information backwards, from the barchart to the data and then forwards, from the data to the linechart. Moreover, our method has nice theoretical properties, meaning that (some good things).
 
-We develop a new framework that:
-
-\begin{itemize}
-\item Can be applied in different ways to implement different kinds of explanations (maybe mention the other backward/forward combinations and negation)
-\item Can handle rich programming languages
-\item Has nice theoretical foundations
-\end{itemize}
-
-
-
-
 \section{Introduction}
 
 Data, curated by journalists, scientists and policy makers into charts and other visual summaries, is how we understand the changing world around us. But charts can be hard to interpret correctly, even with access to the relevant data source. Innocent (but devastating) mistakes such as transposing two columns of data may go unnoticed for several years, even in widely cited papers~\cite{miller06}. Less innocent mistakes are deployed by politicians to mislead voters~\cite{fullfact19}. Understanding and trusting a visualisation, even for an expert, means knowing what its visual attributes actually \emph{represent}, which in turn involves the following two comprehension challenges:
@@ -67,7 +56,7 @@ In this paper, we present new language-based data provenance techniques for link
 
 \begin{itemize}[leftmargin=*]
    \item[--] a review of \emph{Galois slicing}, a program slicing framework with round-tripping properties appropriate to our problem, and an analysis of its shortcomings (\secref{background});
-   \item[--] a new bidirectional dependency analysis inspired by Galois slicing, addressing these shortcomings, for a core calculus with lists and arrays (\secref{core-language});
-   \item[--] a surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of our analysis to the desugaring (\secref{surface-language});
+   \item[--] a new bidirectional dependency analysis inspired by Galois slicing, addressing these shortcomings, for a core calculus with lists and arrays, and a discussion of how the components of this analysis can be combined in various ways to link inputs to outputs and outputs to other outputs (\secref{core-language});
+   \item[--] a richer surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of our analysis to the desugaring (\secref{surface-language});
    \item[--] an implementation of Fluid in PureScript, and a discussion and evaluation of the strengths and weaknesses of our approach (\secref{implementation}).
 \end{itemize}
