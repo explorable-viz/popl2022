@@ -1,6 +1,6 @@
 let (x, y) = (*@\codeSel{(2, 3)}@*);
-    sum = (*@\codeSel{x + y}@*) in
-if (*@\codeSel{sum == 0}@*)
-then (0, 0)
-else (*@\codeSel{(}@*)x / sum, y / sum(*@\codeSel{)}@*)
+    sum = x + y in
+if sum == 0
+then (*@$\hole$@*)
+else ((*@$\hole$@*), (*@$\hole$@*))
 (*@$\Rightarrow$@*) ((*@$\hole$@*), (*@$\hole$@*))
