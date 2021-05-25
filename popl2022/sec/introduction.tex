@@ -1,6 +1,6 @@
 \section{Introduction}
 
-Data, curated by journalists, scientists and policy makers into charts and other visual summaries, is how we understand the changing world around us. But charts can be hard to interpret correctly, even with access to the relevant data source. Innocent (but devastating) mistakes such as transposing two columns of data may go unnoticed for several years, even in widely cited papers~\cite{miller06}. Less innocent mistakes are deployed by politicians to mislead voters \cite{fullfact19}. Making sense of (and trusting) a visualisation, even for an expert, means understanding what its visual attributes actually \emph{represent}, which in turn involves the following two comprehension challenges:
+Data, curated by journalists, scientists and policy makers into charts and other visual summaries, is how we understand the changing world around us. But charts can be hard to interpret correctly, even with access to the relevant data source. Innocent (but devastating) mistakes such as transposing two columns of data may go unnoticed for several years, even in widely cited papers~\cite{miller06}. Less innocent mistakes are deployed by politicians to mislead voters \cite{fullfact19}. Understanding and trusting a visualisation, even for an expert, means knowing what its visual attributes actually \emph{represent}, which in turn involves the following two comprehension challenges:
 
 \begin{enumerate}
   \item Identifying the mapping between data source and visual elements in the visualisation
@@ -29,11 +29,11 @@ It is also common to use more than one view to present distinct but related aspe
 
 \subsection{Our contributions}
 
-In this paper, we develop new language-based data provenance techniques for visual computations, building on existing techniques from the program slicing literature. Our specific contributions are as follows:
+In this paper, we present new language-based data provenance techniques for linking visualisations to data, and to each other, in a fine-grained way. Our specific contributions are as follows:
 
-\begin{itemize}
-   \item[--] a summary of \emph{Galois slicing}, a program slicing framework with round-tripping properties appropriate to our problem, and an analysis of its shortcomings (\secref{background});
-   \item[--] a new dependency analysis inspired by Galois slicing, addressing these shortcomings, for a core calculus with lists and arrays (\secref{core-language});
-   \item[--] a surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of the Galois dependency analysis to desugaring (\secref{surface-language});
-   \item[--] an implementation of Fluid in PureScript, with a discussion and evaluation (\secref{implementation}).
+\begin{itemize}[leftmargin=*]
+   \item[--] a review of \emph{Galois slicing}, a program slicing framework with round-tripping properties appropriate to our problem, and an analysis of its shortcomings (\secref{background});
+   \item[--] a new bidirectional dependency analysis inspired by Galois slicing, addressing these shortcomings, for a core calculus with lists and arrays (\secref{core-language});
+   \item[--] a surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of our analysis to the desugaring (\secref{surface-language});
+   \item[--] an implementation of Fluid in PureScript, and a discussion and evaluation of the strengths and weaknesses of our approach (\secref{implementation}).
 \end{itemize}
