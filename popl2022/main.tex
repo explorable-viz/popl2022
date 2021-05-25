@@ -1,13 +1,13 @@
-\documentclass[preprint,acmsmall]{acmart}
+\documentclass[preprint,acmsmall, screen]{acmart}
 \settopmatter{printacmref=false}
 
 \acmJournal{PACMPL}
 \acmVolume{1}
-\acmNumber{POPL} % CONF = POPL or ICFP or OOPSLA
+\acmNumber{POPL}
 \acmArticle{1}
 \acmYear{2021}
 \acmMonth{1}
-\acmDOI{} % \acmDOI{10.1145/nnnnnnn.nnnnnnn}
+\acmDOI{}
 \startPage{1}
 \setcopyright{none}
 
@@ -19,21 +19,25 @@
 \lstset{language=Fluid}
 
 \bibliographystyle{ACM-Reference-Format}
-\citestyle{acmauthoryear}
+%\citestyle{acmauthoryear}
 \setcitestyle{nosort}
+
+\input{abstract}
 
 \begin{document}
 
-\title{Linking visualisations using Galois slicing}
+\title{Linking visualisations using Galois dependencies}
 \input{tex/authors}
 
 \maketitle
 
 \input{sec/introduction}
+\input{sec/background}
 \input{sec/core-language}
 \input{sec/surface-language}
+\input{sec/implementation}
 
-% \bibliography{../tex-common/bib}
+\bibliography{../tex-common/bib}
 \clearpage
 \appendix
 
