@@ -18,7 +18,7 @@ The situation would be much improved if visualisations allowed a reader to explo
    \label{fig:introduction:vis-linking}
 \end{figure}
 
-\noindent From a program analysis perspective, this presents an interesting problem: we want to be able to focus on a particular visual element, such as a bar in a bar chart, and see what inputs contribute to it. This is a matter of selecting a part of the structured output and performing some kind of backwards analysis that identifies parts of the input data and perhaps parts of the program that contributed to the selected output.
+\noindent From a program analysis perspective, this presents an interesting problem: we want to be able to focus on a particular visual element, such as a bar in a bar chart, and see what inputs contribute to it. This is a matter of selecting a part of the structured output and performing some kind of backwards analysis that identifies the relevant data.
 
 Visualisation designers do sometimes create ``data-linked'' artefacts like these by hand, such as Nadieh Bremer's award-winning visualisation of population density growth in Asian cities~\cite{bremer15}. But crafting such things by hand is a significant undertaking, requiring intimate knowledge of the computational relationship between chart and data, and programming effort to expose that information to the reader. Manual approaches are also error-prone and needs to be changed whenever the application logic changes. A library-based approach would improve on this, but would only provide data linking for solutions that can be readily expressed using the library. By framing this as a program analysis problem, visualisation code can be completely oblivious to these additional transparency features. The data scientist or visualisation designer need concern themselves only with constructing the appropriate view as a function of the data, leaving the programming language to take care of linking the outputs to the data sources in a fine-grained way.
 
@@ -26,15 +26,13 @@ It is also common to use more than one view to present distinct but related aspe
 
 Problem (2) is more challenging; we want to be able to focus on a visual element in one chart or graphic and see what aspects of a different chart are computed using related inputs. Much work in data visualisation has been done towards this goal, typically done through visualisation libraries rather than program analysis techniques. This is a matter of again selecting a part of the structured output and performing a backwards analysis to identify the required inputs, but then performing a further forwards analysis to identify dependent parts of the other output. The forward analysis part is shown on the right-hand side of \figref{introduction:vis-linking} above.
 
-\hrule
+\subsection{Contributions}
 
-Where-provenance~\cite{buneman01} and related data provenance techniques are fine-grained but are usually restricted to relational query languages. Taint tracking \cite{newsome05} tends to be low-level approach and restricted to tracking taint forwards from input to output. Dataflow analyses \cite{reps95} focus on analysing variables rather than parts of structured values.
+To solve these problems, we need a bidirectional dataflow analysis tailored to structured data in general-purpose languages. Where-provenance~\cite{buneman01} and related data provenance techniques are fine-grained but are usually restricted to relational query languages. Taint tracking \cite{newsome05} tends to be low-level approach and restricted to tracking taint forwards from input to output. Dataflow analyses \cite{reps95} focus on analysing variables rather than parts of structured values.
 
 Recent program slicing techniques \cite{perera12a,perera13a,ricciotti17} allow the user to focus on the output by ``erasing'' parts deemed to be irrelevant; the erased parts, called \emph{holes}, are propagated backwards by a backwards analysis which identifies parts of the program and input which are no longer needed. Although these approaches enjoy useful round-tripping properties characterised by Galois connections, they only allow focusing on \emph{prefixes} of a structured output, rather than arbitrary substructures.
 
-\subsection{Our contributions}
-
-In this paper, we present new language-based data provenance techniques for linking visualisations to data, and to each other, in a fine-grained way. Our specific contributions are as follows:
+In this paper, we present new language-based data provenance techniques for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our specific contributions are as follows:
 
 \begin{itemize}[leftmargin=*]
    \item[--] a review of \emph{Galois slicing}, a program slicing framework with round-tripping properties appropriate to our problem, and an analysis of its shortcomings (\secref{background});
