@@ -18,7 +18,7 @@ Visualisation designers do sometimes create ``data-linked'' artefacts like these
 
 \subsection{Fine-grained linking between outputs}
 
-It is also common to use more than one view to present distinct but related aspects of data. (We say visualisations are \emph{cognate} when they are related in this way.) In this situation a reader needs to be able to focus on a visual element in one chart or graphic and see what aspects of a different chart are computed using related inputs. Indeed, much work in data visualisation has been done towards this goal, typically done through visualisation libraries rather than program analysis techniques; geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly provide a view coordination feature called \emph{brushing and linking}~\cite{becker87}, where selections in one chart automatically select corresponding elements in the other. In \figref{introduction:vis-linking} below, selecting a bar on the left automatically selects all the related visual elements on the right. Although such coordination features are highly desirable, they are either baked into specific applications, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover the linking is opaque, providing no direct way for the reader to see the data which underpins the relationship.
+It is also common to use more than one view to present distinct but related aspects of data. In this situation a reader needs to be able to focus on a visual element in one chart or graphic and see what aspects of a different chart are computed using related inputs. Indeed, much work in data visualisation has been done towards this goal, typically done through visualisation libraries rather than program analysis techniques. One such feature, called \emph{brushing and linking}~\cite{becker87}, is common in geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly, where selections in one chart automatically select corresponding elements in the other. In \figref{introduction:vis-linking} below, selecting a bar on the left automatically selects all the related visual elements on the right. Although such ``view coordination'' features are highly desirable, they are either baked into specific applications, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover the linking is opaque, providing no direct way for the reader to see the data which underpins the relationship.
 
 \begin{figure}[H]
    {\includegraphics[scale=0.14]{fig/example/vis-linking.png}}
@@ -28,11 +28,11 @@ It is also common to use more than one view to present distinct but related aspe
       let barchart = data |> some transformation
       let linechart = data |> some other transformation
    \end{lstlisting}
-   \caption{Linking cognate visualisations via common data dependencies}
+   \caption{Linking visualisations via common data dependencies}
    \label{fig:introduction:vis-linking}
 \end{figure}
 
-We can again frame this as a program analysis problem. It is a matter of selecting a part of the structured output and performing a backwards analysis to identify the required inputs, as before, but then performing a further forwards analysis to identify dependent parts of the other output. The forward analysis part is shown on the right-hand side of \figref{introduction:vis-linking} above. This would not only provided a language-based foundation for automatic brushing and linking, but would also provide a ``data-transparent'' version of brushing and linking, able to provide a concise view of the data required to explain the link.
+We can again frame this as a program analysis problem. It is a matter of selecting a part of the structured output and performing a backwards analysis to identify the required inputs, as before, but then performing a further forwards analysis to identify dependent parts of the other output. The is in \figref{introduction:vis-linking} above. This would not only provided a language-based foundation for automatic brushing and linking, but would also provide a ``data-transparent'' version of brushing and linking, able to provide a concise view of the data required to explain the link.
 
 \subsection{Contributions}
 
