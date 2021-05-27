@@ -9,29 +9,7 @@ These considerations points towards \emph{Galois connections} as a way of formal
 
 The problem with this approach is that it does not readily extend to a notion of selection where the part of the output of interest is not a prefix of the output, but rather a prefix of some subtree. For example, if we consider the following program, which has the value \lstinline{(0.4, 0.6)}:
 
-\begin{figure}[H]
-   \small
-   \begin{centering}
-      \begin{subfigure}{0.45\textwidth}
-         {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/galois-slicing-0.example}}
-      \caption{Original program}
-      \end{subfigure}
-      \begin{subfigure}{0.45\textwidth}
-         {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/galois-slicing-1.example}}
-      \caption{Backward slice for spine \kw{($\hole$, $\hole$)}}
-      \end{subfigure}
-      \\
-      \begin{subfigure}{0.45\textwidth}
-         {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/galois-slicing-2.example}}
-      \caption{Backward slice for \kw{(0.4, $\hole$)}}
-      \end{subfigure}
-      \begin{subfigure}{0.45\textwidth}
-         {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/galois-slicing-3.example}}
-      \caption{Differential backward slice for \kw{(\codeSel{0.4}, $\hole$)}}
-      \end{subfigure}
-   \end{centering}
-   \caption{Differential Galois slicing selects input needed \emph{only} for selected output}
-\end{figure}
+\input{fig/example/diff-slicing}
 
 \noindent Because differential slicing includes a program part if is needed \emph{only} by the selected output, in general it underapproximates the parts actually needed for the selected output. In this example, \lstinline{2} and \lstinline{3} are both needed to compute the spine containing the subtree of interest, and so the differential slice does not include them. Differential slicing based on tree prefixes is thus not a suitable technique for computing data dependencies.
 
