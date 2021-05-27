@@ -12,9 +12,12 @@ The situation would be much improved if a computed artefact such as a chart or s
    \begin{subfigure}{0.35\textwidth}
       \small
       \begin{lstlisting}
-let barchart = some function
-in data |> barchart
+let input = [ ... ]
+let b1 = input |> filter (fun c -> c.country = "AB")
+let b2 = input |> filter (fun c -> c.country = "CD")
+in barchart [b1; b2]
       \end{lstlisting}
+      \todo{TP: Modified code so that it filters input data. This shows we need to prpoagate information through our code (Altair would have to filter in the Altair DSL)}
    \end{subfigure}
    \begin{subfigure}{0.63\textwidth}
       {\includegraphics[scale=0.05]{fig/example/data-linking.png}}
@@ -35,10 +38,13 @@ It is also common to use more than one view to present distinct but related aspe
    {\includegraphics[scale=0.14]{fig/example/vis-linking.png}}
    \small
    \begin{lstlisting}
-      let data = [ ... ]
-      let barchart = data |> some transformation
-      let linechart = data |> some other transformation
+     let input = [ ... ]
+     let b1 = input |> filter (fun c -> c.country = "AB")
+     let b2 = input |> filter (fun c -> c.country = "CD")
+     let bc = barchart [b1; b2]
+     let lc = input |> some filter |> linechart
    \end{lstlisting}
+   \todo{TP: Tweaked code to look a bit more like what I think we'd need.}
    \caption{Linking visualisations via common data dependencies}
    \label{fig:introduction:vis-linking}
 \end{figure}
