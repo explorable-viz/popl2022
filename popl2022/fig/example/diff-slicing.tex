@@ -1,0 +1,23 @@
+\begin{figure}[H]
+   \small
+   \begin{centering}
+      \begin{subfigure}{0.45\textwidth}
+         {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/diff-slicing-0.example}}
+      \caption{Original program}
+      \end{subfigure}
+      \begin{subfigure}{0.45\textwidth}
+         {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/diff-slicing-1.example}}
+      \caption{Backward slice for spine \kw{($\hole$, $\hole$)}}
+      \end{subfigure}
+      \\
+      \begin{subfigure}{0.45\textwidth}
+         {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/diff-slicing-2.example}}
+      \caption{Backward slice for \kw{(0.4, $\hole$)}}
+      \end{subfigure}
+      \begin{subfigure}{0.45\textwidth}
+         {\lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/diff-slicing-3.example}}
+      \caption{Differential backward slice for \kw{(\codeSel{0.4}, $\hole$)}}
+      \end{subfigure}
+   \end{centering}
+   \caption{Differential Galois slicing selects input needed \emph{only} for selected output}
+\end{figure}
