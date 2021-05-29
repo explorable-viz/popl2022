@@ -129,11 +129,11 @@
    ]
    {
       v \leq \hole
-      \\
-      v' \leq \hole
+      \quad
+      (\forall i \in \length{\vec{x}})
    }
    {
-      \annPair{v}{v'}{\FF} \leq \hole
+      \annRec{\vec{\bind{x}{v}}}{\FF} \leq \hole
    }
    %
    \and
