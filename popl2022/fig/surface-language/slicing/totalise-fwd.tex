@@ -72,6 +72,21 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\totaliseFwdS$-elim-record-empty}}
+]
+{
+   \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
+}
+{
+   \totaliseFwd{\elimRec{\seqEmpty}{\kappa}}
+               {\alpha}
+               {\pattRec{\seqEmpty} \concat \vec{\pi}}
+               {\elimRec{\seqEmpty}{\kappa'}}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\totaliseFwdS$-elim-record}}
 ]
 {
