@@ -43,6 +43,39 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\matchR$-record-empty}}
+   ]
+   {
+      \strut
+   }
+   {
+      \explVal{\exRec{\seqEmpty}}
+              {\seqEmpty, \elimRec{\seqEmpty}{\kappa} \matchR \seqEmpty, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchR$-record}}
+   ]
+   {
+      \explVal{w'}{v, \sigma \matchR \rho, \sigma'}
+      \\
+      \explVal{\vec{\bind{y}{w}}}
+              {\exRec{\vec{\bind{y}{u}}}, \sigma' \matchR \rho', \kappa}
+   }
+   {
+      \explVal{\exRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
+              {\exRec{\bind{x}{v} \concat \vec{\bind{y}{u}}},
+               \elimRec{\vec{x}}{\sigma}
+               \matchR
+               \rho \concat \rho',
+               \kappa}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\matchR$-nil}}]
    {
       \strut

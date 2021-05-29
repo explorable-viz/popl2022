@@ -58,25 +58,6 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\matchFwdS$-pair}}
-   ]
-   {
-      \matchFwd{v}{\sigma}{w}{\rho}{\sigma'}{\beta}
-      \\
-      \matchFwd{v'}{\sigma'}{w'}{\rho'}{\kappa}{\beta'}
-   }
-   {
-      \matchFwd{\annPair{v}{v'}{\alpha}}
-               {\elimProd{\sigma}}
-               {\matchPair{w}{w'}}
-               {\rho \concat \rho'}
-               {\kappa}
-               {\alpha \meet \beta \meet \beta'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\matchFwdS$-record}}
    ]
    {
