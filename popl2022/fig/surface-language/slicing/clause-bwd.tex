@@ -119,13 +119,13 @@
    lab={\ruleName{$\clauseBwdS$-record}}
 ]
 {
-   \sigma \clauseBwdR{p} \tau
+   \sigma \clauseBwdR{\pattRec{\vec{\bind{x}{p}}}} \tau
    \\
    \tau \clauseBwdR{p'} \kappa
 }
 {
-   \elimRec{(\fieldFst \concat \fieldSnd)}{\sigma}
-   \clauseBwdR{\pattPair{p}{p'}}
+   \elimRec{(\vec{x} \concat y)}{\sigma}
+   \clauseBwdR{\pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'}}}
    \kappa
 }
 %
