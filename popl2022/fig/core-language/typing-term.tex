@@ -179,6 +179,18 @@
 %
 \inferrule*
 {
+   \Gamma \vdash \kappa: A
+}
+{
+   \Gamma
+   \vdash
+   \elimRec{\seqEmpty}{\kappa}: \tyFun{\tyRec{\seqEmpty}}{A}
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash \elimRec{\vec{y}}{\sigma}: \tyFun{\tyRec{\vec{\bind{y}{A}}}}{B}
 }
 {
