@@ -48,6 +48,23 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-record}}]
+   {
+      \matchBwd{\rho'}{\kappa}{\alpha}{w'}{v'}{\sigma}
+      \\
+      \matchBwd{\rho}{\sigma}{\alpha}{w}{v}{\tau}
+   }
+   {
+      \matchBwd{\rho \concat \rho'}
+               {\kappa}
+               {\alpha}
+               {\matchRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
+               {\annPair{v}{v'}{\alpha}}
+               {\elimProd{\tau}}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
    {
       \strut
