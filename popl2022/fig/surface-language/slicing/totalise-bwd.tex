@@ -63,6 +63,23 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\totaliseBwdS$-record-empty}}
+]
+{
+   \sigma \eq \elimRec{\seqEmpty}{\kappa}
+   \\
+   \totaliseBwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
+}
+{
+   \totaliseBwd{\sigma}
+               {\pattRec{\seqEmpty} \concat \vec{\pi}}
+               {\elimRec{\seqEmpty}{\kappa'}}
+               {\alpha}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\totaliseBwdS$-prod}}
 ]
 {
