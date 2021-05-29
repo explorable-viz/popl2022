@@ -72,7 +72,7 @@
    }
    {
       \matchFwd{\annot{(\exRec{\bind{x}{v} \concat \vec{\bind{y}{u}}})}{\alpha}}
-               {\elimRec{\vec{x}}{\sigma}}
+               {\elimRec{(x \concat \vec{y})}{\sigma}}
                {\exRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
                {\rho \concat \rho'}
                {\kappa}
