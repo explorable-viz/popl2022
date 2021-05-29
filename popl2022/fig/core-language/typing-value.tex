@@ -61,12 +61,12 @@
 %
 \inferrule*
 {
-   \vdash u: A
-   \\
-   \vdash v: B
+   \vdash v_i: A_i
+   \quad
+   (\forall i \numleq \length{\vec{x}})
 }
 {
-   \vdash \exPair{u}{v}: \tyProd{A}{B}
+   \vdash \exRec{\vec{\bind{x}{v}}}: \tyRec{\vec{\bind{x}{A}}}
 }
 %
 \and
