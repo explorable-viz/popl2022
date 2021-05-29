@@ -14,12 +14,16 @@
 %
 \and
 %
-\inferrule*
+\inferrule*[
+   right={$\length{\vec{x}} = j$}
+]
 {
    p_i: A_i \dashv \Gamma_i
+   \quad
+   (\forall i \numleq j)
 }
 {
-   \pattRec{\vec{\bind{x}{p}}}: \tyRec{\vec{\bind{x}{A}}} \dashv \vec{\Gamma}
+   \pattRec{\vec{\bind{x}{p}}}: \tyRec{\vec{\bind{x}{A}}} \dashv \seqRange{\Gamma_1}{\Gamma_j}
 }
 %
 \and
