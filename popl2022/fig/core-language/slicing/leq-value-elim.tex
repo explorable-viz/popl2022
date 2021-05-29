@@ -115,12 +115,12 @@
       right={$\alpha \leq \alpha'$}
    ]
    {
-      v \leq u
-      \\
-      v' \leq u'
+      v_i \leq u_i
+      \quad
+      (\forall i \in \length{\vec{x}})
    }
    {
-      \annPair{v}{v'}{\alpha} \leq \annPair{u}{u'}{\alpha'}
+      \annRec{\vec{\bind{x}{v}}}{\alpha} \leq \annRec{\vec{\bind{x}{u}}}{\alpha'}
    }
    %
    \and
