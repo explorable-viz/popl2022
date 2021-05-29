@@ -102,6 +102,20 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\clauseBwdS$-record-empty}}
+]
+{
+   \strut
+}
+{
+   \elimRec{\seqEmpty}{\kappa}
+   \clauseBwdR{\pattRec{\seqEmpty}}
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\clauseBwdS$-pair}}
 ]
 {
@@ -110,7 +124,7 @@
    \tau \clauseBwdR{p'} \kappa
 }
 {
-   \elimProd{\sigma}
+   \elimRec{(\fieldFst \concat \fieldSnd)}{\sigma}
    \clauseBwdR{\pattPair{p}{p'}}
    \kappa
 }
