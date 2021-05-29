@@ -108,14 +108,14 @@
    lab={\ruleName{$\clauseFwdR$-record}}
 ]
 {
-   \pattRec{\vec{\bind{y}{p}}}, \kappa \clauseFwdR \sigma
+   p', \kappa \clauseFwdR \sigma
    \\
-   p', \sigma \clauseFwdR \sigma'
+   \pattRec{\vec{\bind{x}{p}}}, \sigma \clauseFwdR \sigma'
 }
 {
-   \pattRec{\bind{x}{p'} \concat \vec{\bind{y}{p}}}, \kappa
+   \pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'}}, \kappa
    \clauseFwdR
-   \elimRec{(x \concat \vec{y})}{\sigma'}
+   \elimRec{(\vec{x} \concat y)}{\sigma'}
 }
 %
 \and

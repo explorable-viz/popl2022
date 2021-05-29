@@ -116,6 +116,22 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\clauseBwdS$-record}}
+]
+{
+   \sigma \clauseBwdR{p} \tau
+   \\
+   \tau \clauseBwdR{p'} \kappa
+}
+{
+   \elimRec{(\fieldFst \concat \fieldSnd)}{\sigma}
+   \clauseBwdR{\pattPair{p}{p'}}
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\clauseBwdS$-pair}}
 ]
 {
