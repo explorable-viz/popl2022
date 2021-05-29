@@ -96,6 +96,25 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\matchFwdS$-record-empty}}
+   ]
+   {
+      \matchFwd{v}{\sigma}{w'}{\rho}{\sigma'}{\beta}
+      \\
+      \matchFwd{\exRec{\vec{\bind{y}{u}}}}{\sigma'}{\vec{\bind{y}{w}}}{\rho'}{\kappa}{\beta'}
+   }
+   {
+      \matchFwd{\exRec{\seqEmpty}
+               {\elimRec{\vec{x}}{\sigma}}
+               {\exRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
+               {\rho \concat \rho'}
+               {\kappa}
+               {\alpha \meet \beta \meet \beta'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\matchFwdS$-nil}}
    ]
    {
