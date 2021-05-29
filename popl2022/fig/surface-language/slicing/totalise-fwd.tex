@@ -93,9 +93,9 @@
    \totaliseFwd{\sigma}{\alpha}{\seqRange{p_1}{p_j} \concat \vec{\pi}}{\sigma'}
 }
 {
-   \totaliseFwd{\elimRec{(x \concat \vec{y})}{\sigma}}
+   \totaliseFwd{\elimRec{(\vec{x} \concat y)}{\sigma}}
                {\alpha}
-               {\pattRec{(\bind{x}{p'} \concat \vec{\bind{y}{p}})} \concat \vec{\pi}}
+               {\pattRec{(\vec{\bind{x}{p}} \concat \bind{y}{p'})} \concat \vec{\pi}}
                {\elimRec{(\fieldFst \concat \fieldSnd)}{\sigma'}}
 }
 %
