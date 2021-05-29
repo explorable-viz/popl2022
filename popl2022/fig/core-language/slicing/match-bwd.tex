@@ -31,6 +31,21 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-record-empty}}]
+   {
+      \strut
+   }
+   {
+      \matchBwd{\seqEmpty}
+               {\kappa}
+               {\alpha}
+               {\matchRec{\seqEmpty}}
+               {\annot{\exRec{\seqEmpty}}{\alpha}}
+               {\elimRec{\seqEmpty}{\kappa}}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\matchBwdS$-record}}]
    {
       \matchBwd{\rho'}
