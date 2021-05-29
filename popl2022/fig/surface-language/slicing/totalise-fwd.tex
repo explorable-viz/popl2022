@@ -38,6 +38,7 @@
                {\pattTrue \concat \vec{\pi}}
                {\elimBool{\kappa'}{\annNil{\alpha}}}
 }
+%
 \and
 %
 \inferrule*[
@@ -52,6 +53,7 @@
                {\pattFalse \concat \vec{\pi}}
                {\elimBool{\annNil{\alpha}}{\kappa'}}
 }
+%
 \and
 %
 \inferrule*[
@@ -66,6 +68,37 @@
                {\pattPair{p}{p'} \concat \vec{\pi}}
                {\elimProd{\sigma'}}
 }
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totaliseFwdS$-elim-record}}
+]
+{
+   \totaliseFwd{\sigma}{\alpha}{\seqRange{p_1}{p_j} \concat \vec{\pi}}{\sigma'}
+}
+{
+   \totaliseFwd{\elimRec{(\fieldFst \concat \fieldSnd)}{\sigma}}
+               {\alpha}
+               {\pattRec{\vec{\bind{x}{p}}} \concat \vec{\pi}}
+               {\elimRec{(\fieldFst \concat \fieldSnd)}{\sigma'}}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totaliseFwdS$-elim-pair}}
+]
+{
+   \totaliseFwd{\sigma}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma'}
+}
+{
+   \totaliseFwd{\elimRec{(\fieldFst \concat \fieldSnd)}{\sigma}}
+               {\alpha}
+               {\pattPair{p}{p'} \concat \vec{\pi}}
+               {\elimRec{(\fieldFst \concat \fieldSnd)}{\sigma'}}
+}
+%
 \and
 %
 \inferrule*[
@@ -80,6 +113,7 @@
                {\pattNil \concat \vec{\pi}}
                {\elimList{\kappa'}{\elimVar{x}{\elimVar{y}{\annNil{\alpha}}}}}
 }
+%
 \and
 %
 \inferrule*[
