@@ -87,7 +87,7 @@
    {
       \matchFwd{\exRec{\bind{x}{v} \concat \vec{\bind{y}{u}}}}
                {\elimRec{\vec{x}}{\sigma}}
-               {\matchPair{w}{w'}}
+               {\exRec{\bind{x}{w} \concat \vec{\bind{y}{w'}}}}
                {\rho \concat \rho'}
                {\kappa}
                {\alpha \meet \beta \meet \beta'}
