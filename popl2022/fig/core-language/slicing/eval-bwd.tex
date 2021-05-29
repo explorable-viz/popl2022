@@ -60,6 +60,22 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\evalBwdS$-record}}]
+   {
+      \evalFwd{\rho}{e_i}{\alpha'}{T_i}{v_i}
+      \quad
+      (\forall i \numleq \length{\vec{x}})
+   }
+   {
+      \evalFwd{\rho}
+              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
+              {\alpha'}
+              {\trRec{\vec{\bind{x}{T}}}}
+              {\annRec{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
    \inferrule*[
       lab={\ruleName{$\evalBwdS$-nil}}
    ]
