@@ -43,12 +43,12 @@
 %
 \inferrule*
 {
-   \Gamma \vdash u: A
-   \\
-   \Gamma \vdash v: B
+   \Gamma \vdash e_i: A_i
+   \quad
+   (\forall i \numleq \length{\vec{x}})
 }
 {
-   \Gamma \vdash \exPair{u}{v}: \tyProd{A}{B}
+   \Gamma \vdash \exRec{\vec{\bind{x}{e}}}: \tyRec{\vec{\bind{x}{A}}
 }
 %
 \and
@@ -87,12 +87,12 @@
 %
 \inferrule*
 {
-   \Gamma \vdash u: A
+   \Gamma \vdash e: A
    \\
-   \Gamma \vdash v: \tyList{A}
+   \Gamma \vdash e': \tyList{A}
 }
 {
-   \Gamma \vdash (\exCons{u}{v}): \tyList{A}
+   \Gamma \vdash (\exCons{e}{e'}): \tyList{A}
 }
 %
 \and
