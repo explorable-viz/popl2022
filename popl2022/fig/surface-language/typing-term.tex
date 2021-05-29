@@ -42,6 +42,18 @@
    %
    \inferrule*
    {
+      \Gamma \vdash s: A
+      \\
+      \Gamma \vdash s': B
+   }
+   {
+      \Gamma \vdash \exPair{s}{s'}: \tyRec{(\bind{\kw{fst}}{A} \concat \bind{\kw{snd}}{B})}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
       \Gamma \vdash \vec{g}: \Delta
       \\
       \Gamma \concat \Delta \vdash s: A
