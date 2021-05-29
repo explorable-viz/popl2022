@@ -57,21 +57,6 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-prod}}
-]
-{
-   \totaliseFwd{\sigma}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma'}
-}
-{
-   \totaliseFwd{\elimProd{\sigma}}
-               {\alpha}
-               {\pattPair{p}{p'} \concat \vec{\pi}}
-               {\elimProd{\sigma'}}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\totaliseFwdS$-elim-record-empty}}
 ]
 {
@@ -90,13 +75,16 @@
    lab={\ruleName{$\totaliseFwdS$-elim-record}}
 ]
 {
-   \totaliseFwd{\sigma}{\alpha}{\seqRange{p_1}{p_j} \concat \vec{\pi}}{\sigma'}
+   \totaliseFwd{\elimRec{\vec{x}}{\sigma}}
+               {\alpha}
+               {\vec{\bind{x}{p}} \concat p' \concat \vec{\pi}}
+               {\elimRec{\vec{x}}{\sigma'}}
 }
 {
    \totaliseFwd{\elimRec{(\vec{x} \concat y)}{\sigma}}
                {\alpha}
                {\pattRec{(\vec{\bind{x}{p}} \concat \bind{y}{p'})} \concat \vec{\pi}}
-               {\elimRec{(\fieldFst \concat \fieldSnd)}{\sigma'}}
+               {\elimRec{(\vec{x} \concat y)}{\sigma'}}
 }
 %
 \and
