@@ -191,7 +191,7 @@
 %
 \inferrule*
 {
-   \Gamma \vdash \elimRec{\vec{y}}{\sigma}: \tyFun{\tyRec{\vec{\bind{y}{A}}}}{B}
+   \Gamma \vdash \elimRec{\vec{y}}{\sigma}: \tyFun{A'}{\tyFun{\tyRec{\vec{\bind{y}{A}}}}{B}}
 }
 {
    \Gamma
