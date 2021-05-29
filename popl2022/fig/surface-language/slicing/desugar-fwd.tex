@@ -33,10 +33,10 @@
    {
       s \desugarFwdR e
       \\
-      r \desugarFwdR e'
+      s' \desugarFwdR e'
    }
    {
-      \annPair{s}{r}{\alpha}
+      \annPair{s}{s'}{\alpha}
       \desugarFwdR
       \annRec{\bind{\fieldFst}{e} \concat \bind{\fieldSnd}{e'}}{\alpha}
    }
