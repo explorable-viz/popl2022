@@ -191,12 +191,12 @@
 %
 \inferrule*
 {
-   \Gamma \vdash \elimRec{\vec{y}}{\sigma}: \tyFun{A'}{\tyFun{\tyRec{\vec{\bind{y}{A}}}}{B}}
+   \Gamma \vdash \elimRec{\vec{x}}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}}}}{\tyFun{A'}{B}}
 }
 {
    \Gamma
    \vdash
-   \elimRec{(\vec{x} \concat y)}{\sigma}: \tyFun{\tyRec{(\bind{x}{A'} \concat \vec{\bind{y}{A})}}}{B}
+   \elimRec{(\vec{x} \concat y)}{\sigma}: \tyFun{\tyRec{(\vec{\bind{x}{A}} \concat \bind{y}{A'})}}{B}
 }
 %
 \and
