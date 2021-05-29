@@ -31,18 +31,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchR$-pair}}]
-   {
-      \explVal{w}{v, \sigma \matchR \rho, \tau}
-      \\
-      \explVal{w'}{v', \tau \matchR, \rho', \kappa}
-   }
-   {
-      \explVal{\matchPair{w}{w'}}{\exPair{v}{v'}, \elimProd{\sigma} \matchR \rho \concat \rho', \kappa}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\matchR$-record-empty}}
    ]
