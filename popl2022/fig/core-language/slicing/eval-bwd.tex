@@ -62,17 +62,17 @@
    %
    \inferrule*[lab={\ruleName{$\evalBwdS$-record}}]
    {
-      \evalFwd{\rho}{e_i}{\alpha'}{T_i}{v_i}
+      \evalBwd{v_i}{T_i}{\rho_i}{e_i}{\alpha_i'}
       \quad
       (\forall i \numleq \length{\vec{x}})
    }
    {
-      \evalFwd{\rho}
-              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
-              {\alpha'}
+      \evalBwd{\annRec{\vec{\bind{x}{v}}}{\alpha}}
               {\trRec{\vec{\bind{x}{T}}}}
-              {\annRec{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}}
-   }
+              {\bigjoin\vec{\rho}}
+              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
+              {\alpha \join \bigjoin\vec{\alpha}'}
+   }\\
    %
    \and
    %
