@@ -179,6 +179,16 @@
 %
 \inferrule*
 {
+   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{A'}{B}}
+}
+{
+   \Gamma \vdash \elimRec{x \concat \vec{y}}{\sigma}: \tyFun{\tyRec{\bind{x}{A'} \concat \vec{\bind}{y}{A}}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
    \Gamma \vdash \kappa: B
    \\
    \Gamma \vdash \sigma: \tyFun{A}{\tyFun{\tyList{A}}{B}}
