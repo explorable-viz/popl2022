@@ -66,7 +66,7 @@
 \newcommand*{\exLambda}[1]{\uplambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecEquational}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
-\newcommand*{\exLetRec}[3]{\kw{let}\,\exRec{#1}{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRec}[3]{\kw{let}\,{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{\kw{[]}}
@@ -74,7 +74,7 @@
 \newcommand*{\exPair}[2]{\kw{(}#1\comma#2\kw{)}}
 \newcommand*{\exPrim}[1]{#1}
 \newcommand*{\exPrimOp}[2]{{#1}({#2})} % value form, analogous to closures
-%\newcommand*{\exRec}[2]{{#1}{#2}}
+\newcommand*{\exRec}[1]{#1}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
 \newcommand*{\exVec}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack}
@@ -138,7 +138,7 @@
 \newcommand*{\elimFalse}[1]{\{\branchFalse{#1}\}}
 \newcommand*{\elimList}[2]{\{\branchNil{#1},\branchCons{#2}\}}
 \newcommand*{\elimProd}[1]{\{\exPair{}{}\elimmapsto{#1}\}}
-\newcommand*{\elimRec}[2]{\{?\elimmapsto{#2}\}} % \exRec{#1}
+\newcommand*{\elimRec}[2]{\{\exRec{#1}\elimmapsto{#2}\}}
 \newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches
 
 \newcommand*{\singleton}[2]{#1[#2]}

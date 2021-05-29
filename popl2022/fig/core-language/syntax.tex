@@ -31,11 +31,6 @@ e
 \text{Boolean}
 \\
 &&&
-\elimProd{\sigma}
-&
-\text{pair}
-\\
-&&&
 \elimRec{\vec{x}}{\sigma}
 &
 \text{record}
@@ -93,6 +88,11 @@ e
 \annPair{e}{e'}{\alpha}
 &
 \text{pair}
+\\
+&&&
+\exRec{\vec{\bind{x}{e}}}
+&
+\text{record}
 \\
 &&&
 \annNil{\alpha}
