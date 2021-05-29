@@ -82,10 +82,15 @@
    {
       \matchFwd{v}{\sigma}{w'}{\rho}{\sigma'}{\beta}
       \\
-      \matchFwd{\exRec{\vec{\bind{y}{u}}}}{\sigma'}{\vec{\bind{y}{w}}}{\rho'}{\kappa}{\beta'}
+      \matchFwd{\annot{(\exRec{\vec{\bind{y}{u}}})}{\FF}}
+               {\sigma'}
+               {\vec{\bind{y}{w}}}
+               {\rho'}
+               {\kappa}
+               {\beta'}
    }
    {
-      \matchFwd{\exRec{\bind{x}{v} \concat \vec{\bind{y}{u}}}}
+      \matchFwd{\annot{(\exRec{\bind{x}{v} \concat \vec{\bind{y}{u}}})}{\alpha}}
                {\elimRec{\vec{x}}{\sigma}}
                {\exRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
                {\rho \concat \rho'}
@@ -103,7 +108,7 @@
    }
    {
       \matchFwd{\annot{\exRec{\seqEmpty}}{\alpha}}
-               {\elimRec{\seqEmpty}{\sigma}}
+               {\elimRec{\seqEmpty}{\kappa}}
                {\seqEmpty}
                {\seqEmpty}
                {\kappa}
