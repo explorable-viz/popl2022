@@ -76,6 +76,20 @@
    \and
    %
    \inferrule*[
+      lab={\ruleName{$\evalR$-project}},
+      right={$i \numleq \length{\vec{x}}$}
+   ]
+   {
+      \explVal{T}{\rho, e \evalR \exRec{\vec{\bind{x}{v}}}}
+   }
+   {
+      \explVal{\trRecProj{T}{x_i}}
+              {\rho, \exRecProj{e}{x_i} \evalR v_i}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\evalR$-nil}}
    ]
    {
