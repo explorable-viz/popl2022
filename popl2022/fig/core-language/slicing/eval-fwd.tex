@@ -72,6 +72,23 @@
    %
    \and
    %
+   \inferrule*[
+      lab={\ruleName{$\evalR$-project}},
+      right={$i \numleq \length{\vec{x}}$}
+   ]
+   {
+      \evalFwd{\rho}{e}{\alpha}{T}{\exRec{\vec{\bind{x}{v}}}}
+   }
+   {
+      \evalFwd{\rho}
+              {\exRecProj{e}{x}}
+              {\alpha}
+              {\trRecProj{T}{x}}
+              {v_i}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
    {
       \strut
