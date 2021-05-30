@@ -78,6 +78,7 @@
 \newcommand*{\exPrim}[1]{#1}
 \newcommand*{\exPrimOp}[2]{{#1}({#2})} % value form, analogous to closures
 \newcommand*{\exRec}[1]{#1}
+\newcommand*{\exRecEmpty}{\kw{()}}
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
 \newcommand*{\exVec}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack}
@@ -128,6 +129,7 @@
 \newcommand*{\pattListEnd}{\exListEnd}
 \newcommand*{\pattPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\pattRec}[1]{\exRec{#1}}
+\newcommand*{\pattRecEmpty}{\exRecEmpty}
 
 % Eliminators.
 \newcommand*{\elimmapsto}{{:}\;}
@@ -144,6 +146,7 @@
 \newcommand*{\elimList}[2]{\{\branchNil{#1},\branchCons{#2}\}}
 \newcommand*{\elimProd}[1]{\{\exPair{}{}\elimmapsto{#1}\}}
 \newcommand*{\elimRec}[2]{\{\exRec{#1}\elimmapsto{#2}\}}
+\newcommand*{\elimRecEmpty}[1]{\{\exRecEmpty\elimmapsto{#1}\}}
 \newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches
 
 \newcommand*{\singleton}[2]{#1[#2]}

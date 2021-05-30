@@ -72,8 +72,8 @@
 }
 {
    \totaliseBwd{\sigma}
-               {\pattRec{\seqEmpty} \concat \vec{\pi}}
-               {\elimRec{\seqEmpty}{\kappa'}}
+               {\pattRecEmpty \concat \vec{\pi}}
+               {\elimRecEmpty{\kappa'}}
                {\alpha}
 }
 %
@@ -88,7 +88,10 @@
    \totaliseBwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totaliseBwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\tau}}{\beta}
+   \totaliseBwd{\sigma}
+               {(\pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'})} \concat \vec{\pi}}
+               {\elimProd{\tau}}
+               {\beta}
 }
 %
 \and
