@@ -102,6 +102,36 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\clauseBwdS$-unit}}
+]
+{
+   \strut
+}
+{
+   \elimRecEmpty{\kappa}
+   \clauseBwdR{\pattRecEmpty}
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseBwdS$-record}}
+]
+{
+   \elimRec{\vec{x}}{\sigma} \clauseBwdR{\pattRec{\vec{\bind{x}{p}}}} \tau
+   \\
+   \tau \clauseBwdR{p'} \kappa
+}
+{
+   \elimRec{\vec{x} \concat y}{\sigma}
+   \clauseBwdR{\pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'}}}
+   \kappa
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\clauseBwdS$-pair}}
 ]
 {
@@ -110,7 +140,7 @@
    \tau \clauseBwdR{p'} \kappa
 }
 {
-   \elimProd{\sigma}
+   \elimRec{\fieldFst \concat \fieldSnd}{\sigma}
    \clauseBwdR{\pattPair{p}{p'}}
    \kappa
 }

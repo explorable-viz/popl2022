@@ -88,9 +88,9 @@
    &=
    \elimList{\sigma \disjjoin \sigma'}{\tau \disjjoin \tau'}
    \\
-   \elimProd{\sigma} \disjjoin \elimProd{\sigma'}
-    &=
-    \elimProd{\sigma \disjjoin \sigma'}
+   \elimRec{\vec{x}}{\sigma} \disjjoin \elimRec{\vec{x}}{\sigma'}
+   &=
+   \elimRec{\vec{x}}{\sigma \disjjoin \sigma'}
 \end{salign}
 \caption{Partial eliminators and disjoint join of partial continuations}
 \label{fig:surface-language:disjoin-join-elim}

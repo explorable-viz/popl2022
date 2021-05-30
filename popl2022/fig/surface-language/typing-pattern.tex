@@ -14,6 +14,20 @@
 %
 \and
 %
+\inferrule*[
+   right={$\length{\vec{x}} = j$}
+]
+{
+   p_i: A_i \dashv \Gamma_i
+   \quad
+   (\forall i \numleq j)
+}
+{
+   \pattRec{\vec{\bind{x}{p}}}: \tyRec{\vec{\bind{x}{A}}} \dashv \seqRange{\Gamma_1}{\Gamma_j}
+}
+%
+\and
+%
 \inferrule*
 {
    p: A \dashv \Gamma
@@ -21,7 +35,10 @@
    p': B \dashv \Gamma'
 }
 {
-   \pattPair{p}{p'}: \tyProd{A}{B} \dashv \Gamma \concat \Gamma'
+   \pattPair{p}{p'}:
+   \tyRec{\bind{\fieldFst}{A} \concat \bind{\fieldSnd}{B}}
+   \dashv
+   \Gamma \concat \Gamma'
 }
 %
 \and
@@ -58,8 +75,7 @@
    \pattList{p}{o} : \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
-
-%% List pattern rest
+\vspace{3mm}
 
 \flushleft \shadebox{$o: \tyList{A} \dashv \Gamma $}
 \begin{smathpar}
@@ -83,8 +99,7 @@
    (\pattListNext{p}{o}) : \tyList{A} \dashv \Gamma \concat \Gamma'
 }
 \end{smathpar}
-
-%% Clauses
+\vspace{3mm}
 
 \flushleft \shadebox{$\Gamma \vdash \vec{c}: \tyFun{A}{B}$}
 \begin{smathpar}

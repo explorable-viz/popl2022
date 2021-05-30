@@ -16,9 +16,9 @@ w
 \text{Boolean}
 \\
 &&&
-\matchPair{w}{w'}
+\matchRec{\vec{\bind{x}{w}}}
 &
-\text{pair}
+\text{record}
 \\
 &&&
 \matchNil
@@ -53,9 +53,14 @@ T, U
 \text{integer}
 \\
 &&&
-\trPair{T}{U}
+\trRec{\vec{\bind{x}{T}}}
 &
-\text{pair}
+\text{record}
+\\
+&&&
+\trRecProj{T}{x}
+&
+\text{record projection}
 \\
 &&&
 \trNil{\rho}

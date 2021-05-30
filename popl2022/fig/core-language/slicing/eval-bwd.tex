@@ -60,6 +60,36 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\evalBwdS$-record}}]
+   {
+      \evalBwd{v_i}{T_i}{\rho_i}{e_i}{\alpha_i'}
+      \quad
+      (\forall i \numleq \length{\vec{x}})
+   }
+   {
+      \evalBwd{\annRec{\vec{\bind{x}{v}}}{\alpha}}
+              {\trRec{\vec{\bind{x}{T}}}}
+              {\bigjoin\vec{\rho}}
+              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
+              {\alpha \join \bigjoin\vec{\alpha}'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
+   {
+      \evalBwd{\mapUpdate{\exRec{\vec{\bind{x}{\hole}}}}{x_i}{v}}{T}{\rho}{e}{\alpha}
+   }
+   {
+      \evalBwd{v}
+              {\trRecProj{T}{x_i}}
+              {\rho}
+              {\exRecProj{e}{x_i}}
+              {\alpha}
+   }
+   %
+   \and
+   %
    \inferrule*[
       lab={\ruleName{$\evalBwdS$-nil}}
    ]
@@ -200,6 +230,6 @@
       \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
    }
 \end{smathpar}
-\caption{Evaluation: backward slicing (Boolean and pair cases omitted)}
+\caption{Evaluation: backward dependency (Boolean cases omitted)}
 \label{fig:eval:bwd}
 \end{figure}

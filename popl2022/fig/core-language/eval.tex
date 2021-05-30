@@ -62,14 +62,29 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\evalR$-pair}}]
+   \inferrule*[lab={\ruleName{$\evalR$-record}}]
    {
-      \explVal{T}{\rho, e \evalR v}
-      \\
-      \explVal{U}{\rho, e' \evalR v'}
+      \explVal{T_i}{\rho, e_i \evalR v_i}
+      \quad
+      (\forall i \numleq \length{\vec{x}})
    }
    {
-      \explVal{\trPair{T}{U}}{\rho, \exPair{e}{e'} \evalR \exPair{v}{v'}}
+      \explVal{\trRec{\vec{\bind{x}{T}}}}
+              {\rho, \exRec{\vec{\bind{x}{e}}} \evalR \exRec{\vec{\bind{x}{v}}}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalR$-project}},
+      right={$i \numleq \length{\vec{x}}$}
+   ]
+   {
+      \explVal{T}{\rho, e \evalR \exRec{\vec{\bind{x}{v}}}}
+   }
+   {
+      \explVal{\trRecProj{T}{x_i}}
+              {\rho, \exRecProj{e}{x_i} \evalR v_i}
    }
    %
    \and

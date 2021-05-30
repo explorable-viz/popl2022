@@ -7,7 +7,7 @@
    }
    {
       \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVar{x}}{v}{\elimVar{x}{\kappa}}
-   }
+   }\\
    %
    \and
    %
@@ -31,19 +31,39 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwdS$-pair}}]
+   \inferrule*[lab={\ruleName{$\matchBwdS$-unit}}]
    {
-      \matchBwd{\rho'}{\kappa}{\alpha}{w'}{v'}{\sigma}
+      \strut
+   }
+   {
+      \matchBwd{\seqEmpty}
+               {\kappa}
+               {\alpha}
+               {\matchRecEmpty}
+               {\annot{\exRecEmpty}{\alpha}}
+               {\elimRecEmpty{\kappa}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-record}}]
+   {
+      \matchBwd{\rho'}
+               {\kappa}
+               {\alpha}
+               {\matchRec{\vec{\bind{y}{w}}}}
+               {\annRec{\vec{\bind{y}{u}}}{\beta}}
+               {\sigma}
       \\
-      \matchBwd{\rho}{\sigma}{\alpha}{w}{v}{\tau}
+      \matchBwd{\rho}{\sigma}{\alpha}{w'}{v}{\tau}
    }
    {
       \matchBwd{\rho \concat \rho'}
                {\kappa}
                {\alpha}
-               {\matchPair{w}{w'}}
-               {\annPair{v}{v'}{\alpha}}
-               {\elimProd{\tau}}
+               {\matchRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
+               {\annRec{\bind{x}{v} \concat \vec{\bind{y}{u}}}{\alpha \join \beta}}
+               {\elimRec{x \concat \vec{y}}{\tau}}
    }
    %
    \and

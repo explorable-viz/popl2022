@@ -43,12 +43,24 @@
 %
 \inferrule*
 {
-   \Gamma \vdash u: A
-   \\
-   \Gamma \vdash v: B
+   \Gamma \vdash e_i: A_i
+   \quad
+   (\forall i \numleq \length{\vec{x}})
 }
 {
-   \Gamma \vdash \exPair{u}{v}: \tyProd{A}{B}
+   \Gamma \vdash \exRec{\vec{\bind{x}{e}}}: \tyRec{\vec{\bind{x}{A}}}
+}
+%
+\and
+%
+\inferrule*[
+   right={$i \numleq \length{\vec{x}}$} 
+]
+{
+   \Gamma \vdash e: \tyRec{\vec{\bind{x}{A}}}
+}
+{
+   \Gamma \vdash \exRecProj{e}{x_i}: A_i
 }
 %
 \and
@@ -87,12 +99,12 @@
 %
 \inferrule*
 {
-   \Gamma \vdash u: A
+   \Gamma \vdash e: A
    \\
-   \Gamma \vdash v: \tyList{A}
+   \Gamma \vdash e': \tyList{A}
 }
 {
-   \Gamma \vdash (\exCons{u}{v}): \tyList{A}
+   \Gamma \vdash (\exCons{e}{e'}): \tyList{A}
 }
 %
 \and
@@ -169,10 +181,24 @@
 %
 \inferrule*
 {
-   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{A'}{B}}
+   \Gamma \vdash \kappa: A
 }
 {
-   \Gamma \vdash \elimProd{\sigma}: \tyFun{\tyProd{A}{A'}}{B}
+   \Gamma
+   \vdash
+   \elimRecEmpty{\kappa}: \tyFun{\tyRecEmpty}{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \elimRec{\vec{x}}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}}}}{\tyFun{A'}{B}}
+}
+{
+   \Gamma
+   \vdash
+   \elimRec{\vec{x} \concat y}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}} \concat \bind{y}{A'}}}{B}
 }
 %
 \and

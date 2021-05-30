@@ -31,9 +31,9 @@ e
 \text{Boolean}
 \\
 &&&
-\elimProd{\sigma}
+\elimRec{\vec{x}}{\kappa}
 &
-\text{pair}
+\text{record}
 \\
 &&&
 \elimList{\kappa}{\sigma}
@@ -85,9 +85,14 @@ e
 \text{integer}
 \\
 &&&
-\annPair{e}{e'}{\alpha}
+\annRec{\vec{\bind{x}{e}}}{\alpha}
 &
-\text{pair}
+\text{record}
+\\
+&&&
+\exRecProj{e}{x}
+&
+\text{record projection}
 \\
 &&&
 \annNil{\alpha}

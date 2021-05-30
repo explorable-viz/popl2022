@@ -4,11 +4,6 @@
    \vec{\bind{x}{\sigma}} \join \vec{\bind{x}{\tau}}
    =
    \vec{\bind{x}{\sigma \join \tau}}
-%   (\seqRange{\bind{x_1}{\sigma_1}}{\bind{x_j}{\sigma_j}})
-%   \join
-%   (\seqRange{\bind{x_1}{\sigma'_1}}{\bind{x_j}{\sigma'_j}})
-%   &=
-%   \seqRange{\bind{x_1}{\sigma_1 \join \sigma'_1}}{\bind{x_j}{\sigma_j \join \sigma'_j}}
 \end{salign}
 
 \vspace{5pt}
@@ -24,8 +19,8 @@
    \\
    \annInt{n}{\alpha} \join \annInt{n}{\alpha'} &= \annInt{n}{\alpha \join \alpha'}
    \\
-   \annPair{u}{v}{\alpha} \join \annPair{u'}{v'}{\alpha'} &=
-   \annPair{u \join u'}{v \join v'}{\alpha \join \alpha'}
+   \annRec{\vec{\bind{x}{u}}}{\alpha} \join \annRec{\vec{\bind{x}{v}}}{\alpha'} &=
+   \annRec{\vec{\bind{x}{u \join v}}}{\alpha \join \alpha'}
    \\
    \annNil{\alpha} \join \annNil{\alpha} &= \annNil{\alpha \join \alpha'}
    \\

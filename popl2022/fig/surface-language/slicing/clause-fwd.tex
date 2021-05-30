@@ -91,6 +91,36 @@
 \and
 %
 \inferrule*[
+   lab={\ruleName{$\clauseFwdR$-unit}}
+]
+{
+   \strut
+}
+{
+   \pattRecEmpty, \kappa
+   \clauseFwdR
+   \elimRecEmpty{\kappa}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\clauseFwdR$-record}}
+]
+{
+   p', \kappa \clauseFwdR \sigma
+   \\
+   \pattRec{\vec{\bind{x}{p}}}, \sigma \clauseFwdR \elimRec{\vec{x}}{\sigma'}
+}
+{
+   \pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'}}, \kappa
+   \clauseFwdR
+   \elimRec{\vec{x} \concat y}{\sigma'}
+}
+%
+\and
+%
+\inferrule*[
    lab={\ruleName{$\clauseFwdR$-pair}}
 ]
 {
@@ -101,7 +131,7 @@
 {
    \pattPair{p}{p'}, \kappa
    \clauseFwdR
-   \elimProd{\sigma'}
+   \elimRec{\fieldFst \concat \fieldSnd}{\sigma'}
 }
 %
 \and
@@ -121,6 +151,7 @@
    \sigma'
 }
 \end{smathpar}
+\vspace{3mm}
 
 \flushleft\shadebox{$o, \kappa \clauseFwdR \sigma$}
 \begin{smathpar}
@@ -152,6 +183,7 @@
    \elimCons{\sigma'}
 }
 \end{smathpar}
+\vspace{3mm}
 
 \flushleft\shadebox{$\vec{c} \clausesFwdR \sigma$}
 \begin{smathpar}

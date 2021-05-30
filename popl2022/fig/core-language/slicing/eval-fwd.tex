@@ -56,6 +56,39 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\evalR$-record}}]
+   {
+      \evalFwd{\rho}{e_i}{\alpha'}{T_i}{v_i}
+      \quad
+      (\forall i \numleq \length{\vec{x}})
+   }
+   {
+      \evalFwd{\rho}
+              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
+              {\alpha'}
+              {\trRec{\vec{\bind{x}{T}}}}
+              {\annRec{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalR$-project}},
+      right={$i \numleq \length{\vec{x}}$}
+   ]
+   {
+      \evalFwd{\rho}{e}{\alpha}{T}{\exRec{\vec{\bind{x}{v}}}}
+   }
+   {
+      \evalFwd{\rho}
+              {\exRecProj{e}{x}}
+              {\alpha}
+              {\trRecProj{T}{x}}
+              {v_i}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
    {
       \strut
@@ -190,6 +223,6 @@
       \evalFwd{\rho}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
    }
 \end{smathpar}
-\caption{Evaluation: forward slicing (Boolean and pair cases omitted)}
+\caption{Evaluation: forward dependency (Boolean cases omitted)}
 \label{fig:eval:fwd}
 \end{figure}

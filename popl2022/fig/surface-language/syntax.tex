@@ -33,6 +33,11 @@ s, t
 \text{binary application}
 \\
 &&&
+\exPair{s}{s'}
+&
+\text{pair}
+\\
+&&&
 \exLetRecMutual{\vec{g}}{s}
 &
 \text{mutually recursive functions}
@@ -111,6 +116,11 @@ p
 \pattVar{x}
 &
 \text{variable}
+\\
+&&&
+\pattRec{\vec{\bind{x}{p}}}
+&
+\text{record}
 \\
 &&&
 \pattNil

@@ -7,7 +7,7 @@
    }
    {
       \explVal{\matchVar{x}}{v, \elimVar{x}{\kappa} \matchR \bind{x}{v}, \kappa}
-   }
+   }\\
    %
    \and
    %
@@ -31,14 +31,35 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchR$-pair}}]
+   \inferrule*[
+      lab={\ruleName{$\matchR$-unit}}
+   ]
    {
-      \explVal{w}{v, \sigma \matchR \rho, \tau}
-      \\
-      \explVal{w'}{v', \tau \matchR, \rho', \kappa}
+      \strut
    }
    {
-      \explVal{\matchPair{w}{w'}}{\exPair{v}{v'}, \elimProd{\sigma} \matchR \rho \concat \rho', \kappa}
+      \explVal{\exRecEmpty}
+              {\seqEmpty, \elimRecEmpty{\kappa} \matchR \seqEmpty, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchR$-record}}
+   ]
+   {
+      \explVal{w'}{v, \sigma \matchR \rho, \sigma'}
+      \\
+      \explVal{\vec{\bind{y}{w}}}
+              {\exRec{\vec{\bind{y}{u}}}, \sigma' \matchR \rho', \kappa}
+   }
+   {
+      \explVal{\exRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
+              {\exRec{\bind{x}{v} \concat \vec{\bind{y}{u}}},
+               \elimRec{x \concat \vec{y}}{\sigma}
+               \matchR
+               \rho \concat \rho',
+               \kappa}
    }
    %
    \and

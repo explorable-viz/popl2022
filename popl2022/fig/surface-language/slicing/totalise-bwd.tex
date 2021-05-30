@@ -8,7 +8,7 @@
    \strut
 }
 {
-   \totaliseBwd{\kappa}{\seqEmpty}{\kappa}{\FF}
+   \totaliseBwd{e}{\seqEmpty}{e}{\FF}
 }
 %
 \and
@@ -63,15 +63,52 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseBwdS$-prod}}
+   lab={\ruleName{$\totaliseBwdS$-unit}}
 ]
 {
-   \sigma \eq \elimProd{\sigma'}
+   \sigma \eq \elimRecEmpty{\kappa}
+   \\
+   \totaliseBwd{\kappa}{\vec{\pi}}{\kappa'}{\alpha}
+}
+{
+   \totaliseBwd{\sigma}
+               {\pattRecEmpty \concat \vec{\pi}}
+               {\elimRecEmpty{\kappa'}}
+               {\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totaliseBwdS$-record}}
+]
+{
+   \sigma \eq \elimRec{\vec{x} \concat y}{\sigma'}
+   \\
+   \totaliseBwd{\sigma'}{\pattRec{\vec{\bind{x}{p}}} \concat p' \concat \vec{\pi}}{\tau}{\beta}
+}
+{
+   \totaliseBwd{\sigma}
+               {\pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'}} \concat \vec{\pi}}
+               {\elimRec{\vec{x} \concat y}{\tau}}
+               {\beta}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totaliseBwdS$-pair}}
+]
+{
+   \sigma \eq \elimRec{\fieldFst \concat \fieldSnd}{\sigma'}
    \\
    \totaliseBwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totaliseBwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\tau}}{\beta}
+   \totaliseBwd{\sigma}
+               {\pattPair{p}{p'} \concat \vec{\pi}}
+               {\elimRec{\fieldFst \concat \fieldSnd}{\tau}}
+               {\beta}
 }
 %
 \and
