@@ -53,6 +53,18 @@
 %
 \and
 %
+\inferrule*[
+   right={$i \numleq \length{\vec{x}}$} 
+]
+{
+   \Gamma \vdash e: \tyRec{\vec{\bind{x}{A}}}
+}
+{
+   \Gamma \vdash \exRecProj{e}{x_i}: A_i
+}
+%
+\and
+%
 \inferrule*
 {
    \Gamma \vdash \sigma : \tyFun{A}{B}
