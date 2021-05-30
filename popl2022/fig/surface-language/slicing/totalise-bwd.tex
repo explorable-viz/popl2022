@@ -85,12 +85,12 @@
 {
    \sigma \eq \elimRec{\vec{x} \concat y}{\sigma'}
    \\
-   \totaliseBwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
+   \totaliseBwd{\sigma'}{\pattRec{\vec{\bind{x}{p}}} \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
 {
    \totaliseBwd{\sigma}
-               {(\pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'})} \concat \vec{\pi}}
-               {\elimProd{\tau}}
+               {\pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'}} \concat \vec{\pi}}
+               {\elimRec{\vec{x} \concat y}{\tau}}
                {\beta}
 }
 %
