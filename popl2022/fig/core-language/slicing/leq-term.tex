@@ -90,7 +90,7 @@
       (\forall i \numleq \length{\vec{x}})
    }
    {
-      \annRec{\vec{\bind{x}{e}}}{\alpha} \leq \annRec{\vec{\bind{x}{e'}}}{\alpha'}
+      \annRec{\vec{\bind{x}{e}}}{\alpha} \leq \annRec{\vec{\bind{x}{e}}'}{\alpha'}
    }
    %
    \and
@@ -98,12 +98,12 @@
    \inferrule*[
    ]
    {
-      e_1 \leq \hole
-      \\
-      e_2 \leq \hole
+      e_i \leq \hole
+      \quad
+      (\forall i \numleq \length{\vec{x}})
    }
    {
-      \annPair{e_1}{e_2}{\FF} \leq \hole
+      \annRec{\vec{\bind{x}{e}}}{\FF} \leq \hole
    }
    %
    \and
