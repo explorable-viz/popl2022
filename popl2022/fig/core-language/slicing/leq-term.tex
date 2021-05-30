@@ -108,6 +108,26 @@
    %
    \and
    %
+   \inferrule*
+   {
+      e \leq e'
+   }
+   {
+      \exRecProj{e}{x} \leq \exRecProj{e'}{x}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e \leq \hole
+   }
+   {
+      \exRecProj{e}{x} \leq \hole
+   }
+   %
+   \and
+   %
    \inferrule*[
       right={$\alpha \leq \alpha'$}
    ]
