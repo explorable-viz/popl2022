@@ -81,10 +81,10 @@
                {\elimRec{\vec{x}}{\sigma'}}
 }
 {
-   \totaliseFwd{\elimRec{(\vec{x} \concat y)}{\sigma}}
+   \totaliseFwd{\elimRec{\vec{x} \concat y}{\sigma}}
                {\alpha}
-               {\pattRec{(\vec{\bind{x}{p}} \concat \bind{y}{p'})} \concat \vec{\pi}}
-               {\elimRec{(\vec{x} \concat y)}{\sigma'}}
+               {\pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'}} \concat \vec{\pi}}
+               {\elimRec{\vec{x} \concat y}{\sigma'}}
 }
 %
 \and
@@ -96,10 +96,10 @@
    \totaliseFwd{\sigma}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma'}
 }
 {
-   \totaliseFwd{\elimRec{(\fieldFst \concat \fieldSnd)}{\sigma}}
+   \totaliseFwd{\elimRec{\fieldFst \concat \fieldSnd}{\sigma}}
                {\alpha}
                {\pattPair{p}{p'} \concat \vec{\pi}}
-               {\elimRec{(\fieldFst \concat \fieldSnd)}{\sigma'}}
+               {\elimRec{\fieldFst \concat \fieldSnd}{\sigma'}}
 }
 %
 \and

@@ -115,7 +115,7 @@
 {
    \pattRec{\vec{\bind{x}{p}} \concat \bind{y}{p'}}, \kappa
    \clauseFwdR
-   \elimRec{(\vec{x} \concat y)}{\sigma'}
+   \elimRec{\vec{x} \concat y}{\sigma'}
 }
 %
 \and
@@ -131,7 +131,7 @@
 {
    \pattPair{p}{p'}, \kappa
    \clauseFwdR
-   \elimRec{(\fieldFst \concat \fieldSnd)}{\sigma'}
+   \elimRec{\fieldFst \concat \fieldSnd}{\sigma'}
 }
 %
 \and
