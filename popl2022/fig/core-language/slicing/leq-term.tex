@@ -85,12 +85,12 @@
       right={$\alpha \leq \alpha'$}
    ]
    {
-      e_1 \leq e_1'
-      \\
-      e_2 \leq e_2
+      e_i \leq e'_i
+      \quad
+      (\forall i \numleq \length{\vec{x}})
    }
    {
-      \annPair{e_1}{e_2}{\alpha} \leq \annPair{e_1}{e_2}{\alpha'}
+      \annRec{\vec{\bind{x}{e}}}{\alpha} \leq \annRec{\vec{\bind{x}{e'}}}{\alpha'}
    }
    %
    \and
