@@ -97,15 +97,18 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseBwdS$-prod}}
+   lab={\ruleName{$\totaliseBwdS$-pair}}
 ]
 {
-   \sigma \eq \elimProd{\sigma'}
+   \sigma \eq \elimRec{\fieldFst \concat \fieldSnd}{\sigma'}
    \\
    \totaliseBwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
 }
 {
-   \totaliseBwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\tau}}{\beta}
+   \totaliseBwd{\sigma}
+               {\pattPair{p}{p'} \concat \vec{\pi}}
+               {\elimRec{\fieldFst \concat \fieldSnd}{\tau}}
+               {\beta}
 }
 %
 \and
