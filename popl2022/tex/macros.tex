@@ -318,19 +318,19 @@
 \newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
-\newcommand*{\trFalse}[1]{\sub{\exFalse}{#1}}
-\newcommand*{\trInt}[2]{\sub{\exInt{#1}}{#2}}
+\newcommand*{\trFalse}[1]{\exFalse} % {\sub{\exFalse}{#1}}
+\newcommand*{\trInt}[2]{\exInt{#1}} % {\sub{\exInt{#1}}{#2}}
 \newcommand*{\trLambda}[1]{\exLambda{#1}}
 \newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
 \newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
 \newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
 \newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
-\newcommand*{\trNil}[1]{\sub{\exNil}{#1}}
+\newcommand*{\trNil}[1]{\exNil} % {\sub{\exNil}{#1}}
 \newcommand*{\trOp}[2]{\sub{\exOp{#1}}{#2}}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\trRec}[1]{\exRec{#1}}
-\newcommand*{\trTrue}[1]{\sub{\exTrue}{#1}}
-\newcommand*{\trVar}[2]{\sub{#1}{#2}}
+\newcommand*{\trTrue}[1]{\exTrue} % {\sub{\exTrue}{#1}}
+\newcommand*{\trVar}[2]{#1} % {\sub{#1}{#2}}
 \newcommand*{\trVec}[4]{\exVec{#1}{#2}{\sub{#3}{#4}}}
 \newcommand*{\trVecLookup}[4]{\exVecLookup{\sub{#1}{#2}}{\sub{#3}{#4}}}
 \newcommand*{\trVecLen}[2]{\exVecLen{\sub{#1}{#2}}}
