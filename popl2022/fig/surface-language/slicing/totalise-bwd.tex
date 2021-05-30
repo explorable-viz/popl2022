@@ -8,7 +8,7 @@
    \strut
 }
 {
-   \totaliseBwd{\kappa}{\seqEmpty}{\kappa}{\FF}
+   \totaliseBwd{e}{\seqEmpty}{e}{\FF}
 }
 %
 \and
@@ -75,6 +75,20 @@
                {\pattRec{\seqEmpty} \concat \vec{\pi}}
                {\elimRec{\seqEmpty}{\kappa'}}
                {\alpha}
+}
+%
+\and
+%
+\inferrule*[
+   lab={\ruleName{$\totaliseBwdS$-record}}
+]
+{
+   \sigma \eq \elimRec{(\vec{x} \concat y)}{\sigma'}
+   \\
+   \totaliseBwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
+}
+{
+   \totaliseBwd{\sigma}{\pattPair{p}{p'} \concat \vec{\pi}}{\elimProd{\tau}}{\beta}
 }
 %
 \and

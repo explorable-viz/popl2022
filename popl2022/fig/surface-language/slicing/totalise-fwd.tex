@@ -2,7 +2,7 @@
 \flushleft \shadebox{$\totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}$}
 \begin{smathpar}
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-expr}}
+   lab={\ruleName{$\totaliseFwdS$-empty}}
 ]
 {
    \strut
@@ -13,7 +13,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-var}}
+   lab={\ruleName{$\totaliseFwdS$-var}}
 ]
 {
    \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
@@ -27,7 +27,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-true}}
+   lab={\ruleName{$\totaliseFwdS$-true}}
 ]
 {
    \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
@@ -42,7 +42,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-false}}
+   lab={\ruleName{$\totaliseFwdS$-false}}
 ]
 {
    \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
@@ -57,7 +57,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-record-empty}}
+   lab={\ruleName{$\totaliseFwdS$-record-empty}}
 ]
 {
    \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
@@ -72,7 +72,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-record}}
+   lab={\ruleName{$\totaliseFwdS$-record}}
 ]
 {
    \totaliseFwd{\elimRec{\vec{x}}{\sigma}}
@@ -90,7 +90,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-pair}}
+   lab={\ruleName{$\totaliseFwdS$-pair}}
 ]
 {
    \totaliseFwd{\sigma}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma'}
@@ -105,7 +105,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-nil}}
+   lab={\ruleName{$\totaliseFwdS$-nil}}
 ]
 {
    \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
@@ -120,7 +120,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-cons}}
+   lab={\ruleName{$\totaliseFwdS$-cons}}
 ]
 {
    \totaliseFwd{\sigma}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma'}
@@ -134,7 +134,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-non-empty-list}}
+   lab={\ruleName{$\totaliseFwdS$-non-empty-list}}
 ]
 {
    \totaliseFwd{\sigma}{\alpha}{p \concat o \concat \vec{\pi}}{\sigma'}
@@ -148,7 +148,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-list-rest-end}}
+   lab={\ruleName{$\totaliseFwdS$-list-rest-end}}
 ]
 {
    \totaliseFwd{\kappa}{\alpha}{\vec{\pi}}{\kappa'}
@@ -162,7 +162,7 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-elim-list-rest-cons}}
+   lab={\ruleName{$\totaliseFwdS$-list-rest-cons}}
 ]
 {
    \totaliseFwd{\sigma}{\alpha}{p \concat o \concat \vec{\pi}}{\sigma'}
