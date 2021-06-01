@@ -30,21 +30,6 @@
 %
 \inferrule*
 {
-   p: A \dashv \Gamma
-   \\
-   p': B \dashv \Gamma'
-}
-{
-   \pattPair{p}{p'}:
-   \tyRec{\bind{\fieldFst}{A} \concat \bind{\fieldSnd}{B}}
-   \dashv
-   \Gamma \concat \Gamma'
-}
-%
-\and
-%
-\inferrule*
-{
    \strut
 }
 {

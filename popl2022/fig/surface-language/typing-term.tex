@@ -42,18 +42,6 @@
    %
    \inferrule*
    {
-      \Gamma \vdash s: A
-      \\
-      \Gamma \vdash s': B
-   }
-   {
-      \Gamma \vdash \exPair{s}{s'}: \tyRec{\bind{\fieldFst}{A} \concat \bind{\fieldSnd}{B}}
-   }
-   %
-   \and
-   %
-   \inferrule*
-   {
       \Gamma \vdash \vec{g}: \Delta
       \\
       \Gamma \concat \Delta \vdash s: A
