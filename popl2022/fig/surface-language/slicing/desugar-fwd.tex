@@ -28,22 +28,6 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\desugarFwdR$-pair}}
-   ]
-   {
-      s \desugarFwdR e
-      \\
-      s' \desugarFwdR e'
-   }
-   {
-      \annPair{s}{s'}{\alpha}
-      \desugarFwdR
-      \annRec{\bind{\fieldFst}{e} \concat \bind{\fieldSnd}{e'}}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\desugarFwdR$-nil}}
    ]
    {

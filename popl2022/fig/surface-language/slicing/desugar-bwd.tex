@@ -30,22 +30,6 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\desugarBwdR{}$-pair}}
-   ]
-   {
-      e \desugarBwdR{t} s
-      \\
-      e' \desugarBwdR{t'} s'
-   }
-   {
-      \annRec{\bind{\fieldFst}{e} \concat \bind{\fieldSnd}{e'}}{\alpha}
-      \desugarBwdR{\exPair{t}{t'}}
-      \annPair{s}{s'}{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
       lab={\ruleName{$\desugarBwdR{}$-nil}}
    ]
    {

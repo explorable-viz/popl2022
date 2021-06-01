@@ -97,23 +97,6 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseBwdS$-pair}}
-]
-{
-   \sigma \eq \elimRec{\fieldFst \concat \fieldSnd}{\sigma'}
-   \\
-   \totaliseBwd{\sigma'}{p \concat p' \concat \vec{\pi}}{\tau}{\beta}
-}
-{
-   \totaliseBwd{\sigma}
-               {\pattPair{p}{p'} \concat \vec{\pi}}
-               {\elimRec{\fieldFst \concat \fieldSnd}{\tau}}
-               {\beta}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\totaliseBwdS$-nil}}
 ]
 {

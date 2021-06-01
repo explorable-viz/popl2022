@@ -90,21 +90,6 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\totaliseFwdS$-pair}}
-]
-{
-   \totaliseFwd{\sigma}{\alpha}{p \concat p' \concat \vec{\pi}}{\sigma'}
-}
-{
-   \totaliseFwd{\elimRec{\fieldFst \concat \fieldSnd}{\sigma}}
-               {\alpha}
-               {\pattPair{p}{p'} \concat \vec{\pi}}
-               {\elimRec{\fieldFst \concat \fieldSnd}{\sigma'}}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\totaliseFwdS$-nil}}
 ]
 {

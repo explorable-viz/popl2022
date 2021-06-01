@@ -121,22 +121,6 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseFwdR$-pair}}
-]
-{
-   p', \kappa \clauseFwdR \sigma
-   \\
-   p, \sigma \clauseFwdR \sigma'
-}
-{
-   \pattPair{p}{p'}, \kappa
-   \clauseFwdR
-   \elimRec{\fieldFst \concat \fieldSnd}{\sigma'}
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\clauseFwdR$-seq}},
    right={$\vec{p} \neq \seqEmpty$}
 ]

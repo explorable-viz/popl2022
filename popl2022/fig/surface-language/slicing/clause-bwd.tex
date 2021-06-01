@@ -132,22 +132,6 @@
 \and
 %
 \inferrule*[
-   lab={\ruleName{$\clauseBwdS$-pair}}
-]
-{
-   \sigma \clauseBwdR{p} \tau
-   \\
-   \tau \clauseBwdR{p'} \kappa
-}
-{
-   \elimRec{\fieldFst \concat \fieldSnd}{\sigma}
-   \clauseBwdR{\pattPair{p}{p'}}
-   \kappa
-}
-%
-\and
-%
-\inferrule*[
    lab={\ruleName{$\clauseBwdS$-seq}},
    right={$\vec{p} \neq \seqEmpty$}
 ]
