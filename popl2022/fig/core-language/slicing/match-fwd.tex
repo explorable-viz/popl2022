@@ -78,19 +78,19 @@
       lab={\ruleName{$\matchFwdS$-record}}
    ]
    {
-      \matchFwd{v}{\sigma}{w'}{\rho}{\sigma'}{\beta}
-      \\
-      \matchFwd{\annRec{\vec{\bind{y}{u}}}{\alpha}}
+      \matchFwd{\annRec{\vec{\bind{x}{v}}}}
+               {\sigma}
+               {\matchRec{\vec{\bind{x}{w}}}}
+               {\rho}
                {\sigma'}
-               {\matchRec{\vec{\bind{y}{w}}}}
-               {\rho'}
-               {\kappa}
-               {\beta'}
+               {\beta}
+      \\
+      \matchFwd{u}{\sigma'}{w}{\rho'}{\kappa}{\beta'}
    }
    {
-      \matchFwd{\annRec{\bind{x}{v} \concat \vec{\bind{y}{u}}}{\alpha}}
-               {\elimRec{x \concat \vec{y}}{\sigma}}
-               {\matchRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
+      \matchFwd{\annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}}
+               {\elimRec{\vec{x} \concat y}{\sigma}}
+               {\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}
                {\rho \concat \rho'}
                {\kappa}
                {\alpha \meet \beta \meet \beta'}
