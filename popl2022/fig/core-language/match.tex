@@ -48,15 +48,14 @@
       lab={\ruleName{$\matchR$-record}}
    ]
    {
-      \explVal{w'}{v, \sigma \matchR \rho, \sigma'}
+      \explVal{\matchRec{\vec{\bind{x}{w}}}}{\vec{\bind{x}{v}}, \sigma \matchR \rho, \sigma'}
       \\
-      \explVal{\vec{\bind{y}{w}}}
-              {\exRec{\vec{\bind{y}{u}}}, \sigma' \matchR \rho', \kappa}
+      \explVal{w'}{u, \sigma' \matchR \rho', \kappa}
    }
    {
-      \explVal{\exRec{\bind{x}{w'} \concat \vec{\bind{y}{w}}}}
-              {\exRec{\bind{x}{v} \concat \vec{\bind{y}{u}}},
-               \elimRec{x \concat \vec{y}}{\sigma}
+      \explVal{\exRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}
+              {\exRec{\vec{\bind{x}{v}} \concat \bind{y}{u}},
+               \elimRec{\vec{x} \concat y}{\sigma}
                \matchR
                \rho \concat \rho',
                \kappa}
