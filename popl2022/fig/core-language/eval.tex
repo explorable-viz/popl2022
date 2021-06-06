@@ -83,7 +83,7 @@
       \explVal{T}{\rho, e \evalR \exRec{\vec{\bind{x}{v}}}}
    }
    {
-      \explVal{\trRecProj{T}{x_i}}
+      \explVal{\trRecProj{T}{\vec{x}}{x_i}}
               {\rho, \exRecProj{e}{x_i} \evalR v_i}
    }
    %
@@ -123,7 +123,7 @@
    }
    {
       \explVal{\trVec{\vec{U}}{x}{T}{j}}
-              {\rho, \exVec{e}{x}{e'} \evalR \exVec{v_{i}}{i}{j}}
+              {\rho, \exVec{e}{x}{e'} \evalR \exVecVal{\vec{v}}{j}}
    }
    %
    \and
@@ -133,7 +133,7 @@
       right={$i \numleq j$}
    ]
    {
-      \explVal{T}{\rho, e \evalR \exVec{v_{i}}{i}{j}}
+      \explVal{T}{\rho, e \evalR \exVecVal{\vec{v}}{j}}
       \\
       \explVal{U}{\rho, e' \evalR i}
    }
@@ -145,7 +145,7 @@
    %
    \inferrule*[lab={\ruleName{$\evalR$-vector-length}}]
    {
-      \explVal{T}{\rho, e \evalR \exVec{v_{i}}{i}{j}}
+      \explVal{T}{\rho, e \evalR \exVecVal{\vec{v}}{j}}
    }
    {
       \explVal{\trVecLen{T}{j}}{\rho, \exVecLen{e} \evalR j}

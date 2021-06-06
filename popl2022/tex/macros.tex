@@ -83,6 +83,7 @@
 \newcommand*{\exTrue}{\kw{true}}
 \newcommand*{\exVar}[1]{#1}
 \newcommand*{\exVec}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack}
+\newcommand*{\exVecVal}[2]{\matrixLBrack{#1}\;\sym{$\vert$}\;{#2}\matrixRBrack}
 \newcommand*{\exVecLookup}[2]{{#1}\,\sym{!}\,{#2}}
 \newcommand*{\exVecLen}[1]{\kw{len}\;{#1}}
 
@@ -107,7 +108,7 @@
 \newcommand*{\annRec}[2]{\exRec{#1}_{#2}}
 \newcommand*{\annTrue}[1]{\kw{true}_{#1}}
 \newcommand*{\annVec}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack_{#4}}
-\newcommand*{\annVecVal}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;{#2}\matrixRBrack_{#3}}
+\newcommand*{\annVecVal}[3]{\exVecVal{#1}{#2}_{#3}}
 
 % Clause
 \newcommand*{\clause}[2]{{#1}\equal{#2}}
@@ -332,7 +333,7 @@
 \newcommand*{\trOp}[2]{\sub{\exOp{#1}}{#2}}
 \newcommand*{\trPair}[2]{\exPair{#1}{#2}}
 \newcommand*{\trRec}[1]{\exRec{#1}}
-\newcommand*{\trRecProj}[2]{\exRecProj{#1}{#2}}
+\newcommand*{\trRecProj}[3]{\exRecProj{\sub{#1}{#2}}{#3}}
 \newcommand*{\trTrue}[1]{\exTrue} % {\sub{\exTrue}{#1}}
 \newcommand*{\trVar}[2]{#1} % {\sub{#1}{#2}}
 \newcommand*{\trVec}[4]{\exVec{#1}{#2}{\sub{#3}{#4}}}
