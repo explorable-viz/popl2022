@@ -8,6 +8,10 @@ post_process () {
 rm -rf fluid
 mkdir fluid
 pushd fluid
+wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/graphics-new/bar-chart.fld
+post_process bar-chart.fld
+wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/graphics-new/line-chart.fld
+post_process line-chart.fld
 wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/lib/convolution.fld
 post_process convolution.fld
 wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/slicing/conv-extend.fld

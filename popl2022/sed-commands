@@ -1,5 +1,5 @@
-s/>=/$\\numgeq$/
-s/<=/$\\numleq$/
-s/<-/$\\leftarrow$/
-s/\[|/\$\\langle$/
-s/|\]/$\\rangle$/
+s/>=/$\\numgeq$/g
+s/<=/$\\numleq$/g
+s/<-/$\\leftarrow$/g
+s/\[|/\$\\langle$/g
+s/|\]/$\\rangle$/g
