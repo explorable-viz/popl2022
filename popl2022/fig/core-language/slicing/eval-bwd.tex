@@ -78,7 +78,11 @@
    %
    \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
    {
-      \evalBwd{\mapUpdate{\exRec{\vec{\bind{x}{\hole}}}}{x_i}{v}}{T}{\rho}{e}{\alpha}
+      \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\FF}}
+              {T}
+              {\rho}
+              {e}
+              {\alpha}
    }
    {
       \evalBwd{v}
