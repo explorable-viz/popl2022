@@ -3,7 +3,15 @@
 
 \subsection{Syntax and typing}
 \input{fig/core-language/syntax-type}
+
+The types in this language consist of booleans, integers, records, lists, vectors, and functions. The notation $\seq{\bind{x}{A}}$ found in the typing context and records, represents a sequence of bindings from variables $x$ to types $A$ which can be unzipped to yield $\seq{x}$ and $\seq{A}$.
+
 \input{fig/core-language/syntax}
+
+The language includes basic terms $e$: booleans $\exTrue$ and $\exFalse$, integers $n$, empty $\exNil$ and non-empty lists $\exCons{e}{e'}$, anonymous functions $\exLambda{\sigma}$, and application $\exApp{e}{e'}$. Recursive let-bindings $\exLetRecMutual{h}{e}$ are defined through declaring a sequence of mutually recursive functions $h = \seq{\bind{x}{\sigma}}$ and body $e$. In addition, we provide vectors $\exVec{e}{x}{e'}$ which are constructed in a list-comprehension style, records $\exRec{\vec{\bind{x}{v}}}$ as a sequence of bindings between field names and values, and operations over vectors and records. Holes $\hole$ are used to substitute for terms which have been considered of no interest.
+
+Eliminators $\sigma$ express pattern matching against terms $e$ to result in program continuations $\kappa$ which can be either terms or further eliminators. We provide eliminators for matching against variables, booleans, records, and lists.
+
 \input{fig/core-language/syntax-value}
 \input{fig/core-language/syntax-trace}
 \input{fig/core-language/typing-value}
