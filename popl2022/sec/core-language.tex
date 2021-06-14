@@ -4,17 +4,28 @@
 \subsection{Syntax and typing}
 \input{fig/core-language/syntax-type}
 
-The types in this language consist of booleans, integers, records, lists, vectors, and functions. The notation $\seq{\bind{x}{A}}$ found in the typing context and records, represents a sequence of bindings from variables $x$ to types $A$ which can be unzipped to yield $\seq{x}$ and $\seq{A}$.
+The language consists of primitive types such as booleans, integers, and functions, but additionally lists, vectors, and records as data structures in order to better demonstrate more interesting relationships which can occur between the program structure and output. The notation $\seq{\bind{x}{A}}$ found in the typing context and records represents a sequence of bindings from variables $x$ to types $A$ which can be unzipped to yield $\seq{x}$ and $\seq{A}$.
 
 \input{fig/core-language/syntax}
 
-The language includes basic terms $e$: booleans $\exTrue$ and $\exFalse$, integers $n$, empty $\exNil$ and non-empty lists $\exCons{e}{e'}$, anonymous functions $\exLambda{\sigma}$, and application $\exApp{e}{e'}$. Recursive let-bindings $\exLetRecMutual{h}{e}$ are defined through declaring a sequence of mutually recursive functions $h = \seq{\bind{x}{\sigma}}$ and body $e$. In addition, we provide vectors $\exVec{e}{x}{e'}$ which are constructed in a list-comprehension style, records $\exRec{\vec{\bind{x}{v}}}$ as a sequence of bindings between field names and values, and operations over vectors and records. Holes $\hole$ are used to substitute for terms which have been considered of no interest.
+The language includes basic terms $e$: booleans $\exTrue$ and $\exFalse$, integers $n$, empty $\exNil$ and non-empty lists $\exCons{e}{e'}$, anonymous functions $\exLambda{\sigma}$, and application $\exApp{e}{e'}$. Recursive let-bindings $\exLetRecMutual{h}{e}$ are defined through declaring a sequence of mutually recursive functions $h = \seq{\bind{x}{\sigma}}$ and body $e$. In addition, we provide vectors $\exVec{e}{x}{e'}$ which are constructed in a list-comprehension style, records $\exRec{\vec{\bind{x}{v}}}$ as a sequence of bindings between field names and values, and various operations over these. Holes $\hole$ can be used to substitute for terms which have been considered of no interest.
 
-Eliminators $\sigma$ express pattern matching against terms $e$ to result in program continuations $\kappa$ which can be either terms or further eliminators. We provide eliminators for matching against variables, booleans, records, and lists.
+Eliminators $\sigma$ express pattern matching against terms $e$ to result in program continuations $\kappa$ which can be either terms or further eliminators. Rather than one elimination-form per type, we provide a single pattern-matching elimination form called an eliminator \cite{hinze00}. We provide eliminators for matching against variables, booleans, records, and lists.An common alternative to this is to use case-expressions, however, real-world functional languages have rich pattern-matching features such as piecewise definitions, view patterns, pattern synonyms, etc with non-trivial exhaustiveness-checking rules. Instead, we want an efficient, simple core pattern-matching feature that is total by construction and can serve as an elaborate target for more advanced features -- in section \ref{sec:surface-language} we show how to desugar piecewise definitions that satisfy certain well-formedness conditions into eliminators. 
 
 \input{fig/core-language/syntax-value}
+
+The environment $\rho$ of a program consists of bindings between variables and values. The values $v$ which terms can evaluate to include: holes $\hole$, integers $n$, records $\exRec{\vec{\bind{x}{v}}}$, empty $\exNil$ and non-empty lists $\exCons{u}{v}$ of values, and vectors $\exVecVal{\vec{v}}{j}$ of values $\vec{v}$ with fixed-length $j$. Additionally, we have partially applied primitives $\exPrimOp{\phi}{\vec{v}}$ where $\phi$ is a primitive operation applied to an incomplete sequence of values $\vec{v}$, and function closures $\exClosure{\rho}{h}{\sigma}$ consisting of an environment $\rho$, a sequence of mutually recursive functions $h$, and eliminator $\sigma$. 
+
 \input{fig/core-language/syntax-trace}
+
+Traces $T$ closely mirror the terms of our language, and are a means of recording the details of program execution and providing an explanation of how a result was computed. These are computed during forward slicing, and allows slicing to then proceed backwards afterwards. Matches $w$ are specifically used to record which pattern was matched against in an eliminator and hence which branch was taken during program execution. 
+
 \input{fig/core-language/typing-value}
+
+The typing rule for environments $\vdash \rho: \Gamma$ states that if all the values $v_i$ of the environment are well typed under the empty typing context, then the environment itself is well-typed. Similarly, the typing rule for mutually recursive functions states that if all functions $\sigma_i$ are well-typed under the typing context $\Gamma \concat \Delta$, then the environment of mutually recursive functions is well-typed under context $\Gamma$ with the type $\Delta$.
+
+The typing rules for values $\vdash v: A$ are self-explanatory for integers, booleans, records, lists, and vectors. Given a primitive operation $\phi$ which takes $i+j$ integer arguments to output an integer, when partially applied to a sequence of $i$ integers this produces a function which takes $j$ more integers.
+
 \input{fig/core-language/typing-term}
 
 \subsection{Evaluation}
