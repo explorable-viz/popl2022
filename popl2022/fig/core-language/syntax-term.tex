@@ -1,69 +1,5 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Continuation}
-&
-\kappa
-&
-::=
-&
-e
-&
-\text{term}
-\\
-&&&
-\sigma
-&
-\text{eliminator}
-\\[2mm]
-\mbox{Eliminator}
-&
-\sigma, \tau
-&
-::=
-&
-\elimVar{x}{\kappa}
-&
-\text{variable}
-\\
-&&&
-\elimBool{\kappa}{\kappa'}
-&
-\text{Boolean}
-\\
-&&&
-\elimRec{\vec{x}}{\kappa}
-&
-\text{record}
-\\
-&&&
-\elimList{\kappa}{\sigma}
-&
-\text{list}
-\\[2mm]
-\mbox{Selection state}
-&
-\alpha, \beta
-&
-::=
-&
-\TT
-&
-\text{selected}
-\\
-&&&
-\FF
-&
-\text{unselected}
-\\[2mm]
-\mbox{Mutually recursive functions}
-&
-h
-&
-::=
-&
-\seq{\bind{x}{\sigma}}
-&
-\\[2mm]
 \mbox{Term}
 &
 e
@@ -139,5 +75,6 @@ x
 &
 \text{recursive let}
 \end{syntaxfig}
-\caption{Terms and eliminators}
+\caption{Terms}
+\label{fig:core-syntax-term}
 \end{figure}

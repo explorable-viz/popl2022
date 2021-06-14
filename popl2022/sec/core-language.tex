@@ -1,34 +1,65 @@
+\newpage
+
 \section{A core language for fine-grained data dependencies}
 \label{sec:core-language}
 
+To show how we achieve a system of fine-grained dependency tracking between structured outputs and inputs, we first introduce the core calculus for our language and describe how this gives rise to the fundamental ideas behind program-slicing and data-linking. This later provides us the foundations to describe a richer surface language in Section \ref{sec:surface-language}.
+
 \subsection{Syntax and typing}
+
+\subsubsection{Typing}
+We begin by introducing the types of our language in Figure \ref{fig:core-syntax-type} -- this consists of primitive types such as booleans $\tyBool$, integers $\tyInt$, and functions $\tyFun{A}{B}$, but additionally lists $\tyList{A}$, vectors $\tyVec{A}$, and records $\tyRec{\vec{\bind{x}{A}}}$ as data structures in order to better demonstrate more interesting relationships which can occur between the program structure and output. The notation $\seq{\bind{x}{A}}$  represents a sequence of bindings from variables $x$ to types $A$.
 \input{fig/core-language/syntax-type}
 
-The language consists of primitive types such as booleans, integers, and functions, but additionally lists, vectors, and records as data structures in order to better demonstrate more interesting relationships which can occur between the program structure and output. The notation $\seq{\bind{x}{A}}$ found in the typing context and records represents a sequence of bindings from variables $x$ to types $A$ which can be unzipped to yield $\seq{x}$ and $\seq{A}$.
 
-\input{fig/core-language/syntax}
+\subsubsection{Syntax - terms}
+The terms of our language, $e$ given in Figure \ref{fig:core-syntax-term}, include as basic terms: booleans $\exTrue$ and $\exFalse$, integers $n$, empty $\exNil$ and non-empty lists $\exCons{e}{e'}$, and application $\exApp{e}{e'}$. An anonymous function is denoted by $\exLambda{\sigma}$ where $\sigma$ is the single elimination form in the core language, called an eliminator, and this is described in Section \ref{sssec:syntax-eliminator}. Recursive let-bindings, $\exLetRecMutual{h}{e}$, are defined through declaring a sequence of mutually recursive functions $h = \seq{\bind{x}{\sigma}}$ and body $e$. Finally, we also provide vectors $\exVec{e}{x}{e'}$ which are constructed in a list-comprehension style, records $\exRec{\vec{\bind{x}{v}}}$ as a sequence of bindings between field names and values, and various operations over these. 
+\input{fig/core-language/syntax-term}
 
-The language includes basic terms $e$: booleans $\exTrue$ and $\exFalse$, integers $n$, empty $\exNil$ and non-empty lists $\exCons{e}{e'}$, anonymous functions $\exLambda{\sigma}$, and application $\exApp{e}{e'}$. Recursive let-bindings $\exLetRecMutual{h}{e}$ are defined through declaring a sequence of mutually recursive functions $h = \seq{\bind{x}{\sigma}}$ and body $e$. In addition, we provide vectors $\exVec{e}{x}{e'}$ which are constructed in a list-comprehension style, records $\exRec{\vec{\bind{x}{v}}}$ as a sequence of bindings between field names and values, and various operations over these. Holes $\hole$ can be used to substitute for terms which have been considered of no interest.
+The typing rules for terms are relatively straightforward, but we give them in Figure 
+\ref{fig:core-typing-term} for completeness. 
+  
+\input{fig/core-language/typing-term}
 
-Eliminators $\sigma$ express pattern matching against terms $e$ to result in program continuations $\kappa$ which can be either terms or further eliminators. Rather than one elimination-form per type, we provide a single pattern-matching elimination form called an eliminator \cite{hinze00}. We provide eliminators for matching against variables, booleans, records, and lists.An common alternative to this is to use case-expressions, however, real-world functional languages have rich pattern-matching features such as piecewise definitions, view patterns, pattern synonyms, etc with non-trivial exhaustiveness-checking rules. Instead, we want an efficient, simple core pattern-matching feature that is total by construction and can serve as an elaborate target for more advanced features -- in section \ref{sec:surface-language} we show how to desugar piecewise definitions that satisfy certain well-formedness conditions into eliminators. 
+\subsubsection{Syntax - eliminators}
+\label{sssec:syntax-eliminator}
+Eliminators $\sigma$ express pattern matching against terms $e$ to result in program continuations $\kappa$ which can be either terms or further eliminators. Rather than one elimination-form per type, we provide a single pattern-matching elimination form called an eliminator \cite{hinze00}. A common alternative to this is to use case-expressions, however, real-world functional languages have rich pattern-matching features such as piecewise definitions, view patterns, pattern synonyms, etc with non-trivial exhaustiveness-checking rules. Instead, we want an efficient, simple core pattern-matching feature that is total by construction and can serve as an elaborate target for more advanced features -- in section \ref{sec:surface-language} we show how to desugar piecewise definitions that satisfy certain well-formedness conditions into eliminators. 
 
-\input{fig/core-language/syntax-value}
+We provide eliminators for matching against variables, booleans, records, and lists. Matching a term $e$ against a variable-eliminator $\elimVar{x}{\kappa}$ results in binding $e$ as $x$ and then returning the continuation $\kappa$. Matching a term $e$ against a boolean-eliminator $\elimBool{\kappa}{\kappa'}$, this returns the continuation $\kappa$ if $e$ is true, or $\kappa'$ if $e$ is false. When matching a term $e$ against a record-eliminator $\elimRec{\seq{x}}{\kappa}$, this returns a continuation $\kappa$ if $e$ is a record where all of its fields can be bound to all variable names in $\seq{x}$. Finally, matching a term $e$ against a list-eliminator $\elimList{\kappa}{\sigma}$ returns a continuation $\kappa$ if $e$ is the empty list $\exNil$ or another eliminator $\sigma$ if $e$ is non-empty.
 
+\input{fig/core-language/syntax-eliminator}
+
+The typing rules in Figure \ref{fig:core-typing-eliminator} give further insight on how eliminators work. The judgement for eliminator typing rules, $\Gamma \vdash \sigma: \tyFun{A}{B}$, describes how the well-typedness of an eliminator decomposes into the types of its patterns and branches. 
+
+For a variable-eliminator, given the pattern $x : A$ and branch $\kappa : B$, the eliminator $\elimVar{x}{\kappa}$ is hence a function of type $\tyFun{A}{B}$. For a boolean-eliminator, if the branches $\kappa$ and $\kappa'$ for patterns $\exTrue$ and $\exFalse$ are the same type $A$, then $\elimBool{\kappa}{\kappa'}$ is a function of type $\tyFun{\tyBool}{A}$. 
+
+The types describing record-eliminators are slightly more involved. When matching against a non-empty record-eliminator $\elimRec{\vec{x} \concat y}{\sigma}$, this uses currying to pattern match: if matching against the pattern $\vec{x} \concat y : \tyRec{\vec{\bind{x}{A}} \concat \bind{y}{A'}}$ results in an eliminator of type $B$, then this can be curried such that matching against the pattern $\vec{x} : \tyRec{\vec{\bind{x}{A}}}$ results in an eliminator of type $\tyFun{A'}{B}$. When matching against an empty record-eliminator $\elimRecEmpty{\kappa}$, this simply returns a continuation $\kappa$. 
+
+Typing rules for lists work similarly to records, where both branches must have the same output type $B$. Matching against the non-empty list constructor $(\symCons)$ results in an eliminator $\sigma$ which then has to match against the head of the list of type $A$ and the tail of the list of type $\tyList{A}$ to output the type $B$. Matching against an empty list simply returns a continuation of type $B$.
+
+As a final note, the typing rule for mutually recursive functions under judgement $\Gamma \vdash h: \Delta$ states that if all functions $\sigma_i$ are well-typed under the typing context $\Gamma \concat \Delta$, then the environment of mutually recursive functions is well-typed under context $\Gamma$ with the type $\Delta$.
+
+\input{fig/core-language/typing-eliminator}
+
+
+\subsubsection{Syntax - values}
 The environment $\rho$ of a program consists of bindings between variables and values. The values $v$ which terms can evaluate to include: holes $\hole$, integers $n$, records $\exRec{\vec{\bind{x}{v}}}$, empty $\exNil$ and non-empty lists $\exCons{u}{v}$ of values, and vectors $\exVecVal{\vec{v}}{j}$ of values $\vec{v}$ with fixed-length $j$. Additionally, we have partially applied primitives $\exPrimOp{\phi}{\vec{v}}$ where $\phi$ is a primitive operation applied to an incomplete sequence of values $\vec{v}$, and function closures $\exClosure{\rho}{h}{\sigma}$ consisting of an environment $\rho$, a sequence of mutually recursive functions $h$, and eliminator $\sigma$. 
-
-\input{fig/core-language/syntax-trace}
-
-Traces $T$ closely mirror the terms of our language, and are a means of recording the details of program execution and providing an explanation of how a result was computed. These are computed during forward slicing, and allows slicing to then proceed backwards afterwards. Matches $w$ are specifically used to record which pattern was matched against in an eliminator and hence which branch was taken during program execution. 
+\input{fig/core-language/syntax-value}
 
 \input{fig/core-language/typing-value}
 
-The typing rule for environments $\vdash \rho: \Gamma$ states that if all the values $v_i$ of the environment are well typed under the empty typing context, then the environment itself is well-typed. Similarly, the typing rule for mutually recursive functions states that if all functions $\sigma_i$ are well-typed under the typing context $\Gamma \concat \Delta$, then the environment of mutually recursive functions is well-typed under context $\Gamma$ with the type $\Delta$.
+The typing rule for environments $\vdash \rho: \Gamma$ states that if all the values $v_i$ of the environment are well typed under the empty typing context, then the environment itself is well-typed. 
 
 The typing rules for values $\vdash v: A$ are self-explanatory for integers, booleans, records, lists, and vectors. Given a primitive operation $\phi$ which takes $i+j$ integer arguments to output an integer, when partially applied to a sequence of $i$ integers this produces a function which takes $j$ more integers.
 
-\input{fig/core-language/typing-term}
+\subsubsection{Annotated values and terms}
 
-The judgement for eliminator typing rules, $\Gamma \vdash \sigma: \tyFun{A}{B}$, decomposes how the well-typedness of an eliminator decomposes into the types of its patterns and branches. 
+\input{fig/core-language/syntax-selection}
+
+% In order for our language to be able to track data dependencies,
+% Holes $\hole$ can be used to substitute for terms which have been considered of no interest.
+
+
 
 \subsection{Evaluation}
 \input{fig/core-language/match}
