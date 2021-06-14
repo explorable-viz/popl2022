@@ -55,8 +55,8 @@ To solve these problems, we need a dependency analysis which supports focusing o
 In this paper, we present new language-based data provenance techniques for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our specific contributions are as follows:
 
 \begin{itemize}[leftmargin=*]
-   \item[--] a review of \emph{Galois slicing}, a program slicing framework with round-tripping properties appropriate to our problem, and an analysis of its shortcomings (\secref{background});
-   \item[--] a new bidirectional dependency analysis inspired by Galois slicing, addressing these shortcomings, for a core calculus with lists and arrays, and a discussion of how the analysis can be used in various ways to link inputs to outputs and outputs to other outputs (\secref{core-language});
+   \item[--] a new bidirectional dependency analysis for a core calculus with lists, vectors and records, and a proof that the analysis is a Galois connection (\secref{core-language});
+   \item[--] applications of the core analysis to enrich visualisations with interactions which allow a user to explore their relationship to data and to each other, and a comparison with \emph{Galois slicing}, a program slicing framework with similar round-tripping properties (\secref{toolkit});
    \item[--] a richer surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of our analysis to the desugaring (\secref{surface-language});
-   \item[--] an implementation of Fluid in PureScript, and a discussion and evaluation of the strengths and weaknesses of our approach (\secref{implementation}).
+   \item[--] an implementation of Fluid in PureScript, a discussion of strengths and weaknesses of the approach, and opportunities for future work (\secref{evaluation}).
 \end{itemize}
