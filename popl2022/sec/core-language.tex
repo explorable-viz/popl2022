@@ -3,7 +3,7 @@
 \section{A core language for fine-grained data dependencies}
 \label{sec:core-language}
 
-To show how we achieve a system of fine-grained dependency tracking between structured outputs and inputs, we first introduce the core calculus for our language and describe how this gives rise to the fundamental ideas behind program-slicing and data-linking. This later provides us the foundations to describe a richer surface language in Section \ref{sec:surface-language}.
+To show how we achieve a system of fine-grained dependency tracking between structured outputs and inputs, we first introduce the core calculus for our language and then describe how we can enrich this to language so that it can support the notion of selection within a program -- this gives rise to ideas of program-slicing and data-linking. Afterwards, this will provide us the foundation to describe a richer surface language in Section \ref{sec:surface-language}.
 
 \subsection{Syntax and typing}
 
@@ -13,22 +13,25 @@ We begin by introducing the types of our language in Figure \ref{fig:core-syntax
 
 
 \subsubsection{Syntax - terms}
-Next we describe the terms of our language as seen in Figure \ref{fig:core-syntax-term}.  These include basic terms such as booleans $\exTrue$ and $\exFalse$, integers $n$, empty $\exNil$ and non-empty lists $\exCons{e}{e'}$, and application $\exApp{e}{e'}$. An anonymous function in our language is denoted by $\exLambda{\sigma}$ where $\sigma$ is the single elimination form in the core language, called an eliminator, and this is described in Section \ref{sssec:syntax-eliminator}. Recursive let-bindings, $\exLetRecMutual{h}{e}$, are also defined using eliminators and consist of a sequence of mutually recursive functions $h = \seq{\bind{x}{\sigma}}$ and a body $e$. Finally, we also provide vectors $\exVec{e}{x}{e'}$ which are constructed in a list-comprehension style, records $\exRec{\vec{\bind{x}{v}}}$ as a sequence of bindings between field names and values, and various operations over these. 
+Next we describe the terms of our language as seen in Figure \ref{fig:core-syntax-term}.  These include basic terms such as booleans $\exTrue$ and $\exFalse$, integers $n$, empty $\exNil$ and non-empty lists $\exCons{e}{e'}$, and application $\exApp{e}{e'}$. An anonymous function in our language is denoted by $\exLambda{\sigma}$ where $\sigma$ is the single elimination form in the core language, called an ``eliminator'', and this is described in Section \ref{sssec:syntax-eliminator}. Recursive let-bindings, $\exLetRecMutual{h}{e}$, are also defined using eliminators and consist of a sequence of mutually recursive functions $h = \seq{\bind{x}{\sigma}}$ and a body $e$. Finally, we also provide vectors $\exVec{e}{x}{e'}$ which are constructed in a list-comprehension style, records $\exRec{\vec{\bind{x}{v}}}$ as a sequence of bindings between field names and values, and various operations over these. 
 \input{fig/core-language/syntax-term}
 
-The typing rules for terms are relatively straightforward, but we give them in Figure 
-\ref{fig:core-typing-term} for completeness. 
+\noindent
+The typing rules for terms are relatively straightforward and are given in Figure \ref{fig:core-typing-term}. It should be noted that our implementation does not implement typing rules, but we give them for the sake of clarity.
   
 \input{fig/core-language/typing-term}
 
 \subsubsection{Syntax - eliminators}
 \label{sssec:syntax-eliminator}
-We now introduce the concept of eliminators $\sigma$ -- these express pattern matching against terms $e$ to result in program continuations $\kappa$ which can be either terms or further eliminators. Rather than one elimination-form per type, we provide a single pattern-matching elimination form called an eliminator \cite{hinze00}. A common alternative to this is to use case-expressions, however, real-world functional languages have rich pattern-matching features such as piecewise definitions, view patterns, pattern synonyms, etc with non-trivial exhaustiveness-checking rules. Instead, we want an efficient, simple core pattern-matching feature that is total by construction and can serve as an elaborate target for more advanced features -- in section \ref{sec:surface-language} we show how to desugar piecewise definitions that satisfy certain well-formedness conditions into eliminators. 
+We now introduce the concept of eliminators $\sigma$ -- these express pattern matching against terms $e$ to result in program continuations $\kappa$ which can be either terms or further eliminators. Rather than one elimination-form per type, we provide a single pattern-matching elimination form called an eliminator. Eliminators resemble the idea of case-trees commonly used when compiling languages with pattern-matching into intermediate forms. Formally, eliminators correspond to Hinze's notion of generalized tries extended with variable bindings \cite{hinze00}. 
+
+A common alternative to this is to use case-expressions, however, real-world functional languages have rich pattern-matching features such as piecewise definitions, view patterns, pattern synonyms, etc with non-trivial exhaustiveness-checking rules. Instead, we want an efficient, simple core pattern-matching feature that is total by construction and can serve as an elaborate target for more advanced features -- in section \ref{sec:surface-language} we show how to desugar piecewise definitions that satisfy certain well-formedness conditions into eliminators. 
 
 We provide eliminators for matching against variables, booleans, records, and lists. Matching a term $e$ against a variable-eliminator $\elimVar{x}{\kappa}$ results in binding $e$ as $x$ and then returning the continuation $\kappa$. Matching a term $e$ against a boolean-eliminator $\elimBool{\kappa}{\kappa'}$, this returns the continuation $\kappa$ if $e$ is true, or $\kappa'$ if $e$ is false. When matching a term $e$ against a record-eliminator $\elimRec{\seq{x}}{\kappa}$, this returns a continuation $\kappa$ if $e$ is a record where all of its fields can be bound to all variable names in $\seq{x}$. Finally, matching a term $e$ against a list-eliminator $\elimList{\kappa}{\sigma}$ returns a continuation $\kappa$ if $e$ is the empty list $\exNil$ or another eliminator $\sigma$ if $e$ is non-empty.
 
 \input{fig/core-language/syntax-eliminator}
 
+\noindent
 The typing rules in Figure \ref{fig:core-typing-eliminator} give further insight on how eliminators work. The judgement for eliminator typing rules, $\Gamma \vdash \sigma: \tyFun{A}{B}$, describes how the well-typedness of an eliminator decomposes into the types of its patterns and branches. 
 
 For a variable-eliminator, given the pattern $x : A$ and branch $\kappa : B$, the eliminator $\elimVar{x}{\kappa}$ is hence a function of type $\tyFun{A}{B}$. For a boolean-eliminator, if the branches $\kappa$ and $\kappa'$ for patterns $\exTrue$ and $\exFalse$ are the same type $A$, then $\elimBool{\kappa}{\kappa'}$ is a function of type $\tyFun{\tyBool}{A}$. 
@@ -43,9 +46,10 @@ As a last note, the typing rule for mutually recursive functions under judgement
 
 
 \subsubsection{Syntax - values}
-We present the last part of the syntax for values, which acts as the final cog in the machine, allowing us to augment our core language to become suitable for slicing. Firstly, the environment $\rho$ of a program consists of bindings between variables and values. The values $v$ which terms can then evaluate to include: holes $\hole$, integers $n$, records $\exRec{\vec{\bind{x}{v}}}$, empty $\exNil$ and non-empty lists $\exCons{u}{v}$ of values, and vectors $\exVecVal{\vec{v}}{j}$ of values $\vec{v}$ with fixed-length $j$. Additionally, we have partially applied primitives $\exPrimOp{\phi}{\vec{v}}$ where $\phi$ is a primitive operation applied to an incomplete sequence of values $\vec{v}$, and function closures $\exClosure{\rho}{h}{\sigma}$ consisting of an environment $\rho$, a sequence of mutually recursive functions $h$, and eliminator $\sigma$. 
+Before we can introduce our method of program slicing via syntax annotation, we describe the final part of the core syntax - values. Firstly, the environment $\rho$ of a program consists of bindings between variables and values. The values $v$ which terms can then evaluate to include: holes $\hole$, integers $n$, records $\exRec{\vec{\bind{x}{v}}}$, empty $\exNil$ and non-empty lists $\exCons{u}{v}$ of values, and vectors $\exVecVal{\vec{v}}{j}$ of values $\vec{v}$ with fixed-length $j$. Additionally, we have partially applied primitives $\exPrimOp{\phi}{\vec{v}}$ where $\phi$ is a primitive operation applied to an incomplete sequence of values $\vec{v}$, and function closures $\exClosure{\rho}{h}{\sigma}$ consisting of an environment $\rho$, a sequence of mutually recursive functions $h$, and eliminator $\sigma$. 
 \input{fig/core-language/syntax-value}
 
+\noindent
 The typing rule for environments $\vdash \rho: \Gamma$ states that if all the values $v_i$ of the environment are well typed under the empty typing context, then the environment itself is well-typed. 
 
 The typing rules for values $\vdash v: A$ are self-explanatory for integers, booleans, records, lists, and vectors, but we elaborate on partially-applied primitives and closures. Given a primitive operation $\phi$ which takes $i+j$ integer arguments to output an integer, when partially applied to a sequence of $i$ integers this produces a function which takes $j$ more integers. The typing rule for closures $\exClosure{\rho}{h}{\sigma}$ then states that given its local environment $\rho$ has type $\Gamma$ under the empty context, its environment of mutually recursive functions $h$ has type $\Delta$ under context $\Gamma$, and its eliminator $\sigma$ has type $\tyFun{A}{B}$ under context $\Delta \concat \Gamma$, then the entire closure has type $\Delta \concat \Gamma$.
@@ -54,14 +58,32 @@ The typing rules for values $\vdash v: A$ are self-explanatory for integers, boo
 
 \subsubsection{Annotated values and terms}
 
+Now that the core calculus has been fully specified, this gives us a foundation to begin enriching our language to become suitable for slicing and tracking data dependencies. We introduce the notion of selection as the ability to select pieces of the program output of interest, and then trace back from these values to the parts of the program that were involved in constructing them. This is achieved via annotating our language with ``selection states'' -- annotations allow us to think of the data type of terms and values as functors which associate selection information with these terms/values. 
+
 \input{fig/core-language/syntax-selection}
 
-% In order for our language to be able to track data dependencies,
+\noindent
+The syntax for annotations is given in Figure \ref{fig:core-syntax-selection}. The choice of annotation type is kept mostly abstract as there are various forms of selection information we may want to express on our language -- however, we rely on the assumption that annotations are required to be a lattice and therefore have forms for bottom $\FF$ and top $\TT$. 
+
+To incorporate annotations in our calculus, we first take all the first-order data forms and augment them with an annotation to indicate the selection state. As we are primarily interested in tracking data dependencies between values, we first give the annotation-augmented form of values -- this includes: booleans, $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{v}}}{\alpha}$, empty lists $\annNil{\alpha}$ and non-empty lists $\annCons{u}{v}{\alpha}$, and vectors $\annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}}$.
+
+In order to then propagate the selection-state information of values back to the expressions of our our program which are responsible for creating them, we must also add annotations to the necessary expression forms of our language, $e$. These correspond to the annotated forms of values, and hence include: booleans, $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{e}}}{\alpha}$, empty lists $\annNil{\alpha}$ and non-empty lists $\annCons{e}{e'}{\alpha}$, and vectors $\annVec{e}{x}{e'}{\alpha}$.
+
+% Annotations allow us to think of the data type of expressions and values as a functor which associates terms/values with selection information.
+% We want to be generic in the choice of annotation type as there are various forms of selection information we may want to express on our language, but we do want to rely on some assumptions about it so that it's not a completely abstract type. Hence it always has to be of type lattice. 
+% Hole is a special expression form that corresponds to annotating every position within the term with the bottom element of a lattice.
+% In order for our calculus to track data dependencies, the approach we take is to treat values as a functor which allows us to associate selection information with individual sub-terms in the value.
+% We need to explain a lattice.
+% We can recover a language isomorphic to the conventional syntax without annotations by instantiating the data type of expressions with the trivial one-point lattice, ().
+% The expression forms which involve the construction of values are all associated with annotations - this is how we represent selections/selective pieces of syntax, or, this is how we trace back from values of the output that the user has selected to the parts of the program that were involved in constructing these values.
 % Holes $\hole$ can be used to substitute for terms which have been considered of no interest.
 
-
-
 \subsection{Evaluation}
+
+\input{fig/core-language/syntax-trace}
+
+Traces $T$ closely mirror the terms of our language, and are a means of recording the details of program execution and providing an explanation of how a result was computed. These are computed during forward slicing, and allows slicing to then proceed backwards afterwards. Matches $w$ are specifically used to record which pattern was matched against in an eliminator and hence which branch was taken during program execution. 
+
 \input{fig/core-language/match}
 \input{fig/core-language/eval}
 \input{fig/core-language/eval-aux}

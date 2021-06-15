@@ -11,17 +11,17 @@ e
 \text{hole}
 \\
 &&&
-\annTrue{\alpha} \mid \annFalse{\alpha}
+\exTrue \mid \exFalse
 &
 \text{Boolean}
 \\
 &&&
-\annInt{n}{\alpha}
+\exInt{n}
 &
 \text{integer}
 \\
 &&&
-\annRec{\vec{\bind{x}{e}}}{\alpha}
+\exRec{\vec{\bind{x}{e}}}
 &
 \text{record}
 \\
@@ -31,17 +31,17 @@ e
 \text{record projection}
 \\
 &&&
-\annNil{\alpha}
+\exNil
 &
 \text{nil}
 \\
 &&&
-\annCons{e}{e'}{\alpha}
+\exCons{e}{e'}
 &
 \text{cons}
 \\
 &&&
-\annVec{e}{x}{e'}{\alpha}
+\exVec{e}{x}{e'}
 &
 \text{vector}
 \\
@@ -78,3 +78,83 @@ x
 \caption{Terms}
 \label{fig:core-syntax-term}
 \end{figure}
+% \begin{figure}[H]
+% \begin{syntaxfig}
+% \mbox{Term}
+% &
+% e
+% &
+% ::=
+% &
+% \hole
+% &
+% \text{hole}
+% \\
+% &&&
+% \annTrue{\alpha} \mid \annFalse{\alpha}
+% &
+% \text{Boolean}
+% \\
+% &&&
+% \annInt{n}{\alpha}
+% &
+% \text{integer}
+% \\
+% &&&
+% \annRec{\vec{\bind{x}{e}}}{\alpha}
+% &
+% \text{record}
+% \\
+% &&&
+% \exRecProj{e}{x}
+% &
+% \text{record projection}
+% \\
+% &&&
+% \annNil{\alpha}
+% &
+% \text{nil}
+% \\
+% &&&
+% \annCons{e}{e'}{\alpha}
+% &
+% \text{cons}
+% \\
+% &&&
+% \annVec{e}{x}{e'}{\alpha}
+% &
+% \text{vector}
+% \\
+% &&&
+% \exVecLookup{e}{e}
+% &
+% \text{vector lookup}
+% \\
+% &&&
+% \exVecLen{e}
+% &
+% \text{vector length}
+% \\
+% &&&
+% x
+% &
+% \text{variable}
+% \\
+% &&&
+% \exLambda{\sigma}
+% &
+% \text{anonymous function}
+% \\
+% &&&
+% \exApp{e}{e'}
+% &
+% \text{application}
+% \\
+% &&&
+% \exLetRecMutual{h}{e}
+% &
+% \text{recursive let}
+% \end{syntaxfig}
+% \caption{Terms}
+% \label{fig:core-syntax-term}
+% \end{figure}
