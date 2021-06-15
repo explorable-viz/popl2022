@@ -6,11 +6,6 @@ e
 &
 ::=
 &
-\hole
-&
-\text{hole}
-\\
-&&&
 \exTrue \mid \exFalse
 &
 \text{Boolean}
@@ -21,14 +16,14 @@ e
 \text{integer}
 \\
 &&&
-\exRec{\vec{\bind{x}{e}}}
+x
 &
-\text{record}
+\text{variable}
 \\
 &&&
-\exRecProj{e}{x}
+\exApp{e}{e'}
 &
-\text{record projection}
+\text{application}
 \\
 &&&
 \exNil
@@ -56,9 +51,14 @@ e
 \text{vector length}
 \\
 &&&
-x
+\exRec{\vec{\bind{x}{e}}}
 &
-\text{variable}
+\text{record}
+\\
+&&&
+\exRecProj{e}{x}
+&
+\text{record projection}
 \\
 &&&
 \exLambda{\sigma}
@@ -66,18 +66,24 @@ x
 \text{anonymous function}
 \\
 &&&
-\exApp{e}{e'}
-&
-\text{application}
-\\
-&&&
 \exLetRecMutual{h}{e}
 &
 \text{recursive let}
+\\[2mm]
+\mbox{Mutually recursive functions}
+&
+h
+&
+::=
+&
+\seq{\bind{x}{\sigma}}
+&
+\\[2mm]
 \end{syntaxfig}
 \caption{Terms}
 \label{fig:core-syntax-term}
 \end{figure}
+
 % \begin{figure}[H]
 % \begin{syntaxfig}
 % \mbox{Term}

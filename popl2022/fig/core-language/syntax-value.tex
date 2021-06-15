@@ -10,11 +10,6 @@ u, v
 &
 ::=
 &
-\hole
-&
-\text{hole}
-\\
-&&&
 \exTrue \mid \exFalse
 &
 \text{Boolean}
@@ -25,11 +20,6 @@ u, v
 \text{integer}
 \\
 &&&
-\exRec{\vec{\bind{x}{v}}}
-&
-\text{record}
-\\
-&&&
 \exNil
 &
 \text{nil}
@@ -38,6 +28,11 @@ u, v
 \exCons{u}{v}
 &
 \text{cons}
+\\
+&&&
+\exRec{\vec{\bind{x}{v}}}
+&
+\text{record}
 \\
 &&&
 \exVecVal{\vec{v}}{\exInt{j}}
