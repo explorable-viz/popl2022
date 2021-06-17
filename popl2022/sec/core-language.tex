@@ -33,80 +33,57 @@ The typing rule for list eliminators $\elimList{\kappa}{\sigma}$ combines some o
 
 Finally, we can now revisit the term forms $\exLambda{\sigma}$ and $\exLetRecMutual{h}{e}$, having introduced eliminators. If $\sigma$ is an eliminator of type $\tyFun{A}{B}$, then $\exLambda{\sigma}$ is an anonymous function of the same type. If $h$ is of the form $\vec{\bind{x}{\sigma}}$, then $\exLetRecMutual{h}{e}$ introduces a sequence of mutually recursive functions which are in scope in $e$. The typing rule for $\exLetRecMutual{h}{e}$ uses an auxiliary typing judgement $\Gamma \vdash h : \Delta$ which assigns to every $x$ in $\Delta$ a function type $\tyFun{A}{B}$ as long as the $\sigma$ to which $x$ is bound in $h$ has that type.
 
-% Having introduced eliminators, we can revisit the term forms our core-language which involve eliminators (Figure \ref{fig:core-syntax-term}) and their typing rules (Figure \ref{fig:core-typing-term}). Anonymous functions, $\exLambda{\sigma}$, allow us to inject eliminators $\sigma$ into terms by wrapping them in a constructor $\lambda$. This has no impact on the typing rules, hence $\sigma$ and $\exLambda{\sigma}$ have the same types. Recursive let-bindings are then denoted by $\exLetRecMutual{h}{e}$. Given that $h$ is a sequence of mutually recursive functions $\vec{\bind{x}{\sigma}}$ of type $\Delta$ (a vector of variables bound to function types) under context $\Gamma$, and $e$ has type $A$ in the context $\Gamma \concat \Delta$, then the entire term $\exLetRecMutual{h}{e}$ has type $A$ under context $\Gamma$. 
-
 \input{fig/core-language/typing-term}
 
 \subsubsection{Values}
-Lastly, we consider the syntax for values and environments as defined in Figure \ref{fig:core-syntax-value}. 
-% Before we move on to considering how to represent data selections, we describe the final part of the core syntax for values. 
-An environment $\rho$ is a sequence $\vec{\bind{x}{v}}$ of bindings from variables to values. Values $v, u$ include Booleans $\exTrue$ and $\exFalse$, integers $n$, empty lists $\exNil$ and non-empty lists $\exCons{u}{v}$, records $\exRec{\vec{\bind{x}{v}}}$, and vectors $\exVecVal{\vec{v}}{j}$ of values $\vec{v}$ with length $j$. Additionally, we have partially applied primitives $\exPrimOp{\phi}{\vec{v}}$ where $\phi$ is a primitive operation and $\vec{v}$ is an incomplete sequence of arguments, and function closures $\exClosure{\rho}{h}{\sigma}$ which capture, alongside the definition of a function $\sigma$, an environment $\rho$ and any functions $h$ with which it was mutually defined.
+Lastly, we consider the syntax for values and environments as defined in Figure \ref{fig:core-syntax-value}. An environment $\rho$ is a sequence $\vec{\bind{x}{v}}$ of bindings from variables to values. Values $v, u$ include Booleans $\exTrue$ and $\exFalse$, integers $n$, empty lists $\exNil$ and non-empty lists $\exCons{u}{v}$, records $\exRec{\vec{\bind{x}{v}}}$, and vectors $\exVecVal{\vec{v}}{j}$ of values $\vec{v}$ with length $j$. Additionally, we have partially applied primitives $\exPrimOp{\phi}{\vec{v}}$ where $\phi$ is a primitive operation and $\vec{v}$ is an incomplete sequence of arguments, and function closures $\exClosure{\rho}{h}{\sigma}$ which capture, alongside the definition of a function $\sigma$, an environment $\rho$ and any functions $h$ with which it was mutually defined.
 \input{fig/core-language/syntax-value}
 
 \noindent
 The typing rules for environments and values are given in Figure \ref{core-typing-value}. The judgement $\vdash \rho: \Gamma$ states that if all the values $v_i$ of the environment are well typed, then the environment itself is well-typed. The typing judgement $\vdash v: A$ is self-explanatory for integers, Booleans, records, lists, and vectors, but we elaborate on partially-applied primitives and closures. The typing rule for primitive operations ensures that only unsaturated applications are first-class values. The typing rule for closures $\exClosure{\rho}{h}{\sigma}$ ensures that all the functions introduced by $h$ are in scope in the definition of the function $\sigma$.
-
 \input{fig/core-language/typing-value}
 
-\subsection{Representing Selections}
-\label{sec:core-language:selections}
-\subsubsection{Annotated Values and Terms}
+
+\subsection{Semantics}
+
+Before we turn to the treatment of data dependencies, we give the operational semantics for the core language introduced in \secref{core-language:syntax-typing}. We will also introduce a syntax for \textit{traces}, which represent derivation trees in the operational semantics. This will be used later in \secref{core-language:fwd-bwd} to define forward and backward analyses over a single execution.
+\todo{Revisit how this introduces the structure of the subsection}
 
 
-Now that the core calculus has been fully specified, this gives us a foundation to begin enriching our language to become suitable for tracking data dependencies. The first thing to establish is the notion of selection which is a way of selecting parts of the program of interest -- this is what will later allow us to perform data dependency analysis in Section \ref{sec:toolkit}. To do this, we first take all the first-order data forms and augment them with an annotation to indicate their selection state.
-
-\input{fig/core-language/syntax-selection}
-
-\noindent
-To incorporate annotations in our calculus, we first take all the first-order data forms and augment them with an annotation to indicate the selection state. The syntax for annotations along with the annotated forms of our core-language are given in Figure \ref{fig:core-syntax-selection}. 
-
-As we are primarily interested in tracking data dependencies between values, we first give the annotation-augmented form of values -- this includes: booleans, $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{v}}}{\alpha}$, empty lists $\annNil{\alpha}$ and non-empty lists $\annCons{u}{v}{\alpha}$, and vectors $\annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}}$. We also introduce holes $\hole$ as a special expression form that corresponds to annotating every position within a value with the bottom element of a lattice.
-
-In order to then propagate the selection-state information of values back to the expressions of our our program which are responsible for creating them, we must also add annotations to the necessary expression forms of our language, $e$. These correspond to the annotated forms of values, and hence include: holes $\hole$, booleans, $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{e}}}{\alpha}$, empty lists $\annNil{\alpha}$ and non-empty lists $\annCons{e}{e'}{\alpha}$, and vectors $\annVec{e}{x}{e'}{\alpha}$.
-
-Annotations allow us to think of the data type of terms and values as a functor which associates terms/values with selection information. It should be noted that the choice of annotation type is kept mostly abstract as there are various forms of selection information we may want to express in our language -- however, we rely on the assumption that annotations are required to be a lattice so that we can use the top element $\top$ of the lattice to represent selection and the bottom element $\bot$ to represent unselection. The most simple choice of lattice would be to set the type of annotations to be the trivial unit lattice -- this lets us recover the original unannotated syntax presented in Figure \ref{fig:core-syntax-term} and \ref{fig:core-syntax-value}. Most typically, one would use the boolean lattice to indicate a selection of true or false, however we can also use more sophisticated lattices such as a vector of booleans to represent multiple selections simultaneously.
+\subsubsection{Evaluation}
+\label{sec:core-language:eval}
+\input{fig/core-language/eval}
+\input{fig/core-language/eval-aux}
 
 
-\subsection{Evaluation}
+We explain the semantics for evaluating terms in our language (Figure \ref{fig:eval}) where the judgement $\explVal{T}{\rho, e \evalR v}$ means that a term $e$ under environment $\rho$ evaluates to a value $v$. A trace $\textcolor{gray}{T}$ is a compact notation for the proof terms of the $\evalR$ relation, and are operationally used to compute analyses that require replaying/rewinding of computations \cite{perera12a}. 
 
-With our core syntax, we can now move on to the semantics of how our language evaluates -- we explain this in two parts. First we give semantics to pattern matching and evaluation of terms \textit{without} annotations; for this, we must introduce a mechanism of recording the execution of a program during evaluation -- these are known as program traces. This will provide us the means to later describe how annotated terms in our program can propagate to annotated values in our output (and vice versa) through forward and backward dependency tracking rules in Section \ref{ssec:core-fwd-bwd}.
+\todo{Complete section - explain evaluation relation individual rules and trace forms, and aux relations}
 
-\subsubsection{Syntax - Traces}
-\label{ssec:core-syntax-trace}
 
+\subsubsection{Pattern matching}
+\label{sec:core-language:syntax-trace}
 \input{fig/core-language/syntax-trace}
 
-A trace $T$, shown in Figure \ref{fig:core-syntax-trace}, is a compact notation for the proof terms for the evaluation relations of our language, defined inductively in Figure \ref{fig:eval}. 
-They closely mirror the terms of our language, and operationally are a means of recording the details of program execution and providing an explanation of how a result was computed \cite{perera12a}. Matches $w$ are then a specific form of trace used in the pattern matching relation defined in Figure $\ref{fig:core-match}$ -- it is used to record which pattern was matched against in an eliminator and hence which branch was taken during program execution. 
+\input{fig/core-language/match}
+We first give a semantics to pattern matching in our language (Figure \ref{fig:core-match}) where the judgement $\explVal{w}{v, \sigma \matchR \rho, \kappa}$ states that matching a value $v$ against an eliminator $\sigma$ evaluates to an environment $\rho$ which binds $v$ to any matched variables in $\sigma$ and a continuation $\kappa$. The trace $\textcolor{gray}{w}$ is a specific form of trace used in the pattern matching relation defined in Figure $\ref{fig:core-match}$ -- it is used to record which pattern was matched against in an eliminator and hence which branch was taken during program execution.
 
-
-
+\todo{Complete section - describe in same way as 2.2.1. }
 % Explain evaluation in a two-stage way like we did with syntax. First we give semantics to pattern matching evaluation and terms without annotation, and then we give forward and backward dependency tracking rules to propagate annotation for annotated terms. We also need to explain the idea of a trace T (a trace is what we refer to as "Match" and "Trace") - these are essentially a compact notation for the proof terms for the evaluation relations which are defined inductively in figure 13 (T :: p, e => v), and operationally are a means of recording the details of program execution. For this we can cite Roly's previous work (imperative functional programs and something else) - these two take a similar approach. Another way to do this would be to define the evaluation relation to additionally output a trace, but here we say that we define evaluation inductively as a relation, so the proof trees of that definition are the traces essentially. What the syntax in figure 11 (matches and traces) does is just define a more compact notation for proof trees for those relations. It's not so much that we compute traces during forward slicing, but that we need traces for forward slicing as well.
 
 %. These are computed during forward slicing, and allows slicing to then proceed backwards afterwards.
-
-\subsubsection{Semantics - Pattern matching}
-\label{ssec:core-semantics-match}
-\input{fig/core-language/match}
-
-We first give a semantics to pattern matching in our language (Figure \ref{fig:core-match}) where the judgement $\explVal{w}{v, \sigma \matchR \rho, \kappa}$ states that matching a value $v$ against an eliminator $\sigma$ evaluates to an environment $\rho$ which binds $v$ to any matched variables in $\sigma$ and a continuation $\kappa$. The trace $\textcolor{gray}{w}$ witnesses which branch was taken.
-
-
-\subsubsection{Semantics - Evaluation}
-\label{ssec:core-semantics-eval}
-\input{fig/core-language/eval}
-
-Next we explain the semantics for evaluating terms in our language (Figure \ref{fig:eval}) where the judgement $\explVal{T}{\rho, e \evalR v}$ states that a term $e$ under environment $\rho$ evaluates to a value $v$. The trace $\textcolor{gray}{T}$ records the evaluation that occurs. 
-
-\input{fig/core-language/eval-aux}
 
 \begin{definition}
    \label{def:core-language:closeDefs}
    Define the relation $\closeDefsR$ as given in \figref{core-language:eval-aux}.
 \end{definition}
 
-\subsection{Forward and backward Galois dependency}
-\label{ssec:core-fwd-bwd}
+\subsection{Representing Selections}
+\label{sec:core-language:selections}
+
+Now that the core calculus has been fully specified, this gives us a foundation to begin enriching our language to become suitable for tracking data dependencies. The first thing to establish is the notion of selection which is a way of selecting parts of the program of interest -- this is what will later allow us to perform data dependency analysis in Section \ref{sec:toolkit}. To do this, we first take all the first-order data forms and augment them with an annotation to indicate their selection state.
+
+\input{fig/core-language/syntax-selection}
 \input{fig/core-language/slicing/leq-value-elim}
 \input{fig/core-language/slicing/leq-term}
 
@@ -120,6 +97,19 @@ Next we explain the semantics for evaluating terms in our language (Figure \ref{
 
 \input{fig/core-language/slicing/join-value}
 \input{fig/core-language/slicing/join-elim}
+
+
+\noindent
+To incorporate annotations in our calculus, we first take all the first-order data forms and augment them with an annotation to indicate the selection state. The syntax for annotations along with the annotated forms of our core-language are given in Figure \ref{fig:core-syntax-selection}. 
+
+As we are primarily interested in tracking data dependencies between values, we first give the annotation-augmented form of values -- this includes: booleans, $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{v}}}{\alpha}$, empty lists $\annNil{\alpha}$ and non-empty lists $\annCons{u}{v}{\alpha}$, and vectors $\annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}}$. We also introduce holes $\hole$ as a special expression form that corresponds to annotating every position within a value with the bottom element of a lattice.
+
+In order to then propagate the selection-state information of values back to the expressions of our our program which are responsible for creating them, we must also add annotations to the necessary expression forms of our language, $e$. These correspond to the annotated forms of values, and hence include: holes $\hole$, booleans, $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{e}}}{\alpha}$, empty lists $\annNil{\alpha}$ and non-empty lists $\annCons{e}{e'}{\alpha}$, and vectors $\annVec{e}{x}{e'}{\alpha}$.
+
+Annotations allow us to think of the data type of terms and values as a functor which associates terms/values with selection information. It should be noted that the choice of annotation type is kept mostly abstract as there are various forms of selection information we may want to express in our language -- however, we rely on the assumption that annotations are required to be a lattice so that we can use the top element $\top$ of the lattice to represent selection and the bottom element $\bot$ to represent unselection. The most simple choice of lattice would be to set the type of annotations to be the trivial unit lattice -- this lets us recover the original unannotated syntax presented in Figure \ref{fig:core-syntax-term} and \ref{fig:core-syntax-value}. Most typically, one would use the boolean lattice to indicate a selection of true or false, however we can also use more sophisticated lattices such as a vector of booleans to represent multiple selections simultaneously.
+
+\subsection{Forward and backward Galois dependency}
+\label{sec:core-language:fwd-bwd}
 
 \subsubsection{Pattern-matching}
 
