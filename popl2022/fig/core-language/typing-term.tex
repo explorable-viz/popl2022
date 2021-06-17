@@ -174,20 +174,29 @@
 {
    \Gamma \vdash \elimBool{\kappa}{\kappa'}: \tyFun{\tyBool}{A}
 }
-\\
 %
 \and
 %
-\inferrule*[right={
-   \textnormal{$ \length{ \vec{x}} = n $}
-}]
+\inferrule*
 {
-   \Gamma \vdash \sigma:  \tyFun{\seqRangeOp{A_1}{A_{n+1}}{\rightarrow}}{B} %\tyFun{\tyRec{\vec{\bind{x}{A}}}}{\tyFun{A'}{B}}
+   \Gamma \vdash \kappa: A
 }
 {
    \Gamma
    \vdash
-   \elimRec{\vec{x}}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}}}}{B}
+   \elimRecEmpty{\kappa}: \tyFun{\tyRecEmpty}{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \elimRec{\vec{x}}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}}}}{\tyFun{A'}{B}}
+}
+{
+   \Gamma
+   \vdash
+   \elimRec{\vec{x} \concat y}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}} \concat \bind{y}{A'}}}{B}
 }
 %
 \and
