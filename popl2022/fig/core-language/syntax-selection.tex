@@ -1,0 +1,47 @@
+\begin{figure}[H]
+\begin{syntaxfig}
+\mbox{Selection state}
+&
+\alpha, \beta
+&
+::=
+&
+\top
+&
+\text{selected}
+\\
+&&&
+\bot
+&
+\text{unselected}
+\\[2mm]
+\mbox{Annotated values}
+&
+u, v
+&
+::=
+&
+\hole \mid \annTrue{\alpha} \mid \annFalse{\alpha} \mid \annInt{n}{\alpha} \mid \annNil{\alpha} \mid \annCons{u}{v}{\alpha} \mid 
+\\
+&&&
+\annRec{\vec{\bind{x}{v}}}{\alpha}  \mid \annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}} \mid \exPrimOp{\phi}{\vec{v}} \mid \exClosure{\rho}{h}{\sigma}
+&
+\text{}
+\\[2mm]
+\mbox{Annotated terms}
+&
+e
+&
+::=
+&
+\hole \mid \annTrue{\alpha} \mid \annFalse{\alpha} \mid \annInt{n}{\alpha} \mid \annNil{\alpha} \mid \annCons{e}{e'}{\alpha} \mid 
+\\
+&&&
+\annRec{\vec{\bind{x}{e}}}{\alpha}  \mid \annVec{e}{x}{e'}{\alpha} 
+&
+\text{}
+\\[2mm]
+\end{syntaxfig}
+\caption{Selection state and annotated values and terms}
+\label{fig:core-syntax-selection}
+\end{figure}

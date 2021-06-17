@@ -1,35 +1,5 @@
 \begin{figure}[H]
 \begin{syntaxfig}
-\mbox{Match}
-&
-w
-&
-::=
-&
-\matchVar{x}
-&
-\text{variable}
-\\
-&&&
-\matchTrue \mid \matchFalse
-&
-\text{Boolean}
-\\
-&&&
-\matchRec{\vec{\bind{x}{w}}}
-&
-\text{record}
-\\
-&&&
-\matchNil
-&
-\text{nil}
-\\
-&&&
-\matchCons{w}{w'}
-&
-\text{cons}
-\\[2mm]
 \mbox{Trace}
 &
 T, U
@@ -106,6 +76,37 @@ T, U
 \trLetRecMutual{h}{T}
 &
 \text{recursive let}
+\\[2mm]
+\mbox{Match}
+&
+w
+&
+::=
+&
+\matchVar{x}
+&
+\text{variable}
+\\
+&&&
+\matchTrue \mid \matchFalse
+&
+\text{Boolean}
+\\
+&&&
+\matchRec{\vec{\bind{x}{w}}}
+&
+\text{record}
+\\
+&&&
+\matchNil
+&
+\text{nil}
+\\
+&&&
+\matchCons{w}{w'}
+&
+\text{cons}
 \end{syntaxfig}
 \caption{Matches and traces}
+\label{fig:core-syntax-trace}
 \end{figure}
