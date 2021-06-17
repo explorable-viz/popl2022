@@ -4,59 +4,72 @@ Techniques for analysing the dynamic dependency structure of programs have been 
 
 This is a need that increasingly arises outside of traditional programming. Journalists and data scientists use programs to compute charts and other visual summaries from data, charts which must be interpreted by colleagues, policy makers and lay readers alike. Interpreting a chart correctly means understanding what the components of the visualisation actually \emph{represent}, i.e.~the mapping between data and visual elements. But this is a hard task, requiring time and expertise, even with access to the data and source code used to create the visualisation. In practice it is easy for innocent (but devastating) mistakes such as transposing two columns of data to go unnoticed~\cite{miller06}.
 
-\todo{signpost the next two sections}
+%\todo{signpost the next two sections}
 
-\subsection{Linking structured outputs to structured inputs}
+\subsection{Motivation}
+Before outlining our contributions, we consider two motivating examples from the domain of data visualization. Our techniques are not limited to this area. They are simply cases of programs that transform structured input data (a data table) to structured output data (components of a chart). The first challenge is linking outputs to the inputs that were used to produce them.
 
-The situation would be much improved if a computed artefact such as a chart or summary allowed a user to explore the relationship to the underlying data through the artefact itself, revealing the relevant data on a need-to-know basis. For example in \figref{introduction:data-linking} below, selecting a particular bar in the bar chart should present the user with a tabular summary of the data relevant to that bar:
+\paragraph{Linking structured outputs to structured inputs}
+Interpreting a chart would be much easier if the user was able to explore the relationship between the computed components of a chart and the underlying data, revealing the relevant relationships on a need-to-know basis. As illustrated in \figref{introduction:data-linking} below, selecting a particular bar in the bar chart should highlight the data relevant to a selected bar in the table showing the source data (the figure only shows subset of the full table):
 
 \begin{figure}[H]
-   \begin{subfigure}[b]{0.45\textwidth}
+   \begin{subfigure}[b]{0.99\textwidth}
       \centering
-      {\includegraphics[scale=0.3]{fig/example/data-linking-1.png}}
-      \caption{Viewing data relevant to USA}
-   \end{subfigure}
-   \begin{subfigure}[b]{0.45\textwidth}
-      \centering
-      {\includegraphics[scale=0.3]{fig/example/data-linking-2.png}}
-      \caption{Viewing data relevant to China}
+      {\includegraphics[scale=0.36]{fig/example/data-linking-merged.png}}
    \end{subfigure}\\
    \begin{subfigure}{0.65\textwidth}
       \small
       \lstinputlisting[language=Fluid]{fluid/bar-chart.fld.mod}
    \end{subfigure}
-   \caption{Fine-grained linking of outputs to inputs}
+   \caption{Fine-grained linking of outputs to inputs, focusing on data from USA (left) and China (right). }
    \label{fig:introduction:data-linking}
 \end{figure}
 
-Indeed, visualisation designers do sometimes create ``data-linked'' artefacts like these by hand, such as Nadieh Bremer's award-winning visualisation of population density growth in Asian cities~\cite{bremer15}. But crafting such things by hand is a significant undertaking, requiring intimate knowledge of the computational relationship between chart and data, and programming effort to expose that information to the reader. Manual approaches are also error-prone and need to be changed whenever the application logic changes. A library-based approach would improve on this, but would only provide data linking for solutions expressible using the combinators provided by the library.
+Visualisation designers sometimes create ``data-linked'' artefacts like these by hand, such as Nadieh Bremer's award-winning visualisation of population density growth in Asian cities~\cite{bremer15}, but this requires significant programming effort. Libraries such as Altair \cite{vanderPlas18} alleviate some of this work, but they require specifying data transformations using a limited set of combinators provided by (and understood by) the library.
 
-An alternative is to frame this as a program analysis problem. We want to be able to focus on a particular visual element, such as a bar in the bar chart above, and determine the inputs that contribute to it. This is a matter of selecting a part of the structured output and performing some kind of backwards analysis that identifies the relevant data. The advantage of this approach is that data linking comes ``for free'', and the data scientist or visualisation designer is able to code their analyses as pure functions of the data using the full expressive power of the language.
+We frame the challenge as a program analysis problem. We want to be able to focus on a particular chart element and determine the inputs that contribute to it. This is a matter of selecting a part of the structured output and performing some kind of backwards analysis that identifies the relevant data. The advantage of this approach is that data linking comes ``for free'', and the data scientist is able to code their analyses as pure functions using an expressive language as done in \figref{introduction:data-linking}.
 
-\subsection{Linking structured outputs to other structured outputs}
-
-\todo{Make this an evolution of previous example.} It is also common to use more than one view to present distinct but related aspects of data. In this situation the user should be able to focus on (select) a visual element in one chart or other structured output and have those elements of a different chart which were computed using related inputs be automatically selected. For example in \figref{introduction:vis-linking} below, selecting a bar on the left automatically should select all the related visual elements on the right. This is a well-recognised use case in data visualisation, where it is called \emph{brushing and linking}~\cite{becker87}. Geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly support brushing and linking, but they tend to be baked into specific applications, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover these applications and libraries provide no direct way for the reader to see the common data which explains why elements are related.
+\paragraph{Linking structured outputs to other structured outputs}
+Program analysis going backwards, from output charts to input data, supports one kind of information visualizations, but there is more to be done. Visualizations often present distinct but related aspects of data in multiple charts. In this situation the user should be able to focus on (select) a visual element in one chart or other structured output and automatically see elements of a different chart which were computed using related inputs. For example in \figref{introduction:vis-linking} below, selecting a bar on the left should automatically highlight all the related visual elements on the right. This is a well-recognised use case called \emph{brushing and linking}~\cite{becker87}.
 
 \begin{figure}[H]
-   {\includegraphics[scale=0.14]{fig/example/vis-linking.png}}
-   \small
-   \lstinputlisting[language=Fluid]{fluid/line-chart.fld.mod}
-   \todo{RP: Code for line chart, still need to think about how to decompose the example.}
-   \caption{Linking visualisations via common data dependencies}
-   \label{fig:introduction:vis-linking}
+  \begin{subfigure}[b]{0.99\textwidth}
+     \centering
+     {\includegraphics[scale=0.36]{fig/example/vis-linking-revised.png}}
+  \end{subfigure}\\
+  \begin{subfigure}{0.65\textwidth}
+     \small
+     \lstinputlisting[language=Fluid]{fluid/line-chart.fld.mod}
+     \todo{RP: Code for line chart, still need to think about how to decompose the example.}
+  \end{subfigure}
+ \caption{Linking visualisations via common data dependencies}
+ \label{fig:introduction:vis-linking}
 \end{figure}
 
-We can again frame this as a program analysis problem. It is a matter of selecting a part of the structured output and performing a backwards analysis to identify the required inputs, as before, but then performing a further forwards analysis to identify dependent parts of the other output. This is also shown in \figref{introduction:vis-linking} above. This would provide a language-based foundation for brushing and linking, allowing it to be automatic and pervasive, but also ``data-transparent'', able to provide a concise view of the data that underpin a given relationship.
+Geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly support brushing and linking, but they tend to be baked into specific applications, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover these applications and libraries provide no direct way for the reader to see the common data which explains why elements are related.
+
+We can again frame this as a program analysis problem. It is a matter of selecting a part of the structured output and performing a backwards analysis to identify the required inputs, as before, but then performing a further forwards analysis to identify dependent parts of the other output. A combination of backward and forward analysis would provide a language-based foundation for brushing and linking, allowing it to be used automatically with ordinary programmatic data transformations such as those showin in \figref{introduction:vis-linking} above.
+%but also ``data-transparent'', able to provide a concise view of the data that underpin a given relationship.
 
 \subsection{Contributions}
 
 To solve these problems, we need a dependency analysis which supports focusing on substructures of rich outputs, and moreover one which can be used bidirectionally, with appropriate round-tripping properties. Recent program slicing techniques \cite{perera12a,perera13a,ricciotti17} allow the user to focus on the output by ``erasing'' parts deemed to be irrelevant; the erased parts, called \emph{holes}, are propagated backwards by a backwards analysis which identifies parts of the program and input which are no longer needed. Although these approaches enjoy useful round-tripping properties characterised by Galois connections, they only allow focusing on \emph{prefixes} of a structured output, rather than arbitrary substructures.
 
-In this paper, we present new language-based data provenance techniques for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our specific contributions are as follows:
+In this paper, we present new language-based data provenance technique for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our work advances the state of the art of program analysis in three ways:
 
-\begin{itemize}[leftmargin=*]
-   \item[--] a new bidirectional dependency analysis for a core calculus with lists, vectors and records, and a proof that the analysis is a Galois connection (\secref{core-language});
-   \item[--] applications of the core analysis to enrich visualisations with interactions which allow a user to explore their relationship to data and to each other, and a comparison with \emph{Galois slicing}, a program slicing framework with similar round-tripping properties (\secref{toolkit});
-   \item[--] a richer surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of our analysis to the desugaring (\secref{surface-language});
-   \item[--] an implementation of Fluid in PureScript, a discussion of strengths and weaknesses of the approach, and opportunities for future work (\secref{evaluation}).
+\begin{itemize}
+\item Our bidirectional dependency analysis makes it possible to select any part of a resulting data structure. This makes it possible to determine what parts of inputs and code contribute to a part of a value that has been produced.
+\item The backward and forward analaysis that we define can be composed in a number of ways to perform a range of useful data analyses. In addition to combining backwards and forwards analyses, as discussed above, we can achieve other functionality by inverting the selection before performing the analysis.
+\item We implement and formalize a rich surface language with familiar functional programming features including piecewise definitions, pattern matching, list notation and list comprehensions. Doing so in a way that supports bidirectional program analysis requires careful consideration.
 \end{itemize}
+
+The rest of the paper is structured as follows. We discuss the bidirectional dependency analysis for a core calculus and prove that it is a Galois connection in \secref{core-language}. We discuss applications and the expressive power of our framework in \secref{toolkit}. In \secref{surface-language}, we present a rich surface langauge. Finally, \secref{evaluation} discusses its implementation in PureScript alongside with discussion and opportunities for futrue work.
+
+%In this paper, we present new language-based data provenance techniques for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our specific contributions are as follows:
+
+% \begin{itemize}
+%   \item[--] a new bidirectional dependency analysis for a core calculus with lists, vectors and records, and a proof that the analysis is a Galois connection (\secref{core-language});
+%   \item[--] applications of the core analysis to enrich visualisations with interactions which allow a user to explore their relationship to data and to each other, and a comparison with \emph{Galois slicing}, a program slicing framework with similar round-tripping properties (\secref{toolkit});
+%   \item[--] a richer surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of our analysis to the desugaring (\secref{surface-language});
+%   \item[--] an implementation of Fluid in PureScript, a discussion of strengths and weaknesses of the approach, and opportunities for future work (\secref{evaluation}).
+%\end{itemize}
