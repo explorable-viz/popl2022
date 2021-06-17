@@ -12,21 +12,6 @@
 }
 \end{smathpar}
 \\[2mm]
-\flushleft \shadebox{$\Gamma \vdash h: \Delta$}
-\begin{smathpar}
-   \inferrule*[right={
-      \textnormal{$\Delta = \vec{\bind{x}{\tyFun{A}{B}}}$}
-   }]
-   {
-      \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
-      \quad
-      (\forall i \numleq \length{\vec{x}})
-   }
-   {
-      \Gamma \vdash \vec{\bind{x}{\sigma}}: \Delta
-   }
-\end{smathpar}
-\\[2mm]
 \flushleft \shadebox{$\vdash v: A$}
 \begin{smathpar}
 \inferrule*
@@ -130,4 +115,5 @@
 }
 \end{smathpar}
 \caption{Typing rules for environments and values}
+\label{core-typing-value}
 \end{figure}
