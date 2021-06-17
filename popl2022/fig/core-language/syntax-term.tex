@@ -41,7 +41,7 @@ x
 \text{vector}
 \\
 &&&
-\exVecLookup{e}{e}
+\exVecLookup{e}{e'}
 &
 \text{vector lookup}
 \\
@@ -79,8 +79,47 @@ h
 \seq{\bind{x}{\sigma}}
 &
 \\[2mm]
+\mbox{Eliminator}
+&
+\sigma, \tau
+&
+::=
+&
+\elimVar{x}{\kappa}
+&
+\text{variable}
+\\
+&&&
+\elimBool{\kappa}{\kappa'}
+&
+\text{Boolean}
+\\
+&&&
+\elimRec{\vec{x}}{\kappa}
+&
+\text{record}
+\\
+&&&
+\elimList{\kappa}{\sigma}
+&
+\text{list}
+\\[2mm]
+\mbox{Continuation}
+&
+\kappa
+&
+::=
+&
+e
+&
+\text{term}
+\\
+&&&
+\sigma
+&
+\text{eliminator}
 \end{syntaxfig}
-\caption{Terms}
+\caption{Terms and Eliminators}
 \label{fig:core-syntax-term}
 \end{figure}
 

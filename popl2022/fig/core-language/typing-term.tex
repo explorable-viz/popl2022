@@ -153,6 +153,70 @@
    \Gamma \vdash \exLetRecMutual{h}{e}: A
 }
 \end{smathpar}
-\caption{Typing rules for terms}
+\flushleft \shadebox{$\Gamma \vdash \sigma: \tyFun{A}{B}$}
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \concat \bind{x}{A} \vdash \kappa: B
+}
+{
+   \Gamma \vdash (\elimVar{x}{\kappa}): \tyFun{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: A
+   \\
+   \Gamma \vdash \kappa': A
+}
+{
+   \Gamma \vdash \elimBool{\kappa}{\kappa'}: \tyFun{\tyBool}{A}
+}
+\\
+%
+\and
+%
+\inferrule*[right={
+   \textnormal{$ \length{ \vec{x}} = n $}
+}]
+{
+   \Gamma \vdash \sigma:  \tyFun{\seqRangeOp{A_1}{A_{n+1}}{\rightarrow}}{B} %\tyFun{\tyRec{\vec{\bind{x}{A}}}}{\tyFun{A'}{B}}
+}
+{
+   \Gamma
+   \vdash
+   \elimRec{\vec{x}}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}}}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: B
+   \\
+   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{\tyList{A}}{B}}
+}
+{
+   \Gamma \vdash \elimList{\kappa}{\sigma}: \tyFun{\tyList{A}}{B}
+}
+\end{smathpar}
+\\[2mm]
+\flushleft \shadebox{$\Gamma \vdash h: \Delta$}
+\begin{smathpar}
+   \inferrule*[right={
+      \textnormal{$\Delta = \vec{\bind{x}{\tyFun{A}{B}}}$}
+   }]
+   {
+      \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
+      \quad
+      (\forall i \numleq \length{\vec{x}})
+   }
+   {
+      \Gamma \vdash \vec{\bind{x}{\sigma}}: \Delta
+   }
+\end{smathpar}
+\caption{Typing rules for terms and eliminators}
 \label{fig:core-typing-term}
 \end{figure}
