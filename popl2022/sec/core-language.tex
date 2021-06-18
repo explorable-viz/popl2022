@@ -43,26 +43,33 @@ The typing rules for environments and values are given in Figure \ref{core-typin
 
 \subsection{Semantics}
 
-Before we turn to the treatment of data dependencies, we give the operational semantics for the core language introduced in \secref{core-language:syntax-typing}. We will also introduce a syntax for \textit{traces}, which represent derivation trees in the operational semantics. This will be used later in \secref{core-language:fwd-bwd} to define forward and backward analyses over a single execution.
+Having introduced our core language in \secref{core-language:syntax-typing}, we now describe their operational semantics (Figure \ref{fig:eval}). This requires introducing a syntax for \textit{traces} (Figure \ref{fig:core-syntax-trace}) which are used to compute analyses that require replaying of computations \cite{perera12a}. Afterwards, in \secref{core-language:selections} we can begin augmenting our language with selections to allow for the tracking of data dependencies. The notions of traces and selections will be used later in \secref{core-language:fwd-bwd} to define forward and backward analyses over a single execution.
 \todo{Revisit how well this introduces the structure of the subsection}
 
 
 \subsubsection{Evaluation}
 \label{sec:core-language:eval}
+
+
 \input{fig/core-language/eval}
 \input{fig/core-language/eval-aux}
 \input{fig/core-language/syntax-trace}
 
-We explain the semantics for evaluating terms in our language (Figure \ref{fig:eval}) where the judgement $\explVal{T}{\rho, e \evalR v}$ means that a term $e$ under environment $\rho$ evaluates to a value $v$. A trace $\textcolor{gray}{T}$ is a compact notation for the proof terms of the $\evalR$ relation, and are operationally used to compute analyses that require replaying/rewinding of computations \cite{perera12a}. 
+We explain the semantics for evaluating terms in our language (Figure \ref{fig:eval}) where the judgement $\explVal{T}{\rho, e \evalR v}$ means that a term $e$ under environment $\rho$ evaluates to a value $v$. A trace $\textcolor{gray}{T}$ (Figure \ref{fig:core-syntax-trace}) is a notation for the proof terms of the $\evalR$ relation, and are a compact representation for derivation trees in the operational semantics in the sense that they discard unnecessary information from the derivation tree.
 
-\todo{Complete section - explain evaluation relation individual rules and trace forms, and aux relations}
+The rules for variables $x$, Booleans $\exTrue$ and $\exFalse$, integers $n$, empty lists $\exNil$, and non-empty lists $\exCons{e}{e'}$, are straightforward and have trivial trace forms. The evaluation of records and record projection are also simple, but we begin to note the use of indexed traces which expose additional necessary information about evaluation. For example, evaluating a record $\exRec{\vec{\bind{x}{e}}}$ produces a trace $\textcolor{gray}{T_i}$ for each $\textcolor{gray}{i}$th record component, and record projection $\exRecProj{e}{x_i}$ has a trace $\textcolor{gray}{\trRecProj{T}{\vec{x}}{x_i}}$ where $\textcolor{gray}{\vec{x}}$ records the fields of the record and $\textcolor{gray}{i}$ records the record index projected. The rule for vectors $\exVec{e}{x}{e'}$ evaluates $e'$ to the vector's length $j$ and then evaluates $e$ to $v_i$ for each index $i \numleq j$; the length $j$ is recorded in the trace $\textcolor{gray}{\trVec{\vec{U}}{x}{T}{j}}$. Similarly, the trace $\textcolor{gray}{\trVecLookup{T}{j}{U}{i}}$ for vector lookup $\exVecLookup{e}{e'}$ records the vector length $\textcolor{gray}{j}$ found from evaluating $e$ to $\textcolor{gray}{T_j}$ and the lookup-index $\textcolor{gray}{i}$ from evaluating $e'$ $\textcolor{gray}{U_i}$. The same logic applies to vector length, $\exVecLen{e}$, which extracts and returns the length of a vector.
 
+The rule for recursive let-bindings, $\exLetRecMutual{h}{e}$, makes use of the auxiliary relation $\rho, h \closeDefsR \rho'$ in Figure \ref{fig:core-language:eval-aux}. This produces a new environment $\rho'$ by taking each function definition $\bind{x}{\sigma}$ in $h$ and mapping $x$ to a corresponding closure capturing the old environment $\rho$. It then evaluates $e$ under new environment $\rho'$, leaving as an overall trace $\textcolor{gray}{\trLetRecMutual{h}{T}}$. The final rule for application, $\exApp{e}{e'}$, evaluates $e$ to a closure $\exClosure{\rho_1}{h}{\sigma}$ and $e'$ to a value $v$. It then pattern matches $v$ against the function $\sigma$ to return the correct branch $e''$; this leaves a trace $\textcolor{gray}{w}$ recording which pattern was matched, where the semantics for this relation $\matchR$ is defined later in $\secref{core-language:pattern-match}$. Lastly, it evaluates the function body $e''$ under the concatenation of the intermediate environments produced.
+
+%% it evaluates the function body $e''$ under the closure environment $\rho_1$, the environment of mutually recursive functions in the closure $\rho_1, h \closeDefsR \rho_2$, and the binding of value $v$ against the pattern found in the eliminator $\sigma$.
+
+\todo{Missed out partial primitives, and not sure how to best describe application.}
 
 \subsubsection{Pattern matching}
 \label{sec:core-language:pattern-match}
 \input{fig/core-language/match}
 
-We first give a semantics to pattern matching in our language (Figure \ref{fig:core-match}) where the judgement $\explVal{w}{v, \sigma \matchR \rho, \kappa}$ states that matching a value $v$ against an eliminator $\sigma$ evaluates to an environment $\rho$ which binds $v$ to any matched variables in $\sigma$ and a continuation $\kappa$. The trace $\textcolor{gray}{w}$ is a specific form of trace used in the $\matchR$ relation, and is used to record which pattern was matched against in an eliminator and hence which branch was taken during program execution.
+The judgement $\explVal{w}{v, \sigma \matchR \rho, \kappa}$ for pattern matching (Figure \ref{fig:core-match}) states that matching a value $v$ against an eliminator $\sigma$ evaluates to an environment $\rho$ which binds $v$ to any matched variables in $\sigma$ and a continuation $\kappa$. The trace $\textcolor{gray}{w}$ is a specific form of trace used in the $\matchR$ relation, and is used to record which pattern was matched against in an eliminator and hence which branch was taken during program execution.
 
 \todo{Complete section - describe in same way as 2.2.1. }
 
