@@ -1,4 +1,5 @@
-\documentclass[preprint,acmsmall, screen]{acmart}
+\documentclass[preprint,acmsmall,screen]{acmart}
+
 \settopmatter{printacmref=false}
 
 \acmJournal{PACMPL}
@@ -26,7 +27,10 @@
 
 \begin{document}
 
-\title{Linking visualisations using Galois dependencies}
+\title{Linked visualisations via Galois dependencies}
+\ifappendices
+   \subtitle{\emph{Extended paper with additional supporting material}}
+\fi
 \input{tex/authors}
 
 \maketitle
@@ -39,9 +43,11 @@
 
 \pagebreak
 \bibliography{../tex-common/bib}
-\clearpage
-\appendix
 
-\input{sec/proofs.tex}
+\ifappendices
+   \clearpage
+   \appendix
+   \input{sec/proofs.tex}
+\fi
 
 \end{document}
