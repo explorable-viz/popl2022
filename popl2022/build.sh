@@ -6,7 +6,7 @@ HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $HERE
 
 PDFLATEX="pdflatex -file-line-error -halt-on-error"
-TARGET=anonymised
+TARGET=anonymised-full
 
 $PDFLATEX $TARGET
 bibtex $TARGET

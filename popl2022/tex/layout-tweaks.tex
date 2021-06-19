@@ -23,16 +23,11 @@
 \DeclareRobustCommand{\codeSel}[1]{{\sethlcolor{yellow}\hl{#1}}}
 
 \newbool{anonymous}
-\newbool{appendices}
-
-% turn these into build parameters
-\booltrue{appendices}
-\boolfalse{anonymous}
 
 \makeatletter
 \if@ACM@anonymous
-    \booltrue{anonymous}%
-  \else
-    \boolfalse{anonymous}%
-  \fi
+   \booltrue{anonymous}%
+\else
+   \boolfalse{anonymous}%
+\fi
 \makeatother

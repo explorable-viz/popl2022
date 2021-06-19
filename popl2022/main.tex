@@ -27,7 +27,10 @@
 
 \begin{document}
 
-\title{Linking visualisations using Galois dependencies}
+\title{Linked visualisations via Galois dependencies}
+\ifappendices
+   \subtitle{\emph{Extended paper with additional supporting material}}
+\fi
 \input{tex/authors}
 
 \maketitle
@@ -41,10 +44,10 @@
 \pagebreak
 \bibliography{../tex-common/bib}
 
-\ifbool{appendices}{
+\ifappendices
    \clearpage
    \appendix
    \input{sec/proofs.tex}
-}{}
+\fi
 
 \end{document}
