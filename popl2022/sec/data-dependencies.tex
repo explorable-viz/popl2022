@@ -1,0 +1,117 @@
+\section{A bidirectional dynamic dependency analysis}
+\label{sec:data-dependencies}
+
+We now show how to extend the core language described in \secref{core-language} with a bidirectional mechanism for tracking data dependencies. The first thing to establish is a way of selecting parts of the program of interest. To do this, we first take all the first-order data forms and augment them with an annotation to indicate their selection state.
+
+\input{fig/core-language/syntax-selection}
+\input{fig/core-language/slicing/leq-value-elim}
+\input{fig/core-language/slicing/leq-term}
+
+\begin{definition}[Order on selection state]
+   Define $\leq$ to be the total order satisfying $\FF \leq \alpha$ and $\TT \leq \TT$.
+\end{definition}
+
+\begin{definition}[Hole equivalence]
+   Define $\eq$ as the intersection of $\leq$ and $\geq$.
+\end{definition}
+
+\input{fig/core-language/slicing/join-value}
+\input{fig/core-language/slicing/join-elim}
+
+
+\noindent
+To incorporate annotations in our calculus, we first take all the first-order data forms and augment them with an annotation to indicate the selection state. The syntax for annotations along with the annotated forms of our core-language are given in Figure \ref{fig:core-syntax-selection}.
+
+As we are primarily interested in tracking data dependencies between values, we first give the annotation-augmented form of values -- this includes: booleans, $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{v}}}{\alpha}$, empty lists $\annNil{\alpha}$ and non-empty lists $\annCons{u}{v}{\alpha}$, and vectors $\annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}}$. We also introduce holes $\hole$ as a special expression form that corresponds to annotating every position within a value with the bottom element of a lattice.
+
+In order to then propagate the selection-state information of values back to the expressions of our our program which are responsible for creating them, we must also add annotations to the necessary expression forms of our language, $e$. These correspond to the annotated forms of values, and hence include: holes $\hole$, booleans, $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{e}}}{\alpha}$, empty lists $\annNil{\alpha}$ and non-empty lists $\annCons{e}{e'}{\alpha}$, and vectors $\annVec{e}{x}{e'}{\alpha}$.
+
+Annotations allow us to think of the data type of terms and values as a functor which associates terms/values with selection information. It should be noted that the choice of annotation type is kept mostly abstract as there are various forms of selection information we may want to express in our language -- however, we rely on the assumption that annotations are required to be a lattice so that we can use the top element $\top$ of the lattice to represent selection and the bottom element $\bot$ to represent unselection. The most simple choice of lattice would be to set the type of annotations to be the trivial unit lattice -- this lets us recover the original unannotated syntax presented in Figure \ref{fig:core-syntax-term} and \ref{fig:core-syntax-value}. Most typically, one would use the boolean lattice to indicate a selection of true or false, however we can also use more sophisticated lattices such as a vector of booleans to represent multiple selections simultaneously.
+
+\subsection{Forward and backward Galois dependency}
+\label{sec:core-language:fwd-bwd}
+
+\subsubsection{Pattern-matching}
+
+\input{fig/core-language/slicing/match-fwd}
+\input{fig/core-language/slicing/match-bwd}
+
+\begin{lemma}[Determinism of pattern-matching]
+   Suppose $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for pattern-matching]
+   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
+\end{definition}
+
+\begin{theorem}[Galois connection for pattern-matching]
+\label{thm:core-language:match:gc}
+   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+\end{theorem}
+
+\subsubsection{Evaluation}
+
+\paragraph{Primitive operations}
+
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ with $\length{\vec{n}} = i$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}{\vec{n}}, \primBwd{\phi}{\vec{n}})$ between $\Below{\vec{n}}$ and $\Below{\phi(\vec{n})}$ by defining
+\begin{definition}
+\label{def:core-language:primop-gc}
+\begin{salign}
+   \primFwd{\phi}{\vec{n}}(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
+   \text{ where }
+   \primFwdBool{\phi}{\vec{n}}(\vec{\alpha}) = \beta
+   \\
+   \primBwd{\phi}{\vec{n}}(\annInt{m}{\beta}) &= \vec{\annInt{n}{\alpha}}
+   \text{ where }
+   \primBwdBool{\phi}{\vec{n}}(\beta) = \vec{\alpha}
+\end{salign}
+\end{definition}
+
+\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values. For any $\vec{n}$ with $\length{\vec{n}} \numlt i$, any such $\phi$ also gives rise to an isomorphism between $\Below{\vec{n}}$ and the lattice of partial applications $\Below{\exPrimOp{\phi}{\vec{n}}}$.
+
+\input{fig/core-language/slicing/eval-fwd}
+\input{fig/core-language/slicing/eval-bwd}
+\input{fig/core-language/slicing/eval-aux}
+
+\begin{definition}[Hole environment]
+Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
+\end{definition}
+
+\begin{lemma}[Least environment for $\rho$]
+\label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\rho} \leq \rho$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for environment lookup]
+   Suppose $\envLookup{\rho}{x}{v}$. Then define $\envLookupFwdF{\rho,x}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,x}: \Below{v} \to \Below{\rho}$ to be $\bind{x}{-}\envLookupR$ and $\envLookupBwdR{\rho}\bind{x}{-}$ restricted to $\Below{\rho}$ and $\Below{v}$ respectively.
+\end{definition}
+
+\begin{lemma}[Galois connection for environment]
+\label{lem:core-language:env-get-put}Suppose $\envLookup{\rho}{x}{v}$.
+\begin{enumerate}
+   \item \label{lem:core-language:env-get-put:1} $\envLookupFwdF{\rho,x}(\envLookupBwdF{\rho,x}(v)) \geq v$.
+   \item \label{lem:core-language:env-get-put:2} $\envLookupBwdF{\rho,x}(\envLookupFwdF{\rho,x}(\rho')) \leq \rho'$.
+\end{enumerate}
+\end{lemma}
+
+\begin{definition}
+   \label{def:core-language:closeDefs-bwd}
+   Define the relation $\closeDefsBwdR$ as given in \figref{core-language:slicing:eval-aux}.
+\end{definition}
+
+\begin{definition}[Forward and backward functions for recursive bindings]
+   Suppose $\rho, h \closeDefsR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsR$ and $\closeDefsBwdR$ restricted to $\Below{(\rho, h)}$ and $\Below{\rho'}$ respectively.
+\end{definition}
+
+\begin{theorem}[Galois connection for recursive bindings]
+\label{thm:core-language:closeDefs:gc}
+   Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h} \adjoint \closeDefsBwdF{\rho,h}$.
+\end{theorem}
+
+\begin{definition}[Forward and backward functions for evaluation]
+   Suppose $T: \rho, e \evalR v$. Define $\evalFwdF{T}: \Below{(\rho, e, \TT)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \TT)}$ to be $\evalFwdR{T}$ and $\evalBwdR{T}$ restricted to $\Below{(\rho, e, \TT)}$ and $\Below{v}$ respectively.
+\end{definition}
+
+\begin{theorem}[Galois connection for evaluation]
+\label{thm:core-language:eval:gc}
+   Suppose $T: \rho, e \evalFwdS v$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
+\end{theorem}

@@ -63,7 +63,7 @@ In this paper, we present new language-based data provenance technique for linki
 \item We implement and formalize a rich surface language with familiar functional programming features including piecewise definitions, pattern matching, list notation and list comprehensions. Doing so in a way that supports bidirectional program analysis requires careful consideration.
 \end{itemize}
 
-The rest of the paper is structured as follows. We discuss the bidirectional dependency analysis for a core calculus and prove that it is a Galois connection in \secref{core-language}. We discuss applications and the expressive power of our framework in \secref{toolkit}. In \secref{surface-language}, we present a rich surface langauge. Finally, \secref{evaluation} discusses its implementation in PureScript alongside with discussion and opportunities for futrue work.
+\noindent The rest of the paper is structured as follows. We introduce a core calculus in \secref{core-language}. In \secref{data-dependencies} we define a bidirectional data dependency analysis and prove that it forms a Galois connection. \secref{toolkit} describes how this analysis and its de Morgan dual are used in our PureScript implementation to support the kind of linking scenarios motivated above, and compares our approach to related work. \secref{surface-language} presents the surface language, and shows it desugars into the core language via another Galois connection. \secref{conclusion} summarises and discusses opportunities for future work.
 
 %In this paper, we present new language-based data provenance techniques for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our specific contributions are as follows:
 
