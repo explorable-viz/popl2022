@@ -25,7 +25,7 @@ jobs:
         source collate-examples.sh
     - uses: dante-ev/latex-action@latest
       with:
-        entrypoint: ./popl2022/build.sh
+        entrypoint: ./popl2022/build-all.sh
     - uses: actions/upload-artifact@v2
       with:
-        path: ./popl2022/main.pdf
+        path: ./popl2022/anonymised.pdf
