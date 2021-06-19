@@ -1,6 +1,6 @@
 \subsection{\lemref{core-language:env-get-put}}
-If $\envLookupBwd{\rho}{\rho'}{\bind{x}{v}}$ then $\envLookup{\rho}{x}{v}$. 
- 
+If $\envLookupBwd{\rho}{\rho'}{\bind{x}{v}}$ then $\envLookup{\rho}{x}{v}$.
+
 \begin{proof}
    \ref{lem:core-language:env-get-put:1}
    By induction on the proof that $\envLookupBwd{\rho}{\rho'}{\bind{x}{v}}$:
@@ -92,7 +92,7 @@ If $\envLookupBwd{\rho}{\rho'}{\bind{x}{v}}$ then $\envLookup{\rho}{x}{v}$.
 \end{proof}
 
 \noindent
-If $\envLookup{\rho}{x}{v}$ then $\exists \rho'$ such that $\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$ and $\rho' \leq \rho$. 
+If $\envLookup{\rho}{x}{v}$ then $\exists \rho'$ such that $\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$ and $\rho' \leq \rho$.
 \begin{proof}
    \ref{lem:core-language:env-get-put:2}
    By induction on the proof that $\envLookup{\rho}{x}{v}$.
