@@ -39,9 +39,11 @@
 
 \pagebreak
 \bibliography{../tex-common/bib}
-\clearpage
-\appendix
 
-\input{sec/proofs.tex}
+\ifbool{appendices}{
+   \clearpage
+   \appendix
+   \input{sec/proofs.tex}
+}
 
 \end{document}

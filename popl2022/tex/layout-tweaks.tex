@@ -21,3 +21,10 @@
 
 \DeclareRobustCommand{\codeErase}[1]{{\sethlcolor{lightgray}\hl{#1}}}
 \DeclareRobustCommand{\codeSel}[1]{{\sethlcolor{yellow}\hl{#1}}}
+
+\newbool{anonymise}
+\newbool{appendices}
+
+% turn these into build parameters
+\booltrue{appendices}
+\boolfalse{anonymise}
