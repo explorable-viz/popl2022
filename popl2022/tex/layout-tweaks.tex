@@ -29,12 +29,9 @@
 \booltrue{appendices}
 \boolfalse{anonymous}
 
-\makeatletter
-\newcommand\anon[1]{%
 \if@ACM@anonymous
-    XXX%
+    \booltrue{anonymous}%
   \else
-    #1%
+    \boolfalse{anonymous}%
   \fi
 }
-\makeatother
