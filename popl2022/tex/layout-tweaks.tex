@@ -22,9 +22,19 @@
 \DeclareRobustCommand{\codeErase}[1]{{\sethlcolor{lightgray}\hl{#1}}}
 \DeclareRobustCommand{\codeSel}[1]{{\sethlcolor{yellow}\hl{#1}}}
 
-\newbool{anonymise}
+\newbool{anonymous}
 \newbool{appendices}
 
 % turn these into build parameters
 \booltrue{appendices}
-\boolfalse{anonymise}
+\boolfalse{anonymous}
+
+\makeatletter
+\newcommand\anon[1]{%
+\if@ACM@anonymous
+    XXX%
+  \else
+    #1%
+  \fi
+}
+\makeatother
