@@ -5,7 +5,7 @@
 \begin{minipage}[t]{0.5\textwidth}
 \begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
 %\rowcolor{verylightgray}
-\textbfit{Types}
+\textbfit{Type}
 &
 &
 \\
@@ -36,14 +36,14 @@ $\tyFun{A}{B}$
 functions
 \\
 %\rowcolor{verylightgray}
-\textbfit{Identifiers}
+\textbfit{Identifier}
 &
 &
 \\
 $x, y$
 \\
 %\rowcolor{verylightgray}
-\textbfit{Typing contexts}
+\textbfit{Typing context}
 &
 &
 \\
@@ -53,53 +53,47 @@ $\seq{\bind{x}{A}}$
 \end{tabularx}
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
-\begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
+\begin{tabularx}{\textwidth}{rL{2.5cm}L{2.5cm}}
 %\rowcolor{verylightgray}
-\textbfit{Types}
+\textbfit{Eliminator}
 &
 &
 \\
-$A, B ::=$
+$\sigma, \tau ::=$
 &
-$\tyBool$
+$\elimVar{x}{\kappa}$
 &
-Booleans
+variable
 \\
 &
-$\tyInt$
+$\elimBool{\kappa}{\kappa'}$
 &
-integers
+Boolean
 \\
 &
-$\tyRec{\vec{\bind{x}{A}}}$
+$\elimRec{\vec{x}}{\kappa}$
 &
-records
+record
 \\
 &
-$\tyList{A}$
+$\elimList{\kappa}{\sigma}$
 &
-lists
+list
 \\
-&
-$\tyFun{A}{B}$
-&
-functions
-\\
-%\rowcolor{verylightgray}
-\textbfit{Identifiers}
+\textbfit{Continuation}
 &
 &
 \\
-$x, y$
+$\kappa ::=$
+&
+$e$
+&
+term
 \\
-%\rowcolor{verylightgray}
-\textbfit{Typing contexts}
 &
+$\sigma$
 &
-\\
-$\Gamma, \Delta ::=$
-&
-$\seq{\bind{x}{A}}$
+eliminator
 \end{tabularx}
 \end{minipage}
 \endgroup
