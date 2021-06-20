@@ -27,16 +27,22 @@ $\begin{array}{lll|lll}
    (\seqEmpty, \kappa', \alpha)
    \\
    \matchFwdF{\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}
-             (\annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}, \elimRec{\vec{x} \concat y}{\sigma})
+             (v', \elimRec{\vec{x} \concat y}{\sigma})
    &=&
    (\rho \concat \rho', \kappa, \alpha \meet \beta \meet \beta')
    &
-   (\rho, \sigma', \beta)
-   &=&
-   \matchFwdF{\matchRec{\vec{\bind{x}{w}}}}(\annRec{\vec{\bind{x}{v}}}{\FF}, \elimRec{\vec{x}}, \sigma)
+   v' &=& \annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}
    \\
    &&&
-   (\rho_2, \kappa, \beta') &=& \matchFwdF{w_2}(v_2,\tau)
+   \tau &=& \elimRec{\vec{x}}{\sigma}
+   \\
+   &&&
+   (\rho, \sigma', \beta)
+   &=&
+   \matchFwdF{\matchRec{\vec{\bind{x}{w}}}}(\annRec{\vec{\bind{x}{v}}}{\FF}, \tau)
+   \\
+   &&&
+   (\rho', \kappa, \beta') &=& \matchFwdF{w}(u, \sigma')
    \\
    \matchFwdF{\matchNil}(\annNil{\alpha}, \elimList{\kappa}{\sigma'})
    &=&
@@ -76,14 +82,14 @@ $\begin{array}{lll|lll}
    &=&
    (\annFalse{\alpha}, \elimBool{\hole}{\kappa})
    \\
-   \matchBwdF{\matchPair{w_1}{w_2}}(\rho_1 \concat \rho_2, \kappa, \alpha)
+   \matchBwdF{\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}(\rho \concat \rho', \kappa, \alpha)
    &=&
-   (\annPair{v_1}{v_2}{\alpha}, \elimProd{\tau})
+   (\annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}, \elimRec{\vec{x} \concat y}{\tau})
    &
-   (v_2, \sigma) &=& \matchBwdF{w_2}(\rho_2, \kappa, \alpha)
+   (u,\sigma) &=& \matchBwdF{w'}(\rho', \kappa, \alpha)
    \\
    &&&
-   (v_1, \tau) &=& \matchBwdF{w_1}(\rho_1, \sigma, \alpha)
+   (\annRec{\vec{\bind{x}{v}}}{\beta}, \tau) &=& \matchBwdF{\matchRec{\vec{\bind{x}{w}}}}(\rho, \sigma, \alpha)
    \\
    \matchBwdF{\matchNil}(\seqEmpty,\kappa,\alpha)
    &=&
@@ -98,5 +104,5 @@ $\begin{array}{lll|lll}
    &&&
    (v_1, \tau) &=& \matchBwdF{w_1}(\rho_1, \sigma, \alpha)
 \end{array}$
-\caption{Match: forward and backward dependency \todo{drop pairs, add records}}
+\caption{Match: forward and backward dependency}
 \end{figure}
