@@ -43,9 +43,9 @@
 %
 \inferrule*
 {
-   \Gamma \vdash e_i: A_i
+   \Gamma \vdash e_n: A_n
    \quad
-   (\forall i \numleq \length{\vec{x}})
+   (\forall n \numleq \length{\vec{x}})
 }
 {
    \Gamma \vdash \exRec{\vec{\bind{x}{e}}}: \tyRec{\vec{\bind{x}{A}}}
@@ -54,13 +54,13 @@
 \and
 %
 \inferrule*[
-   right={$i \numleq \length{\vec{x}}$}
+   right={$n \numleq \length{\vec{x}}$}
 ]
 {
    \Gamma \vdash e: \tyRec{\vec{\bind{x}{A}}}
 }
 {
-   \Gamma \vdash \exRecProj{e}{x_i}: A_i
+   \Gamma \vdash \exRecProj{e}{x_n}: A_n
 }
 %
 \and
