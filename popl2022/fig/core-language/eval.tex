@@ -1,5 +1,5 @@
-\begin{figure}[H]
-\flushleft \shadebox{$\explVal{T}{\rho, e \evalR v}$}
+{\small \flushleft \shadebox{$\explVal{T}{\rho, e \evalR v}$}%
+\hfill \textbfit{$T$ witnesses that $e$ evaluates to $v$ in $\rho$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\evalR$-var}},
@@ -113,46 +113,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\evalR$-vector}}]
-   {
-      \explVal{T}{\rho, e' \evalR j}
-      \\
-      \explVal{U_{i}}{\rho \concat \bind{x}{i}, e \evalR v_{i}}
-      \quad
-      (\forall i \numleq j)
-   }
-   {
-      \explVal{\trVec{\vec{U}}{x}{T}{j}}
-              {\rho, \exVec{e}{x}{e'} \evalR \exVecVal{\vec{v}}{j}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\evalR$-vector-lookup}},
-      right={$i \numleq j$}
-   ]
-   {
-      \explVal{T}{\rho, e \evalR \exVecVal{\vec{v}}{j}}
-      \\
-      \explVal{U}{\rho, e' \evalR i}
-   }
-   {
-      \explVal{\trVecLookup{T}{j}{U}{i}}{\rho, \exVecLookup{e}{e'} \evalR v_{i}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\evalR$-vector-length}}]
-   {
-      \explVal{T}{\rho, e \evalR \exVecVal{\vec{v}}{j}}
-   }
-   {
-      \explVal{\trVecLen{T}{j}}{\rho, \exVecLen{e} \evalR j}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\evalR$-apply-prim}}
    ]
@@ -164,6 +124,20 @@
    {
       \explVal{\trAppPrim{T}{\phi}{\vec{n}}{U}{m}}
               {\rho, \exApp{e}{e'} \evalR \exPrimOp{\phi}{\vec{n} \concat m}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalR$-let-rec}}
+   ]
+   {
+      \rho, h \closeDefsR \rho'
+      \\
+      \explVal{T}{\rho \concat \rho', e \evalR v}
+   }
+   {
+      \explVal{\trLetRecMutual{h}{T}}{\rho, \exLetRecMutual{h}{e} \evalR v}
    }
    %
    \and
@@ -183,21 +157,4 @@
    {
       \explVal{\trApp{T}{U}{w}{T'}}{\rho, \exApp{e}{e'} \evalR v'}
    }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\evalR$-let-rec}}
-   ]
-   {
-      \rho, h \closeDefsR \rho'
-      \\
-      \explVal{T}{\rho \concat \rho', e \evalR v}
-   }
-   {
-      \explVal{\trLetRecMutual{h}{T}}{\rho, \exLetRecMutual{h}{e} \evalR v}
-   }
 \end{smathpar}
-\caption{Term $e$ evaluates in environment $\rho$ to value $v$ (witnessed by $T$)}
-\label{fig:eval}
-\end{figure}

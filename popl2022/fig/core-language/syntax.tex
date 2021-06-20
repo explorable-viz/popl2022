@@ -1,0 +1,198 @@
+\begin{figure}
+{\small
+\begingroup
+\renewcommand*{\arraystretch}{1}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
+%\rowcolor{verylightgray}
+&\textbfit{Type}&
+\\
+$A, B ::=$
+&
+$\tyBool$
+&
+Booleans
+\\
+&
+$\tyInt$
+&
+integers
+\\
+&
+$\tyRec{\vec{\bind{x}{A}}}$
+&
+records
+\\
+&
+$\tyList{A}$
+&
+lists
+\\
+&
+$\tyFun{A}{B}$
+&
+functions
+\\[2mm]
+$\Gamma, \Delta ::=$
+&
+$\seq{\bind{x}{A}}$
+&
+typing context
+\\[2mm]
+&\textbfit{Term}&
+\\
+$e ::=$
+&
+$\exTrue \mid \exFalse$
+&
+Boolean
+\\
+&
+$\exInt{n}$
+&
+integer
+\\
+&
+$\exVar{x}$
+&
+variable
+\\
+&
+$\exApp{e}{e'}$
+&
+application
+\\
+&
+$\exNil$
+&
+nil
+\\
+&
+$\exCons{e}{e'}$
+&
+cons
+\\
+&
+$\exRec{\vec{\bind{x}{e}}}$
+&
+record
+\\
+&
+$\exRecProj{e}{x}$
+&
+record projection
+\\
+&
+$\exLambda{\sigma}$
+&
+anonymous function
+\\
+&
+$\exLetRecMutual{h}{e}$
+&
+recursive let
+\end{tabularx}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{2.5cm}L{2.9cm}}
+&\textbfit{Eliminator}&
+\\
+$\sigma, \tau ::=$
+&
+$\elimVar{x}{\kappa}$
+&
+variable
+\\
+&
+$\elimBool{\kappa}{\kappa'}$
+&
+Boolean
+\\
+&
+$\elimRec{\vec{x}}{\kappa}$
+&
+record
+\\
+&
+$\elimList{\kappa}{\sigma}$
+&
+list
+\\[2mm]
+&\textbfit{Continuation}&
+\\
+$\kappa ::=$
+&
+$e$
+&
+term
+\\
+&
+$\sigma$
+&
+eliminator
+\\[2mm]
+&\textbfit{Value}&
+\\
+$u, v ::=$
+&
+$\exTrue \mid \exFalse$
+&
+Boolean
+\\
+&
+$\exInt{n}$
+&
+integer
+\\
+&
+$\exNil$
+&
+nil
+\\
+&
+$\exCons{u}{v}$
+&
+cons
+\\
+&
+$\exRec{\vec{\bind{x}{v}}}$
+&
+record
+\\
+&
+$\exPrimOp{\phi}{\vec{v}}$
+&
+unsaturated primitive
+\\
+&
+$\exClosure{\rho}{h}{\sigma}$
+&
+closure
+\\[2mm]
+$\rho ::=$
+&
+$\seq{\bind{x}{v}}$
+&
+environment
+\\
+$h ::=$
+&
+$\seq{\bind{x}{\sigma}}$
+&
+recursive functions
+%$x, y$
+%&
+%&
+%identifier
+%\\
+%$i, j$
+%&&
+%positive integer
+%\\[2mm]
+\end{tabularx}
+\end{minipage}
+\endgroup
+}
+\caption{Syntax of core language}
+\label{fig:core-language:syntax}
+\end{figure}

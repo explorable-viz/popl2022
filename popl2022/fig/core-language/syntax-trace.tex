@@ -1,112 +1,102 @@
 \begin{figure}[H]
-\begin{syntaxfig}
-\mbox{Trace}
-&
-T, U
-&
-::=
-&
-\trVar{x}{\rho}
-&
-\text{variable}
+{\small
+\begingroup
+\renewcommand*{\arraystretch}{1}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
+&\textbfit{Trace}&
 \\
-&&&
-\trTrue{\rho}
-\mid
-\trFalse{\rho}
+$T, U ::=$
 &
-\text{Boolean}
+$\trVar{x}{\rho}$
+&
+variable
 \\
-&&&
-\trInt{n}{\rho}
 &
-\text{integer}
+$\trTrue{\rho} \mid \trFalse{\rho}$
+&
+Boolean
 \\
-&&&
-\trRec{\vec{\bind{x}{T}}}
 &
-\text{record}
+$\trInt{n}{\rho}$
+&
+integer
 \\
-&&&
-\trRecProj{T}{\vec{x}}{x}
 &
-\text{record projection}
+$\trRec{\vec{\bind{x}{T}}}$
+&
+record
 \\
-&&&
-\trNil{\rho}
 &
-\text{nil}
+$\trRecProj{T}{\vec{x}}{x}$
+&
+record projection
 \\
-&&&
-\trCons{T}{U}
 &
-\text{cons}
+$\trNil{\rho}$
+&
+nil
 \\
-&&&
-\trVec{\vec{U}}{x}{T}{j}
 &
-\text{vector of length $j$}
+$\trCons{T}{U}$
+&
+cons
 \\
-&&&
-\trVecLookup{T}{i}{U}{j}
 &
-\text{vector lookup}
+$\trLambda{\sigma}$
+&
+anonymous function
 \\
-&&&
-\trVecLen{T}{i}
 &
-\text{vector length}
+$\trApp{T}{U}{w}{T'}$
+&
+application
+\end{tabularx}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{2.5cm}L{3cm}}
 \\
-&&&
-\trLambda{\sigma}
 &
-\text{anonymous function}
+$\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}$
+&
+primitive application
 \\
-&&&
-\trApp{T}{U}{w}{T'}
 &
-\text{application}
-\\
-&&&
-\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}
+$\trLetRecMutual{h}{T}$
 &
-\text{primitive application}
-\\
-&&&
-\trLetRecMutual{h}{T}
-&
-\text{recursive let}
+recursive let
 \\[2mm]
-\mbox{Match}
-&
-w
-&
-::=
-&
-\matchVar{x}
-&
-\text{variable}
+&\textbfit{Match}&
 \\
-&&&
-\matchTrue \mid \matchFalse
+$w ::=$
 &
-\text{Boolean}
+$\matchVar{x}$
+&
+variable
 \\
-&&&
-\matchRec{\vec{\bind{x}{w}}}
 &
-\text{record}
+$\matchTrue \mid \matchFalse$
+&
+Boolean
 \\
-&&&
-\matchNil
 &
-\text{nil}
+$\matchRec{\vec{\bind{x}{w}}}$
+&
+record
 \\
-&&&
-\matchCons{w}{w'}
 &
-\text{cons}
-\end{syntaxfig}
-\caption{Matches and traces}
-\label{fig:core-syntax-trace}
+$\matchNil$
+&
+nil
+\\
+&
+$\matchCons{w}{w'}$
+&
+cons
+\end{tabularx}
+\end{minipage}
+\endgroup
+}
+\caption{Syntax of traces and matches}
+\label{fig:core-language:syntax-trace}
 \end{figure}
