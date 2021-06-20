@@ -31,10 +31,7 @@ $\begin{array}{lll|lll}
    &=&
    (\rho \concat \rho', \kappa, \alpha \meet \beta \meet \beta')
    &
-   v' &=& \annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}
-   \\
-   &&&
-   \tau &=& \elimRec{\vec{x}}{\sigma}
+   (v', \tau) &=& (\annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}, \elimRec{\vec{x}}{\sigma})
    \\
    &&&
    (\rho, \sigma', \beta)
