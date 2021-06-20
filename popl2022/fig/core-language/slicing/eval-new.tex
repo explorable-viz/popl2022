@@ -1,6 +1,8 @@
 \begin{figure}[H]
 \small
 $\begin{array}{lll|llll}
+&&&\textit{where}
+\\
 \arrayrulecolor{lightgray}
 \rowcolor{verylightgray}
 \evalFwdF{T} &::& \Below{(\rho,e,\TT)} \to \Below{v}
@@ -27,6 +29,13 @@ $\begin{array}{lll|llll}
 \evalFwdF{\trInt{n}{\rho}}(\rho',\annInt{n}{\alpha'},\alpha)
 &=&
 \annInt{n}{\alpha \meet \alpha'}
+\\
+% record
+\evalFwdF{\trRec{\vec{\bind{x}{T}}}}(\rho,\annRec{\vec{\bind{x}{e}}}{\alpha},\alpha')
+&=&
+\annRec{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}
+&
+v_i &=& \evalFwdF{T_i}(\rho, e_i, \alpha')
 \\
 % nil
 \evalFwdF{\trNil{\rho}}(\rho',\annNil{\alpha'},\alpha)
@@ -80,8 +89,6 @@ v &=& \evalFwdF{U}(\rho',e_2,\alpha)
 
 $\begin{array}{lll|llll}
 \arrayrulecolor{lightgray}
-&&&\textit{where}
-\\
 \rowcolor{verylightgray}
 \evalBwdF{T} &::& \Below{v} \to \Below{(\rho,e,\TT)}
 &T &::& \rho, e \evalR v
