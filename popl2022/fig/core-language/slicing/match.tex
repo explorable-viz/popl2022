@@ -26,11 +26,14 @@ $\begin{array}{lll|lll}
    &=&
    (\seqEmpty, \kappa', \alpha)
    \\
-   \matchFwdF{\matchPair{w_1}{w_2}}(\annPair{v_1}{v_2}{\alpha}, \elimProd{\sigma'})
+   \matchFwdF{\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}
+             (\annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}, \elimRec{\vec{x} \concat y}{\sigma})
    &=&
-   (\rho_1 \concat \rho_2, \kappa, \alpha \meet \beta \meet \beta')
+   (\rho \concat \rho', \kappa, \alpha \meet \beta \meet \beta')
    &
-   (\rho_1, \tau, \beta) &=& \matchFwdF{w_1}(v_1,\sigma')
+   (\rho, \sigma', \beta)
+   &=&
+   \matchFwdF{\matchRec{\vec{\bind{x}{w}}}}(\annRec{\vec{\bind{x}{v}}}{\FF}, \elimRec{\vec{x}}, \sigma)
    \\
    &&&
    (\rho_2, \kappa, \beta') &=& \matchFwdF{w_2}(v_2,\tau)
