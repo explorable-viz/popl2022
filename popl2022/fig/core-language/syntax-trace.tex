@@ -8,9 +8,9 @@
 \\
 $T, U ::=$
 &
-$\tyBool$
+$\trVar{x}{\rho}$
 &
-Booleans
+variable
 \\
 &
 $\tyInt$
@@ -75,11 +75,6 @@ T, U
 &
 ::=
 &
-\trVar{x}{\rho}
-&
-\text{variable}
-\\
-&&&
 \trTrue{\rho}
 \mid
 \trFalse{\rho}
@@ -112,21 +107,6 @@ T, U
 \text{cons}
 \\
 &&&
-%\trVec{\vec{U}}{x}{T}{j}
-%&
-%\text{vector of length $j$}
-%\\
-%&&&
-%\trVecLookup{T}{i}{U}{j}
-%&
-%\text{vector lookup}
-%\\
-%&&&
-%\trVecLen{T}{i}
-%&
-%\text{vector length}
-%\\
-%&&&
 \trLambda{\sigma}
 &
 \text{anonymous function}
