@@ -1,5 +1,6 @@
 \begin{figure}[H]
-\flushleft \shadebox{$\Gamma \vdash e: A$}
+\flushleft \shadebox{$\Gamma \vdash e: A$}%
+\hfill \textbfit{$e$ has type $A$ under $\Gamma$}
 \begin{smathpar}
 \inferrule*[right={$x : A \in \Gamma$}]
 {
@@ -119,7 +120,8 @@
    \Gamma \vdash \exLetRecMutual{h}{e}: A
 }
 \end{smathpar}
-\flushleft \shadebox{$\Gamma \vdash \sigma: \tyFun{A}{B}$}
+\flushleft \shadebox{$\Gamma \vdash \sigma: \tyFun{A}{B}$}%
+\hfill \textbfit{$\sigma$ has type $\tyFun{A}{B}$ under $\Gamma$}
 \begin{smathpar}
 \inferrule*
 {
@@ -178,7 +180,8 @@
 }
 \end{smathpar}
 \\[2mm]
-\flushleft \shadebox{$\vdash v: A$}
+\flushleft \shadebox{$\vdash v: A$}%
+\hfill \textbfit{$v$ has type $A$}
 \begin{smathpar}
 \inferrule*
 {
@@ -269,7 +272,8 @@
 }
 \end{smathpar}
 \\[2mm]
-\flushleft \shadebox{$\vdash \rho: \Gamma$}
+\flushleft \shadebox{$\vdash \rho: \Gamma$}%
+\hfill \textbfit{$\rho$ has type $\Gamma$}
 \begin{smathpar}
 \inferrule*
 {
@@ -282,7 +286,8 @@
 }
 \end{smathpar}
 \\[2mm]
-\flushleft \shadebox{$\Gamma \vdash h: \Delta$}
+\flushleft \shadebox{$\Gamma \vdash h: \Delta$}%
+\hfill \textbfit{$h$ has type $\Delta$ under $\Gamma$}
 \begin{smathpar}
    \inferrule*[right={
       \textnormal{$\Delta = \vec{\bind{x}{\tyFun{A}{B}}}$}
