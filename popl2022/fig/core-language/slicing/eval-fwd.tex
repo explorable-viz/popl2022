@@ -121,58 +121,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\evalFwdS$-vector}}]
-   {
-      \evalFwdEq{\rho}{e'}{\alpha'}{T}
-                {\annInt{j}{\beta}}
-      \\
-      \evalFwd{\rho \concat \bind{x}{i_{\beta}}}{e}{\alpha'}{U_{i}}{v_{i}}
-      \quad
-      (\forall i \numleq j)
-   }
-   {
-      \evalFwd{\rho}
-              {\annVec{e}{x}{e'}{\alpha}}
-              {\alpha'}
-              {\trVec{\vec{U}}{x}{T}{j}}
-              {\annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha \meet \alpha'}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\evalFwdS$-vector-lookup}},
-      right={$i \numleq j$}
-   ]
-   {
-      \evalFwdEq{\rho}{e}{\alpha}{T}
-                {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
-   }
-   {
-      \evalFwd{\rho}
-              {\exVecLookup{e}{e'}}
-              {\alpha}
-              {\trVecLookup{T}{j}{U}{i}}
-              {v_{i}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\evalFwdS$-vector-length}}]
-   {
-      \evalFwdEq{\rho}{e}{\alpha}{T}
-                {\annVecVal{\vec{v}}{\annInt{j}{\alpha'}}{\beta}}
-   }
-   {
-      \evalFwd{\rho}
-              {\exVecLen{e}}
-              {\alpha}
-              {\trVecLen{T}{j}}
-              {\annInt{j}{\alpha'}}
-   }
-   %
-   \and
-   %
    \inferrule*[
       lab={\ruleName{$\evalFwdS$-apply-prim}}
    ]
