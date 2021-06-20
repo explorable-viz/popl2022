@@ -37,6 +37,13 @@ $\begin{array}{lll|llll}
 &
 v_i &=& \evalFwdF{T_i}(\rho, e_i, \alpha')
 \\
+% project
+\evalFwdF{\trRecProj{T}{\vec{x}}{x}}(\rho,\exRecProj{e}{x},\alpha)
+&=&
+v_i
+&
+\exRec{\vec{\bind{x}{v}}} &=& \evalFwdF{T}(\rho, e, \alpha)
+\\
 % nil
 \evalFwdF{\trNil{\rho}}(\rho',\annNil{\alpha'},\alpha)
 &=&
