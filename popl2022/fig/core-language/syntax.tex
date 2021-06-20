@@ -33,11 +33,6 @@ $\tyFun{A}{B}$
 &
 functions
 \\[2mm]
-$x, y$
-&
-&
-identifier
-\\
 $\Gamma, \Delta ::=$
 &
 $\seq{\bind{x}{A}}$
@@ -100,7 +95,6 @@ recursive let
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
 \begin{tabularx}{\textwidth}{rL{2.5cm}L{2.5cm}}
-%\rowcolor{verylightgray}
 &\textbfit{Eliminator}&
 \\
 $\sigma, \tau ::=$
@@ -136,16 +130,6 @@ term
 $\sigma$
 &
 eliminator
-\\[2mm]
-$h ::=$
-&
-$\seq{\bind{x}{\sigma}}$
-&
-recursive functions
-\\[2mm]
-$i, j$
-&&
-positive integer
 \\[2mm]
 &\textbfit{Value}&
 \\
@@ -184,12 +168,28 @@ primitive operator
 $\exClosure{\rho}{h}{\sigma}$
 &
 closure
-\\
+\\[2mm]
 $\rho ::=$
 &
 $\seq{\bind{x}{v}}$
 &
 environment
+\\
+$h ::=$
+&
+$\seq{\bind{x}{\sigma}}$
+&
+recursive functions
+\\
+%$x, y$
+%&
+%&
+%identifier
+%\\
+%$i, j$
+%&&
+%positive integer
+%\\[2mm]
 \end{tabularx}
 \end{minipage}
 \endgroup
