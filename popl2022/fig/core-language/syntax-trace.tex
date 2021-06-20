@@ -28,9 +28,34 @@ $\trRec{\vec{\bind{x}{T}}}$
 record
 \\
 &
-$\tyFun{A}{B}$
+$\trRecProj{T}{\vec{x}}{x}$
 &
-functions
+record projection
+\\
+&
+$\trNil{\rho}$
+&
+nil
+\\
+&
+$\trCons{T}{U}$
+&
+cons
+\\
+&
+$\trLambda{\sigma}$
+&
+anonymous function
+\\
+&
+$\trApp{T}{U}{w}{T'}$
+&
+application
+\\
+&
+$\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}$
+&
+primitive application
 \end{tabularx}
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
@@ -69,36 +94,6 @@ T, U
 &
 ::=
 &
-\trRecProj{T}{\vec{x}}{x}
-&
-\text{record projection}
-\\
-&&&
-\trNil{\rho}
-&
-\text{nil}
-\\
-&&&
-\trCons{T}{U}
-&
-\text{cons}
-\\
-&&&
-\trLambda{\sigma}
-&
-\text{anonymous function}
-\\
-&&&
-\trApp{T}{U}{w}{T'}
-&
-\text{application}
-\\
-&&&
-\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}
-&
-\text{primitive application}
-\\
-&&&
 \trLetRecMutual{h}{T}
 &
 \text{recursive let}
