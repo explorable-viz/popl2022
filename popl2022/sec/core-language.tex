@@ -13,14 +13,6 @@ Figure \ref{fig:core-language:syntax} introduces the types $A, B$ which consist 
 
 \input{fig/core-language/syntax}
 
-\begin{figure}
-   \begin{syntaxfig}
-      \input{fig/core-language/syntax-term}
-   \end{syntaxfig}
-   \caption{Syntax of core language}
-   \label{fig:core-language:syntax}
-\end{figure}
-
 % \subsubsection{Terms}
 The terms of the language are defined in \figref{core-language:syntax}. These include Boolean constants $\exTrue$ and $\exFalse$, integers $n$, variables $x$, and applications $\exApp{e}{e'}$. We also provide empty lists $\exNil$ and non-empty lists $\exCons{e}{e'}$, record construction $\exRec{\vec{\bind{x}{e}}}$ and record projection $\exRecProj{e}{x}$. The final two term forms, anonymous functions $\exLambda{\sigma}$ and recursive let-bindings $\exLetRecMutual{h}{e}$ where $h$ is of the form $\vec{\bind{x}{\sigma}}$, are explained below. First we introduce the elimination form $\sigma$, which we call an \emph{eliminator}. The typing rules for terms are given in Figure \ref{fig:core-typing-term} and are straightforward except for those which refer to eliminators.
 
