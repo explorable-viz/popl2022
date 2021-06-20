@@ -43,7 +43,7 @@ The typing rules for environments and values are given in Figure \ref{core-typin
 
 \subsection{Semantics}
 
-Having introduced our core language in \secref{core-language:syntax-typing}, we now describe their operational semantics (Figure \ref{fig:eval}). This requires introducing a syntax for \textit{traces} (Figure \ref{fig:core-syntax-trace}) which are used to compute analyses that require replaying of computations \cite{perera12a}. Afterwards, in \secref{core-language:selections} we can begin augmenting our language with selections to allow for the tracking of data dependencies. The notions of traces and selections will be used later in \secref{core-language:fwd-bwd} to define forward and backward analyses over a single execution.
+Having introduced our core language in \secref{core-language:syntax-typing}, we now describe their operational semantics (Figure \ref{fig:eval}). This requires introducing a syntax for \textit{traces} (Figure \ref{fig:core-syntax-trace}) which are used to compute analyses that require replaying of computations \cite{perera12a}. Afterwards, in \secref{data-dependencies} we can begin augmenting our language with selections to allow for the tracking of data dependencies. The notions of traces and selections will be used later in \secref{core-language:fwd-bwd} to define forward and backward analyses over a single execution.
 \todo{Revisit how well this introduces the structure of the subsection}
 
 
