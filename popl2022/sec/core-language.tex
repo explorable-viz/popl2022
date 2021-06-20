@@ -43,19 +43,22 @@ Lastly, we consider the syntax for values and environments as defined in Figure 
 The typing rules for environments and values are given in Figure \ref{core-typing-value}. The judgement $\vdash \rho: \Gamma$ states that if all the values $v_i$ of the environment are well typed, then the environment itself is well-typed. The typing judgement $\vdash v: A$ is self-explanatory for integers, Booleans, records, lists, and vectors, but we elaborate on partially-applied primitives and closures. The typing rule for primitive operations ensures that only unsaturated applications are first-class values. The typing rule for closures $\exClosure{\rho}{h}{\sigma}$ ensures that all the functions introduced by $h$ are in scope in the definition of the function $\sigma$.
 \input{fig/core-language/typing-value}
 
-
 \subsection{Semantics}
 
 Having introduced our core language in \secref{core-language:syntax-typing}, we now describe their operational semantics (Figure \ref{fig:eval}). This requires introducing a syntax for \textit{traces} (Figure \ref{fig:core-syntax-trace}) which are used to compute analyses that require replaying of computations \cite{perera12a}. Afterwards, in \secref{core-language:selections} we can begin augmenting our language with selections to allow for the tracking of data dependencies. The notions of traces and selections will be used later in \secref{core-language:fwd-bwd} to define forward and backward analyses over a single execution.
 \todo{Revisit how well this introduces the structure of the subsection}
 
-
 \subsubsection{Evaluation}
 \label{sec:core-language:eval}
 
+\begin{figure}
+   \input{fig/core-language/eval}
+   \input{fig/core-language/eval-aux}
+   \input{fig/core-language/match}
+   \caption{Operational semantics}
+   \label{fig:core-language:semantics}
+\end{figure}
 
-\input{fig/core-language/eval}
-\input{fig/core-language/eval-aux}
 \input{fig/core-language/syntax-trace}
 
 We explain the semantics for evaluating terms in our language (Figure \ref{fig:eval}) where the judgement $\explVal{T}{\rho, e \evalR v}$ means that a term $e$ under environment $\rho$ evaluates to a value $v$. Traces $\textcolor{gray}{T, U}$ (Figure \ref{fig:core-syntax-trace}) are a notation for the proof terms of the $\evalR$ relation, and are a compact representation for derivation trees in the operational semantics in the sense that they discard unnecessary information from the derivation tree.
@@ -70,7 +73,6 @@ The rule for recursive let-bindings, $\exLetRecMutual{h}{e}$, makes use of the a
 
 \subsubsection{Pattern matching}
 \label{sec:core-language:pattern-match}
-\input{fig/core-language/match}
 
 The judgement $\explVal{w}{v, \sigma \matchR \rho, \kappa}$ for pattern matching, defined in Figure \ref{fig:core-match}, states that matching a value $v$ against an eliminator $\sigma$ evaluates to an environment $\rho$ which binds $v$ to any matched variables in $\sigma$ and a continuation $\kappa$. Traces $\textcolor{gray}{w}$ are proof terms for the $\matchR$ relation and are used to record which pattern was matched against in an eliminator.
 
