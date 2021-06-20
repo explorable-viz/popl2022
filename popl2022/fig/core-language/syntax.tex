@@ -2,10 +2,11 @@
 {\small
 \begingroup
 \renewcommand*{\arraystretch}{1}
-\begin{tabularx}{\textwidth}{lL{3cm}L{3cm}}
-\rowcolor{verylightgray}
-&
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
+%\rowcolor{verylightgray}
 \textbfit{Types}
+&
 &
 \\
 $A, B ::=$
@@ -29,12 +30,78 @@ $\tyList{A}$
 &
 lists
 \\
-\rowcolor{verylightgray}
 &
-\textbfit{Terms}
+$\tyFun{A}{B}$
+&
+functions
+\\
+%\rowcolor{verylightgray}
+\textbfit{Identifiers}
+&
 &
 \\
+$x, y$
+\\
+%\rowcolor{verylightgray}
+\textbfit{Typing contexts}
+&
+&
+\\
+$\Gamma, \Delta ::=$
+&
+$\seq{\bind{x}{A}}$
 \end{tabularx}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
+%\rowcolor{verylightgray}
+\textbfit{Types}
+&
+&
+\\
+$A, B ::=$
+&
+$\tyBool$
+&
+Booleans
+\\
+&
+$\tyInt$
+&
+integers
+\\
+&
+$\tyRec{\vec{\bind{x}{A}}}$
+&
+records
+\\
+&
+$\tyList{A}$
+&
+lists
+\\
+&
+$\tyFun{A}{B}$
+&
+functions
+\\
+%\rowcolor{verylightgray}
+\textbfit{Identifiers}
+&
+&
+\\
+$x, y$
+\\
+%\rowcolor{verylightgray}
+\textbfit{Typing contexts}
+&
+&
+\\
+$\Gamma, \Delta ::=$
+&
+$\seq{\bind{x}{A}}$
+\end{tabularx}
+\end{minipage}
 \endgroup
 }
 \caption{Syntax of core language}
