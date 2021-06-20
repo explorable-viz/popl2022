@@ -13,14 +13,14 @@ $\trVar{x}{\rho}$
 variable
 \\
 &
-$\tyInt$
+$\trTrue{\rho} \mid \trFalse{\rho}$
 &
-integers
+Boolean
 \\
 &
-$\tyRec{\vec{\bind{x}{A}}}$
+$\trInt{n}{\rho}$
 &
-records
+integer
 \\
 &
 $\tyList{A}$
@@ -31,19 +31,13 @@ lists
 $\tyFun{A}{B}$
 &
 functions
-\\[2mm]
-$\Gamma, \Delta ::=$
-&
-$\seq{\bind{x}{A}}$
-&
-typing context
 \end{tabularx}
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
 \begin{tabularx}{\textwidth}{rL{2.5cm}L{2.5cm}}
-&\textbfit{Eliminator}&
+&\textbfit{Match}&
 \\
-$\sigma, \tau ::=$
+$w ::=$
 &
 $\elimVar{x}{\kappa}$
 &
@@ -75,18 +69,6 @@ T, U
 &
 ::=
 &
-\trTrue{\rho}
-\mid
-\trFalse{\rho}
-&
-\text{Boolean}
-\\
-&&&
-\trInt{n}{\rho}
-&
-\text{integer}
-\\
-&&&
 \trRec{\vec{\bind{x}{T}}}
 &
 \text{record}
