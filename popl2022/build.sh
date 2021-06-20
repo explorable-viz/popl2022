@@ -1,12 +1,9 @@
 #!/bin/bash
 set -e
 
-# make sure script runs in directory that contains it
-HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cd $HERE
-
 PDFLATEX="pdflatex -file-line-error -halt-on-error"
-TARGET=main
+TARGET=${1:-anonymised}
+echo Building target \"$TARGET\".
 
 $PDFLATEX $TARGET
 bibtex $TARGET

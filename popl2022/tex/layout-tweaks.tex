@@ -21,3 +21,13 @@
 
 \DeclareRobustCommand{\codeErase}[1]{{\sethlcolor{lightgray}\hl{#1}}}
 \DeclareRobustCommand{\codeSel}[1]{{\sethlcolor{yellow}\hl{#1}}}
+
+\newbool{anonymous}
+
+\makeatletter
+\if@ACM@anonymous
+   \booltrue{anonymous}%
+\else
+   \boolfalse{anonymous}%
+\fi
+\makeatother

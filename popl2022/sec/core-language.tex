@@ -1,9 +1,9 @@
 \newpage
 
-\section{A core language for fine-grained data dependencies}
+\section{Core calculus}
 \label{sec:core-language}
 
-To show how we achieve a system of fine-grained dependency tracking between structured outputs and inputs, we first introduce the core calculus for our language (\secref{core-language:syntax-typing}) and then describe how we can enrich this language with annotations that support the notion of selection (\secref{core-language:selections}). This notion of selection will allow us to link output values to input values and program fragments reponsible for constructing these output values. This core language will serve as the target for which the surface language in \secref{surface-language} desugars into.
+In this section we introduce the core calculus that will be the basis of the bidirectional analyses described in (\secref{data-dependencies}). This notion of selection will allow us to link output values to input values and program fragments reponsible for constructing these output values. This core language will serve as the target for which the surface language in \secref{surface-language} desugars into.
 \todo{Revisit how well this introduces the structure of the section}
 
 \subsection{Syntax and typing}
@@ -61,8 +61,6 @@ The rules for variables $x$, Booleans $\exTrue$ and $\exFalse$, integers $n$, em
 
 The rule for recursive let-bindings, $\exLetRecMutual{h}{e}$, makes use of the auxiliary relation $\rho, h \closeDefsR \rho'$ in Figure \ref{fig:core-language:eval-aux}. This produces a new environment $\rho'$ by taking each function definition $\bind{x}{\sigma}$ in $h$ and mapping $x$ to a corresponding closure capturing the old environment $\rho$. It then evaluates $e$ under new environment $\rho'$, leaving as an overall trace $\textcolor{gray}{\trLetRecMutual{h}{T}}$. The final rule for application, $\exApp{e}{e'}$, evaluates $e$ to a closure $\exClosure{\rho_1}{h}{\sigma}$ and $e'$ to a value $v$. It then pattern matches $v$ against the function $\sigma$ to return the correct branch $e''$; this leaves a trace $\textcolor{gray}{w}$ recording which pattern was matched, where the semantics for this relation $\matchR$ is defined later in $\secref{core-language:pattern-match}$. Lastly, it evaluates the function body $e''$ under the concatenation of the intermediate environments produced.
 
-%% it evaluates the function body $e''$ under the closure environment $\rho_1$, the environment of mutually recursive functions in the closure $\rho_1, h \closeDefsR \rho_2$, and the binding of value $v$ against the pattern found in the eliminator $\sigma$.
-
 \todo{Missed out partial primitives, and not sure how to best describe application.}
 
 \subsubsection{Pattern matching}
@@ -75,128 +73,8 @@ For variable eliminators, $\elimVar{x}{\kappa}$ matches any value $v$ against $x
 
 Matching the empty list $\exNil$ against a list eliminator $\elimList{\kappa}{\sigma}$ is trivial and has trace $\textcolor{gray}{\exNil}$. When matching a non-empty list $\exCons{v}{v'}$, we first match against the cons constructor $(\symCons)$ to retrieve the eliminator $\sigma$. We then sequentially match $v$ against the head pattern (with trace $\textcolor{gray}{w}$) and then $v'$ against the tail pattern (with trace $\textcolor{gray}{w'}$) in $\sigma$ to get environments $\rho$ and $\rho'$ which we concatenate, and the final continuation $\kappa'$. The overall trace $\textcolor{gray}{(\exCons{w}{w'})}$ is the cons of traces $\textcolor{gray}{w}$ and $\textcolor{gray}{w'}$.
 
-Finally, we consider the rule for matching a record $\exRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}$ of length $n$ against a record eliminator $\elimRec{\vec{x} \concat y}{\sigma}$. We first recursively match the first $n - 1$ record components, $\vec{\bind{x}{v}}$, against the eliminator $\sigma$ to produce another eliminator $\sigma'$ and a corresponding trace $\textcolor{gray}{\vec{\bind{x}{w}}}$ witnessing these matches. We then match the last record component $\bind{y}{u}$ against $\sigma'$, retrieving the final continuation $\kappa$ and trace $\textcolor{gray}{w'}$. The overall trace $\textcolor{gray}{\exRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}$ is the concatenation of traces $\textcolor{gray}{\vec{\bind{x}{w}}}$ and $\textcolor{gray}{\bind{y}{w'}}$. \todo{Needs refining}
+Finally, we consider the rule for matching a record $\exRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}$ of length $n$ against a record eliminator $\elimRec{\vec{x} \concat y}{\sigma}$. We first recursively match the first $n - 1$ record components, $\vec{\bind{x}{v}}$, against the eliminator $\sigma$ to produce another eliminator $\sigma'$ and a corresponding trace $\textcolor{gray}{\vec{\bind{x}{w}}}$ witnessing these matches. We then match the last record component $\bind{y}{u}$ against $\sigma'$, retrieving the final continuation $\kappa$ and trace $\textcolor{gray}{w'}$. The overall trace $\textcolor{gray}{\exRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}$ is the concatenation of traces $\textcolor{gray}{\vec{\bind{x}{w}}}$ and $\textcolor{gray}{\bind{y}{w'}}$.
 
 % Explain evaluation in a two-stage way like we did with syntax. First we give semantics to pattern matching evaluation and terms without annotation, and then we give forward and backward dependency tracking rules to propagate annotation for annotated terms. We also need to explain the idea of a trace T (a trace is what we refer to as "Match" and "Trace") - these are essentially a compact notation for the proof terms for the evaluation relations which are defined inductively in figure 13 (T :: p, e => v), and operationally are a means of recording the details of program execution. For this we can cite Roly's previous work (imperative functional programs and something else) - these two take a similar approach. Another way to do this would be to define the evaluation relation to additionally output a trace, but here we say that we define evaluation inductively as a relation, so the proof trees of that definition are the traces essentially. What the syntax in figure 11 (matches and traces) does is just define a more compact notation for proof trees for those relations. It's not so much that we compute traces during forward slicing, but that we need traces for forward slicing as well.
 
 %. These are computed during forward slicing, and allows slicing to then proceed backwards afterwards.
-
-\subsection{Representing Selections}
-\label{sec:core-language:selections}
-
-Now that the core calculus has been fully specified, this gives us a foundation to begin enriching our language to become suitable for tracking data dependencies. The first thing to establish is the notion of selection which is a way of selecting parts of the program of interest -- this is what will later allow us to perform data dependency analysis in \secref{toolkit}. We use \textit{annotations} to capture the notion of selections by augmenting all first-order data forms to be functors parameterised by an annotation type indicating their selection state.
-
-\input{fig/core-language/syntax-selection}
-\input{fig/core-language/slicing/leq-value-elim}
-\input{fig/core-language/slicing/leq-term}
-
-\begin{definition}[?]
-   Define $\Below{v}$ as the set of all selections on $v$
-\end{definition}
-
-\begin{definition}[Hole equivalence]
-   Define $\eq$ as the intersection of $\leq$ and $\geq$.
-\end{definition}
-
-\input{fig/core-language/slicing/join-value}
-\input{fig/core-language/slicing/join-elim}
-
-
-\noindent
-The syntax for annotations $\alpha, \beta$ along with the annotated forms of our core language are given in Figure \ref{fig:core-syntax-selection}. As we are primarily interested in tracking data dependencies between values, we only annotate values and the expression forms which construct values. The annotation-augmented forms for values include: Booleans $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{v}}}{\alpha}$, empty lists $\annNil{\alpha}$ and cons nodes $\annCons{u}{v}{\alpha}$, and vectors $\annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}}$. We also introduce holes $\hole$ as a special expression form that expresses annotating every position within a value with the bottom element of a lattice. The corresponding annotated forms for expressions then consist of: holes $\hole$, Booleans $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{e}}}{\alpha}$, empty lists $\annNil{\alpha}$ and cons nodes $\annCons{e}{e'}{\alpha}$, and vectors $\annVec{e}{x}{e'}{\alpha}$.
-
-%In order to then propagate the selection-state information of values back to the expressions of our our program which are responsible for creating them, we must also add annotations to the necessary expression forms of our language, $e$.
-
-The selection type is chosen to remain abstract as there are various forms of selection information we may want to express in our language, however we do require them to be a lattice. In other words, selection types must have a top $\top$ and bottom $\bot$ element representing selection and unselection respectively, and a meet $\meet$ and join $\join$ operation where $\top$ and $\bot$ are their left and right units. The most simple choice of lattice would be to set the type of annotations to be the trivial unit lattice -- this lets us recover the original unannotated syntax presented in Figure \ref{fig:core-syntax-term} and \ref{fig:core-syntax-value}. More typically, one would use the Boolean lattice where the top $\top$ and bottom $\bot$ elements are assigned true $\TT$ and false $\FF$, and the meet $\meet$ and $\join$ operations are conjunction $\land$ and disjunction $\lor$. However, we can also use more sophisticated lattices such as a vector of Booleans to represent multiple selections simultaneously.
-
-We state that two terms have the same shape if they are annotations of the same underlying term. The set of annotated terms of a given shape forms a lattice where the top element of the lattice is the annotated term which has top $\top$ as every annotation position, and the bottom element has bottom $\bot$ as every position. The join over two annotation terms of the shape shape is the zip over the structure of the join on the annotations (given in Figures \ref{fig:join-value} and \ref{fig:join-elim}) and the meet operation is defined conversely.
-
-Annotations also induce a partial order on the annotated syntactic forms, where two expressions $e$ and $e'$ are related by $e \leq e'$ if $e$ and $e'$ have the same shape and each annotation in $e$ is below the annotation in the corresponding position in $e'$.  This relation is defined for values and eliminators in Figure \ref{fig:leq-value-eliminator} and terms in Figure \ref{fig:leq-term}.
-
-\subsection{Forward and backward Galois dependency}
-\label{sec:core-language:fwd-bwd}
-
-\subsubsection{Pattern-matching}
-
-\input{fig/core-language/slicing/match-fwd}
-\input{fig/core-language/slicing/match-bwd}
-
-\begin{lemma}[Determinism of pattern-matching]
-   Suppose $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
-\end{lemma}
-
-\begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
-\end{definition}
-
-\begin{theorem}[Galois connection for pattern-matching]
-\label{thm:core-language:match:gc}
-   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
-\end{theorem}
-
-\subsubsection{Evaluation}
-
-\paragraph{Primitive operations}
-
-Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ with $\length{\vec{n}} = i$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}{\vec{n}}, \primBwd{\phi}{\vec{n}})$ between $\Below{\vec{n}}$ and $\Below{\phi(\vec{n})}$ by defining
-\begin{definition}
-\label{def:core-language:primop-gc}
-\begin{salign}
-   \primFwd{\phi}{\vec{n}}(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
-   \text{ where }
-   \primFwdBool{\phi}{\vec{n}}(\vec{\alpha}) = \beta
-   \\
-   \primBwd{\phi}{\vec{n}}(\annInt{m}{\beta}) &= \vec{\annInt{n}{\alpha}}
-   \text{ where }
-   \primBwdBool{\phi}{\vec{n}}(\beta) = \vec{\alpha}
-\end{salign}
-\end{definition}
-
-\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values. For any $\vec{n}$ with $\length{\vec{n}} \numlt i$, any such $\phi$ also gives rise to an isomorphism between $\Below{\vec{n}}$ and the lattice of partial applications $\Below{\exPrimOp{\phi}{\vec{n}}}$.
-
-\input{fig/core-language/slicing/eval-fwd}
-\input{fig/core-language/slicing/eval-bwd}
-\input{fig/core-language/slicing/eval-aux}
-
-\begin{definition}[Hole environment]
-Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
-\end{definition}
-
-\begin{lemma}[Least environment for $\rho$]
-\label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\rho} \leq \rho$.
-\end{lemma}
-
-\begin{definition}[Forward and backward functions for environment lookup]
-   Suppose $\envLookup{\rho}{x}{v}$. Then define $\envLookupFwdF{\rho,x}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,x}: \Below{v} \to \Below{\rho}$ to be $\bind{x}{-}\envLookupR$ and $\envLookupBwdR{\rho}\bind{x}{-}$ restricted to $\Below{\rho}$ and $\Below{v}$ respectively.
-\end{definition}
-
-\begin{lemma}[Galois connection for environment]
-\label{lem:core-language:env-get-put}Suppose $\envLookup{\rho}{x}{v}$.
-\begin{enumerate}
-   \item \label{lem:core-language:env-get-put:1} $\envLookupFwdF{\rho,x}(\envLookupBwdF{\rho,x}(v)) \geq v$.
-   \item \label{lem:core-language:env-get-put:2} $\envLookupBwdF{\rho,x}(\envLookupFwdF{\rho,x}(\rho')) \leq \rho'$.
-\end{enumerate}
-\end{lemma}
-
-\begin{definition}
-   \label{def:core-language:closeDefs-bwd}
-   Define the relation $\closeDefsBwdR$ as given in \figref{core-language:slicing:eval-aux}.
-\end{definition}
-
-\begin{definition}[Forward and backward functions for recursive bindings]
-   Suppose $\rho, h \closeDefsR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsR$ and $\closeDefsBwdR$ restricted to $\Below{(\rho, h)}$ and $\Below{\rho'}$ respectively.
-\end{definition}
-
-\begin{theorem}[Galois connection for recursive bindings]
-\label{thm:core-language:closeDefs:gc}
-   Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h} \adjoint \closeDefsBwdF{\rho,h}$.
-\end{theorem}
-
-\begin{definition}[Forward and backward functions for evaluation]
-   Suppose $T: \rho, e \evalR v$. Define $\evalFwdF{T}: \Below{(\rho, e, \TT)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \TT)}$ to be $\evalFwdR{T}$ and $\evalBwdR{T}$ restricted to $\Below{(\rho, e, \TT)}$ and $\Below{v}$ respectively.
-\end{definition}
-
-\begin{theorem}[Galois connection for evaluation]
-\label{thm:core-language:eval:gc}
-   Suppose $T: \rho, e \evalFwdS v$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
-\end{theorem}
