@@ -1,0 +1,176 @@
+\begin{figure}[H]
+\flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-eq}}
+   ]
+   {
+      e \eq e'
+      \\
+      \evalFwd{\rho}{e'}{\alpha}{T}{v}
+   }
+   {
+      \evalFwd{\rho}{e}{\alpha}{T}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-var}},
+      right={$\envLookup{\rho}{x}{v}$}
+   ]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}{\exVar{x}}{\alpha}{\trVar{x}{\rho}}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}
+              {\exLambda{\sigma}}
+              {\alpha}
+              {\trLambda{\sigma'}}
+              {\exClosure{\rho}{\seqEmpty}{\sigma}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}
+              {\annInt{n}{\alpha}}
+              {\alpha'}
+              {\trInt{n}{\rho}}
+              {\annInt{n}{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalR$-record}}]
+   {
+      \evalFwd{\rho}{e_i}{\alpha'}{T_i}{v_i}
+      \quad
+      (\forall i \numleq \length{\vec{x}})
+   }
+   {
+      \evalFwd{\rho}
+              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
+              {\alpha'}
+              {\trRec{\vec{\bind{x}{T}}}}
+              {\annRec{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalR$-project}},
+      right={$i \numleq \length{\vec{x}}$}
+   ]
+   {
+      \evalFwd{\rho}{e}{\alpha}{T}{\exRec{\vec{\bind{x}{v}}}}
+   }
+   {
+      \evalFwd{\rho}
+              {\exRecProj{e}{x}}
+              {\alpha}
+              {\trRecProj{T}{\vec{x}}{x}}
+              {v_i}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}
+              {\annNil{\alpha}}
+              {\alpha'}
+              {\trNil{\rho}}
+              {\annNil{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-cons}},
+   ]
+   {
+      \evalFwd{\rho}{e}{\alpha'}{T}{v}
+      \\
+      \evalFwd{\rho}{e'}{\alpha'}{U}{v'}
+   }
+   {
+      \evalFwd{\rho}
+              {\annCons{e}{e'}{\alpha}}
+              {\alpha'}
+              {\trCons{T}{U}}
+              {\annCons{v}{v'}{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-apply-prim}}
+   ]
+   {
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
+      \\
+      \evalFwd{\rho}{e'}{\alpha}{U}{u}
+   }
+   {
+      \evalFwd{\rho}
+              {\exApp{e}{e'}}
+              {\alpha}
+              {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+              {\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-apply}}
+   ]
+   {
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
+      \\
+      \rho_1, h \closeDefsR \rho_2
+      \\
+      \evalFwd{\rho}{e'}{\alpha}{U}{v}
+      \\
+      \matchFwd{v}{\sigma}{w}{\rho_3}{e^\twoPrime}{\beta}
+      \\
+      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\beta}{T'}{v'}
+   }
+   {
+      \evalFwd{\rho}{\exApp{e}{e'}}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={
+      \ruleName{$\evalFwdS$-let-rec}}
+   ]
+   {
+      \rho, h' \closeDefsR \rho'
+      \\
+      \evalFwd{\rho \concat \rho'}{e}{\alpha}{T}{v}
+   }
+   {
+      \evalFwd{\rho}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
+   }
+\end{smathpar}
+\caption{Evaluation: forward dependency (Boolean cases omitted)}
+\label{fig:eval:fwd}
+\end{figure}
