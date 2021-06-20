@@ -1,5 +1,3 @@
-\newpage
-
 \section{Core calculus}
 \label{sec:core-language}
 
@@ -9,9 +7,9 @@ In this section we introduce the core calculus that will be the basis of the bid
 \subsection{Syntax and typing}
 \label{sec:core-language:syntax-typing}
 \subsubsection{Typing}
-We begin by introducing the types $A$ of our language in Figure \ref{fig:core-syntax-type}. These consist of primitive types Booleans $\tyBool$, integers $\tyInt$, and function types $\tyFun{A}{B}$, but additionally lists $\tyList{A}$, vectors $\tyVec{A}$, and records $\tyRec{\vec{\bind{x}{A}}}$ in order to support the kind of fine-grained relationships between input and output typically found in modern programs. The notation $\seq{\bind{x}{A}}$ represents a sequence of bindings of variables $x$ to types $A$.
+Our implementation in untyped, but types provide useful structure for describing the core language.
+Figure \ref{fig:core-syntax-type} introduces the types $A$ which consist of primitive types $\tyBool$ and $\tyInt$ and function types $\tyFun{A}{B}$, but also lists $\tyList{A}$, vectors $\tyVec{A}$, and records $\tyRec{\vec{\bind{x}{A}}}$ in order to support the kind of fine-grained relationships between input and output that we want to analyse. The notation $\seq{\bind{x}{A}}$ represents a sequence of bindings of variables $x$ to types $A$.
 \input{fig/core-language/syntax-type}
-
 
 \subsubsection{Terms}
 Next we describe the terms of our language as defined in Figure \ref{fig:core-syntax-term}.  These include Boolean constants $\exTrue$ and $\exFalse$, integers $n$, variables $x$, and applications $\exApp{e}{e'}$. We also provide empty lists $\exNil$ and non-empty lists $\exCons{e}{e'}$, vectors $\exVec{e}{x}{e'}$ which are constructed in a comprehension-like notation, and records $\exRec{\vec{\bind{x}{e}}}$ as a sequence of bindings between field names and terms. We include operations for vector lookups $\exVecLookup{e}{e'}$, vector length $\exVecLen{e}$, and record projection $\exRecProj{e}{x}$ for projecting a field $x$ out of the record given by $e$. The final two terms, namely anonymous functions, $\exLambda{\sigma}$, and recursive let-bindings, $\exLetRecMutual{h}{e}$ where $h$ is of the form $\vec{\bind{x}{\sigma}}$, will be explained in \secref{core-language:syntax-eliminator} once we have introduced the idea of an eliminator $\sigma$ which is the only elimination form provided by the core language. Our implementation is untyped but we give typing rules for clarity; the typing rules for terms are given in Figure \ref{fig:core-typing-term} and are straightforward except for those containing eliminators.
