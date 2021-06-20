@@ -5,9 +5,7 @@
 \begin{minipage}[t]{0.5\textwidth}
 \begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
 %\rowcolor{verylightgray}
-\textbfit{Type}
-&
-&
+&\textbfit{Type}&
 \\
 $A, B ::=$
 &
@@ -34,40 +32,71 @@ lists
 $\tyFun{A}{B}$
 &
 functions
-\\
-%\rowcolor{verylightgray}
-\textbfit{Identifier}
-&
-&
-\\
-$x, y$
-\\
-%\rowcolor{verylightgray}
-\textbfit{Typing context}
-&
-&
-\\
+\\[2mm]
 $\Gamma, \Delta ::=$
 &
 $\seq{\bind{x}{A}}$
-\\
-\textbfit{Term}
 &
-&
+typing context
+\\[2mm]
+&\textbfit{Term}&
 \\
-$e$
+$e ::=$
 &
 $\exTrue \mid \exFalse$
 &
-\text{Boolean}
+Boolean
+\\
+&
+$\exInt{n}$
+&
+integer
+\\
+&
+$\exVar{x}$
+&
+variable
+\\
+&
+$\exApp{e}{e'}$
+&
+application
+\\
+&
+$\exNil$
+&
+nil
+\\
+&
+$\exCons{e}{e'}$
+&
+cons
+\\
+&
+$\exRec{\vec{\bind{x}{e}}}$
+&
+record
+\\
+&
+$\exRecProj{e}{x}$
+&
+record projection
+\\
+&
+$\exLambda{\sigma}$
+&
+anonymous function
+\\
+&
+$\exLetRecMutual{h}{e}$
+&
+recursive let
 \end{tabularx}
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
 \begin{tabularx}{\textwidth}{rL{2.5cm}L{2.5cm}}
 %\rowcolor{verylightgray}
-\textbfit{Eliminator}
-&
-&
+&&\textbfit{Eliminator}
 \\
 $\sigma, \tau ::=$
 &
@@ -90,9 +119,7 @@ $\elimList{\kappa}{\sigma}$
 &
 list
 \\
-\textbfit{Continuation}
-&
-&
+&&\textbfit{Continuation}
 \\
 $\kappa ::=$
 &
@@ -104,6 +131,19 @@ term
 $\sigma$
 &
 eliminator
+\\
+&&\textbfit{Miscellaneous}
+\\
+$x, y$
+&
+&
+identifier
+\\
+$h ::=$
+&
+$\seq{\bind{x}{\sigma}}$
+&
+recursive functions
 \end{tabularx}
 \end{minipage}
 \endgroup
