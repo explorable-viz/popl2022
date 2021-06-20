@@ -1,0 +1,141 @@
+\begin{figure}[H]
+\small
+$\begin{array}{lll|llll}
+\arrayrulecolor{lightgray}
+&&&\textit{where}
+\\
+\rowcolor{verylightgray}
+\evalBwdF{T} &::& \Below{v} \to \Below{(\rho,e,\TT)}
+&T &::& \rho, e \eval v
+\\
+% hole
+\evalBwdF{T}(v)
+&=&
+\evalBwdF{T}(u)
+&
+v \eq u
+\\
+% var
+\evalBwdF{\trVar{x}{\rho}}(v)
+&=&
+(\envLookupBwdF{\rho,x}(v),\exVar{x},\FF)
+\\
+% fun
+\evalBwdF{\trLambda{\sigma'}}(\exClosure{\rho}{\seqEmpty}{\sigma})
+&=&
+(\rho,\exLambda{\sigma},\FF)
+\\
+% int
+\evalBwdF{\trInt{n}{\rho}}(\annInt{n}{\alpha})
+&=&
+(\holeEnv{\rho},\annInt{n}{\alpha},\alpha)
+\\
+% nil
+\evalBwdF{\trNil{\rho}}(\annNil{\alpha})
+&=&
+(\holeEnv{\rho},\annNil{\alpha},\alpha)
+\\
+% cons
+\evalBwdF{\trCons{T}{U}}(\annCons{v_1}{v_2}{\beta})
+&=&
+(\rho \join \rho', \annCons{e_1}{e_2}{\beta}, \beta^\twoPrime)
+&
+(\rho,e_1,\alpha) &=& \evalBwdF{T}(v_1)
+\\
+&&&
+(\rho',e_2,\alpha') &=& \evalBwdF{U}(v_2)
+\\
+&&&
+\beta^\twoPrime &=& \beta \join \alpha \join \alpha'
+\\
+% vector
+\evalBwdF{\trVec{\vec{U}}{x}{T}{j}}(\annVecVal{\vec{u}}{\annInt{j}{\beta}}{\alpha})
+&=&
+(\bigjoin\vec{\rho} \join \rho',
+ e^\twoPrime,
+ \beta^\twoPrime)
+&
+(\rho_{i} \concat \bind{x}{i_{\beta'_{i}}}, e_{i}, \alpha'_{i})
+&=&
+\evalBwdF{U_{i}}(u_{i})
+\\
+&&&
+(\rho', e', \alpha^\twoPrime)
+&=&
+\smash{\evalBwdF{T}(\annInt{j}{\beta \join {\hspace{0.1em}{\oldbigjoin}\hspace{-0.15em}{\vec{\beta}'}}})}
+\\
+&&&
+e^\twoPrime &=& \annVec{\bigjoin\vec{e}}{x}{e'}{\alpha}
+\\
+&&&
+\beta^\twoPrime &=& \alpha \join {\bigjoin{\vec{\alpha}'}} \join \alpha^\twoPrime
+\\
+% vector-lookup
+\evalBwdF{\trVecLookup{T}{j}{U}{i}}(v)
+&=&
+(\rho \join \rho', \exVecLookup{e_1}{e_2}, \alpha \join \alpha')
+&
+v' &=& \mapUpdate{\annVecVal{\vec{\hole}}{\annInt{j}{\FF}}{\FF}}{i}{v}
+\\
+&&&
+(\rho,e_1,\alpha)
+&=&
+\evalBwdF{T}(v')
+\\
+&&&
+(\rho', e_2, \alpha')
+&=&
+\evalBwdF{U}(\annInt{i}{\FF})
+\\
+% vector-len
+\evalBwdF{\trVecLen{T}{j}}(\annInt{j}{\beta})
+&=&
+(\rho, \exVecLen{e}, \alpha)
+&
+(\rho,e,\alpha) &=& \evalBwdF{T}(\annVecVal{\vec{\hole}}{\annInt{j}{\beta}}{\FF})
+\\
+% apply-prim
+\evalBwdF{\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}(v)
+&=&
+(\rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha')
+&
+\primBwd{\phi}{\vec{n} \concat m}(v) &=& \vec{u} \concat u'
+\\
+&&&
+(\rho,e_1,\alpha) &=& \evalBwdF{T}(\exPrimOp{\phi}{\vec{u}})
+\\
+&&&
+(\rho',e_2,\alpha') &=& \evalBwdF{U}(u')
+\\
+% apply
+\evalBwdF{\trApp{T}{U}{\matchPlug{w}{T'}}}(v)
+&=&
+(\rho \join \rho', \exApp{e_1}{e_2}, \alpha \join \alpha')
+&
+(\rho_1 \concat \rho_2 \concat \rho_3, e, \beta) &=& \evalBwdF{T'}(v)
+\\
+&&&
+(v', \sigma) &=& \matchBwdF{w}(\rho_3,e,\beta)
+\\
+&&&
+(\rho,e_2,\alpha) &=& \evalBwdF{U}(v')
+\\
+&&&
+(\rho_1', h) &=& \closeDefsBwdF{}(\rho_2)
+\\
+&&&
+(\rho',e_1,\alpha') &=& \evalBwdF{T}(\exClosure{\rho_1 \join \rho_1'}{h}{\sigma})
+\\
+% let-rec
+\evalBwdF{\trLetRecMutual{h}{T}}(v)
+&=&
+(\rho \join \rho',\exLetRecMutual{h'}{e},\alpha)
+&
+(\rho \concat \rho_1,e,\alpha) &=& \evalBwdF{T}(v){T}
+\\
+&&&
+(\rho', h') &=& \closeDefsBwdF{}(\rho_1)
+\end{array}$
+\caption{Evaluation: backward dependency (Boolean cases omitted)}
+\label{fig:eval:bwd}
+\end{figure}

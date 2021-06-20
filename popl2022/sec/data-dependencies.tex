@@ -3,7 +3,6 @@
 
 We now show how to extend the core language described in \secref{core-language} with a bidirectional mechanism for tracking data dependencies. The first thing to establish is a way of selecting parts of the program of interest. We use \textit{annotations} to capture the notion of selections by augmenting all first-order data forms to be functors parameterised by an annotation type indicating their selection state.
 
-
 \input{fig/core-language/syntax-selection}
 \input{fig/core-language/slicing/leq-value-elim}
 \input{fig/core-language/slicing/leq-term}
@@ -19,38 +18,19 @@ We now show how to extend the core language described in \secref{core-language} 
 \input{fig/core-language/slicing/join-value}
 \input{fig/core-language/slicing/join-elim}
 
-
 \noindent
-The syntax for annotations $\alpha, \beta$ along with the annotated forms of our core language are given in Figure \ref{fig:core-syntax-selection}. As we are primarily interested in tracking data dependencies between values, we only annotate values and the expression forms which construct values. The annotation-augmented forms for values include: Booleans $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{v}}}{\alpha}$, empty lists $\annNil{\alpha}$ and cons nodes $\annCons{u}{v}{\alpha}$, and vectors $\annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}}$. We also introduce holes $\hole$ as a special expression form that expresses annotating every position within a value with the bottom element of a lattice. The corresponding annotated forms for expressions then consist of: holes $\hole$, Booleans $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{e}}}{\alpha}$, empty lists $\annNil{\alpha}$ and cons nodes $\annCons{e}{e'}{\alpha}$, and vectors $\annVec{e}{x}{e'}{\alpha}$.
+The syntax for annotations $\alpha, \beta$ along with the annotated forms of our core language are given in \figref{core-syntax-selection}. As we are primarily interested in tracking data dependencies between values, we only annotate values and the expression forms which construct values. The annotation-augmented forms for values include: Booleans $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{v}}}{\alpha}$, empty lists $\annNil{\alpha}$ and cons nodes $\annCons{u}{v}{\alpha}$, and vectors $\annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}}$. We also introduce holes $\hole$ as a special expression form that expresses annotating every position within a value with the bottom element of a lattice. The corresponding annotated forms for expressions then consist of: holes $\hole$, Booleans $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{e}}}{\alpha}$, empty lists $\annNil{\alpha}$ and cons nodes $\annCons{e}{e'}{\alpha}$, and vectors $\annVec{e}{x}{e'}{\alpha}$.
 
 %In order to then propagate the selection-state information of values back to the expressions of our our program which are responsible for creating them, we must also add annotations to the necessary expression forms of our language, $e$.
 
-The selection type is chosen to remain abstract as there are various forms of selection information we may want to express in our language, however we do require them to be a lattice. In other words, selection types must have a top $\top$ and bottom $\bot$ element representing selection and unselection respectively, and a meet $\meet$ and join $\join$ operation where $\top$ and $\bot$ are their left and right units. The most simple choice of lattice would be to set the type of annotations to be the trivial unit lattice -- this lets us recover the original unannotated syntax presented in Figure \ref{fig:core-syntax-term} and \ref{fig:core-syntax-value}. More typically, one would use the Boolean lattice where the top $\top$ and bottom $\bot$ elements are assigned true $\TT$ and false $\FF$, and the meet $\meet$ and $\join$ operations are conjunction $\land$ and disjunction $\lor$. However, we can also use more sophisticated lattices such as a vector of Booleans to represent multiple selections simultaneously.
+The selection type is chosen to remain abstract as there are various forms of selection information we may want to express in our language, however we do require them to be a lattice. In other words, selection types must have a top $\top$ and bottom $\bot$ element representing selection and unselection respectively, and a meet $\meet$ and join $\join$ operation where $\top$ and $\bot$ are their left and right units. The most simple choice of lattice would be to set the type of annotations to be the trivial unit lattice -- this lets us recover the original unannotated syntax presented in \figref{core-language:syntax}. More typically, one would use the Boolean lattice where the top $\top$ and bottom $\bot$ elements are assigned true $\TT$ and false $\FF$, and the meet $\meet$ and $\join$ operations are conjunction $\land$ and disjunction $\lor$. However, we can also use more sophisticated lattices such as a vector of Booleans to represent multiple selections simultaneously.
 
-We state that two terms have the same shape if they are annotations of the same underlying term. The set of annotated terms of a given shape forms a lattice where the top element of the lattice is the annotated term which has top $\top$ as every annotation position, and the bottom element has bottom $\bot$ as every position. The join over two annotation terms of the same shape is the zip over the structure of the join on the annotations (given in Figures \ref{fig:join-value} and \ref{fig:join-elim}) and the meet operation is defined conversely.
+We state that two terms have the same shape if they are annotations of the same underlying term. The set of annotated terms of a given shape forms a lattice where the top element of the lattice is the annotated term which has top $\top$ as every annotation position, and the bottom element has bottom $\bot$ as every position. The join over two annotation terms of the same shape is the zip over the structure of the join on the annotations (given in \figref{join-value} and \figref{join-elim}) and the meet operation is defined conversely.
 
-Annotations also induce a partial order on the annotated syntactic forms, where two expressions $e$ and $e'$ are related by $e \leq e'$ if $e$ and $e'$ have the same shape and each annotation in $e$ is below the annotation in the corresponding position in $e'$.  This relation is defined for values and eliminators in Figure \ref{fig:leq-value-eliminator} and terms in Figure \ref{fig:leq-term}.
+Annotations also induce a partial order on the annotated syntactic forms, where two expressions $e$ and $e'$ are related by $e \leq e'$ if $e$ and $e'$ have the same shape and each annotation in $e$ is below the annotation in the corresponding position in $e'$.  This relation is defined for values and eliminators in \figref{leq-value-eliminator} and terms in \figref{leq-term}.
 
 \subsection{Forward and backward Galois dependency}
 \label{sec:core-language:fwd-bwd}
-
-\subsubsection{Pattern-matching}
-
-\input{fig/core-language/slicing/match-fwd}
-\input{fig/core-language/slicing/match-bwd}
-
-\begin{lemma}[Determinism of pattern-matching]
-   Suppose $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
-\end{lemma}
-
-\begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
-\end{definition}
-
-\begin{theorem}[Galois connection for pattern-matching]
-\label{thm:core-language:match:gc}
-   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
-\end{theorem}
 
 \subsubsection{Evaluation}
 
@@ -74,6 +54,7 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ 
 
 \input{fig/core-language/slicing/eval-fwd}
 \input{fig/core-language/slicing/eval-bwd}
+\input{fig/core-language/slicing/eval-bwd-new}
 \input{fig/core-language/slicing/eval-aux}
 
 \begin{definition}[Hole environment]
@@ -117,4 +98,22 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
 \begin{theorem}[Galois connection for evaluation]
 \label{thm:core-language:eval:gc}
    Suppose $T: \rho, e \evalFwdS v$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
+\end{theorem}
+
+\subsubsection{Pattern-matching}
+
+\input{fig/core-language/slicing/match-fwd}
+\input{fig/core-language/slicing/match-bwd}
+
+\begin{lemma}[Determinism of pattern-matching]
+   Suppose $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for pattern-matching]
+   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
+\end{definition}
+
+\begin{theorem}[Galois connection for pattern-matching]
+\label{thm:core-language:match:gc}
+   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
 \end{theorem}
