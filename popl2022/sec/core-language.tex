@@ -37,7 +37,7 @@ The typing rules for environments and values are given in \figref{core-language:
 
 \subsection{Semantics}
 
-Figure \figref{core-language:semantics} gives the operational semantics of the core language. Following \citet{boudol89}, we take a ``proved transitions'' approach to the semantics, meaning that we treat the operations semantics as an inductive data type whose inhabitants represent executions. Because these derivations can become quite cumbersome, we introduce a compact syntax for them called \textit{traces} (\figref{core-syntax-trace}). Traces will be used in \secref{core-language:fwd-bwd} to define forward and backward analyses over a single execution. \todo{Revisit how well this introduces the structure of the subsection}
+\figref{core-language:semantics} gives the operational semantics of the core language. Following the ``proved transitions'' approach  \citet{boudol89} took for CCS, we treat the operations semantics as an inductive data type whose inhabitants represent executions. Because these derivations can become quite cumbersome, we introduce a compact syntax for them called \textit{traces} (\figref{core-syntax-trace}), similar to the approach taken by \citet{perera16d} for $\pi$-calculus. Traces will be used in \secref{core-language:fwd-bwd} to define forward and backward analyses over a single execution. \todo{Revisit how well this introduces the structure of the subsection}
 
 \subsubsection{Evaluation}
 \label{sec:core-language:eval}
