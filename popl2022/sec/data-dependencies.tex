@@ -38,9 +38,17 @@ The data type $\SelF{v}$ is hence a representable functor with a fixed shape giv
 \subsection{Forward and backward Galois dependency}
 \label{sec:core-language:fwd-bwd}
 
+\todo{Introduce this section}. \figref{eval:bwd} gives the semantics of forward and backward evaluation of the core language.
+
 \subsubsection{Evaluation}
 
-\figref{eval:bwd} gives the semantics of forward and backward evaluation of the core language. Forward evaluation, $\evalFwdF{T} :: \Below{(\boldsymbol{\rho},\mathbf{e},\boldsymbol{\TT})} \to \Below{\mathbf{v}}$, takes an annotated environment $\rho$, term $e$, and annotation, and evaluates this to an annotated value $v$. Evaluating a variable $x$ is equivalent to looking up $x$ in the environment $\rho$, where $\envLookupFwdF{}$ is defined in \figref{core-language:slicing:eval-aux}. Anonymous functions $\exLambda{\sigma}$ simply evaluate to closures, discarding any annotations. Evaluating an integer $n_{\alpha'}$ alongside annotation $\alpha$ returns $n$ annotated by the meet of $\alpha$ and $\alpha'$. For records $\exRec{\vec{\bind{x}{e}}}_{\alpha}$ with annotation $\alpha'$, we evaluate each term $e_i$ in the record to a value $v_i$, and then return $\vec{\bind{x}{e}}$ annotated by $\alpha \meet \alpha'$. Project a field $x$ out of a record $e$ will retrieve the term in $e$ with position $i$ corresponding to $x$, and evaluate it to $v_i$.
+Forward evaluation, $\evalFwdF{T} :: \Below{ \tyProd{(\boldsymbol{\rho},\mathbf{e})}{\mathcal{A}} } \to \Below{\mathbf{v}}$, describes how we evaluate a term $e$ under environment $\rho$ to a value $v$, whilst propagating the annotation information of the outer term which contains $e$. When working in the forwards direction, we want to express that a value is only selected if all the terms involved in its construction are selected, hence we use the meet $\meet$ operation to combine selection states.
+
+% Evaluating a variable $x$ is equivalent to looking up $x$ in the environment $\rho$, where $\envLookupFwdF{}$ is defined in \figref{core-language:slicing:eval-aux}. Anonymous functions $\exLambda{\sigma}$ simply evaluate to closures, discarding any annotations. Evaluating an integer $n_{\alpha'}$ alongside annotation $\alpha$ returns $n$ annotated by the meet of $\alpha$ and $\alpha'$. For records $\exRec{\vec{\bind{x}{e}}}_{\alpha}$ with annotation $\alpha'$, we evaluate each term $e_i$ in the record to a value $v_i$, and then return $\vec{\bind{x}{e}}$ annotated by $\alpha \meet \alpha'$. Project a field $x$ out of a record $e$ will retrieve the term in $e$ with position $i$ corresponding to $x$, and evaluate it to $v_i$.
+
+For the cons rule, $\exPair{(\rho,\annCons{e_1}{e_2}{\alpha'})}{\alpha}$, we forward analyse $e_1$ and $e_2$ to get annotated values $v_1$ and $v_2$, and then
+
+% Give the intuition that what we do with annotation propagation is specifying how we consume resources in the input in order to construct things in the output.
 
 \paragraph{Primitive operations}
 
