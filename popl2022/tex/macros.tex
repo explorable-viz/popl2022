@@ -185,6 +185,13 @@
 \newcommand*{\Bool}{\mathbb{B}}
 \newcommand*{\Val}[1]{\Set{Val}({#1})}
 
+% Functors
+\newcommand*{\ValF}[1]{\Set{Val}({#1})}
+\newcommand*{\TermF}[1]{\Set{Term}({#1})}
+
+% Meta variables
+\newcommand*{\Unit}{\mathrm{1}}
+
 % Lattices
 \let\oldbigjoin\bigjoin
 \let\oldbigmeet\bigmeet
@@ -251,6 +258,8 @@
 \newcommand*{\evalFwdF}[1]{\fwdF{\evalN}{#1}}
 \newcommand*{\evalBwdF}[1]{\bwdF{\evalN}{#1}}
 
+\newcommand*{\erase}[1]{|#1|}
+
 \newcommand*{\matchS}{\rightsquigarrow}
 \newcommand*{\matchFwdS}{\mathrel{\rotatebox[origin=c]{45}{$\matchS$}}}
 \newcommand*{\matchBwdS}{\mathrel{\rotatebox[origin=c]{-45}{$\matchS$}}}
@@ -313,6 +322,7 @@
 \newcommand*{\seqRange}[2]{\seqRangeOp{#1}{#2}{\concat}}
 \newcommand*{\setRange}[2]{\set{{#1 .. {#2}}}}
 \newcommand*{\seqRangeOp}[3]{{#1} #3 .. #3 {#2}}
+
 
 \newcommand*{\arity}[1]{\mathsf{arity}(#1)}
 \newcommand*{\length}[1]{|#1|}
