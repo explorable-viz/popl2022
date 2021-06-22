@@ -5,7 +5,7 @@ We now show how to extend the core language described in \secref{core-language} 
 
 % We also introduce holes $\hole$ as a special values that express annotating every position within a value with the bottom element of a lattice.
 
-The selection type $\textcal{A}$ is chosen to remain abstract as there are various forms of selection information we may want to express in our language, however we do require $\textcal{A}$ to be a lattice. In other words, selections must at least have top $\top$ and bottom $\bot$ elements representing fully selected and fully unselected respectively, and a meet $\meet$ and join $\join$ operation for combining selection information using intersection and union where $\top$ and $\bot$ are their left and right units. By annotating values with lattices as selection types, we can also introduce the notion of \textit{holes} $\hole$ as special values that express annotating every position within a value with the bottom element of a lattice.
+The selection type $\textcal{A}$ is chosen to remain abstract as there are various forms of selection information we may want to express in our language, however we do require $\textcal{A}$ to be a lattice. In other words, selections must at least have top $\top$ and bottom $\bot$ elements representing fully selected and fully unselected respectively, and a meet $\meet$ and join $\join$ operation for combining selection information using intersection and union where $\top$ and $\bot$ are their left and right units.
 
 The most obvious notion of selection is achieved by using the Boolean lattice, $\textcal{2}$, where the top $\top$ and bottom $\bot$ elements are assigned true $\TT$ and false $\FF$, and the meet $\meet$ and $\join$ operations are conjunction $\land$ and disjunction $\lor$. However, we can also use more sophisticated lattices such as a vector of Booleans to represent multiple selections simultaneously.
 
@@ -31,19 +31,25 @@ Since the elements of $\SelF{v}$ have a fixed shape, $\SelF{v}$ is a \textit{rep
 \newpage
 \subsubsection{Hole equivalence}
 
-As lattices are partially ordered, annotations $\textcal{A}$ also induce a partial order on annotated values $\Sel{v}{A}$, where two values $v$ and $v'$ are related by $v \leq v$ if each annotation in $v$ is below the annotation in the corresponding position in $v'$ (defined in \figref{leq-value-eliminator} and \figref{leq-term}). We can enrich this partial order by introducing hole $\hole$ into the set of annotated values $\Sel{v}{A}$, where holes let us represent any value in a fully unselected state (every annotation position within it is $\bot$).
+% By annotating values with lattices as selection types, we can also introduce the notion of \textit{holes} $\hole$ as special values that express annotating every position within a value with the bottom element of a lattice.
 
-We can then introduce the notion of hole-equivalence, which captures the idea that we can refine a hole using a provided value structure $\mathbf{v}$ to produce an equivalent value $v$ where all annotation positions are $\bot$:
+As lattices are partially ordered, annotations $\textcal{A}$ also induce a partial order on annotated values $\Sel{v}{A}$, where two values $v$ and $v'$ are related by $\leq$ if each annotation in $v$ is below the annotation in the corresponding position in $v'$ (defined in \figref{leq-value-eliminator} and \figref{leq-term}). We can then enrich the set of annotated values $\Sel{v}{A}$ by introducing the distinguished element hole $\hole_{\mathbf{v}}$, which is alternative notation for the bottom element of $\Sel{v}{A}$, i.e. the value of shape $\mathbf{v}$ where all annotation positions are $\bot$. As a consequence, it follows that $\hole \join v = v$ and $v \join \hole = v$ for any $v$, and conversely that $\hole \meet v = \hole$ and $v \meet \hole = \hole$.
+
+The $\leq$ relation with holes induces an equivalence relation, $\eq$, which we call \textit{hole equivalence}:
+
+% The equivalence relation induced by this partial order means that the bottom element of
 
 \begin{definition}[Hole equivalence]
    Define $\eq$ as the intersection of $\leq$ and $\geq$.
 \end{definition}
 
-We can consider any value $v$ to be hole-equivalent when every position in its structure is either annotated with $\bot$ or is a hole. For example, the following values are hole-equivalent: $\hole$, $(\annCons{\hole}{\hole}{\bot})$, $(\annCons{\annTrue{\bot}}{\hole}{\bot})$, and $(\annCons{\annTrue{\bot}}{\annFalse{\bot}}{\bot})$.
+This equivalence relation means that value selections can have multiple representations, and captures the idea that any substructures of a value $v$ that are annotated completely with $\bot$ can equivalently be replaced by a hole. For example, the following values are hole equivalent: $(\annCons{\hole_{\kw{\textbf{true}}}}{\hole_{\kw{\textbf{[]}}}}{\top})$, $(\annCons{\exTrue_{\bot}}{\hole_{\kw{\textbf{[]}}}}{\top})$, $(\annCons{\hole_{\kw{\textbf{true}}}}{\exNil_{\bot}}{\top})$, and $(\annCons{\exTrue_{\bot}}{\hole_{\exNil_{\bot}}}{\top})$. The notion of holes is important for performance purposes, as we often need an efficient representation of environments where the majority of bindings are unselected.
 
-The equivalence relation induced by the partial order ensures that the equations for zip generalises to holes. As a consequence, it follows that $\hole \join v = v$ and $v \join \hole = v$ for any $v$, and conversely that $\hole \meet v = \hole$ and $v \meet \hole = \hole$.
+%We can enrich this partial order by introducing hole $\hole$ into the set of annotated values $\Sel{v}{A}$, where holes let us represent any value in a fully unselected state (every annotation position within it is $\bot$).
 
-The notion of holes is important for performance purposes, as we frequently need an efficient way of representing completely unselected values e.g. for environments where only some subset of its bindings are selected.
+% We can then introduce the notion of hole-equivalence, which captures the idea that we can refine a hole using a provided value structure $\mathbf{v}$ to produce an equivalent value $v$ where all annotation positions are $\bot$:
+
+
 
 % when joining or meeting or zipping, the structures of two values have to be equal, but we can relax the notion of equivalence to think of holes to be structurally equal to any value.
 
