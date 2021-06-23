@@ -30,7 +30,7 @@
       \strut
    }
    {
-      \annInt{n}{\FF} \leq \hole
+      \annInt{n}{\bot} \leq \hole
    }
    %
    \and
@@ -53,7 +53,7 @@
       \strut
    }
    {
-      \annTrue{\FF} \leq \hole
+      \annTrue{\bot} \leq \hole
    }
    %
    \and
@@ -76,7 +76,7 @@
       \strut
    }
    {
-      \annFalse{\FF} \leq \hole
+      \annFalse{\bot} \leq \hole
    }
    %
    \and
@@ -103,7 +103,7 @@
       (\forall i \numleq \length{\vec{x}})
    }
    {
-      \annRec{\vec{\bind{x}{e}}}{\FF} \leq \hole
+      \annRec{\vec{\bind{x}{e}}}{\bot} \leq \hole
    }
    %
    \and
@@ -146,7 +146,7 @@
       \strut
    }
    {
-      \annNil{\FF} \leq \hole
+      \annNil{\bot} \leq \hole
    }
    %
    \and
@@ -173,7 +173,7 @@
       e_2 \leq \hole
    }
    {
-      \annCons{e_1}{e_2}{\FF} \leq \hole
+      \annCons{e_1}{e_2}{\bot} \leq \hole
    }
    %
    \and
@@ -200,7 +200,7 @@
       e_2 \leq \hole
    }
    {
-      \annVec{e_1}{x}{e_2}{\FF} \leq \hole
+      \annVec{e_1}{x}{e_2}{\bot} \leq \hole
    }
    %
    \and

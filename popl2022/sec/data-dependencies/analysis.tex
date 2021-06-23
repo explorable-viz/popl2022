@@ -1,0 +1,98 @@
+\subsection{Forward and backward Galois dependency}
+\label{sec:core-language:fwd-bwd}
+
+\todo{Introduce this section}. %The annotated syntactic forms introduced in \secref{data-dependencies} allow us to now describe how data dependencies can be tracked during evaluation by propagated selection information during forward and backward dependency analysis.
+\todo{Given that forward analysis is notated with $\evalFwdF{T}$, should we introduce this section by describing how forward analysis builds on top of the idea of evaluation but on annotated syntactic forms?}
+
+\subsubsection{Pattern-matching}
+
+\input{fig/core-language/slicing/match}
+
+\subsubsection{Evaluation}
+
+The idea of forward dependency analysis is to propagate selections on the input resources in order to determine the selections on the output value. The function $\evalFwdF{T} :: \tyProd{\Sel{\boldsymbol{\rho},\, e}{A}}{\textcal{A}} \to \Sel{v}{A}$ describes how we take a selected term $e$ and environment $\rho$, along with the selection $\alpha$ of the current context, and consume them to construct the selection information of the output value $v$. When working in the forwards direction, we want to express that a value is only selected if all the terms involved in its construction are selected, hence we use the meet operation to combine selection states.
+
+Evaluating a variable $x$ is equivalent to looking it up in the environment $\rho$, where $\envLookupFwdF{}$ is defined in \figref{core-language:slicing:eval-aux}. Anonymous functions $\exLambda{\sigma}$ simply evaluate to closures, which are unannotated. We begin to see how the $\meet$ operation is used when evaluating an integer $n_{\alpha'}$ with $\alpha$ as the current selection context - this returns $\annot{n}{\alpha \meet \alpha'}$, expressing that the value $n$ is selected if both the term $n$ and the term containing $n$ were selected. The same logic applies to empty lists $\annot{\exNil}{\alpha'}$.
+
+The recursive behaviour of forward analysis is first seen in the rule for records, $\exRec{\vec{\bind{x}{e}}}_{\alpha}$. We begin by forward analysing each term $e_i$ in the record to a selected value $v_i$, and then construct a record $\annot{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}$, which is only selected if the record itself was selected along with the current context $\alpha'$.
+
+For the cons rule, $\exPair{(\rho,\annCons{e_1}{e_2}{\alpha'})}{\alpha}$, we forward analyse $e_1$ and $e_2$ to get annotated values $v_1$ and $v_2$, and then construct the value $\annCons{v_1}{v_2}{\alpha \meet \alpha'}$ where the cons constructor is only selected if both $\exCons{e_1}{e_2}$ and the outer term containing it are selected.
+
+% Give the intuition that what we do with annotation propagation is specifying how we consume resources in the input in order to construct things in the output.
+
+\paragraph{Primitive operations}
+
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ with $\length{\vec{n}} = i$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}{\vec{n}}, \primBwd{\phi}{\vec{n}})$ between $\Below{\vec{n}}$ and $\Below{\phi(\vec{n})}$ by defining
+\begin{definition}
+\label{def:core-language:primop-gc}
+\begin{salign}
+   \primFwd{\phi}{\vec{n}}(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
+   \text{ where }
+   \primFwdBool{\phi}{\vec{n}}(\vec{\alpha}) = \beta
+   \\
+   \primBwd{\phi}{\vec{n}}(\annInt{m}{\beta}) &= \vec{\annInt{n}{\alpha}}
+   \text{ where }
+   \primBwdBool{\phi}{\vec{n}}(\beta) = \vec{\alpha}
+\end{salign}
+\end{definition}
+
+\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values. For any $\vec{n}$ with $\length{\vec{n}} \numlt i$, any such $\phi$ also gives rise to an isomorphism between $\Below{\vec{n}}$ and the lattice of partial applications $\Below{\exPrimOp{\phi}{\vec{n}}}$.
+
+\input{fig/core-language/slicing/eval}
+\input{fig/core-language/slicing/eval-aux}
+
+\begin{definition}[Hole environment]
+Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
+\end{definition}
+
+\begin{lemma}[Least environment for $\rho$]
+\label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\rho} \leq \rho$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for environment lookup]
+   Suppose $\envLookup{\rho}{x}{v}$. Then define $\envLookupFwdF{\rho,x}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,x}: \Below{v} \to \Below{\rho}$ to be $\bind{x}{-}\envLookupR$ and $\envLookupBwdR{\rho}\bind{x}{-}$ restricted to $\Below{\rho}$ and $\Below{v}$ respectively.
+\end{definition}
+
+\begin{lemma}[Galois connection for environment]
+\label{lem:core-language:env-get-put}Suppose $\envLookup{\rho}{x}{v}$.
+\begin{enumerate}
+   \item \label{lem:core-language:env-get-put:1} $\envLookupFwdF{\rho,x}(\envLookupBwdF{\rho,x}(v)) \geq v$.
+   \item \label{lem:core-language:env-get-put:2} $\envLookupBwdF{\rho,x}(\envLookupFwdF{\rho,x}(\rho')) \leq \rho'$.
+\end{enumerate}
+\end{lemma}
+
+\begin{definition}
+   \label{def:core-language:closeDefs-bwd}
+   Define the relation $\closeDefsBwdR$ as given in \figref{core-language:slicing:eval-aux}.
+\end{definition}
+
+\begin{definition}[Forward and backward functions for recursive bindings]
+   Suppose $\rho, h \closeDefsR \rho'$. Define $\closeDefsFwdF{\rho,h}: \Below{(\rho, h)} \to \Below{\rho'}$ and $\closeDefsBwdF{\rho,h}: \Below{\rho'} \to \Below{(\rho, h)}$ to be $\closeDefsR$ and $\closeDefsBwdR$ restricted to $\Below{(\rho, h)}$ and $\Below{\rho'}$ respectively.
+\end{definition}
+
+\begin{theorem}[Galois connection for recursive bindings]
+\label{thm:core-language:closeDefs:gc}
+   Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h} \adjoint \closeDefsBwdF{\rho,h}$.
+\end{theorem}
+
+\begin{definition}[Forward and backward functions for evaluation]
+   Suppose $T: \rho, e \evalR v$. Define $\evalFwdF{T}: \Below{(\rho, e, \TT)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \TT)}$ to be $\evalFwdR{T}$ and $\evalBwdR{T}$ restricted to $\Below{(\rho, e, \TT)}$ and $\Below{v}$ respectively.
+\end{definition}
+
+\begin{theorem}[Galois connection for evaluation]
+\label{thm:core-language:eval:gc}
+   Suppose $T: \rho, e \evalFwdS v$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
+\end{theorem}
+
+\begin{lemma}[Determinism of pattern-matching]
+   Suppose $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
+\end{lemma}
+
+\begin{definition}[Forward and backward functions for pattern-matching]
+   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
+\end{definition}
+
+\begin{theorem}[Galois connection for pattern-matching]
+\label{thm:core-language:match:gc}
+   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+\end{theorem}
