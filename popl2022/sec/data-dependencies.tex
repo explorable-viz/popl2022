@@ -20,7 +20,7 @@ The most obvious notion of selection is achieved by using the Boolean lattice, $
 
 \subsection{Selections of a value}
 
-We can recover the syntax of unannotated values described in \secref{sec:core-language} from annotated values by defining an erasure operation $\erase{v} : \tyFun{\ValF{\textcal{A}}}{\ValF{\Unit}}$ which erases its annotations of type $\textcal{A}$ to be the trivial one-point lattice $\Unit$. We can hence think of $|v|$ as the underlying shape of the annotated value $v$. From now on, we will use $\mathbf{u}, \mathbf{v}$ to range over \textit{unannotated} values and reserve $u, v$ for \textit{annotated} values (and similarly for terms and eliminators). This is useful for letting us consider all annotated values of a given shape:
+We can recover the syntax of unannotated values described in \secref{core-language} from annotated values by defining an erasure operation $\erase{v} : \tyFun{\ValF{\textcal{A}}}{\ValF{\Unit}}$ which erases its annotations of type $\textcal{A}$ to be the trivial one-point lattice $\Unit$. We can hence think of $|v|$ as the underlying shape of the annotated value $v$. From now on, we will use $\mathbf{u}, \mathbf{v}$ to range over \textit{unannotated} values and reserve $u, v$ for \textit{annotated} values (and similarly for terms and eliminators). This is useful for letting us consider all annotated values of a given shape:
 
 \begin{definition}[Selections of $\mathbf{v}$ for a selection type $\textcal{A}$]
    Define $\Sel{v}{A}$ as the set of all values $v$ annotated with selection type $\textcal{A}$ that are of the shape $\textbf{v}$, i.e. $v$ erases to $\mathbf{v}$.
