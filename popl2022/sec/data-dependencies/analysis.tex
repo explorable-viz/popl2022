@@ -1,8 +1,13 @@
 \subsection{Forward and backward Galois dependency}
 \label{sec:core-language:fwd-bwd}
 
-\todo{Introduce this section}. %The annotated syntactic forms introduced in \secref{data-dependencies} allow us to now describe how data dependencies can be tracked during evaluation by propagated selection information during forward and backward dependency analysis.
-\todo{Given that forward analysis is notated with $\evalFwdF{T}$, should we introduce this section by describing how forward analysis builds on top of the idea of evaluation but on annotated syntactic forms?}
+Now that we have a way of expressing selections on values and program fragments (\secref{data-dependencies}), we want a means of analysing a given computation and specifying how selection information on the input can determine the selections on the output, and vice versa. This will allow us to achieve the crux of our goal as set out in \secref{introduction:motivation} to bidirectionally link structured outputs to structured inputs in order to track data dependencies.
+
+One can think of selections on the input as the resources that are available to the program, and unselected inputs as unavailable resources. The intuition behind \textit{forward dependency analysis} is then to express that an output is only selected if all the resources required to construct that output are available, i.e. they are all selected.
+
+Conversely we can think of selections on the output as specifications for resources we want in the output, and unselected outputs as resources of uninterest. \textit{Backward dependency analysis} then expresses that an input is selected only if it was a resource required to construct that selected output.
+
+Both forwards and backwards analyses are performed with respect to a provided fixed computation $\explVal{T}{\rho, e \evalR v}$ as previously defined in \figref{core-language:semantics}. Forward analysis can be thought of as ``replaying'' evaluation and propagating annotations on inputs to annotations on outputs; the trace $\textcolor{gray}{T}$ is necessary to guide forward analysis through the original computation as the presence of holes in the program results in loss of information about the program structure. Backward analysis can be thought of ``rewinding'' evaluation and propagating annotations on outputs to annotations on inputs, where the necessity for trace $\textcolor{gray}{T}$ is more obvious as we have no other information about the original program structure. Operationally, one would first evaluate a program to obtain its trace $\textcolor{gray}{T}$ and then run a forward or background analysis over $\textcolor{gray}{T}$ with any lattice desired.
 
 \subsubsection{Pattern-matching}
 
