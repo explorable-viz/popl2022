@@ -188,11 +188,12 @@
 % Functors
 \newcommand*{\ValF}[1]{\Set{Val}({#1})}
 \newcommand*{\TermF}[1]{\Set{Term}({#1})}
-\newcommand*{\Sel}[2]{\Set{Sel}_{{\mathbf{#1}}}{(\textcal{#2})}}
-\newcommand*{\SelF}[1]{\Set{Sel}_{\mathbf{#1}}}
+\newcommand*{\Sel}[2]{\SelF{#1}{(\textcal{#2})}}
+\newcommand*{\SelF}[1]{\Set{Sel}_{\bm{#1}}}
 
 % Meta variables
 \newcommand*{\Unit}{\textcal{1}}
+\newcommand*{\Prod}[2]{{#1}\times{#2}}
 
 % Lattices
 \let\oldbigjoin\bigjoin
@@ -257,8 +258,8 @@
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
 \newcommand*{\evalN}{eval}
-\newcommand*{\evalFwdF}[1]{\fwdF{\evalN}{#1}}
-\newcommand*{\evalBwdF}[1]{\bwdF{\evalN}{#1}}
+\newcommand*{\evalFwdF}[1]{{\evalFwdR{#1}}}%{\fwdF{\evalN}{#1}}
+\newcommand*{\evalBwdF}[1]{{\evalBwdR{#1}}}%{\bwdF{\evalN}{#1}}
 
 \newcommand*{\erase}[1]{|#1|}
 
@@ -273,8 +274,8 @@
 \newcommand*{\matchBwd}[6]{#1, #2, #3 \matchBwdR{#4} #5, #6}
 \newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \matchBwdR{#4}\leq #5, #6}
 \newcommand*{\matchN}{match}
-\newcommand*{\matchFwdF}[1]{\fwdF{\matchN}{#1}}
-\newcommand*{\matchBwdF}[1]{\bwdF{\matchN}{#1}}
+\newcommand*{\matchFwdF}[1]{{\matchFwdR{#1}}}%{\fwdF{\matchN}{#1}}
+\newcommand*{\matchBwdF}[1]{{\matchBwdR{#1}}}%{\bwdF{\matchN}{#1}}
 \newcommand*{\matchGC}[1]{\GC{\matchN}{#1}}
 
 % Desugaring.
@@ -366,5 +367,6 @@
 \newcommand*{\textcal}[1]{%
 % family qzc: Font TeX Gyre Chorus (package tgchorus)
 % family pzc: Font Zapf Chancery (package chancery)
-\Large\textit{\fontfamily{qzc}\selectfont#1\,}%
+{{\Large \textit{\fontfamily{qzc}\selectfont#1\,}}}%
 }
+\newcommand*{\raw}[1]{\bm{#1}}
