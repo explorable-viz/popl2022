@@ -186,15 +186,14 @@
 \newcommand*{\Val}[1]{\Set{Val}({#1})}
 
 % Functors
-\newcommand*{\ValF}[1]{\Set{Val}\,{#1}}
-\newcommand*{\TermF}[1]{\Set{Term}\,{#1}}
-%\newcommand*{\Sel}[2]{\SelF{#1}{(\textcal{#2})}}
-%\newcommand*{\SelF}[1]{\Set{Sel}_{\mathbf{#1}}}
-\newcommand*{\Sel}[2]{\SelF{#1}{\textcal{#2}}}
+\newcommand*{\ValF}[1]{\Set{Val}({#1})}
+\newcommand*{\TermF}[1]{\Set{Term}({#1})}
+\newcommand*{\Sel}[2]{\SelF{#1}{(\textcal{#2})}}
 \newcommand*{\SelF}[1]{\Set{Sel}_{\bm{#1}}}
 
 % Meta variables
 \newcommand*{\Unit}{\textcal{1}}
+\newcommand*{\Prod}[2]{{#1}\times{#2}}
 
 % Lattices
 \let\oldbigjoin\bigjoin
