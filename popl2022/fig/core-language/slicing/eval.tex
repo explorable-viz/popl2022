@@ -310,8 +310,9 @@
 \label{fig:data-dependencies:fwd}
 \end{figure}
 
-\begin{figure}[H]
-\flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}
+\begin{figure}
+{\small \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}%
+\hfill \textbfit{$v$ backward-analyses along $T$ to $\rho$ and $e$, with argument demand $\alpha$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\evalBwdS$-eq}}
@@ -494,7 +495,8 @@
 \end{smathpar}
 \vspace{1mm}
 
-\flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}
+{\small \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}%
+\hfill \textbfit{$\rho$ and $\kappa$, with argument demand $\alpha$, backward-analyse along $w$ to $v$ and $\sigma$}}
 \begin{smathpar}
    \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
    {
