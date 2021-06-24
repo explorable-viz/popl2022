@@ -11,7 +11,7 @@ The selection type $\textcal{A}$ is chosen to remain abstract as there are vario
 
 The most obvious notion of selection is achieved by using the Boolean lattice, $\textcal{2}$, where the top $\top$ and bottom $\bot$ elements are assigned true $\TT$ and false $\FF$, and the meet $\meet$ and $\join$ operations are conjunction $\land$ and disjunction $\lor$. Using this, we can represent the selection of the value of the field $\kw{China}$ in the record given earlier as $\annot{\exRec{\bind{\kw{China}}{\annot{295.3}{\TT}}, \bind{\kw{USA}}{\annot{196.7}{\FF}}, \bind{\kw{Germany}}{\annot{91.8}{\FF}}}}{\FF}$. However, more sophisticated lattices can also be used such as a vector of Booleans to represent multiple selections simultaneously.
 
-\input{fig/core-language/syntax-selection}
+\input{fig/core-language/slicing/syntax}
 \input{fig/core-language/slicing/leq-value-elim}
 \input{fig/core-language/slicing/leq-term}
 
