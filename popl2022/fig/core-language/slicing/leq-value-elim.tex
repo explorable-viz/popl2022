@@ -1,4 +1,3 @@
-\begin{figure}[H]
 \flushleft \shadebox{$h \leq h'$}
 \begin{smathpar}
    \inferrule*[
@@ -189,35 +188,6 @@
    \and
    %
    \inferrule*[
-      right={$(\alpha,\beta) \leq (\alpha',\beta')$}
-   ]
-   {
-      v_{i} \leq u_{i}
-      \quad
-      (\forall i \numleq j)
-   }
-   {
-      \annVecVal{\vec{v}}{\annInt{j}{\beta}}{\alpha}
-      \leq
-      \annVecVal{\vec{u}}{\annInt{j}{\beta'}}{\alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      v_{i} \leq \hole
-      \quad
-      (\forall i \numleq j)
-   }
-   {
-      \annVecVal{\vec{v}}{\annInt{j}{\bot}}{\bot} \leq \hole
-   }
-   %
-   \and
-   %
-   \inferrule*[
    ]
    {
       v_i \leq u_i
@@ -380,6 +350,3 @@
       \elimList{\kappa}{\sigma} \leq \hole
    }
 \end{smathpar}
-\caption{Partial orders on values and eliminators}
-\label{fig:leq-value-eliminator}
-\end{figure}
