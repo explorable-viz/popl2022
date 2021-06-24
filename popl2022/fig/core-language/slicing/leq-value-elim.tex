@@ -42,10 +42,9 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
-      \strut
+      \alpha \leq \alpha'
    }
    {
       \annInt{n}{\alpha} \leq \annInt{n}{\alpha'}
@@ -65,10 +64,9 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
-      \strut
+      \alpha \leq \alpha'
    }
    {
       \annTrue{\alpha} \leq \annTrue{\alpha'}
@@ -88,10 +86,9 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
-      \strut
+      \alpha \leq \alpha'
    }
    {
       \annFalse{\alpha} \leq \annFalse{\alpha'}
@@ -111,9 +108,10 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
+      \alpha \leq \alpha'
+      \quad
       v_i \leq u_i
       \quad
       (\forall i \in \length{\vec{x}})
@@ -138,10 +136,9 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
-      \strut
+      \alpha \leq \alpha'
    }
    {
       \annNil{\alpha} \leq \annNil{\alpha'}
