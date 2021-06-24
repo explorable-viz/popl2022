@@ -174,7 +174,7 @@
 \end{smathpar}
 
 {\small \flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}%
-\hfill \textbfit{if $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$ then $v, \sigma \in \Sel{v,\sigma}{A}$ forward analyses to $\rho, \kappa, \alpha$}}
+\hfill \textbfit{if $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$ then $v, \sigma \in \Sel{v,\sigma}{A}$ forward analyses to $\rho, \kappa, \alpha \in \Sel{\rho,\kappa}{A} \times \textcal{A}$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\matchFwdS$-eq}}
