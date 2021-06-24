@@ -1,47 +1,79 @@
 \begin{figure}[H]
-\begin{syntaxfig}
-\mbox{Selection state}
-&
-\alpha, \beta
-&
-::=
-&
-\top
-&
-\text{selected}
-\\
-&&&
-\bot
-&
-\text{unselected}
-\\[2mm]
-\mbox{Annotated values}
-&
-u, v
-&
-::=
-&
-\hole \mid \annTrue{\alpha} \mid \annFalse{\alpha} \mid \annInt{n}{\alpha} \mid \annNil{\alpha} \mid \annCons{u}{v}{\alpha} \mid
-\\
-&&&
-\annRec{\vec{\bind{x}{v}}}{\alpha}  \mid \annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}} \mid \exPrimOp{\phi}{\vec{v}} \mid \exClosure{\rho}{h}{\sigma}
-&
-\text{}
-\\[2mm]
-\mbox{Annotated terms}
-&
-e
-&
-::=
-&
-\hole \mid \annTrue{\alpha} \mid \annFalse{\alpha} \mid \annInt{n}{\alpha} \mid \annNil{\alpha} \mid \annCons{e}{e'}{\alpha} \mid
-\\
-&&&
-\annRec{\vec{\bind{x}{e}}}{\alpha}  \mid \annVec{e}{x}{e'}{\alpha}
-&
-\text{}
-\\[2mm]
-\end{syntaxfig}
-\caption{Selection state and annotated values and terms}
+{\small
+\begingroup
+\renewcommand*{\arraystretch}{1}
+\begin{minipage}[t]{0.5\textwidth}
+   \begin{tabularx}{\textwidth}{rL{2.5cm}L{3cm}}
+   &\textbfit{Annotated term}&
+   \\
+   $w \in \TermF{\textcal{A}} ::=$
+   &
+   $\hole$
+   &
+   hole
+   \\
+   &
+   $\annTrue{\alpha} \mid \annFalse{\alpha}$
+   &
+   Boolean
+   \\
+   &
+   $\annInt{n}{\alpha}$
+   &
+   integer
+   \\
+   &
+   $\annRec{\vec{\bind{x}{e}}}{\alpha}$
+   &
+   record
+   \\
+   &
+   $\annNil{\alpha} \mid \annCons{e}{e'}{\alpha}$
+   &
+   list
+   \\[2mm]
+   $\alpha, \beta \in \textcal{A}$
+   &&
+   \text{selection state}
+   \end{tabularx}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+   \begin{tabularx}{\textwidth}{rL{2.5cm}L{3cm}}
+   &\textbfit{Annotated value}&
+   \\
+   $u, v \in \ValF{\textcal{A}}::=$
+   &
+   \ldots
+   \\
+   &
+   $\hole$
+   &
+   hole
+   \\
+   &
+   $\annTrue{\alpha} \mid \annFalse{\alpha}$
+   &
+   Boolean
+   \\
+   &
+   $\annInt{n}{\alpha}$
+   &
+   integer
+   \\
+   &
+   $\annRec{\vec{\bind{x}{v}}}{\alpha}$
+   &
+   record
+   \\
+   &
+   $\annNil{\alpha} \mid \annCons{u}{v}{\alpha}$
+   &
+   list
+   \\[2mm]
+   \end{tabularx}
+\end{minipage}
+\endgroup
+}
+\caption{Selection state, annotated terms and annotated values}
 \label{fig:core-syntax-selection}
 \end{figure}
