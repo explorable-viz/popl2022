@@ -9,7 +9,6 @@ Conversely we can think of selections on the output as specifications for resour
 
 Both forwards and backwards analyses are performed with respect to a provided fixed computation $\explVal{T}{\rho, e \evalR v}$ as previously defined in \figref{core-language:semantics}. Forward analysis can be thought of as ``replaying'' evaluation and propagating annotations on inputs to annotations on outputs; the trace $\textcolor{gray}{T}$ is necessary to guide forward analysis through the original computation because the presence of holes in the program results in loss of information about the program structure. Backward analysis can be thought of ``rewinding'' evaluation and propagating annotations on outputs to annotations on inputs; the necessity for traces $\textcolor{gray}{T}$ are more obvious as we have no other information about the original program structure. Operationally, one would first evaluate a program to obtain its trace $\textcolor{gray}{T}$ and then run a forward or background analysis over $\textcolor{gray}{T}$ with any lattice desired.
 
-\newpage
 \subsubsection{Pattern-matching}
 
 It is necessary to first describe how the notion of pattern-matching translates to forward and backward dependency analysis, as this is how annotated input values are consumed to determine whether we have all the resources required to construct an output.
