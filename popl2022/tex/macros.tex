@@ -275,8 +275,8 @@
 \newcommand*{\matchBwd}[6]{#1, #2, #3 \matchBwdR{#4} #5, #6}
 \newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \matchBwdR{#4}\leq #5, #6}
 \newcommand*{\matchN}{match}
-\newcommand*{\matchFwdF}[1]{\fwdF{\matchN}{#1}}
-\newcommand*{\matchBwdF}[1]{\bwdF{\matchN}{#1}}
+\newcommand*{\matchFwdF}[1]{{\matchFwdR{#1}}}%{\fwdF{\matchN}{#1}}
+\newcommand*{\matchBwdF}[1]{{\matchBwdR{#1}}}%{\bwdF{\matchN}{#1}}
 \newcommand*{\matchGC}[1]{\GC{\matchN}{#1}}
 
 % Desugaring.
