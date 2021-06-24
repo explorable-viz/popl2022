@@ -7,9 +7,7 @@ The plain (unannotated) syntax described in \secref{core-language} can be recove
    ~that erase to $\raw{v}$.
 \end{definition}
 
-Since its elements have a fixed shape, $\SelF{v}$ is a ``representable'' functor: it is isomorphic to a function space whose domain is the set of annotation positions in $\raw{v}$. In particular, for any $v, v'$ in $\Sel{v}{A}$, the pointwise comparison of $v$ and $v'$ by the partial order $\leq$ of $\Ann{A}$
-
-the zip of a binary operation over $v$ and $v'$ is well-defined \cite{gibbons17}. In turn, this means that if $\Ann{A}$ is a lattice then $\Sel{v}{A}$ is also a lattice with meet and join defined by zipping the meet and join of $\Ann{A}$ over $v$ and $v'$. For example, the join of two cons values $(\annCons{u}{v}{\alpha})$ and $(\annCons{u'}{v'}{\alpha'})$ involves recursively joining over $u$ and $u'$, and $v$ and $v'$, and then also taking the join of $\alpha$ and $\alpha'$ to result in $\annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}$. The top element of $\Sel{v}{A}$ is then the value $v$ with shape $\raw{v}$ which has the top element of $\Ann{A}$ at every annotation position, and conversely for the bottom element.
+Since its elements have a fixed shape, $\SelF{v}$ is a ``representable'' functor: it is isomorphic to a function space whose domain is the set of annotation positions in $\raw{v}$. In particular, the pointwise comparison of any $v, v'$ in $\Sel{v}{A}$ using the partial order $\leq$ of $\Ann{A}$ is well-defined, as is the pointwise application (zip) of any binary operation~\cite{gibbons17}. It is easy to see that if $\Ann{A}$ is a lattice, then $\Sel{v}{A}$ is also a lattice, with the lattice operations defined pointwise. For example, if $u$ and $u'$ have the same shape and $v$ and $v'$ have the same shape, the join of the two lists $(\annCons{u}{v}{\alpha})$ and $(\annCons{u'}{v'}{\alpha'})$ is equal to $\annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}$. Similarly, the top element of $\Sel{v}{A}$ is the selection of $\raw{v}$ which has $\top$ at every annotation position.
 
 \subsubsection{Hole equivalence}
 
