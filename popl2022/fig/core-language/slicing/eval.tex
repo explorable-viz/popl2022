@@ -460,7 +460,8 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalBwdS$-apply}}
+      lab={\ruleName{$\evalBwdS$-apply}},
+      width={3.25in}
    ]
    {
       \evalBwd{v}{T'}{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}
@@ -491,6 +492,7 @@
       \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
    }
 \end{smathpar}
+\vspace{1mm}
 
 \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}
 \begin{smathpar}
