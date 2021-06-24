@@ -1,5 +1,19 @@
+\newpage
 \section{Extending to a realistic surface language}
 \label{sec:surface-language}
+
+\begin{enumerate}
+   \item Refer back to previous section (e.g. explain that using the core-language directly can be inconvenient for tracking more interesting data dependencies).
+   \item Build on top of previous section by motivating the necessity for a surface language which desugars into the core language by giving an example of a program which uses desired language features (such as list comprehensions (w/ generators), clauses, totalise, ).
+   \item Use this example to introduce the syntactic constructs required in the surface language (\figref{surface-language:syntax}), and mention which syntactic forms require annotations. If necessary, explain the corresponding type rules (\figref{surface-language:typing-term}).
+   \item Afterwards, we explain that the implementation needs to capture not only the typical desugaring process of general languages, but acts as an extra bidirectional stage on top of the bidirectional analysis of the core language.
+   \begin{enumerate}
+      \item In the forwards direction, it must specify how annotations on surface language expressions can be correspondingly positioned on the core language expressions that they desugar to.
+      \item In the backwards direction, it must use the original surface-language expression as a trace t in order to reconstruct the original surface-level program. It must also specify how annotations on the core language propagate backwards to form annotations on the surface language.
+   \end{enumerate}
+   \item Explain the forward desugaring of our example in chronological order, making reference to and elaborating on the necessary forward desugaring rules when necessary for terms (\figref{desugar-fwd}) and clauses (\figref{clause-fwd}), and also totalise (\figref{totalise-fwd}).
+   \item Explain how we backward desugar from the core-language version of our example over the forward-trace form in chronological order to reconstruct the original surface-level program. Make reference to and elaborate on the necessary backward rules - for terms (\figref{desugar-bwd}), clauses (\figref{clause-bwd}), and totalise (\figref{totalise-bwd}).
+\end{enumerate}
 
 \input{fig/surface-language/syntax}
 
