@@ -1,5 +1,17 @@
+\newpage
 \section{Extending to a realistic surface language}
 \label{sec:surface-language}
+
+\begin{enumerate}
+   \item Refer back to previous section (e.g. explain that using the core-language directly can be inconvenient for tracking more interesting data dependencies).
+   \item Build on top of previous section by motivating the necessity for a surface language which desugars into the core language by giving an example of a program which uses desired language features (such as list comprehensions, clauses).
+   \item Use this example to introduce the syntactic constructs required in the surface language, and mention which syntactic forms require annotations.
+   \item Afterwards, we explain that the implementation needs to capture not only the typical desugaring process of general languages, but acts as an extra bidirectional stage before the core-language is evaluated.
+   \begin{enumerate}
+      \item In the forwards direction, it must specify how annotations on surface language expressions can be correctly/correspondingly positioned on the core language expressions that they desugar to. It must also record a trace of the surface language expressions which we desugar from.
+      \item In the backwards direction, it must use the forward-desugaring traces to reconstruct the original surface-level program. It must also specify how annotations on the core language propagate backwards to form annotations on the surface language.
+   \end{enumerate}
+\end{enumerate}
 
 \input{fig/surface-language/syntax}
 
