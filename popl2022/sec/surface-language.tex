@@ -2,21 +2,10 @@
 \label{sec:surface-language}
 
 \input{fig/surface-language/syntax}
-\input{fig/surface-language/typing-term}
-\input{fig/surface-language/typing-pattern}
-\input{fig/surface-language/disjoint-join-elim}
 
 \begin{definition}[Disjoint join of partial continuations]
    Define $\disjjoin$ to be the smallest partial symmetric function satisfying the equations in \figref{surface-language:disjoin-join-elim}.
 \end{definition}
-
-\input{fig/surface-language/slicing/desugar-fwd}
-\input{fig/surface-language/slicing/clause-fwd}
-\input{fig/surface-language/slicing/totalise-fwd}
-
-\input{fig/surface-language/slicing/desugar-bwd}
-\input{fig/surface-language/slicing/clause-bwd}
-\input{fig/surface-language/slicing/totalise-bwd}
 
 \begin{definition}[Forward and backward functions for desugaring]
      Suppose $s \desugarFwdR e$. Define $\desugarFwdF{s}: \Below{s} \to \Below{e}$ and $\desugarBwdF{s}: \Below{e} \to \Below{s}$ to be $\desugarFwdR$ and $\desugarBwdR{s}$ domain-restricted to $\Below{s}$ and $\Below{e}$ respectively.
