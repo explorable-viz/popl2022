@@ -1,6 +1,6 @@
 \subsection{Selections of a value}
 
-The plain (unannotated) syntax described in \secref{core-language} can be recovered from annotated terms via the erasure operation $\erase{v}: \ValF{\Ann{A}} \to \ValF{\Unit}$ which forgets the annotations, where $\Unit$ is the trivial one-point lattice. We refer to $|v|$ as the \emph{shape} of the annotated value $v$, which is useful because we will be mostly concerned with the annotated values of a given shape. From now on we will use $\raw{u}, \raw{v}$ to range over unannotated values, and reserve $u, v$ for annotated values (and similarly for terms and eliminators).
+The plain (unannotated) syntax described in \secref{core-language} can be recovered from annotated terms via the erasure operation $\erase{v}: \ValF{\Ann{A}} \to \ValF{\Unit}$ which forgets the annotations, where $\Unit$ is the trivial one-point lattice. We refer to $|v|$ as the \emph{shape} of the annotated value $v$, which is useful because we will be mostly concerned with the annotated values of a given shape. Allowing $\raw{u}, \raw{v}$ from now on to range over unannotated values, and reserving $u, v$ for annotated values (and similarly for terms and eliminators), we have:
 
 \begin{definition}[Selections of $\raw{v}$]
    Define $\Sel{v}{A}$ to be the set of all values $v \in \ValF{\textcal{A}}$ that are of shape $\raw{v}$, i.e.
