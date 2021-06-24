@@ -1,181 +1,175 @@
-\begin{figure}[H]
-\begin{syntaxfig}
-\mbox{Identifier}
-&
-x, y
-&
-::=
-&
-\ldots
+\begin{figure}
+{\small
+\begingroup
+\renewcommand*{\arraystretch}{1}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{2.3cm}L{3cm}}
+%\rowcolor{verylightgray}
+&\textbfit{Identifier}&
 \\
-&&&
-\primOp
+$x, y ::=$
 &
-\text{operator name}
-\\
-\mbox{Surface term}
-&
-s, t
-&
-::=
-&
-\ldots
+$\ldots$
 &
 \\
-&&&
-\exOp{\primOp}
 &
-\text{first-class operator}
-\\
-&&&
-\exBinaryApp{s}{\primOp}{s'}
+$\primOp$
 &
-\text{binary application}
-\\
-&&&
-\exLetRecMutual{\vec{g}}{s}
-&
-\text{mutually recursive functions}
-\\
-&&&
-\exIfThenElse{s}{s}{s}
-&
-\text{if}
-\\
-&&&
-\exMatch{s}{\vec{\clauseUncurried{p}{s}}}
-&
-\text{match}
-\\
-&&&
-\exLet{p}{s}{s}
-&
-\text{structured let}
-\\
-&&&
-\annList{s}{r}{\alpha}
-&
-\text{non-empty list}
-\\
-&&&
-\exListEnum{s}{s}
-&
-\text{list enum}
-\\
-&&&
-\annListComp{s}{\vec{q}}{\alpha}
-&
-\text{list comprehension}
+operator name
 \\[2mm]
-
-\mbox{List rest term}
-&
-r
-&
-::=
-&
-\annListEnd{\alpha}
-&
-\text{end}
+&\textbfit{Surface Term}&
 \\
-&&&
-\annListNext{s}{r}{\alpha}
+$s, t ::=$
 &
-\text{cons}
+$\ldots$
+&
+\\
+&
+$\exOp{\primOp}$
+&
+first-class operator
+\\
+&
+$\exBinaryApp{s}{\primOp}{s'}$
+&
+binary application
+\\
+&
+$\exLetRecMutual{\vec{g}}{s}$
+&
+mutually recursive
+\\
+&
+$\exIfThenElse{s}{s}{s}$
+&
+if
+\\
+&
+$\exMatch{s}{\vec{\clauseUncurried{p}{s}}}$
+&
+match
+\\
+&
+$\exLet{p}{s}{s}$
+&
+structured let
+\\
+&
+$\annList{s}{r}{\alpha}$
+&
+non-empty list
+\\
+&
+$\exListEnum{s}{s}$
+&
+list enum
+\\
+&
+$\annListComp{s}{\vec{q}}{\alpha}$
+&
+list comprehension
 \\[2mm]
-
-\mbox{Recursive function}
+&\textbfit{List rest term}&
+\\
+$r ::=$
 &
-g
+$\annListEnd{\alpha}$
 &
-::=
+end
+\\
 &
-\bind{x}{\vec{c}}
+$\annListNext{s}{r}{\alpha}$
+&
+cons
+\end{tabularx}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{2.8cm}L{2.9cm}}
+&\textbfit{Recursive function}&
+\\
+$g ::=$
+&
+$\bind{x}{\vec{c}}$
+&
 \\[2mm]
-
-\mbox{Clause}
+&\textbfit{Clause}&
+\\
+$c ::=$
 &
-c
+$\clause{\vec{p}}{s}$
 &
-::=
-&
-\clause{\vec{p}}{s}
 \\[2mm]
-
-\mbox{Pattern}
-&
-p
-&
-::=
-&
-\pattVar{x}
-&
-\text{variable}
+&\textbfit{Pattern}&
 \\
-&&&
-\pattRec{\vec{\bind{x}{p}}}
+$p ::=$
 &
-\text{record}
+$\pattVar{x}$
+&
+variable
 \\
-&&&
-\pattNil
 &
-\text{nil}
+$\pattRec{\vec{\bind{x}{p}}}$
+&
+record
 \\
-&&&
-\pattCons{p}{p}
 &
-\text{cons}
+$\pattNil$
+&
+nil
 \\
-&&&
-\pattList{p}{o}
 &
-\text{non-empty list}
+$\pattCons{p}{p}$
+&
+cons
+\\
+&
+$\pattList{p}{o}$
+&
+non-empty list
 \\[2mm]
-
-\mbox{List rest pattern}
-&
-o
-&
-::=
-&
-\pattListEnd
-&
-\text{end}
+&\textbfit{List rest pattern}&
 \\
-&&&
-\pattListNext{p}{o}
+$o ::=$
 &
-\text{cons}
+$\pattListEnd$
+&
+end
+\\
+&
+$\pattListNext{p}{o}$
+&
+cons
 \\[2mm]
-
-&
-\pi
-&
-::=
-&
-p \mid o
-\\[2mm]
-
-\mbox{Qualifier}
-&
-q
-&
-::=
-&
-\qualGuard{s}
-&
-\text{guard}
+&\textbfit{Qualifier}&
 \\
-&&&
-\qualDeclaration{p}{s}
+$q ::=$
 &
-\text{declaration}
+$\qualGuard{s}$
+&
+guard
 \\
-&&&
-\qualGenerator{p}{s}
 &
-\text{generator}
-\end{syntaxfig}
+$\qualDeclaration{p}{s}$
+&
+declaration
+\\
+&
+$\qualGenerator{p}{s}$
+&
+generator
+%$x, y$
+%&
+%&
+%identifier
+%\\
+%$i, j$
+%&&
+%positive integer
+%\\[2mm]
+\end{tabularx}
+\end{minipage}
+\endgroup
+}
 \caption{Syntax of surface-language terms}
+\label{fig:core-language:syntax}
 \end{figure}
