@@ -1,11 +1,7 @@
 \subsection{Forward and backward Galois dependency}
 \label{sec:data-dependencies:analyses}
 
-Now that we have a way of expressing selections on values and program fragments (\secref{data-dependencies}), we want a means of analysing a given computation and specifying how selection information on its input can determine the selections on its output, and vice versa. This will allow us to achieve the crux of our goal as set out in \secref{introduction:motivation} to bidirectionally link structured outputs to structured inputs in order to track data dependencies.
-
-One can think of selections on the input as the resources that are available to the program, and unselected inputs as unavailable resources. The intuition behind \textit{forward dependency analysis} is then to express that an output is only selected if all the resources required to construct it are available, i.e. they are all selected, hence we use the $\meet$ operation to combine selection information.
-
-Conversely we can think of selections on the output as specifications for resources we want in the output, and unselected outputs as resources of uninterest. \textit{Backward dependency analysis} then expresses that an input is only selected if it was a resource required to construct the selected output.
+We now show how to interpret a selection on a program or its input environment (collectively: an \emph{input selection}) as a selection on its output, and vice versa. In the forward direction (input to output), we will think of input selections as \emph{resources} available for use, and output selections as resources that can be made available, to a downstream computation, because they depend only on available input resources. In the backward direction (output to input), we will think of selections on the output as resources being demanded by a downstream computation, and the resulting input selections as the resources needed to compute that output selection. We call our analysis \emph{Galois dependency} (\secref{data-dependencies:analysis:galois-connections}), because the two directions form a Galois connection, a pair of functions that are each other's closest approximate inverse (from above in one direction, from below in the other). First we define the two directions and explain the principles underlying the definitions.
 
 Both forwards and backwards analyses are performed with respect to a provided fixed computation $\explVal{T}{\rho, e \evalR v}$ as previously defined in \figref{core-language:semantics}. Forward analysis can be thought of as ``replaying'' evaluation and propagating annotations on inputs to annotations on outputs; the trace $T$ is necessary to guide forward analysis through the original computation because the presence of holes in the program results in loss of information about the program structure. Backward analysis can be thought of ``rewinding'' evaluation and propagating annotations on outputs to annotations on inputs; the necessity for traces $T$ are more obvious as we have no other information about the original program structure. Operationally, one would first evaluate a program to obtain its trace $T$ and then run a forward or background analysis over $T$ with any lattice desired.
 
@@ -70,6 +66,9 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
 \begin{lemma}[Least environment for $\rho$]
 \label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\rho} \leq \rho$.
 \end{lemma}
+
+\subsection{Galois connections}
+\label{sec:data-dependencies:analysis:galois-connections}
 
 \begin{definition}[Forward and backward functions for environment lookup]
    Suppose $\envLookup{\rho}{x}{v}$. Then define $\envLookupFwdF{\rho,x}: \Below{\rho} \to \Below{v}$ and $\envLookupBwdF{\rho,x}: \Below{v} \to \Below{\rho}$ to be $\bind{x}{-}\envLookupR$ and $\envLookupBwdR{\rho}\bind{x}{-}$ restricted to $\Below{\rho}$ and $\Below{v}$ respectively.
