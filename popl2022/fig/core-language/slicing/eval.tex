@@ -504,26 +504,6 @@
    }
    {
       \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVar{x}}{v}{\elimVar{x}{\kappa}}
-   }\\
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
-   {
-      \strut
-   }
-   {
-      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
-   {
-      \strut
-   }
-   {
-      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
    }
    %
    \and
@@ -539,6 +519,16 @@
                {\matchRecEmpty}
                {\annot{\exRecEmpty}{\alpha}}
                {\elimRecEmpty{\kappa}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
+   {
+      \strut
+   }
+   {
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNil}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
    }
    %
    \and
@@ -565,16 +555,6 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
-   {
-      \strut
-   }
-   {
-      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNil}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
-   }
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
    {
       \matchBwd{\rho'}{\kappa}{\alpha}{w'}{v'}{\sigma}
@@ -589,7 +569,70 @@
                {\annCons{v}{v'}{\alpha}}
                {\elimList{\hole}{\tau}}
    }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
+   {
+      \strut
+   }
+   {
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
+   {
+      \strut
+   }
+   {
+      \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
+   }
 \end{smathpar}
+\vspace{1mm}
+
+\flushleft \shadebox{$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\envLookupBwdS$-head}}
+   ]
+   {
+      \strut
+   }
+   {
+      \envLookupBwd{(\hole_{\rho} \concat \bind{x}{u})}
+                   {\rho \concat \bind{x}{v}}
+                   {\bind{x}{u}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\envLookupBwdS$-tail}},
+      right={$x \neq y$}
+   ]
+   {
+      \envLookupBwd{\rho'}{\rho}{\bind{x}{u}}
+   }
+   {
+      \envLookupBwd{(\rho' \concat \bind{y}{\hole})}
+                   {\rho \concat \bind{y}{v}}
+                   {\bind{x}{u}}
+   }
+\end{smathpar}
+\vspace{1mm}
+
+\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}
+\begin{salign}
+   \vec{\bind{x}{v}}
+   &\closeDefsBwdR
+   (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+   &
+   \text{ where }
+   v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
+\end{salign}
+
 \caption{Backward data dependency (Boolean cases omitted)}
 \label{fig:data-dependencies:bwd}
 \end{figure}
