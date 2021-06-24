@@ -1,7 +1,8 @@
 \begin{figure}
 {\small \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}%
-\hfill \textbfit{if $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ then $\rho, e, \alpha \in \Sel{\rho,e}{A} \times \textcal{A}$ forward-analyses to $v \in \Sel{v}{A}$}}
+\hfill \textbfit{$\rho$ and $e$, with argument availability $\alpha$, forward-analyse along $T$ to $v$}}
 \begin{smathpar}
+   \mprset{center}
    \inferrule*[
       lab={\ruleName{$\evalFwdS$-eq}}
    ]
@@ -141,7 +142,8 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-apply}}
+      lab={\ruleName{$\evalFwdS$-apply}},
+      width={3in}
    ]
    {
       \evalFwdEq{\rho}{e}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
@@ -172,9 +174,10 @@
       \evalFwd{\rho}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
    }
 \end{smathpar}
+\vspace{1mm}
 
 {\small \flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}%
-\hfill \textbfit{if $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$ then $v, \sigma \in \Sel{v,\sigma}{A}$ forward-analyses to $\rho, \kappa, \alpha \in \Sel{\rho,\kappa}{A} \times \textcal{A}$}}
+\hfill \textbfit{$v$ and $\sigma$ forward-analyse along $w$ to $\rho$ and $\kappa$, with argument availability $\alpha$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\matchFwdS$-eq}}

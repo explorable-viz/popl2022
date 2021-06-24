@@ -259,8 +259,8 @@
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
 \newcommand*{\evalN}{eval}
-\newcommand*{\evalFwdF}[1]{\fwdF{\evalN}{#1}}
-\newcommand*{\evalBwdF}[1]{\bwdF{\evalN}{#1}}
+\newcommand*{\evalFwdF}[1]{{\evalFwdR{#1}}}%{\fwdF{\evalN}{#1}}
+\newcommand*{\evalBwdF}[1]{{\evalBwdR{#1}}}%{\bwdF{\evalN}{#1}}
 
 \newcommand*{\erase}[1]{|#1|}
 
