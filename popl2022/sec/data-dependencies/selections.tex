@@ -8,7 +8,6 @@ We can recover the syntax of unannotated values described in \secref{core-langua
 
 Since the elements of $\SelF{v}$ have a fixed shape, $\SelF{v}$ is a \textit{representable} functor with a fixed shape given by $\raw{v}$. In particular, for any $v, v'$ in $\Sel{v}{A}$, the zip of a binary operation over $v$ and $v'$ is well-defined \cite{gibbons17}. In turn, this means that if $\textcal{A}$ is a lattice then $\Sel{v}{A}$ is also a lattice with meet and join defined by zipping the meet and join of $\textcal{A}$ over $v$ and $v'$. For example, the join of two cons values $(\annCons{u}{v}{\alpha})$ and $(\annCons{u'}{v'}{\alpha'})$ involves recursively joining over $u$ and $u'$, and $v$ and $v'$, and then also taking the join of $\alpha$ and $\alpha'$ to result in $\annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}$. The top element of $\Sel{v}{A}$ is then the value $v$ with shape $\raw{v}$ which has the top element of $\textcal{A}$ at every annotation position, and conversely for the bottom element.
 
-\newpage
 \subsubsection{Hole equivalence}
 
 % By annotating values with lattices as selection types, we can also introduce the notion of \textit{holes} $\hole$ as special values that express annotating every position within a value with the bottom element of a lattice.
