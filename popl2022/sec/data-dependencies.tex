@@ -1,24 +1,20 @@
 \section{A bidirectional dynamic dependency analysis}
 \label{sec:data-dependencies}
 
-We now show how to extend the core language described in \secref{core-language} with a bidirectional mechanism for tracking data dependencies. The first thing to establish is a way of selecting parts of the program of interest. For example, consider representing the bar chart in \figref{introduction:data-linking} as the record $\exRec{\bind{\kw{China}}{295.3}, \bind{\kw{USA}}{196.7}, \bind{\kw{Germany}}{91.8}}$ and wanting to select only the value of the field $\kw{China}$.
+We now extend the core language described in \secref{core-language} with a bidirectional mechanism for tracking data dependencies. The first thing to establish is a way of selecting parts of the program of interest. Consider the \kw{data} field of the bar chart computed in \figref{introduction:data-linking}, which is bound to a list of records; the record corresponding to China is $\exRec{\bind{\kw{x}}{\kw{"China"}} \concat \bind{\kw{y}}{\kw{295.3}}}$. In the example, we selected the value of the field $\kw{y}$ in order to see the corresponding selection on the input.
 
-We represent selections using an abstract type $\textcal{A}$ of annotations and then parameterise the data type of values $\Set{Val}$ by $\textcal{A}$ so that individual values can be annotated by their selection state, as defined in \figref{core-syntax-selection}. Because we are primarily interested in tracking data dependencies between values, we only annotate values which are first-order data forms and terms which construct them. The annotation-augmented forms for values include: Booleans $\annTrue{\alpha}$ and $\annFalse{\alpha}$, integers $\annInt{n}{\alpha}$, records $\annRec{\vec{\bind{x}{v}}}{\alpha}$, lists $\annNil{\alpha}$ and $\annCons{u}{v}{\alpha}$, and vectors $\annVecVal{\vec{v}}{\annInt{j}{\alpha}}{\smash{\alpha'}}$. The corresponding annotated forms for terms are defined similarly.
-
-% We also introduce holes $\hole$ as a special values that express annotating every position within a value with the bottom element of a lattice.
-
-The selection type $\textcal{A}$ is chosen to remain abstract as there are various forms of selection information we may want to express in our language, however we do require $\textcal{A}$ to be a lattice. In other words, selections must at least have top $\top$ and bottom $\bot$ elements representing fully selected and fully unselected respectively, and a meet $\meet$ and join $\join$ operation for combining selection information using intersection and union where $\top$ and $\bot$ are their left and right units.
-
-The most obvious notion of selection is achieved by using the Boolean lattice, $\textcal{2}$, where the top $\top$ and bottom $\bot$ elements are assigned true $\TT$ and false $\FF$, and the meet $\meet$ and $\join$ operations are conjunction $\land$ and disjunction $\lor$. Using this, we can represent the selection of the value of the field $\kw{China}$ in the record given earlier as $\annot{\exRec{\bind{\kw{China}}{\annot{295.3}{\TT}}, \bind{\kw{USA}}{\annot{196.7}{\FF}}, \bind{\kw{Germany}}{\annot{91.8}{\FF}}}}{\FF}$. However, more sophisticated lattices can also be used such as a vector of Booleans to represent multiple selections simultaneously.
+Our approach to representing selections is shown in \figref{core-syntax-selection}. The basic idea is to parameterise the type $\Set{Val}$ of values by an abstract type $\textcal{A}$ of \emph{annotations}, indicating selection state. We then add an annotation argument to every data constructor, specifying the selection state $\alpha in \textcal{A}$ of the value being constructed. For our present purposes, we are only interested in tracking dependencies between first-order data, so we only add annotation arguments to the constructors for Booleans, integers, records and lists. First-class primitives and closures are not annotated. We do, however, annotate the term constructor corresponding to the annotated values; this allows us to trace data dependencies back to constants that appear in the source code, as described in \secref{surface-language}.
 
 \input{fig/core-language/slicing/syntax}
-\input{fig/core-language/slicing/leq-value-elim}
-\input{fig/core-language/slicing/leq-term}
 
-% \input{fig/core-language/slicing/join-value}
-% \input{fig/core-language/slicing/join-elim}
+The abstract type $\textcal{A}$ of annotations is required to be a (finite) lattice: it must have top and bottom elements $\top$ and $\bot$ representing fully selected/unselected, plus meet and join operations $\meet$ and $\join$ for combining selection information, with $\top$ and $\bot$ as their respective units. The Boolean lattice $\textcal{2} \eqdef \langle \TT, \FF, \wedge, \vee\rangle$ can represent the selection above as $\annRec{\bind{\kw{x}}{\annStr{\kw{"China"}}{\FF}} \concat \bind{\kw{y}}{\annInt{\kw{295.3}}{\TT}}}{\FF}$, indicating that the number $\exInt{\kw{295.3}}$ is selected, but neither the string $\exStr{\kw{"China"}}$, nor the record itself, is selected. More interesting lattices such vectors of Booleans can be used to represent multiple selections simultaneously.
 
-\noindent
+\begin{figure}
+   \input{fig/core-language/slicing/leq-value-elim}
+   \input{fig/core-language/slicing/leq-term}
+   \caption{Partial orders on values, eliminators and terms}
+   \label{fig:data-dependencies:leq}
+\end{figure}
 
 \input{sec/data-dependencies/selections}
-\input{sec/data-dependencies/analysis}
+\input{sec/data-dependencies/analyses}

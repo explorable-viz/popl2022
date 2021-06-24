@@ -1,4 +1,3 @@
-\begin{figure}[H]
 \flushleft \shadebox{$e \leq e'$}
 \begin{smathpar}
    \inferrule*[
@@ -13,10 +12,9 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
-      \strut
+      \alpha \leq \alpha'
    }
    {
       \annInt{n}{\alpha} \leq \annInt{n}{\alpha'}
@@ -36,10 +34,9 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
-      \strut
+      \alpha \leq \alpha'
    }
    {
       \annTrue{\alpha} \leq \annTrue{\alpha'}
@@ -59,10 +56,9 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
-      \strut
+      \alpha \leq \alpha'
    }
    {
       \annFalse{\alpha} \leq \annFalse{\alpha'}
@@ -82,9 +78,10 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
+      \alpha \leq \alpha'
+      \quad
       e_i \leq e'_i
       \quad
       (\forall i \numleq \length{\vec{x}})
@@ -129,10 +126,9 @@
    \and
    %
    \inferrule*[
-      right={$\alpha \leq \alpha'$}
    ]
    {
-      \strut
+      \alpha \leq \alpha'
    }
    {
       \annNil{\alpha} \leq \annNil{\alpha'}
@@ -174,33 +170,6 @@
    }
    {
       \annCons{e_1}{e_2}{\bot} \leq \hole
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      right={$\alpha \leq \alpha'$}
-   ]
-   {
-      e_1 \leq e_1'
-      \\
-      e_2 \leq e_2'
-   }
-   {
-      \annVec{e_1}{x}{e_2}{\alpha} \leq \annVec{e_1'}{x}{e_2'}{\alpha'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      e_1 \leq \hole
-      \\
-      e_2 \leq \hole
-   }
-   {
-      \annVec{e_1}{x}{e_2}{\bot} \leq \hole
    }
    %
    \and
@@ -278,54 +247,6 @@
    \inferrule*[
    ]
    {
-      e_1 \leq e_1'
-      \\
-      e_2 \leq e_2'
-   }
-   {
-      \exVecLookup{e_1}{e_2} \leq \exVecLookup{e_1}{e_2}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      e_1 \leq \hole
-      \\
-      e_2 \leq \hole
-   }
-   {
-      \exVecLookup{e_1}{e_2} \leq \hole
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      e \leq e'
-   }
-   {
-      \exVecLen{e} \leq \exVecLen{e'}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      e \leq \hole
-   }
-   {
-      \exVecLen{e} \leq \hole
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
       e_1 \leq \hole
       \\
       e_2 \leq \hole
@@ -360,6 +281,3 @@
       \exLetRecMutual{h}{e} \leq \hole
    }
 \end{smathpar}
-\caption{Partial order on terms}
-\label{fig:leq-term}
-\end{figure}
