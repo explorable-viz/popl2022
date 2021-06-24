@@ -1,5 +1,10 @@
 \newcommand*{\OurLanguage}{Fluid\xspace}
 
+% previously we were using MnSymbol, but ran out of font space.
+\newcommand*{\filledtriangleright}{\blacktriangleright}
+\newcommand*{\smalltriangleright}{\triangleright}
+\newcommand*{\smalltriangleleft}{\triangleleft}
+
 \newcommand*{\hole}{\square}
 \newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 % \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
@@ -189,7 +194,7 @@
 
 % Functors
 \newcommand*{\ValF}[1]{\Set{Val}\,{#1}}
-\newcommand*{\TermF}[1]{\Set{Term}({#1})}
+\newcommand*{\TermF}[1]{\Set{Term}\,{#1}}
 \newcommand*{\Sel}[2]{\SelF{#1}\,{\textcal{#2}}}
 \newcommand*{\SelF}[1]{\Set{Sel}_{\bm{#1}}}
 
@@ -369,7 +374,7 @@
 \newcommand*{\textcal}[1]{%
 % family qzc: Font TeX Gyre Chorus (package tgchorus)
 % family pzc: Font Zapf Chancery (package chancery)
-%{{\Large \textit{\fontfamily{qzc}\selectfont#1\,}}}%
-A
+%{{\Large \textit{\fontfamily{qzc}\selectfont#1}}}%
+\bm{#1}
 }
 \newcommand*{\raw}[1]{\bm{#1}}
