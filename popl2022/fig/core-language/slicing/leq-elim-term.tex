@@ -28,7 +28,7 @@
 \end{smathpar}
 
 \vspace{5pt}
-\flushleft \shadebox{$v \leq v'$}
+\flushleft \shadebox{$e \leq e'$}
 \begin{smathpar}
    \inferrule*[
    ]
@@ -36,7 +36,7 @@
       \strut
    }
    {
-      \hole \leq v
+      \hole \leq e
    }
    %
    \and
@@ -112,12 +112,12 @@
    {
       \alpha \leq \alpha'
       \quad
-      v_i \leq u_i
+      e_i \leq e'_i
       \quad
-      (\forall i \in \length{\vec{x}})
+      (\forall i \numleq \length{\vec{x}})
    }
    {
-      \annRec{\vec{\bind{x}{v}}}{\alpha} \leq \annRec{\vec{\bind{x}{u}}}{\alpha'}
+      \annRec{\vec{\bind{x}{e}}}{\alpha} \leq \annRec{\vec{\bind{x}{e}}'}{\alpha'}
    }
    %
    \and
@@ -125,12 +125,32 @@
    \inferrule*[
    ]
    {
-      v \leq \hole
+      e_i \leq \hole
       \quad
-      (\forall i \in \length{\vec{x}})
+      (\forall i \numleq \length{\vec{x}})
    }
    {
-      \annRec{\vec{\bind{x}{v}}}{\bot} \leq \hole
+      \annRec{\vec{\bind{x}{e}}}{\bot} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e \leq e'
+   }
+   {
+      \exRecProj{e}{x} \leq \exRecProj{e'}{x}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      e \leq \hole
+   }
+   {
+      \exRecProj{e}{x} \leq \hole
    }
    %
    \and
@@ -161,12 +181,12 @@
       right={$\alpha \leq \alpha'$}
    ]
    {
-      v \leq u
+      e_1 \leq e_1'
       \\
-      v' \leq u'
+      e_2 \leq e_2'
    }
    {
-      \annCons{v}{v'}{\alpha} \leq \annCons{u}{u'}{\alpha'}
+      \annCons{e_1}{e_2}{\alpha} \leq \annCons{e_1'}{e_2'}{\alpha'}
    }
    %
    \and
@@ -174,12 +194,12 @@
    \inferrule*[
    ]
    {
-      v \leq \hole
+      e_1 \leq \hole
       \\
-      v' \leq \hole
+      e_2 \leq \hole
    }
    {
-      \annCons{v}{v'}{\bot} \leq \hole
+      \annCons{e_1}{e_2}{\bot} \leq \hole
    }
    %
    \and
@@ -187,12 +207,10 @@
    \inferrule*[
    ]
    {
-      v_i \leq u_i
-      \quad
-      (\forall i \numleq j)
+      \strut
    }
    {
-      \exPrimOp{\phi}{\seqRange{v_1}{v_j}} \leq \exPrimOp{\phi}{\seqRange{u_1}{u_j}}
+      \exVar{x} \leq \exVar{x}
    }
    %
    \and
@@ -200,12 +218,10 @@
    \inferrule*[
    ]
    {
-      v_i \leq \hole
-      \quad
-      (\forall i \numleq \length{\vec{v}})
+      \strut
    }
    {
-      \exPrimOp{\phi}{\vec{v}} \leq \hole
+      \exVar{x} \leq \hole
    }
    %
    \and
@@ -213,14 +229,10 @@
    \inferrule*[
    ]
    {
-      \rho \leq \rho'
-      \\
-      h \leq h'
-      \\
       \sigma \leq \sigma'
    }
    {
-      \exClosure{\rho}{h}{\sigma} \leq \exClosure{\rho'}{h'}{\sigma'}
+      \exLambda{\sigma} \leq \exLambda{\sigma}
    }
    %
    \and
@@ -228,14 +240,75 @@
    \inferrule*[
    ]
    {
-      \rho \leq \sub{\hole}{\rho}
-      \\
-      h \leq \hole
-      \\
       \sigma \leq \hole
    }
    {
-      \exClosure{\rho}{h}{\sigma} \leq \hole
+      \exLambda{\sigma} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq e_1'
+      \\
+      e_2 \leq e_2'
+   }
+   {
+      \exApp{e_1}{e_2} \leq \exApp{e_1}{e_2}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \exApp{e_1}{e_2} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e_1 \leq \hole
+      \\
+      e_2 \leq \hole
+   }
+   {
+      \exLet{x}{e_1}{e_2} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e \leq e'
+      \\
+      h \leq h'
+   }
+   {
+      \exLetRecMutual{h}{e} \leq \exLetRecMutual{h'}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      e \leq \hole
+      \\
+      h \leq \hole
+   }
+   {
+      \exLetRecMutual{h}{e} \leq \hole
    }
 \end{smathpar}
 
