@@ -1,17 +1,31 @@
 \begin{figure}
 {\small \flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}%
-\hfill \textbfit{$v$ and $\sigma$ forward-analyse along $w$ to $\rho$ and $\kappa$, with argument availability $\alpha$}}
+\hfill \textbfit{$v$ and $\sigma$ forward-match along $w$ to $\rho$ and $\kappa$, with argument availability $\alpha$}}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\matchFwdS$-eq}}
+      lab={\ruleName{$\matchFwdS$-hole-1}}
    ]
    {
-      (v,\sigma) \eq (v',\sigma')
+      \hole \eq_{\raw{v}} v
       \\
-      \matchFwd{v'}{\sigma'}{w}{\rho}{\kappa}{\alpha}
+      \matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}
    }
    {
+      \matchFwd{\hole}{\sigma}{w}{\rho}{\kappa}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-hole-2}}
+   ]
+   {
+      \hole \eq_{\raw{\sigma}} \sigma
+      \\
       \matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}
+   }
+   {
+      \matchFwd{v}{\hole}{w}{\rho}{\kappa}{\alpha}
    }
    %
    \and
@@ -79,7 +93,7 @@
       lab={\ruleName{$\matchFwdS$-record}}
    ]
    {
-      \matchFwd{\annRec{\vec{\bind{x}{v}}}{\FF}}
+      \matchFwd{\annRec{\vec{\bind{x}{v}}}{\top}}
                {\elimRec{\vec{x}}{\sigma}}
                {\matchRec{\vec{\bind{x}{w}}}}
                {\rho}
@@ -132,19 +146,19 @@
 
 \vspace{2mm}
 {\small \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}%
-\hfill \textbfit{$\rho$ and $e$, with argument availability $\alpha$, forward-analyse along $T$ to $v$}}
+\hfill \textbfit{$\rho$ and $e$, with argument availability $\alpha$, forward-eval along $T$ to $v$}}
 \begin{smathpar}
    \mprset{center}
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-eq}}
+      lab={\ruleName{$\evalFwdS$-hole}}
    ]
    {
-      e \eq e'
+      \hole \eq e
       \\
-      \evalFwd{\rho}{e'}{\alpha}{T}{v}
+      \evalFwd{\rho}{e}{\alpha}{T}{v}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{T}{v}
+      \evalFwd{\rho}{\hole}{\alpha}{T}{v}
    }
    %
    \and
@@ -182,8 +196,8 @@
    }
    {
       \evalFwd{\rho}
-              {\annInt{n}{\alpha}}
-              {\alpha'}
+              {\annInt{n}{\alpha'}}
+              {\alpha}
               {\trInt{n}{\rho}}
               {\annInt{n}{\alpha \meet \alpha'}}
    }
@@ -192,14 +206,14 @@
    %
    \inferrule*[lab={\ruleName{$\evalR$-record}}]
    {
-      \evalFwd{\rho}{e_i}{\alpha'}{T_i}{v_i}
+      \evalFwd{\rho}{e_i}{\alpha}{T_i}{v_i}
       \quad
       (\forall i \numleq \length{\vec{x}})
    }
    {
       \evalFwd{\rho}
-              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
-              {\alpha'}
+              {\annRec{\vec{\bind{x}{e}}}{\alpha'}}
+              {\alpha}
               {\trRec{\vec{\bind{x}{T}}}}
               {\annRec{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}}
    }
@@ -211,7 +225,7 @@
       right={$i \numleq \length{\vec{x}}$}
    ]
    {
-      \evalFwd{\rho}{e}{\alpha}{T}{\exRec{\vec{\bind{x}{v}}}}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\annRec{\vec{\bind{x}{v}}}{\beta}}
    }
    {
       \evalFwd{\rho}
@@ -229,8 +243,8 @@
    }
    {
       \evalFwd{\rho}
-              {\annNil{\alpha}}
-              {\alpha'}
+              {\annNil{\alpha'}}
+              {\alpha}
               {\trNil{\rho}}
               {\annNil{\alpha \meet \alpha'}}
    }
@@ -241,14 +255,14 @@
       lab={\ruleName{$\evalFwdS$-cons}},
    ]
    {
-      \evalFwd{\rho}{e}{\alpha'}{T}{v}
+      \evalFwd{\rho}{e}{\alpha}{T}{v}
       \\
-      \evalFwd{\rho}{e'}{\alpha'}{U}{v'}
+      \evalFwd{\rho}{e'}{\alpha}{U}{v'}
    }
    {
       \evalFwd{\rho}
-              {\annCons{e}{e'}{\alpha}}
-              {\alpha'}
+              {\annCons{e}{e'}{\alpha'}}
+              {\alpha}
               {\trCons{T}{U}}
               {\annCons{v}{v'}{\alpha \meet \alpha'}}
    }
