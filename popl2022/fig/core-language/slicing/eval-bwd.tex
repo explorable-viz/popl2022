@@ -1,0 +1,328 @@
+\begin{figure}
+   {\small \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}%
+   \hfill \textbfit{$\rho$ and $\kappa$, with argument demand $\alpha$, backward-analyse along $w$ to $v$ and $\sigma$}}
+   \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVar{x}}{v}{\elimVar{x}{\kappa}}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\matchBwdS$-unit}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}
+                  {\kappa}
+                  {\alpha}
+                  {\matchRecEmpty}
+                  {\annot{\exRecEmpty}{\alpha}}
+                  {\elimRecEmpty{\kappa}}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNil}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\matchBwdS$-record}}]
+      {
+         \matchBwd{\rho'}{\kappa}{\alpha}{w'}{u}{\sigma}
+         \\
+         \matchBwd{\rho}
+                  {\sigma}
+                  {\alpha}
+                  {\matchRec{\vec{\bind{x}{w}}}}
+                  {\annRec{\vec{\bind{x}{v}}}{\beta}}
+                  {\tau}
+      }
+      {
+         \matchBwd{\rho \concat \rho'}
+                  {\kappa}
+                  {\alpha}
+                  {\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}
+                  {\annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}}
+                  {\elimRec{\vec{x} \concat y}{\tau}}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
+      {
+         \matchBwd{\rho'}{\kappa}{\alpha}{w'}{v'}{\sigma}
+         \\
+         \matchBwd{\rho}{\sigma}{\alpha}{w}{v}{\tau}
+      }
+      {
+         \matchBwd{\rho \concat \rho'}
+                  {\kappa}
+                  {\alpha}
+                  {\matchCons{w}{w'}}
+                  {\annCons{v}{v'}{\alpha}}
+                  {\elimList{\hole}{\tau}}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
+      }
+   \end{smathpar}
+   \vspace{1mm}
+
+   {\small \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}%
+   \hfill \textbfit{$v$ backward-analyses along $T$ to $\rho$ and $e$, with argument demand $\alpha$}}
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-eq}}
+      ]
+      {
+         v \eq v'
+         \\
+         \evalBwd{v'}{T}{\rho}{e}{\alpha}
+      }
+      {
+         \evalBwd{v}{T}{\rho}{e}{\alpha}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-var}},
+         right={$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\FF}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-lambda}}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{\exClosure{\rho}{\seqEmpty}{\sigma}}
+                 {\trLambda{\sigma'}}
+                 {\rho}
+                 {\exLambda{\sigma}}
+                 {\FF}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-int}}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{\annInt{n}{\alpha}}
+                 {\trInt{n}{\rho}}
+                 {\hole_{\rho}}
+                 {\annInt{n}{\alpha}}
+                 {\alpha}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\evalBwdS$-record}}]
+      {
+         \evalBwd{v_i}{T_i}{\rho_i}{e_i}{\alpha_i'}
+         \quad
+         (\forall i \numleq \length{\vec{x}})
+      }
+      {
+         \evalBwd{\annRec{\vec{\bind{x}{v}}}{\alpha}}
+                 {\trRec{\vec{\bind{x}{T}}}}
+                 {\bigjoin\vec{\rho}}
+                 {\annRec{\vec{\bind{x}{e}}}{\alpha}}
+                 {\alpha \join \bigjoin\vec{\alpha}'}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
+      {
+         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\FF}}
+                 {T}
+                 {\rho}
+                 {e}
+                 {\alpha}
+      }
+      {
+         \evalBwd{v}
+                 {\trRecProj{T}{\vec{x}}{x_i}}
+                 {\rho}
+                 {\exRecProj{e}{x_i}}
+                 {\alpha}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-nil}}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{\annNil{\alpha}}
+                 {\trNil{\rho}}
+                 {\hole_{\rho}}
+                 {\annNil{\alpha}}
+                 {\alpha}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-cons}}
+      ]
+      {
+         \evalBwd{v}{T}{\rho}{e}{\alpha}
+         \\
+         \evalBwd{v'}{U}{\rho'}{e'}{\alpha'}
+      }
+      {
+         \evalBwd{\annCons{v}{v'}{\beta}}
+                 {\trCons{T}{U}}
+                 {\rho \join \rho'}
+                 {\annCons{e}{e'}{\beta}}
+                 {\beta \join \alpha \join \alpha'}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply-prim}},
+         right={$\primBwd{\phi}{\vec{n} \concat m}(v) = \vec{u} \concat u'$}
+      ]
+      {
+         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \\
+         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+      }
+      {
+         \evalBwd{v}
+                 {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\rho \join \rho'}
+                 {\exApp{e_1}{e_2}}
+                 {\alpha \join \alpha'}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply}},
+         width={3.25in}
+      ]
+      {
+         \evalBwd{v}{T'}{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}
+         \\
+         \matchBwd{\rho_3}{e}{\beta}{w}{v'}{\sigma}
+         \\
+         \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
+         \\
+         \rho_2 \closeDefsBwdR \rho_1', h
+         \\
+         \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
+      }
+      {
+         \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-let-rec}}
+      ]
+      {
+         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
+         \\
+         \rho_1 \closeDefsBwdR \rho', h'
+      }
+      {
+         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
+      }
+   \end{smathpar}
+   \vspace{1mm}
+
+   {\small\flushleft \shadebox{$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}%
+   \hfill \textbfit{$\bind{x}{v}$ backward-analyses along $\rho$ to $\rho'$}}
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\envLookupBwdS$-head}}
+      ]
+      {
+         \strut
+      }
+      {
+         \envLookupBwd{(\hole_{\rho} \concat \bind{x}{u})}
+                      {\rho \concat \bind{x}{v}}
+                      {\bind{x}{u}}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\envLookupBwdS$-tail}},
+         right={$x \neq y$}
+      ]
+      {
+         \envLookupBwd{\rho'}{\rho}{\bind{x}{u}}
+      }
+      {
+         \envLookupBwd{(\rho' \concat \bind{y}{\hole})}
+                      {\rho \concat \bind{y}{v}}
+                      {\bind{x}{u}}
+      }
+   \end{smathpar}
+   \vspace{1mm}
+
+   {\small\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}%
+   \hfill \textbfit{$\rho$ backward-analyses to $\rho'$ and $h$}}
+   \begin{salign}
+      \vec{\bind{x}{v}}
+      &\closeDefsBwdR
+      (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+      &
+      \text{ where }
+      v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
+   \end{salign}
+
+   \caption{Backward data dependency (Boolean cases for $\evalBwdR{T}$ omitted)}
+   \label{fig:data-dependencies:bwd}
+   \end{figure}

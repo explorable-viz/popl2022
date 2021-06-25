@@ -1,0 +1,311 @@
+\begin{figure}
+{\small \flushleft \shadebox{$\matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}$}%
+\hfill \textbfit{$v$ and $\sigma$ forward-analyse along $w$ to $\rho$ and $\kappa$, with argument availability $\alpha$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-eq}}
+   ]
+   {
+      (v,\sigma) \eq (v',\sigma')
+      \\
+      \matchFwd{v'}{\sigma'}{w}{\rho}{\kappa}{\alpha}
+   }
+   {
+      \matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-var}}
+   ]
+   {
+      \strut
+   }
+   {
+      \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVar{x}}{\bind{x}{v}}{\kappa}{\TT}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-true}}
+   ]
+   {
+      \strut
+   }
+   {
+      \matchFwd{\annTrue{\alpha}}
+               {\elimBool{\kappa}{\kappa'}}
+               {\matchTrue}
+               {\seqEmpty}{\kappa}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-false}}
+   ]
+   {
+      \strut
+   }
+   {
+      \matchFwd{\annFalse{\alpha}}
+               {\elimBool{\kappa}{\kappa'}}
+               {\matchFalse}
+               {\seqEmpty}{\kappa'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-unit}}
+   ]
+   {
+      \strut
+   }
+   {
+      \matchFwd{\annot{\exRecEmpty}{\alpha}}
+               {\elimRecEmpty{\kappa}}
+               {\matchRecEmpty}
+               {\seqEmpty}
+               {\kappa}
+               {\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-record}}
+   ]
+   {
+      \matchFwd{\annRec{\vec{\bind{x}{v}}}{\FF}}
+               {\elimRec{\vec{x}}{\sigma}}
+               {\matchRec{\vec{\bind{x}{w}}}}
+               {\rho}
+               {\sigma'}
+               {\beta}
+      \\
+      \matchFwd{u}{\sigma'}{w}{\rho'}{\kappa}{\beta'}
+   }
+   {
+      \matchFwd{\annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}}
+               {\elimRec{\vec{x} \concat y}{\sigma}}
+               {\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}
+               {\rho \concat \rho'}
+               {\kappa}
+               {\alpha \meet \beta \meet \beta'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-nil}}
+   ]
+   {
+      \strut
+   }
+   {
+      \matchFwd{\annNil{\alpha}}
+               {\elimList{\kappa}{\sigma'}}
+               {\matchNil}
+               {\seqEmpty}{\kappa}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\matchFwdS$-cons}}
+   ]
+   {
+      \matchFwd{v}{\sigma}{w}{\rho}{\tau}{\beta}
+      \\
+      \matchFwd{v'}{\tau}{w'}{\rho'}{\kappa}{\beta'}
+   }
+   {
+      \matchFwd{\annCons{v}{v'}{\alpha}}
+               {\elimList{\kappa}{\sigma}}
+               {\matchCons{w}{w'}}
+               {\rho \concat \rho'}{\kappa}{\alpha \meet \beta \meet \beta'}
+   }
+\end{smathpar}
+
+\vspace{1mm}
+{\small \flushleft \shadebox{$\evalFwd{\rho}{e}{\alpha}{T}{v}$}%
+\hfill \textbfit{$\rho$ and $e$, with argument availability $\alpha$, forward-analyse along $T$ to $v$}}
+\begin{smathpar}
+   \mprset{center}
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-eq}}
+   ]
+   {
+      e \eq e'
+      \\
+      \evalFwd{\rho}{e'}{\alpha}{T}{v}
+   }
+   {
+      \evalFwd{\rho}{e}{\alpha}{T}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-var}},
+      right={$\envLookup{\rho}{x}{v}$}
+   ]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}{\exVar{x}}{\alpha}{\trVar{x}{\rho}}{v}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalFwdS$-lambda}}]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}
+              {\exLambda{\sigma}}
+              {\alpha}
+              {\trLambda{\sigma'}}
+              {\exClosure{\rho}{\seqEmpty}{\sigma}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}
+              {\annInt{n}{\alpha}}
+              {\alpha'}
+              {\trInt{n}{\rho}}
+              {\annInt{n}{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalR$-record}}]
+   {
+      \evalFwd{\rho}{e_i}{\alpha'}{T_i}{v_i}
+      \quad
+      (\forall i \numleq \length{\vec{x}})
+   }
+   {
+      \evalFwd{\rho}
+              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
+              {\alpha'}
+              {\trRec{\vec{\bind{x}{T}}}}
+              {\annRec{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalR$-project}},
+      right={$i \numleq \length{\vec{x}}$}
+   ]
+   {
+      \evalFwd{\rho}{e}{\alpha}{T}{\exRec{\vec{\bind{x}{v}}}}
+   }
+   {
+      \evalFwd{\rho}
+              {\exRecProj{e}{x}}
+              {\alpha}
+              {\trRecProj{T}{\vec{x}}{x}}
+              {v_i}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalFwdS$-nil}}]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}
+              {\annNil{\alpha}}
+              {\alpha'}
+              {\trNil{\rho}}
+              {\annNil{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-cons}},
+   ]
+   {
+      \evalFwd{\rho}{e}{\alpha'}{T}{v}
+      \\
+      \evalFwd{\rho}{e'}{\alpha'}{U}{v'}
+   }
+   {
+      \evalFwd{\rho}
+              {\annCons{e}{e'}{\alpha}}
+              {\alpha'}
+              {\trCons{T}{U}}
+              {\annCons{v}{v'}{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-apply-prim}}
+   ]
+   {
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
+      \\
+      \evalFwd{\rho}{e'}{\alpha}{U}{u}
+   }
+   {
+      \evalFwd{\rho}
+              {\exApp{e}{e'}}
+              {\alpha}
+              {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+              {\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\evalFwdS$-apply}},
+      width={3in}
+   ]
+   {
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
+      \\
+      \rho_1, h \closeDefsR \rho_2
+      \\
+      \evalFwd{\rho}{e'}{\alpha}{U}{v}
+      \\
+      \matchFwd{v}{\sigma}{w}{\rho_3}{e^\twoPrime}{\beta}
+      \\
+      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\beta}{T'}{v'}
+   }
+   {
+      \evalFwd{\rho}{\exApp{e}{e'}}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={
+      \ruleName{$\evalFwdS$-let-rec}}
+   ]
+   {
+      \rho, h' \closeDefsR \rho'
+      \\
+      \evalFwd{\rho \concat \rho'}{e}{\alpha}{T}{v}
+   }
+   {
+      \evalFwd{\rho}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
+   }
+\end{smathpar}
+\caption{Forward data dependency (Boolean cases for $\evalFwdR{T}$ omitted)}
+\label{fig:data-dependencies:fwd}
+\end{figure}
