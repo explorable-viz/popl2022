@@ -196,8 +196,8 @@
    }
    {
       \evalFwd{\rho}
-              {\annInt{n}{\alpha}}
-              {\alpha'}
+              {\annInt{n}{\alpha'}}
+              {\alpha}
               {\trInt{n}{\rho}}
               {\annInt{n}{\alpha \meet \alpha'}}
    }
@@ -206,14 +206,14 @@
    %
    \inferrule*[lab={\ruleName{$\evalR$-record}}]
    {
-      \evalFwd{\rho}{e_i}{\alpha'}{T_i}{v_i}
+      \evalFwd{\rho}{e_i}{\alpha}{T_i}{v_i}
       \quad
       (\forall i \numleq \length{\vec{x}})
    }
    {
       \evalFwd{\rho}
-              {\annRec{\vec{\bind{x}{e}}}{\alpha}}
-              {\alpha'}
+              {\annRec{\vec{\bind{x}{e}}}{\alpha'}}
+              {\alpha}
               {\trRec{\vec{\bind{x}{T}}}}
               {\annRec{\vec{\bind{x}{v}}}{\alpha \meet \alpha'}}
    }
@@ -225,7 +225,7 @@
       right={$i \numleq \length{\vec{x}}$}
    ]
    {
-      \evalFwd{\rho}{e}{\alpha}{T}{\annRec{\vec{\bind{x}{v}}}{\beta}}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\annRec{\vec{\bind{x}{v}}}{\beta}}
    }
    {
       \evalFwd{\rho}
@@ -243,8 +243,8 @@
    }
    {
       \evalFwd{\rho}
-              {\annNil{\alpha}}
-              {\alpha'}
+              {\annNil{\alpha'}}
+              {\alpha}
               {\trNil{\rho}}
               {\annNil{\alpha \meet \alpha'}}
    }
@@ -255,14 +255,14 @@
       lab={\ruleName{$\evalFwdS$-cons}},
    ]
    {
-      \evalFwd{\rho}{e}{\alpha'}{T}{v}
+      \evalFwd{\rho}{e}{\alpha}{T}{v}
       \\
-      \evalFwd{\rho}{e'}{\alpha'}{U}{v'}
+      \evalFwd{\rho}{e'}{\alpha}{U}{v'}
    }
    {
       \evalFwd{\rho}
-              {\annCons{e}{e'}{\alpha}}
-              {\alpha'}
+              {\annCons{e}{e'}{\alpha'}}
+              {\alpha}
               {\trCons{T}{U}}
               {\annCons{v}{v'}{\alpha \meet \alpha'}}
    }
