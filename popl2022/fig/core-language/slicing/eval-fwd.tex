@@ -136,15 +136,15 @@
 \begin{smathpar}
    \mprset{center}
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-eq}}
+      lab={\ruleName{$\evalFwdS$-hole}}
    ]
    {
-      e \eq e'
+      \hole \eq e
       \\
-      \evalFwd{\rho}{e'}{\alpha}{T}{v}
+      \evalFwd{\rho}{e}{\alpha}{T}{v}
    }
    {
-      \evalFwd{\rho}{e}{\alpha}{T}{v}
+      \evalFwd{\rho}{\hole}{\alpha}{T}{v}
    }
    %
    \and
