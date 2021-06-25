@@ -189,16 +189,16 @@
 
 % Sets
 \newcommand*{\Below}[1]{{\downarrow}{#1}}
-\newcommand*{\Bool}{\mathbb{B}}
 
 % Functors
 \newcommand*{\ValF}[1]{\Set{Val}\,{#1}}
 \newcommand*{\TermF}[1]{\Set{Term}\,{#1}}
-\newcommand*{\Sel}[2]{\SelF{#1}\,{\textcal{#2}}}
+\newcommand*{\Sel}[2]{\SelF{#1}\,{\Ann{#2}}}
 \newcommand*{\SelF}[1]{\Set{Sel}_{\bm{#1}}}
 
-% Meta variables
-\newcommand*{\Unit}{\textcal{1}}
+% Meta-types
+\newcommand*{\Bool}{\Ann{2}}%{\mathbb{B}}
+\newcommand*{\Unit}{\Ann{1}}
 \newcommand*{\Prod}[2]{{#1}\times{#2}}
 
 % Lattices
@@ -378,4 +378,4 @@
 }
 \newcommand*{\Ann}[1]{\mathscr{#1}}
 \newcommand*{\raw}[1]{\bm{#1}}
-\newcommand*{\Lattice}[4]{\langle#1,#2,#3,#4\rangle}
+\newcommand*{\Lattice}[5]{\langle#1,#1,#2,#3,#4\rangle}
