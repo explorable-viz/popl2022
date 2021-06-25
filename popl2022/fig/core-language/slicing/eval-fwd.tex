@@ -3,15 +3,29 @@
 \hfill \textbfit{$v$ and $\sigma$ forward-analyse along $w$ to $\rho$ and $\kappa$, with argument availability $\alpha$}}
 \begin{smathpar}
    \inferrule*[
+      lab={\ruleName{$\matchFwdS$-hole-1}}
+   ]
+   {
+      \hole \eq_{\raw{v}} v
+      \\
+      \matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}
+   }
+   {
+      \matchFwd{\hole}{\sigma}{w}{\rho}{\kappa}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
       lab={\ruleName{$\matchFwdS$-eq}}
    ]
    {
-      (v,\sigma) \eq_{\raw{v}, \raw{\sigma}} (v',\sigma')
+      \hole \eq_{\raw{\sigma}} \sigma
       \\
-      \matchFwd{v'}{\sigma'}{w}{\rho}{\kappa}{\alpha}
+      \matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}
    }
    {
-      \matchFwd{v}{\sigma}{w}{\rho}{\kappa}{\alpha}
+      \matchFwd{v}{\hole}{w}{\rho}{\kappa}{\alpha}
    }
    %
    \and
