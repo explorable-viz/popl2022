@@ -121,7 +121,7 @@
          \strut
       }
       {
-         \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\FF}
+         \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\bot}
       }
       %
       \and
@@ -176,7 +176,7 @@
       %
       \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
       {
-         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\FF}}
+         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\bot}}
                  {T}
                  {\rho}
                  {e}
@@ -228,7 +228,7 @@
       %
       \inferrule*[
          lab={\ruleName{$\evalBwdS$-apply-prim}},
-         right={$\primBwd{\phi}{\vec{n}}(v) = \vec{u} \concat u'$}
+         right={$\primBwd{\phi}{\vec{n}}(v) = \vec{u}$}
       ]
       {
          \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
@@ -237,7 +237,7 @@
       }
       {
          \evalBwd{v}
-                 {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
+                 {\trAppPrimNew{\phi}{U}{n}}
                  {\rho \join \rho'}
                  {\exApp{e_1}{e_2}}
                  {\alpha \join \alpha'}
