@@ -97,23 +97,20 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
    Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h} \adjoint \closeDefsBwdF{\rho,h}$.
 \end{theorem}
 
+We assume (rather than prove) that the forward and backwards dependency functions provided for a primitive operation $\phi: \tyInt^i \to \tyInt$ form a Galois connection between $\Ann{A}^i$ and $\Ann{A}$, i.e.~that $\primFwdBool{\phi}{\vec{n}} \adjoint \primBwdBool{\phi}{\vec{n}}$.
 
-The require (rather than prove) that for every primitive operation $\phi: \tyInt^i \to \tyInt$, the forward and backwards dependency functions $\primFwdBool{\phi}{\vec{n}}: \Ann{A}^i \to \Ann{A}$ and $\primBwdBool{\phi}{\vec{n}}: \Ann{A} \to \Ann{A}^i$ form a Galois connection.
+\begin{theorem}[Galois connection for pattern-matching]
+   \label{thm:core-language:match:gc}
+      Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+\end{theorem}
 
-\begin{definition}[Forward and backward functions for evaluation]
-   Suppose $T: \rho, e \evalR v$. Define $\evalFwdF{T}: \Below{(\rho, e, \TT)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \TT)}$ to be $\evalFwdR{T}$ and $\evalBwdR{T}$ restricted to $\Below{(\rho, e, \TT)}$ and $\Below{v}$ respectively.
-\end{definition}
+\ifappendices
+   \begin{proof}
+   \appref{proofs:core-language:match:gc}
+   \end{proof}
+\fi
 
 \begin{theorem}[Galois connection for evaluation]
 \label{thm:core-language:eval:gc}
-   Suppose $T: \rho, e \evalFwdS v$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
-\end{theorem}
-
-\begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
-\end{definition}
-
-\begin{theorem}[Galois connection for pattern-matching]
-\label{thm:core-language:match:gc}
-   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
 \end{theorem}
