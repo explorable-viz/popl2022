@@ -176,7 +176,7 @@
       %
       \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
       {
-         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\bot}}
+         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\FF}}
                  {T}
                  {\rho}
                  {e}
@@ -227,16 +227,30 @@
       \and
       %
       \inferrule*[
-         lab={\ruleName{$\evalBwdS$-apply-prim}},
-         right={$\primBwd{\phi}{\vec{n}}(v) = \vec{u}$}
+         lab={\ruleName{$\evalBwdS$-let-rec}}
       ]
       {
-         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
          \\
-         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+         \rho_1 \closeDefsBwdR \rho', h'
       }
       {
-         \evalBwd{v}
+         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply-prim}},
+         right={$\primBwdBool{\phi}{\vec{n}}(\alpha') = \vec{\beta}$}
+      ]
+      {
+         \evalBwd{\annInt{{n_i}}{\beta_i}}{U_i}{\rho_i}{e_i}{\alpha_i}
+         \quad
+         (\forall i \in \length{\vec{n}})
+      }
+      {
+         \evalBwd{\annInt{m}{\alpha'}\,\eq}
                  {\trAppPrimNew{\phi}{U}{n}}
                  {\rho \join \rho'}
                  {\exApp{e_1}{e_2}}
@@ -262,20 +276,6 @@
       }
       {
          \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
-      }
-      %
-      \and
-      %
-      \inferrule*[
-         lab={\ruleName{$\evalBwdS$-let-rec}}
-      ]
-      {
-         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
-         \\
-         \rho_1 \closeDefsBwdR \rho', h'
-      }
-      {
-         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
       }
    \end{smathpar}
    \vspace{1mm}
