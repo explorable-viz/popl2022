@@ -158,32 +158,6 @@
    \inferrule*[
    ]
    {
-      v_i \leq u_i
-      \quad
-      (\forall i \numleq j)
-   }
-   {
-      \exPrimOp{\phi}{\seqRange{v_1}{v_j}} \leq \exPrimOp{\phi}{\seqRange{u_1}{u_j}}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
-      v_i \leq \hole
-      \quad
-      (\forall i \numleq \length{\vec{v}})
-   }
-   {
-      \exPrimOp{\phi}{\vec{v}} \leq \hole
-   }
-   %
-   \and
-   %
-   \inferrule*[
-   ]
-   {
       \rho \leq \rho'
       \\
       h \leq h'

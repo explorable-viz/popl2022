@@ -2,11 +2,10 @@
 \hfill \textbfit{$T$ witnesses that $e$ evaluates to $v$ in $\rho$}}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\evalR$-var}},
-      right={$\envLookup{\rho}{x}{v}$}
+      lab={\ruleName{$\evalR$-var}}
    ]
    {
-      \strut
+      \envLookup{\rho}{x}{v}
    }
    {
       \explVal{\trVar{x}{\rho}}{\rho, x \evalR v}
@@ -114,16 +113,17 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalR$-apply-prim}}
+      lab={\ruleName{$\evalR$-apply-prim}},
+      right={$\phi \in \Int^j \to \Int$}
    ]
    {
-      \explVal{T}{\rho, e \evalR \exPrimOp{\phi}{\vec{n}}}
-      \\
-      \explVal{U}{\rho, e' \evalR \exInt{m}}
+      \explVal{U}{\rho, e_i \evalR \exInt{n}_i}
+      \quad
+      (\forall i \numleq j)
    }
    {
-      \explVal{\trAppPrim{T}{\phi}{\vec{n}}{U}{m}}
-              {\rho, \exApp{e}{e'} \evalR \exPrimOp{\phi}{\vec{n} \concat m}}
+      \explVal{\trAppPrimNew{\phi}{U}{n}}
+              {\rho, \exAppPrim{\phi}{\vec{e}} \evalR \exPrimOp{\phi}{\vec{n}}}
    }
    %
    \and
@@ -142,7 +142,10 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\evalR$-apply}}]
+   \inferrule*[
+      lab={\ruleName{$\evalR$-apply}},
+      width=3in,
+   ]
    {
       \explVal{T}{\rho, e \evalR \exClosure{\rho_1}{h}{\sigma'}}
       \\

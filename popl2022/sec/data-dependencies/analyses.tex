@@ -1,67 +1,62 @@
 \subsection{Galois dependency}
 \label{sec:data-dependencies:analyses}
 
-We now show how to interpret a selection on a program $\raw{e}$ or its environment $\raw{\rho}$ (collectively: an \emph{input selection}) as a selection on its output $\raw{v}$, and vice versa. In the forward direction, input selections represent (non-linear) \emph{resources} available for use, giving rise to output selections indicating the resources available to a downstream computation because they depend only on selected input. In the backward direction, output selections represent resources being demanded by a downstream computation, giving rise to input selections identifying the resources needed for the selected output. Both analyses are with respect to a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. (Typically one would first evaluate a program to obtain its trace $T$, and then run a forward or background analysis over $T$ with an appropriate lattice.) We call our analysis \emph{Galois dependency}, because the two directions form a Galois connection, a pair of functions that are each other's closest approximate inverse: from above in one direction, from below in the other (\secref{data-dependencies:analysis:galois-connections}).  We present the forward direction first and explain the underlying principles.
+We now show how to interpret a selection on a program $\raw{e}$ or its environment $\raw{\rho}$ (collectively: an \emph{input selection}) as a selection on its output $\raw{v}$, and vice versa. In the forward direction, input selections represent (non-linear) \emph{resources} available for use, giving rise to output selections indicating the resources available to a downstream computation that depend only on selected input. In the backward direction, output selections represent resources being demanded by a downstream computation, giving rise to input selections identifying the resources needed for the selected output. Both analyses are with respect to a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. (Typically one would first evaluate a program to obtain its trace $T$, and then run a forward or background analysis over $T$ with an appropriate lattice.) We call our analysis \emph{Galois dependency}, because the two directions form a Galois connection, a pair of functions that are each other's closest approximate inverse: from above in one direction, from below in the other (\secref{data-dependencies:analysis:galois-connections}).  We present the forward direction first and explain the underlying principles.
 
 \subsection{Forward Galois dependency}
 \label{sec:data-dependencies:analyses:fwd}
 
-Forward analysis ``replays'' evaluation, propagating annotations from inputs to outputs, with $T$ guiding the analysis whenever when holes in the annotated program would mean the analysis would otherwise get stuck. Pattern-matching introduces the idea of a selection as a set of resources available to a downstream computation, so we start with that.
+Forward analysis ``replays'' evaluation, propagating selections from inputs to outputs, with $T$ guiding the analysis whenever when holes in the selectable program would mean the analysis would otherwise get stuck. Pattern-matching introduces the idea of a selection as a set of resources available to a downstream computation, so we start with that.
 
 \input{fig/core-language/slicing/eval-fwd}
 
 \subsubsection{Forward matching}
 \label{sec:data-dependencies:analyses:fwd:pattern-match}
 
-\figref{data-dependencies:fwd} defines the family of forward-analysis functions $\matchFwdF{w} :: \Sel{v, \sigma}{A} \to \Prod{\Sel{\rho, \kappa}{A}}{\Ann{A}}$ for any $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, pronounced ``forward match''. (This is presented in a relational style for readability, but should be understood as a total function defined by structural recursion on $w$.) Forward-match replays the pattern-match witnessed by $w$, transferring the annotations on the relevant parts of $v \in \Sel{v}{A}$ to the output environment $\rho \in \Sel{\rho}{A}$, and from the relevant part of $\sigma \in \Sel{\sigma}{A}$ to the selected continuation $\kappa \in \Sel{\kappa}{A}$.
+\figref{data-dependencies:fwd} defines the family of forward-analysis functions $\matchFwdF{w} :: \Sel{\raw{v}, \raw{\sigma}}{A} \to \Sel{\raw{\rho}, \raw{\kappa}}{A} \times \Ann{A}$ for any $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, pronounced ``forward match''. (This is presented in a relational style for readability, but should be understood as a total function defined by structural recursion on $w$.) Forward-match replays the pattern-match witnessed by $w$, transferring the selections on the relevant parts of $v \in \Sel{\raw{v}}{A}$ to the output environment $\rho \in \Sel{\raw{\rho}}{A}$, and from the relevant part of $\sigma \in \Sel{\raw{\sigma}}{A}$ to the selected continuation $\kappa \in \Sel{\raw{\kappa}}{A}$.
 
-$\matchFwdF{w}$ also returns the \emph{meet} of the annotations on the part of $v$ consumed by $\sigma$, which we call the \emph{availability} of $v$ (in the context of $\sigma$), since it represents the extent to which the demand implied by $\sigma$ was met. A variable match consumes nothing of $v$ and so the availability is always $\top$, the unit for meet. A Boolean match consumes either $\annot{\exTrue}{\alpha}$ or $\annot{\exFalse}{\alpha}$, with availability $\alpha$; empty list and record matches are similar. When we match a cons, we combine the $\alpha$ on the cons node itself with the availabilities $\beta$ and $\beta'$ of $v$ and $v'$. Non-empty records are similar, but to process the rest of the record, we supply the neutral annotation $\top$ on the subrecord in order to use the definition recursively. (Subrecords are not first-class, but exist only as intermediate artefacts of the interpreter.)
+$\matchFwdF{w}$ also returns the \emph{meet} of the selection states associated with the part of $v$ consumed by $\sigma$, which we call the \emph{availability} of $v$ (in the context of $\sigma$), since it represents the extent to which the demand implied by $\sigma$ was met. A variable match consumes nothing of $v$ and so the availability is always $\top$, the unit for meet. A Boolean match consumes either $\annot{\exTrue}{\alpha}$ or $\annot{\exFalse}{\alpha}$, with availability $\alpha$; empty list and record matches are similar. When we match a cons, we combine the $\alpha$ on the cons node itself with the availabilities $\beta$ and $\beta'$ computed for $v$ and $v'$. Non-empty records are similar, but to process the initial part of the record, we supply the neutral selection state $\top$ on the subrecord in order to use the definition recursively. (Subrecords are not first-class, but exist only as intermediate artefacts of the interpreter.)
 
-One might hope to dispense with the need for $w$ by simply defining $\matchFwdF{w}$ by case analysis on $v$ and $\sigma$. However, it is not clear how to proceed in the event that $v$ or $\sigma$ is a hole. It would be legitimate to produce $\hole$ as the output continuation and $\bot$ as the output annotation, but for the output environment to be well-typed, it must have variable bindings corresponding to those introduced in the baseline computation where $\raw{v}$ was matched against $\raw{\sigma}$. If $\matchFwdS$ is defined with respect to a known $w$, this can be achieved via additional rules \ruleName{$\matchFwdS$-hole-1} and \ruleName{$\matchFwdS$-hole-2} that define the behaviour at hole to be the same as the behaviour at any $\eq$-equivalent argument. Operationally, this can be interpreted as ``expanding'' enough of the holes in $v$ or $\sigma$ to make another rule of the definition match; there will be exactly one non-hole rule that matches, corresponding to the execution path originally taken, and although there may be multiple such expansions, the result of $\matchFwdF{w}$ will be unique up to $\eq$.
+One might hope to dispense with the need for $w$ by simply defining $\matchFwdF{w}$ by case analysis on $v$ and $\sigma$. However, it is then unclear how to proceed in the event that $v$ is a hole. It would be legitimate to produce $\hole$ as the output continuation and $\bot$ as the output selection state, but for the output environment to be well-typed, it must provide variable bindings corresponding to those introduced in the baseline computation where $\raw{v}$ was matched against $\raw{\sigma}$. If $\matchFwdS$ is defined with respect to a known $w$, this can be achieved via an additional rule \ruleName{$\matchFwdS$-hole-1} that defines the behaviour at hole to be the same as the behaviour at any $\eq$-equivalent value, where the $\raw{v}$ subscript on $\eq$ makes it clear that we are only considering the relation at $\Sel{\raw{v}}{A}$. The \ruleName{$\matchFwdS$-hole-2} makes a similar provision for $\sigma$, which may also be a hole. Operationally, these rules can be interpreted as ``expanding'' enough of the holes in $v$ or $\sigma$ to make another rule of the definition match; there will be exactly one non-hole rule that matches, corresponding to the execution path originally taken, and although there may be multiple such expansions, the result of $\matchFwdF{w}$ will be unique up to $\eq$.
 
 \begin{lemma}[Determinism of $\matchFwdF{w}$]
-   Suppose $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
+   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq_{\raw{v},\raw{\sigma}} (v', \sigma)$ then $(\rho, \kappa) \eq_{\raw{\rho}, \raw{\kappa}} (\rho', \kappa')$.
 \end{lemma}
 
 \subsubsection{Forward evaluation}
 
-\figref{data-dependencies:fwd} also defines the family of functions $\evalFwdF{T} :: \Prod{\Sel{\rho, e}{A}}{\Ann{A}} \to \Sel{v}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``forward evaluation''. This too should be understood as a total function, defined by structural recursion on $T$, which replays the evaluation, using the input selection $\rho, e \in \Sel{\rho,e}{A}$ to determine the output selection $v \in \Sel{v}{A}$. The additional annotation input $\alpha$ represents the ``availability'' (in the sense of \secref{data-dependencies:analyses:fwd:pattern-match}) of the argument consumed by the ambient function context, which bounds the availability of any resources constructed in that context. The availability of any annotated values constructed during evaluation is the meet of the availability of the annotated inputs they depend on, and this argument availability. At the outermost level there is no ambient function context, and so the the forward evaluation relation is typically invoked initially with an argument availability of $\top$.
+\figref{data-dependencies:fwd} also defines the family of functions $\evalFwdF{T} :: \Prod{\Sel{\raw{\rho}, \raw{e}}{A}}{\Ann{A}} \to \Sel{\raw{v}}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``forward evaluation''. Like forward-matching, this is presented in a relational style, but should be understood as a total function defined by structural recursion on $T$. Forward evaluation replays $T$, using the input selection $\rho, e \in \Sel{\raw{\rho}, \raw{e}}{A}$ to determine an output selection $v \in \Sel{\raw{v}}{A}$. The rules mirror those of the evaluation relation $\evalR$, although there is an additional selection state input $\alpha$ called the \emph{ambient availability}. We explain this with reference to the application rule, which is the only point where a new ambient availability is assigned.
 
-Analogously to $\matchFwdF{w}$ and $\matchR$, the rules for $\evalFwdF{T}$ mirror those of the evaluation relation $\evalR$. The variable rule simply returns the annotated value bound to $x$ in $\rho$.  The rule for lambdas $\exLambda{\sigma}$ preserves any annotations in the environment $\rho$ and eliminator $\sigma$ into the resulting closure; the closure has no annotations of its own, so the argument availability $\alpha$ is disregarded. Record projection is more interesting, preserving any annotations internal to the projected field $v_i$ but disregarding not only the ambient $\alpha$ but also the annotation $\beta$ on the record itself. The guiding principle is that ``containers'' are, in general, independent of the values they contain; here, $v_i$ has its own internal annotations which are preserved by projection, but there is no implied dependency of the field on the record from which it was projected. Record construction also reflects this principle, by forward-evaluating the subcomputation for each field and transferring the resulting annotated value into the record unchanged. But it also annotates the record value with the meet of $\alpha$ and $\alpha'$, reflecting a second principle, viz.~that a container (or other constructed value) requires both the constructing expression \emph{and} any resources needed by the ambient function. The rules for nil, cons and integers are similar, although lists have an annotation at every node, unlike records, which have a single annotation.
+The rule assumes the application $\exApp{e}{e'}$ already has an ambient availability $\alpha$; at the outermost level this will usually be $\top$. The rule passes $\alpha$ down when recursively forward-evaluating $e$ and $e'$, but computes a new selection state $\beta$ when transferring control to the function. The $\beta$ is obtained by forward-matching the argument $v$ with the eliminator $\sigma$ of the closure, and thus represents the availability of those parts of $v$ demanded by the function. The ambient availability is used to bound the availability of any selectable values constructed in the dynamic context of that function, establishing a dependency between the resources consumed by functions and resources they produce.
 
-The hole rule for $\evalFwdF{T}$ is similar to the rules for $\matchFwdF{w}$, except that no special treatment is needed for the holes that arise inside $\rho$, and environments themselves have no special $\hole$ form. Moreover, the ``elimination rules'' (application, record projection and primitive application) must all accommodate the case where the annotated value being eliminated (closure, record, or primitive operation) is represented by $\hole$. In these rules $\evalFwdR{T}\eq$ denotes the relational composition of $\evalFwdR{T}$ and $\eq$. As with $\matchFwdF{w}$, these uses of $\eq$ can be understood operationally as using the information in $T$ to expand $\hole$ sufficiently for the rule to apply, with a result which is unique up to $\eq$.
+All other rules pass the ambient availability into any subcomputations unchanged. The variable, lambda and letrec rules do not directly produce or consume any (selectable) resources, and so disregard the ambient availability $\alpha$ entirely, although they preserve any selections internal to the subvalues they manipulate. Record projection is more interesting, disregarding not only the ambient $\alpha$ but also the selection state $\beta$ of the record itself. Containers are considered to be independent of the values they contain: here, $v_i$ has its own internal selections which are preserved by projection, but there is no implied dependency of the field on the record from which it was projected. Record construction also reflects this principle, by simply transferring the selectable value for each field into the constructed record unchanged. But it also sets the selection state of the record value to be the meet of $\alpha$ and $\alpha'$, reflecting the dependency not only on the constructing expression but also on any resources demanded by the ambient function. The rules for nil, cons and integers are similar.
+
+Primitive operations are the other source of input-output dependencies beyond user-defined functions. Since the execution of a primitive operation is opaque, these dependencies are specified by the primitive operation directly, rather than derived from its execution. More specifically, $\phi \in \tyInt^{i} \to \tyInt$ is required to provide a forward-dependency function $\primFwdBool{\phi}{\vec{n}}: \Ann{A}^i \to \Ann{A}$ for every $\vec{n}$ of length $i$ which specifies how to turn an input selection $\vec{\beta} \in \Ann{A}^i$ for $\vec{n}$ into an output selection $\alpha'$ on $\exAppPrim{\phi}{\vec{n}}$. There is one such function per possible input $\vec{n}$, since the dynamic dependencies for a primitive operation with an annihilator, such as multiplication, depend on the values passed to the operation. Primitives are free to implement forward-dependency however they want; however, \secref{data-dependencies:analyses:bwd:eval} will also require $\phi$ to provide a backward-dependency function for any input $\vec{n}$, and the two must form an adjoint pair for the consistency of the whole system to be guaranteed.
+
+The hole rule for $\evalFwdF{T}$ is similar to the rules for $\matchFwdF{w}$, except that no special treatment is needed for the holes that arise inside $\rho$, and environments themselves have no special $\hole$ form. Moreover, the elimination rules (application and record projection) must accommodate the case where the selectable value being eliminated (closure or record) is represented by $\hole$. In these rules $\evalFwdR{T}\eq$ denotes the relational composition of $\evalFwdR{T}$ and $\eq$. As with $\matchFwdF{w}$, these uses of $\eq$ can be understood operationally as using the information in $T$ to expand $\hole$ sufficiently for the rule to apply, with a result which is unique up to $\eq$.
 
 \begin{lemma}[Determinism of $\evalFwdF{T}$]
    Suppose $\rho, e, \alpha \evalFwdR{T} v$ and $\rho', e', \alpha \evalFwdR{T} v'$. If $(\rho, e) \eq (\rho', e')$ then $v \eq v'$.
 \end{lemma}
 
+\subsection{Backward Galois dependency}
+\label{sec:data-dependencies:analyses:bwd}
+
+Backward analysis ``rewinds'' evaluation, propagating selections from outputs to inputs, with $T$ guiding the analysis backward.
+
+\subsubsection{Backward matching}
+\label{sec:data-dependencies:analyses:bwd:pattern-match}
+
+The function $\matchBwdF{w} :: \Prod{\Sel{\raw{\rho}, \raw{\kappa}}{A}}{\Ann{A}} \to \Sel{\raw{v}, \raw{\sigma}}{A}$ can also be understood in two parts. First, we use the match $w$ to reconstruct the shape of the eliminator $\sigma$. The environment $\rho$ and continuation $\kappa$ resulting from the forward pattern-match are then used to determine the original continuation for the branch corresponding to $w$; all other branches are considered unused and hence have hole as their continuations. Second, we take the output selection $\alpha$ which tells us if all input resources were available when forward matching, and use this to select the matched part of the original input value $v$.
+
+The rule for variables $\matchVar{x}$, discards its output selection $\alpha$ as no selections were originally consumed when forward pattern-matching against a variable eliminator. For matches $w$ representing either $\matchTrue$ or $\matchFalse$, we take the output selection $\alpha$ and use this to select the Boolean value corresponding to $w$. The same logic applies to $\matchNil$. For non-empty lists, $\matchCons{w_1}{w_2}$, we backward match in reverse order against the tail pattern $w_2$ then the head pattern $w_1$ to acquire value selections $v_2$ and $v_1$. Using this, we reconstruct the value $\annCons{v_1}{v_2}{\alpha}$ where the cons constructor has selection state according to the output selection $\alpha$. Similarly for records, $\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}$, we recursively backward match against all of the components of record and set the record constructor to have selection state given by the output selection $\alpha$.
+
+\subsubsection{Backward evaluation}
+\label{sec:data-dependencies:analyses:bwd:eval}
+
 \paragraph{Primitive operations}
 
-Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ with $\length{\vec{n}} = i$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ between $\Bool^i$ and $\Bool$, which we lift to a Galois connection $(\primFwd{\phi}{\vec{n}}, \primBwd{\phi}{\vec{n}})$ between $\Below{\vec{n}}$ and $\Below{\phi(\vec{n})}$ by defining
-\begin{definition}
-\label{def:core-language:primop-gc}
-\begin{salign}
-   \primFwd{\phi}{\vec{n}}(\vec{\annInt{n}{\alpha}}) &= \annInt{m}{\beta}
-   \text{ where }
-   \primFwdBool{\phi}{\vec{n}}(\vec{\alpha}) = \beta
-   \\
-   \primBwd{\phi}{\vec{n}}(\annInt{m}{\beta}) &= \vec{\annInt{n}{\alpha}}
-   \text{ where }
-   \primBwdBool{\phi}{\vec{n}}(\beta) = \vec{\alpha}
-\end{salign}
-\end{definition}
-
-\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values. For any $\vec{n}$ with $\length{\vec{n}} \numlt i$, any such $\phi$ also gives rise to an isomorphism between $\Below{\vec{n}}$ and the lattice of partial applications $\Below{\exPrimOp{\phi}{\vec{n}}}$.
-
-\subsection{Backward Galois dependency}
-
-Backward analysis ``rewinds'' evaluation, propagating annotations from outputs to inputs, with $T$ guiding the analysis backward.
-
-\subsubsection{Pattern-matching}
-
-The function $\matchBwdF{w} :: \Prod{\Sel{\rho, \kappa}{A}}{\Ann{A}} \to \Sel{v, \sigma}{A}$ can also be understood in two parts. First, we use the match $w$ to reconstruct the shape of the eliminator $\sigma$. The environment $\rho$ and continuation $\kappa$ resulting from the forward pattern-match are then used to determine the original continuation for the branch corresponding to $w$; all other branches are considered unused and hence have hole as their continuations. Second, we take the output selection $\alpha$ which tells us if all input resources were available when forward matching, and use this to annotate the original input value $v$.
-
-The rule for variables $\matchVar{x}$, discards its output selection $\alpha$ as no selections were originally consumed when forward pattern-matching against a variable eliminator. For matches $w$ representing either $\matchTrue$ or $\matchFalse$, we take the output selection $\alpha$ and use this to annotate the Boolean value corresponding to $w$. The same logic applies to $\matchNil$. For non-empty lists, $\matchCons{w_1}{w_2}$, we backward match in reverse order against the tail pattern $w_2$ then the head pattern $w_1$ to acquire annotated values $v_2$ and $v_1$. Using this, we reconstruct the value $\annCons{v_1}{v_2}{\alpha}$ where the cons constructor is annotated by the output selection $\alpha$. Similarly for records, $\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}$, we recursively backward match against all of the components of record and annotate the record constructor with the output selection $\alpha$.
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ of length $i$ provide a backward-analysis function $\primBwdBool{\phi}{\vec{n}}: \Ann{A} \to \Ann{A}^i$, which \todo{finish}.
 
 \input{fig/core-language/slicing/eval-bwd}
 
@@ -102,20 +97,20 @@ Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
    Suppose $\rho, h \closeDefsR \rho'$.  Then $\closeDefsFwdF{\rho,h} \adjoint \closeDefsBwdF{\rho,h}$.
 \end{theorem}
 
-\begin{definition}[Forward and backward functions for evaluation]
-   Suppose $T: \rho, e \evalR v$. Define $\evalFwdF{T}: \Below{(\rho, e, \TT)} \to \Below{v}$ and $\evalBwdF{T}: \Below{v} \to \Below{(\rho, e, \TT)}$ to be $\evalFwdR{T}$ and $\evalBwdR{T}$ restricted to $\Below{(\rho, e, \TT)}$ and $\Below{v}$ respectively.
-\end{definition}
+We assume (rather than prove) that the forward and backwards dependency functions provided for a primitive operation $\phi: \tyInt^i \to \tyInt$ form a Galois connection between $\Ann{A}^i$ and $\Ann{A}$, i.e.~that $\primFwdBool{\phi}{\vec{n}} \adjoint \primBwdBool{\phi}{\vec{n}}$.
+
+\begin{theorem}[Galois connection for pattern-matching]
+   \label{thm:core-language:match:gc}
+      Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+\end{theorem}
+
+\ifappendices
+   \begin{proof}
+   \appref{proofs:core-language:match:gc}
+   \end{proof}
+\fi
 
 \begin{theorem}[Galois connection for evaluation]
 \label{thm:core-language:eval:gc}
-   Suppose $T: \rho, e \evalFwdS v$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
-\end{theorem}
-
-\begin{definition}[Forward and backward functions for pattern-matching]
-   Suppose $w: v, \sigma \matchR \rho, \kappa$. Define $\matchFwdF{w}: \Below{(v,\sigma,\TT)} \to \Below{(\rho,\kappa)}$ and $\matchBwdF{w}: \Below{(\rho,\kappa)} \to \Below{(v,\sigma,\TT)}$ to be $\matchFwdR{w}$ and $\matchBwdR{w}$ domain-restricted to $\Below{(v,\sigma,\TT)}$ and $\Below{(\rho,\kappa)}$ respectively.
-\end{definition}
-
-\begin{theorem}[Galois connection for pattern-matching]
-\label{thm:core-language:match:gc}
-   Suppose $w: v, \sigma \matchFwdS \rho, \kappa$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$.  Then $\evalFwdF{T} \adjoint \evalBwdF{T}$.
 \end{theorem}

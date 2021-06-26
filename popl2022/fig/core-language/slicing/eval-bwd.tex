@@ -1,6 +1,6 @@
 \begin{figure}
    {\small \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}%
-   \hfill \textbfit{$\rho$ and $\kappa$, with argument demand $\alpha$, backward-match along $w$ to $v$ and $\sigma$}}
+   \hfill \textbfit{$\rho$ and $\kappa$, with ambient demand $\alpha$, backward-match along $w$ to $v$ and $\sigma$}}
    \begin{smathpar}
       \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
       {
@@ -97,7 +97,7 @@
    \vspace{1mm}
 
    {\small \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}%
-   \hfill \textbfit{$v$ backward-evals along $T$ to $\rho$ and $e$, with argument demand $\alpha$}}
+   \hfill \textbfit{$v$ backward-evaluates along $T$ to $\rho$ and $e$, with ambient demand $\alpha$}}
    \begin{smathpar}
       \inferrule*[
          lab={\ruleName{$\evalBwdS$-eq}}
@@ -121,7 +121,7 @@
          \strut
       }
       {
-         \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\FF}
+         \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\bot}
       }
       %
       \and
@@ -227,20 +227,34 @@
       \and
       %
       \inferrule*[
-         lab={\ruleName{$\evalBwdS$-apply-prim}},
-         right={$\primBwd{\phi}{\vec{n} \concat m}(v) = \vec{u} \concat u'$}
+         lab={\ruleName{$\evalBwdS$-let-rec}}
       ]
       {
-         \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
+         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
          \\
-         \evalBwd{u'}{U}{\rho'}{e_2}{\alpha'}
+         \rho_1 \closeDefsBwdR \rho', h'
       }
       {
-         \evalBwd{v}
-                 {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-                 {\rho \join \rho'}
-                 {\exApp{e_1}{e_2}}
-                 {\alpha \join \alpha'}
+         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
+      }
+      %
+      \and
+      %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-apply-prim}},
+         right={$\primBwdBool{\phi}{\vec{n}}(\alpha') = \vec{\beta}$}
+      ]
+      {
+         \evalBwd{\annInt{{n_i}}{\beta_i}}{U_i}{\rho_i}{e_i}{\alpha_i}
+         \quad
+         (\forall i \in \length{\vec{n}})
+      }
+      {
+         \evalBwd{\annInt{m}{\alpha'}\,\eq}
+                 {\trAppPrimNew{\phi}{U}{n}}
+                 {\bigjoin\vec{\rho}}
+                 {\exAppPrim{\phi}{\vec{e}}}
+                 {\bigjoin\vec{\alpha}}
       }
       %
       \and
@@ -263,25 +277,11 @@
       {
          \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
       }
-      %
-      \and
-      %
-      \inferrule*[
-         lab={\ruleName{$\evalBwdS$-let-rec}}
-      ]
-      {
-         \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
-         \\
-         \rho_1 \closeDefsBwdR \rho', h'
-      }
-      {
-         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
-      }
    \end{smathpar}
    \vspace{1mm}
 
    {\small\flushleft \shadebox{$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}%
-   \hfill \textbfit{$\bind{x}{v}$ backward-analyses along $\rho$ to $\rho'$}}
+   \hfill \textbfit{$\rho'$ contains $\bind{x}{v}$}}
    \begin{smathpar}
       \inferrule*[
          lab={\ruleName{$\envLookupBwdS$-head}}
@@ -313,7 +313,7 @@
    \vspace{1mm}
 
    {\small\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}%
-   \hfill \textbfit{$\rho$ backward-analyses to $\rho'$ and $h$}}
+   \hfill \textbfit{recursive closures $\rho$ backward-generate to $\rho'$ and $h$}}
    \begin{salign}
       \vec{\bind{x}{v}}
       &\closeDefsBwdR

@@ -76,6 +76,20 @@
 %
 \and
 %
+\inferrule*[
+   right={$\phi \in \Int^j \to \Int$}
+]
+{
+   \Gamma \vdash e_i: \tyInt
+   \quad
+   (\forall i \numleq j)
+}
+{
+   \Gamma \vdash \exAppPrim{\phi}{\vec{e}}: \tyInt
+}
+%
+\and
+%
 \inferrule*
 {
    \Gamma \vdash e: \tyFun{A}{B}
@@ -243,18 +257,6 @@
 }
 {
    \vdash (\exCons{u}{v}): \tyList{A}
-}
-%
-\and
-%
-\inferrule*[
-   right={$\phi \in \Int^{i + j} \to \Int$}
-]
-{
-   \strut
-}
-{
-   \vdash \exPrimOp{\phi}{\seqRange{n_1}{n_i}}: \tyFun{\tyInt^j}{\tyInt}
 }
 %
 \and

@@ -1,16 +1,6 @@
 {\small \flushleft \shadebox{$\explVal{w}{v, \sigma \matchR \rho, \kappa}$}%
 \hfill \textbfit{$w$ witnesses that $\sigma$ matches $v$ and yields $\rho$ and $\kappa$}}
 \begin{smathpar}
-   \inferrule*[lab={\ruleName{$\matchR$-var}}]
-   {
-      \strut
-   }
-   {
-      \explVal{\matchVar{x}}{v, \elimVar{x}{\kappa} \matchR \bind{x}{v}, \kappa}
-   }\\
-   %
-   \and
-   %
    \inferrule*[lab={\ruleName{$\matchR$-true}}]
    {
       \strut
@@ -31,6 +21,28 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\matchR$-var}}]
+   {
+      \strut
+   }
+   {
+      \explVal{\matchVar{x}}{v, \elimVar{x}{\kappa} \matchR \bind{x}{v}, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchR$-nil}}]
+   {
+      \strut
+   }
+   {
+      \explVal
+         {\matchNil}
+         {\exNil, \elimList{\kappa}{\sigma} \matchR \seqEmpty, \kappa}
+   }
+   %
+   \and
+   %
    \inferrule*[
       lab={\ruleName{$\matchR$-unit}}
    ]
@@ -40,6 +52,22 @@
    {
       \explVal{\exRecEmpty}
               {\seqEmpty, \elimRecEmpty{\kappa} \matchR \seqEmpty, \kappa}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\matchR$-cons}}]
+   {
+      \explVal{w}{v, \sigma \matchR \rho, \tau}
+      \\
+      \explVal{w'}{v', \tau \matchR \rho', \kappa'}
+   }
+   {
+      \explVal
+         {(\matchCons{w}{w'})}
+         {\exCons{v}{v'}, \elimList{\kappa}{\sigma}
+         \matchR
+         \rho \concat \rho', \kappa'}
    }
    %
    \and
@@ -59,33 +87,5 @@
                \matchR
                \rho \concat \rho',
                \kappa}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchR$-nil}}]
-   {
-      \strut
-   }
-   {
-      \explVal
-         {\matchNil}
-         {\exNil, \elimList{\kappa}{\sigma} \matchR \seqEmpty, \kappa}
-   }
-   %
-   \and
-   %
-   \inferrule*[lab={\ruleName{$\matchR$-cons}}]
-   {
-      \explVal{w}{v, \sigma \matchR \rho, \tau}
-      \\
-      \explVal{w'}{v', \tau \matchR \rho', \kappa'}
-   }
-   {
-      \explVal
-         {(\matchCons{w}{w'})}
-         {\exCons{v}{v'}, \elimList{\kappa}{\sigma}
-         \matchR
-         \rho \concat \rho', \kappa'}
    }
 \end{smathpar}

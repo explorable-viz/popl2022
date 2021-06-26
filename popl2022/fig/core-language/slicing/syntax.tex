@@ -4,9 +4,12 @@
 \renewcommand*{\arraystretch}{1}
 \begin{minipage}[t]{0.5\textwidth}
    \begin{tabularx}{\textwidth}{rL{2.5cm}L{3cm}}
-   &\textbfit{Annotated term}&
+   &\textbfit{Selectable term}&
    \\
-   $w \in \TermF{\textcal{A}} ::=$
+   $e \in \TermF{\textcal{A}} ::=$
+   &
+   \ldots
+   \\
    &
    $\hole$
    &
@@ -39,12 +42,9 @@
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
    \begin{tabularx}{\textwidth}{rL{2.5cm}L{3cm}}
-   &\textbfit{Annotated value}&
+   &\textbfit{Selectable value}&
    \\
    $u, v \in \ValF{\textcal{A}}::=$
-   &
-   \ldots
-   \\
    &
    $\hole$
    &
@@ -69,11 +69,17 @@
    $\annNil{\alpha} \mid \annCons{u}{v}{\alpha}$
    &
    list
+   \\
+   &
+   $\exClosure{\rho}{h}{\sigma}$
+   &
+   closure
+   \\
    \\[2mm]
    \end{tabularx}
 \end{minipage}
 \endgroup
 }
-\caption{Selection state, annotated terms and annotated values}
+\caption{Selection state, selectable terms and selectable values}
 \label{fig:core-syntax-selection}
 \end{figure}
