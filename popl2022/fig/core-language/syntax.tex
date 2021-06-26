@@ -68,9 +68,14 @@ $\exApp{e}{e'}$
 application
 \\
 &
-$\exNil \mid \exCons{e}{e'}$
+$\exNil$
 &
-list
+nil
+\\
+&
+$\exCons{u}{v}$
+&
+cons
 \\
 &
 $\exRec{\vec{\bind{x}{e}}}$
@@ -160,11 +165,6 @@ $\exRec{\vec{\bind{x}{v}}}$
 record
 \\
 &
-$\exPrimOp{\phi}{\vec{v}}$
-&
-unsaturated primitive
-\\
-&
 $\exClosure{\rho}{h}{\sigma}$
 &
 closure
@@ -180,6 +180,8 @@ $h ::=$
 $\seq{\bind{x}{\sigma}}$
 &
 recursive functions
+\\
+\\[2mm]
 %$x, y$
 %&
 %&
