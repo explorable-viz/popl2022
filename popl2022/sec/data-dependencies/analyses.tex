@@ -41,7 +41,7 @@ The hole rule for $\evalFwdF{T}$ is similar to the rules for $\matchFwdF{w}$, ex
 
 \paragraph{Primitive operations}
 
-Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ with $\length{\vec{n}} = i$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ between $\Ann{A}^i$ and $\Ann{A}$, which we lift to a Galois connection $(\primFwd{\phi}{\vec{n}}, \primBwd{\phi}{\vec{n}})$ between $\Sel{\vec{n}}{A}$ and $\Sel{\phi(\vec{n})}{A}$ by defining
+Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ of length $i$ provide a Galois connection $(\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ between $\Ann{A}^i$ and $\Ann{A}$, which we lift to a Galois connection $(\primFwd{\phi}{\vec{n}}, \primBwd{\phi}{\vec{n}})$ between $\Sel{\vec{n}}{A}$ and $\Sel{\phi(\vec{n})}{A}$ by defining
 \begin{definition}
 \label{def:core-language:primop-gc}
 \begin{salign}
@@ -55,7 +55,7 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ 
 \end{salign}
 \end{definition}
 
-\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values. For any $\vec{n}$ with $\length{\vec{n}} \numlt i$, any such $\phi$ also gives rise to an isomorphism between $\Below{\vec{n}}$ and the lattice of partial applications $\Below{\exPrimOp{\phi}{\vec{n}}}$.
+\noindent where $\vec{\annInt{n}{\alpha}}$ denotes the zip of same-length sequences $\vec{n}$ and $\vec{\alpha}$ with the constructor for integer values.
 
 \subsection{Backward Galois dependency}
 
