@@ -61,6 +61,7 @@
 
 % Expressions.
 \newcommand*{\exApp}[2]{{#1}\,{#2}}
+\newcommand*{\exAppPrim}[2]{{#1}({#2})}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
 \newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
 \newcommand*{\exClosure}[3]{\kw{cl}({#1},{#2},{#3})}
@@ -339,6 +340,7 @@
 % Traces.
 \newcommand*{\trApp}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
 \newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
+\newcommand*{\trAppPrimNew}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}[1]{\exFalse} % {\sub{\exFalse}{#1}}

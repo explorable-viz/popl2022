@@ -76,6 +76,20 @@
 %
 \and
 %
+\inferrule*[
+   right={$\phi \in \Int^j \to \Int$}
+]
+{
+   \Gamma \vdash e_i: \tyInt
+   \quad
+   (\forall i \numleq j)
+}
+{
+   \Gamma \vdash \exAppPrim{\phi}{\vec{e}}: \tyInt
+}
+%
+\and
+%
 \inferrule*
 {
    \Gamma \vdash e: \tyFun{A}{B}
