@@ -37,9 +37,9 @@
 % Primitives.
 \newcommand*{\primOp}{\oplus}
 \newcommand*{\primFwd}[2]{\fwdF{#1}{#2}}
-\newcommand*{\primFwdBool}[2]{\fwdF{{#1}_{\Ann{A}}}{#2}}
+\newcommand*{\primFwdBool}[2]{\fwdF{#1}{#2}} % _{\Ann{A}}
 \newcommand*{\primBwd}[2]{\bwdF{#1}{#2}}
-\newcommand*{\primBwdBool}[2]{\bwdF{{#1}_{\Ann{A}}}{#2}}
+\newcommand*{\primBwdBool}[2]{\bwdF{#1}{#2}} % _{\Ann{A}}
 \newcommand*{\primAppF}[1]{\fwdF{primApp}{#1}}
 \newcommand*{\primAppGC}[1]{\GC{primApp}{#1}}
 
@@ -241,8 +241,8 @@
 
 % Helpers
 \newcommand*{\GC}[2]{\sub{\mathsf{#1}}{#2}}
-\newcommand*{\fwdF}[2]{\sub{\mathsf{#1}\hspace{-0.05em}\smalltriangleright}{\hspace{-0.04em}#2}}
-\newcommand*{\bwdF}[2]{\sub{\mathsf{#1}\smalltriangleleft}{\hspace{-0.08em}#2}}
+\newcommand*{\fwdF}[2]{\sub{\mathsf{#1{-}fwd}}{#2}} %{\sub{\mathsf{#1}\hspace{-0.05em}\smalltriangleright}{\hspace{-0.04em}#2}}
+\newcommand*{\bwdF}[2]{\sub{\mathsf{#1{-}bwd}}{#2}} %{\sub{\mathsf{#1}\smalltriangleleft}{\hspace{-0.08em}#2}}
 
 % Evaluation.
 \newcommand*{\closeDefsS}{\twoheadrightarrow}
