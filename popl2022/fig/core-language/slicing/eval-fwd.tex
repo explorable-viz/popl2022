@@ -164,11 +164,10 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalFwdS$-var}},
-      right={$\envLookup{\rho}{x}{v}$}
+      lab={\ruleName{$\evalFwdS$-var}}
    ]
    {
-      \strut
+      \envLookup{\rho}{x}{v}
    }
    {
       \evalFwd{\rho}{\exVar{x}}{\alpha}{\trVar{x}{\rho}}{v}
@@ -273,16 +272,16 @@
       lab={\ruleName{$\evalFwdS$-apply-prim}}
    ]
    {
-      \evalFwdEq{\rho}{e}{\alpha}{T}{\exPrimOp{\phi}{\vec{v}}}
-      \\
-      \evalFwd{\rho}{e'}{\alpha}{U}{u}
+      \evalFwd{\rho}{e_i}{\alpha}{U_i}{v_i}
+      \quad
+      (\forall i \numleq \length{\vec{n}})
    }
    {
       \evalFwd{\rho}
-              {\exApp{e}{e'}}
+              {\exAppPrim{\phi}{\vec{e}}}
               {\alpha}
-              {\trAppPrim{T}{\phi}{\vec{n}}{U}{\exInt{m}}}
-              {\primFwd{\phi}{\vec{n} \concat m}(\vec{v} \concat u)}
+              {\trAppPrimNew{T}{\phi}{U}{n}}
+              {\primFwd{\phi}{\vec{n}}(\vec{v})}
    }
    %
    \and

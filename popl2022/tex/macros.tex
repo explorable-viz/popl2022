@@ -195,7 +195,7 @@
 \newcommand*{\ValF}[1]{\Set{Val}\,{#1}}
 \newcommand*{\TermF}[1]{\Set{Term}\,{#1}}
 \newcommand*{\Sel}[2]{\SelF{#1}\,{\Ann{#2}}}
-\newcommand*{\SelF}[1]{\Set{Sel}_{\bm{#1}}}
+\newcommand*{\SelF}[1]{\Set{Sel}_{#1}}
 
 % Meta-types
 \newcommand*{\Bool}{\Ann{2}}%{\mathbb{B}}
@@ -340,7 +340,7 @@
 % Traces.
 \newcommand*{\trApp}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
 \newcommand*{\trAppPrim}[5]{\exApp{\sub{#1}{(#2,#3)}}{\sub{#4}{#5}}}
-\newcommand*{\trAppPrimNew}[4]{\exApp{\sub{#1}{#2}}{\sub{#3}{#4}}}
+\newcommand*{\trAppPrimNew}[4]{\exApp{\sub{#1}{#2}}{\vec{\sub{#3}{#4}}}}
 \newcommand*{\trBinaryApp}[6]{\exBinaryApp{\sub{#1}{#2}}{\sub{#3}{#4}}{\sub{#5}{#6}}}
 \newcommand*{\trCons}[2]{\exCons{#1}{#2}}
 \newcommand*{\trFalse}[1]{\exFalse} % {\sub{\exFalse}{#1}}
