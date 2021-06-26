@@ -1,6 +1,6 @@
 \begin{figure}
    {\small \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}%
-   \hfill \textbfit{$\rho$ and $\kappa$, with argument demand $\alpha$, backward-match along $w$ to $v$ and $\sigma$}}
+   \hfill \textbfit{$\rho$ and $\kappa$, with ambient demand $\alpha$, backward-match along $w$ to $v$ and $\sigma$}}
    \begin{smathpar}
       \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
       {
@@ -97,7 +97,7 @@
    \vspace{1mm}
 
    {\small \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}%
-   \hfill \textbfit{$v$ backward-evals along $T$ to $\rho$ and $e$, with argument demand $\alpha$}}
+   \hfill \textbfit{$v$ backward-evaluates along $T$ to $\rho$ and $e$, with ambient demand $\alpha$}}
    \begin{smathpar}
       \inferrule*[
          lab={\ruleName{$\evalBwdS$-eq}}
@@ -228,7 +228,7 @@
       %
       \inferrule*[
          lab={\ruleName{$\evalBwdS$-apply-prim}},
-         right={$\primBwd{\phi}{\vec{n} \concat m}(v) = \vec{u} \concat u'$}
+         right={$\primBwd{\phi}{\vec{n}}(v) = \vec{u} \concat u'$}
       ]
       {
          \evalBwd{\exPrimOp{\phi}{\vec{u}}}{T}{\rho}{e_1}{\alpha}
