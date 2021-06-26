@@ -28,7 +28,7 @@ We can now revisit the term forms $\exLambda{\sigma}$ and $\exLetRecMutual{h}{e}
 \input{fig/core-language/typing}
 
 \subsubsection{Values}
-Values $v, u$, and environments $\rho$ are also defined in \figref{core-language:syntax}. Environments and values are standard for call-by-value; to support mutual recursion, the closure form $\exClosure{\rho}{h}{\sigma}$ captures the (possibly empty) sequence $h$ of functions with which the function was mutually defined, in addition to the ambient environment $\rho$. For the typing judgements $\vdash \rho: \Gamma$ and $\vdash v: A$ for environments and values (\figref{core-language:typing}), only the closure case is worth noting, which delegates to the typing rules for recursive definitions and eliminators.
+Values $v, u$, and environments $\rho$ are also defined in \figref{core-language:syntax}, and are standard for call-by-value. To support mutual recursion, the closure form $\exClosure{\rho}{h}{\sigma}$ captures the (possibly empty) sequence $h$ of functions with which the function was mutually defined, in addition to the ambient environment $\rho$. For the typing judgements $\vdash \rho: \Gamma$ and $\vdash v: A$ for environments and values (\figref{core-language:typing}), only the closure case is worth noting, which delegates to the typing rules for recursive definitions and eliminators.
 
 \subsection{Semantics}
 
