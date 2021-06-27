@@ -4,8 +4,6 @@ Techniques for analysing the dynamic dependency structure of programs have been 
 
 This is a need that increasingly arises outside of traditional programming. Journalists and data scientists use programs to compute charts and other visual summaries from data, charts which must be interpreted by colleagues, policy makers and lay readers alike. Interpreting a chart correctly means understanding what the components of the visualisation actually \emph{represent}, i.e.~the mapping between data and visual elements. But this is a hard task, requiring time and expertise, even with access to the data and source code used to create the visualisation. In practice it is easy for innocent (but devastating) mistakes such as transposing two columns of data to go unnoticed~\cite{miller06}.
 
-%\todo{signpost the next two sections}
-
 \subsection{Motivation}
 \label{sec:introduction:motivation}
 Before outlining our contributions, we consider two motivating examples from the domain of data visualization. Our techniques are not limited to this area. They are simply cases of programs that transform structured input data (a data table) to structured output data (components of a chart). The first challenge is linking outputs to the inputs that were used to produce them.
@@ -41,7 +39,6 @@ Program analysis going backwards, from output charts to input data, supports one
   \begin{subfigure}{0.8\textwidth}
      \small
      \lstinputlisting[language=Fluid]{fluid/line-chart.fld.mod}
-%     \todo{RP: needs some arrows.}
   \end{subfigure}
  \caption{Linking visualisations via common data dependencies}
  \label{fig:introduction:vis-linking}

@@ -7,7 +7,7 @@ let series type country = [
    plots: [
       LinePlot { name: type, data: plot }
       | type $\leftarrow$ ["Bio", "Hydro", "Solar", "Wind"],
-        let plot = zipWith (fun p1 p2 -> { x: p1.x, y: p1.y / p2.y })
+        let plot = zipWith (fun p1 p2 $\rightarrow$ { x: p1.x, y: p1.y / p2.y })
                            (series type "USA") (series type "China")
    ]
 }

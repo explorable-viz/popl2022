@@ -103,22 +103,19 @@
          lab={\ruleName{$\evalBwdS$-eq}}
       ]
       {
-         v \eq v'
-         \\
-         \evalBwd{v'}{T}{\rho}{e}{\alpha}
+         \evalBwd{v}{T}{\rho}{e}{\alpha}
       }
       {
-         \evalBwd{v}{T}{\rho}{e}{\alpha}
+         \evalBwd{v \eq}{T}{\rho}{e}{\alpha}
       }
       %
       \and
       %
       \inferrule*[
-         lab={\ruleName{$\evalBwdS$-var}},
-         right={$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}
+         lab={\ruleName{$\evalBwdS$-var}}
       ]
       {
-         \strut
+         \envLookupBwd{\rho'}{\rho}{\bind{x}{v}}
       }
       {
          \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\bot}
@@ -137,7 +134,7 @@
                  {\trLambda{\sigma'}}
                  {\rho}
                  {\exLambda{\sigma}}
-                 {\FF}
+                 {\bot}
       }
       %
       \and
@@ -176,7 +173,7 @@
       %
       \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
       {
-         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\FF}}
+         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\bot}}
                  {T}
                  {\rho}
                  {e}

@@ -1,5 +1,6 @@
 s/>=/$\\numgeq$/g
 s/<=/$\\numleq$/g
 s/<-/$\\leftarrow$/g
+s/->/$\\rightarrow$/g
 s/\[|/\$\\langle$/g
 s/|\]/$\\rangle$/g
