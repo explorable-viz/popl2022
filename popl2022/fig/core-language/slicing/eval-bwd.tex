@@ -2,6 +2,26 @@
    {\small \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}%
    \hfill \textbfit{$\rho$ and $\kappa$, with ambient demand $\alpha$, backward-match along $w$ to $v$ and $\sigma$}}
    \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
+      }
+      %
+      \and
+      %
       \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
       {
          \strut
@@ -72,26 +92,6 @@
                   {\matchCons{w}{w'}}
                   {\annCons{v}{v'}{\alpha}}
                   {\elimList{\hole}{\tau}}
-      }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
-      }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
       }
    \end{smathpar}
    \vspace{1mm}
