@@ -56,6 +56,8 @@ For a cons match $\matchCons{w}{w'}$, we split the environment into $\rho$ and $
 \subsubsection{Backward evaluation}
 \label{sec:data-dependencies:analyses:bwd:eval}
 
+\figref{data-dependencies:bwd} also defines the family of functions $\evalBwdF{T} :: \Prod{\Sel{\raw{\rho}, \raw{e}}{A}}{\Ann{A}} \to \Sel{\raw{v}}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``forward evaluation''
+
 \paragraph{Primitive operations}
 
 Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ of length $i$ provide a backward-analysis function $\primBwdBool{\phi}{\vec{n}}: \Ann{A} \to \Ann{A}^i$, which \todo{finish}.
