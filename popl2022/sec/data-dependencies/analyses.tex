@@ -25,7 +25,7 @@ One might hope to dispense with the need for $w$ by simply defining $\matchFwdF{
 
 \subsubsection{Forward evaluation}
 
-\figref{data-dependencies:fwd} also defines the family of functions $\evalFwdF{T} :: \Prod{\Sel{\raw{\rho}, \raw{e}}{A}}{\Ann{A}} \to \Sel{\raw{v}}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``forward evaluation''. Like forward-matching, this is presented in a relational style, but should be understood as a total function defined by structural recursion on $T$. Forward evaluation replays $T$, using the input selection $\rho, e \in \Sel{\raw{\rho}, \raw{e}}{A}$ to determine an output selection $v \in \Sel{\raw{v}}{A}$. The rules mirror those of the evaluation relation $\evalR$, although there is an additional selection state input $\alpha$ called the \emph{ambient availability}. We explain this with reference to the application rule, which is the only point where a new ambient availability is assigned.
+\figref{data-dependencies:fwd} also defines the family of functions $\evalFwdF{T} :: \Sel{\raw{\rho}, \raw{e}}{A} \times \Ann{A} \to \Sel{\raw{v}}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``forward evaluation''. Like forward-matching, this is presented in a relational style, but should be understood as a total function defined by structural recursion on $T$. Forward evaluation replays $T$, using the input selection $\rho, e \in \Sel{\raw{\rho}, \raw{e}}{A}$ to determine an output selection $v \in \Sel{\raw{v}}{A}$. The rules mirror those of the evaluation relation $\evalR$, although there is an additional selection state input $\alpha$ called the \emph{ambient availability}. We explain this with reference to the application rule, which is the only point where a new ambient availability is assigned.
 
 The rule assumes the application $\exApp{e}{e'}$ already has an ambient availability $\alpha$; at the outermost level this will usually be $\top$. The rule passes $\alpha$ down when recursively forward-evaluating $e$ and $e'$, but computes a new selection state $\beta$ when transferring control to the function. The $\beta$ is obtained by forward-matching the argument $v$ with the eliminator $\sigma$ of the closure, and thus represents the availability of those parts of $v$ demanded by the function. The ambient availability is used to bound the availability of any selectable values constructed in the dynamic context of that function, establishing a dependency between the resources consumed by functions and resources they produce.
 
@@ -47,7 +47,7 @@ Backward analysis ``rewinds'' evaluation, propagating selections from outputs to
 \subsubsection{Backward matching}
 \label{sec:data-dependencies:analyses:bwd:pattern-match}
 
-\figref{data-dependencies:bwd} defines the family of backward-analysis functions $\matchBwdF{w} :: \Prod{\Sel{\raw{\rho}, \raw{\kappa}}{A}}{\Ann{A}} \to \Sel{\raw{v}, \raw{\sigma}}{A}$ for any $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, pronounced ``backward match''. Backward-match rewinds the match witnessed by $w$, propagating selections on the continuation and execution environment back onto the value and eliminator that were originally matched. The additional argument $\alpha$ is called the \emph{ambient demand} and represents the extent to which the matched portion of $\raw{v}$ was needed downstream.
+\figref{data-dependencies:bwd} defines the family of backward-analysis functions $\matchBwdF{w} :: \Sel{\raw{\rho}, \raw{\kappa}{A}} \times \Ann{A} \to \Sel{\raw{v}, \raw{\sigma}}{A}$ for any $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, pronounced ``backward match''. Backward-match rewinds the match witnessed by $w$, propagating selections on the continuation and execution environment back onto the value and eliminator that were originally matched. The additional argument $\alpha$ is called the \emph{ambient demand} and represents the extent to which the matched portion of $\raw{v}$ was needed downstream.
 
 In the variable case, no proper part of $\raw{v}$ was matched, so the ambient demand $\alpha$ is disregarded. The rule need only ensure that the demand $v$ captured in the singleton environment $\bind{x}{v}$ is propagated backward. If a Boolean constant was matched, $\alpha$ becomes the demand on that constant, and $\kappa$, which captures how the continuation was used downstream, becomes the demand on the taken branch of the original Boolean eliminator. The non-taken branch is fully unselected. Using $\hole$ for this means matches $w$ need only retain information about taken branches. The nil case is similar.
 
@@ -56,7 +56,7 @@ For a cons match $\matchCons{w}{w'}$, we split the environment into $\rho$ and $
 \subsubsection{Backward evaluation}
 \label{sec:data-dependencies:analyses:bwd:eval}
 
-\figref{data-dependencies:bwd} also defines the family of functions $\evalBwdF{T} :: \Prod{\Sel{\raw{\rho}, \raw{e}}{A}}{\Ann{A}} \to \Sel{\raw{v}}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``forward evaluation''
+\figref{data-dependencies:bwd} also defines the family of functions $\evalBwdF{T} :: \Sel{\raw{\rho}, \raw{e}}{A} \times \Ann{A} \to \Sel{\raw{v}}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``forward evaluation''
 
 \paragraph{Primitive operations}
 
