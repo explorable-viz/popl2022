@@ -20,7 +20,7 @@ $\matchFwdF{w}$ also returns the \emph{meet} of the selection states associated 
 One might hope to dispense with the need for $w$ by simply defining $\matchFwdF{w}$ by case analysis on $v$ and $\sigma$. However, it is then unclear how to proceed in the event that $v$ is a hole. It would be legitimate to produce $\hole$ as the output continuation and $\bot$ as the output selection state, but for the output environment to be well-typed, it must provide variable bindings corresponding to those introduced in the baseline computation where $\raw{v}$ was matched against $\raw{\sigma}$. If $\matchFwdS$ is defined with respect to a known $w$, this can be achieved via an additional rule \ruleName{$\matchFwdS$-hole-1} that defines the behaviour at hole to be the same as the behaviour at any $\eq$-equivalent value, where the $\raw{v}$ subscript on $\eq$ makes it clear that we are only considering the relation at $\Sel{\raw{v}}{A}$. The \ruleName{$\matchFwdS$-hole-2} makes a similar provision for $\sigma$, which may also be a hole. Operationally, these rules can be interpreted as ``expanding'' enough of the holes in $v$ or $\sigma$ to make another rule of the definition match; there will be exactly one non-hole rule that matches, corresponding to the execution path originally taken, and although there may be multiple such expansions, the result of $\matchFwdF{w}$ will be unique up to $\eq$.
 
 \begin{lemma}[Determinism of $\matchFwdF{w}$]
-   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq_{\raw{v},\raw{\sigma}} (v', \sigma)$ then $(\rho, \kappa) \eq_{\raw{\rho}, \raw{\kappa}} (\rho', \kappa')$.
+   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
 \end{lemma}
 
 \subsubsection{Forward evaluation}
@@ -36,7 +36,7 @@ Primitive operations are the other source of input-output dependencies beyond us
 The hole rule for $\evalFwdF{T}$ is similar to the rules for $\matchFwdF{w}$, except that no special treatment is needed for the holes that arise inside $\rho$, and environments themselves have no special $\hole$ form. Moreover, the elimination rules (application and record projection) must accommodate the case where the selectable value being eliminated (closure or record) is represented by $\hole$. In these rules $\evalFwdR{T}\eq$ denotes the relational composition of $\evalFwdR{T}$ and $\eq$. As with $\matchFwdF{w}$, these uses of $\eq$ can be understood operationally as using the information in $T$ to expand $\hole$ sufficiently for the rule to apply, with a result which is unique up to $\eq$.
 
 \begin{lemma}[Determinism of $\evalFwdF{T}$]
-   Suppose $\rho, e, \alpha \evalFwdR{T} v$ and $\rho', e', \alpha \evalFwdR{T} v'$. If $(\rho, e) \eq (\rho', e')$ then $v \eq v'$.
+   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $\rho, e, \alpha \evalFwdR{T} v$ and $\rho', e', \alpha \evalFwdR{T} v'$. If $(\rho, e) \eq (\rho', e')$ then $v \eq v'$.
 \end{lemma}
 
 \subsection{Backward Galois dependency}
