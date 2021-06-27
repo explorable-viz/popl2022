@@ -56,7 +56,7 @@ For a cons match $\matchCons{w}{w'}$, we split the environment into $\rho$ and $
 \subsubsection{Backward evaluation}
 \label{sec:data-dependencies:analyses:bwd:eval}
 
-\figref{data-dependencies:bwd} also defines the family of functions $\evalBwdF{T} :: \Sel{\raw{v}}{A} \to \Sel{\raw{\rho}, \raw{e}}{A} \times \Ann{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``backward evaluation''. Backward evaluation rewinds $T$, using the output selection $v \in \Sel{\raw{v}}{A}$ to determine an input selection $\rho, e \in \Sel{\raw{\rho}, \raw{e}}{A}$. The rules mirror those of the evaluation relation $\evalR$, but there is an additional output $\alpha$ called the \emph{ambient demand} which is used by backward-match.
+\figref{data-dependencies:bwd} also defines the family of functions $\evalBwdF{T} :: \Sel{\raw{v}}{A} \to \Sel{\raw{\rho}, \raw{e}}{A} \times \Ann{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, pronounced ``backward evaluation''. Backward evaluation rewinds $T$, using the output selection $v \in \Sel{\raw{v}}{A}$ to determine an input selection $\rho, e \in \Sel{\raw{\rho}, \raw{e}}{A}$. The rules mirror those of the evaluation relation $\evalR$, but there is an additional output $\alpha$ called the \emph{ambient demand} which needed for backward matching.
 
 \paragraph{Primitive operations}
 
