@@ -236,10 +236,10 @@
       %
       \inferrule*[
          lab={\ruleName{$\evalBwdS$-apply-prim}},
-         right={$\primBwdBool{\phi}{\vec{n}}(\alpha') = \vec{\beta}$}
+         right={$\primBwdBool{\phi}{\vec{n}}(\alpha') = \vec{\alpha}$}
       ]
       {
-         \evalBwd{\annInt{{n_i}}{\beta_i}}{U_i}{\rho_i}{e_i}{\alpha_i}
+         \evalBwd{\annInt{{n_i}}{\alpha_i}}{U_i}{\rho_i}{e_i}{\beta_i}
          \quad
          (\forall i \in \length{\vec{n}})
       }
@@ -248,7 +248,7 @@
                  {\trAppPrimNew{\phi}{U}{n}}
                  {\bigjoin\vec{\rho}}
                  {\exAppPrim{\phi}{\vec{e}}}
-                 {\bigjoin\vec{\alpha}}
+                 {\bigjoin\vec{\beta}}
       }
       %
       \and
