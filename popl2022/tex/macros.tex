@@ -247,9 +247,10 @@
 % Evaluation.
 \newcommand*{\closeDefsS}{\twoheadrightarrow}
 \newcommand*{\closeDefsR}{\closeDefsS}
+\newcommand*{\closeDefsFwdR}{\mathrel{\rotatebox[origin=c]{45}{$\closeDefsS$}}}
 \newcommand*{\closeDefsBwdR}{\mathrel{\rotatebox[origin=c]{-45}{$\closeDefsS$}}}
 \newcommand*{\closeDefsN}{rec}
-\newcommand*{\closeDefsFwdF}[1]{\fwdF{\closeDefsN}{#1}}
+\newcommand*{\closeDefsFwdF}[1]{\sub{\closeDefsFwdR}{\hspace{-0.2em}#1}}%{\fwdF{\closeDefsN}{#1}}
 \newcommand*{\closeDefsBwdF}[1]{\bwdF{\closeDefsN}{#1}}
 \newcommand*{\closeDefsGC}[1]{\GC{\closeDefsN}{#1}}
 
