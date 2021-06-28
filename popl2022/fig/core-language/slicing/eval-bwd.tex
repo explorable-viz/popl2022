@@ -2,6 +2,23 @@
    {\small \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}%
    \hfill \textbfit{$\rho$ and $\kappa$, with ambient demand $\alpha$, backward-match along $w$ to $v$ and $\sigma$}}
    \begin{smathpar}
+      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
+      }
+      %
+      \and
+      %
+      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
+      {
+         \strut
+      }
+      {
+         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
+      }
       \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
       {
          \strut
@@ -73,26 +90,6 @@
                   {\annCons{v}{v'}{\alpha}}
                   {\elimList{\hole}{\tau}}
       }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
-      }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
-      }
    \end{smathpar}
    \vspace{1mm}
 
@@ -103,22 +100,19 @@
          lab={\ruleName{$\evalBwdS$-eq}}
       ]
       {
-         v \eq v'
-         \\
-         \evalBwd{v'}{T}{\rho}{e}{\alpha}
+         \evalBwd{v}{T}{\rho}{e}{\alpha}
       }
       {
-         \evalBwd{v}{T}{\rho}{e}{\alpha}
+         \evalBwd{v \eq}{T}{\rho}{e}{\alpha}
       }
       %
       \and
       %
       \inferrule*[
-         lab={\ruleName{$\evalBwdS$-var}},
-         right={$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}
+         lab={\ruleName{$\evalBwdS$-var}}
       ]
       {
-         \strut
+         \envLookupBwd{\rho'}{\rho}{\bind{x}{v}}
       }
       {
          \evalBwd{v}{\trVar{x}{\rho}}{\rho'}{\exVar{x}}{\bot}
@@ -137,7 +131,7 @@
                  {\trLambda{\sigma'}}
                  {\rho}
                  {\exLambda{\sigma}}
-                 {\FF}
+                 {\bot}
       }
       %
       \and
@@ -151,7 +145,7 @@
       {
          \evalBwd{\annInt{n}{\alpha}}
                  {\trInt{n}{\rho}}
-                 {\hole_{\rho}}
+                 {\hole_{\raw{\rho}}}
                  {\annInt{n}{\alpha}}
                  {\alpha}
       }
@@ -176,7 +170,7 @@
       %
       \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
       {
-         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\FF}}
+         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\bot}}
                  {T}
                  {\rho}
                  {e}
@@ -201,7 +195,7 @@
       {
          \evalBwd{\annNil{\alpha}}
                  {\trNil{\rho}}
-                 {\hole_{\rho}}
+                 {\hole_{\raw{\rho}}}
                  {\annNil{\alpha}}
                  {\alpha}
       }
@@ -242,19 +236,19 @@
       %
       \inferrule*[
          lab={\ruleName{$\evalBwdS$-apply-prim}},
-         right={$\primBwdBool{\phi}{\vec{n}}(\alpha') = \vec{\beta}$}
+         right={$\primBwdBool{\phi}{\vec{n}}(\alpha') = \vec{\alpha}$}
       ]
       {
-         \evalBwd{\annInt{{n_i}}{\beta_i}}{U_i}{\rho_i}{e_i}{\alpha_i}
+         \evalBwd{\annInt{{n_i}}{\alpha_i}}{U_i}{\rho_i}{e_i}{\beta_i}
          \quad
          (\forall i \in \length{\vec{n}})
       }
       {
-         \evalBwd{\annInt{m}{\alpha'}\,\eq}
+         \evalBwd{\annInt{m}{\alpha'}}
                  {\trAppPrimNew{\phi}{U}{n}}
                  {\bigjoin\vec{\rho}}
                  {\exAppPrim{\phi}{\vec{e}}}
-                 {\bigjoin\vec{\alpha}}
+                 {\bigjoin\vec{\beta}}
       }
       %
       \and
@@ -290,7 +284,7 @@
          \strut
       }
       {
-         \envLookupBwd{(\hole_{\rho} \concat \bind{x}{u})}
+         \envLookupBwd{(\hole_{\raw{\rho}} \concat \bind{x}{u})}
                       {\rho \concat \bind{x}{v}}
                       {\bind{x}{u}}
       }
