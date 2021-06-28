@@ -145,7 +145,7 @@
       {
          \evalBwd{\annInt{n}{\alpha}}
                  {\trInt{n}{\rho}}
-                 {\hole_{\rho}}
+                 {\hole_{\raw{\rho}}}
                  {\annInt{n}{\alpha}}
                  {\alpha}
       }
@@ -195,7 +195,7 @@
       {
          \evalBwd{\annNil{\alpha}}
                  {\trNil{\rho}}
-                 {\hole_{\rho}}
+                 {\hole_{\raw{\rho}}}
                  {\annNil{\alpha}}
                  {\alpha}
       }
@@ -284,7 +284,7 @@
          \strut
       }
       {
-         \envLookupBwd{(\hole_{\rho} \concat \bind{x}{u})}
+         \envLookupBwd{(\hole_{\raw{\rho}} \concat \bind{x}{u})}
                       {\rho \concat \bind{x}{v}}
                       {\bind{x}{u}}
       }

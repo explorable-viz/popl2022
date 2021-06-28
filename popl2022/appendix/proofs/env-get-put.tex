@@ -128,7 +128,7 @@ If $\envLookup{\rho}{x}{v}$ then $\exists \rho'$ such that $\envLookupBwd{\rho'}
          \strut
       }
       {
-         \envLookupBwd{(\hole_{\rho} \concat \bind{x}{v})}
+         \envLookupBwd{(\hole_{\raw{\rho}} \concat \bind{x}{v})}
                       {\rho \concat \bind{x}{u}}
                       {\bind{x}{v}}
       }
@@ -139,7 +139,7 @@ If $\envLookup{\rho}{x}{v}$ then $\exists \rho'$ such that $\envLookupBwd{\rho'}
    \\
    &
    \qedLocal
-   (\hole_{\rho} \concat \bind{x}{v}) \leq (\rho \concat \bind{x}{v})
+   (\hole_{\raw{\rho}} \concat \bind{x}{v}) \leq (\rho \concat \bind{x}{v})
    &
    \notag
    \\
