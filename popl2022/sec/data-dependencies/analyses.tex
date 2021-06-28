@@ -24,7 +24,7 @@ One might hope to dispense with the need for $w$ by simply defining $\matchFwdF{
 %\end{lemma}
 
 \begin{lemma}[Monotonicity of $\matchFwdF{w}$]
-   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \leq (v', \sigma)$ then $(\rho, \kappa) \leq (\rho', \kappa')$.
+   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa, \alpha$ and $v', \sigma' \matchFwdR{w} \rho', \kappa', \alpha'$. If $(v, \sigma) \leq (v', \sigma)$ then $(\rho, \kappa, \alpha) \leq (\rho', \kappa', \alpha')$.
 \end{lemma}
 
 \subsubsection{Forward evaluation}
@@ -40,7 +40,7 @@ Primitive operations are the other source of input-output dependencies beyond us
 The hole rule for $\evalFwdF{T}$ is similar to the rules for $\matchFwdF{w}$, except that no special treatment is needed for the holes that arise inside $\rho$, and environments themselves have no special $\hole$ form. Moreover, the elimination rules (application and record projection) must accommodate the case where the selectable value being eliminated (closure or record) is represented by $\hole$. In these rules $\evalFwdR{T}\eq$ denotes the relational composition of $\evalFwdR{T}$ and $\eq$. As with $\matchFwdF{w}$, these uses of $\eq$ can be understood operationally as using the information in $T$ to expand $\hole$ sufficiently for the rule to apply, with a result which is unique up to $\eq$, which is again implied by the following.
 
 \begin{lemma}[Monotonicity of $\evalFwdF{T}$]
-   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $\rho, e, \alpha \evalFwdR{T} v$ and $\rho', e', \alpha \evalFwdR{T} v'$. If $(\rho, e) \leq (\rho', e')$ then $v \leq v'$.
+   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $\rho, e, \alpha \evalFwdR{T} v$ and $\rho', e', \alpha' \evalFwdR{T} v'$. If $(\rho, e, \alpha) \leq (\rho', e', \alpha')$ then $v \leq v'$.
 \end{lemma}
 
 \subsection{Backward data dependency}
@@ -58,7 +58,7 @@ In the variable case, no proper part of $\raw{v}$ was matched, so $\alpha$ is di
 For a cons match $\matchCons{w}{w'}$, we split the environment into $\rho$ and $\rho'$ (there is a unique well-typed decomposition) and then backward-match $w$ and $w'$ recursively to obtain $v$ and $v'$, representing the demand on the head and tail of the list. These are combined into the demand on the entire list, using $\alpha$ as the demand on the cons node. $\sigma$ represents the demand on the interim eliminator used to match the tail, and $\tau$ the demand on the eliminator used to match the head, which are then combined into an demand on the eliminator used to match the whole list, with $\hole$ again used to represent the absence of demand on the nil branch. Records are similar, except there is only a single branch, and the selection state $\beta$ computed for the initial part of the record is an artefact of processing records recursively, and can be disregarded.
 
 \begin{lemma}[Monotonicity of $\matchBwdF{w}$]
-   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $\rho, \kappa \matchBwdR{w} v, \sigma$ and $\rho', \kappa' \matchBwdR{w} v', \sigma'$. If $(\rho, \kappa) \leq (\rho', \kappa')$ then $(v, \sigma) \leq (v', \sigma)$.
+   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $\rho, \kappa, \alpha \matchBwdR{w} v, \sigma$ and $\rho', \kappa', \alpha' \matchBwdR{w} v', \sigma'$. If $(\rho, \kappa, \alpha) \leq (\rho', \kappa', \alpha')$ then $(v, \sigma) \leq (v', \sigma)$.
 \end{lemma}
 
 \subsubsection{Backward evaluation}
@@ -70,10 +70,10 @@ The application rule is where the ambient demand are used and the current functi
 
 In the variable case, no partial values were constructed during evaluation and there are no subcomputations, so the ambient demand is $\bot$, the unit for $\join$. The returned environment selection demands $v$ for the variable $x$ and $\hole$ for all other variables, using the family of \emph{backwards lookup} functions $\envLookupBwdF{-}{\rho}{x}{-}$ of type $\Sel{\raw{v}}{A} \to \Sel{\raw{\rho}}{A}$ for any $\envLookup{\raw{\rho}}{x}{\raw{v}}$ also defined in \figref{data-dependencies:bwd}. (The output of the function is on the left in the relational notation.) For atomic values such as integers and nil, the ambient demand is simply the demand $\alpha$ associated with the constructed value, which also becomes the demand attached to the corresponding expression. For composite values such as records and cons cells, the ambient demand has two sources: the ambient demand associated with any subcomputations, plus the demand on the constructed value itself. So for records, for example, each subcomputation produces an ambient demand $\alpha'_i$, and we join these with the demand $\alpha$ on the record itself to produce the ambient demand passed upward. Here $\bigjoin{\vec{\alpha}'}$ means the fold of $\join$, with unit $\bot$, over the sequence of selection states $\seqRange{\alpha_1'}{\alpha_{\length{\vec{x}}}'}$. The environments $\vec{\rho} = \seqRange{\rho_1}{\rho_{\length{\vec{x}}}}$ are joined similarly.
 
-The hole case for $\evalBwdF{T}$, as with the other definitions, ensures that the function is total by ensuring that
+The hole rule, as elsewhere, ensures that the function is defined when $v$ is $\hole$, and it is easy to show that $\evalBwdF{T}$  preserves $\leq$, and thus $\eq$.
 
 \begin{lemma}[Monotonicity of $\evalBwdF{T}$]
-   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $v \evalBwdR{T} \rho, e, \alpha $ and $v' \evalFwdR{T} \rho', e', \alpha' $. If $v \leq v'$ then $(\rho, e, \alpha) \leq (\rho', e', \alpha')$.
+   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $v \evalBwdR{T} \rho, e, \alpha $ and $v' \evalBwdR{T} \rho', e', \alpha' $. If $v \leq v'$ then $(\rho, e, \alpha) \leq (\rho', e', \alpha')$.
 \end{lemma}
 
 \paragraph{Primitive operations}
