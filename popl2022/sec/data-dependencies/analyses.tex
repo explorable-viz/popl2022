@@ -37,10 +37,10 @@ All other rules pass the ambient availability into any subcomputations unchanged
 
 Primitive operations are the other source of input-output dependencies beyond user-defined functions. Since a primitive operation is opaque, these dependencies cannot be derived from its execution, but must be specified by the primitive operation directly. More specifically, $\phi \in \tyInt^{i} \to \tyInt$ is required to provide a forward-dependency function $\primFwdBool{\phi}{\vec{n}}: \Ann{A}^i \to \Ann{A}$ for every $\vec{n}$ of length $i$ which specifies how to turn an input selection $\vec{\alpha} \in \Ann{A}^i$ for $\vec{n}$ into an output selection $\alpha'$ on $\exAppPrim{\phi}{\vec{n}}$. There is one such function per possible input $\vec{n}$, since the dynamic dependencies for a primitive operation with an annihilator, such as multiplication, depend on the values passed to the operation. Primitives are free to implement forward-dependency however they want; however, \secref{data-dependencies:analyses:bwd:eval} will also require $\phi$ to provide a backward-dependency function for any input $\vec{n}$, and the two must form an adjoint pair for the consistency of the whole system to be guaranteed.
 
-The hole rule for $\evalFwdF{T}$ is similar to the rules for $\matchFwdF{w}$, except that no special treatment is needed for the holes that arise inside $\rho$, and environments themselves have no special $\hole$ form. Moreover, the elimination rules (application and record projection) must accommodate the case where the selectable value being eliminated (closure or record) is represented by $\hole$. In these rules $\evalFwdR{T}\eq$ denotes the relational composition of $\evalFwdR{T}$ and $\eq$. As with $\matchFwdF{w}$, these uses of $\eq$ can be understood operationally as using the information in $T$ to expand $\hole$ sufficiently for the rule to apply, with a result which is unique up to $\eq$.
+The hole rule for $\evalFwdF{T}$ is similar to the rules for $\matchFwdF{w}$, except that no special treatment is needed for the holes that arise inside $\rho$, and environments themselves have no special $\hole$ form. Moreover, the elimination rules (application and record projection) must accommodate the case where the selectable value being eliminated (closure or record) is represented by $\hole$. In these rules $\evalFwdR{T}\eq$ denotes the relational composition of $\evalFwdR{T}$ and $\eq$. As with $\matchFwdF{w}$, these uses of $\eq$ can be understood operationally as using the information in $T$ to expand $\hole$ sufficiently for the rule to apply, with a result which is unique up to $\eq$, which is again implied by the following.
 
-\begin{lemma}[Determinism of $\evalFwdF{T}$]
-   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $\rho, e, \alpha \evalFwdR{T} v$ and $\rho', e', \alpha \evalFwdR{T} v'$. If $(\rho, e) \eq (\rho', e')$ then $v \eq v'$.
+\begin{lemma}[Monotonicity of $\evalFwdF{T}$]
+   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $\rho, e, \alpha \evalFwdR{T} v$ and $\rho', e', \alpha \evalFwdR{T} v'$. If $(\rho, e) \leq (\rho', e')$ then $v \leq v'$.
 \end{lemma}
 
 \subsection{Backward data dependency}
@@ -57,6 +57,10 @@ In the variable case, no proper part of $\raw{v}$ was matched, so $\alpha$ is di
 
 For a cons match $\matchCons{w}{w'}$, we split the environment into $\rho$ and $\rho'$ (there is a unique well-typed decomposition) and then backward-match $w$ and $w'$ recursively to obtain $v$ and $v'$, representing the demand on the head and tail of the list. These are combined into the demand on the entire list, using $\alpha$ as the demand on the cons node. $\sigma$ represents the demand on the interim eliminator used to match the tail, and $\tau$ the demand on the eliminator used to match the head, which are then combined into an demand on the eliminator used to match the whole list, with $\hole$ again used to represent the absence of demand on the nil branch. Records are similar, except there is only a single branch, and the selection state $\beta$ computed for the initial part of the record is an artefact of processing records recursively, and can be disregarded.
 
+\begin{lemma}[Monotonicity of $\matchBwdF{w}$]
+   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $\rho, \kappa \matchBwdR{w} v, \sigma$ and $\rho', \kappa' \matchBwdR{w} v', \sigma'$. If $(\rho, \kappa) \leq (\rho', \kappa')$ then $(v, \sigma) \leq (v', \sigma)$.
+\end{lemma}
+
 \subsubsection{Backward evaluation}
 \label{sec:data-dependencies:analyses:bwd:eval}
 
@@ -68,6 +72,10 @@ In the variable case, no partial values were constructed during evaluation and t
 
 The hole case for $\evalBwdF{T}$, as with the other definitions, ensures that the function is total by ensuring that
 
+\begin{lemma}[Monotonicity of $\evalBwdF{T}$]
+   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $v \evalBwdR{T} \rho, e, \alpha $ and $v' \evalFwdR{T} \rho', e', \alpha' $. If $v \leq v'$ then $(\rho, e, \alpha) \leq (\rho', e', \alpha')$.
+\end{lemma}
+
 \paragraph{Primitive operations}
 
 Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ of length $i$ provide a backward-analysis function $\primBwdBool{\phi}{\vec{n}}: \Ann{A} \to \Ann{A}^i$, which \todo{finish}.
@@ -77,10 +85,6 @@ Each primitive operation $\phi: \tyInt^{i} \to \tyInt$ must for every $\vec{n}$ 
 \begin{definition}[Hole environment]
 Define $\hole_{\vec{\bind{x}{v}}} = \vec{\bind{x}{\hole}}$
 \end{definition}
-
-\begin{lemma}[Least environment for $\rho$]
-\label{lem:core-language:hole-env}If $\vdash \rho: \Gamma$ then $\hole_{\rho} \leq \rho$.
-\end{lemma}
 
 \subsection{Galois connections}
 \label{sec:data-dependencies:analysis:galois-connections}
