@@ -223,7 +223,8 @@
 \newcommand*{\envLookupBwdR}[1]{\mathrel{\sub{\envLookupBwdS}{#1}}}
 \newcommand*{\envLookup}[3]{\bind{#2}{#3}\envLookupR{#1}}
 \newcommand*{\envLookupFwdF}[1]{\fwdF{lookup}{#1}}
-\newcommand*{\envLookupBwdF}[1]{\bwdF{lookup}{#1}}
+%\newcommand*{\envLookupBwdF}[1]{\bwdF{lookup}{#1}}
+\newcommand*{\envLookupBwdF}[4]{{#1} \envLookupBwdR{#2} \bind{#3}{#4}}
 \newcommand*{\envLookupGC}[1]{\GC{lookup}{#1}}
 \newcommand*{\envLookupBwd}[3]{{#1}\envLookupBwdR{#2}{#3}}
 \newcommand*{\mapUpdate}[3]{{#1}\reloverrideleft\bind{#2}{#3}}
