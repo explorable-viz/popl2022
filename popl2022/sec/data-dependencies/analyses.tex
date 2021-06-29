@@ -87,6 +87,15 @@ Closures are not directly selectable, so the ambient demand is $\bot$, and the r
 
 \todo{Introduce Galois connections and relevance to analysis (vis-\`a-vis intuitions in \secref{introduction}). Forward ref discussion in \secref{toolkit}. Also improve notation for environment lookup functions.}
 
+\begin{theorem}[Galois connection for pattern-matching]
+   \label{thm:core-language:match:gc}
+      Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
+\end{theorem}
+
+\begin{proof}
+\ifappendices See \appref{proofs:match:gc}. \else \ProofInSupplementaryMaterial \fi
+\end{proof}
+
 \begin{lemma}[Galois connection for environment lookup]
 \label{lem:core-language:env-get-put}Suppose $\envLookup{\raw{\rho}}{x}{\raw{v}}$. Then $(\envLookupFwdF{-}{\raw{\rho}}{x}{}) \adjoint (\envLookupBwdF{}{\raw{\rho}}{x}{-})$.
 \end{lemma}
@@ -105,15 +114,6 @@ Closures are not directly selectable, so the ambient demand is $\bot$, and the r
    \end{proof}
 
    We assume (rather than prove) that the forward and backwards dependency functions provided for a primitive operation $\phi: \tyInt^i \to \tyInt$ form a Galois connection between $\Ann{A}^i$ and $\Ann{A}$, i.e.~that $\primFwdBool{\phi}{\vec{n}} \adjoint \primBwdBool{\phi}{\vec{n}}$.
-
-\begin{theorem}[Galois connection for pattern-matching]
-   \label{thm:core-language:match:gc}
-      Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$.  Then $\matchFwdF{w} \adjoint \matchBwdF{w}$.
-\end{theorem}
-
-\begin{proof}
-\ifappendices See \appref{proofs:match:gc}. \else \ProofInSupplementaryMaterial \fi
-\end{proof}
 
 \begin{theorem}[Galois connection for evaluation]
 \label{thm:core-language:eval:gc}
