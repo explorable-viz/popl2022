@@ -170,6 +170,8 @@
       %
       \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
       {
+         \envLookupBwd{\vec{\bind{x}{u}}}{\rho}{\bind{x}{v}}d
+         \\
          \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\bot}}
                  {T}
                  {\rho}
@@ -178,9 +180,9 @@
       }
       {
          \evalBwd{v}
-                 {\trRecProj{T}{\vec{x}}{x_i}}
+                 {\trRecProj{T}{\vec{x}}{y}}
                  {\rho}
-                 {\exRecProj{e}{x_i}}
+                 {\exRecProj{e}{y}}
                  {\alpha}
       }
       %
