@@ -8,14 +8,16 @@ post_process () {
 rm -rf fluid
 mkdir fluid
 pushd fluid
-wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/linking/bar-chart.fld
+wget https://raw.githubusercontent.com/explorable-viz/fluid/develop/fluid/example/linking/bar-chart.fld
 post_process bar-chart.fld
-wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/linking/line-chart.fld
+wget https://raw.githubusercontent.com/explorable-viz/fluid/develop/fluid/example/linking/line-chart.fld
 post_process line-chart.fld
-wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/lib/convolution.fld
+wget https://raw.githubusercontent.com/explorable-viz/fluid/develop/fluid/lib/convolution.fld
 post_process convolution.fld
-wget https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/slicing/conv-extend.fld
+wget https://raw.githubusercontent.com/explorable-viz/fluid/develop/fluid/example/slicing/conv-extend.fld
 post_process conv-extend.fld
+wget https://raw.githubusercontent.com/explorable-viz/fluid/tree-example/fluid/example/slicing/list-comp.fld
+post_process list-comp.fld
 popd
 
 # Need ChromeDriver for headless downloads; need to figure that out.

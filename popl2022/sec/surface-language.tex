@@ -1,20 +1,49 @@
 \section{Extending to a realistic surface language}
 \label{sec:surface-language}
 
-\begin{enumerate}
-   \item Refer back to previous section (e.g. explain that using the core-language directly can be inconvenient for tracking more interesting data dependencies).
-   \item Build on top of previous section by motivating the necessity for a surface language which desugars into the core language by giving an example of a program which uses desired language features (such as list comprehensions (w/ generators), clauses, totalise, ).
-   \item Use this example to introduce the syntactic constructs required in the surface language (\figref{surface-language:syntax}), and mention which syntactic forms require annotations. If necessary, explain the corresponding type rules (\figref{surface-language:typing-term}).
-   \item Afterwards, we explain that the implementation needs to capture not only the typical desugaring process of general languages, but acts as an extra bidirectional stage on top of the bidirectional analysis of the core language.
-   \begin{enumerate}
-      \item In the forwards direction, it must specify how annotations on surface language expressions can be correspondingly positioned on the core language expressions that they desugar to.
-      \item In the backwards direction, it must use the original surface-language expression as a trace t in order to reconstruct the original surface-level program. It must also specify how annotations on the core language propagate backwards to form annotations on the surface language.
-   \end{enumerate}
-   \item Explain the forward desugaring of our example in chronological order, making reference to and elaborating on the necessary forward desugaring rules when necessary for terms (\figref{desugar-fwd}) and clauses (\figref{clause-fwd}), and also totalise (\figref{totalise-fwd}).
-   \item Explain how we backward desugar from the core-language version of our example over the forward-trace form in chronological order to reconstruct the original surface-level program. Make reference to and elaborate on the necessary backward rules - for terms (\figref{desugar-bwd}), clauses (\figref{clause-bwd}), and totalise (\figref{totalise-bwd}).
-\end{enumerate}
+The ability to link data dependencies is not restricted to the core calculus given in \secref{core-language}. One may want to inspect how data dependencies interact with more sophisticated language constructs, such as list comprehensions and clauses. For example, consider the following program in \figref{surface-language:example}; it uses list comprehensions to iterate through a list of records containing fields $\texttt{country}$ and $\texttt{output}$, and constructs a list of tuples containing countries and their total energy output:
+
+\begin{figure}[H]
+   \small
+   \lstinputlisting[language=Fluid]{fluid/list-comp.fld.mod}
+   \caption{List comprehension example}
+   \label{fig:surface-language:example}
+\end{figure}
+
+\noindent
+Assuming the output of this program were $\texttt{[("China", 3041), ("USA", 1253), ("Germany", 606)]}$, one could be interested in which program resources were needed for the string $\texttt{"China"}$. It is not necessary to augment our core language to accommodate for list comprehensions and their semantics for forward and backward dependencies. Like many other languages, we can instead define a surface language which desugars into our core language -- by specifying how selections on the surface language translate to selections on the core language during desugaring, our approach for data linking then easily extends to tracking dependencies between outputs and programs written in the surface language. In this section, we show how this can be achieved for \figref{surface-language:example}.
+
+\subsection{Surface language syntax and typing}
+
+Although we are mainly interested in demonstrating how we can extend our language with list comprehensions, the syntax for our whole surface language is given in \figref{surface-language:syntax} for completeness. Surface terms are denoted by $s, t$, and list comprehensions, $\annListComp{s}{\vec{q}}{\alpha}$, consist of a body $s$ and a sequence of qualifiers $\vec{q}$.
+
+To give intuition behind how qualifiers $q$ work, their typing rules are given in \figref{surface-language:typing-term}. The typing judgement $\Gamma \vdash \vec{q} \dashv \Delta $ specifies that under typing context $\Gamma$, $\vec{q}$ has type $\Delta$ which is a sequence of bindings between variables and types. There are three variants of qualifiers. Generators, $\qualGenerator{p}{s}$, iterate through each of the elements in a list $s$ and binds them to the pattern $p$. Guards, $\qualGuard{s}$, enforce a Boolean condition $s$ to be true. Lastly, declarations, $\qualDeclaration{p}{s}$, bind an arbitrary expression $s$ to a pattern $p$.
+
+Given this, the typing rule for list comprehensions $\annListComp{s}{\vec{q}}{\alpha}$ then expresses that if its qualifiers $\vec{q}$ has type $\Delta$ under typing context $\Gamma$, then its body $s$ is well-typed under $\Gamma \concat \Delta$. In other words, the term $s$ is constructed in reference to the environment produced by $\vec{q}$. It should also be noted that the terms for list comprehensions are annotated by $\alpha$ as they correspond to selectable values i.e. $\annNil{\alpha}$ and $\annCons{u}{v}{\alpha}$.
+
+\subsection{Forward desugaring}
+Desugaring in the forwards direction is given by the relation $s \desugarFwdR e$ in \figref{desugar-fwd} which specifies how to reconstruct a surface language term $s$ into its equivalent core language form $e$, whilst correctly retaining the selection information made on $s$. There are four desugaring rules for list comprehensions $\annListComp{s}{\vec{q}}{\alpha}$, each of which accounts for a possible qualifier at the head of the sequence $\vec{q}$.
+
+The rule for $\annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}$ specifies how to forward desugar a list comprehension when the first qualifier is a guard, $\qualGuard{s'}$. The idea here is to form a Boolean eliminator: if the guard $s'$ holds then we return the rest of the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$, otherwise we return an empty list. Hence the $\exTrue$ branch is given by desugaring the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$ (containing only the tail of qualifiers) into $e$, and the $\exFalse$ branch is given by the empty list $\annNil{\alpha}$ where we propagate the list comprehension $\alpha$ onto it. The final core term then consists of desugaring the Boolean surface term $s'$ into $e'$ and applying this against our Boolean eliminator.
+
+On encountering a generator in our list comprehension, $\annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}$, we want to specify that for each element in the list $s'$ that can be bound to pattern $p$, we return the rest of the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$. This is achieved in a series of steps. First we desugar $\annListComp{s}{\vec{q}}{\alpha}$ into $e$, and use the relation $\vec{p}, \kappa \clauseFwdR \sigma$ defined in \figref{clause-fwd} to construct a singleton eliminator where the continuation for pattern $p$ is $e$.
 
 \input{fig/surface-language/syntax}
+
+% \begin{enumerate}
+%    \item Refer back to previous section (e.g. explain that using the core-language directly can be inconvenient for tracking more interesting data dependencies).
+%    \item Build on top of previous section by motivating the necessity for a surface language which desugars into the core language by giving an example of a program which uses desired language features (such as list comprehensions (w/ generators), clauses, totalise, ).
+%    \item Use this example to introduce the syntactic constructs required in the surface language (\figref{surface-language:syntax}), and mention which syntactic forms require annotations. If necessary, explain the corresponding type rules (\figref{surface-language:typing-term}).
+%    \item Afterwards, we explain that the implementation needs to capture not only the typical desugaring process of general languages, but acts as an extra bidirectional stage on top of the bidirectional analysis of the core language.
+%    \begin{enumerate}
+%       \item In the forwards direction, it must specify how annotations on surface language expressions can be correspondingly positioned on the core language expressions that they desugar to.
+%       \item In the backwards direction, it must use the original surface-language expression as a trace t in order to reconstruct the original surface-level program. It must also specify how annotations on the core language propagate backwards to form annotations on the surface language.
+%    \end{enumerate}
+%    \item Explain the forward desugaring of our example in chronological order, making reference to and elaborating on the necessary forward desugaring rules when necessary for terms (\figref{desugar-fwd}) and clauses (\figref{clause-fwd}), and also totalise (\figref{totalise-fwd}).
+%    \item Explain how we backward desugar from the core-language version of our example over the forward-trace form in chronological order to reconstruct the original surface-level program. Make reference to and elaborate on the necessary backward rules - for terms (\figref{desugar-bwd}), clauses (\figref{clause-bwd}), and totalise (\figref{totalise-bwd}).
+% \end{enumerate}
+
+
 
 \begin{definition}[Disjoint join of partial continuations]
    Define $\disjjoin$ to be the smallest partial symmetric function satisfying the equations in \figref{surface-language:disjoin-join-elim}.
