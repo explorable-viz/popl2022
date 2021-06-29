@@ -220,18 +220,19 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalR$-project}},
-      right={$i \numleq \length{\vec{x}}$}
+      lab={\ruleName{$\evalR$-project}}
    ]
    {
       \evalFwdEq{\rho}{e}{\alpha}{T}{\annRec{\vec{\bind{x}{v}}}{\beta}}
+      \\
+      \envLookup{\vec{\bind{x}{v}}}{y}{v'}
    }
    {
       \evalFwd{\rho}
-              {\exRecProj{e}{x}}
+              {\exRecProj{e}{y}}
               {\alpha}
-              {\trRecProj{T}{\vec{x}}{x}}
-              {v_i}
+              {\trRecProj{T}{\vec{x}}{y}}
+              {v'}
    }
    %
    \and
