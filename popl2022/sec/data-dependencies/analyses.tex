@@ -82,20 +82,18 @@ Closures are not directly selectable, so the ambient demand is $\bot$, and the r
    Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $v \evalBwdR{T} \rho, e, \alpha $ and $v' \evalBwdR{T} \rho', e', \alpha' $. If $v \leq v'$ then $(\rho, e, \alpha) \leq (\rho', e', \alpha')$.
 \end{lemma}
 
-\subsection{Galois connections}
+\subsection{Round-tripping properties of analyses}
 \label{sec:data-dependencies:analysis:galois-connections}
 
-\begin{lemma}[Galois connection for environment]
-\label{lem:core-language:env-get-put}Suppose $\envLookup{\rho}{x}{v}$.
-\begin{enumerate}
-   \item \label{lem:core-language:env-get-put:1} $\envLookupFwdF{\rho,x}(\envLookupBwdF{}{\rho}{x}{v}) \geq v$.
-   \item \label{lem:core-language:env-get-put:2} $\envLookupBwdF{-}{\rho}{x}{-}(\envLookupFwdF{\rho,x}(\rho')) \leq \rho'$.
-\end{enumerate}
+\todo{Introduce Galois connections and relevance to analysis vis-\`a-vis intuitions in \secref{introduction}. Forward ref discussion in \secref{toolkit}. Also improve notationn for environment lookup functions.}
+
+\begin{lemma}[Galois connection for environment lookup]
+\label{lem:core-language:env-get-put}Suppose $\envLookup{\rho}{x}{v}$. Then $(\envLookupFwdF{-}{\raw{\rho}}{x}{}) \adjoint (\envLookupBwdF{}{\raw{\rho}}{x}{-})$.
 \end{lemma}
 
 \begin{theorem}[Galois connection for recursive bindings]
 \label{thm:core-language:closeDefs:gc}
-   Suppose $\rho, h \closeDefsR \rho'$.  Then ${\closeDefsFwdF{\rho,h}} \adjoint \closeDefsBwdF{\rho,h}$.
+   Suppose $\rho, h \closeDefsR \rho'$.  Then ${\closeDefsFwdF{\rho,h}} \adjoint {\closeDefsBwdF{\rho,h}}$.
 \end{theorem}
 
 We assume (rather than prove) that the forward and backwards dependency functions provided for a primitive operation $\phi: \tyInt^i \to \tyInt$ form a Galois connection between $\Ann{A}^i$ and $\Ann{A}$, i.e.~that $\primFwdBool{\phi}{\vec{n}} \adjoint \primBwdBool{\phi}{\vec{n}}$.
