@@ -170,17 +170,17 @@
       %
       \inferrule*[lab={\ruleName{$\evalBwdS$-project}}]
       {
-         \envLookupBwd{\vec{\bind{x}{u}}}{\rho}{\bind{x}{v}}d
+         \envLookupBwd{\vec{\bind{x}{u}}}{\vec{\bind{x}{v}}}{\bind{y}{v'}}
          \\
-         \evalBwd{\annRec{\mapUpdate{\vec{\bind{x}{\hole}}}{x_i}{v}}{\bot}}
+         \evalBwd{\annRec{\vec{\bind{x}{u}}}{\bot}}
                  {T}
                  {\rho}
                  {e}
                  {\alpha}
       }
       {
-         \evalBwd{v}
-                 {\trRecProj{T}{\vec{x}}{y}}
+         \evalBwd{v'}
+                 {\trRecProj{T}{\vec{\bind{x}{v}}}{y}}
                  {\rho}
                  {\exRecProj{e}{y}}
                  {\alpha}
