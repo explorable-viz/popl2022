@@ -22,6 +22,7 @@ Interpreting a chart would be much easier if the user was able to explore the re
       \lstinputlisting[language=Fluid]{fluid/bar-chart.fld.mod}
    \end{subfigure}
    \caption{Fine-grained linking of outputs to inputs, focusing on data from USA (left) and China (right). }
+   \todo{Maybe ``selection 1'' and ''selection 2'' instead of ``Backwards'' above}
    \label{fig:introduction:data-linking}
 \end{figure}
 
@@ -43,6 +44,7 @@ Program analysis going backwards, from output charts to input data, supports one
   \end{subfigure}
  \caption{Linking visualisations via common data dependencies}
  \label{fig:introduction:vis-linking}
+ \todo{Need mouse cursor and selected value ($196.7$) on LHS. Maybe ``User selection'' and ``computed selection''}
 \end{figure}
 
 Geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly support brushing and linking, but they tend to be baked into specific applications, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover these applications and libraries provide no direct way for the reader to see the common data which explains why elements are related.
@@ -54,7 +56,7 @@ We can again frame this as a program analysis problem. It is a matter of selecti
 
 To solve these problems, we need a dependency analysis which supports focusing on substructures of rich outputs, and moreover one which can be used bidirectionally, with appropriate round-tripping properties. Recent program slicing techniques \cite{perera12a,perera13a,ricciotti17} allow the user to focus on the output by ``erasing'' parts deemed to be irrelevant; the erased parts, called \emph{holes}, are propagated backwards by a backwards analysis which identifies parts of the program and input which are no longer needed. Although these approaches enjoy useful round-tripping properties characterised by Galois connections, they only allow focusing on \emph{prefixes} of a structured output, rather than arbitrary substructures.
 
-In this paper, we present new language-based data provenance technique for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our work advances the state of the art of program analysis in three ways:
+In this paper, we present new language-based data provenance technique for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our work advances the state of the art \todo{phrase differently and revisit in light of \secref{toolkit}} of program analysis in three ways:
 
 \begin{itemize}
 \item Our bidirectional dependency analysis makes it possible to select any part of a resulting data structure. This makes it possible to determine what parts of inputs and code contribute to a part of a value that has been produced.
