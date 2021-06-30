@@ -1,7 +1,7 @@
 \section{Core calculus}
 \label{sec:core-language}
 
-The core calculus, introduced in this section, provides the setting for the rest of the paper. First, it uses \emph{eliminators} to represent pattern matching, which is crucial for correctly analysing data dependencies. Second, our operational semantics collects traces that are used in \secref{data-dependencies} to define backward and forward analyses over program executions. To support focusing on sub-terms, \secref{data-dependencies} also extends the calculus with a notion of \emph{selection}. The core calculus will serve as the target for which the surface language in \secref{surface-language} desugars into. Mutual recursion requires some care so we also treat that as a core language feature.
+The core calculus, introduced in this section, provides the setting for the rest of the paper. It is mostly standard, but is notable for the use of \emph{eliminators}, a trie-like eliminator form that provides a uniform core representation of surface languages features like case expressions and piecewise definitions. Second, our operational semantics collects traces that are used in \secref{data-dependencies} to define backward and forward analyses over program executions. To support focusing on sub-terms, \secref{data-dependencies} also extends the calculus with a notion of \emph{selection}. The core calculus will serve as the target for which the surface language in \secref{surface-language} desugars into. Mutual recursion requires some care so we also treat that as a core language feature.
 
 \todo{Summarise what the section accomplishes. TP: I edited this to say what the two non-standard aspects of the calculus are to let the reader know in advance.}
 
