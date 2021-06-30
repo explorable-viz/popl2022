@@ -1,7 +1,7 @@
 \section{Core calculus}
 \label{sec:core-language}
 
-The core calculus, introduced in this section, provides the setting for the rest of the paper. It is mostly standard, but is notable for the use of \emph{eliminators}, a trie-like elimination form that uniformly represents surface languages features like case expressions and piecewise definitions. We also introduce a compact (term-like) representation of derivation trees in the operational semantics, called \emph{traces}, which are used in \secref{data-dependencies} to define backward and forward analyses over program executions. The core calculus will serve as the target for which the surface language in \secref{surface-language} desugars into. Mutual recursion requires some care so we also treat that as a core language feature.
+We now introduce the core calculus which provides the setting for the rest of the paper, and which will serve as the target language that our surface syntax in \secref{surface-language} desugars into. The core language is mostly standard, but is notable for the use of \emph{eliminators}, a trie-like elimination form that uniformly represents pattern-matching features like case expressions and piecewise definitions, enabling dependency analysis over these constructs to be factored through an analysis over eliminators. We also introduce a compact (term-like) representation of derivation trees in the operational semantics, called \emph{traces}, which are convenient for defining backward and forward analyses over program executions (\secref{data-dependencies}). Mutual recursion requires some care so we also treat that as a core language feature.
 
 \subsection{Syntax and typing}
 \label{sec:core-language:syntax-typing}
