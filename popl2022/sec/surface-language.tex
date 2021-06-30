@@ -21,15 +21,18 @@ Given this, the typing rule for list comprehensions $\annListComp{s}{\vec{q}}{\a
 \subsection{Forward desugaring}
 
 \begin{figure}[H]
-   \small
-   \lstinputlisting[language=Fluid]{fluid/list-comp-1.fld.mod}
-   \caption{List comprehension example}
-   \label{fig:surface-language:example-1}
+\small
+\begin{lstlisting}
+let totalFor c rows = sum [ row.output | row $\leftarrow$ rows, row.country == c ]$_{\alpha}$
+in  [ (c, totalFor c data) | c $\leftarrow$ ["China", "USA", "Germany"] ]$_{\beta}$
+\end{lstlisting}
+\caption{List comprehension example}
+\label{fig:surface-language:example-1}
 \end{figure}
 
 Desugaring in the forwards direction is given by the relation $s \desugarFwdR e$ in \figref{desugar-fwd} which specifies how to reconstruct a surface language term $s$ into its equivalent core language form $e$, whilst correctly retaining the selection information made on $s$. Each of the desugaring rules for list comprehensions $\annListComp{s}{\vec{q}}{\alpha}$ accounts for a different possible qualifier at the head of the sequence $\vec{q}$.
 
-The initial form of both of the list comprehensions in \figref{surface-language:example-1} correspond to $\annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}$, as their first qualifiers are generators, namely  $\qualGenerator{\kw{row}}{\kw{rows}}$ and $\qualGenerator{\kw{c}}{\kw{["China", "USA", "Germany"]}}$. On encountering a generator, we want to map over each element in the list $s'$: if the element matches the pattern $p$ we return the rest of the list comprehension, otherwise we return an empty list. The result of this is a list of lists which we then flatten into a single list. This process can be achieved in a series of steps.
+The initial form of both of the list comprehensions in \figref{surface-language:example-1} correspond to $\annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}$, as their first qualifiers are generators, namely  $\qualGenerator{\kw{row}}{\kw{rows}}$ and $\qualGenerator{\kw{c}}{\kw{["China", "USA", "Germany"]}}$. On encountering a generator, we want to map over each element in the list $s'$: if the element matches the pattern $p$ we return the rest of the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$, otherwise we return an empty list $\annNil{\alpha}$ annotated by the original selection on the list comprehension. The result of this is a list of lists which we then flatten into a single list. This process can be achieved in a series of steps.
 
 First we need to construct an eliminator that matches against elements of $s'$. Let $e$ be the forward desugared form of the rest of the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$; for each element in $s'$ that successfully matches against $p$, the eliminator should return $e$, otherwise we return an empty list $\annNil{\alpha}$ annotated by the original selection on the list comprehension. We use the relation $\vec{p}, \kappa \clauseFwdR \sigma$ defined in \figref{clause-fwd} to construct a singleton eliminator with pattern $p$ as $\vec{p}$ and $e$  as its continuation $\kappa$. In our example, the first singleton eliminator has the form $\{\elimVar{\kw{row}}{\kw{[ row.output | row.country == c ]}_{\alpha} }\}$ and the second has form $\{\elimVar{\kw{c}}{\kw{[ (c, totalFor c data) | $\epsilon$ ]}_{\beta}}\}$
 
@@ -41,10 +44,13 @@ The final step is to desugar the generator list $s'$ into $e$ and use $\funConca
 % in  concatMap $\{\elimVar{\kw{c}}{\kw{[ (c, totalFor c data) | $\epsilon$ ]}}\}$ ["China", "USA", "Germany"]
 
 \begin{figure}[H]
-   \small
-   \lstinputlisting[language=Fluid]{fluid/list-comp-2.fld.mod}
-   \caption{List comprehension: Desugared generators}
-   \label{fig:surface-language:example-2}
+\small
+\begin{lstlisting}
+let totalFor c rows = sum (concatMap $\exLambda{\{\elimVar{\kw{row}}{\kw{[ row.output | row.country == c ]}_{\alpha}  }\}}$ rows)
+in  concatMap $\exLambda{\{\elimVar{\kw{c}}{\kw{[ (c, totalFor c data) |} \; \epsilon \; \kw{]}_{\beta}  }\}}$ ["China", "USA", "Germany"]
+\end{lstlisting}
+\caption{List comprehension: Desugared generators}
+\label{fig:surface-language:example-2}
 \end{figure}
 
 \noindent
@@ -52,7 +58,11 @@ The next component we desugar is the list comprehension $\kw{[ row.output | row.
 
 \begin{figure}[H]
    \small
-   \lstinputlisting[language=Fluid]{fluid/list-comp-3.fld.mod}
+\begin{lstlisting}
+let totalFor c rows =
+      sum (concatMap $\exLambda{\{\elimVar{\kw{row}}{  \exLambda{\elimBool{ \kw{[row.output |} \; \epsilon \; \kw{]}_{\alpha} }{\annNil{\alpha}}} \; \kw{(row.country == c)} }\}}$ rows)
+in  concatMap $\exLambda{\{\elimVar{\kw{c}}{\kw{[ (c, totalFor c data) |} \; \epsilon \; \kw{]}_{\beta}  }\}}$ ["China", "USA", "Germany"]
+\end{lstlisting}
    \caption{List comprehension: Desugared guards}
    \label{fig:surface-language:example-3}
 \end{figure}
@@ -60,10 +70,14 @@ The next component we desugar is the list comprehension $\kw{[ row.output | row.
 All we have left to deal with are the cases where the sequence of qualifiers in the list comprehension are empty, $\annListComp{s}{\seqEmpty}{\alpha}$. In this situation, we simply desugar the body $s$ into $e$ and cons it to an empty list; this results in $\annCons{e}{\annNil{\alpha}}{\alpha}$ where we both propagate the original annotation $\alpha$ onto both the cons constructor and empty list. The final desugared form of our program is then \figref{surface-language:example-4}:
 
 \begin{figure}[H]
-   \small
-   \lstinputlisting[language=Fluid]{fluid/list-comp-4.fld.mod}
-   \caption{List comprehension: Desugared empty qualifiers}
-   \label{fig:surface-language:example-4}
+\small
+\begin{lstlisting}
+let totalFor c rows =
+      sum (concatMap $\exLambda{\{\elimVar{\kw{row}}{  \exLambda{\elimBool{ \kw{(} \annCons{\kw{row.output}}{\annNil{\alpha}}{\alpha} \kw{)} }{\annNil{\alpha}}} \; \kw{(row.country == c)} }\}}$ rows)
+in  concatMap $\exLambda{\{\elimVar{\kw{c}}{ \kw{(} \annCons{\kw{(c, totalFor c data)}}{\annNil{\beta}}{\beta} \kw{)}  }\}}$ ["China", "USA", "Germany"]
+\end{lstlisting}
+\caption{List comprehension: Desugared empty qualifiers}
+\label{fig:surface-language:example-4}
 \end{figure}
 
 % \begin{enumerate}
