@@ -1,9 +1,22 @@
-\begin{figure}[H]
-   \subcaptionbox
-      {Emboss with \kw{wrap} at boundary}
-      {\includegraphics[scale=0.4]{fig/example/conv-wrap.png}}
-   \subcaptionbox
-      {Guassian blur with \kw{zero} at boundary}
-      {\includegraphics[scale=0.4]{fig/example/conv-zero.png}}
-   \caption{Upper figures show ``needs'' relation; lower figures show ``needed by''}
+\begin{figure}
+   \begin{subfigure}{0.53\textwidth}
+      {\includegraphics[scale=0.38]{fig/example/4-relations-1.png}}
+      \vspace{2mm}
+      \caption{$\GC{eval}{T}$ Galois connection}
+   \end{subfigure}
+   \begin{subfigure}{0.46\textwidth}
+      {\includegraphics[scale=0.38]{fig/example/4-relations-2.png}}
+      \vspace{2mm}
+      \caption{de Morgan dual of $\GC{eval}{T}$}
+   \end{subfigure}\\
+   \vspace{5mm}
+   \begin{subfigure}[t]{3.3in}
+      \small
+      \lstinputlisting[language=Fluid]{fluid/convolution.fld.mod}
+   \end{subfigure}
+   \begin{subfigure}[t]{2.1in}
+      \small
+      \lstinputlisting[language=Fluid]{fluid/conv-emboss.fld.mod}
+   \end{subfigure}
+   \caption{Galois dependencies, illustrated by matrix convolution}
 \end{figure}
