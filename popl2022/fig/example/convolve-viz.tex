@@ -1,15 +1,16 @@
 \begin{figure}
-   \subcaptionbox
-      {4 dependency relations}
+   \begin{subfigure}{\textwidth}
       {\includegraphics[scale=0.4]{fig/example/4-relations.png}}
-   \subcaptionbox
-      {Matrix convolution example}
-      {
+      \caption{4 dependency relations}
+   \end{subfigure}
+   \begin{subfigure}{\textwidth}
+      \begin{minipage}{0.48\textwidth}
          \small
          \lstinputlisting[language=Fluid]{fluid/convolution.fld.mod}
-%         \caption{Matrix convolution, with three methods for dealing with boundaries}
-         \lstinputlisting[t,language=Fluid]{fluid/conv-edgeDetect.fld.mod}
-%         \caption{Convolving example matrix with supplied filter and choice of boundary method}
-      }
-   \caption{TODO}
+      \end{minipage}%
+      \begin{minipage}{0.48\textwidth}
+         \lstinputlisting[language=Fluid]{fluid/conv-edgeDetect.fld.mod}
+      \end{minipage}
+      \caption{Matrix convolution example}
+   \end{subfigure}
 \end{figure}
