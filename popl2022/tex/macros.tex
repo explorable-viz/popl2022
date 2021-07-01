@@ -1,4 +1,14 @@
-\newcommand*{\OurLanguage}{Fluid\xspace}
+% https://tex.stackexchange.com/questions/412907
+\newcommand*{\OurLanguage}{%
+   \makeatletter%
+   \if@ACM@anonymous%
+      Fluid\xspace
+   \else%
+      [xxxxx]%
+   \fi%
+   \makeatother%
+   }
+
 \newcommand*{\ProofInSupplementaryMaterial}{Included with supplementary materials.}
 
 % previously we were using MnSymbol, but ran out of font space.
