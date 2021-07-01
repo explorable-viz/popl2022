@@ -50,22 +50,6 @@
       \desugarFwdR
       \annCons{e}{\annNil{\alpha}}{\alpha}
    }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarFwdR$-list-comp-guard}}
-   ]
-   {
-      \annListComp{s}{\vec{q}}{\alpha} \desugarFwdR e
-      \\
-      s' \desugarFwdR e'
-   }
-   {
-      \annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}
-      \desugarFwdR
-      \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
-   }
    \and
    %
    \inferrule*[
@@ -84,6 +68,22 @@
       \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
       \desugarFwdR
       \exApp{\exApp{\funConcatMap}{\exLambda{\sigma'}}}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-comp-guard}}
+   ]
+   {
+      \annListComp{s}{\vec{q}}{\alpha} \desugarFwdR e
+      \\
+      s' \desugarFwdR e'
+   }
+   {
+      \annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}
+      \desugarFwdR
+      \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
    }
    \end{smathpar}
 

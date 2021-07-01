@@ -18,7 +18,7 @@ Consider the annotated program in \figref{surface-language:example-1}; it uses l
 let totalFor c rows = sum [ row.output | row $\leftarrow$ rows, row.country == c ]$_{\alpha_1}$
 in  [ (c ,$_{\beta_1}$ totalFor c data) | c $\leftarrow$ ["China"$_{\beta_2}$ , "USA"$_{\beta_3}$ , "Germany"$_{\beta_4}$ ] ]$_{\alpha_2}$
 \end{lstlisting}
-\caption{List comprehension example}
+\caption{List comprehension example: Surface language}
 \label{fig:surface-language:example-1}
 \end{figure}
 
@@ -47,7 +47,7 @@ let totalFor c rows =
       sum (concatMap $\exLambda{\{\elimVar{\kw{row}}{  \exLambda{\elimBool{ \kw{(} \annCons{\kw{row.output}}{\annNil{\alpha_1}}{\alpha_1} \kw{)} }{\annNil{\alpha_1}}} \; \kw{(row.country == c)} }\}}$ rows)
 in  concatMap $\exLambda{\{\elimVar{\kw{c}}{ \kw{(} \annCons{\kw{(c ,}_{\beta_1} \kw{totalFor c data)}}{\annNil{\alpha_2}}{\alpha_2} \kw{)}  }\}}$ ["China"$_{\beta_2}$, "USA"$_{\beta_3}$, "Germany"$_{\beta_4}$]
 \end{lstlisting}
-\caption{List comprehension example: Desugared}
+\caption{List comprehension example: Surface language forwards desugared}
 \label{fig:surface-language:example-4}
 \end{figure}
 
@@ -56,19 +56,29 @@ Desugaring the surface language program in \figref{surface-language:example-1} w
 
 \subsection{Backward desugaring}
 
-Now working in the reverse direction, the relation for backward desugaring is given as the relation $e \desugarBwdR{t} s$ in \figref{desugar-bwd-short}. This says that the core term $e$ can be desugared backwards over a trace $t$ to its original surface representation $s$. The trace $t$ corresponds to the unannotated structure of $s$ and is acquired from forward desugaring.
-
-The rule for nil $\annNil{\alpha}$ simply returns this term unchanged. When considering core terms of the form $\annCons{e}{e'}{\alpha}$, we recursively backward desugar the head and tail of the list and then use the trace to recover the original list constructor used in the surface term -- this can resemble either a non-empty list $\annList{s}{r}{\alpha}$ or a cons term $\annCons{s}{s'}{\alpha}$. The rules for list comprehensions make use of the join operation to combine selection information; this expresses that if any of the constructs that list comprehensions desugar into are needed as resources, then the original list comprehension is also needed.
-
-Backward desugaring the term $\exApp{\exApp{\funConcatMap}{\exLambda{\sigma}}}{e}$ with respect to trace $\exListComp{t'}{\qualGenerator{p}{t} \concat \vec{q}}$ reconstructs a list comprehension with a generator as its first qualifier. We first recover the surface representation $s$ of the list generator $e$. Then, the operation $\totaliseBwd{\sigma}{p}{\sigma'}{\beta}$ transforms our total eliminator $\sigma$ into a singleton eliminator $\sigma'$ containing the branch which matches against the pattern $p$; it also returns the annotation $\beta$ found on the other branches of $\sigma$. Afterwards, $\sigma' \clauseBwdR{p} e'$ takes our eliminator $\sigma'$ and extracts from it the body $e'$, which then desugars into the ``rest'' of the list comprehension $\annListComp{s'}{\vec{q}'}{\beta'}$ without the generator qualifier. By inserting the generator $\qualGenerator{p}{s}$ into this, we recover the original surface term $\annListComp{s'}{\qualGenerator{p}{s} \concat \vec{q}'}{\beta \join \beta'}$, where we annotate it by the join of all intermediate selections produced.
-
-A similar process applies for list comprehensions with guards, where we backward desugar the core term $\exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}$ over the trace $\exListComp{t}{\qualGuard{t'} \concat \vec{q}}$. The surface Boolean $s'$ is recovered from $e'$ and represents the guard's condition. The rest of the list comprehension without the guard, $\annListComp{s}{\vec{q}'}{\beta}$, is then recovered from backward desugaring the body $e$ of the Boolean eliminator's $\exTrue$ branch. Inserting the guard $\qualGuard{s'}$ into this list comprehension yields the final surface term $\annListComp{s}{\qualGuard{s'} \concat \vec{q}'}{\alpha \join \beta}$, which is annotated by the join of the annotations found on each branch of the Boolean eliminator it originally desugared to.
+In the reverse direction, backward desugaring is given as the relation $e \desugarBwdR{t} s$ in \figref{desugar-bwd-short}. This says that the core term $e$ can be desugared backwards over a trace $t$ to its original surface representation $s$, where $t$ corresponds to the unannotated form of $s$ acquired from forward desugaring.
 
 \input{fig/surface-language/slicing/desugar-bwd-short.tex}
 
-% annotated core language program $e$ acquired from backward analysis over some trace and selected output, desugaring in the backwards direction specifies how to reconstruct the original surface level program $s$ from $e$ whilst correctly propagating selections from $e$ to $s$.
+The rule for nil $\annNil{\alpha}$ simply returns the term unchanged. For non-empty lists, $\annCons{e}{e'}{\alpha}$, we recursively backward desugar the head and tail of the list and then use its trace ($\exCons{t}{t'}$ or $\exList{t}{r}$) to determine the list constructor used in the original surface term. The rules for list comprehensions use the join operation to combine selection information; this expresses that if any of the terms that list comprehensions desugar into are needed as resources, then the original list comprehension is also needed.
 
-%Desugaring in the forwards direction is given by the relation $s \desugarFwdR e$ in \figref{desugar-fwd} which specifies how to reconstruct a surface language term $s$ as its equivalent core language form $e$, whilst correctly retaining the selection information made on $s$. Each of the desugaring rules for list comprehensions $\annListComp{s}{\vec{q}}{\alpha}$ accounts for a different possible qualifier at the head of the sequence $\vec{q}$.
+For list comprehensions with a generator as their first qualifier, we backward desugar the term $\exApp{\exApp{\funConcatMap}{\exLambda{\sigma}}}{e}$ with respect to trace $\exListComp{t'}{\qualGenerator{p}{t} \concat \vec{q}}$. First, we recover the surface representation $s$ of the list generator $e$. The operation $\totaliseBwd{\sigma}{p}{\sigma'}{\beta}$ then transforms our total eliminator $\sigma$ into a singleton eliminator $\sigma'$ containing the branch for pattern $p$; it also returns the annotation $\beta$ found on the other branches of $\sigma$. Afterwards, $\sigma' \clauseBwdR{p} e'$ extracts the body $e'$ from the singleton eliminator $\sigma'$, which then desugars into the ``rest'' of the list comprehension $\annListComp{s'}{\vec{q}'}{\beta'}$ without the generator qualifier. By inserting the generator $\qualGenerator{p}{s}$ into this, we recover the original surface term $\annListComp{s'}{\qualGenerator{p}{s} \concat \vec{q}'}{\beta \join \beta'}$, where we annotate it by the join of all intermediate selections produced.
+
+A similar process applies for list comprehensions with guards, where we backward desugar the core term $\exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}$ over the trace $\exListComp{t}{\qualGuard{t'} \concat \vec{q}}$. The surface Boolean $s'$ is recovered from $e'$ and represents the guard's condition. The rest of the list comprehension without the guard, $\annListComp{s}{\vec{q}'}{\beta}$, is then recovered from backward desugaring the body $e$ of the Boolean eliminator's $\exTrue$ branch. Inserting the guard $\qualGuard{s'}$ into this list comprehension yields the final surface term $\annListComp{s}{\qualGuard{s'} \concat \vec{q}'}{\alpha \join \beta}$, which is annotated by the join of the selections found on each branch of the Boolean eliminator it originally desugared to.
+
+Lastly, we can reconstruct a list comprehension with an empty qualifier sequence by backward desugaring the singleton list $\annCons{e}{\annNil{\alpha}}{\alpha'}$ with respect to the trace $\exListComp{t}{\seqEmpty}$. We first recursively backward desugar $e$ to obtain $s$, the body of the original list comprehension. We use this to return $\annListComp{s}{\seqEmpty}{\alpha \join \alpha'}$, annotated by the join of the selections on the cons and nil constructors in its core representation.
+
+As an example, consider wanting to backwards desugar the following the selected core program given in \figref{surface-language:example-4}. The result can be seen in \figref{surface-language:example-5}; we can see that where the selections on each list comprehension is the join of the selections on the components it desugared to. (For continuity reasons from \figref{surface-language:example-4}, selections $\alpha_1 \join \alpha_1 \join \alpha_1$ and $\alpha_2 \join \alpha_2$ are trivially joins over the same annotations, however, the same reasoning applies for arbitrary selections).
+
+\begin{figure}[H]
+\small
+\begin{lstlisting}
+let totalFor c rows = sum [ row.output | row $\leftarrow$ rows, row.country == c ]$_{\alpha_1 \join \alpha_1 \join \alpha_1}$
+in  [ (c ,$_{\beta_1}$ totalFor c data) | c $\leftarrow$ ["China"$_{\beta_2}$ , "USA"$_{\beta_3}$ , "Germany"$_{\beta_4}$ ] ]$_{\alpha_2 \join \alpha_2}$
+\end{lstlisting}
+\caption{List comprehension example: Core language backwards desugared}
+\label{fig:surface-language:example-5}
+\end{figure}
 
 
 \begin{definition}[Disjoint join of partial continuations]
