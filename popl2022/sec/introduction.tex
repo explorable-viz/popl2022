@@ -46,7 +46,7 @@ Again, we would like to enable a more automated (and ubiquitous) version of brus
 
 \subsection{Contributions}
 
-To make progress towards these challenges, we present a bidirectional dependency analysis which supports fine-grained data dependencies between inputs and outputs, with appropriate round-tripping properties characterised by Galois connections, and moreover which can be adapted (through its de Morgan dual) to compute similar dependencies between two outputs which depend on common inputs. Recent program slicing techniques \cite{perera12a,perera13a,ricciotti17} allow the user to focus on the output by ``erasing'' parts deemed to be irrelevant; the erased parts, called \emph{holes}, are propagated backwards by a backwards analysis which identifies parts of the program and input which are no longer needed. Although these approaches also enjoy useful round-tripping properties characterised by Galois connections, they only allow focusing on \emph{prefixes} of a structured output, rather than arbitrary substructures, a notion which is not amenable to complementation. Our specific contributions are as follows \todo{rehash in light of \secref{toolkit}}:
+To make progress towards these challenges, we present a bidirectional dependency analysis which supports fine-grained data dependencies between inputs and outputs, with appropriate round-tripping properties characterised by Galois connections, and moreover which can be adapted (through its de Morgan dual) to compute similar dependencies between two outputs which depend on common inputs. Recent program slicing techniques \cite{perera12a,perera13a,ricciotti17} allow the user to focus on the output by ``erasing'' parts deemed to be irrelevant; the erased parts, called \emph{holes}, are propagated backwards by a backwards analysis which identifies parts of the program and input which are no longer needed. Although these approaches also enjoy useful round-tripping properties characterised by Galois connections, they only allow focusing on \emph{prefixes} of a structured output, rather than arbitrary substructures, a notion which is not amenable to complementation. Our specific contributions are as follows:
 
 \begin{itemize}
 \item[--] Our bidirectional dependency analysis makes it possible to select any part of a resulting data structure. This makes it possible to determine what parts of inputs and code contribute to a part of a value that has been produced.
@@ -54,13 +54,15 @@ To make progress towards these challenges, we present a bidirectional dependency
 \item[--] We implement and formalize a rich surface language with familiar functional programming features including piecewise definitions, pattern matching, list notation and list comprehensions. Doing so in a way that supports bidirectional program analysis requires careful consideration.
 \end{itemize}
 
+\begin{itemize}
+   \item[--] a new bidirectional dependency analysis for a core calculus with lists, vectors and records, and a proof that the analysis is a Galois connection (\secref{core-language});
+   \item[--] applications of the core analysis to enrich visualisations with interactions which allow a user to explore their relationship to data and to each other, and a comparison with \emph{Galois slicing}, a program slicing framework with similar round-tripping properties (\secref{toolkit});
+   \item[--] a richer surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of our analysis to the desugaring (\secref{surface-language});
+   \item[--] an implementation of Fluid in PureScript, a discussion of strengths and weaknesses of the approach, and opportunities for future work (\secref{evaluation}).
+\end{itemize}
+
+
 \noindent The rest of the paper is structured as follows. We introduce a core calculus in \secref{core-language}. In \secref{data-dependencies} we define a bidirectional data dependency analysis and prove that it forms a Galois connection. \secref{toolkit} describes how this analysis and its de Morgan dual are used in our PureScript implementation to support the kind of linking scenarios motivated above, and compares our approach to related work. \secref{surface-language} presents the surface language, and shows it desugars into the core language via another Galois connection. \secref{conclusion} summarises and discusses opportunities for future work.
 
 %In this paper, we present new language-based data provenance techniques for linking structured outputs, such as visualisations, to structured inputs, and to each other, in a fine-grained way. Our specific contributions are as follows:
 
-% \begin{itemize}
-%   \item[--] a new bidirectional dependency analysis for a core calculus with lists, vectors and records, and a proof that the analysis is a Galois connection (\secref{core-language});
-%   \item[--] applications of the core analysis to enrich visualisations with interactions which allow a user to explore their relationship to data and to each other, and a comparison with \emph{Galois slicing}, a program slicing framework with similar round-tripping properties (\secref{toolkit});
-%   \item[--] a richer surface language called \OurLanguage with familiar functional programming features, including piecewise definitions, pattern matching, list notation and list comprehensions, and an extension of our analysis to the desugaring (\secref{surface-language});
-%   \item[--] an implementation of Fluid in PureScript, a discussion of strengths and weaknesses of the approach, and opportunities for future work (\secref{evaluation}).
-%\end{itemize}
