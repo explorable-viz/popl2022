@@ -1,9 +1,15 @@
-\begin{figure}[H]
+\begin{figure}
    \subcaptionbox
-      {Emboss with \kw{wrap} at boundary}
-      {\includegraphics[scale=0.4]{fig/example/conv-wrap.png}}
+      {4 dependency relations}
+      {\includegraphics[scale=0.4]{fig/example/4-relations.png}}
    \subcaptionbox
-      {Guassian blur with \kw{zero} at boundary}
-      {\includegraphics[scale=0.4]{fig/example/conv-zero.png}}
-   \caption{Upper figures show ``needs'' relation; lower figures show ``needed by''}
+      {Matrix convolution example}
+      {
+         \small
+         \lstinputlisting[language=Fluid]{fluid/convolution.fld.mod}
+%         \caption{Matrix convolution, with three methods for dealing with boundaries}
+         \lstinputlisting[language=Fluid]{fluid/conv-extend.fld.mod}
+%         \caption{Convolving example matrix with supplied filter and choice of boundary method}
+      }
+   \caption{TODO}
 \end{figure}
