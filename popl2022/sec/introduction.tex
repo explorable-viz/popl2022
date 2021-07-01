@@ -12,7 +12,7 @@ Before outlining our contributions, we consider two motivating examples from the
 \paragraph{Linking structured outputs to structured inputs}
 Interpreting a chart would be much easier if the user was able to explore the relationship between the computed components of a chart and the underlying data, revealing the relevant relationships on a need-to-know basis. As illustrated in \figref{introduction:data-linking} below, selecting a particular bar in the bar chart should highlight the data relevant to a selected bar in the table showing the source data (the figure only shows subset of the full table):
 
-\begin{figure}[H]
+\begin{figure}
    \begin{subfigure}[b]{0.99\textwidth}
       \centering
       {\includegraphics[scale=0.55]{fig/example/data-linking-merged.png}}
@@ -32,7 +32,7 @@ We frame the challenge as a program analysis problem. We want to be able to focu
 \paragraph{Linking structured outputs to other structured outputs}
 Program analysis going backwards, from output charts to input data, supports one kind of information visualizations, but there is more to be done. Visualizations often present distinct but related aspects of data in multiple charts. In this situation the user should be able to focus on (select) a visual element in one chart or other structured output and automatically see elements of a different chart which were computed using related inputs. For example in \figref{introduction:vis-linking} below, selecting a bar on the left should automatically highlight all the related visual elements on the right. This is a well-recognised use case called \emph{brushing and linking}~\cite{becker87}.
 
-\begin{figure}[H]
+\begin{figure}
   \begin{subfigure}[b]{0.99\textwidth}
      \centering
      {\includegraphics[scale=0.58]{fig/example/vis-linking.png}}
