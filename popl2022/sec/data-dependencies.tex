@@ -7,7 +7,7 @@ Our approach to representing selections is shown in \figref{core-syntax-selectio
 
 \input{fig/core-language/slicing/syntax}
 
-The fact that $\Ann{A}$ is a bounded lattice means it must have top and bottom elements $\top$ and $\bot$ representing fully selected/unselected, plus meet and join operations $\meet$ and $\join$ for combining selection information, with $\top$ and $\bot$ as their respective units. The Boolean lattice $\Bool \eqdef \Lattice{\Bool}{\TT}{\FF}{\wedge}{\vee}$ can represent the selection above as $\annRec{\bind{\kw{x}}{\annStr{\kw{"China"}}{\FF}} \concat \bind{\kw{y}}{\annInt{\kw{295.3}}{\TT}}}{\FF}$, indicating that the number $\exInt{\kw{295.3}}$ is selected, but neither the string $\exStr{\kw{"China"}}$, nor the record itself is selected. More interesting lattices such vectors of Booleans can be used to represent multiple selections simultaneously.
+The fact that $\Ann{A}$ is a bounded lattice means it must have top and bottom elements $\top$ and $\bot$ representing fully selected/unselected, plus meet and join operations $\meet$ and $\join$ for combining selection information, with $\top$ and $\bot$ as their respective units. The two-point lattice $\Bool \eqdef \Lattice{\Bool}{\TT}{\FF}{\wedge}{\vee}$ can represent the selection above as $\annRec{\bind{\kw{x}}{\annStr{\kw{"China"}}{\FF}} \concat \bind{\kw{y}}{\annInt{\kw{295.3}}{\TT}}}{\FF}$, indicating that the number $\exInt{\kw{295.3}}$ is selected, but neither the string $\exStr{\kw{"China"}}$, nor the record itself is selected. More interesting lattices such vectors of Booleans can be used to represent multiple selections simultaneously.
 
 \begin{figure}
    \input{fig/core-language/slicing/leq-value}
