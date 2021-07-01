@@ -7,6 +7,7 @@ This is a need that increasingly arises outside of traditional programming. Jour
 
 \subsection{Linking structured outputs to structured inputs}
 \label{sec:introduction:data-linking}
+
 First, interpreting a chart would be much easier if the user was able to explore the relationship between the computed components of a chart and the underlying data interactively, revealing the relevant relationships on a need-to-know basis. For example, selecting a particular bar in a bar chart could highlight the relevant data in a table, perhaps showing only the relevant rows, as illustrated in \figref{introduction:data-linking}. We could certainly do more and say something about the nature of the relationship (summation, in this case), but even just revealing the relevant data puts a reader in a much better position to fact-check or confirm their own understanding of what they are looking at. Indeed, visualisation designers sometimes create ``data-linked'' artefacts like these by hand, such as Nadieh Bremer's award-winning visualisation of population density growth in Asian cities~\cite{bremer15}, at the cost of significant programming effort. Libraries such as Altair \cite{vanderPlas18} alleviate some of this work, but require data transformations  to specified using a limited set of combinators provided (and understood) the library.
 
 \begin{figure}
