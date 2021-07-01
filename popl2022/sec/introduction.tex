@@ -27,7 +27,7 @@ What we would like is to do allow a data scientist to author analyses and visual
 
 \subsection{Linking structured outputs to other structured outputs}
 \label{sec:introduction:vis-linking}
-Second, visualisations often present distinct but related aspects of data in multiple charts. In this situation the user should be able to focus on (select) a visual element in one chart or other structured output and automatically see elements of a different chart which were computed using related inputs. For example in \figref{introduction:vis-linking} below, selecting a bar on the left should automatically highlight all the related visual elements on the right. This is a well-recognised use case called \emph{brushing and linking}~\cite{becker87}.
+Second, visualisations often present distinct but related aspects of data in multiple charts. In this situation the user should be able to focus on (select) a visual element in one chart or other structured output and automatically see elements of a different chart which were computed using related inputs. For example in \figref{introduction:vis-linking} below, selecting a bar on the left should automatically highlight all the related visual elements on the right. This is a well-recognised use case called \emph{brushing and linking}~\cite{becker87}. Brushing and linking is supported by geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly, but it tends to be baked into specific views, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover these applications and libraries provide no direct way for the reader to see the common data which explains why elements are related.
 
 \begin{figure}
   \begin{subfigure}[b]{0.99\textwidth}
@@ -41,8 +41,6 @@ Second, visualisations often present distinct but related aspects of data in mul
  \caption{Linking visualisations via common data dependencies}
  \label{fig:introduction:vis-linking}
 \end{figure}
-
-Geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly support brushing and linking, but they tend to be baked into specific applications, or require programmer effort and therefore must be anticipated in advance by the chart designer. Moreover these applications and libraries provide no direct way for the reader to see the common data which explains why elements are related.
 
 We can again frame this as a program analysis problem. It is a matter of selecting a part of the structured output and performing a backwards analysis to identify the required inputs, as before, but then performing a further forwards analysis to identify dependent parts of the other output. A combination of backward and forward analysis would provide a language-based foundation for brushing and linking, allowing it to be used automatically with ordinary programmatic data transformations such as those showin in \figref{introduction:vis-linking} above.
 %but also ``data-transparent'', able to provide a concise view of the data that underpin a given relationship.
