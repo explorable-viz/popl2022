@@ -7,7 +7,7 @@ This is a need that increasingly arises outside of traditional programming. Jour
 
 \subsection{Motivation}
 \label{sec:introduction:motivation}
-Before outlining our contributions, we consider two motivating examples from the domain of data visualization. Our techniques are not limited to this area. They are simply cases of programs that transform structured input data (a data table) to structured output data (components of a chart). The first challenge is linking outputs to the inputs that were used to produce them.
+Before outlining our contributions, we consider two motivating examples from the domain of data visualisation. Our techniques are not limited to this area. They are simply cases of programs that transform structured input data (a data table) to structured output data (components of a chart). The first challenge is linking outputs to the inputs that were used to produce them.
 
 \paragraph{Linking structured outputs to structured inputs}
 Interpreting a chart would be much easier if the user was able to explore the relationship between the computed components of a chart and the underlying data, revealing the relevant relationships on a need-to-know basis. As illustrated in \figref{introduction:data-linking} below, selecting a particular bar in the bar chart should highlight the data relevant to a selected bar in the table showing the source data (the figure only shows subset of the full table):
@@ -17,6 +17,7 @@ Interpreting a chart would be much easier if the user was able to explore the re
       \centering
       {\includegraphics[scale=0.55]{fig/example/data-linking-merged.png}}
    \end{subfigure}\\
+   \vspace{2mm}
    \begin{subfigure}{0.65\textwidth}
       \small
       \lstinputlisting[language=Fluid]{fluid/bar-chart.fld.mod}
@@ -30,7 +31,7 @@ Visualisation designers sometimes create ``data-linked'' artefacts like these by
 We frame the challenge as a program analysis problem. We want to be able to focus on a particular chart element and determine the inputs that contribute to it. This is a matter of selecting a part of the structured output and performing some kind of backwards analysis that identifies the relevant data. The advantage of this approach is that data linking comes ``for free'', and the data scientist is able to code their analyses as pure functions using an expressive language as done in \figref{introduction:data-linking}.
 
 \paragraph{Linking structured outputs to other structured outputs}
-Program analysis going backwards, from output charts to input data, supports one kind of information visualizations, but there is more to be done. Visualizations often present distinct but related aspects of data in multiple charts. In this situation the user should be able to focus on (select) a visual element in one chart or other structured output and automatically see elements of a different chart which were computed using related inputs. For example in \figref{introduction:vis-linking} below, selecting a bar on the left should automatically highlight all the related visual elements on the right. This is a well-recognised use case called \emph{brushing and linking}~\cite{becker87}.
+Program analysis going backwards, from output charts to input data, supports one kind of information visualisations, but there is more to be done. Visualisations often present distinct but related aspects of data in multiple charts. In this situation the user should be able to focus on (select) a visual element in one chart or other structured output and automatically see elements of a different chart which were computed using related inputs. For example in \figref{introduction:vis-linking} below, selecting a bar on the left should automatically highlight all the related visual elements on the right. This is a well-recognised use case called \emph{brushing and linking}~\cite{becker87}.
 
 \begin{figure}
   \begin{subfigure}[b]{0.99\textwidth}
