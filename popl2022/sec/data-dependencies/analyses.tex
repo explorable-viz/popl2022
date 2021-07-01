@@ -19,10 +19,6 @@ $\matchFwdF{w}$ also returns the \emph{meet} of the selection states associated 
 
 One might imagine dispensing with the need for $w$ by simply defining $\matchFwdF{w}$ by case analysis on $v$ and $\sigma$. However, it is then unclear how to proceed in the event that $v$ is a hole. It would be legitimate to produce $\hole$ as the output continuation and $\bot$ as the output selection state, but for the output environment to be well-typed, it must provide variable bindings corresponding to those introduced in the baseline computation where $\raw{v}$ was matched against $\raw{\sigma}$. If $\matchFwdS$ is defined with respect to a known $w$, this can be achieved via an additional rule \ruleName{$\matchFwdS$-hole-1} that defines the behaviour at hole to be the same as the behaviour at any $\eq$-equivalent value in $\Sel{\raw{v}}{A}$. The \ruleName{$\matchFwdS$-hole-2} makes a similar provision for $\sigma$, which may also be a hole. Operationally, these rules can be interpreted as ``expanding'' enough of the holes in $v$ or $\sigma$ to make another rule of the definition match. There will be exactly one non-hole rule that matches, corresponding to the execution path originally taken, and although there may be multiple such expansions, the following property implies that the result of $\matchFwdF{w}$ will be unique up to $\eq$.
 
-%\begin{lemma}[Determinism of $\matchFwdF{w}$]
-%   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa$ and $v', \sigma' \matchFwdR{w} \rho', \kappa'$. If $(v, \sigma) \eq (v', \sigma)$ then $(\rho, \kappa) \eq (\rho', \kappa')$.
-%\end{lemma}
-
 \begin{lemma}[Monotonicity of $\matchFwdF{w}$]
    Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa, \alpha$ and $v', \sigma' \matchFwdR{w} \rho', \kappa', \alpha'$. If $(v, \sigma) \leq (v', \sigma)$ then $(\rho, \kappa, \alpha) \leq (\rho', \kappa', \alpha')$.
 \end{lemma}
@@ -113,7 +109,7 @@ Closures are not directly selectable, so the ambient demand is $\bot$, and the r
    \ifappendices See \appref{proofs:closeDefs:gc}. \else \ProofInSupplementaryMaterial \fi
    \end{proof}
 
-   We assume (rather than prove) that the forward and backwards dependency functions provided for a primitive operation $\phi: \tyInt^i \to \tyInt$ form a Galois connection between $\Ann{A}^i$ and $\Ann{A}$, i.e.~that $\primFwdBool{\phi}{\vec{n}} \adjoint \primBwdBool{\phi}{\vec{n}}$.
+We assume (rather than prove) that the forward and backwards dependency functions provided for a primitive operation $\phi: \tyInt^i \to \tyInt$ form a Galois connection between $\Ann{A}^i$ and $\Ann{A}$, i.e.~that $\primFwdBool{\phi}{\vec{n}} \adjoint \primBwdBool{\phi}{\vec{n}}$. Under this assumption the following holds.
 
 \begin{theorem}[Galois connection for evaluation]
 \label{thm:core-language:eval:gc}
