@@ -9,7 +9,7 @@ The second problem we set out in \secref{introduction} was the idea of linking s
 
 The analysis in \secref{data-dependencies} relies on the fact that if $\Ann{A}$ is a lattice, then the set $\Sel{\raw{v}}{A}$ of selections of $\raw{v}$ is also a lattice, with the lattice operations defined pointwise. Here we extend that observation to Boolean lattices (or Boolean algebras) $\Ann{A}= \BoolLattice{\Ann{A}}{\top}{\bot}{\meet}{\join}{\neg}$, which are lattices equipped with an involution $\neg$ called \emph{complement} satisfying complementation laws $x \meet \neg x = \bot$ and $x \join \neg x = \top$ and De Morgan equalities $\neg x \meet \neg y = \neg(x \join y)$ and $\neg x \join \neg y = \neg(x \meet y)$. If $\Ann{A}$ is a Boolean algebra, then $\Sel{\raw{v}}{A}$ is also a Boolean algebra, with the Boolean operations, and in particular $\neg_{\raw{v}}: \Sel{\raw{v}}{A} \to \Sel{\raw{v}}{A}$, defined pointwise.
 
-A standard result is that any join-preserving operation such as $\evalBwdF{T}$ has a meet-preserving De Morgan dual,
+A standard result is that any meet-preserving operation $f_*: \Ann{A} \to \Ann{B}$ has a join-preserving De Morgan dual $f_*^{\top}: \Ann{A} \to \Ann{B}$ given by $\neg_{\Ann{B}} \after f_* \after \neg_{\Ann{A}}$. Clearly $f_*^{\top}$ is in general distinct from the lower adjoint $f^*: \Ann{B} \to \Ann{A}$ on the basis of its type.
 
 \subsection{Relationship to Galois slicing}
 
