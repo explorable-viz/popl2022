@@ -7,9 +7,52 @@ The second problem we set out in \secref{introduction} was the idea of linking s
 
 \subsection{De Morgan duality}
 
+\todo{Galois connections of type $\Ann{A} \to \Ann{B}$ and $\Ann{C} \to \Ann{B}$ aren't composable.}
+
 The analysis in \secref{data-dependencies} relies on the fact that if $\Ann{A}$ is a lattice, then the set $\Sel{\raw{v}}{A}$ of selections of $\raw{v}$ is also a lattice, with the lattice operations defined pointwise. Here we extend that observation to Boolean lattices (or Boolean algebras) $\Ann{A}= \BoolLattice{\Ann{A}}{\top}{\bot}{\meet}{\join}{\neg}$, which are lattices equipped with an involution $\neg$ called \emph{complement} satisfying complementation laws $x \meet \neg x = \bot$ and $x \join \neg x = \top$ and De Morgan equalities $\neg x \meet \neg y = \neg(x \join y)$ and $\neg x \join \neg y = \neg(x \meet y)$. If $\Ann{A}$ is a Boolean algebra, then $\Sel{\raw{v}}{A}$ is also a Boolean algebra, with the Boolean operations, and in particular $\neg_{\raw{v}}: \Sel{\raw{v}}{A} \to \Sel{\raw{v}}{A}$, defined pointwise.
 
-A standard result is that any meet-preserving operation $f_*: \Ann{A} \to \Ann{B}$ has a join-preserving De Morgan dual $f_*^{\top}: \Ann{A} \to \Ann{B}$ given by $\neg_{\Ann{B}} \after f_* \after \neg_{\Ann{A}}$. Clearly $f_*^{\top}$ is in general distinct from the lower adjoint $f^*: \Ann{B} \to \Ann{A}$ on the basis of its type.
+It is a straightforward consequqnce of the complementation and De Morgan laws that any meet-preserving operation $\upperAdj{f}: \Ann{A} \to \Ann{B}$ has a join-preserving De Morgan dual $\dual{\upperAdj{f}}: \Ann{A} \to \Ann{B}$ given by $\neg_{\Ann{B}} \after \upperAdj{f} \after \neg_{\Ann{A}}$. Clearly $\dual{\upperAdj{f}}$ is in general distinct from the lower adjoint $\lowerAdj{f}: \Ann{B} \to \Ann{A}$ on the basis of its type; however its upper adjoint is $\dual{\lowerAdj{f}}$, the De Morgan dual of $\lowerAdj{f}$.
+
+\begin{lemma}
+   Suppose $\lowerAdj{f} \adjoint \upperAdj{f}: \Ann{A} \to \Ann{B}$ and $\lowerAdj{g} \adjoint \upperAdj{h}: \Ann{B} \to \Ann{A}$. Then $\dual{\upperAdj{g}} \after \lowerAdj{f} \adjoint \upperAdj{f} \after \dual{\lowerAdj{g}}: \Ann{A} \to \Ann{B}$.
+\end{lemma}
+
+\begin{nscenter}
+   \scalebox{0.8}{
+      \begin{tikzpicture}[node distance=1.5cm, auto]
+         \node (P) [node distance=2cm] {
+           $A$
+         };
+         \node (R) [right of=P, above of=P] {
+           $B$
+         };
+         \node (RPrime) [below of=P, right of=P] {
+           $C$
+         };
+         \node (PPrime) [right of=R, below of=R] {
+           $D$
+         };
+       \end{tikzpicture}
+      \begin{tikzpicture}[node distance=1.5cm, auto]
+      \node (P) [node distance=2cm] {
+         $A$
+      };
+      \node (R) [right of=P, above of=P] {
+         $B$
+      };
+      \node (RPrime) [below of=P, right of=P] {
+         $C$
+      };
+      \node (PPrime) [right of=R, below of=R] {
+         $D$
+      };
+      \draw[->] (P) to node {$afg$} (R);
+      \draw[->] (P) to node [swap] {$abc$} (RPrime);
+      \draw[->] (R) to node {$qq$} (PPrime);
+      \draw[->] (RPrime) to node [swap] {$n$} (PPrime);
+      \end{tikzpicture}
+   }
+\end{nscenter}
 
 \subsection{Relationship to Galois slicing}
 

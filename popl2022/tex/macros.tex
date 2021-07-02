@@ -281,6 +281,11 @@
 \newcommand*{\evalFwdF}[1]{{\evalFwdR{#1}}}%{\fwdF{\evalN}{#1}}
 \newcommand*{\evalBwdF}[1]{{\evalBwdR{#1}}}%{\bwdF{\evalN}{#1}}
 
+\newcommand*{\evalFwdDualF}[1]{{_{\circ}\evalFwdF{#1}}}
+
+\newcommand*{\dual}[1]{{#1}^{\circ}}
+\newcommand*{\lowerAdj}[1]{{#1}^*}
+\newcommand*{\upperAdj}[1]{{#1}_*}
 \newcommand*{\erase}[1]{\lfloor#1\rfloor}
 
 \newcommand*{\matchS}{\rightsquigarrow}
