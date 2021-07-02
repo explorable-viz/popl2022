@@ -11,7 +11,7 @@
             \node (C) [right of=B] {
               $C$
             };
-            \draw[->] (A) to node [bend right] {$\lowerAdj{f}$} (B);
+            \draw[->, bend right] (A) to node {$\lowerAdj{f}$} (B);
             \draw[->] (B) to node [bend right] {$\upperAdj{g}$} (C);
          \end{tikzpicture}
          \begin{tikzpicture}[node distance=1.5cm, auto]
