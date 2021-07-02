@@ -203,7 +203,7 @@
    %
    \and
    %
-   \inferrule*[lab={\ruleName{$\evalR$-record}}]
+   \inferrule*[lab={\ruleName{$\evalFwdS$-record}}]
    {
       \evalFwd{\rho}{e_i}{\alpha}{T_i}{v_i}
       \quad
@@ -220,12 +220,12 @@
    \and
    %
    \inferrule*[
-      lab={\ruleName{$\evalR$-project}}
+      lab={\ruleName{$\evalFwdS$-project}}
    ]
    {
-      \evalFwdEq{\rho}{e}{\alpha}{T}{\annRec{\vec{\bind{x}{v}}}{\beta}}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\annRec{\vec{\bind{x}{u}}}{\beta}}
       \\
-      \envLookup{\vec{\bind{x}{v}}}{y}{v'}
+      \envLookup{\vec{\bind{x}{u}}}{y}{v'}
    }
    {
       \evalFwd{\rho}
