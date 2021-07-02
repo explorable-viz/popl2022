@@ -3,42 +3,41 @@
       \begin{nscenter}
          \begin{tikzpicture}[node distance=1.5cm, auto]
             \node (A) [node distance=2cm] {
-               $A$
+               $\Ann{A}$
             };
             \node (B) [right of=A] {
-               $B$
+               $\Ann{B}$
             };
             \node (C) [right of=B] {
-               $C$
+               $\Ann{C}$
             };
             \draw[->, bend right] (A) to node [swap] {$\lowerAdj{f}$} (B);
             \draw[->, bend right] (B) to node [swap] {$\upperAdj{g}$} (C);
+            \draw[->, bend right] (C) to node [swap] {$\lowerAdj{g}$} (B);
+            \draw[->, bend right] (B) to node [swap] {$\upperAdj{f}$} (A);
          \end{tikzpicture}
       \end{nscenter}
       \caption{Non-composable Galois connections}
    \end{subfigure}
    \begin{subfigure}[t]{0.48\textwidth}
       \begin{nscenter}
-      \begin{tikzpicture}[node distance=1.5cm, auto]
-      \node (P) [node distance=2cm] {
-         $A$
-      };
-      \node (R) [right of=P, above of=P] {
-         $B$
-      };
-      \node (RPrime) [below of=P, right of=P] {
-         $C$
-      };
-      \node (PPrime) [right of=R, below of=R] {
-         $D$
-      };
-      \draw[->] (P) to node {$afg$} (R);
-      \draw[->] (P) to node [swap] {$abc$} (RPrime);
-      \draw[->] (R) to node {$qq$} (PPrime);
-      \draw[->] (RPrime) to node [swap] {$n$} (PPrime);
-      \end{tikzpicture}
+         \begin{tikzpicture}[node distance=1.5cm, auto]
+            \node (A) [node distance=2cm] {
+               $\Ann{A}$
+            };
+            \node (B) [right of=A] {
+               $\Ann{B}$
+            };
+            \node (C) [right of=B] {
+               $\Ann{C}$
+            };
+            \draw[->, bend right] (A) to node [swap] {$\lowerAdj{f}$} (B);
+            \draw[->, bend right] (B) to node [swap] {$\upperAdj{g}$} (C);
+            \draw[->, bend right] (C) to node [swap] {$\lowerAdj{g}$} (B);
+            \draw[->, bend right] (B) to node [swap] {$\upperAdj{f}$} (A);
+         \end{tikzpicture}
    \end{nscenter}
    \caption{Composing via De Morgan duality}
 \end{subfigure}
-\caption{Galois connections on the left are component-wise composable, but the result is not a Galois connection}
+\caption{Galois connections $f$ and $g$ component-wise composable, but not as Galois connections}
 \end{figure}
