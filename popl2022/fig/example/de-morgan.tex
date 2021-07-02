@@ -2,7 +2,16 @@
    \begin{subfigure}[t]{0.48\textwidth}
       \begin{nscenter}
          \begin{tikzpicture}[node distance=1.5cm, auto]
-            \node (A) [node distance=2cm] {
+            \node (AA) [node distance=2cm] {
+               $\Ann{A}$
+            };
+            \node (BB) [right of=AA] {
+               $\Ann{B}$
+            };
+            \node (CC) [right of=BB] {
+               $\Ann{C}$
+            };
+            \node (A) [below of=AA] {
                $\Ann{A}$
             };
             \node (B) [right of=A] {
@@ -11,6 +20,9 @@
             \node (C) [right of=B] {
                $\Ann{C}$
             };
+            \draw[->] (AA) to node {$f$} (BB);
+            \draw[->] (CC) to node [swap] {$g$} (BB);
+
             \draw[->, bend right] (A) to node [swap] {$\lowerAdj{f}$} (B);
             \draw[->, bend right] (B) to node [swap] {$\upperAdj{g}$} (C);
             \draw[->, bend right] (C) to node [swap] {$\lowerAdj{g}$} (B);
@@ -22,7 +34,16 @@
    \begin{subfigure}[t]{0.48\textwidth}
       \begin{nscenter}
          \begin{tikzpicture}[node distance=1.5cm, auto]
-            \node (A) [node distance=2cm] {
+            \node (AA) [node distance=2cm] {
+               $\Ann{A}$
+            };
+            \node (BB) [right of=AA] {
+               $\Ann{B}$
+            };
+            \node (CC) [right of=BB] {
+               $\Ann{C}$
+            };
+            \node (A) [below of=AA] {
                $\Ann{A}$
             };
             \node (B) [right of=A] {
@@ -31,9 +52,12 @@
             \node (C) [right of=B] {
                $\Ann{C}$
             };
+            \draw[->] (AA) to node {$f$} (BB);
+            \draw[->] (BB) to node {$\dual{g}$} (CC);
+
             \draw[->, bend right] (A) to node [swap] {$\lowerAdj{f}$} (B);
             \draw[->, bend right] (B) to node [swap] {$\dual{\upperAdj{g}}$} (C);
-            \draw[->, bend right] (C) to node [swap] {$\lowerAdj{g}$} (B);
+            \draw[->, bend right] (C) to node [swap] {$\dual{\lowerAdj{g}}$} (B);
             \draw[->, bend right] (B) to node [swap] {$\upperAdj{f}$} (A);
          \end{tikzpicture}
    \end{nscenter}
