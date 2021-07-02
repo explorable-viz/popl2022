@@ -1,6 +1,6 @@
 let (x, y) = (2, 3);
     sum = x + y in
 if sum == 0
-then (*@$\hole$@*)
-else ((*@$\hole$@*), (*@$\hole$@*))
+    then (*@$\hole$@*)
+    else ((*@$\hole$@*), (*@$\hole$@*))
 (*@$\Rightarrow$@*) ((*@$\hole$@*), (*@$\hole$@*))
