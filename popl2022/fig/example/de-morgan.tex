@@ -1,0 +1,38 @@
+\begin{figure}
+   \begin{nscenter}
+      \scalebox{0.8}{
+         \begin{tikzpicture}[node distance=1.5cm, auto]
+            \node (A) [node distance=2cm] {
+              $A$
+            };
+            \node (B) [right of=A] {
+              $B$
+            };
+            \node (C) [right of=B] {
+              $C$
+            };
+            \draw[->] (A) to node [bend right] {$\lowerAdj{f}$} (B);
+            \draw[->] (B) to node [bend right] {$\upperAdj{g}$} (C);
+         \end{tikzpicture}
+         \begin{tikzpicture}[node distance=1.5cm, auto]
+         \node (P) [node distance=2cm] {
+            $A$
+         };
+         \node (R) [right of=P, above of=P] {
+            $B$
+         };
+         \node (RPrime) [below of=P, right of=P] {
+            $C$
+         };
+         \node (PPrime) [right of=R, below of=R] {
+            $D$
+         };
+         \draw[->] (P) to node {$afg$} (R);
+         \draw[->] (P) to node [swap] {$abc$} (RPrime);
+         \draw[->] (R) to node {$qq$} (PPrime);
+         \draw[->] (RPrime) to node [swap] {$n$} (PPrime);
+         \end{tikzpicture}
+      }
+   \end{nscenter}
+   \caption{Inverting a Galois connection using De Morgan duality}
+   \end{figure}

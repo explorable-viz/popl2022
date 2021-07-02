@@ -11,13 +11,13 @@ The analysis in \secref{data-dependencies} relies on the fact that if $\Ann{A}$ 
 
 \input{fig/example/de-morgan.tex}
 
-It is a straightforward consequence of the complementation and De Morgan laws that any meet-preserving operation $\upperAdj{f}: \Ann{A} \to \Ann{B}$ on Boolean algebras has a join-preserving De Morgan dual $\dual{\upperAdj{f}}: \Ann{A} \to \Ann{B}$ given by $\neg_{\Ann{B}} \after \upperAdj{f} \after \neg_{\Ann{A}}$, whose upper adjoint is $\dual{\lowerAdj{f}}$, the De Morgan dual of $\lowerAdj{f}$. Thus Galois connections on Boolean algebras are closed under De Morgan duality def.
+It is a straightforward consequence of the complementation and De Morgan laws that any meet-preserving operation $\upperAdj{f}: \Ann{A} \to \Ann{B}$ on Boolean algebras has a join-preserving De Morgan dual $\dual{\upperAdj{f}}: \Ann{A} \to \Ann{B}$ given by $\neg_{\Ann{B}} \after \upperAdj{f} \after \neg_{\Ann{A}}$, whose upper adjoint is $\dual{\lowerAdj{f}}$, the De Morgan dual of $\lowerAdj{f}$. Thus Galois connections on Boolean algebras are closed under De Morgan duality defined component-wise.
 
-\begin{lemma}
-   Suppose $f: \Ann{A} \to \Ann{B}$ is a Galois connection. Then $\dual{f}: \Ann{B} \to \Ann{A}$ is a Galois connection.
-\end{lemma}
+\begin{definition}[De Morgan dual of a Galois connection]
+   Suppose $\Ann{A}$ and $\Ann{B}$ are Boolean algebras and $f: \Ann{A} \to \Ann{B}$ is a Galois connection $(\lowerAdj{f},\upperAdj{f})$. Define the \emph{De Morgan dual} of $f$ to be the Galois connection $(\dual{\upperAdj{f}}, \dual{\lowerAdj{f}}): \Ann{B} \to \Ann{A}$.
+\end{definition}
 
-\noindent De Morgan duality is contravariant, so while $f: \Ann{A} \to \Ann{B}$ and $g: \Ann{C} \to \Ann{B}$ are not composable, we can compose $\dual{g}$ with $f$, giving $\dual{g} \after f: \Ann{A} \to \Ann{C}$.
+\noindent Since De Morgan duality swaps the roles of the upper and lower adjoints, it is contravariant. So while $f: \Ann{A} \to \Ann{B}$ and $g: \Ann{C} \to \Ann{B}$ are not composable, we can compose $\dual{g}$ with $f$, giving $\dual{g} \after f: \Ann{A} \to \Ann{C}$.
 
 \input{fig/example/convolve-viz}
 
