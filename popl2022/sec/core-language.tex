@@ -35,6 +35,8 @@ Values $v, u$, and environments $\rho$ are also defined in \figref{core-language
 
 \figref{core-language:semantics} gives the operational semantics of the core language. In \secref{data-dependencies} we will define forward and backward analyses over a single execution; in anticipation of that use case, we treat the operational semantics as an inductive data type, following the ``proved transitions'' approach of \citeauthor{boudol89} for reversible CCS~\cite{boudol89}. The inhabitants of this data type are derivation trees explaining how a result was computed, and the analyses will be defined by structural recursion over these tree. Expressed in terms of inference rules, these trees can become quite cumbersome, so we introduce an equivalent but more term-like syntax for them, called a \emph{trace} (\figref{core-language:syntax-trace}), similar to the approach taken by \citeauthor{perera16d} for $\pi$-calculus~\cite{perera16d}.
 
+\input{fig/core-language/syntax-trace}
+
 \begin{figure}
    \input{fig/core-language/eval}\vspace{1mm}
    \input{fig/core-language/match}
@@ -42,8 +44,6 @@ Values $v, u$, and environments $\rho$ are also defined in \figref{core-language
    \caption{Operational semantics}
    \label{fig:core-language:semantics}
 \end{figure}
-
-\input{fig/core-language/syntax-trace}
 
 The judgement $\explVal{T}{\rho, e \evalR v}$ defined at the top of \figref{core-language:semantics} states that term $e$ under environment $\rho$ evaluates to value $v$. The evaluation rules for Booleans, integers and lists are standard and have unsurprising trace forms. For variables, we give an explicit inductive definition of the environment lookup relation $\envLookupR$ underneath the $\evalR$ relation, again so that later we can perform analysis over a proof that an environment contains a binding. The lambda rule is standard except that we specify $\seqEmpty$ for the sequence of definitions being simultaneously defined, since a lambda is not recursive. For record construction, the trace form contains a subtrace $T_i$ for each field, and for record projection, which also uses the lookup relation $\envLookupR$, the trace form $\trRecProj{T}{\vec{\bind{x}{v}}}{y}$ for record projection records both the record $\vec{\bind{x}{v}}$ and the field name $y$ that was selected.
 
