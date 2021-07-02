@@ -1,4 +1,4 @@
-\section{Core calculus}
+\section{Core language}
 \label{sec:core-language}
 
 The core language is mostly standard, distinguished mainly by the use of \emph{eliminators}, a trie-like elimination form that uniformly represents pattern-matching features like case expressions and piecewise definitions, enabling dependency analysis over these constructs to factor through an analysis over eliminators. We also introduce a compact (term-like) representation of derivation trees in the operational semantics, called \emph{traces}, which we will use in \secref{data-dependencies} for defining backward and forward analyses over a fixed execution. Mutual recursion requires some care for the backwards analysis so we also treat that as a core language feature.
