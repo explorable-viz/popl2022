@@ -3,22 +3,22 @@
       \begin{nscenter}
          \begin{tikzpicture}[node distance=1.5cm, auto]
             \node (AA) [node distance=2cm] {
-               $\Ann{A}$
+               $\Ann{V}_1$
             };
             \node (BB) [right of=AA] {
-               $\Ann{B}$
+               $\Ann{D}$
             };
             \node (CC) [right of=BB] {
-               $\Ann{C}$
+               $\Ann{V}_2$
             };
             \node (A) [below of=AA] {
-               $\Ann{A}$
+               $\Ann{V}_1$
             };
             \node (B) [right of=A] {
-               $\Ann{B}$
+               $\Ann{D}$
             };
             \node (C) [right of=B] {
-               $\Ann{C}$
+               $\Ann{V}_2$
             };
             \draw[->] (AA) to node {$f$} (BB);
             \draw[->] (CC) to node [swap] {$g$} (BB);
@@ -63,5 +63,5 @@
    \end{nscenter}
    \caption{Composing via De Morgan duality}
 \end{subfigure}
-\caption{Galois connections $f$ and $g$ component-wise composable, but not as Galois connections}
+\caption{Galois connections $f$ and $g$ are component-wise composable, but not as Galois connections}
 \end{figure}
