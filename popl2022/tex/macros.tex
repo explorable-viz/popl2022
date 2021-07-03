@@ -210,8 +210,8 @@
 \newcommand*{\SelF}[1]{\Set{Sel}_{#1}}
 
 % Meta-types
-\newcommand*{\Bool}{\Ann{2}}%{\mathbb{B}}
-\newcommand*{\Unit}{\Ann{1}}
+\newcommand*{\Bool}{2}%{\Ann{2}}
+\newcommand*{\Unit}{1}%{\Ann{1}}
 
 % Lattices
 \let\oldbigjoin\bigjoin
@@ -277,10 +277,14 @@
 \newcommand*{\evalFwd}[5]{#1, #2, #3 \evalFwdR{#4} #5}
 \newcommand*{\evalFwdEq}[5]{#1, #2, #3 \evalFwdR{#4}\eq #5}
 \newcommand*{\evalFwdGeq}[5]{#1, #2, #3 \evalFwdR{#4}\geq #5}
-\newcommand*{\evalN}{eval}
+%\newcommand*{\evalN}{eval}
 \newcommand*{\evalFwdF}[1]{{\evalFwdR{#1}}}%{\fwdF{\evalN}{#1}}
 \newcommand*{\evalBwdF}[1]{{\evalBwdR{#1}}}%{\bwdF{\evalN}{#1}}
+\newcommand*{\evalGC}[1]{\mathrel{\sub{\evalR}{#1}}}
 
+\newcommand*{\dual}[1]{{#1}^{\circ}}
+\newcommand*{\lowerAdj}[1]{{#1}^*}
+\newcommand*{\upperAdj}[1]{{#1}_*}
 \newcommand*{\erase}[1]{\lfloor#1\rfloor}
 
 \newcommand*{\matchS}{\rightsquigarrow}
@@ -384,13 +388,7 @@
 \newcommand*{\disjjoin}{\mathbin{\ooalign{$\join$\cr%
    \hfil\raise0.42ex\hbox{$\scriptscriptstyle+$}\hfil\cr}}}
 
-
-\newcommand*{\textcal}[1]{%
-% family qzc: Font TeX Gyre Chorus (package tgchorus)
-% family pzc: Font Zapf Chancery (package chancery)
-%{{\Large \textit{\fontfamily{qzc}\selectfont#1}}}%
-\mathscr{#1}
-}
-\newcommand*{\Ann}[1]{\mathscr{#1}}
+\newcommand*{\Ann}[1]{\mathcal{#1}}
 \newcommand*{\raw}[1]{\bm{#1}}
 \newcommand*{\Lattice}[5]{\langle#1,#2,#3,#4,#5\rangle}
+\newcommand*{\BoolLattice}[6]{\langle#1,#2,#3,#4,#5,#6\rangle}

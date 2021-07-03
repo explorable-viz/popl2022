@@ -1,8 +1,12 @@
 \begin{figure}
-   \small
-   \lstinputlisting[language=Fluid]{fluid/convolution.fld.mod}
-   \caption{Matrix convolution, with three methods for dealing with boundaries}
-   \small
-   \lstinputlisting[language=Fluid]{fluid/conv-extend.fld.mod}
-   \caption{Convolving example matrix with supplied filter and choice of boundary method}
+   \begin{subfigure}[t]{3.3in}
+      \small
+      \lstinputlisting[language=Fluid]{fluid/convolution.fld.mod}
+   \end{subfigure}
+   \begin{subfigure}[t]{2.1in}
+      \small
+      \lstinputlisting[language=Fluid]{fluid/conv-emboss.fld.mod}
+   \end{subfigure}
+   \caption{Matrix convolution example, with methods \kw{zero}, \kw{wrap} and \kw{extend} for dealing with boundaries}
+   \label{fig:example:convolve}
 \end{figure}
