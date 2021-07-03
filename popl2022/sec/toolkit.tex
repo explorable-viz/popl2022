@@ -3,15 +3,19 @@
 
 The second problem we set out in \secref{introduction} was the idea of linking selections between outputs computed from the same data. (We call two such outputs \emph{cognate}.) This so-called ``brushing and linking'' problem~\cite{becker87} has been extensive studied as an interaction paradigm in data visualisation, with the emphasis on visualisation techniques and its value as a comprehension tool, rather than on infrastructure for automation. We noted earlier that, intuitively, brushing and linking has a bidirectional flavour: one must consider how dependencies flow backward from a selection in one output to a selection $v$ in the common data, and then forward from the selected data $v$ to a corresponding selection in the other output. A natural question then is whether the bidirectional analysis established in \secref{data-dependencies} can supply the information required to support an automated solution.
 
-An immediate problem is that the flavour of the forward dependency required here differs from that provided by the forward analysis $\evalFwdF{T}$ defined in \secref{data-dependencies}. That was able to answer the question: what can we compute given only the resources in $v$? But to determine the related data in another output, we must consider not what the data selection $v$ is \emph{sufficient} for, but what it is \emph{necessary} for: those parts of the other output that depend on $v$. Thus the forward dependency operation we need is not simply the upper adjoint $\evalFwdF{T}$, but must be able to answer slightly different question: what would we \emph{not} be able to compute if we lacked the resources in $v$? We now show how the idea of the \emph{complement} of a selection can be used to derive such an operation from $\evalFwdF{T}$, and that this too forms a Galois connection. We also contrast the approach presented in this paper with prior work on program slicing based on Galois connections.
+An immediate problem is that the flavour of the forward dependency required here differs from that provided by the forward analysis $\evalFwdF{T}$ defined in \secref{data-dependencies}. That was able to answer the question: what can we compute given only the resources in $v$? But to determine the related data in another output, we must consider not what the data selection $v$ is \emph{sufficient} for, but what it is \emph{necessary} for: those parts of the other output that depend on $v$. Thus the forward dependency operation cannot simply be the upper adjoint $\evalFwdF{T}$, but need an answer to a slightly different question: what would we \emph{not} be able to compute if we lacked the resources in $v$?
+
+A more technical perspective onto the probme is to note
+
+\input{fig/example/de-morgan.tex}
+
+We now show how the idea of the \emph{complement} of a selection can be used to derive such an operation from $\evalFwdF{T}$, and that this too forms a Galois connection. We also contrast the approach presented in this paper with prior work on program slicing based on Galois connections.
 
 \subsection{De Morgan duality}
 
 \todo{Galois connections of type $\Ann{A} \to \Ann{B}$ and $\Ann{C} \to \Ann{B}$ aren't composable.}
 
 The analysis in \secref{data-dependencies} relies on the fact that if $\Ann{A}$ is a lattice, then the set $\Sel{\raw{v}}{A}$ of selections of $\raw{v}$ is also a lattice, with the lattice operations defined pointwise. Here we extend that observation to Boolean lattices (or Boolean algebras) $\Ann{A}= \BoolLattice{\Ann{A}}{\top}{\bot}{\meet}{\join}{\neg}$, which are lattices equipped with an involution $\neg$ called \emph{complement} satisfying complementation laws $x \meet \neg x = \bot$ and $x \join \neg x = \top$ and De Morgan equalities $\neg x \meet \neg y = \neg(x \join y)$ and $\neg x \join \neg y = \neg(x \meet y)$. If $\Ann{A}$ is a Boolean algebra, then $\Sel{\raw{v}}{A}$ is also a Boolean algebra, with the Boolean operations, and in particular $\neg_{\raw{v}}: \Sel{\raw{v}}{A} \to \Sel{\raw{v}}{A}$, defined pointwise.
-
-\input{fig/example/de-morgan.tex}
 
 It is a straightforward consequence of the complementation and De Morgan laws that any meet-preserving operation $\upperAdj{f}: \Ann{A} \to \Ann{B}$ on Boolean algebras has a join-preserving De Morgan dual $\dual{\upperAdj{f}}: \Ann{A} \to \Ann{B}$ given by $\neg_{\Ann{B}} \after \upperAdj{f} \after \neg_{\Ann{A}}$, whose upper adjoint is $\dual{\lowerAdj{f}}$, the De Morgan dual of $\lowerAdj{f}$. Thus Galois connections on Boolean algebras are closed under De Morgan duality defined component-wise.
 
