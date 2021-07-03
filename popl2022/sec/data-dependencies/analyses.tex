@@ -89,7 +89,7 @@ Pairs of (monotonic) functions $f: X \to Y$ and $g: Y \to X$ that round-trip lik
    Suppose $X$ and $Y$ are sets equipped with partial orders $\numleq_X$ and $\numleq_Y$. Then monotonic functions $f: X \to Y$ and $g: Y \to X$ form a \emph{Galois connection}, written $g \adjoint f$, iff $f(g(y)) \numgeq_Y y$ and $g(f(x)) \numleq_X x$.
 \end{definition}
 
-\noindent The notation $g \adjoint f$ is justified by the fact that Galois connections are also a simple example of adjoint functors, where $X$ and $Y$ are poset categories. (In this context the right adjoint $f$ is called the \emph{upper adjoint} because it approximates an inverse of $g$ from above, and the left adjoint $g$ is called the \emph{lower adjoint} because it approximates from below.) Galois connections compose, so we show that $\evalBwdF{T}$ and $\evalFwdF{T}$ form a Galois connection (\thmref{core-language:eval:gc}) by first establishing that the relevant auxiliary functions also form Galois connections.
+\noindent The notation $g \adjoint f$ is justified by the fact that Galois connections are also a simple example of adjoint functors, where $X$ and $Y$ are poset categories. (In this context the right adjoint $f$ is called the \emph{upper adjoint} because it approximates an inverse of $g$ from above, and the left adjoint $g$ is called the \emph{lower adjoint} because it approximates an inverse of $f$ from below.) Galois connections compose, so we show that $\evalBwdF{T}$ and $\evalFwdF{T}$ form a Galois connection (\thmref{core-language:eval:gc}) by first establishing that the relevant auxiliary functions also form Galois connections.
 
 \begin{theorem}[Galois connection for pattern-matching]
    \label{thm:core-language:match:gc}
