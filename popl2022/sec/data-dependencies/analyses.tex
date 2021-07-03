@@ -1,7 +1,19 @@
 \subsection{Galois dependency}
 \label{sec:data-dependencies:analyses}
 
-We now show how to interpret a selection on a term $\raw{e}$ or its environment $\raw{\rho}$ (collectively: an \emph{input selection}) as a selection on its output $\raw{v}$, and vice versa. In the forward direction, input selections represent (non-linear) \emph{resources} available for use, giving rise to output selections indicating the resources available to a downstream computation that depend only on selected input. In the backward direction, output selections represent resources being demanded by a downstream computation, giving rise to input selections identifying the resources needed for the selected output. Both analyses are with respect to a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. (Typically one would first evaluate a program to obtain its trace $T$, and then run a forward or background analysis over $T$ with an appropriate lattice.) We call our analysis \emph{Galois dependency}, because the two directions form a Galois connection, a pair of functions that are each other's closest approximate inverse: from above in one direction, from below in the other (\secref{data-dependencies:analysis:galois-connections}).  We present the forward direction first and explain the underlying principles.
+\todo{What does `interpret' mean in the following sentence?}
+
+We now show how to interpret a selection on a term $\raw{e}$ or its environment $\raw{\rho}$ (collectively: an \emph{input selection}) as a selection on its output $\raw{v}$, and vice versa. In the forward direction, input selections represent (non-linear) \emph{resources} available for use,
+%
+\todo{I assume the idea of `resources' here is just for intuition? I guess my understanding of this is shaped by coeffects a bit too much, so I may be misunderstanding, but I do not find this all that intuitive. I feel it is more like ``input and output selections mark certain parts of code and data; forward analysis indicates what aspects of the structured output depend on the marked inputs and backward analysis indicates what aspects of the input and the program contribute to the marked outputs.'' This is maybe less explicit than talking about resources, but I find it easier to understand.}
+%
+giving rise to output selections indicating the resources available to a downstream computation that depend only on selected input. In the backward direction, output selections represent resources being demanded by a downstream computation, giving rise to input selections identifying the resources needed for the selected output. Both analyses are with respect to a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. (Typically one would first evaluate a program to obtain its trace $T$, and then run a forward or background analysis over $T$ with an appropriate lattice.)
+%
+\todo{Can you vary selection without having to re-run the program to get a new trace? I think so. If so, this may be a good thing to `sell' because it would be another nice feature that we get by running the program first and collecting the trace.}
+%
+We call our analysis \emph{Galois dependency}, because the two directions form a Galois connection, a pair of functions that are each other's closest approximate inverse: from above in one direction, from below in the other (\secref{data-dependencies:analysis:galois-connections}).  We present the forward direction first and explain the underlying principles.
+%
+\todo{The ``we call this Galois dependency because'' part makes it sound like this was almost an accident. We should say ``the forward and backward analysis needs to form a Galois connection in order to ...'' (or something like this -- to make it clear that any other way of doing this would be wrong!)}
 
 \subsection{Forward data dependency}
 \label{sec:data-dependencies:analyses:fwd}
