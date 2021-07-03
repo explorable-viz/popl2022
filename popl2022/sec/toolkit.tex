@@ -14,8 +14,6 @@ We can unpack the problem a bit as follows. Suppose $\Ann{V}_1$ and $\Ann{V}_2$ 
 \subsection{De Morgan duality}
 \label{sec:toolkit:de-morgan-duality}
 
-\todo{Galois connections of type $\Ann{A} \to \Ann{B}$ and $\Ann{C} \to \Ann{B}$ aren't composable.}
-
 The analysis in \secref{data-dependencies} relies on the fact that if $\Ann{A}$ is a lattice, then the set $\Sel{\raw{v}}{A}$ of selections of $\raw{v}$ is also a lattice, with the lattice operations defined pointwise. Here we extend that observation to Boolean lattices (or Boolean algebras) $\Ann{A}= \BoolLattice{\Ann{A}}{\top}{\bot}{\meet}{\join}{\neg}$, which are lattices equipped with an involution $\neg$ called \emph{complement} satisfying complementation laws $x \meet \neg x = \bot$ and $x \join \neg x = \top$ and De Morgan equalities $\neg x \meet \neg y = \neg(x \join y)$ and $\neg x \join \neg y = \neg(x \meet y)$. If $\Ann{A}$ is a Boolean algebra, then $\Sel{\raw{v}}{A}$ is also a Boolean algebra, with the Boolean operations, and in particular $\neg_{\raw{v}}: \Sel{\raw{v}}{A} \to \Sel{\raw{v}}{A}$, defined pointwise.
 
 It is a straightforward consequence of the complementation and De Morgan laws that any meet-preserving operation $\upperAdj{f}: \Ann{A} \to \Ann{B}$ on Boolean algebras has a join-preserving De Morgan dual $\dual{\upperAdj{f}}: \Ann{A} \to \Ann{B}$ given by $\neg_{\Ann{B}} \after \upperAdj{f} \after \neg_{\Ann{A}}$, whose upper adjoint is $\dual{\lowerAdj{f}}$, the De Morgan dual of $\lowerAdj{f}$. Thus Galois connections on Boolean algebras are closed under De Morgan duality defined component-wise.
