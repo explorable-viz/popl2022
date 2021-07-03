@@ -1,9 +1,9 @@
 \subsection{Galois dependency}
 \label{sec:data-dependencies:analyses}
 
-We now show how to interpret \todo{\{revisit\}} a selection on a term $\raw{e}$ or its environment $\raw{\rho}$ (collectively: an \emph{input selection}) as a selection on its output $\raw{v}$, and vice versa. In the forward direction, input selections represent (non-linear) \emph{resources} \todo{\{re-express, perhaps avoiding ``resources''\}} available for use, giving rise to output selections indicating the resources available to a downstream computation that depend only on selected input. In the backward direction, output selections represent resources being demanded by a downstream computation, giving rise to input selections identifying the resources needed for the selected output. Both analyses are with respect to a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. (Typically one would first evaluate a program to obtain its trace $T$, and then run multiple forward or backward analyses over $T$ with appropriate lattices.)
+We now show how to interpret \todo{revisit} a selection on a term $\raw{e}$ or its environment $\raw{\rho}$ (collectively: an \emph{input selection}) as a selection on its output $\raw{v}$, and vice versa. In the forward direction, input selections represent (non-linear) \emph{resources} \todo{re-express, perhaps avoiding ``resources''} available for use, giving rise to output selections indicating the resources available to a downstream computation that depend only on selected input. In the backward direction, output selections represent resources being demanded by a downstream computation, giving rise to input selections identifying the resources needed for the selected output. Both analyses are with respect to a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. (Typically one would first evaluate a program to obtain its trace $T$, and then run multiple forward or backward analyses over $T$ with appropriate lattices.)
 
-We call our analysis \emph{Galois dependency}, because the two directions form a Galois connection \todo{\{explain why this matters, perhaps pulling some of the motivation regarding GCs from 3.5 forward to here\}}, a pair of functions that are each other's closest approximate inverse: from above in one direction, from below in the other (\secref{data-dependencies:analysis:galois-connections}).  We present the forward direction first and explain the underlying principles.
+We call our analysis \emph{Galois dependency}, because the two directions form a Galois connection \todo{explain why this matters, perhaps pulling some of the motivation regarding GCs from 3.5 forward to here}, a pair of functions that are each other's closest approximate inverse: from above in one direction, from below in the other (\secref{data-dependencies:analysis:galois-connections}).  We present the forward direction first and explain the underlying principles.
 
 \subsection{Forward data dependency}
 \label{sec:data-dependencies:analyses:fwd}
@@ -103,7 +103,7 @@ Pairs of (monotonic) functions $f: X \to Y$ and $g: Y \to X$ that round-trip lik
 \end{proof}
 
 \begin{lemma}[Galois connection for environment lookup]
-\label{lem:core-language:env-get-put}Suppose $\envLookup{\raw{\rho}}{x}{\raw{v}}$. Then $(\envLookupBwdF{-}{\raw{\rho}}{x}{}) \adjoint (\envLookupFwdF{}{\raw{\rho}}{x}{-})$. \todo{Better notation for environment lookup functions.}
+\label{lem:core-language:env-get-put}Suppose $\envLookup{\raw{\rho}}{x}{\raw{v}}$. Then $(\envLookupBwdF{-}{\raw{\rho}}{x}{}) \adjoint (\envLookupFwdF{}{\raw{\rho}}{x}{-})$. \todo{better notation for environment lookup functions}
 \end{lemma}
 
 \begin{proof}
