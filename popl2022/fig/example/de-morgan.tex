@@ -27,6 +27,8 @@
             \draw[->, bend right] (B) to node [swap] {$\upperAdj{g}$} (C);
             \draw[->, bend right] (C) to node [swap] {$\lowerAdj{g}$} (B);
             \draw[->, bend right] (B) to node [swap] {$\upperAdj{f}$} (A);
+
+            \draw[red,thick,dotted,line cap=round,dash pattern=on 0pt off 0.2em] ($(BB.north west)+(0.1,0.3)$)  rectangle ($(C.south east)+(-0.1,-0.5)$);
          \end{tikzpicture}
       \end{nscenter}
       \caption{Non-composable Galois connections}
@@ -70,6 +72,8 @@
             \draw[->, bend right] (C) to node [swap] {$\lowerAdj{g}$} (B);
             \draw[->, bend right] (B) to node [swap] {$\neg_{\Ann{D}}$} (A1);
             \draw[->, bend right] (A1) to node [swap] {$\upperAdj{f}$} (A);
+
+            \draw[red,thick,dotted,line cap=round,dash pattern=on 0pt off 0.2em] ($(BB.north west)+(0.1,0.3)$)  rectangle ($(C1.south east)+(-0.1,-0.5)$);
          \end{tikzpicture}
    \end{nscenter}
    \caption{Composing via De Morgan duality}
