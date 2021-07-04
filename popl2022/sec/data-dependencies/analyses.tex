@@ -8,7 +8,7 @@ We call our analysis \emph{Galois dependency}, because the two directions form a
 \subsection{Forward data dependency}
 \label{sec:data-dependencies:analyses:fwd}
 
-The forward data dependency analysis ``replays'' evaluation, propagating selections from inputs to outputs, with $T$ guiding the analysis whenever holes in the selectable program would mean the analysis would otherwise get stuck. Pattern-matching introduces the idea of a selection as a set of resources available to a downstream computation, so we start with that.
+The forward data dependency analysis ``replays'' evaluation, turing input availability into output availability, with $T$ guiding the analysis whenever holes in the input selection would mean the analysis would otherwise get stuck. (Forward) pattern-matching introduces the idea of a selection as the data available to a downstream computation, so we start with that.
 
 \input{fig/core-language/slicing/eval-fwd}
 
