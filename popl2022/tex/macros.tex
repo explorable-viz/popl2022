@@ -17,6 +17,7 @@
 \newcommand*{\smalltriangleleft}{\triangleleft}
 
 \newcommand*{\hole}{\square}
+\newcommand*{\blackhole}{\blacksquare}
 \newcommand\grayuline{\bgroup\markoverwith{\textcolor{gray}{\rule[-0.9ex]{2pt}{0.4pt}}}\ULon}
 % \newcommand*{\del}[1]{\grayuline{\textcolor{gray}{\smash{#1}}}}
 \newcommand*{\TT}{\mathsf{tt}}
@@ -48,9 +49,10 @@
 % Primitives.
 \newcommand*{\primOp}{\oplus}
 \newcommand*{\primFwd}[2]{\fwdF{#1}{#2}}
-\newcommand*{\primFwdBool}[2]{\fwdF{#1}{#2}} % _{\Ann{A}}
+\newcommand*{\primFwdBool}[2]{\upperAdj{\sub{#1}{#2}}} % _{\Ann{A}}
 \newcommand*{\primBwd}[2]{\bwdF{#1}{#2}}
-\newcommand*{\primBwdBool}[2]{\bwdF{#1}{#2}} % _{\Ann{A}}
+\newcommand*{\primBwdBool}[2]{\lowerAdj{\sub{#1}{#2}}} % _{\Ann{A}}
+\newcommand*{\primGCBool}[2]{\sub{#1}{#2}} % _{\Ann{A}}
 \newcommand*{\primAppF}[1]{\fwdF{primApp}{#1}}
 \newcommand*{\primAppGC}[1]{\GC{primApp}{#1}}
 

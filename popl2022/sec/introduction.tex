@@ -28,6 +28,7 @@ What we would like is to do allow a data scientist to author analyses and visual
 
 \subsection{Linking structured outputs to other structured outputs}
 \label{sec:introduction:vis-linking}
+
 Second, visualisations often present distinct but related aspects of data in multiple charts. In this situation the user should be able to focus on (select) a visual element in one chart or other structured output and automatically see elements of a different chart which were computed using related inputs. For example in \figref{introduction:vis-linking} below, selecting a bar on the left should automatically highlight all the related visual elements on the right. This is a well-recognised use case called \emph{brushing and linking}~\cite{becker87}, which is supported by geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly, but tends to be baked into specific views, or require programmer effort and therefore anticipation in advance by the chart designer. Moreover these applications and libraries provide no direct way for the reader to see the common data which explains why elements are related.
 
 \begin{figure}
@@ -51,7 +52,7 @@ To make progress towards these challenges, we present a bidirectional dependency
 
 \begin{itemize}
    \item[--] a new bidirectional dependency analysis for a core calculus with lists, records and mutual recursion, which operates on selections of arbitrary parts of data values, and a proof that the analysis is a Galois connection (\secref{data-dependencies});
-   \item[--] a second bidirectional dependency analysis, the De Morgan dual of the first, which is also a Galois connection and which can be composed with the first analysis to link outputs to outputs, with an extended example based on matrix convolution  (\secref{toolkit});
+   \item[--] a second bidirectional dependency analysis, the De Morgan dual of the first, which is also a Galois connection and which can be composed with the first analysis to link outputs to outputs, with an extended example based on matrix convolution  (\secref{de-morgan});
    \item[--] a richer surface language called \OurLanguage, implemented in PureScript, with familiar functional programming features such as piecewise definitions and list comprehensions, and a further Galois connection linking data values to surface language constructors (\secref{surface-language}).
 \end{itemize}
 
