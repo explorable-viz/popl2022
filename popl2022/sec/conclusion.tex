@@ -1,2 +1,8 @@
-\section{Conclusion and future work}
+\section{Conclusions}
 \label{sec:conclusion}
+
+\subsection{Other related work}
+
+\subsection{Conclusion and future work}
+
+One disadvantage of our approach vis-\'a-vis program slicing is that a program ``selection'' does not really resemble a program with some statements or expressions elided, but merely picks out various constants and constructors in the program involved in constructing the output selection. It is not clear with our approach how to ``extract'' a (potentially executable) slice for a particular output selection; for primitive values, one could extract the \emph{expression provenance} \cite{acar12}, which would explain how the primitive value was computed using primitive operations, but it is not easy to see how this generalises to structured outputs. Moreover there is no property that ensures the expression provenance is in some sense a projection of the semantics of the original program; \cite{field98} explore this notion of executable slice in the context of term rewriting systems, so perhaps this idea could be adapted to our core calculus and used to derive a notion of execution slice. \todo{needs work}
