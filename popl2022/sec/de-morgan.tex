@@ -26,7 +26,7 @@ It is an easy consequence of the complementation and De Morgan laws that any mee
    Suppose $\Ann{A}$ and $\Ann{B}$ are Boolean algebras and $f: \Ann{A} \to \Ann{B}$ is a Galois connection $(\lowerAdj{f},\upperAdj{f})$. Define the \emph{De Morgan dual} $\dual{f}$ of $f$ to be the Galois connection $(\dual{\upperAdj{f}}, \dual{\lowerAdj{f}}): \Ann{B} \to \Ann{A}$.
 \end{definition}
 
-\noindent The De Morgan dual flips the direction of the arrow by swapping the roles of the upper and lower adjoints. So while $f: \Ann{A} \to \Ann{B}$ and $g: \Ann{C} \to \Ann{B}$ are not composable, $f$ and $\dual{g}: \Ann{B} \to \Ann{C}$ are, and the composition is achieved by transforming $\upperAdj{g}$ from something which determines what we can compute with $v$ into $\dual{\upperAdj{g}}$, which determines what we cannot compute without $v$.
+\noindent Dualising a Galois connection flips the direction of the arrow by swapping the roles of the upper and lower adjoints. So while $f: \Ann{A} \to \Ann{B}$ and $g: \Ann{C} \to \Ann{B}$ are not composable, $f$ and $\dual{g}: \Ann{B} \to \Ann{C}$ are, and the composition is achieved by transforming $\upperAdj{g}$ from something which determines what we can compute with $v$ into something which determines what we cannot compute without $v$. This offers a principled basis for a fully automated brushing and linking feature between cognate computations $T$ and $U$. When the user selects part of the output of $T$, we can use $\evalBwdF{T}$ to compute the needed data $v$, and then use $\dual{\evalFwdF{U}}$ to compute the parts of the output of $U$ that depend on $v$. This is the approach implemented in \OurLanguage, which we used to generate \figref{introduction:vis-linking}.
 
 \subsection{Example: matrix convolution}
 
