@@ -312,14 +312,21 @@
 
    {\small\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h, \alpha$}%
    \hfill \textbfit{$\rho$ backward-generates to $\rho'$, $h$ and $\alpha$}}
-   \begin{salign}
-      \vec{\bind{x}{v}}
-      &\closeDefsBwdR
-      (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
-      &
-      \text{ where }
-      v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
-   \end{salign}
+   \begin{smathpar}
+      \inferrule*[
+         lab={\ruleName{$\closeDefsBwdR$-rec-defs}}
+      ]
+      {
+         v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
+         \quad
+         (\forall i \in \length{\vec{x}})
+      }
+      {
+         \vec{\bind{x}{v}}
+         \closeDefsBwdR
+         (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+      }
+   \end{smathpar}
 
    \caption{Backward data dependency (Boolean cases for $\evalBwdR{T}$ omitted)}
    \label{fig:data-dependencies:bwd}
