@@ -266,12 +266,12 @@
          \\
          \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
          \\
-         \rho_2 \closeDefsBwdR \rho_1', h, \alpha'
+         \rho_2 \closeDefsBwdR \rho_1', h, \beta'
          \\
-         \evalBwd{\annClosure{\rho_1 \join \rho_1'}{h}{\beta}{\sigma}}{T}{\rho'}{e_1}{\alpha^\twoPrime}
+         \evalBwd{\annClosure{\rho_1 \join \rho_1'}{h}{\beta \join \beta'}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
       }
       {
-         \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha' \join \alpha^\twoPrime}
+         \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
       }
    \end{smathpar}
    \vspace{1mm}
