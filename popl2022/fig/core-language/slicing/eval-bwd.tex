@@ -276,7 +276,7 @@
    \end{smathpar}
    \vspace{1mm}
 
-\begin{minipage}[t]{0.5\textwidth}%
+\begin{minipage}[t]{0.53\textwidth}%
    {\small\flushleft \shadebox{$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}%
    \hfill \textbfit{$\rho'$ contains $\bind{x}{v}$}}
    \begin{smathpar}
@@ -310,8 +310,8 @@
 \end{minipage}
    \vspace{1mm}
 
-   {\small\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h$}%
-   \hfill \textbfit{recursive closures $\rho$ backward-generate to $\rho'$ and $h$}}
+   {\small\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h, \alpha$}%
+   \hfill \textbfit{$\rho$ backward-generates to $\rho'$, $h$ and $\alpha$}}
    \begin{salign}
       \vec{\bind{x}{v}}
       &\closeDefsBwdR
