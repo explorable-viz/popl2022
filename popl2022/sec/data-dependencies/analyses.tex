@@ -26,6 +26,7 @@ One might imagine dispensing with the need for $w$ by simply defining $\matchFwd
 \end{lemma}
 
 \subsubsection{Forward evaluation}
+\label{sec:data-dependencies:forward-eval}
 
 \figref{data-dependencies:fwd} also defines a family of \emph{forward-evaluation} functions $\evalFwdF{T}$ of type $\Sel{\raw{\rho}, \raw{e}}{A} \times \Ann{A} \to \Sel{\raw{v}}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$. Like forward-match, forward-evaluation is presented in a relational style, but should be understood as a total function defined by structural recursion on $T$. Forward evaluation replays $T$, using the input selection $\rho, e \in \Sel{\raw{\rho}, \raw{e}}{A}$ to determine an output selection $v \in \Sel{\raw{v}}{A}$. The rules mirror those of the evaluation relation $\evalR$, although there is an additional selection state input $\alpha$ called the \emph{ambient availability}. We explain this with reference to the application rule, which is the only point where a new ambient availability is assigned.
 
