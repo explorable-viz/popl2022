@@ -293,15 +293,15 @@
       width={3.4in}
    ]
    {
-      \evalFwdEq{\rho}{e}{\alpha}{T}{\annClosure{\rho_1}{h}{\alpha'}{\sigma}}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\annClosure{\rho_1}{h}{\beta}{\sigma}}
       \\
       \rho_1, h, \alpha \closeDefsFwdR \rho_2
       \\
       \evalFwd{\rho}{e'}{\alpha}{U}{v}
       \\
-      \matchFwd{v}{\sigma}{w}{\rho_3}{e^\twoPrime}{\beta}
+      \matchFwd{v}{\sigma}{w}{\rho_3}{e^\twoPrime}{\beta'}
       \\
-      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\alpha' \meet \beta}{T'}{v'}
+      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\beta \meet \beta'}{T'}{v'}
    }
    {
       \evalFwd{\rho}{\exApp{e}{e'}}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
