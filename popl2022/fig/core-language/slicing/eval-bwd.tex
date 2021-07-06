@@ -317,14 +317,14 @@
          lab={\ruleName{$\closeDefsBwdR$-rec-defs}}
       ]
       {
-         v_i = \exClosure{\rho_i}{h_i}{\sigma_i}
+         v_i = \annClosure{\alpha_i}{\rho_i}{h_i}{\sigma_i}
          \quad
          (\forall i \in \length{\vec{x}})
       }
       {
          \vec{\bind{x}{v}}
          \closeDefsBwdR
-         (\bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}})
+         \bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}, \bigjoin{\alpha}
       }
    \end{smathpar}
 
