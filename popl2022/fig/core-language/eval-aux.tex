@@ -1,3 +1,5 @@
+\begin{minipage}[t]{0.52\textwidth}%
+\vspace{1mm}%
 {\small \flushleft \shadebox{$\envLookup{\rho}{x}{v}$}%
 \hfill \textbfit{$\bind{x}{v}$ is contained by $\rho$}}
 \begin{smathpar}
@@ -24,12 +26,31 @@
       \envLookup{(\rho \concat \bind{y}{u})}{x}{v}
    }
 \end{smathpar}
-
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.36\textwidth}%
+\vspace{1mm}%
 {\small \flushleft \shadebox{$\rho, h \closeDefsR \rho'$}%
-\hfill \textbfit{$h$ generates recursive closures $\rho'$ in $\rho$}}
-\begin{salign}
-   \rho, \vec{\bind{x}{\sigma}}
-   &\closeDefsR
-   \vec{\bind{x}{v}}
-   & \text{where $v_i = \exClosure{\rho}{\vec{\bind{x}{\sigma}}}{\sigma_i}$}
-\end{salign}
+\hfill \textbfit{$h$ generates $\rho'$ in $\rho$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\closeDefsR$-rec-defs}}
+   ]
+   {
+      v_i = \exClosure{\rho}{\vec{\bind{x}{\sigma}}}{\sigma_i}
+      \quad
+      (\forall i \in \length{\vec{x}})
+   }
+   {
+      \rho, \vec{\bind{x}{\sigma}}
+      \closeDefsR
+      \vec{\bind{x}{v}}
+   }
+\end{smathpar}
+%\begin{salign}
+%   \rho, \vec{\bind{x}{\sigma}}
+%   &\closeDefsR
+%   \vec{\bind{x}{v}}
+%   & \text{where $v_i = \exClosure{\rho}{\vec{\bind{x}{\sigma}}}{\sigma_i}$}
+%\end{salign}
+\end{minipage}
