@@ -322,20 +322,20 @@
    }
 \end{smathpar}
 \vspace{2mm}
-{\small \flushleft \shadebox{$\rho, h \closeDefsR \rho'$}%
-\hfill \textbfit{$h$ generates $\rho'$ in $\rho$}}
+{\small \flushleft \shadebox{$\rho, h, \alpha \closeDefsFwdR \rho'$}%
+\hfill \textbfit{$h$ forward-generates to $\rho'$ in $\rho$ and $\alpha$}}
 \begin{smathpar}
    \inferrule*[
-      lab={\ruleName{$\closeDefsR$-rec-defs}}
+      lab={\ruleName{$\closeDefsFwdR$-rec-defs}}
    ]
    {
-      v_i = \exClosure{\rho}{\vec{\bind{x}{\sigma}}}{\sigma_i}
+      v_i = \annClosure{\alpha}{\rho}{\vec{\bind{x}{\sigma}}}{\sigma_i}
       \quad
       (\forall i \in \length{\vec{x}})
    }
    {
-      \rho, \vec{\bind{x}{\sigma}}
-      \closeDefsR
+      \rho, \vec{\bind{x}{\sigma}}, \alpha
+      \closeDefsFwdR
       \vec{\bind{x}{v}}
    }
 \end{smathpar}
