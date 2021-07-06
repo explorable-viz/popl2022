@@ -184,7 +184,7 @@
               {\exLambda{\sigma}}
               {\alpha}
               {\trLambda{\sigma'}}
-              {\exClosure{\rho}{\seqEmpty}{\sigma}}
+              {\annClosure{\alpha}{\rho}{\seqEmpty}{\sigma}}
    }
    %
    \and
@@ -290,18 +290,18 @@
    %
    \inferrule*[
       lab={\ruleName{$\evalFwdS$-apply}},
-      width={3in}
+      width={3.4in}
    ]
    {
-      \evalFwdEq{\rho}{e}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\annClosure{\alpha'}{\rho_1}{h}{\sigma}}
       \\
-      \rho_1, h \closeDefsFwdR \rho_2
+      \rho_1, h, \alpha \closeDefsFwdR \rho_2
       \\
       \evalFwd{\rho}{e'}{\alpha}{U}{v}
       \\
       \matchFwd{v}{\sigma}{w}{\rho_3}{e^\twoPrime}{\beta}
       \\
-      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\beta}{T'}{v'}
+      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\alpha' \meet \beta}{T'}{v'}
    }
    {
       \evalFwd{\rho}{\exApp{e}{e'}}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
@@ -313,7 +313,7 @@
       \ruleName{$\evalFwdS$-let-rec}}
    ]
    {
-      \rho, h' \closeDefsR \rho'
+      \rho, h', \alpha \closeDefsR \rho'
       \\
       \evalFwd{\rho \concat \rho'}{e}{\alpha}{T}{v}
    }
