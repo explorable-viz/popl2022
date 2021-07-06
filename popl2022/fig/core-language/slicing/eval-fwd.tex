@@ -321,6 +321,24 @@
       \evalFwd{\rho}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
    }
 \end{smathpar}
+\vspace{2mm}
+{\small \flushleft \shadebox{$\rho, h \closeDefsR \rho'$}%
+\hfill \textbfit{$h$ generates $\rho'$ in $\rho$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\closeDefsR$-rec-defs}}
+   ]
+   {
+      v_i = \exClosure{\rho}{\vec{\bind{x}{\sigma}}}{\sigma_i}
+      \quad
+      (\forall i \in \length{\vec{x}})
+   }
+   {
+      \rho, \vec{\bind{x}{\sigma}}
+      \closeDefsR
+      \vec{\bind{x}{v}}
+   }
+\end{smathpar}
 \caption{Forward data dependency (Boolean cases for $\evalFwdR{T}$ omitted)}
 \label{fig:data-dependencies:fwd}
 \end{figure}
