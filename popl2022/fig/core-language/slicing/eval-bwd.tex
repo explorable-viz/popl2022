@@ -228,10 +228,10 @@
       {
          \evalBwd{v}{T}{\rho \concat \rho_1}{e}{\alpha}
          \\
-         \rho_1 \closeDefsBwdR \rho', h'
+         \rho_1 \closeDefsBwdR \rho', h', \alpha'
       }
       {
-         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha}
+         \evalBwd{v}{\trLetRecMutual{h}{T}}{\rho \join \rho'}{\exLetRecMutual{h'}{e}}{\alpha \join \alpha'}
       }
       %
       \and
@@ -257,7 +257,7 @@
       %
       \inferrule*[
          lab={\ruleName{$\evalBwdS$-apply}},
-         width={3.25in}
+         width={3.3in}
       ]
       {
          \evalBwd{v}{T'}{\rho_1 \concat \rho_2 \concat \rho_3}{e}{\beta}
@@ -266,12 +266,12 @@
          \\
          \evalBwd{v'}{U}{\rho}{e_2}{\alpha}
          \\
-         \rho_2 \closeDefsBwdR \rho_1', h
+         \rho_2 \closeDefsBwdR \rho_1', h, \alpha'
          \\
-         \evalBwd{\exClosure{\rho_1 \join \rho_1'}{h}{\sigma}}{T}{\rho'}{e_1}{\alpha'}
+         \evalBwd{\annClosure{\rho_1 \join \rho_1'}{h}{\beta}{\sigma}}{T}{\rho'}{e_1}{\alpha^\twoPrime}
       }
       {
-         \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha'}
+         \evalBwd{v}{\trApp{T}{U}{w}{T'}}{\rho \join \rho'}{\exApp{e_1}{e_2}}{\alpha \join \alpha' \join \alpha^\twoPrime}
       }
    \end{smathpar}
    \vspace{1mm}
