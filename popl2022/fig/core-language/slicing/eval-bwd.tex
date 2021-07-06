@@ -127,7 +127,7 @@
          \strut
       }
       {
-         \evalBwd{\annClosure{\alpha}{\rho}{\seqEmpty}{\sigma}}
+         \evalBwd{\annClosure{\rho}{\seqEmpty}{\alpha}{\sigma}}
                  {\trLambda{\sigma'}}
                  {\rho}
                  {\exLambda{\sigma}}
@@ -318,7 +318,7 @@
          lab={\ruleName{$\closeDefsBwdR$-rec-defs}}
       ]
       {
-         v_i = \annClosure{\alpha_i}{\rho_i}{h_i}{\sigma_i}
+         v_i = \annClosure{\rho_i}{h_i}{\alpha_i}{\sigma_i}
          \quad
          (\forall i \in \length{\vec{x}})
       }

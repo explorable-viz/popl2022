@@ -184,7 +184,7 @@
               {\exLambda{\sigma}}
               {\alpha}
               {\trLambda{\sigma'}}
-              {\annClosure{\alpha}{\rho}{\seqEmpty}{\sigma}}
+              {\annClosure{\rho}{\seqEmpty}{\alpha}{\sigma}}
    }
    %
    \and
@@ -293,7 +293,7 @@
       width={3.4in}
    ]
    {
-      \evalFwdEq{\rho}{e}{\alpha}{T}{\annClosure{\alpha'}{\rho_1}{h}{\sigma}}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\annClosure{\rho_1}{h}{\alpha'}{\sigma}}
       \\
       \rho_1, h, \alpha \closeDefsFwdR \rho_2
       \\
@@ -329,7 +329,7 @@
       lab={\ruleName{$\closeDefsFwdR$-rec-defs}}
    ]
    {
-      v_i = \annClosure{\alpha}{\rho}{\vec{\bind{x}{\sigma}}}{\sigma_i}
+      v_i = \annClosure{\rho}{\vec{\bind{x}{\sigma}}}{\alpha}{\sigma_i}
       \quad
       (\forall i \in \length{\vec{x}})
    }

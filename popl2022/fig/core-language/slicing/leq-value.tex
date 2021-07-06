@@ -158,16 +158,16 @@
    \inferrule*[
    ]
    {
-      \alpha \leq \alpha'
-      \\
       \rho \leq \rho'
       \\
       h \leq h'
       \\
+      \alpha \leq \alpha'
+      \\
       \sigma \leq \sigma'
    }
    {
-      \annClosure{\alpha}{\rho}{h}{\sigma} \leq \annClosure{\alpha'}{\rho'}{h'}{\sigma'}
+      \annClosure{\rho}{h}{\alpha}{\sigma} \leq \annClosure{\rho'}{h'}{\alpha'}{\sigma'}
    }
    %
    \and
@@ -182,6 +182,6 @@
       \sigma \leq \hole
    }
    {
-      \annClosure{\bot}{\rho}{h}{\sigma} \leq \hole
+      \annClosure{\rho}{h}{\bot}{\sigma} \leq \hole
    }
 \end{smathpar}
