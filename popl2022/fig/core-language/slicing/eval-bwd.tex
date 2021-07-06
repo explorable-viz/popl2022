@@ -276,7 +276,7 @@
    \end{smathpar}
    \vspace{1mm}
 
-\begin{minipage}[t]{0.53\textwidth}%
+\begin{minipage}[t]{0.48\textwidth}%
    {\small\flushleft \shadebox{$\envLookupBwd{\rho'}{\rho}{\bind{x}{v}}$}%
    \hfill \textbfit{$\rho'$ contains $\bind{x}{v}$}}
    \begin{smathpar}
@@ -296,10 +296,11 @@
       %
       \inferrule*[
          lab={\ruleName{$\envLookupBwdS$-tail}},
-         right={$x \neq y$}
       ]
       {
          \envLookupBwd{\rho'}{\rho}{\bind{x}{u}}
+         \\
+         x \neq y
       }
       {
          \envLookupBwd{(\rho' \concat \bind{y}{\hole})}
@@ -307,11 +308,11 @@
                       {\bind{x}{u}}
       }
    \end{smathpar}
-\end{minipage}
-   \vspace{1mm}
-
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.47\textwidth}%
    {\small\flushleft\shadebox{$\rho \closeDefsBwdR \rho', h, \alpha$}%
-   \hfill \textbfit{$\rho$ backward-generates to $\rho'$, $h$ and $\alpha$}}
+   \hfill \textbfit{$\rho$ backward-generates to $\rho'$, $h$, $\alpha$}}
    \begin{smathpar}
       \inferrule*[
          lab={\ruleName{$\closeDefsBwdR$-rec-defs}}
@@ -327,6 +328,7 @@
          \bigjoin\vec{\rho}, \vec{\bind{x}{\sigma}} \join {\bigjoin\vec{h}}, \bigjoin{\vec{\alpha}}
       }
    \end{smathpar}
+\end{minipage}
 
    \caption{Backward data dependency (Boolean cases for $\evalBwdR{T}$ omitted)}
    \label{fig:data-dependencies:bwd}
