@@ -184,7 +184,7 @@
               {\exLambda{\sigma}}
               {\alpha}
               {\trLambda{\sigma'}}
-              {\exClosure{\rho}{\seqEmpty}{\sigma}}
+              {\annClosure{\rho}{\seqEmpty}{\alpha}{\sigma}}
    }
    %
    \and
@@ -290,18 +290,18 @@
    %
    \inferrule*[
       lab={\ruleName{$\evalFwdS$-apply}},
-      width={3in}
+      width={3.4in}
    ]
    {
-      \evalFwdEq{\rho}{e}{\alpha}{T}{\exClosure{\rho_1}{h}{\sigma}}
+      \evalFwdEq{\rho}{e}{\alpha}{T}{\annClosure{\rho_1}{h}{\alpha'}{\sigma}}
       \\
-      \rho_1, h \closeDefsFwdR \rho_2
+      \rho_1, h, \alpha \closeDefsFwdR \rho_2
       \\
       \evalFwd{\rho}{e'}{\alpha}{U}{v}
       \\
       \matchFwd{v}{\sigma}{w}{\rho_3}{e^\twoPrime}{\beta}
       \\
-      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\beta}{T'}{v'}
+      \evalFwd{\rho_1 \concat \rho_2 \concat \rho_3}{e^\twoPrime}{\alpha' \meet \beta}{T'}{v'}
    }
    {
       \evalFwd{\rho}{\exApp{e}{e'}}{\alpha}{\trApp{T}{U}{w}{T'}}{v'}
@@ -313,12 +313,30 @@
       \ruleName{$\evalFwdS$-let-rec}}
    ]
    {
-      \rho, h' \closeDefsR \rho'
+      \rho, h', \alpha \closeDefsFwdR \rho'
       \\
       \evalFwd{\rho \concat \rho'}{e}{\alpha}{T}{v}
    }
    {
       \evalFwd{\rho}{\exLetRecMutual{h'}{e}}{\alpha}{\trLetRecMutual{h}{T}}{v}
+   }
+\end{smathpar}
+\vspace{2mm}
+{\small \flushleft \shadebox{$\rho, h, \alpha \closeDefsFwdR \rho'$}%
+\hfill \textbfit{$h$ forward-generates to $\rho'$ in $\rho$ and $\alpha$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\closeDefsFwdR$-rec-defs}}
+   ]
+   {
+      v_i = \annClosure{\rho}{\vec{\bind{x}{\sigma}}}{\alpha}{\sigma_i}
+      \quad
+      (\forall i \in \length{\vec{x}})
+   }
+   {
+      \rho, \vec{\bind{x}{\sigma}}, \alpha
+      \closeDefsFwdR
+      \vec{\bind{x}{v}}
    }
 \end{smathpar}
 \caption{Forward data dependency (Boolean cases for $\evalFwdR{T}$ omitted)}
