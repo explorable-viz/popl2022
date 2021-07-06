@@ -28,8 +28,8 @@
 {\small \flushleft \shadebox{$\rho, h \closeDefsR \rho'$}%
 \hfill \textbfit{$h$ generates recursive closures $\rho'$ in $\rho$}}
 \begin{salign}
-   \rho, h
+   \rho, \vec{\bind{x}{\sigma}}
    &\closeDefsR
-   \seqRange{\bind{x_1}{\exClosure{\rho}{h}{\sigma_1}}}{\bind{x_i}{\exClosure{\rho}{h}{\sigma_i}}}
-   & \text{where $h = \vec{\bind{x}{\sigma}}$}
+   \vec{\bind{x}{v}}
+   & \text{where $v_i = \exClosure{\rho}{\vec{\bind{x}{\sigma}}}{\sigma_i}$}
 \end{salign}
