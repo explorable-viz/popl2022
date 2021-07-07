@@ -4,7 +4,8 @@ let data = [
    { energyType: "Bio", output: 6.2 },
    { energyType: (*@\codeSel{"Hydro"}@*), output: 260 },
    { energyType: "Solar", output: 19.9 },
-   { energyType: (*@\codeSelTwo{"Wind"}@*), output: 91 }
+   { energyType: (*@\codeSelTwo{"Wind"}@*), output: 91 },
+   { energyType: "Geo", output: 14.4 }
 ];
 let xs = (*@\codeSel{[}@*) row.output
    | type $\leftarrow$ ["Bio", (*@\codeSel{"Hydro"}@*), "Solar", (*@\codeSelTwo{"Wind"}@*)],
