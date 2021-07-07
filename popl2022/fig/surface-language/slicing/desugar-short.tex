@@ -106,35 +106,6 @@
 \end{smathpar}
 
 \vspace{1mm}
-{\flushleft \shadebox{$r \desugarFwdR e$}
-\hfill \textbfit{$r$ forward-desugars to $e$}}
-\begin{smathpar}
-   \inferrule*[
-      lab={\ruleName{$\desugarFwdR$-list-rest-end}}
-   ]
-   {
-      \strut
-   }
-   {
-      \annListEnd{\alpha} \desugarFwdR \annNil{\alpha}
-   }
-   %
-   \and
-   %
-   \inferrule*[
-      lab={\ruleName{$\desugarFwdR$-list-rest-cons}}
-   ]
-   {
-      s \desugarFwdR e
-      \\
-      r \desugarFwdR e'
-   }
-   {
-      (\annListNext{s}{r}{\alpha}) \desugarFwdR \annCons{e}{e'}{\alpha}
-   }
-\end{smathpar}
-
-\vspace{1mm}
 {\flushleft \shadebox{$e \desugarBwdR{t} s$}
 \hfill \textbfit{$e$ backward-desugars along $t$ to $s$}}
 \begin{smathpar}
@@ -252,6 +223,36 @@
 \end{smathpar}
 
 \vspace{1mm}
+\begin{minipage}[t]{0.48\textwidth}{%
+{\flushleft \shadebox{$r \desugarFwdR e$}
+\hfill \textbfit{$r$ forward-desugars to $e$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-rest-end}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annListEnd{\alpha} \desugarFwdR \annNil{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-rest-cons}}
+   ]
+   {
+      s \desugarFwdR e
+      \\
+      r \desugarFwdR e'
+   }
+   {
+      (\annListNext{s}{r}{\alpha}) \desugarFwdR \annCons{e}{e'}{\alpha}
+   }
+\end{smathpar}%
+}%
+\begin{minipage}[t]{0.48\textwidth}{%
 {\flushleft \shadebox{$e \desugarBwdR{r} r'$}
 \hfill \textbfit{$e$ backward-desugars along $r$ to $r'$}}
 \begin{smathpar}
@@ -282,4 +283,5 @@
       \desugarBwdR{(\exListNext{t}{r})}
       (\annListNext{s}{r'}{\alpha})
    }
-\end{smathpar}
+\end{smathpar}%
+}
