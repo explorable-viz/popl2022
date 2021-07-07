@@ -68,7 +68,7 @@
       \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
       \desugarFwdR
       \exApp{\exApp{\funConcatMap}{\exLambda{\sigma'}}}{e'}
-   }
+   }\\
    %
    \and
    %
@@ -106,8 +106,8 @@
 \end{smathpar}
 
 \vspace{1mm}
-{\flushleft \shadebox{$e \desugarBwdR{t} s$}
-\hfill \textbfit{$e$ backward-desugars along $t$ to $s$}}
+{\flushleft \shadebox{$e \desugarBwdR{\raw{t}} s$}
+\hfill \textbfit{$e$ backward-desugars along $\raw{t}$ to $s$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\desugarBwdR{}$-nil}}
@@ -223,7 +223,7 @@
 \end{smathpar}
 
 \vspace{1mm}
-\begin{minipage}[t]{0.48\textwidth}{%
+\begin{minipage}[t]{0.4\textwidth}%
 {\flushleft \shadebox{$r \desugarFwdR e$}
 \hfill \textbfit{$r$ forward-desugars to $e$}}
 \begin{smathpar}
@@ -251,10 +251,11 @@
       (\annListNext{s}{r}{\alpha}) \desugarFwdR \annCons{e}{e'}{\alpha}
    }
 \end{smathpar}%
-}%
-\begin{minipage}[t]{0.48\textwidth}{%
-{\flushleft \shadebox{$e \desugarBwdR{r} r'$}
-\hfill \textbfit{$e$ backward-desugars along $r$ to $r'$}}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.52\textwidth}%
+{\flushleft \shadebox{$e \desugarBwdR{\raw{r}} r'$}
+\hfill \textbfit{$e$ backward-desugars along $\raw{r}$ to $r'$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\desugarBwdR{}$-list-rest-end}}
@@ -284,4 +285,4 @@
       (\annListNext{s}{r'}{\alpha})
    }
 \end{smathpar}%
-}
+\end{minipage}
