@@ -3,13 +3,13 @@ set -e
 
 rm -rf fluid
 mkdir fluid
-wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/linking/bar-chart.fld
+wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/release/fluid/example/linking/bar-chart.fld
 ./post-process.sh fluid/bar-chart.fld
-wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/linking/line-chart.fld
+wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/release/fluid/example/linking/line-chart.fld
 ./post-process.sh fluid/line-chart.fld
-wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/lib/convolution.fld
+wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/release/fluid/lib/convolution.fld
 ./post-process.sh fluid/convolution.fld
-wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/master/fluid/example/slicing/conv-emboss.fld
+wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/release/fluid/example/slicing/conv-emboss.fld
 ./post-process.sh fluid/conv-emboss.fld
 
 # Need ChromeDriver for headless downloads; need to figure that out.
