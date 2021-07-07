@@ -8,7 +8,7 @@ let data = [
    { energyType: (*@\codeSel{"Geo"}@*), output: 14.4 }
 ];
 let xs = (*@\codeSel{[}@*) row.output
-   | type $\leftarrow$ ["Hydro", "Solar", (*@\codeSelTwo{"Geo"}@*)],
+   | type $\leftarrow$ ["Hydro", "Solar", (*@\codeSel{"Geo"}@*)],
      row $\leftarrow$ data, row.energyType == type
 (*@\codeSel{]}@*) in
 map (fun x $\rightarrow$ floor (x / sum xs * 100)) xs
