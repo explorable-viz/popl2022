@@ -26,12 +26,16 @@
 \definecolor{GainsboroDarkened}{RGB}{211,211,211}
 \definecolor{GainsboroFaded}{RGB}{232,232,232}
 
-\DeclareRobustCommand{\codeErase}[1]{{\sethlcolor{GainsboroFaded}\hl{#1}}}
-\DeclareRobustCommand{\codeEraseTwo}[1]{{\sethlcolor{GainsboroDarkened}\hl{#1}}}
-\DeclareRobustCommand{\codeSel}[1]{{\sethlcolor{Yellow}\hl{#1}}}
-\DeclareRobustCommand{\codeSelFaded}[1]{{\sethlcolor{YellowFaded}\hl{#1}}}
-\DeclareRobustCommand{\codeSelTwo}[1]{{\sethlcolor{LightGreen}\hl{#1}}}
-\DeclareRobustCommand{\codeSelTwoFaded}[1]{{\sethlcolor{LightGreenFaded}\hl{#1}}}
+%\DeclareRobustCommand{\codeErase}[1]{{\sethlcolor{GainsboroFaded}\hl{#1}}}
+%\DeclareRobustCommand{\codeEraseTwo}[1]{{\sethlcolor{GainsboroDarkened}\hl{#1}}}
+%\DeclareRobustCommand{\codeSel}[1]{{\sethlcolor{Yellow}\hl{#1}}}
+%\DeclareRobustCommand{\codeSelTwo}[1]{{\sethlcolor{LightGreen}\hl{#1}}}
+
+\def\mystrut{\vrule height6pt depth1.5pt width0pt}
+\newcommand*{\codeSel}[1]{\fboxsep=1pt\fcolorbox{yellow!80!black}{yellow!50}{\mystrut#1}}
+\newcommand*{\codeSelTwo}[1]{\fboxsep=0pt\fcolorbox{LightGreen}{LightGreen!50}{\mystrut#1}}
+\newcommand*{\codeErase}[1]{\fboxsep=1pt\fcolorbox{GainsboroFaded}{GainsboroFaded!50}{\mystrut#1}}
+\newcommand*{\codeEraseTwo}[1]{\fboxsep=0pt\fcolorbox{GainsboroDarkened}{GainsboroDarkened!50}{\mystrut#1}}
 
 \newbool{anonymous}
 
