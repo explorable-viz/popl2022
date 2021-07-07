@@ -77,7 +77,13 @@ Lastly, the trace $\exListComp{t}{\seqEmpty}$ must necessarily correspond to the
 
 \subsection{Round-tripping properties}
 
+It is easy to verify that $\desugarFwdF{t}$ and $\desugarBwdF{t}$ are monotonic. Moreover they form an adjoint pair.
+
 \begin{theorem}[Galois connection for desugaring]
   \label{thm:surface-language:desugar:gc}
-     Suppose $s \desugarFwdR e$. Then $\desugarFwdF{s} \adjoint \desugarBwdF{s}$.
+     Suppose $t \desugarFwdR e$. Then $(\desugarFwdF{t}, \desugarBwdF{t}): \Sel{\raw{e}}{A} \to \Sel{\raw{s}}{A}$ is a Galois connection.
 \end{theorem}
+
+\begin{proof}
+   \ifappendices See \appref{proofs-surface:desugar:gc}. \else \ProofInSupplementaryMaterial \fi
+\end{proof}
