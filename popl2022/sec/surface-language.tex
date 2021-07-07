@@ -12,13 +12,10 @@ To achieve this, it is unnecessary to augment our core language to accommodate f
 
 Consider the program selection in \figref{surface-language:example-1}; the program uses list comprehensions to iterate through a list of records containing fields $\texttt{country}$ and $\texttt{output}$, and constructs a list of tuples containing countries and their total energy output. Assuming the output of this program were $\texttt{[("China", 304), ("USA", 125),}$ $\texttt{("Germany", 606)]}$, one could be interested in how selecting the string $\texttt{"China"}$ places a demand on list comprehensions and other constants that occur in the surface program as resources.
 
-\begin{figure}[H]
-\small
-\begin{lstlisting}
-let totalFor c rows = sum [ row.output | row $\leftarrow$ rows, row.country == c ]$_{\alpha_1}$
-in  [ (c , totalFor c data)$_{\beta_1}$ | c $\leftarrow$ [$_{\alpha_3}$"China"$_{\beta_2}$ ,$_{\alpha_4}$ "USA"$_{\beta_3}$ ,$_{\alpha_5}$ "Germany"$_{\beta_4}$ ]$_{\alpha_6}$ ]$_{\alpha_2}$
-\end{lstlisting}
-\caption{List comprehension example: Surface language}
+\begin{figure}
+   \small
+   \lstinputlisting[language=Fluid]{fluid/section-5-example.fld.mod}
+\caption{\OurLanguage{} program with selection highlighting}
 \label{fig:surface-language:example-1}
 \end{figure}
 
