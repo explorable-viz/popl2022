@@ -5,11 +5,11 @@ let data = [
    { energyType: (*@\codeSel{"Hydro"}@*), output: 260 },
    { energyType: "Solar", output: 19.9 },
    { energyType: "Wind", output: 91 },
-   { energyType: (*@\codeSelTwo{"Geo"}@*), output: 14.4 }
+   { energyType: "Geo", output: 14.4 }
 ];
 let xs = (*@\codeSel{[}@*) row.output
-   | type $\leftarrow$ [(*@\codeSel{"Hydro"}@*), "Solar", (*@\codeSelTwo{"Geo"}@*)],
+   | type $\leftarrow$ [(*@\codeSel{"Hydro"}@*), "Solar", "Geo"],
      row $\leftarrow$ data, row.energyType == type
 (*@\codeSel{]}@*) in
 map (fun x $\rightarrow$ floor (x / sum xs * 100)) xs
-$\Rightarrow$ (88 (*@\codeSel{:}@*) (6 : (4 (*@\codeSelTwo{:}@*) [])))
+$\Rightarrow$ (88 (*@\codeSelTwo{:}@*) (6 : (4 : [])))
