@@ -20,13 +20,18 @@
 \newcommand*{\Href}[2]{\href{#1}{\formatLink{#2}}}
 
 % HTML colour names
-\definecolor{Gainsboro}{RGB}{220,220,220}
 \definecolor{Yellow}{RGB}{255,255,0}
 \definecolor{LightGreen}{RGB}{144,238,144}
 
-\DeclareRobustCommand{\codeErase}[1]{{\sethlcolor{Gainsboro}\hl{#1}}}
+\definecolor{GainsboroDarkened}{RGB}{211,211,211}
+\definecolor{GainsboroFaded}{RGB}{232,232,232}
+
+\DeclareRobustCommand{\codeErase}[1]{{\sethlcolor{GainsboroFaded}\hl{#1}}}
+\DeclareRobustCommand{\codeEraseTwo}[1]{{\sethlcolor{GainsboroDarkened}\hl{#1}}}
 \DeclareRobustCommand{\codeSel}[1]{{\sethlcolor{Yellow}\hl{#1}}}
+\DeclareRobustCommand{\codeSelFaded}[1]{{\sethlcolor{YellowFaded}\hl{#1}}}
 \DeclareRobustCommand{\codeSelTwo}[1]{{\sethlcolor{LightGreen}\hl{#1}}}
+\DeclareRobustCommand{\codeSelTwoFaded}[1]{{\sethlcolor{LightGreenFaded}\hl{#1}}}
 
 \newbool{anonymous}
 

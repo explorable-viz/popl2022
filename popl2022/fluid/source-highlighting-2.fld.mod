@@ -12,4 +12,4 @@ let xs = (*@\codeSel{[}@*) row.output
      row $\leftarrow$ data, row.energyType == type
 (*@\codeSel{]}@*) in
 map (fun x $\rightarrow$ floor (x / sum xs * (*@\codeErase{100}@*))) xs
-$\Rightarrow$ (88 : ((*@\codeErase{6}@*) : (4 (*@\codeSelTwo{:}@*) [])))
+$\Rightarrow$ (88 : ((*@\codeEraseTwo{6}@*) : (4 (*@\codeSelTwo{:}@*) [])))
