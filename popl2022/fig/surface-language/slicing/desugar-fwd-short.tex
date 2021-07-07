@@ -85,6 +85,24 @@
       \desugarFwdR
       \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
    }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-comp-decl}}
+   ]
+   {
+      \annListComp{s}{\vec{q}}{\alpha} \desugarFwdR e
+      \\
+      p, e \clauseFwdR \sigma
+      \\
+      s' \desugarFwdR e
+   }
+   {
+      \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
+      \desugarFwdR
+      \exApp{\exLambda{\sigma}}{e}
+   }
    \end{smathpar}
 
 \vspace{5pt}

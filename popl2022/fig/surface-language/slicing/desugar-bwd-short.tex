@@ -54,8 +54,11 @@
       \desugarBwdR{\exListComp{t}{\seqEmpty}}
       \annListComp{s}{\seqEmpty}{\alpha \join \alpha'}
    }
+   %
+   \and
+   %
    \inferrule*[
-      lab={\ruleName{$\desugarBwdR{}$-list-comp-gen}},
+      lab={\ruleName{$\desugarBwdR{}$-list-comp-gen}}
    ]
    {
       e \desugarBwdR{t} s
@@ -91,9 +94,27 @@
       \desugarBwdR{\exListComp{t}{\qualGuard{t'} \concat \vec{q}}}
       \annListComp{s}{\qualGuard{s'} \concat \vec{q}'}{\alpha \join \beta}
    }
+   \hspace{4mm}
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-list-comp-decl}},
+   ]
+   {
+      \sigma \clauseBwdR{p} e'
+      \\
+      e'
+      \desugarBwdR{\exListComp{t'}{\vec{q}}}
+      \annListComp{s'}{\vec{q}'}{\beta}
+      \\
+      e \desugarBwdR{t} s
+   }
+   {
+      \exApp{\exLambda{\sigma}}{e}
+      \desugarBwdR{\exListComp{t'}{\qualDeclaration{p}{t} \concat \vec{q}}}
+      \annListComp{s'}{\qualDeclaration{p}{s} \concat \vec{q}'}{\beta}
+   }
 \end{smathpar}
 
-\vspace{3mm}
+\vspace{1mm}
 {\flushleft \shadebox{$e \desugarBwdR{r} r'$}
 \hfill \textbfit{$e$ backward-desugars along $r$ to $r'$}}
 \begin{smathpar}

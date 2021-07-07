@@ -1,5 +1,5 @@
 let map f [] = [];
-    map f (x : xs) = f x : map f xs;
+    map f (x : xs) = f x (*@\codeSel{:}@*) map f xs;
 let data = [
    { energyType: "Bio", output: 6.2 },
    { energyType: "Hydro", output: (*@\codeErase{260}@*) },
