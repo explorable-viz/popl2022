@@ -1,5 +1,5 @@
-\begin{figure}
-\flushleft \shadebox{$e \desugarBwdR{t} s$}
+{\flushleft \shadebox{$e \desugarBwdR{t} s$}
+\hfill \textbfit{$e$ backward-desugars along $t$ to $s$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\desugarBwdR{}$-nil}}
@@ -94,7 +94,8 @@
 \end{smathpar}
 
 \vspace{3mm}
-\flushleft \shadebox{$e \desugarBwdR{r} r'$}
+{\flushleft \shadebox{$e \desugarBwdR{r} r'$}
+\hfill \textbfit{$e$ backward-desugars along $r$ to $r'$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\desugarBwdR{}$-list-rest-end}}
@@ -124,6 +125,3 @@
       (\annListNext{s}{r'}{\alpha})
    }
 \end{smathpar}
-\caption{Desugaring -- backward slicing (selected rules)}
-\label{fig:desugar-bwd-short}
-\end{figure}

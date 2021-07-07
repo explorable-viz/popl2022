@@ -1,5 +1,5 @@
-\begin{figure}[H]
-\flushleft \shadebox{$s \desugarFwdR e$}
+{\flushleft \shadebox{$s \desugarFwdR e$}
+\hfill \textbfit{$s$ forward-desugars to $e$}}
 \begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\desugarFwdR$-nil}}
@@ -87,9 +87,10 @@
    }
    \end{smathpar}
 
-   \vspace{5pt}
-   \flushleft \shadebox{$r \desugarFwdR e$}
-   \begin{smathpar}
+\vspace{5pt}
+{\flushleft \shadebox{$r \desugarFwdR e$}
+\hfill \textbfit{$r$ forward-desugars to $e$}}
+\begin{smathpar}
    \inferrule*[
       lab={\ruleName{$\desugarFwdR$-list-rest-end}}
    ]
@@ -114,6 +115,3 @@
       (\annListNext{s}{r}{\alpha}) \desugarFwdR \annCons{e}{e'}{\alpha}
    }
 \end{smathpar}
-\caption{Desugaring -- forward slicing (selected rules)}
-\label{fig:desugar-fwd-short}
-\end{figure}
