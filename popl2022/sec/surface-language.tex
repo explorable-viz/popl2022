@@ -1,80 +1,62 @@
 \newpage
-\section{Extending to a realistic surface language}
+\section{Galois connections for desugaring}
 \label{sec:surface-language}
 
-Up until now we have primarily considered how to track dependencies between input and output values, however, our approach also allows us to inspect selections on terms themselves to determine which fragments of our program are involved in the construction of a value. The ability to do this is not restricted to programs written using the core calculus given in \secref{core-language} -- one may want to observe how data dependencies interact with more sophisticated language constructs, such as list comprehensions and piecewise definitions.
+\todo{Core language serves as a useful ``core'' language but lacks realistic features} So far we have primarily focused on tracking dependencies between values. However, the analysis in \secref{data-dependencies} also assigns selection states to the terms responsible for introducing data. This could, for example, be used in an IDE to links parts of outputs to relevants code fragments, but only if we are able to map those term selections back to the surface program. Then we could retain the benefits of factoring advanced language features through a core dependency-tracking calculus, while preserving the user's ability to understand the results of the analysis in terms of the surface language. In this section we briefly introduce the surface language \OurLanguage{} used in the rest of the paper, and sketch a bidirectional desugaring procedure which maps selections between the two languages.
 
-To achieve this, it is unnecessary to augment our core language to accommodate for every new syntactic form and their forward and backward dependency semantics -- we can instead create a surface language on top of our core language. The translation between our surface and core language then gives rise to another Galois connection. In the \textit{forward} direction, we desugar surface terms in their equivalent core representation whilst preserving their selection information. Conversely, in the \textit{backward} direction we reconstruct the original surface term from the core term whilst translating the selection information backward. The Galois connection for desugaring then composes with the Galois connection for dependency analysis in \secref{data-dependencies:analyses}, allowing our approach for data linking to easily extend to tracking dependencies between outputs and programs written in the surface language. In this section, we demonstrate how this can be achieved for a small program (\figref{surface-language:example-1}) written in our example surface language.
+%The Galois connection for desugaring then composes with the Galois connection for dependency analysis in \secref{data-dependencies:analyses}.
 
 \input{fig/surface-language/syntax}
 
 \subsection{Surface language syntax}
 
-Consider the program selection in \figref{surface-language:example-1}; the program uses list comprehensions to iterate through a list of records containing fields $\texttt{country}$ and $\texttt{output}$, and constructs a list of tuples containing countries and their total energy output. Assuming the output of this program were $\texttt{[("China", 304), ("USA", 125),}$ $\texttt{("Germany", 606)]}$, one could be interested in how selecting the string $\texttt{"China"}$ places a demand on list comprehensions and other constants that occur in the surface program as resources.
+The surface language \OurLanguage{} extends the core language with list notation $\kw{[} s \comma \ldots \comma s' \kw{]}$, Haskell 98-style list comprehensions \cite{peytonJones03}, list enumerations, first-class primitives and piecewise function definitions. The features unique to surface terms $s, t$ are given in \figref{surface-language:syntax}. Raw surface terms $\raw{s}$, $\raw{t}$ (where the type of selections is the unit lattice $\Unit$) are written in bold. \figref{surface-language:example-1} gives an example of how value selections are mapped back to core terms, and thence to surface terms. (The example is somewhat contrived in including the library function \kw{map} and some raw data in the same source file.)
 
-\begin{figure}[H]
-\small
-\begin{lstlisting}
-let totalFor c rows = sum [ row.output | row $\leftarrow$ rows, row.country == c ]$_{\alpha_1}$
-in  [ (c , totalFor c data)$_{\beta_1}$ | c $\leftarrow$ [$_{\alpha_3}$"China"$_{\beta_2}$ ,$_{\alpha_4}$ "USA"$_{\beta_3}$ ,$_{\alpha_5}$ "Germany"$_{\beta_4}$ ]$_{\alpha_6}$ ]$_{\alpha_2}$
-\end{lstlisting}
-\caption{List comprehension example: Surface language}
+On the left, the user selects the first cons cell (green) in the output; by backwards evaluating and then backwards desugaring, we are able to highlight the list comprehension, the cons that occurs in the second equation of \kw{map}, and the two occurrences of the constant \kw{"Hydro"}. These last two are highlighted because that cell in the output was constructed by eliminating a Boolean value that was constructed by the primitive $\kw{==}$ operator, which consumed the two strings. This feedback might immediately lead to the hypothesis that the two constants \kw{"Geo"} were somehow responsible for the inclusion of the third cons cell in the output, which the user can confirm by making the green selection on the right.
+
+\begin{figure}
+   \begin{subfigure}{0.48\textwidth}
+      \small
+      \lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{fluid/source-highlighting-1.fld.mod}
+   \end{subfigure}
+   \hfill
+   \begin{subfigure}{0.48\textwidth}
+      \small
+      \lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{fluid/source-highlighting-2.fld.mod}
+      \end{subfigure}
+   \caption{Source selections (yellow) resulting from selecting different list cells (green)}
 \label{fig:surface-language:example-1}
 \end{figure}
 
-\noindent
-The full surface language syntax used to write this program (and others in the paper) is presented in \figref{surface-language:syntax} for completeness, however, here we focus primarily on list comprehensions and list notation. Surface terms are denoted by $s, t$; in particular, lists can now be written in the style $\kw{[} s \comma \ldots \comma s' \kw{]}$ using the term $\annList{s}{r}{\alpha}$, where $r$ either recursively defines the rest of the list, $\annListNext{s}{r}{\alpha}$, or is the end of the list, $\annListEnd{\alpha}$. List comprehensions, $\annListComp{s}{\vec{q}}{\alpha}$, then consist of a body $s$ which is constructed in reference to the environment introduced by a sequence of ``qualifiers'' $\vec{q}$. There are three variants of qualifiers: \textit{guards}, $\qualGuard{s}$, which enforce a Boolean condition $s$ to be true, \textit{generators}, $\qualGenerator{p}{s}$, which iterate through each of the elements in a list $s$ and binds them to a pattern $p$, and \textit{declarations}, $\qualDeclaration{p}{s}$, which bind an arbitrary term $s$ to $p$. We will only consider the first two forms for the purposes of \figref{surface-language:example-1}. \todo{Is this line necessary? :} It can be noted that the terms for lists and list comprehensions have selections because they correspond to selectable values i.e. $\annNil{\alpha}$ and $\annCons{u}{v}{\alpha}$.
+where $r$ either recursively defines the rest of the list, $\annListNext{s}{r}{\alpha}$, or is the end of the list, $\annListEnd{\alpha}$. The expression forms for lists and list comprehensions have selection states because they correspond to selectable values i.e.~$\annNil{\alpha}$ and $\annCons{u}{v}{\alpha}$; list enumerations do not because they desugar to a function application.
 
 \subsection{Forward desugaring}
 
-\figref{desugar-fwd-short} defines a family of \textit{forward desugaring} functions $\desugarFwdR$ of type $\Below{s} \to \Below{e}$. This specifies how to desugar a surface term $s$ into its equivalent core form $e$ whilst correctly retaining selections made on $s$; the latter is done by taking the meet \todo{(we never actually use the meet operation in this section, should this be omitted?)} of all selections on resources in $s$ we consume, and propagating this onto the selections of all syntax generated by its desugaring.
+We define a family of \textit{forward desugaring} functions $\desugarFwdF{t}: \Sel{\raw{s}}{A} \to \Sel{\raw{e}}{A}$ which elaborate surface terms to core terms whilst maximally preserving selection information. The full definition is \ifappendices given in \appref{surface-language} \else \IncludedWithSupplementaryMaterial \fi; \figref{surface-language:desugar} gives a representative selection of the rules. Forward desugaring follows a similar pattern to the meet-preserving forward evaluation function defined in \secref{data-dependencies:analyses:fwd}: the basic principle is for each rule to take the meet of the selection states on any parts of $s$ being consumed, and using that as the selection state for any parts of $e$ being generated at that step.
 
-\input{fig/surface-language/slicing/desugar-fwd-short.tex}
-
-\noindent
-The rules for nil $\annNil{\alpha}$ and other constants simply preserve their selected form. For cons $\annCons{s}{s'}{\alpha}$ and pairs $\annPair{s}{s'}{\alpha}$, we recursively desugar $s$ and $s'$ but preserve their selected constructors. Non-empty lists $\annList{s}{r}{\alpha}$ are similar, but we also translate the sugared list constructors $\kw{[}_\alpha$, $\kw{,}_{\alpha}$, and $\kw{]}_{\alpha}$, to their core representations $\kw{(:)}_{\alpha}$ or $\annNil{\alpha}$. List comprehensions, $\annListComp{s}{\vec{q}}{\alpha}$, are slightly more involved; each of the rules accounts for a different possible qualifier at the head of the sequence $\vec{q}$.
-
-\todo{Note: forward desugaring is described in an operational style, and although it is presented more intuitively than before, it differs from the style used to describe backward desugaring.} If the first qualifier in a list comprehension is a generator $\qualGenerator{p}{s'}$, we elaborate $\annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}$ such that for each element in the generator list $s'$, if it matches $p$ then we process the ``rest'' of the list comprehension, otherwise the empty list is returned. We achieve this by first constructing an eliminator to map over $s'$. Let the rest of the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$ desugar to $e$; the operation $p, e \clauseFwdR \sigma$ then constructs a singleton eliminator $\sigma$ where matching against $p$ returns $e$. For each missing case in $\sigma$, the \textit{totalise} operation $\totaliseFwd{\sigma}{\alpha}{p}{\sigma'}$ inserts a synthesised branch returning $\annNil{\alpha}$ with the selection $\alpha$ of the original list comprehension, giving us a \textit{total} eliminator $\sigma'$. The final desugared form is the application $\funConcatMap \; \exLambda{\sigma'} e'$, where $\funConcatMap$ maps $\exLambda{\sigma'}$ over the generator list $e'$ to produce a list of lists and then flattens it.
-
-A similar idea holds for when the first qualifier in a list comprehension is a guard, $\qualGuard{s'}$. Let $s'$ desugar into the Boolean $e'$. We elaborate $\annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}$ into a Boolean eliminator such that if $e'$ holds, then the desugaring of the rest of the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$ is returned, otherwise the empty list $\annNil{\alpha}$ is returned where its selection $\alpha$ is that of the original list comprehension. The final desugared form is the application of this eliminator to $e'$.
-
-If the sequence of qualifiers in the list comprehension is empty, i.e. $\annListComp{s}{\seqEmpty}{\alpha}$, then we simply desugar its body $s$ into $e$ and cons it to an empty list. This results in $\annCons{e}{\annNil{\alpha}}{\alpha}$ where the original selection $\alpha$ is propagated onto both the cons constructor and empty list.
-
-\begin{figure}[H]
-\small
-\begin{lstlisting}
-let totalFor c rows =
-      sum (concatMap $\exLambda{\{\elimVar{\kw{row}}{  \exLambda{\elimBool{ \kw{(} \annCons{\kw{row.output}}{\annNil{\alpha_1}}{\alpha_1} \kw{)} }{\annNil{\alpha_1}}} \; \kw{(row.country == c)} }\}}$ rows)
-in  concatMap $\exLambda{\{\elimVar{\kw{c}}{ \kw{(} \annCons{\kw{(c, totalFor c data)}_{\beta_1}}{\annNil{\alpha_2}}{\alpha_2} \kw{)}  }\}}$ ("China"$_{\beta_2}$:$_{\alpha_3}$ "USA"$_{\beta_3}$:$_{\alpha_4}$ "Germany"$_{\beta_4}$:$_{\alpha_5}$[]$_{\alpha_6}$)
-\end{lstlisting}
-\caption{List comprehension example: Surface language forward desugared}
-\label{fig:surface-language:example-4}
+\begin{figure}
+   \input{fig/surface-language/slicing/desugar-short.tex}
+   \caption{Forwards and backwards desugaring (selected rules only)}
+   \label{fig:surface-language:desugar}
 \end{figure}
 
-\noindent
-Desugaring the surface language program in \figref{surface-language:example-1} with these rules yields the core program in \figref{surface-language:example-4}, where the selections $\alpha_i$ on the original list comprehensions and sugared list notation have been propagated and the selections $\beta_i$ on constants and the pair constructor have been preserved.
+List notation is entered by the syntactic form $\annList{s}{r}{\alpha}$ and exited by $\annListEnd{\alpha}$. The selection states $\alpha$ on the opening and closing brackets are mapped to the first cons and the nil of the resulting list, and those on intervening elements $\annListNext{s}{r}{\alpha}$ are mapped to the corresponding cons. List comprehensions, $\annListComp{s}{\vec{q}}{\alpha}$, are slightly more involved, with a rule for each possible qualifier at the head of the sequence $\vec{q}$, plus a rule for the case when $\vec{q}$ is empty. The general pattern is to push the selection state on the list comprehension itself through recursively, so it ends up on all core terms generated during the elaboration of the comprehension, such as the \kw{false} branch in the \ruleName{$\desugarFwdR$-list-comp-guard} case and the construction of the singleton list in the \ruleName{$\desugarFwdR$-list-comp-guard} case.
+
+The \ruleName{$\desugarFwdR$-list-comp-gen} case is the most complex case because we have to synthesise an eliminator from the pattern $p$, with a single branch whose body is the desugaring of the rest of the comprehension. This is achieved by the $\vec{p}, e \clauseFwdR \sigma$ judgment (not shown). The resulting $\sigma$ must be made total so that it returns the empty list for any values which do not match $p$ (so it is an appropriate argument to \kw{concatMap}); this is achieved by the $\totaliseFwd{\sigma}{\alpha}{p}{\sigma'}$ judgment (also omitted), where the $\alpha$ specifies the selection state of any synthesised empty lists. The $\clauseFwdR$ is also used in the \ruleName{$\desugarFwdR$-list-comp-decl} case and (in a more general form taking a sequence $\vec{p}$ of patterns) to elaborate piecewise definitions of curried functions.
 
 \subsection{Backward desugaring}
 
-In order to desugar backwards, we need something that plays the role of a trace (as in the backward evaluation analysis in \secref{data-dependencies:analyses:bwd}). For desugaring, it is sufficient to use the original program and allow the trace $t$ to range over raw surface terms $s$. \figref{desugar-bwd-short} gives a family of \textit{backward desugaring} functions $\desugarBwdR{t}$ of type $\Below{e} \to \Below{s}$, where $\desugarBwdR{t}$ is defined by recursion over $t$. These specify how core terms $e \in \Below{e}$ backward desugar over a trace $t$ to recover their surface representation $s \in \Below{s}$, where $t$ corresponds to the unselected form of $s$. During this, the join operation is used to combine selection information; this expresses that if any of the generated terms that $s$ desugared into are needed as resources, then $s$ itself is also needed.
+To desugar backwards, we define a family of \textit{backward desugaring} functions $\desugarBwdR{\raw{t}}: \Sel{\raw{e}}{A} \to \Sel{\raw{t}}{A}$ for any $\raw{t} \desugarR \raw{e}$ which uses the original raw surface term $\raw{t}$ to guide the analysis backwards. (The role of $\raw{t}$ is disambiguating the backwards rules should be clear by considering that $e$ will typically match multiple rules but only one for a given $\raw{t}$.) \figref{surface-language:desugar} gives some representative rules; the full definition is {\ifappendices given in \appref{surface-language} \else \IncludedWithSupplementaryMaterial.\fi} When reversing a desugaring step, the guiding principle is to take the join of the selection states of any core syntax constructed by this step, and use that as the selection state on the original surface syntax, turning demand on the core term into (minimal) demand on the surface term. Thus the effect of the list comprehension rules and auxiliary judgements is to set the demand on the comprehension itself to be the join of the demand of all the syntax generated during the elaboration of the comprehension. In the \ruleName{$\desugarBwdR{}$-list-comp-gen} case, the $\totaliseFwdR{p}$ used to elaborate a singleton eliminator $\sigma$ into a total one has backwards version $\totaliseBwdR{p}$ which returns the join $\beta$ of the demands on the empty lists synthesised during desugaring.
 
-\input{fig/surface-language/slicing/desugar-bwd-short.tex}
+\subsection{Round-tripping properties}
 
-The rule for nil $\annNil{\alpha}$ and other constants simply preserve the selection state. For non-empty lists, $\annCons{e}{e'}{\alpha}$, we recursively backward desugar the head and tail of the list and use its trace, $\exCons{t}{t'}$ or $\exList{t}{r}$, to determine the original list constructor used in its surface representation.
+It is easy to verify that $\desugarFwdF{t}$ and $\desugarBwdF{t}$ are monotonic. Moreover they form an adjoint pair.
 
-\todo{In this subsection, we need to check that the explanation doesn't make too many jumps by omitting steps in the backward desugaring process. } If the trace is of the form $\exListComp{t'}{\qualGenerator{p}{t} \concat \vec{q}}$, then the core term we backward desugar is necessarily of the form $\exApp{\exApp{\funConcatMap}{\exLambda{\sigma}}}{e}$. The syntactic forms that we generated during desugaring consist of the rest of the list comprehension $\annListComp{s'}{\vec{q}'}{\beta'}$ and the branches of $\sigma$ with body $\annNil{\beta}$ which were synthesized by \textit{totalise}. We use this information to reconstruct the surface term $\annListComp{s'}{\qualGenerator{p}{s} \concat \vec{q}'}{\beta \join \beta'}$, combining the demand $\beta$ on the synthesized branches with the demand $\beta'$ on the list comprehension.
-
-When the trace has form $\exListComp{t}{\qualGuard{t'} \concat \vec{q}}$, the core term is necessarily $\exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}$. The syntax generated during desugaring consists of the rest of the list comprehension $\annListComp{s'}{\vec{q}'}{\beta}$ found in the $\exTrue$ branch, and $\annNil{\alpha}$ found in the $\exFalse$ branch. We recover the final surface term $\annListComp{s}{\qualGuard{s'} \concat \vec{q}'}{\alpha \join \beta}$, combining the demand placed on each branch of the Boolean eliminator.
-
-Lastly, the trace $\exListComp{t}{\seqEmpty}$ must necessarily correspond to the core term $\annCons{e}{\annNil{\alpha}}{\alpha'}$. The two forms generated by desugaring were  $\kw{:}_{\alpha'}$ and $\annNil{\alpha}$, so the recovered surface term $\annListComp{s}{\seqEmpty}{\alpha \join \alpha'}$ merges the demand placed on the cons and nil constructors.
-
-\todo{Where do we place this in the appendix?}
-\begin{definition}[Disjoint join of partial continuations]
-   Define $\disjjoin$ to be the smallest partial symmetric function satisfying the equations in \figref{surface-language:disjoin-join-elim}.
-\end{definition}
-
-\todo{Finish section on discussion of this theorem?}
 \begin{theorem}[Galois connection for desugaring]
   \label{thm:surface-language:desugar:gc}
-     Suppose $s \desugarFwdR e$. Then $\desugarFwdF{s} \adjoint \desugarBwdF{s}$.
+     Suppose $t \desugarFwdR e$. Then $(\desugarFwdF{t}, \desugarBwdF{t}): \Sel{\raw{e}}{A} \to \Sel{\raw{s}}{A}$ is a Galois connection.
 \end{theorem}
+
+\begin{proof}
+   \ifappendices See \appref{proofs-surface:desugar:gc}. \else \ProofInSupplementaryMaterial \fi
+\end{proof}
