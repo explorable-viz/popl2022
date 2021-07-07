@@ -42,27 +42,9 @@ We define a family of \textit{forward desugaring} functions $\desugarFwdF{t}: \S
    \label{fig:surface-language:desugar}
 \end{figure}
 
-The rules for nil $\annNil{\alpha}$ and other constants simply preserve their selected form. For cons $\annCons{s}{s'}{\alpha}$ and pairs $\annPair{s}{s'}{\alpha}$, we recursively desugar $s$ and $s'$ but preserve their selected constructors. Non-empty lists $\annList{s}{r}{\alpha}$ are similar, but we also translate the sugared list constructors $\kw{[}_\alpha$, $\kw{,}_{\alpha}$, and $\kw{]}_{\alpha}$, to their core representations $\kw{(:)}_{\alpha}$ or $\annNil{\alpha}$. List comprehensions, $\annListComp{s}{\vec{q}}{\alpha}$, are slightly more involved; each of the rules accounts for a different possible qualifier at the head of the sequence $\vec{q}$.
+List notation is entered by the syntactic form $\annList{s}{r}{\alpha}$ and exited by $\annListEnd{\alpha}$; the selection states on the opening and closing brackets are mapped to the first cons and final nil in the resulting list, and the selection state on any intervening elements $\annListNext{s}{r}{\alpha}$ are mapped to the corresponding cons. List comprehensions, $\annListComp{s}{\vec{q}}{\alpha}$, are slightly more involved, with a rule for each possible qualifier at the head of the sequence $\vec{q}$ \todo{add list-comp-decl case?}, plus a rule for the case when $\vec{q}$ is empty. The selection state on the list comprehension itself is pushed through recursively, ending up on all core terms generated during the elaboration of the comprehension, such as the \kw{false} branch in the \ruleName{$\desugarFwdR$-list-comp-guard} case and the construction of the singleton list in the \ruleName{$\desugarFwdR$-list-comp-guard} case.
 
-If the first qualifier in a list comprehension is a generator $\qualGenerator{p}{s'}$, we elaborate $\annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}$ such that for each element in the generator list $s'$, if it matches $p$ then we process the ``rest'' of the list comprehension, otherwise the empty list is returned. We achieve this by first constructing an eliminator to map over $s'$. Let the rest of the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$ desugar to $e$; the operation $p, e \clauseFwdR \sigma$ then constructs a singleton eliminator $\sigma$ where matching against $p$ returns $e$. For each missing case in $\sigma$, the \textit{totalise} operation $\totaliseFwd{\sigma}{\alpha}{p}{\sigma'}$ inserts a synthesised branch returning $\annNil{\alpha}$ with the selection $\alpha$ of the original list comprehension, giving us a \textit{total} eliminator $\sigma'$. The final desugared form is the application $\funConcatMap \; \exLambda{\sigma'} e'$, where $\funConcatMap$ maps $\exLambda{\sigma'}$ over the generator list $e'$ to produce a list of lists and then flattens it.
-
-A similar idea holds for when the first qualifier in a list comprehension is a guard, $\qualGuard{s'}$. Let $s'$ desugar into the Boolean $e'$. We elaborate $\annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}$ into a Boolean eliminator such that if $e'$ holds, then the desugaring of the rest of the list comprehension $\annListComp{s}{\vec{q}}{\alpha}$ is returned, otherwise the empty list $\annNil{\alpha}$ is returned where its selection $\alpha$ is that of the original list comprehension. The final desugared form is the application of this eliminator to $e'$.
-
-If the sequence of qualifiers in the list comprehension is empty, i.e. $\annListComp{s}{\seqEmpty}{\alpha}$, then we simply desugar its body $s$ into $e$ and cons it to an empty list. This results in $\annCons{e}{\annNil{\alpha}}{\alpha}$ where the original selection $\alpha$ is propagated onto both the cons constructor and empty list.
-
-\begin{figure}[H]
-\small
-\begin{lstlisting}
-let totalFor c rows =
-      sum (concatMap $\exLambda{\{\elimVar{\kw{row}}{  \exLambda{\elimBool{ \kw{(} \annCons{\kw{row.output}}{\annNil{\alpha_1}}{\alpha_1} \kw{)} }{\annNil{\alpha_1}}} \; \kw{(row.country == c)} }\}}$ rows)
-in  concatMap $\exLambda{\{\elimVar{\kw{c}}{ \kw{(} \annCons{\kw{(c, totalFor c data)}_{\beta_1}}{\annNil{\alpha_2}}{\alpha_2} \kw{)}  }\}}$ ("China"$_{\beta_2}$:$_{\alpha_3}$ "USA"$_{\beta_3}$:$_{\alpha_4}$ "Germany"$_{\beta_4}$:$_{\alpha_5}$[]$_{\alpha_6}$)
-\end{lstlisting}
-\caption{List comprehension example: Surface language forward desugared}
-\label{fig:surface-language:example-4}
-\end{figure}
-
-\noindent
-Desugaring the surface language program in \figref{surface-language:example-1} with these rules yields the core program in \figref{surface-language:example-4}, where the selections $\alpha_i$ on the original list comprehensions and sugared list notation have been propagated and the selections $\beta_i$ on constants and the pair constructor have been preserved.
+The \ruleName{$\desugarFwdR$-list-comp-gen} case is the most complex case because we have to synthesise an eliminator from the pattern $p$, with a single branch whose body is the desugaring of the rest of the comprehension. This is achieved by the $\vec{p}, e \clauseFwdR \sigma$ judgment (not shown). The resulting $\sigma$ must be made total so that it returns the empty list for any values which do not match $p$ (so it is an appropriate argument to \kw{concatMap}); this is achieved by the $\totaliseFwd{\sigma}{\alpha}{p}{\sigma'}$ judgment (also omitted), where the $\alpha$ specifies the selection state of any synthesised empty lists.
 
 \subsection{Backward desugaring}
 
