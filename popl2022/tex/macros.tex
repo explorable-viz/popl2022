@@ -301,7 +301,7 @@
 \newcommand*{\matchFwdGeq}[6]{#1, #2 \matchFwdR{#3}\geq #4, #5, #6}
 \newcommand*{\matchBwd}[6]{#1, #2, #3 \matchBwdR{#4} #5, #6}
 \newcommand*{\matchBwdLeq}[6]{#1, #2, #3 \matchBwdR{#4}\leq #5, #6}
-\newcommand*{\matchN}{match}
+%\newcommand*{\matchN}{match}
 \newcommand*{\matchFwdF}[1]{{\matchFwdR{#1}}}%{\fwdF{\matchN}{#1}}
 \newcommand*{\matchBwdF}[1]{{\matchBwdR{#1}}}%{\bwdF{\matchN}{#1}}
 \newcommand*{\matchGC}[1]{\GC{\matchN}{#1}}
@@ -313,14 +313,14 @@
 \newcommand*{\desugarBwdS}{\mathrel{{\rotatebox[origin=c]{-45}{$\desugarS$}}}}
 \newcommand*{\desugarFwdR}{\desugarFwdS}
 \newcommand*{\desugarBwdR}[1]{\sub{\desugarBwdS}{#1}}
-\newcommand*{\desugarN}{desug}
+%\newcommand*{\desugarN}{desug}
 \newcommand*{\desugarFwdF}[1]{\sub{\desugarFwdR}{\hspace{-0.13em}#1}}%{\fwdF{\desugarN}{#1}\hspace{-0.05em}}
 \newcommand*{\desugarBwdF}[1]{\desugarBwdR{#1}}%{\bwdF{\desugarN}{#1}\hspace{-0.11em}}
-\newcommand*{\desugarGC}[1]{\GC{\desugarN}{#1}\hspace{-0.11em}}
+\newcommand*{\desugarGC}[1]{\sub{\desugarR}{#1}}%{\GC{\desugarN}{#1}\hspace{-0.11em}}
 
-\newcommand*{\listRestN}{\desugarN}
-\newcommand*{\listRestFwdF}[1]{\fwdF{\listRestN}{#1}}
-\newcommand*{\listRestBwdF}[1]{\bwdF{\listRestN}{#1}}
+%\newcommand*{\listRestN}{\desugarN}
+\newcommand*{\listRestFwdF}[1]{\desugarFwdF{#1}}%{\fwdF{\listRestN}{#1}}
+\newcommand*{\listRestBwdF}[1]{\desugarBwdF{#1}}%{\bwdF{\listRestN}{#1}}
 
 \newcommand*{\clauseS}{\rightharpoonup}
 \newcommand*{\clauseBwdS}{\mathrel{{\rotatebox[origin=c]{-45}{$\clauseS$}}}}
