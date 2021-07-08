@@ -3,6 +3,22 @@
 
 \subsection{Other related work}
 
+The technically closest work is Galois slicing \cite{perera12a,ricciotti17,perera16d}, which has already been discussed in some detail in \secref{de-morgan:galois-slicing}. Here we consider other related work in the data visualisation and data provenance literature.
+
+\paragraph{Provenance in data visualisation}
+
+A connection between data provenance and common data visualisation features like brushing and linking was convincingly argued for in recent vision paper by \citet{psallidas18}. This was proposed in a relational (query processing) setting where the relevant notion of provenance was lineage, without the round-tripping features of Galois connections.
+
+\paragraph{Existing brushing and linking systems}
+
+Brushing and linking is a view coordination technique long-studied in the data visualisation community, and one that \citet{roberts06} argued should be ubiquitous, although no automated method of implementation was proposed. Our approach will be the first to deliver a potentially ubiquitous mechanism, and moreover one which goes signicantly beyond the capabilities of existing systems by giving a reader access to information that helps explain \emph{why} two visual selections are linked.
+
+\paragraph{Data provenance}
+
+\paragraph{Taint tracking}
+
 \subsection{Conclusions and future work}
 
-One disadvantage of our approach vis-\'a-vis program slicing is that a program ``selection'' does not really resemble a program with some statements or expressions elided, but merely picks out various constants and constructors in the program involved in constructing the output selection. It is not clear with our approach how to ``extract'' a (potentially executable) slice for a particular output selection; for primitive values, one could extract the \emph{expression provenance} \cite{acar12}, which would explain how the primitive value was computed using primitive operations, but it is not easy to see how this generalises to structured outputs. Moreover there is no property that ensures the expression provenance is in some sense a projection of the semantics of the original program; \cite{field98} explore this notion of executable slice in the context of term rewriting systems, so perhaps this idea could be adapted to our core calculus and used to derive a notion of execution slice. \todo{needs work}
+``Data-transparent'' computational science appears to be well-motivated problem because of an increasing interest in open, accountable practices in science and data-driven decision making. Existing program slicing and data provenance techniques do not appear to lend themselves well to this problem, either being tailored to specific paradigms like relational query languages, or not suited to richly structured outputs like visualisations. Our approach allows focusing on an arbitrary substructure, and provides the robust properties of Galois connections for ensuring that the analyses are coherent. This could be of benefit to readers, but recent work by \citet{walny19} suggests that designers would also benefit from these sorts of transparency features during the design stage, e.g.~to check whether a quantity is represented by diameter or area in a bubble chart.
+
+One disadvantage of our approach vis-\'a-vis program slicing is that a program ``selection'' does not really resemble a program with some statements or expressions elided, but merely picks out various constants and constructors in the program involved in constructing the output selection. It is not clear with our approach how to ``extract'' a (potentially executable) slice for a particular output selection; for primitive values, one could extract the \emph{expression provenance} \cite{acar12}, which would explain how the primitive value was computed using primitive operations, but it is not easy to see how this generalises to structured outputs. Moreover there is no property that ensures the expression provenance is in some sense a projection of the semantics of the original program; \cite{field98} explore this notion of executable slice in the context of term rewriting systems, so perhaps this idea could be adapted to our core calculus and used to derive a notion of execution slice.
