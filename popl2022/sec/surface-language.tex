@@ -10,7 +10,7 @@ Elaborating a richer surface language into a simpler core language is a common p
 
 The surface language \OurLanguage{} extends the core syntax with list notation $\kw{[} s \comma \ldots \comma s' \kw{]}$, Haskell 98-style list comprehensions \cite{peytonJones03}, list enumerations, first-class primitives and piecewise function definitions, as shown in \figref{surface-language:syntax}. Typing rules are \ifappendices given in \appref{surface-language}, \figrefTwo{surface-language:typing-term}{surface-language:typing-pattern}\else \IncludedWithSupplementaryMaterial\fi. We attach selection states $\alpha$ to (selectable) surface terms $s, t$ that desugar to selectable core terms, and let $\raw{s}$, $\raw{t}$ range over ``raw'' surface terms, which are isomorphic to the selectable terms where the type of selection states is the unit lattice $\Unit$.
 
-\figref{surface-language:example-1} shows how the end-to-end mapping would appear to a user. (For illustrative purposes the library function \kw{map} and some raw data are included in the same source file.) On the left, the user selects the first cons cell (green) in the output; by backwards evaluating and then backwards desugaring, we are able to highlight the list comprehension, the cons in the second equation of \kw{map}, and the two occurrences of the constant \kw{"Hydro"}. These last two are highlighted because the selected output cell was constructed by eliminating a Boolean value that was in turn constructed by the primitive \kw{==} operator, which consumed the two strings. On the basis of this interaction, the user might conjecture that the two occurrences of \kw{"Geo"} were somehow responsible for the inclusion of the third cons cell in the output, which they can confirm by making the green selection on the right. (Highlighting \kw{==} too would clearly be helpful here; we discuss this possibility in \secref{conclusion}.)
+\figref{surface-language:example-1} shows how the end-to-end mapping would appear to a user. (For illustrative purposes the library function \kw{map} and some raw data are included in the same source file.) On the left, the user selects the first cons cell (green) in the output; by backwards evaluating and then backwards desugaring, we are able to highlight the list comprehension, the cons in the second equation of \kw{map}, and the two occurrences of the constant \kw{"Hydro"}. These last two are highlighted because the selected output cell was constructed by eliminating a Boolean value that was in turn constructed by the primitive \kw{==} operator, which consumed the two strings. On the basis of this interaction, the user might conjecture that the two occurrences of \kw{"Geo"} were somehow responsible for the inclusion of the third cons cell in the output; they can confirm this by making the green selection on the right. (Highlighting \kw{==} too would clearly be helpful here; we discuss this possibility in \secref{conclusion}.)
 
 \begin{figure}
    \begin{subfigure}{0.48\textwidth}
@@ -48,7 +48,7 @@ It is easy to verify that $\desugarFwdF{t}$ and $\desugarBwdF{t}$ are monotonic.
 
 \begin{theorem}[Galois connection for desugaring]
   \label{thm:surface-language:desugar:gc}
-     Suppose $t \desugarFwdR e$. Then $\desugarGC{t} \eqdef (\desugarFwdF{t}, \desugarBwdF{t}): \Sel{\raw{e}}{A} \to \Sel{\raw{s}}{A}$ is a Galois connection.
+     Suppose $t \desugarFwdR e$. Then ${\desugarGC{t}} \eqdef (\desugarFwdF{t}, \desugarBwdF{t}): \Sel{\raw{e}}{A} \to \Sel{\raw{s}}{A}$ is a Galois connection.
 \end{theorem}
 
 \begin{proof}
