@@ -48,7 +48,7 @@ It is easy to verify that $\desugarFwdF{t}$ and $\desugarBwdF{t}$ are monotonic.
 
 \begin{theorem}[Galois connection for desugaring]
   \label{thm:surface-language:desugar:gc}
-     Suppose $t \desugarFwdR e$. Then ${\desugarGC{t}} \eqdef (\desugarFwdF{t}, \desugarBwdF{t}): \Sel{\raw{e}}{A} \to \Sel{\raw{s}}{A}$ is a Galois connection.
+     Suppose $t \desugarFwdR e$. Then ${\desugarGC{t}} \eqdef (\desugarBwdF{t}, \desugarFwdF{t}): \Sel{\raw{e}}{A} \to \Sel{\raw{s}}{A}$ is a Galois connection.
 \end{theorem}
 
 \begin{proof}
