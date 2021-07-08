@@ -1,7 +1,7 @@
 \section{A bidirectional dynamic dependency analysis}
 \label{sec:data-dependencies}
 
-We now extend the core language described in \secref{core-language} with a bidirectional mechanism for tracking data dependencies. The first thing to establish (\secref{data-dependencies:lattices-of-selections}) is a way of selecting parts of the program of interest. Consider the \kw{data} field of the bar chart computed in \figref{introduction:data-linking}, which contains a list of records; the record corresponding to China is $\exRec{\bind{\kw{x}}{\kw{"China"}} \concat \bind{\kw{y}}{\kw{295.3}}}$. In the example, we selected the value of the field $\kw{y}$ in order to see the corresponding selection on the input.
+We now extend the core language described in \secref{core-language} with a bidirectional mechanism for tracking data dependencies. The first thing to establish (\secref{data-dependencies:lattices-of-selections}) is a way of selecting (parts of) values. Consider the \kw{data} field of the bar chart computed in \figref{introduction:data-linking}, which contains a list of records; the record corresponding to China is $\exRec{\bind{\kw{x}}{\kw{"China"}} \concat \bind{\kw{y}}{\kw{295.3}}}$. In the example, we selected the value of the field $\kw{y}$ in order to see the corresponding selection on the input.
 
 \input{sec/data-dependencies/selections}
 \input{sec/data-dependencies/analyses}
