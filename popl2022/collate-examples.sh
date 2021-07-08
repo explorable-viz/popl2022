@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-rm -rf fluid
+rm -rf fluid/
 mkdir fluid
 wget -P fluid https://raw.githubusercontent.com/explorable-viz/fluid/release/fluid/example/linking/bar-chart.fld
 ./post-process.sh fluid/bar-chart.fld
