@@ -2,7 +2,7 @@
 \section{Galois connections for desugaring}
 \label{sec:surface-language}
 
-Factoring a language into a core language, and a surface language that elaborates more user-oriented features into the core is a common pattern, with well known benefits. It can, however, make it hard to express information to the programmer in terms of the surface language. We face this problem with the analysis in \secref{data-dependencies}, which links outputs not only to inputs, but also to expressions responsible for introducing data. This could, for example, be used in an IDE to link structured outputs to relevants code fragments, but only if we are able to map those term selections back to the surface program. In this section we sketch a bidirectional desugaring procedure which which addresses this, and which can be composed with the Galois dependency analysis defined in \secref{data-dependencies:analyses}.
+Elaborating a richer surface language into a simpler core language is a common pattern with well known benefits. It can, however, make it hard to express certain information to the programmer in terms of the surface language. We face this problem with the analysis in \secref{data-dependencies}, which links outputs not only to inputs, but also to expressions responsible for introducing data. This could, for example, be used in an IDE to link structured outputs to relevants code fragments, but only if we are able to map those term selections back to the surface program. In this section we sketch a bidirectional desugaring procedure which addresses this, and which can be composed with the Galois dependency analysis defined in \secref{data-dependencies:analyses}.
 
 \input{fig/surface-language/syntax}
 
@@ -40,7 +40,7 @@ The rules for list notation map selection states $\alpha$ on the opening and clo
 
 \subsection{Backward desugaring}
 
-To desugar backwards, we define a family of \textit{backward desugaring} functions $\desugarBwdR{\raw{t}}: \Sel{\raw{e}}{A} \to \Sel{\raw{t}}{A}$ for any $\raw{t} \desugarR \raw{e}$ which uses the original raw surface term $\raw{t}$ to guide the analysis backwards. (The role of $\raw{t}$ is disambiguating the backwards rules should be clear by considering that $e$ will typically match multiple rules but only one for a given $\raw{t}$.) \figref{surface-language:desugar} gives some representative rules; the full definition is {\ifappendices given in \appref{surface-language} \else \IncludedWithSupplementaryMaterial.\fi} When reversing a desugaring step, the guiding principle is to take the join of the selection states of any core syntax constructed by this step, and use that as the selection state on the original surface syntax, turning demand on the core term into (minimal) demand on the surface term. Thus the effect of the list comprehension rules and auxiliary judgements is to set the demand on the comprehension itself to be the join of the demand of all the syntax generated during the elaboration of the comprehension. In the \ruleName{$\desugarBwdR{}$-list-comp-gen} case, the $\totaliseFwdR{p}$ used to elaborate a singleton eliminator $\sigma$ into a total one has backwards version $\totaliseBwdR{p}$ which returns the join $\beta$ of the demands on the empty lists synthesised during desugaring.
+To desugar backwards, we define a family of \textit{backward desugaring} functions $\desugarBwdR{\raw{t}}: \Sel{\raw{e}}{A} \to \Sel{\raw{t}}{A}$ for any $\raw{t} \desugarR \raw{e}$ which uses the original raw surface term $\raw{t}$ to guide the analysis backwards. (The role of $\raw{t}$ in disambiguating the backwards rules should be clear by considering that $e$ will typically match multiple rules but only one for a given $\raw{t}$.) \figref{surface-language:desugar} gives some representative rules; the full definition is {\ifappendices given in \appref{surface-language} \else \IncludedWithSupplementaryMaterial.\fi} When reversing a desugaring step, the guiding principle is to take the join of the selection states of any core syntax constructed at this step, and use that as the selection state on the original surface syntax, turning demand on the core term into (minimal) demand on the surface term. Thus the effect of the list comprehension rules and auxiliary judgements is to set the demand on the comprehension itself to be the join of the demand of all the syntax generated during the elaboration of the comprehension. In the \ruleName{$\desugarBwdR{}$-list-comp-gen} case, the $\totaliseFwdR{p}$ used to elaborate a singleton eliminator $\sigma$ into a total one has backwards version $\totaliseBwdR{p}$ which returns the join $\beta$ of the demands on the empty lists synthesised during desugaring.
 
 \subsection{Round-tripping properties}
 
@@ -48,7 +48,7 @@ It is easy to verify that $\desugarFwdF{t}$ and $\desugarBwdF{t}$ are monotonic.
 
 \begin{theorem}[Galois connection for desugaring]
   \label{thm:surface-language:desugar:gc}
-     Suppose $t \desugarFwdR e$. Then $(\desugarFwdF{t}, \desugarBwdF{t}): \Sel{\raw{e}}{A} \to \Sel{\raw{s}}{A}$ is a Galois connection.
+     Suppose $t \desugarFwdR e$. Then $\desugarGC{t} \eqdef (\desugarFwdF{t}, \desugarBwdF{t}): \Sel{\raw{e}}{A} \to \Sel{\raw{s}}{A}$ is a Galois connection.
 \end{theorem}
 
 \begin{proof}
