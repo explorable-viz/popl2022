@@ -130,11 +130,7 @@
    \inferrule*[
    ]
    {
-      \alpha \leq \alpha'
-      \\
-      v \leq u
-      \\
-      v' \leq u'
+      (\alpha, v, v') \leq (\alpha', v, v')
    }
    {
       \annCons{v}{v'}{\alpha} \leq \annCons{u}{u'}{\alpha'}
@@ -145,9 +141,7 @@
    \inferrule*[
    ]
    {
-      v \leq \hole
-      \\
-      v' \leq \hole
+      (v, v') \leq (\hole, \hole)
    }
    {
       \annCons{v}{v'}{\bot} \leq \hole
@@ -158,13 +152,7 @@
    \inferrule*[
    ]
    {
-      \rho \leq \rho'
-      \\
-      h \leq h'
-      \\
-      \alpha \leq \alpha'
-      \\
-      \sigma \leq \sigma'
+      (\rho, h, \alpha, \sigma) \leq (\rho', h', \alpha', \sigma')
    }
    {
       \annClosure{\rho}{h}{\alpha}{\sigma} \leq \annClosure{\rho'}{h'}{\alpha'}{\sigma'}
@@ -175,11 +163,7 @@
    \inferrule*[
    ]
    {
-      \rho \leq \sub{\hole}{\rho}
-      \\
-      h \leq \hole
-      \\
-      \sigma \leq \hole
+      (\rho, h, \sigma) \leq (\sub{\hole}{\rho}, \hole, \hole)
    }
    {
       \annClosure{\rho}{h}{\bot}{\sigma} \leq \hole
