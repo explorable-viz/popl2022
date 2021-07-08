@@ -2,9 +2,7 @@
 \section{Galois connections for desugaring}
 \label{sec:surface-language}
 
-\todo{Core language serves as a useful ``core'' language but lacks realistic features} So far we have primarily focused on tracking dependencies between values. However, the analysis in \secref{data-dependencies} also assigns selection states to the terms responsible for introducing data. This could, for example, be used in an IDE to links parts of outputs to relevants code fragments, but only if we are able to map those term selections back to the surface program. Then we could retain the benefits of factoring advanced language features through a core dependency-tracking calculus, while preserving the user's ability to understand the results of the analysis in terms of the surface language. In this section we briefly introduce the surface language \OurLanguage{} used in the rest of the paper, and sketch a bidirectional desugaring procedure which maps selections between the two languages.
-
-%The Galois connection for desugaring then composes with the Galois connection for dependency analysis in \secref{data-dependencies:analyses}.
+Factoring a language into a core language, and a surface language that elaborates more user-oriented features into the core is a common pattern, with well known benefits. It can, however, make it hard to express information to the programmer in terms of the surface language. We face this problem with the analysis in \secref{data-dependencies}, which tracks dependencies not only between outputs and inputs, but also between outputs and expressions responsible for introducing data. This could, for example, be used in an IDE to link structured outputs to relevants code fragments, but only if we are able to map those term selections back to the surface program. In this section we sketch a bidirectional desugaring procedure which maps selections between our surface language \OurLanguage{} and our core language, which can be composed with the Galois dependency analysis defined \secref{data-dependencies:analyses}.
 
 \input{fig/surface-language/syntax}
 
@@ -60,3 +58,5 @@ It is easy to verify that $\desugarFwdF{t}$ and $\desugarBwdF{t}$ are monotonic.
 \begin{proof}
    \ifappendices See \appref{proofs-surface:desugar:gc}. \else \ProofInSupplementaryMaterial \fi
 \end{proof}
+
+\todo{Concluding remarks. Want to support backwards desugaring at an arbitrary step in the computation; may require a more sophisticated approach to desugaring that interleaves it with execution. Also need a ``resugaring'' for values, compatible with the desugaring.}
