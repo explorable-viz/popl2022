@@ -2,7 +2,7 @@
 \section{Galois connections for desugaring}
 \label{sec:surface-language}
 
-Elaborating a richer surface language into a simpler core language is a common pattern with well known benefits. It can, however, make it hard to express certain information to the programmer in terms of the surface language. We face this problem with the analysis in \secref{data-dependencies}, which links outputs not only to inputs, but also to expressions responsible for introducing data. This could, for example, be used in an IDE to link structured outputs to relevants code fragments, but only if we are able to map those term selections back to the surface program. In this section we sketch a bidirectional desugaring procedure which addresses this, and which can be composed with the Galois dependency analysis defined in \secref{data-dependencies:analyses}.
+Elaborating a richer surface language into a simpler core language is a common pattern with well known benefits. It can also make it harder to express certain information to the programmer in terms of the surface language. We face this problem with the analysis in \secref{data-dependencies}, which links outputs not only to inputs, but also to expressions responsible for introducing data. We could use such a feature in an IDE to link structured outputs to relevants code fragments, but only if we are able to map those term selections back to the surface program. In this section we sketch a bidirectional desugaring procedure which addresses this, and which composes with the Galois dependency analysis defined in \secref{data-dependencies:analyses}.
 
 \input{fig/surface-language/syntax}
 
