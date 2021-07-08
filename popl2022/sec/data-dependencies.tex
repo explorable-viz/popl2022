@@ -3,20 +3,5 @@
 
 We now extend the core language described in \secref{core-language} with a bidirectional mechanism for tracking data dependencies. The first thing to establish (\secref{data-dependencies:lattices-of-selections}) is a way of selecting parts of the program of interest. Consider the \kw{data} field of the bar chart computed in \figref{introduction:data-linking}, which contains a list of records; the record corresponding to China is $\exRec{\bind{\kw{x}}{\kw{"China"}} \concat \bind{\kw{y}}{\kw{295.3}}}$. In the example, we selected the value of the field $\kw{y}$ in order to see the corresponding selection on the input.
 
-\subsection{Lattices of selections}
-\label{sec:data-dependencies:lattices-of-selections}
-
-Our approach to representing selections is shown in \figref{core-syntax-selection}. The basic idea is to parameterise the type $\Set{Val}$ of values by a (bounded) lattice $\Ann{A}$ of \emph{selection states} $\alpha$. We add selection states to Booleans, integers, records and lists. For our present purposes, we are only interested in dependencies between first-order data, so closures are not (directly) selectable, although they have selectable parts; closures also capture the \emph{ambient availability} (explained in \secref{data-dependencies:forward-eval} below), which is also a selection state $\alpha$. We parameterise the type $\Set{Term}$ of terms in the same way, but only add selection states to the term constructors corresponding to selectable values, allowing us to trace data dependencies back to expressions that appear in the source code. We return to this in \secref{surface-language}.
-
-\input{fig/core-language/slicing/syntax}
-
-The fact that $\Ann{A}$ is a bounded lattice means it has top and bottom elements $\top$ and $\bot$ representing fully selected/unselected, plus meet and join operations $\meet$ and $\join$ for combining selection information, with $\top$ and $\bot$ as their respective units. The two-point lattice $\Bool \eqdef \Lattice{\Bool}{\TT}{\FF}{\wedge}{\vee}$ can represent the selection above as $\annRec{\bind{\kw{x}}{\annStr{\kw{"China"}}{\FF}} \concat \bind{\kw{y}}{\annInt{\kw{295.3}}{\TT}}}{\FF}$, indicating that the number $\exInt{\kw{295.3}}$ is selected, but neither the string $\exStr{\kw{"China"}}$, nor the record itself is selected. Because lattices are closed under (component-wise) products, we often write $(\alpha, \beta) \leq (\alpha', \beta')$ to mean that $\alpha \leq \alpha'$ and $\beta \leq \beta'$. This also suggests more interesting lattices of selections, such as vectors of Booleans to represent multiple selections simultaneously, which might be visualised using different colours (as in \figref{introduction:data-linking}).
-
-\begin{figure}
-   \input{fig/core-language/slicing/leq-value}
-   \caption{Partial order on values}
-   \label{fig:data-dependencies:leq}
-\end{figure}
-
 \input{sec/data-dependencies/selections}
 \input{sec/data-dependencies/analyses}
