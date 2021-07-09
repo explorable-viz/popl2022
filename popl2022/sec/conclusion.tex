@@ -1,21 +1,23 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Our research is motived by the goal of making computational outputs which are able to reveal how they relate to data in a fine-grained way. A casual reader who wants to understand or fact-check a chart, or a scientist evaluating another's work, should be able to do so by interacting directly with outputs. Recent work by \citeauthor{walny19} suggests that developers would also benefit from this while implementing a visualisation, for example to check whether a quantity is represented by diameter or area in a bubble chart \cite{walny19}.
+Our research was motived by the goal of making computational outputs which are automatically able to reveal how they relate to data in a fine-grained way. A casual reader who wants to understand or fact-check a chart, or a scientist evaluating another's work, should be able to do so by interacting directly with outputs. Recent work by \citeauthor{walny19} suggests that developers would also benefit from such a feature while implementing visualisations, for example to check whether a quantity is represented by diameter or area in a bubble chart \cite{walny19}.
 
-Galois connections provide an appealing framework for this problem because of their nice round-tripping properties. However,  existing dynamic analysis techniques based on Galois connections do not lend themselves to richly structured outputs like visualisations and matrices. We presented an approach that allows focusing on arbitrary substructures, which also allows data selections to be inverted. This allows not just linking of outputs to data, but of outputs to other outputs, providing a mathematical basis for a widely used (but so far ad hoc) feature in data visualisation. We implemented our approach in \OurLanguage, a realistic high-level functional programming language. %
+Galois connections provide an appealing setting for this problem because of their nice round-tripping properties. However,  existing dynamic analysis techniques based on Galois connections do not lend themselves to richly structured outputs like visualisations and matrices. We presented an approach that allows focusing on arbitrary substructures, which also allows data selections to be inverted. This allows not just linking of outputs to data, but of outputs to other outputs, providing a mathematical basis for a widely used (but so far ad hoc) feature in data visualisation. We implemented our approach in \OurLanguage, a realistic high-level functional programming language. %
 \ifanonymous%
    A link to our GitHub repository is included in the non-anonymised version of the paper.
 \else%
    Our implementation can be found at \url{https://github.com/explorable-viz/fluid}.%
 \fi%
 
-One disadvantage of our approach vis-\'a-vis program slicing is that a program ``selection'' does not really resemble a program with some statements or expressions elided; it merely picks out various constants and constructors in the program involved in constructing the output selection. It is not clear with our approach how to ``extract'' a (potentially executable) slice for a particular output selection. For primitive values, one could extract the \emph{expression provenance} \cite{acar12}, which would explain how the primitive value was computed using primitive operations, but it is not easy to see how this generalises to structured outputs. Moreover there is no property that ensures the expression provenance is in some sense a projection of the semantics of the original program; \citet{field98} explore this notion of executable slice in the context of term rewriting systems, so perhaps this idea could be adapted to our core calculus and used to derive a notion of execution slice.
-
 \subsection{Other related work}
 \label{sec:conclusion:other-related-work}
 
-Prior work on Galois slicing \cite{perera12a,ricciotti17,perera16d} was discussed in some detail in \secref{de-morgan:galois-slicing}. We close by summarising other related work, which also provides the context for considering some limitations of the present approach and opportunities to develop it further.
+We close by summarising other related work, which also provides the context for considering some limitations of the present approach and opportunities to develop it further. Prior work on Galois slicing \cite{perera12a,ricciotti17,perera16d} was discussed in some detail in \secref{de-morgan:galois-slicing}.
+
+\paragraph{Provenance analysis and executable slicing}
+
+One disadvantage of our approach vis-\'a-vis program slicing is that a program ``selection'' does not really resemble a program with some statements or expressions elided; it merely picks out various constants and constructors in the program involved in constructing the output selection. It is not clear with our approach how to ``extract'' a (potentially executable) slice for a particular output selection. For primitive values, one could extract the \emph{expression provenance} \cite{acar12}, which would explain how the primitive value was computed using primitive operations, but it is not easy to see how this generalises to structured outputs. Moreover there is no property that ensures the expression provenance is in some sense a projection of the semantics of the original program; \citet{field98} explore this notion of executable slice in the context of term rewriting systems, so perhaps this idea could be adapted to our core calculus and used to derive a notion of execution slice.
 
 \paragraph{Data provenance and dynamic program analysis}
 
@@ -28,4 +30,3 @@ A connection between data provenance and common data visualisation features like
 \paragraph{Brushing and linking}
 
 Brushing and linking has been studied in the data visualisation community since seminal work by \citet{becker87}. \citet{roberts06} argued it should be ubiquitous, although no automated method of implementation was proposed. Geospatial applications like GeoDa \cite{anselin06} rely heavily on such features for coordinating views, and libraries like d3.js and Plotly support linking, with varying degrees of programmer effort required. However, existing approaches are ad hoc and typically hardcoded to specific views or applications, or require programmer effort. No existing approach provides automation, round-tripping guarantees, or is able to automatically provide a concise view of the data that explains why two visual elements are linked.
-
