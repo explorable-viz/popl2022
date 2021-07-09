@@ -4,13 +4,11 @@
 Our research is motived by the goal of making computational outputs which are able to reveal how they relate to data in a fine-grained way. A casual reader who wants to understand or fact-check a chart, or a scientist evaluating another's work, should be able to do so by interacting directly with outputs. Recent work by \citeauthor{walny19} suggests that developers would also benefit from this while implementing a visualisation, for example to check whether a quantity is represented by diameter or area in a bubble chart \cite{walny19}.
 
 Galois connections provide an appealing framework for this problem because of their nice round-tripping properties. However,  existing dynamic analysis techniques based on Galois connections do not lend themselves to richly structured outputs like visualisations and matrices. We presented an approach that allows focusing on arbitrary substructures, which also allows data selections to be inverted. This allows not just linking of outputs to data, but of outputs to other outputs, providing a mathematical basis for a widely used (but so far ad hoc) feature in data visualisation. We implemented our approach in \OurLanguage, a realistic high-level functional programming language. %
-\makeatletter%
-\if@ACM@anonymous%
+\ifanonymous%
    A link to our GitHub repository is included in the non-anonymised version of the paper.
 \else%
    Our implementation can be found at \url{https://github.com/explorable-viz/fluid}.%
 \fi%
-\makeatother%
 
 One disadvantage of our approach vis-\'a-vis program slicing is that a program ``selection'' does not really resemble a program with some statements or expressions elided; it merely picks out various constants and constructors in the program involved in constructing the output selection. It is not clear with our approach how to ``extract'' a (potentially executable) slice for a particular output selection. For primitive values, one could extract the \emph{expression provenance} \cite{acar12}, which would explain how the primitive value was computed using primitive operations, but it is not easy to see how this generalises to structured outputs. Moreover there is no property that ensures the expression provenance is in some sense a projection of the semantics of the original program; \citet{field98} explore this notion of executable slice in the context of term rewriting systems, so perhaps this idea could be adapted to our core calculus and used to derive a notion of execution slice.
 

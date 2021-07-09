@@ -1,12 +1,10 @@
 % https://tex.stackexchange.com/questions/412907
 \newcommand*{\OurLanguage}{%
-   \makeatletter%
-   \if@ACM@anonymous%
+   \ifanonymous%
       [xxxxx]%
    \else%
       Fluid%
    \fi%
-   \makeatother%
    }
 
 \newcommand*{\ProofInSupplementaryMaterial}{Included with supplementary materials.}
