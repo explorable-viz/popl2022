@@ -1,0 +1,171 @@
+\flushleft \shadebox{$v \leq v'$}
+\begin{smathpar}
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \hole \leq v
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \alpha \leq \alpha'
+   }
+   {
+      \annInt{n}{\alpha} \leq \annInt{n}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annInt{n}{\bot} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \alpha \leq \alpha'
+   }
+   {
+      \annTrue{\alpha} \leq \annTrue{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annTrue{\bot} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \alpha \leq \alpha'
+   }
+   {
+      \annFalse{\alpha} \leq \annFalse{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annFalse{\bot} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \alpha \leq \alpha'
+      \quad
+      v_i \leq u_i
+      \quad
+      (\forall i \in \length{\vec{x}})
+   }
+   {
+      \annRec{\vec{\bind{x}{v}}}{\alpha} \leq \annRec{\vec{\bind{x}{u}}}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      v_i \leq \hole
+      \quad
+      (\forall i \in \length{\vec{x}})
+   }
+   {
+      \annRec{\vec{\bind{x}{v}}}{\bot} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \alpha \leq \alpha'
+   }
+   {
+      \annNil{\alpha} \leq \annNil{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\bot} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      (\alpha, v, v') \leq (\alpha', v, v')
+   }
+   {
+      \annCons{v}{v'}{\alpha} \leq \annCons{u}{u'}{\alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      (v, v') \leq (\hole, \hole)
+   }
+   {
+      \annCons{v}{v'}{\bot} \leq \hole
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      (\rho, h, \alpha, \sigma) \leq (\rho', h', \alpha', \sigma')
+   }
+   {
+      \annClosure{\rho}{h}{\alpha}{\sigma} \leq \annClosure{\rho'}{h'}{\alpha'}{\sigma'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+   ]
+   {
+      (\rho, h, \sigma) \leq (\sub{\hole}{\rho}, \hole, \hole)
+   }
+   {
+      \annClosure{\rho}{h}{\bot}{\sigma} \leq \hole
+   }
+\end{smathpar}

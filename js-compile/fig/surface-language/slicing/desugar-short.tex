@@ -1,0 +1,288 @@
+{\flushleft \shadebox{$s \desugarFwdR e$}
+\hfill \textbfit{$s$ forward-desugars to $e$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-nil}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha} \desugarFwdR \annNil{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-cons}}
+   ]
+   {
+      s \desugarFwdR e
+      \\
+      s' \desugarFwdR e'
+   }
+   {
+      \annCons{s}{s'}{\alpha} \desugarFwdR \annCons{e}{e'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-non-empty-list}}
+   ]
+   {
+      s \desugarFwdR e
+      \\
+      r \desugarFwdR e'
+   }
+   {
+      \annList{s}{r}{\alpha} \desugarFwdR \annCons{e}{e'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\desugarFwdR$-list-comp-done}}]
+   {
+      s \desugarFwdR e
+   }
+   {
+      \annListComp{s}{\seqEmpty}{\alpha}
+      \desugarFwdR
+      \annCons{e}{\annNil{\alpha}}{\alpha}
+   }
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-comp-gen}}
+   ]
+   {
+      \annListComp{s}{\vec{q}}{\alpha} \desugarFwdR e
+      \\
+      p, e \clauseFwdR \sigma
+      \\
+      \totaliseFwd{\sigma}{\alpha}{p}{\sigma'}
+      \\
+      s' \desugarFwdR e'
+   }
+   {
+      \annListComp{s}{\qualGenerator{p}{s'} \concat \vec{q}}{\alpha}
+      \desugarFwdR
+      \exApp{\exApp{\funConcatMap}{\exLambda{\sigma'}}}{e'}
+   }\\
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-comp-guard}}
+   ]
+   {
+      \annListComp{s}{\vec{q}}{\alpha} \desugarFwdR e
+      \\
+      s' \desugarFwdR e'
+   }
+   {
+      \annListComp{s}{\qualGuard{s'} \concat \vec{q}}{\alpha}
+      \desugarFwdR
+      \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-comp-decl}}
+   ]
+   {
+      \annListComp{s}{\vec{q}}{\alpha} \desugarFwdR e
+      \\
+      p, e \clauseFwdR \sigma
+      \\
+      s' \desugarFwdR e
+   }
+   {
+      \annListComp{s}{\qualDeclaration{p}{s'} \concat \vec{q}}{\alpha}
+      \desugarFwdR
+      \exApp{\exLambda{\sigma}}{e}
+   }
+\end{smathpar}
+
+\vspace{1mm}
+{\flushleft \shadebox{$e \desugarBwdR{\raw{t}} s$}
+\hfill \textbfit{$e$ backward-desugars along $\raw{t}$ to $s$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-nil}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annNil{\alpha} \desugarBwdR{\exNil} \annNil{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-cons}}
+   ]
+   {
+      e \desugarBwdR{t} s
+      \\
+      e' \desugarBwdR{t'} s'
+   }
+   {
+      \annCons{e}{e'}{\alpha}
+      \desugarBwdR{\exCons{t}{t'}}
+      \annCons{s}{s'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-non-empty-list}}
+   ]
+   {
+      e \desugarBwdR{t} s
+      \\
+      e' \desugarBwdR{r} r'
+   }
+   {
+      \annCons{e}{e'}{\alpha}
+      \desugarBwdR{\exList{t}{r}}
+      \annList{s}{r'}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\desugarBwdR{}$-list-comp-done}}]
+   {
+      e \desugarBwdR{t} s
+   }
+   {
+      \annCons{e}{\annNil{\alpha}}{\alpha'}
+      \desugarBwdR{\exListComp{t}{\seqEmpty}}
+      \annListComp{s}{\seqEmpty}{\alpha \join \alpha'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-list-comp-gen}}
+   ]
+   {
+      e \desugarBwdR{t} s
+      \\
+      \totaliseBwd{\sigma}{p}{\sigma'}{\beta}
+      \\
+      \sigma'
+      \clauseBwdR{p}
+      e'
+      \\
+      e'
+      \desugarBwdR{\exListComp{t'}{\vec{q}}}
+      \annListComp{s'}{\vec{q}'}{\beta'}
+   }
+   {
+      \exApp{\exApp{\funConcatMap}{\exLambda{\sigma}}}{e}
+      \desugarBwdR{\exListComp{t'}{\qualGenerator{p}{t} \concat \vec{q}}}
+      \annListComp{s'}{\qualGenerator{p}{s} \concat \vec{q}'}{\beta \join \beta'}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-list-comp-guard}},
+   ]
+   {
+      e' \desugarBwdR{t'} s'
+      \\
+      e \desugarBwdR{\exListComp{t}{\vec{q}}} \annListComp{s}{\vec{q}'}{\beta}
+   }
+   {
+      \exApp{\exLambda{\elimBool{e}{\annNil{\alpha}}}}{e'}
+      \desugarBwdR{\exListComp{t}{\qualGuard{t'} \concat \vec{q}}}
+      \annListComp{s}{\qualGuard{s'} \concat \vec{q}'}{\alpha \join \beta}
+   }
+   \hspace{4mm}
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-list-comp-decl}},
+   ]
+   {
+      \sigma \clauseBwdR{p} e'
+      \\
+      e'
+      \desugarBwdR{\exListComp{t'}{\vec{q}}}
+      \annListComp{s'}{\vec{q}'}{\beta}
+      \\
+      e \desugarBwdR{t} s
+   }
+   {
+      \exApp{\exLambda{\sigma}}{e}
+      \desugarBwdR{\exListComp{t'}{\qualDeclaration{p}{t} \concat \vec{q}}}
+      \annListComp{s'}{\qualDeclaration{p}{s} \concat \vec{q}'}{\beta}
+   }
+\end{smathpar}
+
+\vspace{1mm}
+\begin{minipage}[t]{0.4\textwidth}%
+{\flushleft \shadebox{$r \desugarFwdR e$}
+\hfill \textbfit{$r$ forward-desugars to $e$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-rest-end}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annListEnd{\alpha} \desugarFwdR \annNil{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarFwdR$-list-rest-cons}}
+   ]
+   {
+      s \desugarFwdR e
+      \\
+      r \desugarFwdR e'
+   }
+   {
+      (\annListNext{s}{r}{\alpha}) \desugarFwdR \annCons{e}{e'}{\alpha}
+   }
+\end{smathpar}%
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.52\textwidth}%
+{\flushleft \shadebox{$e \desugarBwdR{\raw{r}} r'$}
+\hfill \textbfit{$e$ backward-desugars along $\raw{r}$ to $r'$}}
+\begin{smathpar}
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-list-rest-end}}
+   ]
+   {
+      \strut
+   }
+   {
+      \annot{\exNil}{\alpha}
+      \desugarBwdR{\exListEnd}
+      \annot{\exListEnd}{\alpha}
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      lab={\ruleName{$\desugarBwdR{}$-list-rest-cons}}
+   ]
+   {
+      e \desugarBwdR{t} s
+      \\
+      e' \desugarBwdR{r} r'
+   }
+   {
+      \annCons{e}{e'}{\alpha}
+      \desugarBwdR{(\exListNext{t}{r})}
+      (\annListNext{s}{r'}{\alpha})
+   }
+\end{smathpar}%
+\end{minipage}

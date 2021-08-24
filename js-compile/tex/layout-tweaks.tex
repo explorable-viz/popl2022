@@ -1,0 +1,50 @@
+\everymath{\displaystyle}
+
+\allowdisplaybreaks
+
+% I find the align environments use a bit too much vertical spacing.
+\addtolength{\jot}{-0.25em}
+\def\arraystretch{1.1}
+\setlength{\arraycolsep}{3pt}
+
+\raggedbottom % sane vertical paragraph justification
+
+\hypersetup{ % not using recent enough version of hyperref for [hidelinks] option
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+
+\captionsetup[subfigure]{aboveskip=0pt,belowskip=0pt} % not sure if this is doing anything
+
+\newcommand*{\formatLink}[1]{\ul{#1}}
+\newcommand*{\Href}[2]{\href{#1}{\formatLink{#2}}}
+
+% HTML colour names
+\definecolor{Yellow}{RGB}{255,255,0}
+\definecolor{LightGreen}{RGB}{144,238,144}
+
+\definecolor{GainsboroDarkened}{RGB}{211,211,211}
+\definecolor{GainsboroFaded}{RGB}{232,232,232}
+
+%\DeclareRobustCommand{\codeErase}[1]{{\sethlcolor{GainsboroFaded}\hl{#1}}}
+%\DeclareRobustCommand{\codeEraseTwo}[1]{{\sethlcolor{GainsboroDarkened}\hl{#1}}}
+%\DeclareRobustCommand{\codeSel}[1]{{\sethlcolor{Yellow}\hl{#1}}}
+%\DeclareRobustCommand{\codeSelTwo}[1]{{\sethlcolor{LightGreen}\hl{#1}}}
+
+\def\mystrut{\vrule height6pt depth1.5pt width0pt}
+\newcommand*{\codeSel}[1]{\fboxsep=1pt\fcolorbox{Yellow!90!black}{Yellow!100}{\mystrut#1}}
+\newcommand*{\codeSelTwo}[1]{\fboxsep=0pt\fcolorbox{LightGreen!90!black}{LightGreen!100}{\mystrut#1}}
+\newcommand*{\codeErase}[1]{\fboxsep=1pt\fcolorbox{GainsboroFaded!85!black}{GainsboroFaded!60}{\mystrut#1}}
+\newcommand*{\codeEraseTwo}[1]{\fboxsep=0pt\fcolorbox{GainsboroDarkened!85!black}{GainsboroDarkened!60}{\mystrut#1}}
+
+\newbool{anonymous}
+
+\makeatletter
+\if@ACM@anonymous
+   \booltrue{anonymous}%
+\else
+   \boolfalse{anonymous}%
+\fi
+\makeatother
+
+\newcommand*{\hshade}[1]{\colorbox{gray!15}{\parbox[c][0.6em]{\dimexpr\textwidth-2\fboxsep}{#1}}}

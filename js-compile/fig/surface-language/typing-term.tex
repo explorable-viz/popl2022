@@ -1,0 +1,218 @@
+\begin{figure}
+
+\flushleft \shadebox{$\Gamma \vdash \vec{g}: \Delta$}
+\begin{smathpar}
+   \inferrule*[right={
+      \textnormal{$\Delta = \vec{\bind{x}{\tyFun{A}{B}}}$}
+   }]
+   {
+      \Gamma \concat \Delta \vdash \vec{c_i}: \tyFun{A_i}{B_i}
+      \quad
+      (\forall i \numleq j)
+   }
+   {
+      \Gamma \vdash \seqRange{\bind{x_1}{\vec{c_1}}}{\bind{x_j}{\vec{c_j}}}: \Delta
+   }
+\end{smathpar}
+
+\vspace{5pt}
+\flushleft \shadebox{$\Gamma \vdash s: A$}
+\begin{smathpar}
+   \inferrule*[right={$\primOp: A \in \Gamma$}]
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \exOp{\primOp}: A
+   }
+   %
+   \and
+   %
+   \inferrule*[right={$\primOp: \tyFun{\tyProd{\tyInt}{\tyInt}}{\tyInt} \in \Gamma$}]
+   {
+      \Gamma \vdash s: \tyInt
+      \\
+      \Gamma \vdash s': \tyInt
+   }
+   {
+      \Gamma \vdash \exBinaryApp{s}{\primOp}{s'}: \tyInt
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash \vec{g}: \Delta
+      \\
+      \Gamma \concat \Delta \vdash s: A
+   }
+   {
+      \Gamma \vdash \exLetRecMutual{\vec{g}}{s}: A
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: \tyBool
+      \\
+      \Gamma \vdash s_1: A
+      \\
+      \Gamma \vdash s_2: A
+   }
+   {
+      \Gamma \vdash \exIfThenElse{s}{s_1}{s_2}: A
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: A
+      \\
+      \Gamma \vdash \vec{c}: \tyFun{A}{B}
+   }
+   {
+      \Gamma \vdash \exMatch{s}{\vec{c}}: B
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      p: A \dashv \Gamma'
+      \\
+      \Gamma \vdash s: A
+      \\
+      \Gamma \concat \Gamma' \vdash s': B
+   }
+   {
+      \Gamma \vdash \exLet{p}{s}{s'}: B
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s : A
+      \\
+      \Gamma \vdash r : \tyList{A}
+   }
+   {
+      \Gamma \vdash \exList{s}{r} : \tyList{A}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: \tyInt
+      \\
+      \Gamma \vdash s': \tyInt
+   }
+   {
+      \Gamma \vdash \exListEnum{s}{s'}: \tyList{\tyInt}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash \vec{q} \dashv \Delta
+      \\
+      \Gamma \concat \Delta \vdash s: A
+   }
+   {
+      \Gamma \vdash \exListComp{s}{\vec{q}}: \tyList{A}
+   }
+   \end{smathpar}
+
+   % List rest
+   \vspace{5pt}
+   \flushleft \shadebox{$\Gamma \vdash r: \tyList{A}$}
+   \begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \exListEnd : \tyList{A}
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s : A
+      \\
+      \Gamma \vdash r : \tyList{A}
+   }
+   {
+      \Gamma \vdash \exListNext{s}{r} : \tyList{A}
+   }
+   \end{smathpar}
+
+   \vspace{0.1em}
+   %% Qualifiers
+
+   \flushleft \shadebox{$\Gamma \vdash \vec{q} \dashv \Delta $}
+   \begin{smathpar}
+   \inferrule*
+   {
+      \strut
+   }
+   {
+      \Gamma \vdash \seqEmpty \dashv \seqEmpty
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: \tyBool
+   }
+   {
+      \Gamma \vdash \qualGuard{s} \dashv \seqEmpty
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: \tyList{A}
+      \\
+      p: A \dashv \Delta
+   }
+   {
+      \Gamma \vdash \qualGenerator{p}{s} \dashv \Delta
+   }
+   %
+   \and
+   %
+   \inferrule*
+   {
+      \Gamma \vdash s: A
+      \\
+      p: A \dashv \Delta
+   }
+   {
+      \Gamma \vdash \qualDeclaration{p}{s} \dashv \Delta
+   }
+   %
+   \and
+   %
+   \inferrule*[
+      right={$\vec{q} \neq \seqEmpty$}
+   ]
+   {
+      \Gamma \vdash q \dashv \Gamma'
+      \\
+      \Gamma \concat \Gamma' \vdash \vec{q} \dashv \Delta
+   }
+   {
+      \Gamma \vdash q \concat \vec{q} \dashv \Delta
+   }
+\end{smathpar}
+\caption{Typing rules for surface terms (additional forms only) and qualifiers}
+\label{fig:surface-language:typing-term}
+\end{figure}

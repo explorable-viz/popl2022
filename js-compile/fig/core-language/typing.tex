@@ -1,0 +1,312 @@
+\begin{figure}
+\small{\flushleft \shadebox{$\Gamma \vdash e: A$}%
+\hfill \textbfit{$e$ has type $A$ under $\Gamma$}}
+\begin{smathpar}
+\inferrule*[right={$x : A \in \Gamma$}]
+{
+   \strut
+}
+{
+   \Gamma \vdash \exVar{x}: A
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exInt{n}: \tyInt
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exTrue: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exFalse: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e_i: A_i
+   \quad
+   (\forall i \numleq \length{\vec{x}})
+}
+{
+   \Gamma \vdash \exRec{\vec{\bind{x}{e}}}: \tyRec{\vec{\bind{x}{A}}}
+}
+%
+\and
+%
+\inferrule*[
+   right={$i \numleq \length{\vec{x}}$}
+]
+{
+   \Gamma \vdash e: \tyRec{\vec{\bind{x}{A}}}
+}
+{
+   \Gamma \vdash \exRecProj{e}{x_i}: A_i
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \sigma : \tyFun{A}{B}
+}
+{
+   \Gamma \vdash \exLambda{\sigma} : \tyFun{A}{B}
+}
+%
+\and
+%
+\inferrule*[
+   right={$\phi \in \Int^j \to \Int$}
+]
+{
+   \Gamma \vdash e_i: \tyInt
+   \quad
+   (\forall i \numleq j)
+}
+{
+   \Gamma \vdash \exAppPrim{\phi}{\vec{e}}: \tyInt
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: \tyFun{A}{B}
+   \\
+   \Gamma \vdash e': A
+}
+{
+   \Gamma \vdash \exApp{e}{e'}: B
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \Gamma \vdash \exNil: \tyList{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash e: A
+   \\
+   \Gamma \vdash e': \tyList{A}
+}
+{
+   \Gamma \vdash (\exCons{e}{e'}): \tyList{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash h: \Delta
+   \\
+   \Gamma \concat \Delta \vdash e: A
+}
+{
+   \Gamma \vdash \exLetRecMutual{h}{e}: A
+}
+\end{smathpar}
+{\small \flushleft \shadebox{$\Gamma \vdash \sigma: \tyFun{A}{B}$}%
+\hfill \textbfit{$\sigma$ has type $\tyFun{A}{B}$ under $\Gamma$}}
+\begin{smathpar}
+\inferrule*
+{
+   \Gamma \concat \bind{x}{A} \vdash \kappa: B
+}
+{
+   \Gamma \vdash (\elimVar{x}{\kappa}): \tyFun{A}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: A
+   \\
+   \Gamma \vdash \kappa': A
+}
+{
+   \Gamma \vdash \elimBool{\kappa}{\kappa'}: \tyFun{\tyBool}{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: A
+}
+{
+   \Gamma
+   \vdash
+   \elimRecEmpty{\kappa}: \tyFun{\tyRecEmpty}{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \elimRec{\vec{x}}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}}}}{\tyFun{A'}{B}}
+}
+{
+   \Gamma
+   \vdash
+   \elimRec{\vec{x} \concat y}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}} \concat \bind{y}{A'}}}{B}
+}
+%
+\and
+%
+\inferrule*
+{
+   \Gamma \vdash \kappa: B
+   \\
+   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{\tyList{A}}{B}}
+}
+{
+   \Gamma \vdash \elimList{\kappa}{\sigma}: \tyFun{\tyList{A}}{B}
+}
+\end{smathpar}
+\\[2mm]
+{\small \flushleft \shadebox{$\vdash v: A$}%
+\hfill \textbfit{$v$ has type $A$}}
+\begin{smathpar}
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exInt{n}: \tyInt
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exTrue: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exFalse: \tyBool
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash v_i: A_i
+   \quad
+   (\forall i \numleq \length{\vec{x}})
+}
+{
+   \vdash \exRec{\vec{\bind{x}{v}}}: \tyRec{\vec{\bind{x}{A}}}
+}
+%
+\and
+%
+\inferrule*
+{
+   \strut
+}
+{
+   \vdash \exNil: \tyList{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash u: A
+   \\
+   \vdash v: \tyList{A}
+}
+{
+   \vdash (\exCons{u}{v}): \tyList{A}
+}
+%
+\and
+%
+\inferrule*
+{
+   \vdash \rho: \Gamma
+   \\
+   \Gamma \vdash h: \Delta
+   \\
+   \Gamma \concat \Delta \vdash \sigma: \tyFun{A}{B}
+}
+{
+   \vdash \exClosure{\rho}{h}{\sigma}: \tyFun{A}{B}
+}
+\end{smathpar}
+\\[2mm]
+\begin{minipage}[t]{0.4\textwidth}%
+{\small \flushleft \shadebox{$\vdash \rho: \Gamma$}%
+\hfill \textbfit{$\rho$ has type $\Gamma$}}
+\begin{smathpar}
+\inferrule*
+{
+   \vdash v_i: A_i
+   \quad
+   (\forall i \numleq \length{\vec{x}})
+}
+{
+   \vdash \vec{\bind{x}{v}}: \vec{\bind{x}{A}}
+}
+\end{smathpar}
+\end{minipage}%
+\hspace{1.5cm}
+\begin{minipage}[t]{0.48\textwidth}%
+{\small \flushleft \shadebox{$\Gamma \vdash h: \Delta$}%
+\hfill \textbfit{$h$ has type $\Delta$ under $\Gamma$}}
+\begin{smathpar}
+   \inferrule*[right={
+      \textnormal{$\Delta = \vec{\bind{x}{\tyFun{A}{B}}}$}
+   }]
+   {
+      \Gamma \concat \Delta \vdash \sigma_i: \tyFun{A_i}{B_i}
+      \quad
+      (\forall i \numleq \length{\vec{x}})
+   }
+   {
+      \Gamma \vdash \vec{\bind{x}{\sigma}}: \Delta
+   }
+\end{smathpar}
+\end{minipage}
+\caption{Typing rules for core language}
+\label{fig:core-language:typing}
+\end{figure}
