@@ -1,44 +1,9 @@
-\begin{figure}
+\begin{figure}[H]
 {\small
 \begingroup
 \renewcommand*{\arraystretch}{1}
 \begin{minipage}[t]{0.5\textwidth}
 \begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
-%\rowcolor{verylightgray}
-&\textbfit{Type}&
-\\
-$A, B ::=$
-&
-$\tyBool$
-&
-Booleans
-\\
-&
-$\tyInt$
-&
-integers
-\\
-&
-$\tyRec{\vec{\bind{x}{A}}}$
-&
-records
-\\
-&
-$\tyList{A}$
-&
-lists
-\\
-&
-$\tyFun{A}{B}$
-&
-functions
-\\[2mm]
-$\Gamma, \Delta ::=$
-&
-$\seq{\bind{x}{A}}$
-&
-typing context
-\\[2mm]
 &\textbfit{Term}&
 \\
 $e ::=$
@@ -68,19 +33,17 @@ $\exApp{e}{e'}$
 application
 \\
 &
-$\exNil$
 &
-nil
+object
 \\
 &
-$\exCons{u}{v}$
 &
-cons
+method invocation
 \\
 &
 $\exRec{\vec{\bind{x}{e}}}$
 &
-record
+field access
 \\
 &
 $\exRecProj{e}{x}$
@@ -182,19 +145,10 @@ $\seq{\bind{x}{\sigma}}$
 recursive functions
 \\
 \\[2mm]
-%$x, y$
-%&
-%&
-%identifier
-%\\
-%$i, j$
-%&&
-%positive integer
-%\\[2mm]
 \end{tabularx}
 \end{minipage}
 \endgroup
 }
-\caption{Syntax of core language}
+\caption{Model of target subset of JavaScript}
 \label{fig:core-language:syntax}
 \end{figure}
