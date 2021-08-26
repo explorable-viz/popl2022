@@ -97,27 +97,11 @@
 % Eliminators.
 \newcommand*{\elimmapsto}{{:}\;}
 \newcommand*{\branch}[3]{{#1}\symParens{#2}\elimmapsto{#3}}
-\newcommand*{\branchCons}[1]{(\symCons)\elimmapsto{#1}}
-\newcommand*{\branchNil}[1]{\exNil\elimmapsto{#1}}
-\newcommand*{\branchTrue}[1]{\exTrue\elimmapsto{#1}}
-\newcommand*{\branchFalse}[1]{\exFalse\elimmapsto{#1}}
 
 \newcommand*{\elimConstr}[1]{\symBrace{#1}}
 \newcommand*{\elimRec}[2]{\{\exRec{#1}\elimmapsto{#2}\}}
 \newcommand*{\elimRecEmpty}[1]{\{\exRecEmpty\elimmapsto{#1}\}}
 \newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches
-
-% Matches.
-\newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
-
-\newcommand*{\matchCons}[2]{\exCons{#1}{#2}}
-\newcommand*{\matchFalse}{\exFalse}
-\newcommand*{\matchNil}{\exNil}
-\newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
-\newcommand*{\matchRec}[1]{\exRec{#1}}
-\newcommand*{\matchRecEmpty}{\exRecEmpty}
-\newcommand*{\matchTrue}{\exTrue}
-\newcommand*{\matchVar}[1]{#1}
 
 % Types.
 \newcommand*{\tyBool}[0]{\kw{Bool}}
@@ -129,27 +113,3 @@
 \newcommand*{\tyRec}[1]{\kw{Rec}\;{\exRec{#1}}}
 \newcommand*{\tyRecEmpty}{\kw{Rec}\;{\exRecEmpty}}
 \newcommand*{\tyVec}[1]{\kw{Vec}\;{#1}}
-
-% Traces.
-\newcommand*{\trApp}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
-\newcommand*{\trAppPrim}[5]{\exApp{\Sub{#1}{(#2,#3)}}{\Sub{#4}{#5}}}
-\newcommand*{\trAppPrimNew}[3]{\exAppPrim{#1}{\vec{\Sub{#2}{#3}}}}
-\newcommand*{\trBinaryApp}[6]{\exBinaryApp{\Sub{#1}{#2}}{\Sub{#3}{#4}}{\Sub{#5}{#6}}}
-\newcommand*{\trCons}[2]{\exCons{#1}{#2}}
-\newcommand*{\trFalse}[1]{\exFalse} % {\Sub{\exFalse}{#1}}
-\newcommand*{\trInt}[2]{\exInt{#1}} % {\Sub{\exInt{#1}}{#2}}
-\newcommand*{\trLambda}[1]{\exLambda{#1}}
-\newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
-\newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
-\newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
-\newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
-\newcommand*{\trNil}[1]{\exNil} % {\Sub{\exNil}{#1}}
-\newcommand*{\trOp}[2]{\Sub{\exOp{#1}}{#2}}
-\newcommand*{\trPair}[2]{\exPair{#1}{#2}}
-\newcommand*{\trRec}[1]{\exRec{#1}}
-\newcommand*{\trRecProj}[3]{\exRecProj{\Sub{#1}{#2}}{#3}}
-\newcommand*{\trTrue}[1]{\exTrue} % {\Sub{\exTrue}{#1}}
-\newcommand*{\trVar}[2]{#1} % {\Sub{#1}{#2}}
-\newcommand*{\trVec}[4]{\exVec{#1}{#2}{\Sub{#3}{#4}}}
-\newcommand*{\trVecLookup}[4]{\exVecLookup{\Sub{#1}{#2}}{\Sub{#3}{#4}}}
-\newcommand*{\trVecLen}[2]{\exVecLen{\Sub{#1}{#2}}}
