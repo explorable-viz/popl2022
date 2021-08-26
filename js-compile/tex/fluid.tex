@@ -103,13 +103,5 @@
 \newcommand*{\elimRecEmpty}[1]{\{\exRecEmpty\elimmapsto{#1}\}}
 \newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches
 
-% Types.
-\newcommand*{\tyBool}[0]{\kw{Bool}}
-\newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
-\newcommand*{\tyInt}[0]{\kw{Int}}
-\newcommand*{\tyList}[1]{\kw{List}\;{#1}}
-\newcommand*{\tyMatrix}[1]{\kw{Matrix}\;{#1}}
-\newcommand*{\tyProd}[2]{{#1}\times{#2}}
-\newcommand*{\tyRec}[1]{\kw{Rec}\;{\exRec{#1}}}
-\newcommand*{\tyRecEmpty}{\kw{Rec}\;{\exRecEmpty}}
-\newcommand*{\tyVec}[1]{\kw{Vec}\;{#1}}
+% Semantics
+\newcommand*{\toJSCore}[2]{\llbracket#2\rrbracket^{\rightsquigarrow}_{#1}}
