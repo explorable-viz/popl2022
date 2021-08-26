@@ -69,7 +69,7 @@
 \newcommand*{\matrixRBrack}{\rangle}
 
 % Expressions.
-\newcommand*{\exApp}[2]{{#1}({#2})}
+\newcommand*{\exApp}[2]{{#1}\,{#2}}
 \newcommand*{\exAppPrim}[2]{{#1}({#2})}
 \newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
 \newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
@@ -103,6 +103,10 @@
 \newcommand*{\exVecVal}[2]{\matrixLBrack{#1}\;\sym{$\vert$}\;{#2}\matrixRBrack}
 \newcommand*{\exVecLookup}[2]{{#1}\,\sym{!}\,{#2}}
 \newcommand*{\exVecLen}[1]{\kw{len}\;{#1}}
+
+% JS expressions.
+\newcommand*{\jsApp}[2]{{#1}({#2})}
+\newcommand*{\jsVar}[1]{#1}
 
 % Definitions
 \newcommand*{\defClass}[2]{\kw{class}\;#1\kw{\{}#2\kw{\}}}
