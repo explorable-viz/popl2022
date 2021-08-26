@@ -37,11 +37,11 @@
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
 \newcommand*{\exNil}{{\symLBrack}{\symRBrack}}
-\newcommand*{\exOp}[1]{\kw{(}{#1}\kw{)}}
-\newcommand*{\exPair}[2]{\kw{(}#1\comma#2\kw{)}}
+\newcommand*{\exOp}[1]{\symLParens{#1}\symRParens}
+\newcommand*{\exPair}[2]{\symLParens#1\symComma#2\symRParens}
 \newcommand*{\exPrim}[1]{#1}
 \newcommand*{\exPrimOp}[2]{{#1}({#2})} % value form, analogous to closures
-\newcommand*{\exRec}[1]{\kw{(}#1\kw{)}}
+\newcommand*{\exRec}[1]{\symLParens#1\symRParens}
 \newcommand*{\exRecProj}[2]{{#1}\textbf{\kw{.}}{#2}}
 \newcommand*{\exRecEmpty}{\kw{()}}
 \newcommand*{\exStr}[1]{#1}
