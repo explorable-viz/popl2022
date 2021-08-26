@@ -1,0 +1,160 @@
+% Primitives.
+\newcommand*{\primOp}{\oplus}
+\newcommand*{\primFwd}[2]{\fwdF{#1}{#2}}
+\newcommand*{\primFwdBool}[2]{\upperAdj{\sub{#1}{#2}}}
+\newcommand*{\primBwd}[2]{\bwdF{#1}{#2}}
+\newcommand*{\primBwdBool}[2]{\lowerAdj{\sub{#1}{#2}}}
+\newcommand*{\primGCBool}[2]{\sub{#1}{#2}}
+\newcommand*{\primAppF}[1]{\fwdF{primApp}{#1}}
+\newcommand*{\primAppGC}[1]{\GC{primApp}{#1}}
+
+% Prelude functions
+\newcommand*{\funConcatMap}{\exVar{\kw{concatMap}}}
+\newcommand*{\funEnumFromTo}{\exVar{\kw{enumFromTo}}}
+
+\newcommand*{\fieldFst}{\kw{fst}}
+\newcommand*{\fieldSnd}{\kw{snd}}
+
+% Expressions.
+\newcommand*{\exApp}[2]{{#1}\,{#2}}
+\newcommand*{\exAppPrim}[2]{{#1}({#2})}
+\newcommand*{\exBinaryApp}[3]{{#1} \mathbin{#2} {#3}}
+\newcommand*{\exCons}[2]{{#1}\,\symCons\,{#2}}
+\newcommand*{\exClosure}[3]{\kw{cl}({#1},{#2},{#3})}
+\newcommand*{\exFalse}{\kw{false}}
+\newcommand*{\exFun}[2]{#1\,#2}
+\newcommand*{\exIfThenElse}[3]{\kw{if}\;{#1}\;\kw{then}\;{#2}\;\kw{else}\;{#3}}
+\newcommand*{\exInt}[1]{#1}
+\newcommand*{\exList}[2]{\symLBrack\;#1 \ #2}
+\newcommand*{\exListComp}[2]{\symLBrack\,{#1}\;\sym{$\vert$}\;{#2}\kw{]}}
+\newcommand*{\exListEnd}{\kw{]}}
+\newcommand*{\exListEnum}[2]{\symLBrack\,{#1}\;\kw{..}\;{#2}\,\kw{]}}
+\newcommand*{\exListNext}[2]{\comma\;#1 \ #2}
+\newcommand*{\exLambda}[1]{\uplambda{#1}}
+\newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRecEquational}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRec}[3]{\kw{let}\,{#1}{#2}\;\kw{in}\;{#3}}
+\newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
+\newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
+\newcommand*{\exNil}{\kw{[]}}
+\newcommand*{\exObj}[2]{\kw{new}\;#1\kw{\{}#2\kw{\}}}
+\newcommand*{\exOp}[1]{\kw{(}{#1}\kw{)}}
+\newcommand*{\exPair}[2]{\kw{(}#1\comma#2\kw{)}}
+\newcommand*{\exPrim}[1]{#1}
+\newcommand*{\exPrimOp}[2]{{#1}({#2})} % value form, analogous to closures
+\newcommand*{\exRec}[1]{\kw{(}#1\kw{)}}
+\newcommand*{\exRecProj}[2]{{#1}\textbf{\kw{.}}{#2}}
+\newcommand*{\exRecEmpty}{\kw{()}}
+\newcommand*{\exStr}[1]{#1}
+\newcommand*{\exTrue}{\kw{true}}
+\newcommand*{\exVar}[1]{#1}
+\newcommand*{\exVec}[3]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack}
+\newcommand*{\exVecVal}[2]{\matrixLBrack{#1}\;\sym{$\vert$}\;{#2}\matrixRBrack}
+\newcommand*{\exVecLookup}[2]{{#1}\,\sym{!}\,{#2}}
+\newcommand*{\exVecLen}[1]{\kw{len}\;{#1}}
+
+% Annotated expressions
+\newcommand*{\annClosure}[4]{\kw{cl}({#1},{#2},{#3},{#4})}
+\newcommand*{\annCons}[3]{{#1}\,\symCons_{\hspace{-0.1em}#3}\,{#2}}
+\newcommand*{\annFalse}[1]{\kw{false}_{#1}}
+\newcommand*{\annList}[3]{\kw{[}_{#3}\;#1 \ #2}
+\newcommand*{\annListEnd}[1]{\kw{]}_{#1}}
+\newcommand*{\annListComp}[3]{\kw{[}\,{#1}\;\sym{$\vert$}\;{#2}\kw{]}_{#3}}
+\newcommand*{\annListNext}[3]{\comma_{#3}\;#1 \ #2}
+\newcommand*{\annInt}[2]{#1_{#2}}
+\newcommand*{\annMatrix}[5]{\matrixLBrack{#1}\;\sym{$\vert$}\;\exPair{#2}{#3}\;\kw{in}\;{#4}\matrixRBrack_{#5}}
+\newcommand*{\annNil}[1]{\kw{[]}_{#1}}
+\newcommand*{\annPair}[3]{\exPair{#1}{#2}_{#3}}
+\newcommand*{\annRec}[2]{\exRec{#1}_{#2}}
+\newcommand*{\annStr}[2]{#1_{#2}}
+\newcommand*{\annTrue}[1]{\kw{true}_{#1}}
+\newcommand*{\annVec}[4]{\matrixLBrack{#1}\;\sym{$\vert$}\;#2\;\kw{in}\;{#3}\matrixRBrack_{#4}}
+\newcommand*{\annVecVal}[3]{\exVecVal{#1}{#2}_{#3}}
+
+% Clause
+\newcommand*{\clause}[2]{{#1}\equal{#2}}
+\newcommand*{\clauseUncurried}[2]{{#1}\equal{#2}}
+
+% Qualifiers
+\newcommand*{\qualGuard}[1]{{#1}}
+\newcommand*{\qualDeclaration}[2]{\kw{let}\;{#1}\equal{#2}}
+\newcommand*{\qualDone}{\kw{done}}
+\newcommand*{\qualGenerator}[2]{{#1}\;\kw{$\leftarrow$}\;{#2}}
+
+% Patterns
+\newcommand*{\pattVar}[1]{#1}
+\newcommand*{\pattTrue}{\exTrue}
+\newcommand*{\pattFalse}{\exFalse}
+\newcommand*{\pattCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\pattNil}{\exNil}
+\newcommand*{\pattList}[2]{\exList{#1}{#2}}
+\newcommand*{\pattListNext}[2]{\exListNext{#1}{#2}}
+\newcommand*{\pattListEnd}{\exListEnd}
+\newcommand*{\pattPair}[2]{\exPair{#1}{#2}}
+\newcommand*{\pattRec}[1]{\exRec{#1}}
+\newcommand*{\pattRecEmpty}{\exRecEmpty}
+
+% Eliminators.
+\newcommand*{\elimmapsto}{{:}\;}
+\newcommand*{\branchCons}[1]{(\symCons)\elimmapsto{#1}}
+\newcommand*{\branchNil}[1]{\exNil\elimmapsto{#1}}
+\newcommand*{\branchTrue}[1]{\exTrue\elimmapsto{#1}}
+\newcommand*{\branchFalse}[1]{\exFalse\elimmapsto{#1}}
+
+\newcommand*{\elimNil}[1]{\{\branchNil{#1}\}}
+\newcommand*{\elimCons}[1]{\{\branchCons{#1}\}}
+\newcommand*{\elimBool}[2]{\{\branchTrue{#1}, \branchFalse{#2}\}}
+\newcommand*{\elimTrue}[1]{\{\branchTrue{#1}\}}
+\newcommand*{\elimFalse}[1]{\{\branchFalse{#1}\}}
+\newcommand*{\elimList}[2]{\{\branchNil{#1},\branchCons{#2}\}}
+\newcommand*{\elimProd}[1]{\{\exPair{}{}\elimmapsto{#1}\}}
+\newcommand*{\elimRec}[2]{\{\exRec{#1}\elimmapsto{#2}\}}
+\newcommand*{\elimRecEmpty}[1]{\{\exRecEmpty\elimmapsto{#1}\}}
+\newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches
+
+% Matches.
+\newcommand*{\matchPlug}[2]{{#1} \mapsto {#2}}
+
+\newcommand*{\matchCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\matchFalse}{\exFalse}
+\newcommand*{\matchNil}{\exNil}
+\newcommand*{\matchPair}[2]{\exPair{#1}{#2}}
+\newcommand*{\matchRec}[1]{\exRec{#1}}
+\newcommand*{\matchRecEmpty}{\exRecEmpty}
+\newcommand*{\matchTrue}{\exTrue}
+\newcommand*{\matchVar}[1]{#1}
+
+% Types.
+\newcommand*{\tyBool}[0]{\kw{Bool}}
+\newcommand*{\tyFun}[2]{{#1}\rightarrow{#2}}
+\newcommand*{\tyInt}[0]{\kw{Int}}
+\newcommand*{\tyList}[1]{\kw{List}\;{#1}}
+\newcommand*{\tyMatrix}[1]{\kw{Matrix}\;{#1}}
+\newcommand*{\tyProd}[2]{{#1}\times{#2}}
+\newcommand*{\tyRec}[1]{\kw{Rec}\;{\exRec{#1}}}
+\newcommand*{\tyRecEmpty}{\kw{Rec}\;{\exRecEmpty}}
+\newcommand*{\tyVec}[1]{\kw{Vec}\;{#1}}
+
+% Traces.
+\newcommand*{\trApp}[4]{\exApp{#1}{#2} \mathrel{\filledtriangleright} {\bind{#3}{#4}}}
+\newcommand*{\trAppPrim}[5]{\exApp{\Sub{#1}{(#2,#3)}}{\Sub{#4}{#5}}}
+\newcommand*{\trAppPrimNew}[3]{\exAppPrim{#1}{\vec{\Sub{#2}{#3}}}}
+\newcommand*{\trBinaryApp}[6]{\exBinaryApp{\Sub{#1}{#2}}{\Sub{#3}{#4}}{\Sub{#5}{#6}}}
+\newcommand*{\trCons}[2]{\exCons{#1}{#2}}
+\newcommand*{\trFalse}[1]{\exFalse} % {\Sub{\exFalse}{#1}}
+\newcommand*{\trInt}[2]{\exInt{#1}} % {\Sub{\exInt{#1}}{#2}}
+\newcommand*{\trLambda}[1]{\exLambda{#1}}
+\newcommand*{\trLetRec}[3]{\exLetRec{#1}{#2}{#3}}
+\newcommand*{\trLetRecMutual}[2]{\exLetRecMutual{#1}{#2}}
+\newcommand*{\trLetStructured}[2]{\exLetStructured{#1}{#2}}
+\newcommand*{\trMatch}[2]{\exMatch{#1}{#2}}
+\newcommand*{\trNil}[1]{\exNil} % {\Sub{\exNil}{#1}}
+\newcommand*{\trOp}[2]{\Sub{\exOp{#1}}{#2}}
+\newcommand*{\trPair}[2]{\exPair{#1}{#2}}
+\newcommand*{\trRec}[1]{\exRec{#1}}
+\newcommand*{\trRecProj}[3]{\exRecProj{\Sub{#1}{#2}}{#3}}
+\newcommand*{\trTrue}[1]{\exTrue} % {\Sub{\exTrue}{#1}}
+\newcommand*{\trVar}[2]{#1} % {\Sub{#1}{#2}}
+\newcommand*{\trVec}[4]{\exVec{#1}{#2}{\Sub{#3}{#4}}}
+\newcommand*{\trVecLookup}[4]{\exVecLookup{\Sub{#1}{#2}}{\Sub{#3}{#4}}}
+\newcommand*{\trVecLen}[2]{\exVecLen{\Sub{#1}{#2}}}
