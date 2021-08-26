@@ -27,14 +27,9 @@
    application
    \\
    &
-   $\exNil$
+   $\exConstr{c}{\vec{e}}$
    &
-   nil
-   \\
-   &
-   $\exCons{u}{v}$
-   &
-   cons
+   data value
    \\
    &
    $\exRec{\vec{\bind{x}{e}}}$
@@ -68,19 +63,16 @@
    variable
    \\
    &
-   $\elimBool{\kappa}{\kappa'}$
+   $\elimConstr{\vec{b}}$
    &
-   Boolean
+   data value
+   \\[2mm]
+   &\textbfit{Branch}&
    \\
+   $b ::=$
    &
-   $\elimRec{\vec{x}}{\kappa}$
+   $\branch{c}{\vec{x}}{\kappa}$
    &
-   record
-   \\
-   &
-   $\elimList{\kappa}{\sigma}$
-   &
-   list
    \\[2mm]
    &\textbfit{Continuation}&
    \\
