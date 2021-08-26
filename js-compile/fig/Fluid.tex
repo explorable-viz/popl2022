@@ -6,12 +6,6 @@
    \begin{tabularx}{\textwidth}{rL{2cm}L{3cm}}
    &\textbfit{Term}&
    \\
-   $e ::=$
-   &
-   $\exTrue \mid \exFalse$
-   &
-   Boolean
-   \\
    &
    $\exInt{n}$
    &
@@ -58,7 +52,7 @@
    anonymous function
    \\
    &
-   $\exLetRecMutual{\vec{x}{\sigma}}{e}$
+   $\exLetRecMutual{\vec{\bind{x}{\sigma}}}{e}$
    &
    recursive let
    \end{tabularx}
@@ -100,52 +94,6 @@
    $\sigma$
    &
    eliminator
-   \\[2mm]
-   &\textbfit{Value}&
-   \\
-   $u, v ::=$
-   &
-   $\exTrue \mid \exFalse$
-   &
-   Boolean
-   \\
-   &
-   $\exInt{n}$
-   &
-   integer
-   \\
-   &
-   $\exNil$
-   &
-   nil
-   \\
-   &
-   $\exCons{u}{v}$
-   &
-   cons
-   \\
-   &
-   $\exRec{\vec{\bind{x}{v}}}$
-   &
-   record
-   \\
-   &
-   $\exClosure{\rho}{h}{\sigma}$
-   &
-   closure
-   \\[2mm]
-   $\rho ::=$
-   &
-   $\seq{\bind{x}{v}}$
-   &
-   environment
-   \\
-   $h ::=$
-   &
-   $\seq{\bind{x}{\sigma}}$
-   &
-   recursive functions
-   \\
    \\[2mm]
    \end{tabularx}
    \end{minipage}
