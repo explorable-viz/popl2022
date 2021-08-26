@@ -4,18 +4,18 @@
 
 % Expressions.
 \newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
-\newcommand*{\jsAnonFun}[2]{\symLParens#1\symRParens\jsFunArrow#2}
-\newcommand*{\jsFunCall}[2]{{#1}\symLParens{#2}\symRParens}
-\newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symLParens{#3}\symRParens}
+\newcommand*{\jsAnonFun}[2]{\symParens{#1}\jsFunArrow#2}
+\newcommand*{\jsFunCall}[2]{{#1}\symParens{#2}}
+\newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symParens{#3}}
 \newcommand*{\jsLet}[3]{\kw{let}\;{#1}\symEqual{#2}\symSemi\;{#3}}
-\newcommand*{\jsNewObj}[2]{\kw{new}\;#1\symLParens#2\symRParens}
+\newcommand*{\jsNewObj}[2]{\kw{new}\;#1\symParens{#2}}
 \newcommand*{\jsVar}[1]{#1}
 
 % Definitions
-\newcommand*{\defClass}[2]{\kw{class}\;#1\;\symLBrace#2\symRBrace}
-\newcommand*{\defClassSuper}[3]{\kw{class}\;#1\;\kw{extends}\;#2\;\symLBrace#3\symRBrace}
+\newcommand*{\defClass}[2]{\kw{class}\;#1\;\symBrace{#2}}
+\newcommand*{\defClassSuper}[3]{\kw{class}\;#1\;\kw{extends}\;#2\;\symBrace{#3}}
 \newcommand*{\defConstr}[2]{\kw{constr}\kw{(}#1\kw{)}\jsFunArrow#2}
-\newcommand*{\defMethod}[3]{#1\kw{(}#2\kw{)}\jsFunArrow#3}
+\newcommand*{\defMethod}[3]{#1\symParens{#2}\jsFunArrow#3}
 \newcommand*{\defField}[1]{#1}
 \newcommand*{\defSuperclass}[1]{\kw{extends}\;#1}
 
