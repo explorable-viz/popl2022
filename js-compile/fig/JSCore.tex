@@ -6,7 +6,7 @@
 \begin{tabularx}{\textwidth}{rL{2.2cm}L{3cm}}
 &\textbfit{Expression}&
 \\
-$e ::=$
+$M, N ::=$
 &
 $\exTrue \mid \exFalse$
 &
@@ -23,32 +23,32 @@ $\jsVar{x}$
 variable
 \\
 &
-$\jsFunCall{e_1}{\vec{e_2}}$
+$\jsFunCall{M}{\vec{N}}$
 &
 function call
 \\
 &
-$\jsNewObj{x}{\vec{\bind{y}{e}}}$
+$\jsNewObj{x}{\vec{\bind{y}{M}}}$
 &
 new object
 \\
 &
-$\jsMethodCall{e_1}{x}{\vec{e_2}}$
+$\jsMethodCall{M}{x}{\vec{N}}$
 &
 method call
 \\
 &
-$\jsFieldAccess{e}{x}$
+$\jsFieldAccess{M}{x}$
 &
 field access
 \\
 &
-$\jsAnonFun{\vec{x}}{e}$
+$\jsAnonFun{\vec{x}}{M}$
 &
 anonymous function
 \\
 &
-$\jsLet{x}{e_1}{e_2}$
+$\jsLet{x}{M}{N}$
 &
 let
 \end{tabularx}
@@ -57,14 +57,14 @@ let
 \begin{tabularx}{\textwidth}{rL{3cm}L{2.9cm}}
 &\textbfit{Class member}&
 \\
-$m ::=$
+$C ::=$
 &
-$\defConstr{\vec{x}}{e}$
+$\defConstr{\vec{x}}{M}$
 &
 constructor
 \\
 &
-$\defMethod{x}{\vec{y}}{e}$
+$\defMethod{x}{\vec{y}}{M}$
 &
 method
 \\
@@ -77,17 +77,17 @@ field
 \\
 $D ::=$
 &
-$\defFunction{x}{\vec{y}}{e}$
+$\defFunction{x}{\vec{y}}{M}$
 &
 function
 \\
 &
-$\defClass{x}{\vec{m}}$
+$\defClass{x}{\vec{C}}$
 &
 base class
 \\
 &
-$\defClassSuper{x}{y}{\vec{m}}$
+$\defClassSuper{x}{y}{\vec{C}}$
 &
 derived class
 \\
