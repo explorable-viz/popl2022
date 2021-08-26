@@ -2,14 +2,15 @@
 
 % Expressions.
 \newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
-\newcommand*{\jsFunCall}[2]{{#1}({#2})}
-\newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}({#3})}
+\newcommand*{\jsAnonFun}[1]{\symLParens\vec{x}\symRParens\;e}
+\newcommand*{\jsFunCall}[2]{{#1}\symLParens{#2}\symRParens}
+\newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symLParens{#3}\symRParens}
 \newcommand*{\jsNewObj}[2]{\kw{new}\;#1\kw{\{}#2\kw{\}}}
 \newcommand*{\jsVar}[1]{#1}
 
 % Definitions
 \newcommand*{\defClass}[2]{\kw{class}\;#1\;\symLBrace#2\symRBrace}
-\newcommand*{\defClassSuper}[2]{\kw{class}\;#1\;\kw{extends}\;#2\;\symLBrace#3\symRBrace}
+\newcommand*{\defClassSuper}[3]{\kw{class}\;#1\;\kw{extends}\;#2\;\symLBrace#3\symRBrace}
 \newcommand*{\defConstr}[2]{\kw{constr}\kw{(}#1\kw{)}\;#2}
 \newcommand*{\defMethod}[3]{#1\kw{(}#2\kw{)}\;#3}
 \newcommand*{\defField}[1]{#1}
