@@ -1,4 +1,4 @@
-\newcommand*{\JSCore}{\textsf{JSCore}}
+\newcommand*{\JSCore}{\textsf{JSCore}\xspace}
 
 \newcommand*{\jsFunArrow}{\Rightarrow}
 
@@ -7,6 +7,7 @@
 \newcommand*{\jsAnonFun}[2]{\symLParens#1\symRParens\jsFunArrow#2}
 \newcommand*{\jsFunCall}[2]{{#1}\symLParens{#2}\symRParens}
 \newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symLParens{#3}\symRParens}
+\newcommand*{\jsLet}[3]{\kw{let}\;{#1}\symEqual{#2}\symSemi\;{#3}}
 \newcommand*{\jsNewObj}[2]{\kw{new}\;#1\symLParens#2\symRParens}
 \newcommand*{\jsVar}[1]{#1}
 

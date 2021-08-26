@@ -1,14 +1,5 @@
 % https://tex.stackexchange.com/questions/412907
-\newcommand*{\OurLanguage}{%
-   \ifanonymous%
-      [xxxxx]%
-   \else%
-      Fluid%
-   \fi%
-   }
-
-\newcommand*{\ProofInSupplementaryMaterial}{Included with supplementary materials.}
-\newcommand*{\IncludedWithSupplementaryMaterial}{included with the supplementary materials}
+\newcommand*{\OurLanguage}{Fluid\xspace}
 
 % previously we were using MnSymbol, but ran out of font space.
 \newcommand*{\filledtriangleright}{\blacktriangleright}
@@ -95,14 +86,15 @@
 \newcommand*{\sym}[1]{\textbf{\kw{#1}}}
 \newcommand*{\symComma}{\textbf{\kw{,}}}
 \newcommand*{\symCons}{\sym{:}}
+\newcommand*{\symDot}{\textbf{\kw{.}}}
 \newcommand*{\symEqual}{\mathrel{\kw{=}}}
 \newcommand*{\symLBrace}{\kw{\{}}
-\newcommand*{\symRBrace}{\kw{\}}}
 \newcommand*{\symLBrack}{\kw{[}}
-\newcommand*{\symRBrack}{\kw{]}}
-\newcommand*{\symDot}{\textbf{\kw{.}}}
 \newcommand*{\symLParens}{\kw{(}}
+\newcommand*{\symRBrace}{\kw{\}}}
+\newcommand*{\symRBrack}{\kw{]}}
 \newcommand*{\symRParens}{\kw{)}}
+\newcommand*{\symSemi}{\textbf{\kw{;}}}
 
 \newcommand*{\disjjoin}{\mathbin{\ooalign{$\join$\cr%
    \hfil\raise0.42ex\hbox{$\scriptscriptstyle+$}\hfil\cr}}}

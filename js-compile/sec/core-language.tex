@@ -7,14 +7,15 @@ Guiding principles:
    \item constructors compile to concrete subclasses
    \item data values compile to objects
    \item functions compile to pairs of forward/backward slicing functions
+   \item \JSCore as a pure expression language?
    \item further string rendering will be required to convert \JSCore into ES6
 \end{itemize}
 
 \noindent To resolve:
 \begin{itemize}
    \item recursion -- want to use trampolining-style interpreter
-   \item how do we present compiled code (and selections thereon) to the user?
+   \item how to present compiled code (and selections thereon) to the user?
 \end{itemize}
 
-\input{fig/core-language/syntax}
-\input{fig/core-language/ES6}
+\input{fig/JSCore}
+\input{fig/ES6}
