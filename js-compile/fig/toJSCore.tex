@@ -3,6 +3,14 @@
       \toJSCore{\defDatatype{x}{\vec{\defConstr{c}{n}}}}
       &=
       \jsClass{x}{}
+      \concat
+      \seqRange{\toJSCore{\defConstr{c_1}{n_1}}}{\toJSCore{\defConstr{c_i}{n_i}}}
+   \end{salign}
+   \\
+   \begin{salign}
+      \toJSCoreConstr{x}{\defConstr{c}{n}}
+      &=
+      \jsClassSuper{c}{x}{}
    \end{salign}
    \\
    \begin{salign}
