@@ -10,7 +10,18 @@
    \begin{salign}
       \toJSCoreConstr{x}{\defConstr{c}{n}}
       &=
-      \jsClassSuper{c}{x}{}
+      \begin{array}[t]{l}
+      \jsClassSuper{c}{x}{
+         \alpha
+         \concat
+         \seqRange{\kw{val1}}{\kw{val}n}
+         \concat
+         C
+      }
+      \\
+      \text{where }
+      C = \jsConstr{\seqRange{\kw{x1}}{\kw{x}n}}{}
+      \end{array}
    \end{salign}
    \\
    \begin{salign}
