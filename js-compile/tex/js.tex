@@ -1,8 +1,9 @@
 \newcommand*{\JSCore}{\textsf{JSCore}}
 
 % Expressions.
-\newcommand*{\jsApp}[2]{{#1}({#2})}
 \newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
+\newcommand*{\jsFunCall}[2]{{#1}({#2})}
+\newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}({#3})}
 \newcommand*{\jsNewObj}[2]{\kw{new}\;#1\kw{\{}#2\kw{\}}}
 \newcommand*{\jsVar}[1]{#1}
 
