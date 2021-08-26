@@ -1,3 +1,5 @@
+\newcommand*{\JSCore}{\textsf{JSCore}}
+
 % Expressions.
 \newcommand*{\jsApp}[2]{{#1}({#2})}
 \newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
@@ -5,7 +7,7 @@
 \newcommand*{\jsVar}[1]{#1}
 
 % Definitions
-\newcommand*{\defClass}[2]{\kw{class}\;#1\symLBrace#2\kw{\}}}
+\newcommand*{\defClass}[2]{\kw{class}\;#1\;\symLBrace#2\symRBrace}
 \newcommand*{\defConstr}[2]{\kw{constr}\kw{(}#1\kw{)}\;#2}
 \newcommand*{\defMethod}[3]{#1\kw{(}#2\kw{)}\;#3}
 \newcommand*{\defField}[1]{#1}
