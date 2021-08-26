@@ -107,5 +107,5 @@
 \newcommand*{\elimVar}[2]{{#1}\elimmapsto{#2}} % no squigglies as not a 'set' of branches
 
 % Semantics
-\newcommand*{\toJSCore}[2]{\llbracket#2\rrbracket_{#1}}
-\newcommand*{\toJSCoreFwd}[2]{\toJSCore{#1}{#2}^{\rightsquigarrow}}
+\newcommand*{\toJSCore}[1]{\llbracket#1\rrbracket}
+\newcommand*{\toJSCoreFwd}[2]{\toJSCore{#2}^{\rightsquigarrow}_{#1}}
