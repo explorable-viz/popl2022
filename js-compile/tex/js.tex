@@ -1,8 +1,10 @@
 \newcommand*{\JSCore}{\textsf{JSCore}}
 
+\newcommand*{\jsFunArrow}{\Rightarrow}
+
 % Expressions.
 \newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
-\newcommand*{\jsAnonFun}[1]{\symLParens\vec{x}\symRParens\;e}
+\newcommand*{\jsAnonFun}[2]{\symLParens#1\symRParens\jsFunArrow#2}
 \newcommand*{\jsFunCall}[2]{{#1}\symLParens{#2}\symRParens}
 \newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symLParens{#3}\symRParens}
 \newcommand*{\jsNewObj}[2]{\kw{new}\;#1\symLParens#2\symRParens}
@@ -11,7 +13,13 @@
 % Definitions
 \newcommand*{\defClass}[2]{\kw{class}\;#1\;\symLBrace#2\symRBrace}
 \newcommand*{\defClassSuper}[3]{\kw{class}\;#1\;\kw{extends}\;#2\;\symLBrace#3\symRBrace}
-\newcommand*{\defConstr}[2]{\kw{constr}\kw{(}#1\kw{)}\;#2}
-\newcommand*{\defMethod}[3]{#1\kw{(}#2\kw{)}\;#3}
+\newcommand*{\defConstr}[2]{\kw{constr}\kw{(}#1\kw{)}\jsFunArrow#2}
+\newcommand*{\defMethod}[3]{#1\kw{(}#2\kw{)}\jsFunArrow#3}
 \newcommand*{\defField}[1]{#1}
 \newcommand*{\defSuperclass}[1]{\kw{extends}\;#1}
+
+% ES6 syntax
+\newcommand*{\esConst}[2]{\kw{const}\;#1\symEqual\;#2}
+
+% Semantics
+\newcommand*{\ESSix}[1]{\llbracket#1\rrbracket_{\mathsf{ES6}}}
