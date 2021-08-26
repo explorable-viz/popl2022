@@ -27,17 +27,16 @@
 \newcommand*{\exInt}[1]{#1}
 \newcommand*{\exList}[2]{\symLBrack\;#1 \ #2}
 \newcommand*{\exListComp}[2]{\symLBrack\,{#1}\;\sym{$\vert$}\;{#2}\kw{]}}
-\newcommand*{\exListEnd}{\kw{]}}
+\newcommand*{\exListEnd}{\symRBrack}
 \newcommand*{\exListEnum}[2]{\symLBrack\,{#1}\;\kw{..}\;{#2}\,\kw{]}}
-\newcommand*{\exListNext}[2]{\comma\;#1 \ #2}
+\newcommand*{\exListNext}[2]{\symComma\;#1 \ #2}
 \newcommand*{\exLambda}[1]{\uplambda{#1}}
 \newcommand*{\exLet}[3]{\kw{let}\;{#1}\equal{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecEquational}[3]{\kw{let}\;{#1}\;{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRec}[3]{\kw{let}\,{#1}{#2}\;\kw{in}\;{#3}}
 \newcommand*{\exLetRecMutual}[2]{\kw{let}\;{#1}\;\kw{in}\;{#2}}
 \newcommand*{\exMatch}[2]{\kw{match}~{#1}~\kw{as}\;{#2}}
-\newcommand*{\exNil}{\kw{[]}}
-\newcommand*{\exObj}[2]{\kw{new}\;#1\kw{\{}#2\kw{\}}}
+\newcommand*{\exNil}{{\symLBrack}{\symRBrack}}
 \newcommand*{\exOp}[1]{\kw{(}{#1}\kw{)}}
 \newcommand*{\exPair}[2]{\kw{(}#1\comma#2\kw{)}}
 \newcommand*{\exPrim}[1]{#1}
