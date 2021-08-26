@@ -28,11 +28,12 @@ $\exAppPrim{\phi}{\vec{e}}$
 primitive application
 \\
 &
-$\exApp{e}{e'}$
+$\exApp{e}{\vec{e}'}$
 &
 application
 \\
 &
+$\exObj{x}{\vec{\bind{y}{e}}}$
 &
 object
 \\
@@ -63,11 +64,11 @@ recursive let
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
 \begin{tabularx}{\textwidth}{rL{2.5cm}L{2.9cm}}
-&\textbfit{Eliminator}&
+&\textbfit{Class member}&
 \\
-$\sigma, \tau ::=$
+$m ::=$
 &
-$\elimVar{x}{\kappa}$
+$\defConstr{\vec{x}}$
 &
 variable
 \\
@@ -86,18 +87,12 @@ $\elimList{\kappa}{\sigma}$
 &
 list
 \\[2mm]
-&\textbfit{Continuation}&
+&\textbfit{Class definition}&
 \\
-$\kappa ::=$
+$C ::=$
 &
-$e$
+$\defClass{x}{\vec{m}}$
 &
-term
-\\
-&
-$\sigma$
-&
-eliminator
 \\[2mm]
 &\textbfit{Value}&
 \\
