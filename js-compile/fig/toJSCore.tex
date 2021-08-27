@@ -4,7 +4,7 @@
       &=
       \jsClass{x}{}
       \symSemi\,
-      \seqRange{\toJSCore{\defConstr{c_1}{n_1}}}{\toJSCore{\defConstr{c_i}{n_i}}}
+      \seqRangeSemi{\toJSCore{\defConstr{c_1}{n_1}}}{\toJSCore{\defConstr{c_i}{n_i}}}
    \end{salign}
    \\
    \begin{salign}
@@ -16,11 +16,11 @@
          \symSemi\,
          \seqRangeSemi{\kw{val1}}{\kw{val}n}
          \symSemi\,
-         C
+         \jsConstr{\seqRangeSemi{\kw{x1}}{\kw{x}n}}{\seqRangeSemi{S_1}{S_n}}
       }
       \\
       \text{where }
-      C = \jsConstr{\seqRangeSemi{\kw{x1}}{\kw{x}n}}{\kw{val1} = \kw{x1}}
+      S_i = \jsAssign{\jsFieldAccess{\jsThis}{\kw{val}i}}{\kw{x}i}
       \end{array}
    \end{salign}
    \\
