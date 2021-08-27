@@ -4,7 +4,7 @@
 
 % Expressions
 \newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
-\newcommand*{\jsAnonFun}[2]{\symParens{#1}\jsFunArrow#2}
+\newcommand*{\jsAnonFun}[2]{\symParens{#1}\,{#2}}
 \newcommand*{\jsFunCall}[2]{{#1}\symParens{#2}}
 \newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symParens{#3}}
 \newcommand*{\jsNewObj}[2]{\kw{new}\;#1\symParens{#2}}
@@ -20,10 +20,10 @@
 % Definitions
 \newcommand*{\jsClass}[2]{\kw{class}\;#1\;\symBrace{#2}}
 \newcommand*{\jsClassSuper}[3]{\kw{class}\;#1\;\kw{extends}\;#2\;\symBrace{#3}}
-\newcommand*{\jsConstr}[2]{\kw{constr}\symParens{#1}\jsFunArrow#2}
+\newcommand*{\jsConstr}[2]{\kw{constr}\symParens{#1}\;\jsBlock{#2}}
 \newcommand*{\jsMethod}[3]{#1\symParens{#2}\;\jsBlock{#3}}
 \newcommand*{\jsField}[1]{#1}
-\newcommand*{\jsFunction}[3]{\kw{function}\;#1\symParens{#2}\jsFunArrow#3}
+\newcommand*{\jsFunction}[3]{\kw{function}\;#1\symParens{#2}\,{#3}}
 
 % Misc.
 \newcommand*{\jsSuperclass}[1]{\kw{extends}\;#1}

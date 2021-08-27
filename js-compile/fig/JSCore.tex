@@ -48,7 +48,7 @@ $\jsFieldAccess{M}{x}$
 field access
 \\
 &
-$\jsAnonFun{\vec{x}}{M}$
+$\jsAnonFun{\vec{x}}{B}$
 &
 anonymous function
 \\[2mm]
@@ -56,9 +56,14 @@ anonymous function
 \\
 $B ::=$
 &
+$\jsBodyBlock{\vec{S}}$
+&
+block
+\\
+&
 $\jsBodyArrow{M}$
 &
-return
+expression
 \end{tabularx}
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
@@ -90,7 +95,7 @@ block
 \\
 $C ::=$
 &
-$\jsConstr{\vec{x}}{M}$
+$\jsConstr{\vec{x}}{\vec{s}}$
 &
 constructor
 \\
@@ -108,7 +113,7 @@ field
 \\
 $D ::=$
 &
-$\jsFunction{x}{\vec{y}}{M}$
+$\jsFunction{x}{\vec{y}}{B}$
 &
 function
 \\
@@ -125,6 +130,6 @@ derived class
 \end{minipage}
 \endgroup
 }
-\caption{\JSCore, model of target subset of JavaScript}
+\caption{Syntax of \JSCore, model of target subset of JavaScript}
 \label{fig:core-language:syntax}
 \end{figure}
