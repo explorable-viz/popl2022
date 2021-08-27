@@ -13,14 +13,14 @@
       \begin{array}[t]{l}
       \jsClassSuper{c}{x}{
          \alpha
-         \concat
-         \seqRange{\kw{val1}}{\kw{val}n}
-         \concat
+         \symSemi\,
+         \seqRangeSemi{\kw{val1}}{\kw{val}n}
+         \symSemi\,
          C
       }
       \\
       \text{where }
-      C = \jsConstr{\seqRange{\kw{x1}}{\kw{x}n}}{}
+      C = \jsConstr{\seqRangeSemi{\kw{x1}}{\kw{x}n}}{\kw{val1} = \kw{x1}}
       \end{array}
    \end{salign}
    \\
