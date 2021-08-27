@@ -7,9 +7,14 @@
 \newcommand*{\jsAnonFun}[2]{\symParens{#1}\jsFunArrow#2}
 \newcommand*{\jsFunCall}[2]{{#1}\symParens{#2}}
 \newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symParens{#3}}
-\newcommand*{\jsLet}[3]{\kw{let}\;{#1}\symEqual{#2}\symSemi\;{#3}}
 \newcommand*{\jsNewObj}[2]{\kw{new}\;#1\symParens{#2}}
 \newcommand*{\jsVar}[1]{#1}
+
+% Statements.
+\newcommand*{\jsAssign}[2]{{#1}={#2}}
+\newcommand*{\jsBlock}[1]{\symBrace{#1}}
+\newcommand*{\jsLet}[2]{\kw{let}\;{#1}\symEqual{#2}}
+\newcommand*{\jsReturn}[1]{\kw{return}\;{#1}}
 
 % Definitions
 \newcommand*{\jsClass}[2]{\kw{class}\;#1\;\symBrace{#2}}
