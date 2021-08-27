@@ -51,15 +51,23 @@ field access
 $\jsAnonFun{\vec{x}}{M}$
 &
 anonymous function
+\\[2mm]
+&\textbfit{Body}&
+\\
+$B ::=$
+&
+$\jsBodyArrow{M}$
+&
+return
 \end{tabularx}
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
 \begin{tabularx}{\textwidth}{rL{3cm}L{2.9cm}}
 &\textbfit{Statement}&
 \\
-$s ::=$
+$S ::=$
 &
-$\jsReturn{e}$
+$\jsReturn{M}$
 &
 return
 \\
@@ -74,7 +82,7 @@ $\jsAssign{x}{M}$
 assignment
 \\
 &
-$\jsBlock{\vec{s}}$
+$\jsBlock{\vec{S}}$
 &
 block
 \\[2mm]
@@ -87,7 +95,7 @@ $\jsConstr{\vec{x}}{M}$
 constructor
 \\
 &
-$\jsMethod{x}{\vec{y}}{\vec{s}}$
+$\jsMethod{x}{\vec{y}}{\vec{S}}$
 &
 method
 \\
