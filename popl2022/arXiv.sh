@@ -11,8 +11,9 @@ rm -f $TARGET.aux $TARGET.dvi $TARGET.log $TARGET.blg $TARGET.out $TARGET.pag $T
 
 pushd ..
 
-zip -r $NAME popl2022 tex-common
+zip -r - $NAME popl2022 tex-common > $NAME
 
+zip -d $NAME *.zip
 zip -d $NAME *.pdf
 zip -d $NAME *.DS_Store
 zip -d $NAME *.git
