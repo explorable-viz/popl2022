@@ -19,7 +19,7 @@
          \jsConstr{\seqRangeSemi{\kw{x1}}{\kw{x}n}}{\seqRangeSemi{S_1}{S_n}}
       }
       \\
-      \text{where }
+      \textit{where }
       S_i = \jsAssign{\jsFieldAccess{\jsThis}{\kw{val}i}}{\kw{x}i}
       \end{array}
    \end{salign}
@@ -32,6 +32,10 @@
       \jsFieldAccess{\rho}{x}
       \\
       \toJSCoreFwd{\rho}{\exConstr{c}{\vec{e}}} &=
+      \begin{array}[t]{l}
+         \\
+         \textit{where }c
+      \end{array}
    \end{salign}
    \caption{\JSCore interpretation of \OurLanguage}
 \end{figure}
