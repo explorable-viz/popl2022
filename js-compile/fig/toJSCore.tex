@@ -1,0 +1,41 @@
+\begin{figure}[H]
+   \begin{salign}
+      \toJSCore{\defDatatype{x}{\vec{\defConstr{c}{n}}}}
+      &=
+      \jsClass{x}{}
+      \symSemi\,
+      \seqRangeSemi{\toJSCore{\defConstr{c_1}{n_1}}}{\toJSCore{\defConstr{c_i}{n_i}}}
+   \end{salign}
+   \\
+   \begin{salign}
+      \toJSCoreConstr{x}{\defConstr{c}{n}}
+      &=
+      \begin{array}[t]{l}
+      \jsClassSuper{c}{x}{
+         \alpha
+         \symSemi\,
+         \seqRangeSemi{\kw{val1}}{\kw{val}n}
+         \symSemi\,
+         \jsConstr{\seqRangeSemi{\kw{x1}}{\kw{x}n}}{\seqRangeSemi{S_1}{S_n}}
+      }
+      \\
+      \textit{where }
+      S_i = \jsAssign{\jsFieldAccess{\jsThis}{\kw{val}i}}{\kw{x}i}
+      \end{array}
+   \end{salign}
+   \\
+   \begin{salign}
+      \toJSCoreFwd{\rho}{\exInt{n}} &=
+      \jsAnonFun{x}{\jsBodyArrow{x}}
+      \\
+      \toJSCoreFwd{\rho}{\exVar{x}} &=
+      \jsFieldAccess{\rho}{x}
+      \\
+      \toJSCoreFwd{\rho}{\exConstr{c}{\vec{e}}} &=
+      \begin{array}[t]{l}
+         \\
+         \textit{where }c
+      \end{array}
+   \end{salign}
+   \caption{\JSCore interpretation of \OurLanguage}
+\end{figure}

@@ -1,0 +1,37 @@
+\newcommand*{\JSCore}{\textsf{JSCore}\xspace}
+
+\newcommand*{\jsFunArrow}{\Rightarrow}
+
+% Expressions
+\newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
+\newcommand*{\jsAnonFun}[2]{\symParens{#1}\,{#2}}
+\newcommand*{\jsFunCall}[2]{{#1}\symParens{#2}}
+\newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symParens{#3}}
+\newcommand*{\jsNewObj}[2]{\kw{new}\;#1\symParens{#2}}
+\newcommand*{\jsThis}{\kw{this}}
+\newcommand*{\jsVar}[1]{#1}
+
+% Statements
+\newcommand*{\jsAssign}[2]{{#1}\symEqual{#2}}
+\newcommand*{\jsBlock}[1]{\symBrace{#1}}
+\newcommand*{\jsLet}[2]{\kw{let}\;{#1}\symEqual{#2}}
+\newcommand*{\jsReturn}[1]{\kw{return}\;{#1}}
+
+% Definitions
+\newcommand*{\jsClass}[2]{\kw{class}\;#1\;\symBrace{#2}}
+\newcommand*{\jsClassSuper}[3]{\kw{class}\;#1\;\kw{extends}\;#2\;\symBrace{#3}}
+\newcommand*{\jsConstr}[2]{\kw{constr}\symParens{#1}\;\jsBlock{#2}}
+\newcommand*{\jsMethod}[3]{#1\symParens{#2}\,{#3}}
+\newcommand*{\jsField}[1]{#1}
+\newcommand*{\jsFunction}[3]{\kw{function}\;#1\symParens{#2}\,{#3}}
+
+% Misc.
+\newcommand*{\jsSuperclass}[1]{\kw{extends}\;#1}
+\newcommand*{\jsBodyArrow}[1]{\jsFunArrow#1}
+\newcommand*{\jsBodyBlock}[1]{\jsBlock{#1}}
+
+% ES6 syntax
+\newcommand*{\esConst}[2]{\kw{const}\;#1\symEqual\;#2}
+
+% Semantics
+\newcommand*{\ESSix}[1]{\llbracket#1\rrbracket_{\mathsf{ES6}}}

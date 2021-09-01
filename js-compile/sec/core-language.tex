@@ -1,17 +1,11 @@
 %\section{Core language}
 %\label{sec:core-language}
 
-Guiding principles:
-\begin{itemize}
-   \item data types compile to abstract base classes
-   \item constructors compile to concrete subclasses
-   \item data values compile to objects
-   \item functions compile to pairs of forward/backward slicing functions
-\end{itemize}
+\paragraph{Notes}
 
-\noindent To resolve:
-\begin{itemize}
-   \item recursion -- want to use trampolining-style interpreter
-\end{itemize}
+$\concat$, $\symSemi$ and $\symComma$ are all interchangeable as sequence concatenation.
 
-\input{fig/core-language/syntax}
+\input{fig/Fluid}
+\input{fig/JSCore}
+\input{fig/toJSCore}
+\input{fig/toES6}
