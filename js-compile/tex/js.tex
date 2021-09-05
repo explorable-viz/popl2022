@@ -3,9 +3,10 @@
 \newcommand*{\jsFunArrow}{\Rightarrow}
 
 % Expressions
-\newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
 \newcommand*{\jsAnonFun}[2]{\symParens{#1}\,{#2}}
+\newcommand*{\jsFieldAccess}[2]{{#1}\symDot{#2}}
 \newcommand*{\jsFunCall}[2]{{#1}\symParens{#2}}
+\newcommand*{\jsInstanceOf}[2]{{#1}\mathbin{\kw{instanceof}}{#2}}
 \newcommand*{\jsMethodCall}[3]{{#1}\symDot{#2}\symParens{#3}}
 \newcommand*{\jsNewObj}[2]{\kw{new}\;#1\symParens{#2}}
 \newcommand*{\jsThis}{\kw{this}}
@@ -14,6 +15,7 @@
 % Statements
 \newcommand*{\jsAssign}[2]{{#1}\symEqual{#2}}
 \newcommand*{\jsBlock}[1]{\symBrace{#1}}
+\newcommand*{\jsIf}[2]{\kw{if}\;\symParens{#1}\;\symBrace{#2}}
 \newcommand*{\jsLet}[2]{\kw{let}\;{#1}\symEqual{#2}}
 \newcommand*{\jsReturn}[1]{\kw{return}\;{#1}}
 
