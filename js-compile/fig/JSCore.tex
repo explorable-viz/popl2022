@@ -53,7 +53,12 @@ function call
 &
 $\jsNewObj{x}{\vec{\bind{y}{M}}}$
 &
-new object
+new object (class)
+\\
+&
+$\jsObjLiteral{\vec{\jsFieldInit{x}{M}}}$
+&
+new object (literal)
 \\
 &
 $\jsThis$
@@ -74,7 +79,15 @@ field access
 $\jsAnonFun{\vec{x}}{B}$
 &
 anonymous function
-\\[2mm]
+\\
+&
+$\jsSpread{M}$
+&
+spread
+\end{tabularx}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tabularx}{\textwidth}{rL{3cm}L{2.9cm}}
 &\textbfit{Function body}&
 \\
 $B ::=$
@@ -87,10 +100,7 @@ block
 $\jsBodyArrow{M}$
 &
 expression
-\end{tabularx}
-\end{minipage}%
-\begin{minipage}[t]{0.5\textwidth}
-\begin{tabularx}{\textwidth}{rL{3cm}L{2.9cm}}
+\\[2mm]
 &\textbfit{Statement}&
 \\
 $S ::=$
