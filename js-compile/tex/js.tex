@@ -25,6 +25,12 @@
 \newcommand*{\jsField}[1]{#1}
 \newcommand*{\jsFunction}[3]{\kw{function}\;#1\symParens{#2}\,{#3}}
 
+% Types (pretend JS has types)
+\newcommand*{\jsTyBool}{\kw{boolean}}
+\newcommand*{\jsTyClassName}[1]{#1}
+\newcommand*{\jsTyNumber}{\kw{number}}
+\newcommand*{\jsTyFun}[2]{{#1} \to {#2}}
+
 % Misc.
 \newcommand*{\jsSuperclass}[1]{\kw{extends}\;#1}
 \newcommand*{\jsBodyArrow}[1]{\jsFunArrow#1}
