@@ -46,13 +46,19 @@
       }
    \end{salign}
    \\[2mm]
-   \flushleft\shadebox{\small$\toJSCoreFwd{\param}{\param}: \Elim{A}{B} \times \Dict \to \JSExpr{\toJSCore{A}}$}
+   \flushleft\shadebox{
+      \small$\toJSCoreFwd{\param}{\param}: \Elim{A}{B} \times \Dict \to \JSExpr{(\jsTyFun{\toJSCore{A}}{\toJSCore{B}})}$
+   }
    \begin{salign}
       \toJSCoreFwd{\rho}{\elimVar{x}{\kappa}}
       &=
       \\
       \toJSCoreFwd{\rho}{\elimConstr{\vec{\branch{c}{\kappa}}}}
       &=
+      \jsAnonFun{x}{\jsBodyBlock{
+         \seqRangeSemi{\toJSCoreFwd{\rho}{\branch{c_1}{\kappa_1}}}
+                      {\toJSCoreFwd{\rho}{\branch{c_n}{\kappa_n}}}
+      }}
    \end{salign}
    \caption{\JSCore interpretation of \OurLanguage}
 \end{figure}
