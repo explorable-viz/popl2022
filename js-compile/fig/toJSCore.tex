@@ -53,7 +53,7 @@
       \\
       \toJSCoreFwd{\rho}{\exApp{e}{e'}}
       &=
-      \toJSCoreFwd{\rho}{e}
+      \jsFunCall{\toJSCoreFwd{\rho}{e}}{\toJSCoreFwd{\rho}{e'}}
    \end{salign}
    \\[2mm]
    \flushleft\shadebox{
