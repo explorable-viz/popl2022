@@ -29,21 +29,19 @@
    }
    \begin{salign}
       \toJSCoreFwd{\rho}{\exInt{n}} &=
-      \jsAnonFun{x}{\jsBodyArrow{x}}
+      \jsAnonFun{x}{x}
       \\
       \toJSCoreFwd{\rho}{\exVar{x}} &=
       \jsFieldAccess{\rho}{x}
       \\
       \toJSCoreFwd{\rho}{\exConstr{c}{\vec{e}}} &=
       \jsAnonFun{x}{
-         \jsBodyArrow{
-            \jsNewObj{c}{
-               \jsFieldAccess{x}{\jsVar{\alpha}}
-               \symComma
-               \seqRange
-                  {\jsFunCall{\toJSCoreFwd{\rho}{e_1}}{\jsFieldAccess{x}{\kw{val1}}}}
-                  {\jsFunCall{\toJSCoreFwd{\rho}{e_n}}{\jsFieldAccess{x}{\kw{val}n}}}
-            }
+         \jsNewObj{c}{
+            \jsFieldAccess{x}{\jsVar{\alpha}}
+            \symComma
+            \seqRange
+               {\jsFunCall{\toJSCoreFwd{\rho}{e_1}}{\jsFieldAccess{x}{\kw{val1}}}}
+               {\jsFunCall{\toJSCoreFwd{\rho}{e_n}}{\jsFieldAccess{x}{\kw{val}n}}}
          }
       }
       \\
@@ -62,14 +60,14 @@
    \begin{salign}
       \toJSCoreFwd{\rho}{\elimVar{x}{\kappa}}
       &=
-      \jsAnonFun{\jsVar{y}}{\jsBodyArrow{
+      \jsAnonFun{\jsVar{y}}{
          \toJSCoreFwd{\jsObjLiteral{\jsSpread{\rho}\symComma \jsFieldInit{\jsVar{x}}{\jsVar{y}}}}{\kappa}
-      }}
+      }
       \\
       \toJSCoreFwd{\rho}{\elimConstr{\vec{\branch{c}{\kappa}}}}
       &=
       \begin{array}[t]{l}
-         \jsAnonFun{x}{\jsBodyBlock{
+         \jsAnonFun{x}{\jsBlock{
             \seqRangeSemi{\toJSCoreFwd{\rho}{\branch{c_1}{\kappa_1}}}
                         {\toJSCoreFwd{\rho}{\branch{c_n}{\kappa_n}}}
          }}
