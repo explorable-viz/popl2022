@@ -71,7 +71,10 @@
          \\
          \textit{where }S_i
          =
-         \jsIf{\jsInstanceOf{\jsVar{x}}{\jsVar{c}_i}}{\jsReturn{\toJSCoreFwd{\rho}{\kappa_i}}}
+         \jsIf{\jsInstanceOf{\jsVar{x}}{\jsVar{c}_i}}{\jsReturn{
+             \seqRange{\jsFunCall{\toJSCoreFwd{\rho}{\kappa_i}}{\jsFieldAccess{x}{\kw{val1}}}}
+                      {\symParens{\jsFieldAccess{x}{\kw{val}n_i}}}
+         }}
       \end{array}
    \end{salign}
    \caption{\JSCore interpretation of \OurLanguage}
