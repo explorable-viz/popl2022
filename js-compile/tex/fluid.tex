@@ -1,6 +1,6 @@
 % Data types.
 \newcommand*{\defDatatype}[2]{\kw{data}\;{#1}={#2}}
-\newcommand*{\defConstr}[2]{#1\symParens{#2}}
+\newcommand*{\defConstr}[2]{\bind{#1}{#2}}
 
 % Primitives.
 \newcommand*{\primOp}{\oplus}
@@ -11,13 +11,6 @@
 \newcommand*{\primGCBool}[2]{\sub{#1}{#2}}
 \newcommand*{\primAppF}[1]{\fwdF{primApp}{#1}}
 \newcommand*{\primAppGC}[1]{\GC{primApp}{#1}}
-
-% Prelude functions
-\newcommand*{\funConcatMap}{\exVar{\kw{concatMap}}}
-\newcommand*{\funEnumFromTo}{\exVar{\kw{enumFromTo}}}
-
-\newcommand*{\fieldFst}{\kw{fst}}
-\newcommand*{\fieldSnd}{\kw{snd}}
 
 % Expressions.
 \newcommand*{\exApp}[2]{{#1}\,{#2}}

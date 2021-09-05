@@ -2,15 +2,13 @@
    \begin{salign}
       \toJSCore{\defDatatype{x}{\vec{\defConstr{c}{n}}}}
       &=
-      \begin{array}[t]{l}
-         \jsClass{x}{} \symSemi\, \seqRangeSemi{D_1}{D_n}
-         \\
-         \text{where }
-      \end{array}
+      \jsClass{x}{}
+      \symSemi\,
+      \seqRangeSemi{\toJSCore{\defConstr{c_1}{n_1}}}{\toJSCore{\defConstr{c_i}{n_i}}}
    \end{salign}
    \\[2mm]
    \begin{salign}
-      D_i
+      \toJSCoreConstr{x}{\defConstr{c}{n}}
       &=
       \begin{array}[t]{l}
       \jsClassSuper{c}{x}{
