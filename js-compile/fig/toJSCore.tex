@@ -67,14 +67,11 @@
       \toJSCoreFwd{\rho}{\elimConstr{\vec{\branch{c}{\kappa}}}}
       &=
       \begin{array}[t]{l}
-         \jsAnonFun{x}{\jsBlock{
-            \seqRangeSemi{\toJSCoreFwd{\rho}{\branch{c_1}{\kappa_1}}}
-                        {\toJSCoreFwd{\rho}{\branch{c_n}{\kappa_n}}}
-         }}
+         \jsAnonFun{x}{\jsBlock{\vec{S}}}
          \\
-         \textit{where }\toJSCoreFwd{\rho}{\branch{c}{\kappa}}
+         \textit{where }S_i
          =
-         \jsIf{\jsInstanceOf{\jsVar{x}}{\jsVar{c}}}{\jsReturn{\toJSCoreFwd{\rho}{\kappa}}}
+         \jsIf{\jsInstanceOf{\jsVar{x}}{\jsVar{c}_i}}{\jsReturn{\toJSCoreFwd{\rho}{\kappa_i}}}
       \end{array}
    \end{salign}
    \caption{\JSCore interpretation of \OurLanguage}
