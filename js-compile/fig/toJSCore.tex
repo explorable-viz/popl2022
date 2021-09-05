@@ -32,10 +32,17 @@
       \jsFieldAccess{\rho}{x}
       \\
       \toJSCoreFwd{\rho}{\exConstr{c}{\vec{e}}} &=
-      \begin{array}[t]{l}
-         \\
-         \textit{where }c
-      \end{array}
+      \jsAnonFun{x}{
+         \jsBodyArrow{
+            \jsNewObj{c}{
+               \jsFieldAccess{x}{\jsVar{\alpha}}
+               \symComma
+               \seqRange
+                  {\jsFunCall{\toJSCoreFwd{\rho}{e_1}}{\jsFieldAccess{x}{\kw{val1}}}}
+                  {\jsFunCall{\toJSCoreFwd{\rho}{e_n}}{\jsFieldAccess{x}{\kw{val}n}}}
+            }
+         }
+      }
    \end{salign}
    \caption{\JSCore interpretation of \OurLanguage}
 \end{figure}
