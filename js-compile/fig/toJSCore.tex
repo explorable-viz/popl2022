@@ -52,12 +52,9 @@
    \begin{salign}
       \toJSCoreFwd{\rho}{\elimVar{x}{\kappa}}
       &=
-      \begin{array}[t]{l}
-         \jsAnonFun{\jsVar{y}}{\jsBodyArrow{\toJSCoreFwd{\rho'}{\kappa}}}
-         \\
-         \textit{where }
-         \rho' = \jsObjLiteral{\jsSpread{\rho}}
-      \end{array}
+      \jsAnonFun{\jsVar{y}}{\jsBodyArrow{
+         \toJSCoreFwd{\jsObjLiteral{\jsSpread{\rho}\symComma \jsFieldInit{\jsVar{x}}{\jsVar{y}}}}{\kappa}
+      }}
       \\
       \toJSCoreFwd{\rho}{\elimConstr{\vec{\branch{c}{\kappa}}}}
       &=

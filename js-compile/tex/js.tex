@@ -36,12 +36,10 @@
 \newcommand*{\jsTyFun}[2]{{#1} \to {#2}}
 
 % Misc.
-\newcommand*{\jsSuperclass}[1]{\kw{extends}\;#1}
 \newcommand*{\jsBodyArrow}[1]{\jsFunArrow#1}
 \newcommand*{\jsBodyBlock}[1]{\jsBlock{#1}}
-
-% ES6 syntax
-\newcommand*{\esConst}[2]{\kw{const}\;#1\symEqual\;#2}
+\newcommand*{\jsFieldInit}[2]{{#1}\symColon\,{#2}}
+\newcommand*{\jsSuperclass}[1]{\kw{extends}\;#1}
 
 % Semantics
 \newcommand*{\ESSix}[1]{\llbracket#1\rrbracket_{\mathsf{ES6}}}
