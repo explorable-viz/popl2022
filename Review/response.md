@@ -15,7 +15,7 @@
 
 We thank our three reviewers for their valuable input.
 
-### Reviewer: A
+### Reviewer A
 
 > I could use more details on how Figure 1 is generated: I understand that a
 > certain visualization set was fed to the backward analysis, yielding a source
@@ -40,7 +40,7 @@ Well spotted: the type signatures of the Galois connections here are missing "\t
 
 We will clarify that in this example the constants 2 and 3, which are omitted from the differential slice, are included by our backward analysis. We will also improve the colour choices so that they render better in black-and-white.
 
-### Reviewer: B
+### Reviewer B
 
 > line 151: what is meant by "prefixes"?
 
@@ -60,7 +60,7 @@ We will pick a different arrow symbol for eliminator types to avoid this problem
 
 > line 355: please distinguish the metalanguage and object language phi.
 
-Agreed, it is not clear here whether 𝜙(n) is a piece of syntax or a mathematical value (interpreted as a piece of syntax). A convention such as \hat{\phi} should help here.
+Agreed, it is not clear here whether 𝜙(n) is intended to denote a piece of syntax or a mathematical value. A convention such as \hat{\phi} should help here.
 
 > line 422: are there any complications to supporting higher-order data?
 
@@ -70,6 +70,8 @@ There are no complications, but to support our current application we do not nee
 > line 494: Figure 8 is a preorder
 
 Good point! This should have been obvious from Def. 3.2. Thank you for spotting this.
+
+In hindsight, we feel that the presentation would be improved if we in fact dropped □ (and the associated preorder), which were motivated purely by performance. Experience with our implementation has made it clear that other techniques, such as memoisation, might address this while avoiding the complexity of holes, so it seems premature to presuppose a hole-based approach in the paper. If our reviewers are amenable, we will simplify the presentation by dropping Fig. 8 and the various □ rules and related exposition, and use the space gained (about 3/4 of a page) to do a better job of explaining the core analysis. As Reviewer C notes, this section would benefit from some examples. (We will certainly include a note explaining how our implementation currently works, but make it clear that other choices are possible.)
 
 > line 457:  please clarify the presentation of the two-point lattice,
 > including which elements are in the set (rather than reusing "2"), and
@@ -92,4 +94,32 @@ In fact this can only be \top, since the definition is polymorphic in A. This is
 
 > line 1174: Related to this is work on Resugaring by Pombrio et al.
 
-Thank you for this reference; this indeed exactly what we would like to do.
+Thank you for this reference; this looks like exactly what we would like to do.
+
+### Reviewer C
+
+> The paper could do with more giving examples of concepts before diving into the
+> theory of the concepts.
+
+> How does this work relate to lenses?
+
+Lenses do seem intuitively related, in that the round-tripping properties of Galois connections resemble some of the get/put laws of lenses. We are not aware of any work that establishes a formal relationship.
+
+> L177: It would be useful to call out why eliminators are used by this language
+
+We will make this clearer.
+
+> L179: "e : e'" has space before ":" but "x: e" does not.  This seems inconsistent.
+
+[Assuming you mean L189 here.] The first operator is a list cons, and the second is syntax that associates a field name with a value in a record, so the missing space is (arguably) justified here, although some prefer to write cons with no space on either side. However, it would be more consistent to write the ":" in record notation using code font, as we do with the cons.
+
+> At about section 2.2.4, I started getting lost and would have found it useful
+> to have some examples.
+> At about section 3.1, I have another note that I was starting to get lost
+
+These sections are dense and would benefit from some examples. The presentational simplification we propose above (relating to □) would provide some space to do that.
+
+> The paper notes that "0 * x" does not depend on "x".  Does "x * 0" depend on "x"
+> or is there a way you can get the best of both cases?
+
+"x * 0" does not depend on x either. A primitive operation such as * must provide a Galois connection for every application of * to specific arguments (section 3.2.2), and if one of the arguments is the annihilator (for operations which have one), our implementation will in that case establish a dependency only on the other argument. An (arguably) unintuitive case is that 0 * 0 must fix either one or both of the zeroes to depend on; depending on both seems inconsistent with the x * 0 case (for non-zero x), and depending on just one requires making a choice which might seem arbitrary.
