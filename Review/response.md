@@ -1,18 +1,3 @@
-# Reviewer response
-
-## Instructions
-
-> The rebuttal period have just started. It goes from the beginning of 4
-> Aug (Sat, AOE), until the end of 8 Aug (Wed, AOE).
-
-> Your response is optional. A response must be concise, addressing
-> specific points raised in review; in particular, it must not introduce
-> new technical results. The soft limit of a response is 500 words. This
-> means that reviewers will not be expected to read texts beyond this
-> 500-word limit.
-
-## Response to reviewers
-
 We thank our three reviewers for their valuable input.
 
 ### Reviewer A
@@ -100,6 +85,11 @@ Thank you for this reference; this looks like exactly what we would like to do.
 
 > The paper could do with more giving examples of concepts before diving into the
 > theory of the concepts.
+> At about section 2.2.4, I started getting lost and would have found it useful
+> to have some examples.
+> At about section 3.1, I have another note that I was starting to get lost
+
+These sections are dense and would benefit from some examples. The presentational simplification we propose above (relating to □) would provide some space to do that.
 
 > How does this work relate to lenses?
 
@@ -112,12 +102,6 @@ We will make this clearer.
 > L179: "e : e'" has space before ":" but "x: e" does not.  This seems inconsistent.
 
 [Assuming you mean L189 here.] The first operator is a list cons, and the second is syntax that associates a field name with a value in a record, so the missing space is (arguably) justified here, although some prefer to write cons with no space on either side. However, it would be more consistent to write the ":" in record notation using code font, as we do with the cons.
-
-> At about section 2.2.4, I started getting lost and would have found it useful
-> to have some examples.
-> At about section 3.1, I have another note that I was starting to get lost
-
-These sections are dense and would benefit from some examples. The presentational simplification we propose above (relating to □) would provide some space to do that.
 
 > The paper notes that "0 * x" does not depend on "x".  Does "x * 0" depend on "x"
 > or is there a way you can get the best of both cases?
