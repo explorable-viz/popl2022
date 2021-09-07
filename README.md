@@ -1,1 +1,1 @@
-Formalisation of core language for explorable data visualisations.
+POPL 2022 submission.
