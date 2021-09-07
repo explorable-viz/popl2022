@@ -1,0 +1,202 @@
+POPL 2022 Paper #34 Reviews and Comments
+===========================================================================
+Paper #34 Linked visualisations via Galois dependencies
+
+
+Review #34A
+===========================================================================
+
+Overall merit
+-------------
+B. Weak Accept
+
+Reviewer expertise
+------------------
+Z. No familiarity
+
+Paper summary
+-------------
+This paper presents a dependency analysis that relates parts of a source program to parts of its result value. The analysis is motivated by the need in interactive visualization to relate parts of a visualization (e.g., a bar in a graph) to parts of its input data (e.g., certain data records) and onward to other visualizations that depend on the same data (e.g., lines in other plots). The analysis consists of two directions, one that maps sets (more generally functions-to-lattice) of source parts forward to sets of result parts, and one vice versa. The paper emphasizes that these directions form a Galois connection; this assures a basic level of coherence and also guides composition of analyses for different visualizations. One novel aspect about the analysis that makes it more suitable for its application is that the set can contain, for example, certain fields of a record or certain elements of a list without containing the record constructor or list spine. Because these sets are closed under complement, a Galois connection can be "inverted" by taking its De Morgan dual.
+
+Strengths
+---------
+The motivation is strong. The technical development is neat. The writing is exemplary. The relationship to program analysis and slicing on one hand, and to data visualization on the other hand, are clearly established.
+
+Weaknesses
+----------
+I could use more details on how Figure 1 is generated: I understand that a certain visualization set was fed to the backward analysis, yielding a source set (spanning both the program and the table in Figure 1), which was fed in turn to the De Morgan dual of the forward analysis. If that's correct, I just want a more concrete description of what visualization set and what source set.
+
+Comments for author
+-------------------
+Minor comments:
+- L76 "to specified" -> "to be specified"
+- L78 "to do allow" -> "to allow"
+- L512 "turing" -> "turning"
+- L519,L599,L614,L658,...: I was confused by $\mathsf{Sel}_{\mathbf{\rho,\kappa}}\mathcal{A}\times\mathcal{A}$ for several minutes. Please parenthesize $\mathsf{Sel}_{\mathbf{\rho,\kappa}}\mathcal{A}$
+- L775 "using using" -> "using"
+- L776 "other that" -> "other than"
+- L800: If the type direction is by convention given by the lower adjoint, then please write $Y\rightarrow X$ instead of $X\rightarrow Y$. In general (from Section 3.4 to Section 4.1), it's confusing to use the letters $f$ and $g$ both for the halves of a Galois connection and for a Galois connection; please try to use different letters instead.
+- L806: What about the ambient availability?
+- L818 "form" -> "and for every input $\overrightarrow{n}$ form"
+- Figure 13,14: Yellow is hard to see in black-and-white; please choose a darker color.
+- L1028: Say more explicitly how your analysis computes better dependency information.
+
+
+
+Review #34B
+===========================================================================
+
+Overall merit
+-------------
+A. Strong Accept
+
+Reviewer expertise
+------------------
+Y. Knowledgeable
+
+Paper summary
+-------------
+In some applications that include multiple visualizations, a common
+interaction mode involves selecting data in one view and relating it
+to an alternate view.  This technique is typically implemented using
+ad hoc techniques.  This paper presents a language-based technique to
+systematize the computation of "brushing-and-linking" data, exploiting
+Galois connections among program trace data to analyze the relevance
+of data.  The result is a core language for performing computaitons
+and a connected surface language for implementing systems.
+
+Strengths
+---------
+Interesting and relevant application of data provenance
+
+Compelling framing of this problem as a language-level problem
+
+Insightful analysis of brushing and linking as a composition of
+related Galois connections
+
+Quite clean explanation of the theory
+
+Comments for author
+-------------------
+line 75: require data transformations to *be* specified
+
+line 77: what we would like is to allow
+
+line 79: artefact as a baked-in
+
+line 151: what is meant by "prefixes"?
+
+line 178: our implementation *is* untyped
+
+line 180: structured data which are
+
+line 222:  what is a "partial" value?
+
+line 234: with --> *being* part of the notation
+
+line 240: allows us to *transform* an eliminator  ... *into* an eliminator of
+
+line 246: no typing rule for k?
+
+line 259: I found the overloading of --> in this judgment confusing in
+parts of the exposition.
+
+line 355: please distinguish the metalanguage and object language phi.
+
+line 370: varepsilon in the unit rule should be ()
+
+line 422: are there any complications to supporting higher-order data?
+
+line 453:  The figure is a preorder on values, not a partial order.
+
+line 457:  please clarify the presentation of the two-point lattice,
+including which elements are in the set (rather than reusing "2"), and
+what the elements in the tuple represent (which was not explained
+earlier). One can figure it out, but better not to have to.
+
+line 473: I did not find the reference to representable functors
+helpful.  Just say that comparison is defined pointwise and give an
+example.
+
+line 494: Figure 8 is a preorder
+
+line 510: In practice
+
+line 512: evaluation, turning input
+
+line 544: for the var case, perhaps use \top instead of tt, to be more
+generic
+
+line 555&556: in cons, I think kappas on the right should be kappa-prime
+
+line 903:  again the name "2" is used for both the algebra and the
+carrier set.  Just enumerate the elements of the carrier.
+
+line 1174: Related to this is work on Resugaring by Pombrio et al.
+
+
+
+Review #34C
+===========================================================================
+
+Overall merit
+-------------
+A. Strong Accept
+
+Reviewer expertise
+------------------
+Y. Knowledgeable
+
+Paper summary
+-------------
+This paper presents a technique for connecting which parts of a visualization
+correspond to which parts of the program generated that part of the
+visualization. It formalizes the mathematics of this visualization and shows
+that this connection is a Galois connection.
+
+Strengths
+---------
+This paper presents strong theory and a useful application.
+
+The linking presented in the paper is especially elegant.
+
+Weaknesses
+----------
+The paper could do with more giving examples of concepts before diving into the
+theory of the concepts.
+
+Comments for author
+-------------------
+(Notation: Things between stars/in bold are what the next needs to be changed to.)
+
+L27: Good motivation for this paper
+
+L83: "As well **as** providing"
+
+How does this work relate to lenses?
+
+L177: It would be useful to call out why eliminators are used by this language
+
+L178: "implementation **is** untyped"
+
+L179: "types A **and** B**,** which"
+
+L179: "e : e'" has space before ":" but "x: e" does not.  This seems inconsistent.
+
+L221: There is an extra space before both citations on this line.
+
+L282: There is an extra space before the citation on this line.
+
+L325: "figure**,** the"
+
+At about section 2.2.4, I started getting lost and would have found it useful
+to have some examples.
+
+L490: "becomes selection" -> "become selections"
+
+L415: "**,** which are"
+
+At about section 3.1, I have another note that I was starting to get lost
+
+The paper notes that "0 * x" does not depend on "x".  Does "x * 0" depend on "x"
+or is there a way you can get the best of both cases?
