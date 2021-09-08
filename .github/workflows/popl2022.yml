@@ -21,11 +21,10 @@ jobs:
         submodules: true
     - name: collate-examples
       run: |
-        cd popl2022
         source collate-examples.sh
     - uses: dante-ev/latex-action@latest
       with:
-        entrypoint: ./popl2022/all-versions.sh
+        entrypoint: ./all-versions.sh
     - uses: actions/upload-artifact@v2
       with:
-        path: ./popl2022/anonymised.pdf
+        path: ./anonymised.pdf
