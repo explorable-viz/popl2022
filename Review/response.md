@@ -1,4 +1,8 @@
-We thank our three reviewers for their valuable input. We accept all the notational suggestions and minor corrections; the discussion below covers the remaining issues of clarity and presentation.
+We thank our three reviewers for their valuable input. We accept all the notational suggestions and minor corrections.
+
+As a general comment, we feel the presentation would be improved if we dropped □ (and the associated ordering, which as Reviewer B notes is actually a preorder, not a partial order). These details were motivated purely by performance, but it now seems clear that other techniques, such as memoisation, may address this while avoiding the complexity of holes. It therefore seems premature to presuppose a hole-based approach in the paper. If our reviewers are amenable, we will drop Fig. 8 and the various □ rules and related exposition, and use the space gained to do a better job of explaining the core analysis. As Reviewer C notes, this could be clearer and would benefit from some examples.
+
+The discussion below covers remaining issues of clarity and presentation.
 
 ### Reviewer A
 
@@ -14,9 +18,7 @@ There should technically be a typing rule for κ which delegates to the judgemen
 
 Higher-order data presents no complications, but for our current application we only need to track how data flows "through" operations. We expect higher-order data to be important for other applications, such as extracting expression provenance; we will mention this in section 6.1.
 
-Thank you for spotting that (as suggested by Def. 3.2) Fig 8 is a preorder, not a partial order. As it happens, we feel that the presentation would be improved if we dropped □ (and the associated preorder). These were motivated purely by performance, but it seems clear now that other techniques, such as memoisation, may address this without the complexity of holes. It therefore seems premature to presuppose a hole-based approach in the paper. If our reviewers are amenable, we will drop Fig. 8 and the various □ rules and related exposition, and use the space gained to do a better job of explaining the core analysis. As Reviewer C notes, this could be clearer and would benefit from some examples. (We will include a note explaining how our implementation currently works, but make it clear that other choices are possible.)
-
-Thank you for the Pombrio et al. reference; this looks like exactly what we would like to do.
+The Pombrio et al. reference is spot on.
 
 ### Reviewer C
 
