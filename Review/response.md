@@ -1,6 +1,6 @@
 We thank our three reviewers and accept the notational suggestions and minor corrections.
 
-General comment: we feel the presentation would be improved if we dropped □ and the associated ordering (which as Reviewer B notes is actually a preorder, not a partial order). These details were motivated by performance, but it now seems clear that other implementation techniques (e.g. memoisation) may address this while avoiding the complexity of holes. It therefore seems premature to presuppose a hole-based implementation for the paper. If reviewers are amenable, we will drop Fig. 8 and the various □ rules and related exposition, and use the space to do a better job of explaining the core analysis. As Reviewer C notes, these sections could be clearer and would benefit from some examples.
+General comment: we feel the presentation would be improved if we dropped □ and the associated ordering (which as Reviewer B notes is actually a preorder, not a partial order). These details were motivated by performance, but in hindsight it seems clear that other implementation techniques (e.g. memoisation) may address this, without the complexity of holes. It therefore seems premature to presuppose a hole-based implementation for the paper. If reviewers are amenable, we will drop Fig. 8 and the various □ rules and related exposition, and use the space to do a better job of explaining the core analysis. As Reviewer C notes, these sections could be clearer and would benefit from some examples.
 
 ### Reviewer A
 
