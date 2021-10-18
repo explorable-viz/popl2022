@@ -37,7 +37,7 @@
       \strut
    }
    {
-      \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVar{x}}{\bind{x}{v}}{\kappa}{\TT}
+      \matchFwd{v}{\elimVar{x}{\kappa}}{\matchVar{x}}{\bind{x}{v}}{\kappa}{\top}
    }
    %
    \and
@@ -134,13 +134,13 @@
    {
       \matchFwd{v}{\sigma}{w}{\rho}{\tau}{\beta}
       \\
-      \matchFwd{v'}{\tau}{w'}{\rho'}{\kappa}{\beta'}
+      \matchFwd{v'}{\tau}{w'}{\rho'}{\kappa'}{\beta'}
    }
    {
       \matchFwd{\annCons{v}{v'}{\alpha}}
                {\elimList{\kappa}{\sigma}}
                {\matchCons{w}{w'}}
-               {\rho \concat \rho'}{\kappa}{\alpha \meet \beta \meet \beta'}
+               {\rho \concat \rho'}{\kappa'}{\alpha \meet \beta \meet \beta'}
    }
 \end{smathpar}
 

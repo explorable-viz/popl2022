@@ -1,7 +1,7 @@
 \subsection{Forward data dependency}
 \label{sec:data-dependencies:analyses:fwd}
 
-We now define the core bidirectional data dependency analyses for a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. In practise one would first evaluate a program to obtain its trace $T$, and then run multiple forward or backward analyses over $T$ with appropriate lattices. We start with the forward dependency function $\evalFwdF{T}$ which ``replays'' evaluation, turing input availability into output availability, with $T$ guiding the analysis whenever holes in the input selection would mean the analysis would otherwise get stuck. $\evalFwdF{T}$ uses the auxiliary function $\matchFwdF{w}$ for forward-analysing a pattern-match, which introduces the key idea of a selection as the data available to a downstream computation.
+We now define the core bidirectional data dependency analyses for a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. In practice one would first evaluate a program to obtain its trace $T$, and then run multiple forward or backward analyses over $T$ with appropriate lattices. We start with the forward dependency function $\evalFwdF{T}$ which ``replays'' evaluation, turning input availability into output availability, with $T$ guiding the analysis whenever holes in the input selection would mean the analysis would otherwise get stuck. $\evalFwdF{T}$ uses the auxiliary function $\matchFwdF{w}$ for forward-analysing a pattern-match, which introduces the key idea of a selection as the data available to a downstream computation.
 
 \input{fig/core-language/slicing/eval-fwd}
 
@@ -66,7 +66,7 @@ For a cons match $\matchCons{w}{w'}$, we split the environment into $\rho$ and $
 
 \paragraph{Other rules} In the variable case, no partial values were constructed during evaluation and there are no subcomputations, so the ambient demand is $\bot$, the unit for $\join$. The returned environment selection demands $v$ for the variable $x$ and $\hole$ for all other variables, using the family of \emph{backwards lookup} functions $\envLookupBwdF{-}{\rho}{x}{-}$ of type $\Sel{\raw{v}}{A} \to \Sel{\raw{\rho}}{A}$ for any $\envLookup{\raw{\rho}}{x}{\raw{v}}$ also defined in \figref{data-dependencies:bwd}. (The output of the function is on the left in the relational notation.) For atomic values such as integers and nil, the ambient demand is simply the demand $\alpha$ associated with the constructed value, which is also attached to the corresponding expression, and the environment demand has $\hole$ for every variable in the original environment $\raw{\rho}$, written $\hole_{\raw{\rho}}$.
 
-For closures, the ambient demand is unpacked along with the other components, preserving any internal selections on $\rho$ and $\sigma$. Composite values such as records and cons cells follow the general pattern; thus for records, the ambient demands $\alpha'_i$ for the subcomputations are joined with the $\alpha$ on the record itself to produce the ambient demand passed upward. Record projection never demands the record constructor itself, but simply promotes the field demand into a record demand, using using $\envLookupBwdR{\vec{\bind{x}{\raw{v}}}}$ to demand fields other that $y$ with $\hole$.
+For closures, the ambient demand is unpacked along with the other components, preserving any internal selections on $\rho$ and $\sigma$. Composite values such as records and cons cells follow the general pattern; thus for records, the ambient demands $\alpha'_i$ for the subcomputations are joined with the $\alpha$ on the record itself to produce the ambient demand passed upward. Record projection never demands the record constructor itself, but simply promotes the field demand into a record demand, using $\envLookupBwdR{\vec{\bind{x}{\raw{v}}}}$ to demand fields other than $y$ with $\hole$.
 
 \paragraph{Hole rule} The hole rule, as elsewhere, ensures that the function is defined when $v$ is $\hole$, and it is easy to show that $\evalBwdF{T}$  preserves $\leq$, and thus $\eq$.
 
@@ -87,7 +87,7 @@ We now establish more formally the round-tripping properties, alluded at the beg
 
 \begin{theorem}[Galois connection for pattern-matching]
    \label{thm:core-language:match:gc}
-      Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$.  Then $(\matchBwdF{w}, \matchFwdF{w}): \Sel{\raw{\rho},\raw{\kappa}}{A} \to \Sel{\raw{v}, \raw{\sigma}}{A}$ is a Galois connection.
+   Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$.  Then $(\matchBwdF{w}, \matchFwdF{w}): \Sel{\raw{\rho},\raw{\kappa}}{A} \times \Ann{A} \to \Sel{\raw{v}, \raw{\sigma}}{A}$ is a Galois connection.
 \end{theorem}
 
 \begin{proof}
@@ -95,7 +95,8 @@ We now establish more formally the round-tripping properties, alluded at the beg
 \end{proof}
 
 \begin{lemma}[Galois connection for environment lookup]
-\label{lem:core-language:env-get-put}Suppose $\envLookup{\raw{\rho}}{x}{\raw{v}}$. Then $(\envLookupBwdF{-}{\raw{\rho}}{x}{},\envLookupFwdF{}{\raw{\rho}}{x}{-}): \Sel{\raw{v}}{A} \to \Sel{\raw{\rho}}{A}$ is a Galois connection.
+   \label{lem:core-language:env-get-put}
+   Suppose $\envLookup{\raw{\rho}}{x}{\raw{v}}$. Then $(\envLookupBwdF{-}{\raw{\rho}}{x}{},\envLookupFwdF{}{\raw{\rho}}{x}{-}): \Sel{\raw{v}}{A} \to \Sel{\raw{\rho}}{A}$ is a Galois connection.
 \end{lemma}
 
 \begin{proof}
@@ -104,22 +105,22 @@ We now establish more formally the round-tripping properties, alluded at the beg
 
    \begin{theorem}[Galois connection for recursive bindings]
 \label{thm:core-language:closeDefs:gc}
-   Suppose $\raw{\rho}, \raw{h} \closeDefsR \raw{\rho}'$. Then $({\closeDefsBwdF{\raw{\rho},\raw{h}}, \closeDefsFwdF{\raw{\rho},\raw{h}}}): \Sel{\raw{\rho}'}{A} \to \Sel{\raw{\rho},\raw{h}}{A}$ is a Galois connection.
+   Suppose $\raw{\rho}, \raw{h} \closeDefsR \raw{\rho}'$. Then $({\closeDefsBwdF{\raw{\rho},\raw{h}}, \closeDefsFwdF{\raw{\rho},\raw{h}}}): \Sel{\raw{\rho}'}{A} \to \Sel{\raw{\rho},\raw{h}}{A} \times \Ann{A}$ is a Galois connection.
 \end{theorem}
 
 \begin{proof}
    \ifappendices See \appref{proofs:closeDefs:gc}. \else \ProofInSupplementaryMaterial \fi
    \end{proof}
 
-We assume (rather than prove) that the forward and backwards dependency functions $\primGCBool{\phi}{\vec{n}} = (\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ provided for every primitive operation $\phi: \tyInt^i \to \tyInt$ form a Galois connection of type $\Ann{A} \to \Ann{A}^i$. Under this assumption the following holds.
+We assume (rather than prove) that the forward and backwards dependency functions $\primGCBool{\phi}{\vec{n}} = (\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ provided for every primitive operation $\phi: \tyInt^i \to \tyInt$ and every $\vec{n}$ of suitable length form a Galois connection of type $\Ann{A} \to \Ann{A}^i$. Under this assumption the following holds.
 
 \begin{theorem}[Galois connection for evaluation]
 \label{thm:core-language:eval:gc}
-   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$.  Then $(\evalBwdF{T}, \evalFwdF{T}): \Sel{\raw{\rho}, \raw{e}}{A} \to \Sel{\raw{v}}{A}$ is a Galois connection.
+   Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$.  Then $(\evalBwdF{T}, \evalFwdF{T}): \Sel{\raw{v}}{A} \to \Sel{\raw{\rho}, \raw{e}}{A} \times \Ann{A}$ is a Galois connection.
 \end{theorem}
 
 \begin{proof}
    \ifappendices See \appref{proofs:eval:gc}. \else \ProofInSupplementaryMaterial \fi
 \end{proof}
 
-Establishing that $(\evalBwdF{T}, \evalFwdF{T})$ is an adjoint pair might seem rather weak as a correctess property: it merely ensures that the two analyses are related in a sensible way, not that they actually capture any useful information. This is a familiar problem from other approximate analyses like type systems and model checking, where properties like soundness or completeness are essential but do not by themselves guarantee utility. One could certainly define versions of $\evalBwdF{T}$ and $\evalFwdF{T}$ that are too coarse grained to be useful yet still satisfy \thmref{core-language:eval:gc}. However Galois connections do at least require that every tightening or tweak to the forward analysis is paired with a corresponding adjustment to the backward analysis, and vice-versa. In \secref{conclusion} we consider how other ideas from provenance and program slicing might be adapted to provide additional correctness criteria.
+Establishing that $(\evalBwdF{T}, \evalFwdF{T})$ is an adjoint pair might seem rather weak as a correctess property: it merely ensures that the two analyses are related in a sensible way, not that they actually capture any useful information. This is a familiar problem from other approximate analyses like type systems and model checking, where properties like soundness or completeness are essential but do not by themselves guarantee utility. One could certainly define versions of $\evalBwdF{T}$ and $\evalFwdF{T}$ that are too coarse grained to be useful, yet still satisfy \thmref{core-language:eval:gc}. However Galois connections do at least require that every tightening or tweak to the forward analysis is paired with a corresponding adjustment to the backward analysis, and vice-versa. In \secref{conclusion} we consider how other ideas from provenance and program slicing might be adapted to provide additional correctness criteria.
