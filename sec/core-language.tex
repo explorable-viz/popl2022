@@ -6,7 +6,7 @@ The core calculus is a mostly standard call-by-value functional language with da
 \subsection{Syntax and typing}
 \label{sec:core-language:syntax-typing}
 
-Although our implementation is untyped, types help describe the structure of the core language. \figref{core-language:syntax} introduces the types $A, B$ which include $\tyBool$, $\tyInt$ and function types $\tyFun{A}{B}$, but also lists $\tyList{A}$ and records $\tyRec{\vec{\bind{x}{A}}}$ which exemplify the two kinds of structured data of which are of interest: recursive datatypes with varying structure, and tabular data with a fixed shape. As usual the notation $\bind{x}{A}$ denotes the binding of $x$ to $A$ (understood formally as a pair); $\seq{\bind{x}{A}}$ denotes the sequence of bindings that results from zipping same-length sequences $\vec{x}$ and $\vec{A}$. In a record type $\tyRec{\vec{\bind{x}{A}}}$ the field names in $\vec{x}$ are required to be unique.
+Although our implementation is untyped, types help describe the structure of the core language. \figref{core-language:syntax} introduces the types $A, B$ which include $\tyBool$, $\tyInt$ and function types $\tyFun{A}{B}$, but also lists $\tyList{A}$ and records $\tyRec{\vec{\bind{x}{A}}}$ which exemplify the two kinds of structured data which are of interest: recursive datatypes with varying structure, and tabular data with a fixed shape. As usual the notation $\bind{x}{A}$ denotes the binding of $x$ to $A$ (understood formally as a pair); $\seq{\bind{x}{A}}$ denotes the sequence of bindings that results from zipping same-length sequences $\vec{x}$ and $\vec{A}$. In a record type $\tyRec{\vec{\bind{x}{A}}}$ the field names in $\vec{x}$ are required to be unique.
 
 \input{fig/core-language/syntax}
 
