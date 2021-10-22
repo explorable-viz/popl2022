@@ -20,18 +20,18 @@
             \node (C) [right of=B] {
                $\Ann{V}_2$
             };
-            \draw[->] (AA) to node {$f$} (BB);
-            \draw[->] (CC) to node [swap] {$g$} (BB);
+            \draw[->] (AA) to node {$\gamma$} (BB);
+            \draw[->] (CC) to node [swap] {$\delta$} (BB);
 
-            \draw[->, bend right] (A) to node [swap] {$\lowerAdj{f}$} (B);
-            \draw[->, bend left] (B) to node {$\upperAdj{g}$} (C);
-            \draw[->, bend left] (C) to node {$\lowerAdj{g}$} (B);
-            \draw[->, bend right] (B) to node [swap] {$\upperAdj{f}$} (A);
+            \draw[->, bend right] (A) to node [swap] {$\lowerAdj{\gamma}$} (B);
+            \draw[->, bend left] (B) to node {$\upperAdj{\delta}$} (C);
+            \draw[->, bend left] (C) to node {$\lowerAdj{\delta}$} (B);
+            \draw[->, bend right] (B) to node [swap] {$\upperAdj{\gamma}$} (A);
 
             \draw[red,thick,dotted,line cap=round,dash pattern=on 0pt off 0.2em] ($(BB.north west)+(0.1,0.3)$)  rectangle ($(C.south east)+(-0.1,-0.5)$);
          \end{tikzpicture}
       \end{nscenter}
-      \caption{Non-composable Galois connections}
+      \caption{$\gamma$ and $\delta$ cannot be composed}
       \label{fig:example:de-morgan:non-composable}
    \end{subfigure}
    \begin{subfigure}[t]{0.55\textwidth}
@@ -61,17 +61,17 @@
             \node (C1) [right of=C] {
                $\Ann{V}_2$
             };
-            \draw[->] (AA) to node {$f$} (BB);
-            \draw[->] (BB) to node {$\dual{g}$} (CC);
+            \draw[->] (AA) to node {$\gamma$} (BB);
+            \draw[->] (BB) to node {$\dual{\delta}$} (CC);
 
-            \draw[->, bend right] (A) to node [swap] {$\lowerAdj{f}$} (A1);
+            \draw[->, bend right] (A) to node [swap] {$\lowerAdj{\gamma}$} (A1);
             \draw[->, bend right] (A1) to node [swap] {$\neg_{\Ann{D}}$} (B);
-            \draw[->, bend right] (B) to node [swap] {$\upperAdj{g}$} (C);
+            \draw[->, bend right] (B) to node [swap] {$\upperAdj{\delta}$} (C);
             \draw[->, bend right] (C) to node [swap] {$\neg_{\Ann{V}_2}$} (C1);
             \draw[->, bend right] (C1) to node [swap] {$\neg_{\Ann{V}_2}$} (C);
-            \draw[->, bend right] (C) to node [swap] {$\lowerAdj{g}$} (B);
+            \draw[->, bend right] (C) to node [swap] {$\lowerAdj{\delta}$} (B);
             \draw[->, bend right] (B) to node [swap] {$\neg_{\Ann{D}}$} (A1);
-            \draw[->, bend right] (A1) to node [swap] {$\upperAdj{f}$} (A);
+            \draw[->, bend right] (A1) to node [swap] {$\upperAdj{\gamma}$} (A);
 
             \draw[red,thick,dotted,line cap=round,dash pattern=on 0pt off 0.2em] ($(BB.north west)+(0.1,0.3)$)  rectangle ($(C1.south east)+(-0.1,-0.5)$);
          \end{tikzpicture}
