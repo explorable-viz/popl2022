@@ -112,7 +112,7 @@ We now establish more formally the round-tripping properties, alluded at the beg
    \ifappendices See \appref{proofs:closeDefs:gc}. \else \ProofInSupplementaryMaterial \fi
    \end{proof}
 
-We assume (rather than prove) that the forward and backwards dependency functions $\primGCBool{\phi}{\vec{n}} = (\primFwdBool{\phi}{\vec{n}}, \primBwdBool{\phi}{\vec{n}})$ provided for every primitive operation $\phi: \tyInt^i \to \tyInt$ and every $\vec{n}$ of suitable length form a Galois connection of type $\Ann{A} \to \Ann{A}^i$. Under this assumption the following holds.
+We assume (rather than prove) that the backward and forward dependency functions $\primGCBool{\phi}{\vec{n}} = (\primBwdBool{\phi}{\vec{n}},\primFwdBool{\phi}{\vec{n}})$ provided for every primitive operation $\phi: \tyInt^i \to \tyInt$ and every $\vec{n}$ of length $i$ form a Galois connection of type $\Ann{A} \to \Ann{A}^i$. Under this assumption the following holds.
 
 \begin{theorem}[Galois connection for evaluation]
 \label{thm:core-language:eval:gc}
