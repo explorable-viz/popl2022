@@ -202,7 +202,8 @@
 \newcommand*{\tyVec}[1]{\kw{Vec}\;{#1}}
 
 % Eliminator types.
-\newcommand*{\elimTy}[2]{{#1}\rightarrowtail{#2}}
+\newcommand*{\elimTyArrow}{\rightarrowtail}
+\newcommand*{\elimTy}[2]{{#1}\elimTyArrow{#2}}
 
 % Sets
 %\newcommand*{\Below}[1]{{\downarrow}{#1}}
