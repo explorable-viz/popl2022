@@ -68,14 +68,9 @@ $\exApp{e}{e'}$
 application
 \\
 &
-$\exNil$
+$\exNil \mid \exCons{u}{v}$
 &
-nil
-\\
-&
-$\exCons{u}{v}$
-&
-cons
+list
 \\
 &
 $\exRec{\vec{\bind{x}{e}}}$
@@ -96,10 +91,42 @@ anonymous function
 $\exLetRecMutual{h}{e}$
 &
 recursive let
+\\[2mm]
+$h ::=$
+&
+$\seq{\bind{x}{\sigma}}$
+&
+recursive functions
 \end{tabularx}
 \end{minipage}%
 \begin{minipage}[t]{0.5\textwidth}
-\begin{tabularx}{\textwidth}{rL{2.5cm}L{2.9cm}}
+\begin{tabularx}{\textwidth}{rL{2.6cm}L{2.9cm}}
+&\textbfit{Continuation type}&
+\\
+$K ::=$
+&
+$A$
+&
+term
+\\
+&
+$\elimTy{A}{K}$
+&
+eliminator
+\\[2mm]
+&\textbfit{Continuation}&
+\\
+$\kappa ::=$
+&
+$e$
+&
+term
+\\
+&
+$\sigma$
+&
+eliminator
+\\[2mm]
 &\textbfit{Eliminator}&
 \\
 $\sigma, \tau ::=$
@@ -123,19 +150,6 @@ $\elimList{\kappa}{\sigma}$
 &
 list
 \\[2mm]
-&\textbfit{Continuation}&
-\\
-$\kappa ::=$
-&
-$e$
-&
-term
-\\
-&
-$\sigma$
-&
-eliminator
-\\[2mm]
 &\textbfit{Value}&
 \\
 $u, v ::=$
@@ -150,14 +164,9 @@ $\exInt{n}$
 integer
 \\
 &
-$\exNil$
+$\exNil \mid \exCons{u}{v}$
 &
-nil
-\\
-&
-$\exCons{u}{v}$
-&
-cons
+list
 \\
 &
 $\exRec{\vec{\bind{x}{v}}}$
@@ -174,13 +183,6 @@ $\rho ::=$
 $\seq{\bind{x}{v}}$
 &
 environment
-\\
-$h ::=$
-&
-$\seq{\bind{x}{\sigma}}$
-&
-recursive functions
-\\
 \\[2mm]
 %$x, y$
 %&
