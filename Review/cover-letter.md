@@ -10,7 +10,8 @@
 - Added link to GitHub repository and artifact evaluation instructions
 - Added link to supplementary materials (extended paper) on arXiv
 - Remove mention of representable functors
+- Eliminated overloaded metavariables for Galois connections and components of same
 
 ### Other notes
 
-We elected not to distinguish the metalanguage and object language phi; to be consistent, one must also distinguish metalanguage and object language integers, which would be cumbersome.
+- We elected not to distinguish the metalanguage and object language phi; to be consistent, one must also distinguish metalanguage and object language integers, which would be cumbersome.
