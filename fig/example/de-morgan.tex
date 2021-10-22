@@ -66,10 +66,12 @@
 
             \draw[->, bend right] (A) to node [swap] {$\lowerAdj{\gamma}$} (A1);
             \draw[->, bend right] (A1) to node [swap] {$\neg_{\Ann{D}}$} (B);
-            \draw[->, bend right] (B) to node [swap] {$\upperAdj{\delta}$} (C);
+%            \draw[->, bend right] (B) to node [swap] {$\upperAdj{\delta}$} (C);
+            \draw[->, bend left] (B) to node {$\upperAdj{\delta}$} (C);
             \draw[->, bend right] (C) to node [swap] {$\neg_{\Ann{V}_2}$} (C1);
             \draw[->, bend right] (C1) to node [swap] {$\neg_{\Ann{V}_2}$} (C);
-            \draw[->, bend right] (C) to node [swap] {$\lowerAdj{\delta}$} (B);
+%            \draw[->, bend right] (C) to node [swap] {$\lowerAdj{\delta}$} (B);
+            \draw[->, bend left] (C) to node {$\lowerAdj{\delta}$} (B);
             \draw[->, bend right] (B) to node [swap] {$\neg_{\Ann{D}}$} (A1);
             \draw[->, bend right] (A1) to node [swap] {$\upperAdj{\gamma}$} (A);
 
