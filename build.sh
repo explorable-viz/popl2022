@@ -2,7 +2,7 @@
 set -e
 
 PDFLATEX="pdflatex -file-line-error -halt-on-error"
-TARGET=${1:-anonymised}
+TARGET=${1:-final}
 echo Building target \"$TARGET\".
 
 $PDFLATEX $TARGET
