@@ -11,6 +11,7 @@
 - Added link to supplementary materials (extended paper) on arXiv
 - Remove mention of representable functors
 - Eliminated overloaded metavariables for Galois connections and components of same
+- Clarified that there are no complications associated with tracking dependencies on higher-order data
 
 ### Other notes
 
