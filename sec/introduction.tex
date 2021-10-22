@@ -53,7 +53,7 @@ To make progress towards these challenges, we present a bidirectional analysis w
 \begin{itemize}
    \item[--] a new bidirectional dynamic dependency analysis which operates on selections of arbitrary parts of data values, for a core calculus with lists, records and mutual recursion, and a proof that the analysis is a Galois connection (\secref{data-dependencies});
    \item[--] a second bidirectional dependency analysis, derived from the first by De Morgan duality, which is also a Galois connection and which can be composed with the first analysis to link outputs to outputs, with an extended example based on matrix convolution  (\secref{de-morgan});
-   \item[--] a richer surface language called \OurLanguage, implemented in PureScript, with familiar functional programming features such as piecewise definitions and list comprehensions, and a further Galois connection linking selections between the core and surface languages (\secref{surface-language}).
+   \item[--] a richer surface language called \OurLanguage\footnote{See \url{https://github.com/explorable-viz/fluid/}. To generate the figures in this paper, check out tag \kw{v0.4.1} and follow the instructions in \href{https://github.com/explorable-viz/fluid/blob/v0.4.1/artifact-evaluation.md}{artifact-evaluation.md}.}, implemented in PureScript, with familiar functional programming features such as piecewise definitions and list comprehensions, and a further Galois connection linking selections between the core and surface languages (\secref{surface-language}).
 \end{itemize}
 
 \noindent First we introduce the core calculus which provides the setting for the rest of the paper, and which will serve as the desugaring target for the surface syntax presented in \secref{surface-language}.
