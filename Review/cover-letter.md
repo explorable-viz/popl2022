@@ -14,6 +14,8 @@
 - clarify that there are no complications associated with tracking dependencies on higher-order data
 - state more clearly in section 4.3 how our approach improves on differential slicing
 - clarify that the approach supports an analysis for primitive operations where (for non-zero n), both n * 0 and 0 * n only depend on n
+- clarify meaning of "prefix" in section 1.3
+- drop the phrase "partial value" from the intro to 2.2 and say more specifically what we mean
 
 ### Other notes
 
