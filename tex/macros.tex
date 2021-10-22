@@ -7,7 +7,7 @@
    \fi%
    }
 
-\newcommand*{\ProofInSupplementaryMaterial}{Included with supplementary materials.}
+\newcommand*{\ProofInSupplementaryMaterial}{Included with \href{https://arxiv.org/abs/2109.00445}{supplementary materials}.}
 \newcommand*{\IncludedWithSupplementaryMaterial}{included with the supplementary materials}
 
 % previously we were using MnSymbol, but ran out of font space.
@@ -200,6 +200,10 @@
 \newcommand*{\tyRec}[1]{\kw{Rec}\;{\exRec{#1}}}
 \newcommand*{\tyRecEmpty}{\kw{Rec}\;{\exRecEmpty}}
 \newcommand*{\tyVec}[1]{\kw{Vec}\;{#1}}
+
+% Eliminator types.
+\newcommand*{\elimTyArrow}{\rightarrowtail}%{\twoheadrightarrow}
+\newcommand*{\elimTy}[2]{{#1}\elimTyArrow{#2}}
 
 % Sets
 %\newcommand*{\Below}[1]{{\downarrow}{#1}}

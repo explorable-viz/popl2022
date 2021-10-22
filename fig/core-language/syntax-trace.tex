@@ -33,14 +33,9 @@ $\trRecProj{T}{\vec{\bind{x}{v}}}{y}$
 record projection
 \\
 &
-$\trNil{\rho}$
+$\trNil{\rho} \mid \trCons{T}{U}$
 &
-nil
-\\
-&
-$\trCons{T}{U}$
-&
-cons
+list
 \\
 &
 $\trLambda{\sigma}$
@@ -85,14 +80,10 @@ $\matchRec{\vec{\bind{x}{w}}}$
 record
 \\
 &
-$\matchNil$
+$\matchNil \mid \matchCons{w}{w'}$
 &
-nil
-\\
-&
-$\matchCons{w}{w'}$
-&
-cons
+list
+\\[4mm]
 \end{tabularx}
 \end{minipage}
 \endgroup

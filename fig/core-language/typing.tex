@@ -68,7 +68,7 @@
 %
 \inferrule*
 {
-   \Gamma \vdash \sigma : \tyFun{A}{B}
+   \Gamma \vdash \sigma : \elimTy{A}{B}
 }
 {
    \Gamma \vdash \exLambda{\sigma} : \tyFun{A}{B}
@@ -134,63 +134,63 @@
    \Gamma \vdash \exLetRecMutual{h}{e}: A
 }
 \end{smathpar}
-{\small \flushleft \shadebox{$\Gamma \vdash \sigma: \tyFun{A}{B}$}%
-\hfill \textbfit{$\sigma$ has type $\tyFun{A}{B}$ under $\Gamma$}}
+{\small \flushleft \shadebox{$\Gamma \vdash \sigma: \elimTy{A}{K}$}%
+\hfill \textbfit{$\sigma$ has type $\elimTy{A}{K}$ under $\Gamma$}}
 \begin{smathpar}
 \inferrule*
 {
-   \Gamma \concat \bind{x}{A} \vdash \kappa: B
+   \Gamma \concat \bind{x}{A} \vdash \kappa: K
 }
 {
-   \Gamma \vdash (\elimVar{x}{\kappa}): \tyFun{A}{B}
+   \Gamma \vdash (\elimVar{x}{\kappa}): \elimTy{A}{K}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash \kappa: A
+   \Gamma \vdash \kappa: K
    \\
-   \Gamma \vdash \kappa': A
+   \Gamma \vdash \kappa': K
 }
 {
-   \Gamma \vdash \elimBool{\kappa}{\kappa'}: \tyFun{\tyBool}{A}
+   \Gamma \vdash \elimBool{\kappa}{\kappa'}: \elimTy{\tyBool}{K}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash \kappa: A
+   \Gamma \vdash \kappa: K
 }
 {
    \Gamma
    \vdash
-   \elimRecEmpty{\kappa}: \tyFun{\tyRecEmpty}{A}
+   \elimRecEmpty{\kappa}: \tyFun{\tyRecEmpty}{K}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash \elimRec{\vec{x}}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}}}}{\tyFun{A'}{B}}
+   \Gamma \vdash \elimRec{\vec{x}}{\sigma}: \elimTy{\tyRec{\vec{\bind{x}{A}}}}{\elimTy{B}{K}}
 }
 {
    \Gamma
    \vdash
-   \elimRec{\vec{x} \concat y}{\sigma}: \tyFun{\tyRec{\vec{\bind{x}{A}} \concat \bind{y}{A'}}}{B}
+   \elimRec{\vec{x} \concat y}{\sigma}: \elimTy{\tyRec{\vec{\bind{x}{A}} \concat \bind{y}{B}}}{K}
 }
 %
 \and
 %
 \inferrule*
 {
-   \Gamma \vdash \kappa: B
+   \Gamma \vdash \kappa: K
    \\
-   \Gamma \vdash \sigma: \tyFun{A}{\tyFun{\tyList{A}}{B}}
+   \Gamma \vdash \sigma: \elimTy{A}{\elimTy{\tyList{A}}{K}}
 }
 {
-   \Gamma \vdash \elimList{\kappa}{\sigma}: \tyFun{\tyList{A}}{B}
+   \Gamma \vdash \elimList{\kappa}{\sigma}: \elimTy{\tyList{A}}{B}
 }
 \end{smathpar}
 \\[2mm]
@@ -267,7 +267,7 @@
    \\
    \Gamma \vdash h: \Delta
    \\
-   \Gamma \concat \Delta \vdash \sigma: \tyFun{A}{B}
+   \Gamma \concat \Delta \vdash \sigma: \elimTy{A}{B}
 }
 {
    \vdash \exClosure{\rho}{h}{\sigma}: \tyFun{A}{B}
