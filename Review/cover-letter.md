@@ -9,7 +9,8 @@
 
 - add link to GitHub repository and artifact evaluation instructions
 - add link to supplementary materials (extended paper) on arXiv
-- remove mention of representable functors
+- 3.1 clarify what the elements in the tuples bound to the `data` field represent
+- 3.3.1 remove mention of representable functors
 - eliminate overloaded metavariables for Galois connections and components of same
 - clarify that there are no complications associated with tracking dependencies on higher-order data
 - state more clearly in section 4.3 how our approach improves on differential slicing
