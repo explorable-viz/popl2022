@@ -16,6 +16,7 @@
 - clarify that the approach supports an analysis for primitive operations where (for non-zero n), both n * 0 and 0 * n only depend on n
 - clarify meaning of "prefix" in section 1.3
 - drop the phrase "partial value" from the intro to 2.2 and say more specifically what we mean
+- change yellow highlighting in Figs. 13 and 14 to (darker) blue colour, for legibility in black and white
 
 ### Other notes
 
