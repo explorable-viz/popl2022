@@ -7,8 +7,9 @@
 
 ### Minor changes
 
-- add link to GitHub repository and artifact evaluation instructions
-- add link to supplementary materials (extended paper) on arXiv
+- 1.3: add link to GitHub repository and artifact evaluation instructions
+- 1.3: add link to supplementary materials (extended paper) on arXiv
+- 2: clearer motivation for use of "eliminators" in core language
 - 3.1 clarify what the elements in the tuples bound to the `data` field represent
 - 3.3.1 remove mention of representable functors
 - eliminate overloaded metavariables for Galois connections and components of same
