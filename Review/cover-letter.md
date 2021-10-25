@@ -3,7 +3,7 @@
 ### Substantive changes
 
 - Introduced K to range over types of terms and types of eliminators; adjusted Fig. 4 and related exposition accordingly
-- Clarify in the text that \Gamma \vdash \kappa: K is defined as the union of the typing relations for terms and eliminators
+- Clarify in the text that \Gamma \vdash \kappa: K is defined as the union of the typing relations for terms and eliminators. (Providing a separate judgement would mean avoiding overloading the typing judgement symbol.)
 
 ### Minor changes
 
