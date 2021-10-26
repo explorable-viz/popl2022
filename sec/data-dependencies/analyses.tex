@@ -1,7 +1,7 @@
 \subsection{Forward data dependency}
 \label{sec:data-dependencies:analyses:fwd}
 
-We now define the core bidirectional data dependency analyses for a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. In practice one would first evaluate a program to obtain its trace $T$, and then run multiple forward or backward analyses over $T$ with appropriate lattices. We start with the forward dependency function $\evalFwdF{T}$ which ``replays'' evaluation, turning input availability into output availability, with $T$ guiding the analysis whenever holes in the input selection would mean the analysis would otherwise get stuck. $\evalFwdF{T}$ uses the auxiliary function $\matchFwdF{w}$ for forward-analysing a pattern-match, which introduces the key idea of a selection as the data available to a downstream computation.
+We now define the core bidirectional data dependency analyses for a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. In practice one would obtain $T$ by first evaluating $\raw{e}$ in $\raw{\rho}$, and then run multiple forward or backward analyses over $T$ with appropriate lattices. We start with the forward dependency function $\evalFwdF{T}$ which ``replays'' evaluation, turning input availability into output availability, with $T$ guiding the analysis whenever holes in the input selection would mean the analysis would otherwise get stuck. $\evalFwdF{T}$ uses the auxiliary function $\matchFwdF{w}$ for forward-analysing a pattern-match; we explain this first, as it introduces the key idea of a selection as identifying the data available to a downstream computation.
 
 \input{fig/core-language/slicing/eval-fwd}
 
