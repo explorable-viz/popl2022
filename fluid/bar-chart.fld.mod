@@ -3,7 +3,4 @@ let totalFor c rows =
 let data2015 = [ row | row $\leftarrow$ data, row.year == 2015 ];
     countryData = [ { x: c, y: totalFor c data2015 }
                   | c $\leftarrow$ ["China", "USA", "Germany"] ]
-in BarChart {
-   caption: "Total output by country",
-   data: countryData
-}
+in BarChart { caption: "Total output by country", data: countryData }
