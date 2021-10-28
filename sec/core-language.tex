@@ -71,7 +71,8 @@ Variable eliminators $\elimVar{x}{\kappa}$ match any value, returning the single
       {
       }
       {
-         \explVal{\matchVar{\kw{xs}}}{\kw{5}, \elimVar{\kw{x}}{e_2} \matchR \bind{\kw{x}}{\kw{5}}, e_2}
+         \explVal{\matchVar{\kw{xs}}}
+                 {\exCons{\kw{6}}{\exNil}, \elimVar{\kw{xs}}{e_2} \matchR \bind{\kw{xs}}{\exCons{\kw{6}}{\exNil}}, e_2}
       }
    }
    {
