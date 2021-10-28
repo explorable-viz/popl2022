@@ -21,13 +21,21 @@ One might imagine dispensing with the need for $w$ by simply defining $\matchFwd
       {
       }
       {
-         \kw{5}, \elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}
+         \annInt{\kw{5}}{\alpha}, \elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}
          \matchFwdF{\kw{x}}
          \bind{\kw{x}}{\kw{5}}, \elimVar{\kw{xs}}{e_2}, \top
       }
       \\
-      \inferrule*[left={\ruleName{$\matchFwdS$-var}}]
+      \inferrule*[left={\ruleName{$\matchFwdS$-hole-$v$}}]
       {
+         \inferrule*[left={\ruleName{$\matchFwdS$-var}}]
+         {
+         }
+         {
+            \annCons{\hole}{\hole}{\bot}, \elimVar{\kw{xs}}{e_2}
+            \matchFwdF{\kw{xs}}
+            \bind{\kw{xs}}{(\exCons{\kw{6}}{\exNil})}, e_2, \top
+         }
       }
       {
          \exCons{\kw{6}}{\exNil}, \elimVar{\kw{xs}}{e_2}
@@ -36,13 +44,13 @@ One might imagine dispensing with the need for $w$ by simply defining $\matchFwd
       }
    }
    {
-         \annCons{\kw{5}}{\hole}{\alpha}, \elimList{e_1}{\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}}
+         \annCons{\annInt{\kw{5}}{\alpha}}{\hole}{\beta}, \elimList{e_1}{\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}}
          \matchFwdF{\matchCons{\kw{x}}{\kw{xs}}}
          (\bind{\kw{x}}{\kw{5}}) \concat (\bind{\kw{xs}}{\kw{6}}), e_2
    }
 \end{smathpar}
 
-\noindent There will be exactly one non-hole rule that applies as a result of this hole-expansion, corresponding to the execution path originally taken, and although there may be multiple such expansions, the following property implies that the result of $\matchFwdF{w}$ will be unique up to $\eq$.
+\noindent There will be exactly one non-hole rule that applies as a result of this hole expansion, corresponding to the execution path originally taken, and although there may be multiple such expansions, the following property implies that the result of $\matchFwdF{w}$ will be unique up to $\eq$.
 
 \begin{lemma}[Monotonicity of $\matchFwdF{w}$]
    Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa, \alpha$ and $v', \sigma' \matchFwdR{w} \rho', \kappa', \alpha'$. If $(v, \sigma) \leq (v', \sigma)$ then $(\rho, \kappa, \alpha) \leq (\rho', \kappa', \alpha')$.
