@@ -65,7 +65,7 @@ Operationally, these hole rules can be interpreted as ``expanding'' the holes in
 \end{smathpar}
 
 \vspace{2mm}
-\noindent The following property means that an implementation is free to replace any term by a hole-equivalent one of the same shape, with the result of $\matchFwdF{w}$ being unique up to $\eq$. Our implementation expands terms only until a non-hole rule applies; there will be exactly one such rule, corresponding to the execution path originally taken, and although there will in general be multiple expansions that cause that rule to fire, the result will be hole-equivalent.
+\noindent The following property means that an implementation is free to replace any term by a hole-equivalent one of the same shape, with the result of $\matchFwdF{w}$ being unique up to $\eq$. This justifies the strategy of expanding terms only until a non-hole rule applies; there will be exactly one such rule, corresponding to the execution path originally taken, and although there may be multiple expansions that cause that rule to fire, they produce hole-equivalent results.
 
 \begin{lemma}[Monotonicity of $\matchFwdF{w}$]
    Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa, \alpha$ and $v', \sigma' \matchFwdR{w} \rho', \kappa', \alpha'$. If $(v, \sigma) \leq (v', \sigma)$ then $(\rho, \kappa, \alpha) \leq (\rho', \kappa', \alpha')$.
