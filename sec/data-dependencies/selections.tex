@@ -8,12 +8,6 @@ Our approach to representing selections is shown in \figref{core-syntax-selectio
 \vspace{-3mm}
 The top and bottom elements $\top$ and $\bot$ of $\Ann{A}$ represent fully selected and fully unselected; the meet and join operations $\meet$ and $\join$, which have $\top$ and $\bot$ as their respective units, are used to combine selection information. In \figref{introduction:data-linking}, the \kw{data} field of \kw{BarChart} expects a list of records with fields \kw{x} and \kw{y}, mapping strings representing categorical data to floats determining the height of the corresponding bar; the record computed for China is $\exRec{\bind{\kw{x}}{\kw{"China"}} \concat \bind{\kw{y}}{\kw{295.3}}}$. The two-point lattice $\Bool \eqdef \Lattice{\set{\TT,\FF}}{\TT}{\FF}{\wedge}{\vee}$ can be used to represent the selection of the field $\kw{y}$ within this record as $\annRec{\bind{\kw{x}}{\annStr{\kw{"China"}}{\FF}} \concat \bind{\kw{y}}{\annInt{\kw{295.3}}{\TT}}}{\FF}$, indicating that the number $\exInt{\kw{295.3}}$ is selected, but that neither the string $\exStr{\kw{"China"}}$, nor the record itself, is selected. Because lattices are closed under component-wise products, we sometimes write $(\alpha, \beta) \leq (\alpha', \beta')$ to mean that $\alpha \leq \alpha'$ and $\beta \leq \beta'$. This also suggests more interesting lattices of selections, such as vectors of Booleans to represent multiple selections simultaneously, which might be visualised using different colours (as in \figref{introduction:data-linking}).
 
-\begin{figure}
-   \input{fig/core-language/slicing/leq-value}
-   \caption{Preorder on value selections}
-   \label{fig:data-dependencies:leq}
-\end{figure}
-
 \subsubsection{Selections of a value}
 \label{sec:data-dependencies:selections}
 
@@ -25,6 +19,12 @@ The analyses which follow will be defined with respect to a fixed computation, a
 \end{definition}
 
 Since its elements have a fixed shape, the pointwise comparison of any $v, v' \in \Sel{\raw{v}}{A}$ using the partial order $\leq$ of $\Ann{A}$ is well defined, as is the pointwise application (zip) of a binary operation~\cite{gibbons17}. It should therefore be clear that if $\Ann{A}$ is a lattice, then $\Sel{\raw{v}}{A}$ is also a lattice, with $\top_{\raw{v}}$, $\bot_{\raw{v}}$, $\meet_{\raw{v}}$, and $\join_{\raw{v}}$ defined pointwise. For example, if $u$ and $u'$ have the same shape and $v$ and $v'$ have the same shape, the join of the lists $(\annCons{u}{v}{\alpha})$ and $(\annCons{u'}{v'}{\alpha'})$ is defined and equal to $\annCons{(u \join u')}{(v \join v')}{\alpha \join \alpha'}$. Similarly, the top element of $\Sel{\raw{v}}{A}$ is the selection of $\raw{v}$ which has $\top$ at every selection position. (We omit the $\raw{v}$ indices from these lattice operations if it is clear which lattice is being referred to.) The notion of the ``selections'' of $\raw{v}$ extends to the other syntactic forms.
+
+\begin{figure}
+   \input{fig/core-language/slicing/leq-value}
+   \caption{Preorder on value selections}
+   \label{fig:data-dependencies:leq}
+\end{figure}
 
 \subsubsection{Environment selections and hole equivalence}
 
