@@ -15,38 +15,50 @@ $\matchFwdF{w}$ also returns the \emph{meet} of the selection states associated 
 One might imagine dispensing with the need for $w$ by simply defining $\matchFwdS$ by case analysis on $v$ and $\sigma$. However, it is then unclear how to proceed in the event that either $v$ or $\sigma$ is a hole. In particular, it is not clear how to obtain the $\raw{\rho}$ associated with the original pattern-match, in order to produce an environment selection $\rho' \in \Sel{\raw{\rho}}{A}$. If $\matchFwdS$ is defined with respect to a known $w$, this can be achieved via additional rules \ruleName{$\matchFwdS$-hole-$v$} and \ruleName{$\matchFwdS$-hole-$\sigma$} that define the behaviour at hole to be the same as the behaviour at any $\eq$-equivalent value in $\Sel{\raw{v}}{A}$ or $\Sel{\raw{\sigma}}{A}$. Operationally, these rules can be interpreted as ``expanding'' the holes in $v$ or $\sigma$, in a shape-preserving way, until another rule of the definition applies. For example, building on the pattern-match example in \secref{core-language:pattern-match}:
 
 \begin{smathpar}
-   \inferrule*[left={\ruleName{$\matchFwdS$-cons}}]
+   \inferrule*[left={\ruleName{$\matchFwdS$-hole-$v$}}]
    {
-      \inferrule*[left={\ruleName{$\matchFwdS$-var}}]
-      {
-      }
-      {
-         \annInt{\kw{5}}{\alpha}, \elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}
-         \matchFwdF{\kw{x}}
-         \bind{\kw{x}}{\kw{5}}, \elimVar{\kw{xs}}{e_2}, \top
-      }
-      \\
-      \inferrule*[left={\ruleName{$\matchFwdS$-hole-$v$}}]
+      \inferrule*[left={\ruleName{$\matchFwdS$-cons}}]
       {
          \inferrule*[left={\ruleName{$\matchFwdS$-var}}]
          {
          }
          {
-            \annCons{\hole}{\hole}{\bot}, \elimVar{\kw{xs}}{e_2}
-            \matchFwdF{\kw{xs}}
-            \bind{\kw{xs}}{(\exCons{\kw{6}}{\exNil})}, e_2, \top
+            \matchFwd{\hole}
+                     {\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}}
+                     {\kw{x}}
+                     {\bind{\kw{x}}{\bot}}
+                     {\elimVar{\kw{xs}}{e_2}}
+                     {\top}
+         }
+         \\
+         \inferrule*[left={\ruleName{$\matchFwdS$-var}}]
+         {
+         }
+         {
+            \matchFwd{\hole}
+                     {\elimVar{\kw{xs}}{e_2}}
+                     {\kw{xs}}
+                     {\bind{\kw{xs}}{\bot}}
+                     {e_2}
+                     {\top}
          }
       }
       {
-         \exCons{\kw{6}}{\exNil}, \elimVar{\kw{xs}}{e_2}
-         \matchFwdF{\kw{xs}}
-         \bind{\kw{xs}}{(\exCons{\kw{6}}{\exNil})}, e_2, \top
+         \matchFwd{\annCons{\hole}{\hole}{\bot}}
+                  {\elimList{e_1}{\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}}}
+                  {\matchCons{\kw{x}}{\kw{xs}}}
+                  {(\bind{\kw{x}}{\hole}) \concat (\bind{\kw{xs}}{\hole})}
+                  {e_2}
+                  {\bot}
       }
    }
    {
-         \annCons{\annInt{\kw{5}}{\alpha}}{\hole}{\beta}, \elimList{e_1}{\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}}
-         \matchFwdF{\matchCons{\kw{x}}{\kw{xs}}}
-         (\bind{\kw{x}}{\kw{5}}) \concat (\bind{\kw{xs}}{\kw{6}}), e_2
+      \matchFwd{\hole}
+               {\elimList{e_1}{\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}}}
+               {\matchCons{\kw{x}}{\kw{xs}}}
+               {(\bind{\kw{x}}{\hole}) \concat (\bind{\kw{xs}}{\hole})}
+               {e_2}
+               {\bot}
    }
 \end{smathpar}
 
