@@ -42,7 +42,7 @@ One might imagine dispensing with the need for $w$ by simply defining $\matchFwd
    }
 \end{smathpar}
 
-There will be exactly one non-hole rule that applies, corresponding to the execution path originally taken, and although there may be multiple such expansions, the following property implies that the result of $\matchFwdF{w}$ will be unique up to $\eq$.
+\noindent There will be exactly one non-hole rule that applies as a result of this hole-expansion, corresponding to the execution path originally taken, and although there may be multiple such expansions, the following property implies that the result of $\matchFwdF{w}$ will be unique up to $\eq$.
 
 \begin{lemma}[Monotonicity of $\matchFwdF{w}$]
    Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $v, \sigma \matchFwdR{w} \rho, \kappa, \alpha$ and $v', \sigma' \matchFwdR{w} \rho', \kappa', \alpha'$. If $(v, \sigma) \leq (v', \sigma)$ then $(\rho, \kappa, \alpha) \leq (\rho', \kappa', \alpha')$.
