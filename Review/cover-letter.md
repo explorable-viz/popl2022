@@ -4,11 +4,11 @@ Dear reviewers and POPL committee,
 
 We implemented all corrections and minor tweaks suggested by reviewers, with one exception (detailed at the bottom).
 
-In a post-response comment, Reviewer B made a good argument for retaining holes, to connect the paper to earlier work on Galois slicing. After further thought, we agree that this connection is a useful one, so we decided to retain holes, and instead focus on improving the current exposition (both for holes, and for the forward and backward analysis in general), taking an extra page to do so. We made the following specific improvements:
+In a post-response comment, Reviewer B made a good argument for retaining holes, to connect the paper to earlier work on Galois slicing. After further thought, we agree this connection is a useful one, so we decided to retain holes, and instead focus on improving the current exposition (both for holes, and for the forward and backward analysis in general), taking an extra page to do so. We made the following specific improvements:
 
 - 3: renamed "ambient demand [availability]" to "argument demand [availability]" to better convey its role
 - 3.2: split figure for forward dependency into two for better placement of text
-- 3.2.1: clarified that hole-expansion interpretation of the hole rules is shape-preserving, and gave an example
+- 3.2.1: clarified that the hole-expansion interpretation of the hole rules is shape-preserving, and gave an example
 - 3.2.1: clarified why it is reasonable to think of forward-match as a function
 - 3.2.2: explained importance of current dynamic function context and relationship to argument availability
 - 3.2.2: explained general pattern of forward evaluation rules
