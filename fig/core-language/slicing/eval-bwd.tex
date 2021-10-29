@@ -3,13 +3,15 @@
    \hfill \textbfit{$v$ backward-evaluates along $T$ to $\rho$ and $e$, with argument demand $\alpha$}}
    \begin{smathpar}
       \inferrule*[
-         lab={\ruleName{$\evalBwdS$-eq}}
+         lab={\ruleName{$\evalBwdS$-hole}}
       ]
       {
+         \hole \eq v
+         \\
          \evalBwd{v}{T}{\rho}{e}{\alpha}
       }
       {
-         \evalBwd{v \eq}{T}{\rho}{e}{\alpha}
+         \evalBwd{\hole}{T}{\rho}{e}{\alpha}
       }
       %
       \and
