@@ -1,25 +1,28 @@
 ## Cover letter
 
-We implemented all the corrections and minor tweaks suggested by reviewers.
+We implemented all corrections and minor tweaks suggested by reviewers.
 
-In a post-response comment, Reviewer B made a good argument for retaining holes, to connect the paper to earlier work on Galois slicing. After further thought, we agree that this connection is a useful one, so instead we focused on improving the current exposition for the forward and backward analysis. We made the following specific improvements:
+In a post-response comment, Reviewer B made a good argument for retaining holes, to connect the paper to earlier work on Galois slicing. After further thought, we agree that this connection is a useful one, so we decided to retain holes, and instead focus on improving the current exposition (both for holes, and for the forward and backward analysis in general), taking an extra page to do so. We made the following specific improvements:
 
-- renamed "ambient demand/availability" to "argument demand/availability"
-- clarified that the "hole-expansion" interpretation of the hole rules is shape-preserving
+- renamed "ambient demand/availability" to "argument demand/availability" to better convey its role
+- clarified that the "hole-expansion" interpretation of the hole rules is shape-preserving, and gave an example
 - explained the importance of the current dynamic function context and relationship to argument availability
 - clarified that function calls restore the dynamic context of the closure, and that is why closures capture the argument availability
 
-Below we enumerate the additional minor clarifications we carried out in response to reviewers' comments, and detail the one substantive change.
+Below we enumerate the additional minor clarifications we carried out in response to reviewers' comments.
 
-### Minor changes
+### Other minor changes
 
 We implemented the following changes in response to reviewer comments:
 
 - 1.1: clarified visualisation set and input set for the Fig. 1 example
-- 1.1: clarified that Fig. 1 shows  how different visual selections induce different data selections
+- 1.1: clarified that Fig. 1 shows how different visual selections induce different data selections
 - 1.3: clarified meaning of "prefix"
-- 2: slight expansion of rationale behind use of "eliminators"
+- 2: clarify rationale behind use of eliminators
 - 2.2: dropped phrase "partial value" and say more specifically what we mean
+- 2.2: introduced new arrow notation for eliminator types, to avoid confusion (esp. in Fig. 4) with arrow types of terms
+- 2.2: introduced K to range over types of terms and types of eliminators; adjusted Fig. 4 and related exposition accordingly
+- 2.2: clarify in the text that \Gamma \vdash \kappa: K is defined as the union of the typing relations for terms and eliminators (this avoids having to introduce new notation for the different typing judgements)
 - 3.1: clarified that there are no complications associated with tracking dependencies on higher-order data
 - 3.1: clarified what the elements in the tuples bound to the `data` field represent
 - 3.1.1: removed mention of representable functors
@@ -34,12 +37,6 @@ We also added the following links to supporting material:
 - 1.3: link to GitHub repository and artifact evaluation instructions
 - 1.3: link to supplementary materials (extended paper) on arXiv
 
-### Substantive changes
-
-- 2.2: introduced new arrow notation for eliminator types, to avoid confusion (esp. in Fig. 4) with arrow types of terms
-- 2.2: introduced K to range over types of terms and types of eliminators; adjusted Fig. 4 and related exposition accordingly
-- 2.2: clarify in the text that \Gamma \vdash \kappa: K is defined as the union of the typing relations for terms and eliminators (this avoids having to introduce new notation for the different typing judgements)
-
 ### Other notes
 
-- We elected not to distinguish the metalanguage and object language phi; to be consistent, one must also distinguish metalanguage and object language integers, which would be cumbersome.
+- We elected not to distinguish metalanguage and object language phi. Although we are sympathetic to the goal here, to be consistent one should also distinguish metalanguage and object language integers. We felt this would be cumbersome and unfamiliar, so we elected to retain the existing implicit coercion between metalanguage and object language for primitive constants (nullary or otherwise).
