@@ -58,6 +58,22 @@
       %
       \and
       %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-true}}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{\annTrue{\alpha}}
+                 {\trTrue{\rho}}
+                 {\hole_{\raw{\rho}}}
+                 {\annTrue{\alpha}}
+                 {\alpha}
+      }
+      %
+      \and
+      %
       \inferrule*[lab={\ruleName{$\evalBwdS$-record}}]
       {
          \evalBwd{v_i}{T_i}{\rho_i}{e_i}{\alpha_i'}
