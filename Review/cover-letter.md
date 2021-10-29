@@ -16,6 +16,7 @@ Below we enumerate the additional minor clarifications we carried out in respons
 We implemented the following changes in response to reviewer comments:
 
 - 1.1: clarified visualisation set and input set for the Fig. 1 example
+- 1.1: clarified that Fig. 1 shows  how different visual selections induce different data selections
 - 1.3: clarified meaning of "prefix"
 - 2: slight expansion of rationale behind use of "eliminators"
 - 2.2: dropped phrase "partial value" and say more specifically what we mean
