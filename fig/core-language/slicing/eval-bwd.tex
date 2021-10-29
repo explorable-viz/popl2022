@@ -74,6 +74,22 @@
       %
       \and
       %
+      \inferrule*[
+         lab={\ruleName{$\evalBwdS$-false}}
+      ]
+      {
+         \strut
+      }
+      {
+         \evalBwd{\annFalse{\alpha}}
+                 {\trFalse{\rho}}
+                 {\hole_{\raw{\rho}}}
+                 {\annFalse{\alpha}}
+                 {\alpha}
+      }
+      %
+      \and
+      %
       \inferrule*[lab={\ruleName{$\evalBwdS$-record}}]
       {
          \evalBwd{v_i}{T_i}{\rho_i}{e_i}{\alpha_i'}
@@ -252,6 +268,6 @@
    \end{smathpar}
 \end{minipage}
 
-\caption{Backward evaluation (Boolean cases for $\evalBwdR{T}$ omitted)}
+\caption{Backward evaluation}
 \label{fig:data-dependencies:bwd}
 \end{figure}
