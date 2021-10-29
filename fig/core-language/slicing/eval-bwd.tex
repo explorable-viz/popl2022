@@ -1,98 +1,4 @@
 \begin{figure}
-   {\small \flushleft \shadebox{$\matchBwd{\rho}{\kappa}{\alpha}{w}{v}{\sigma}$}%
-   \hfill \textbfit{$\rho$ and $\kappa$, with argument demand $\alpha$, backward-match along $w$ to $v$ and $\sigma$}}
-   \begin{smathpar}
-      \inferrule*[lab={\ruleName{$\matchBwdS$-true}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchTrue}{\annTrue{\alpha}}{\elimBool{\kappa}{\hole}}
-      }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-false}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchFalse}{\annFalse{\alpha}}{\elimBool{\hole}{\kappa}}
-      }
-      \inferrule*[lab={\ruleName{$\matchBwdS$-var}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\bind{x}{v}}{\kappa}{\alpha}{\matchVar{x}}{v}{\elimVar{x}{\kappa}}
-      }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-unit}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}
-                  {\kappa}
-                  {\alpha}
-                  {\matchRecEmpty}
-                  {\annot{\exRecEmpty}{\alpha}}
-                  {\elimRecEmpty{\kappa}}
-      }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-nil}}]
-      {
-         \strut
-      }
-      {
-         \matchBwd{\seqEmpty}{\kappa}{\alpha}{\matchNil}{\annNil{\alpha}}{\elimList{\kappa}{\hole}}
-      }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-record}}]
-      {
-         \matchBwd{\rho'}{\kappa}{\alpha}{w'}{u}{\sigma}
-         \\
-         \matchBwd{\rho}
-                  {\sigma}
-                  {\alpha}
-                  {\matchRec{\vec{\bind{x}{w}}}}
-                  {\annRec{\vec{\bind{x}{v}}}{\beta}}
-                  {\tau}
-      }
-      {
-         \matchBwd{\rho \concat \rho'}
-                  {\kappa}
-                  {\alpha}
-                  {\matchRec{\vec{\bind{x}{w}} \concat \bind{y}{w'}}}
-                  {\annRec{\vec{\bind{x}{v}} \concat \bind{y}{u}}{\alpha}}
-                  {\elimRec{\vec{x} \concat y}{\tau}}
-      }
-      %
-      \and
-      %
-      \inferrule*[lab={\ruleName{$\matchBwdS$-cons}}]
-      {
-         \matchBwd{\rho'}{\kappa}{\alpha}{w'}{v'}{\sigma}
-         \\
-         \matchBwd{\rho}{\sigma}{\alpha}{w}{v}{\tau}
-      }
-      {
-         \matchBwd{\rho \concat \rho'}
-                  {\kappa}
-                  {\alpha}
-                  {\matchCons{w}{w'}}
-                  {\annCons{v}{v'}{\alpha}}
-                  {\elimList{\hole}{\tau}}
-      }
-   \end{smathpar}
-   \vspace{1mm}
-
    {\small \flushleft \shadebox{$\evalBwd{v}{T}{\rho}{e}{\alpha}$}%
    \hfill \textbfit{$v$ backward-evaluates along $T$ to $\rho$ and $e$, with argument demand $\alpha$}}
    \begin{smathpar}
@@ -330,6 +236,6 @@
    \end{smathpar}
 \end{minipage}
 
-   \caption{Backward data dependency (Boolean cases for $\evalBwdR{T}$ omitted)}
-   \label{fig:data-dependencies:bwd}
-   \end{figure}
+\caption{Backward evaluation (Boolean cases for $\evalBwdR{T}$ omitted)}
+\label{fig:data-dependencies:bwd}
+\end{figure}
