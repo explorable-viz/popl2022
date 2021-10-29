@@ -43,6 +43,34 @@
    %
    \and
    %
+   \inferrule*[lab={\ruleName{$\evalFwdS$-true}}]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}
+              {\annTrue{\alpha'}}
+              {\alpha}
+              {\trTrue{\rho}}
+              {\annTrue{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
+   \inferrule*[lab={\ruleName{$\evalFwdS$-false}}]
+   {
+      \strut
+   }
+   {
+      \evalFwd{\rho}
+              {\annFalse{\alpha'}}
+              {\alpha}
+              {\trFalse{\rho}}
+              {\annFalse{\alpha \meet \alpha'}}
+   }
+   %
+   \and
+   %
    \inferrule*[lab={\ruleName{$\evalFwdS$-int}}]
    {
       \strut
