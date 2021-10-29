@@ -19,6 +19,7 @@ In addition to the various minor corrections, we implemented the following speci
 
 - 1.1: clarified visualisation set and input set for the Fig. 1 example
 - 1.1: clarified that Fig. 1 shows how different visual selections induce different data selections
+- 1.1: clarified second visualisation set for Fig. 2 example
 - 1.3: clarified meaning of "prefix"
 - 2: clarified rationale behind use of eliminators
 - 2.2: dropped phrase "partial value" and said more specifically what we mean
