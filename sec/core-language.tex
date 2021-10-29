@@ -54,4 +54,32 @@ The rule for (mutually) recursive functions $\exLetRecMutual{h}{e}$, where $h$ i
 
 The judgement $w :: v, \sigma \matchR \rho, \kappa$ also defined in \figref{core-language:semantics} states that eliminator $\sigma$ can match $v$ and produce environment $\rho$ and continuation $\kappa$, with $\rho$ containing the variable bindings that arose during the match. \emph{Matches} $w$ are a compact notation for proof terms for the $\matchR$ relation, analogous to traces for the $\evalR$ relation, and again appear in grey in the figure.
 
-Variable eliminators $\elimVar{x}{\kappa}$ match any value, returning the singleton environment $\bind{x}{v}$ and continuation $\kappa$. Boolean eliminators match any Boolean value, returning the appropriate branch and empty environment $\seqEmpty$. List eliminators $\elimList{\kappa}{\sigma}$ match any list. The nil case is analogous to the handling of Booleans; the cons case depends on the fact that the nested eliminator $\sigma$ for the cons branch has the curried type $\elimTy{A}{\tyFun{\tyList{A}}{K}}$. First, we recursively match the head $v$ of type $A$ using $\sigma$, obtaining bindings $\rho$ and eliminator $\tau: \elimTy{\tyList{A}}{K}$ as the continuation. Then the tail $v'$ is matched using $\tau$ to yield additional bindings $\rho'$ and final continuation $\kappa'$ of type K. Record matching is similar: the empty record case resembles the nil case, and the non-empty case relies on the nested eliminator having curried type $\elimTy{\tyRec{\vec{\bind{x}{A}}}}{\elimTy{B}{K}}$. The initial part $\vec{\bind{x}{v}}$ of the record is matched using $\sigma$, returning another eliminator $\sigma'$ of type $\elimTy{B}{K}$. Then the last field $\bind{y}{u}$ is matched using $\sigma'$ to yield final continuation $\kappa$ of type $K$.
+Variable eliminators $\elimVar{x}{\kappa}$ match any value, returning the singleton environment $\bind{x}{v}$ and continuation $\kappa$. Boolean eliminators match any Boolean value, returning the appropriate branch and empty environment $\seqEmpty$. List eliminators $\elimList{\kappa}{\sigma}$ match any list. The nil case is analogous to the handling of Booleans; the cons case depends on the fact that the nested eliminator $\sigma$ for the cons branch has the curried type $\elimTy{A}{\tyFun{\tyList{A}}{K}}$. First, we recursively match the head $v$ of type $A$ using $\sigma$, obtaining bindings $\rho$ and eliminator $\tau: \elimTy{\tyList{A}}{K}$ as the continuation. Then the tail $v'$ is matched using $\tau$ to yield additional bindings $\rho'$ and final continuation $\kappa'$ of type K. As a simple example, which omits the proof terms $w$, consider the following pattern-match:
+
+\begin{smathpar}
+   \inferrule*[left={\ruleName{$\matchR$-cons}}]
+   {
+      \inferrule*[left={\ruleName{$\matchR$-var}}]
+      {
+      }
+      {
+         \kw{5}, \elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}} \matchR \bind{\kw{x}}{\kw{5}}, \elimVar{\kw{xs}}{e_2}
+      }
+      \\
+      \inferrule*[left={\ruleName{$\matchR$-var}}]
+      {
+      }
+      {
+         \exCons{\kw{6}}{\exNil}, \elimVar{\kw{xs}}{e_2} \matchR \bind{\kw{xs}}{(\exCons{\kw{6}}{\exNil})}, e_2
+      }
+   }
+   {
+         \exCons{\kw{5}}{\exCons{\kw{6}}{\exNil}}, \elimList{e_1}{\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}}
+         \matchR
+         (\bind{\kw{x}}{\kw{5}}) \concat (\bind{\kw{xs}}{\kw{6}}), e_2
+   }
+\end{smathpar}
+
+\noindent Here the eliminator $\elimList{e_1}{\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}}$ is used to match \kw{\exCons{5}{\exCons{6}{\exNil}}}. The $\exNil$ case is disregarded; the $(\symCons)$ case is used to retrieve a variable eliminator $\elimVar{\kw{x}}{\elimVar{\kw{xs}}{e_2}}$, which is used to match the head \kw{5}. This produces the binding $\bind{\kw{x}}{\kw{5}}$ and a further variable eliminator $\elimVar{\kw{xs}}{e_2}$ as the continuation, which is used to match the tail. This produces the additional binding $\bind{\kw{xs}}{(\exCons{\kw{6}}{\exNil})}$ and the expression $e_2$ as the continuation. To see how this might generalise to a nested pattern, consider how one could replace the inner variable eliminator $\elimVar{\kw{xs}}{e_2}$ by another list eliminator.
+
+Record matching is similar: the empty record case resembles the nil case, and the non-empty case relies on the nested eliminator having curried type $\elimTy{\tyRec{\vec{\bind{x}{A}}}}{\elimTy{B}{K}}$. The initial part $\vec{\bind{x}{v}}$ of the record is matched using $\sigma$, returning another eliminator $\sigma'$ of type $\elimTy{B}{K}$. Then the last field $\bind{y}{u}$ is matched using $\sigma'$ to yield final continuation $\kappa$ of type $K$.
