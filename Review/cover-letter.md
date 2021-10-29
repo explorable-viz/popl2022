@@ -4,9 +4,10 @@ We implemented all the corrections and minor tweaks suggested by reviewers.
 
 In a post-response comment, Reviewer B made a good argument for retaining holes, to connect the paper to earlier work on Galois slicing. After further thought, we agree that this connection is a useful one, so instead we focused on improving the current exposition for the forward and backward analysis. We made the following specific improvements:
 
+- renamed "ambient demand/availability" to "argument demand/availability"
 - clarified that the "hole-expansion" interpretation of the hole rules is shape-preserving
-- explained the importance of the current dynamic function context and relationship to ambient availability
-- clarified that function calls restore the dynamic context of the closure, and that is why closures capture the ambient availability
+- explained the importance of the current dynamic function context and relationship to argument availability
+- clarified that function calls restore the dynamic context of the closure, and that is why closures capture the argument availability
 
 Below we enumerate the additional minor clarifications we carried out in response to reviewers' comments, and detail the one substantive change.
 
