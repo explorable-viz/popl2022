@@ -1,18 +1,32 @@
 \documentclass[acmsmall,screen]{acmart}
 
-\settopmatter{printacmref=false}
-
 \startPage{1}
 
+\keywords{Galois connections; data provenance}
+
 \setcopyright{rightsretained}
-\acmJournal{PACMPL}
+\acmPrice{}
+\acmDOI{10.1145/3498668}
 \acmYear{2022}
+\copyrightyear{2022}
+\acmSubmissionID{popl22main-p34-p}
+\acmJournal{PACMPL}
 \acmVolume{6}
 \acmNumber{POPL}
 \acmArticle{7}
 \acmMonth{1}
-\acmPrice{}
-\acmDOI{10.1145/3498668}
+
+\begin{CCSXML}
+   <ccs2012>
+   <concept>
+   <concept_id>10003752.10010124.10010131</concept_id>
+   <concept_desc>Theory of computation~Program semantics</concept_desc>
+   <concept_significance>500</concept_significance>
+   </concept>
+   </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Theory of computation~Program semantics}
 
 \input{tex/packages}
 \input{tex/layout-tweaks}
@@ -28,11 +42,56 @@
 
 \begin{document}
 
-\title{Linked visualisations via Galois dependencies}
+\title{Linked Visualisations via Galois Dependencies}
 \ifappendices
    \subtitle{\emph{Extended paper with additional supporting material}}
 \fi
-\input{tex/authors}
+
+\author{Roly Perera}
+\orcid{0000-0001-9249-9862}
+\affiliation{%
+   \institution{The Alan Turing Institute}
+   \city{London}
+   \country{UK}
+}
+\additionalaffiliation{%
+   \institution{University of Bristol}
+   \city{Bristol}
+%   \country{UK}
+}
+\email{rperera@turing.ac.uk}
+
+\author{Minh Nguyen}
+\orcid{0000-0003-3845-9928}
+\email{min.nguyen@bristol.ac.uk}
+\affiliation{%
+   \institution{University of Bristol}
+   \city{Bristol}
+   \country{UK}
+}
+
+\author{Tomas Petricek}
+\orcid{0000-0002-7242-2208}
+\affiliation{%
+   \institution{University of Kent}
+   \city{Canterbury}
+   \country{UK}
+}
+\additionalaffiliation{%
+   \institution{The Alan Turing Institute}
+   \city{London}
+%   \country{UK}
+}
+\email{tpetricek@kent.ac.uk}
+
+\author{Meng Wang}
+\orcid{0000-0001-7780-630X}
+\email{meng.wang@bristol.ac.uk}
+\affiliation{%
+   \institution{University of Bristol}
+   \city{Bristol}
+   \country{UK}
+}
 
 \maketitle
 

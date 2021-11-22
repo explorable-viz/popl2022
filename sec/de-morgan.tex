@@ -1,4 +1,3 @@
-%\newpage
 \section{De Morgan dependencies for brushing and linking}
 \label{sec:de-morgan}
 
@@ -11,12 +10,11 @@ An immediate problem is that the flavour of the forward dependency required here
 
 Why $\evalFwdF{T}$ is unsuitable as a forward dependency relation for linking cognate outputs can also be understood in terms of compositionality. Suppose $\Ann{V}_1$ and $\Ann{V}_2$ are the lattices of selections for two views computed from a shared input source, and $\Ann{D}$ is the lattice of selections for the shared input. Using the procedure given in \secref{data-dependencies}, we can obtain two Galois connections $\gamma: \Ann{V}_1 \to \Ann{D}$ and $\delta: \Ann{V}_2 \to \Ann{D}$ as shown in \figref{example:de-morgan:non-composable} below. (The reader can ignore \figref{example:de-morgan:composable} for the moment.)
 
-\input{fig/example/de-morgan.tex}
-\vspace{-1mm}
-
-\noindent Unfortunately, $\gamma$ and $\delta$ are not composable, as their types makes clear. While the upper adjoint $\upperAdj{\delta}: \Ann{D} \to \Ann{V}_2$ has the correct type to compose with the lower adjoint $\lowerAdj{\gamma}: \Ann{V}_1 \to \Ann{D}$, the result is not a Galois connection: $\upperAdj{\delta}$ preserves meets, whereas $\lowerAdj{\gamma}$ preserves joins. However, it turns out that if selections are closed under complement, we can derive an analysis of what is \emph{necessary} for a given input selection from an analysis of what it is \emph{sufficient} for. The effect is to invert $\delta$, yielding a Galois connection $\dual{\delta}$ with a type that allows it to compose with $\gamma$. Then the composite $\dual{\delta} \after \gamma$ is a Galois connection linking $\Ann{V}_1$ to $\Ann{V}_2$ via $\Ann{D}$, as shown in \figref{example:de-morgan:composable}, offering a general mechanism for brushing and linking, with nice round-tripping properties. We now unpack this in more detail.
+Unfortunately, $\gamma$ and $\delta$ are not composable, as their types makes clear. While the upper adjoint $\upperAdj{\delta}: \Ann{D} \to \Ann{V}_2$ has the correct type to compose with the lower adjoint $\lowerAdj{\gamma}: \Ann{V}_1 \to \Ann{D}$, the result is not a Galois connection: $\upperAdj{\delta}$ preserves meets, whereas $\lowerAdj{\gamma}$ preserves joins. However, it turns out that if selections are closed under complement, we can derive an analysis of what is \emph{necessary} for a given input selection from an analysis of what it is \emph{sufficient} for. The effect is to invert $\delta$, yielding a Galois connection $\dual{\delta}$ with a type that allows it to compose with $\gamma$. Then the composite $\dual{\delta} \after \gamma$ is a Galois connection linking $\Ann{V}_1$ to $\Ann{V}_2$ via $\Ann{D}$, as shown in \figref{example:de-morgan:composable}, offering a general mechanism for brushing and linking, with nice round-tripping properties. We now unpack this in more detail.
 
 First we shift settings from the lattices used in \secref{data-dependencies} to Boolean lattices (or Boolean algebras) $\Ann{A}= \BoolLattice{\Ann{A}}{\top}{\bot}{\meet}{\join}{\neg}$, which are lattices equipped with an involution $\neg: \Ann{A} \to \Ann{A}$ called \emph{complement}. Boolean algebras satisfy complementation laws $x \meet \neg x = \bot$ and $x \join \neg x = \top$ and De Morgan laws $\neg x \meet \neg y = \neg(x \join y)$ and $\neg x \join \neg y = \neg(x \meet y)$. If $\Ann{A}$ is a Boolean algebra, then $\Sel{\raw{v}}{A}$ is also a Boolean algebra, with the Boolean operations, and in particular $\neg_{\raw{v}}: \Sel{\raw{v}}{A} \to \Sel{\raw{v}}{A}$, defined pointwise. An additional distinguished value selection $\blackhole$ serves as the negation of $\hole$. The two-point lattice $\Bool$ we used to illustrate \secref{data-dependencies} is also a Boolean algebra $\BoolLattice{\set{\TT,\FF}}{\TT}{\FF}{\wedge}{\vee}{\neg}$ with $\neg$ corresponding to logical negation.
+
+\input{fig/example/de-morgan.tex}
 
 \input{fig/example/convolve}
 

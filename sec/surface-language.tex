@@ -2,9 +2,9 @@
 \section{Galois connections for desugaring}
 \label{sec:surface-language}
 
-Elaborating a richer surface language into a simpler core is a common pattern with well known benefits. It can, however, make it harder to express certain information to the programmer in terms of the surface language. We face this problem with the analysis in \secref{data-dependencies}, which links outputs not only to inputs, but also to expressions responsible for introducing data. We could use this information in an IDE to link structured outputs to relevant code fragments, but only if we are able to map term selections back to the surface program. We now sketch a bidirectional desugaring procedure which addresses this, and which composes with the Galois dependency analysis defined in \secref{data-dependencies}.
-
 \input{fig/surface-language/syntax}
+
+Elaborating a richer surface language into a simpler core is a common pattern with well known benefits. It can, however, make it harder to express certain information to the programmer in terms of the surface language. We face this problem with the analysis in \secref{data-dependencies}, which links outputs not only to inputs, but also to expressions responsible for introducing data. We could use this information in an IDE to link structured outputs to relevant code fragments, but only if we are able to map term selections back to the surface program. We now sketch a bidirectional desugaring procedure which addresses this, and which composes with the Galois dependency analysis defined in \secref{data-dependencies}.
 
 \subsection{Surface language syntax}
 
@@ -17,14 +17,12 @@ The surface language, \OurLanguage{}, extends the core syntax with list notation
       \small
       \lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/source-highlighting-1.fld.mod}
    \end{subfigure}
-   \hfill
-   \begin{subfigure}{0.48\textwidth}
+   \hspace{2mm}
+   \begin{subfigure}{0.44\textwidth}
       \small
       \lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/source-highlighting-2.fld.mod}
    \end{subfigure}
-   \vspace{-3mm}
    \caption{Source selections (blue) resulting from selecting different list cells (green)}
-   \vspace{-2mm}
 \label{fig:surface-language:example-1}
 \end{figure}
 
