@@ -11,10 +11,6 @@ The surface language, \OurLanguage{}, extends the core syntax with list notation
 
 \figref{surface-language:example-1} shows how the end-to-end mapping would appear to a user. (For illustrative purposes the library function \kw{map} and some raw data are included in the same source file.) On the left, the user selects a cons cell (green) in the output; by backwards evaluating and then backwards desugaring, we are able to highlight the list comprehension, the cons in the second clause of \kw{map}, and both occurrences of the constant \kw{"Hydro"}. These last two are highlighted because the selected cons cell was constructed by eliminating a Boolean that was in turn constructed by the primitive \kw{==} operator, which consumed the two strings. The user might then conjecture that the two occurrences of \kw{"Geo"} were somehow responsible for the inclusion of the third cons cell in the output; they can confirm this by making the green selection on the right. (Highlighting \kw{==} too would clearly be helpful here; we discuss this possibility in \secref{conclusion:other-related-work}.) The grey selection is included to contrast the cons highlighting with the data demanded by the list elements themselves, which is quite different.
 
-\subsection{Forward Desugaring}
-
-To define the forward evaluation function $\evalFwdF{T}$ in \secref{data-dependencies:analyses:fwd}, we performed a regular evaluation using $\evalR$ to obtain a trace $T$, and then defined $\evalFwdF{T}$ by recursion over $T$, with $T$ guiding the analysis in the presence of $\hole$. There are no holes in the surface language, so we can take a simpler approach, defining a single \emph{forward desugaring} relation $\desugarFwdR$, and then showing that for every raw surface term $\raw{t} \desugarFwdR \raw{e}$, there is a monotonic function $\desugarFwdF{t}: \Sel{\raw{t}}{A} \to \Sel{\raw{e}}{A}$, which is simply $\desugarFwdR$ domain-restricted to $\Sel{\raw{t}}{A}$. The full definition of $\desugarFwdR$ is \ifappendices given in \appref{surface-language} \else \IncludedWithSupplementaryMaterial \fi; \figref{surface-language:desugar} gives a representative selection of the rules.
-
 \begin{figure}
    \begin{subfigure}{0.48\textwidth}
       \small
@@ -28,6 +24,10 @@ To define the forward evaluation function $\evalFwdF{T}$ in \secref{data-depende
    \caption{Source selections (blue) resulting from selecting different list cells (green)}
 \label{fig:surface-language:example-1}
 \end{figure}
+
+\subsection{Forward Desugaring}
+
+To define the forward evaluation function $\evalFwdF{T}$ in \secref{data-dependencies:analyses:fwd}, we performed a regular evaluation using $\evalR$ to obtain a trace $T$, and then defined $\evalFwdF{T}$ by recursion over $T$, with $T$ guiding the analysis in the presence of $\hole$. There are no holes in the surface language, so we can take a simpler approach, defining a single \emph{forward desugaring} relation $\desugarFwdR$, and then showing that for every raw surface term $\raw{t} \desugarFwdR \raw{e}$, there is a monotonic function $\desugarFwdF{t}: \Sel{\raw{t}}{A} \to \Sel{\raw{e}}{A}$, which is simply $\desugarFwdR$ domain-restricted to $\Sel{\raw{t}}{A}$. The full definition of $\desugarFwdR$ is \ifappendices given in \appref{surface-language} \else \IncludedWithSupplementaryMaterial \fi; \figref{surface-language:desugar} gives a representative selection of the rules.
 
 \begin{figure}
    \input{fig/surface-language/slicing/desugar-short.tex}
