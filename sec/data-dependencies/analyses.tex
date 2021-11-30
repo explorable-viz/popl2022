@@ -1,9 +1,9 @@
-\subsection{Forward data dependency}
+\subsection{Forward Data Dependency}
 \label{sec:data-dependencies:analyses:fwd}
 
 We now define the core bidirectional data dependency analyses for a fixed computation $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$, where $T$ is a trace. In practice one would obtain $T$ by first evaluating $\raw{e}$ in $\raw{\rho}$, and then run multiple forward or backward analyses over $T$ with appropriate lattices. We start with the forward dependency function $\evalFwdF{T}$ which ``replays'' evaluation, turning input availability into output availability, with $T$ guiding the analysis whenever holes in the input selection would mean the analysis would otherwise get stuck. $\evalFwdF{T}$ uses the auxiliary function $\matchFwdF{w}$ for forward-analysing a pattern-match; we explain this first, as it introduces the key idea of a selection as identifying the data available to a downstream computation.
 
-\subsubsection{Forward match}
+\subsubsection{Forward Match}
 \label{sec:data-dependencies:analyses:fwd:pattern-match}
 
 \figref{data-dependencies:match-fwd} defines a family of \emph{forward-match} functions $\matchFwdF{w}$ of type $\Sel{\raw{v}, \raw{\sigma}}{A} \to (\Sel{\raw{\rho}, \raw{\kappa}}{A}) \times \Ann{A}$ for any $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$. (The definition is presented in a relational style for readability, but should be understood as a total function defined by structural recursion on $w$, which appears in grey to emphasise the connection to \figref{core-language:semantics}.) Forward match replays the match witnessed by $w$, turning availability $(v,\sigma) \in \Sel{\raw{v},\raw{\sigma}}{A}$ on the matched value and eliminator into availability $(\rho,\kappa) \in \Sel{\raw{\rho},{\raw{\kappa}}}{A}$ on the variable bindings and continuation yielded by the match.
@@ -74,7 +74,7 @@ Operationally, these hole rules can be interpreted as ``expanding'' the holes in
 
 The forward-match function $\matchFwdF{w}$ is a key component of the forward evaluation function $\evalFwdF{T}$ defined in \secref{data-dependencies:forward-eval} below. When forward-analysing a function call, the argument is forward-matched using $\matchFwdF{w}$, and the resulting argument availability $\alpha$ used to upper-bound the availability of any partial values constructed by that function, establishing a forward link from resources consumed and resources produced. Since the dynamic context of a function call extends over multiple evaluation steps, $\evalFwdF{T}$ is threaded with an additional input $\alpha$ which tracks the active argument availability; at the outermost level, before there are any active function calls, this has the value $\top$.
 
-\subsubsection{Forward evaluation}
+\subsubsection{Forward Evaluation}
 \label{sec:data-dependencies:forward-eval}
 
 \figref{data-dependencies:fwd} defines a family of \emph{forward-evaluation} functions $\evalFwdF{T}$ of type $(\Sel{\raw{\rho}, \raw{e}}{A}) \times \Ann{A} \to \Sel{\raw{v}}{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$. (Like forward match, forward evaluation is presented in a relational style, but should be read as a total function defined by structural recursion on $T$.) Forward evaluation replays $T$, taking a selection $(\rho, e) \in \Sel{\raw{\rho}, \raw{e}}{A}$ identifying the available parts of the environment and program, and an $\alpha \in \Ann{A}$ representing the argument availability for the dynamically innermost function call, and returning a selection $v \in \Sel{\raw{v}}{A}$ identifying the outputs that can be produced using only the available resources. The rules resemble those for the evaluation relation $\evalS$. The general pattern is that each rule takes the active argument availability $\alpha$, combines it (using $\meet$) with any availability supplied on the expression form consumed at that step, and uses the result as the availability of any partial values constructed at that step. The argument availability $\alpha$ is passed down unchanged to any subcomputations, except in the case of function application.
@@ -93,12 +93,12 @@ The forward-match function $\matchFwdF{w}$ is a key component of the forward eva
    Suppose $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$ with $\rho, e, \alpha \evalFwdR{T} v$ and $\rho', e', \alpha' \evalFwdR{T} v'$. If $(\rho, e, \alpha) \leq (\rho', e', \alpha')$ then $v \leq v'$.
 \end{lemma}
 
-\subsection{Backward data dependency}
+\subsection{Backward Data Dependency}
 \label{sec:data-dependencies:analyses:bwd}
 
 The backward dependency function $\evalBwdF{T}$ ``rewinds'' evaluation, turning output demand into input demand, with $T$ guiding the analysis backward. We start with the auxiliary function $\matchBwdF{w}$ which is used for backward-analysing a pattern-match.
 
-\subsubsection{Backward match}
+\subsubsection{Backward Match}
 \label{sec:data-dependencies:analyses:bwd:pattern-match}
 
 \figref{data-dependencies:match-bwd} defines a family of \emph{backward-match} functions $\matchBwdF{w}$ of type $(\Sel{\raw{\rho}, \raw{\kappa}}{A}) \times \Ann{A} \to \Sel{\raw{v}, \raw{\sigma}}{A}$ for any $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$. Backward-match rewinds the match witnessed by $w$, turning demand on the environment and continuation into demand on the value and eliminator that were originally matched. The additional input $\alpha$ represents the downstream demand placed on any resources that were constructed in the context of this match; $\matchBwdF{w}$ transfers this to the matched portion of $\raw{v}$, establishing a backwards link from resources produced to resources consumed in a given function context. We call $\alpha$ the \emph{argument demand} since it represents the demand to be pushed backwards onto the matched part of a function argument.
@@ -113,7 +113,7 @@ For a cons match $\matchCons{w}{w'}$, we split the environment into $\rho$ and $
    Suppose $w :: \raw{v}, \raw{\sigma} \matchR \raw{\rho}, \raw{\kappa}$, with $\rho, \kappa, \alpha \matchBwdR{w} v, \sigma$ and $\rho', \kappa', \alpha' \matchBwdR{w} v', \sigma'$. If $(\rho, \kappa, \alpha) \leq (\rho', \kappa', \alpha')$ then $(v, \sigma) \leq (v', \sigma)$.
 \end{lemma}
 
-\subsubsection{Backward evaluation}
+\subsubsection{Backward Evaluation}
 \label{sec:data-dependencies:analyses:bwd:eval}
 
 \figref{data-dependencies:bwd} defines a family of \emph{backward-evaluation} functions $\evalBwdF{T}$ of type $\Sel{\raw{v}}{A} \to (\Sel{\raw{\rho}, \raw{e}}{A}) \times \Ann{A}$ for any $T :: \raw{\rho}, \raw{e} \evalR \raw{v}$. Backward evaluation rewinds $T$, using the output selection $v \in \Sel{\raw{v}}{A}$ to determine an input selection $(\rho, e) \in \Sel{\raw{\rho}, \raw{e}}{A}$ and an argument demand $\alpha \in \Ann{A}$ which will eventually be pushed back onto the argument of the dynamically innermost function call. (At the outermost level, where there are no active function calls, the argument demand is discarded.) The rules resemble those of the evaluation relation $\evalR$ with inputs and outputs flipped. The general pattern is that each backward rule takes the join of the demand attached to any partial values constructed at that step, and the argument demand associated with any subcomputations, and passes it upwards as the new argument demand. The output environment is constructed similarly, by joining the demand flowing back through the environment copies used to evaluate subcomputations. Demand is also attached to the source expression when it is the expression form responsible for the construction of a demanded value.
@@ -135,7 +135,7 @@ For closures, the argument demand is unpacked along with the other components, p
 \end{lemma}
 
 %\newpage
-\subsection{Round-tripping properties of $\evalFwdF{T}$ and $\evalBwdF{T}$}
+\subsection{Round-Tripping Properties of $\evalFwdF{T}$ and $\evalBwdF{T}$}
 \label{sec:data-dependencies:galois-connections}
 
 We now establish more formally the round-tripping properties, alluded at the beginning of the section, that relate $\evalFwdF{T}$ to $\evalBwdF{T}$. For the analyses to be coherent, we expect $\evalFwdF{T}(\evalBwdF{T}(v))$ to produce a value selection $v' \geq v$, and $\evalBwdF{T}(\evalFwdF{T}(\rho,e))$ to produce an input selection $(\rho',e') \leq (\rho,e)$. Pairs of (monotonic) functions $f: X \to Y$ and $g: Y \to X$ that are related in this way are called \emph{Galois connections}. Galois connections generalise isomorphisms: $f$ and $g$ are not quite mutual inverses, but are the nearest to an inverse each can get to the other. We will present a visual example of some of these round-tripping properties in \secref{de-morgan:example}; here we establish the relevant theorems.

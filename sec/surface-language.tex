@@ -1,4 +1,3 @@
-%\newpage
 \section{Galois connections for desugaring}
 \label{sec:surface-language}
 
@@ -6,13 +5,13 @@
 
 Elaborating a richer surface language into a simpler core is a common pattern with well known benefits. It can, however, make it harder to express certain information to the programmer in terms of the surface language. We face this problem with the analysis in \secref{data-dependencies}, which links outputs not only to inputs, but also to expressions responsible for introducing data. We could use this information in an IDE to link structured outputs to relevant code fragments, but only if we are able to map term selections back to the surface program. We now sketch a bidirectional desugaring procedure which addresses this, and which composes with the Galois dependency analysis defined in \secref{data-dependencies}.
 
-\subsection{Surface language syntax}
+\subsection{Surface Language Syntax}
 
 The surface language, \OurLanguage{}, extends the core syntax with list notation $\kw{[} s \comma \ldots \comma s' \kw{]}$, Haskell 98-style list comprehensions \cite{peytonJones03}, list enumerations, first-class primitives and piecewise function definitions and pattern-matching, as shown in \figref{surface-language:syntax}. Typing rules are \ifappendices given in \appref{surface-language}, \figrefTwo{surface-language:typing-term}{surface-language:typing-pattern}\else \IncludedWithSupplementaryMaterial\fi. We attach selection states $\alpha$ to surface terms $s, t$ that desugar to core terms with selections, and let $\raw{s}$, $\raw{t}$ range over ``raw'' surface terms, which are isomorphic to the term selections where the type of selection states is the unit lattice $\Unit$.
 
 \figref{surface-language:example-1} shows how the end-to-end mapping would appear to a user. (For illustrative purposes the library function \kw{map} and some raw data are included in the same source file.) On the left, the user selects a cons cell (green) in the output; by backwards evaluating and then backwards desugaring, we are able to highlight the list comprehension, the cons in the second clause of \kw{map}, and both occurrences of the constant \kw{"Hydro"}. These last two are highlighted because the selected cons cell was constructed by eliminating a Boolean that was in turn constructed by the primitive \kw{==} operator, which consumed the two strings. The user might then conjecture that the two occurrences of \kw{"Geo"} were somehow responsible for the inclusion of the third cons cell in the output; they can confirm this by making the green selection on the right. (Highlighting \kw{==} too would clearly be helpful here; we discuss this possibility in \secref{conclusion:other-related-work}.) The grey selection is included to contrast the cons highlighting with the data demanded by the list elements themselves, which is quite different.
 
-\begin{figure}
+\begin{figure}[b]
    \begin{subfigure}{0.48\textwidth}
       \small
       \lstinputlisting[language=Fluid,escapeinside={(*@}{@*)}]{other-src/source-highlighting-1.fld.mod}
@@ -26,7 +25,7 @@ The surface language, \OurLanguage{}, extends the core syntax with list notation
 \label{fig:surface-language:example-1}
 \end{figure}
 
-\subsection{Forward desugaring}
+\subsection{Forward Desugaring}
 
 To define the forward evaluation function $\evalFwdF{T}$ in \secref{data-dependencies:analyses:fwd}, we performed a regular evaluation using $\evalR$ to obtain a trace $T$, and then defined $\evalFwdF{T}$ by recursion over $T$, with $T$ guiding the analysis in the presence of $\hole$. There are no holes in the surface language, so we can take a simpler approach, defining a single \emph{forward desugaring} relation $\desugarFwdR$, and then showing that for every raw surface term $\raw{t} \desugarFwdR \raw{e}$, there is a monotonic function $\desugarFwdF{t}: \Sel{\raw{t}}{A} \to \Sel{\raw{e}}{A}$, which is simply $\desugarFwdR$ domain-restricted to $\Sel{\raw{t}}{A}$. The full definition of $\desugarFwdR$ is \ifappendices given in \appref{surface-language} \else \IncludedWithSupplementaryMaterial \fi; \figref{surface-language:desugar} gives a representative selection of the rules.
 
@@ -38,11 +37,11 @@ To define the forward evaluation function $\evalFwdF{T}$ in \secref{data-depende
 
 The definition follows a similar pattern to $\evalFwdF{T}$. At each step, we take the meet of the availability on any parts of $s$ being consumed at that step, and use that as the availability of any parts of $e$ being generated at that step. Thus the rules for list notation simply transfer the selection state $\alpha$ on the opening and closing brackets $\annot{\kw{[}}{\alpha}$ and $\annot{\kw{]}}{\alpha}$ to the corresponding cons and nil of the resulting list, and those on intervening delimiters $\annot{\comma}{\alpha}$ to the corresponding cons. List comprehensions $\annListComp{s}{\vec{q}}{\alpha}$ have a rule for each kind of qualifier $q$ at the head of $\vec{q}$, plus a rule for when $\vec{q}$ is $\seqEmpty$. The general pattern is to push the $\alpha$ on the comprehension itself through recursively, so it ends up on all core terms generated during its elaboration: in particular the \kw{false} branch when $q$ is a guard, and the singleton list when $\vec{q}$ is empty. Auxiliary relations $\clauseFwdR$ and $\totaliseFwdR{p}$ (\ifappendices defined in \appref{surface-language}, \figrefTwo{surface-language:clause-fwd}{surface-language:totalise-fwd}\else \IncludedWithSupplementaryMaterial\fi) transfer availability on guards and generators onto the eliminators they elaborate into.
 
-\subsection{Backward desugaring}
+\subsection{Backward Desugaring}
 
 The backwards analysis is then defined as a family of \textit{backward desugaring} functions $\desugarBwdR{\raw{t}}: \Sel{\raw{e}}{A} \to \Sel{\raw{t}}{A}$ for any $\raw{t} \desugarFwdR \raw{e}$, with the raw surface term $\raw{t}$ guiding the analysis backwards. (The role of $\raw{t}$ in disambiguating the backwards rules should be clear if you consider that $e$ typically matches multiple rules but only one for a given $\raw{t}$.) \figref{surface-language:desugar} gives some representative rules; the full definition is {\ifappendices given in \appref{surface-language} \else \IncludedWithSupplementaryMaterial.\fi} To reverse a desugaring step, we take the join of the demand on any parts of $e$ which were constructed at this step, and use that as the demand on the parts of $s$ which were consumed at this step, turning demand on the core term into (minimal) demand on the surface term. Thus the effect of the list comprehension rules and auxiliary judgements is to set the demand on the comprehension itself to be the join of the demand of all the syntax generated during the elaboration of the comprehension, using auxiliary judgments $\totaliseBwdR{p}$ and $\clauseBwdR{p}$ \ifappendices (\appref{surface-language}, \figrefTwo{surface-language:totalise-bwd}{surface-language:clause-bwd}) \fi to transfer demand from eliminators back onto the guards and generators.
 
-\subsection{Round-tripping properties and compositionality}
+\subsection{Round-Tripping Properties and Compositionality}
 
 It is easy to verify that $\desugarFwdF{t}$ and $\desugarBwdF{t}$ are monotonic. Moreover they form an adjoint pair.
 

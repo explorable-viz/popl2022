@@ -1,4 +1,4 @@
-\subsection{Lattices of selections}
+\subsection{Lattices of Selections}
 \label{sec:data-dependencies:lattices-of-selections}
 
 Our approach to representing selections is shown in \figref{core-syntax-selection}. The basic idea is to parameterise the type $\Set{Val}$ of values by a (bounded) lattice $\Ann{A}$ of \emph{selection states} $\alpha$. We add selection states to Booleans, integers, records and lists; while it would present no complications to equip closures with selection states too, for present purposes we are only interested in dependencies between first-order data, so closures are not (directly) selectable. Closures do however have selectable parts, and moreover capture the current \emph{argument availability}, explained in \secref{data-dependencies:forward-eval} below, which is also a selection state $\alpha$. We parameterise the type $\Set{Term}$ of terms similarly, allowing us to trace data dependencies back to expressions that appear in the source code, but only add selection states to the term constructors corresponding to selectable values. We return to this in \secref{surface-language}.
@@ -7,7 +7,7 @@ Our approach to representing selections is shown in \figref{core-syntax-selectio
 
 The top and bottom elements $\top$ and $\bot$ of $\Ann{A}$ represent fully selected and fully unselected; the meet and join operations $\meet$ and $\join$, which have $\top$ and $\bot$ as their respective units, are used to combine selection information. In \figref{introduction:data-linking}, the \kw{data} field of \kw{BarChart} expects a list of records with fields \kw{x} and \kw{y}, mapping strings representing categorical data to floats determining the height of the corresponding bar; the record computed for China is $\exRec{\bind{\kw{x}}{\kw{"China"}} \concat \bind{\kw{y}}{\kw{295.3}}}$. The two-point lattice $\Bool \eqdef \Lattice{\set{\TT,\FF}}{\TT}{\FF}{\wedge}{\vee}$ can be used to represent the selection of the field $\kw{y}$ within this record as $\annRec{\bind{\kw{x}}{\annStr{\kw{"China"}}{\FF}} \concat \bind{\kw{y}}{\annInt{\kw{295.3}}{\TT}}}{\FF}$, indicating that the number $\exInt{\kw{295.3}}$ is selected, but that neither the string $\exStr{\kw{"China"}}$, nor the record itself, is selected. Because lattices are closed under component-wise products, we sometimes write $(\alpha, \beta) \leq (\alpha', \beta')$ to mean that $\alpha \leq \alpha'$ and $\beta \leq \beta'$. This also suggests more interesting lattices of selections, such as vectors of Booleans to represent multiple selections simultaneously, which might be visualised using different colours (as in \figref{introduction:data-linking}).
 
-\subsubsection{Selections of a value}
+\subsubsection{Selections of a Value}
 \label{sec:data-dependencies:selections}
 
 The analyses which follow will be defined with respect to a fixed computation, and so we will often need to talk about the selections of a given value. To make this notion precise, consider that the raw (selection-free) syntax described in \secref{core-language} can be recovered from a term selection via an erasure operation $\erase{\param}: \ValF{\Ann{A}} \to \ValF{\Unit}$ which forgets the selection information, where $\Unit$ is the trivial one-point lattice. We refer to $\erase{v}$ as the \emph{shape} of $v$. Allowing $\raw{u}, \raw{v}$ from now on to range over raw values, and reserving $u, v$ for value selections, we can then define:
@@ -25,7 +25,7 @@ Since its elements have a fixed shape, the pointwise comparison of any $v, v' \i
    \label{fig:data-dependencies:leq}
 \end{figure}
 
-\subsubsection{Environment selections and hole equivalence}
+\subsubsection{Environment Selections and Hole Equivalence}
 
 The notion of the ``selections'' of $\raw{v}$ also extends (pointwise) to environments, so that $\Sel{\raw{\rho}}{A}$ means the set of environment selections $\rho'$ of shape $\raw{\rho}$, where the variables in $\rho'$ are bound to selections of the corresponding variables in $\raw{\rho}$. One challenge arises from the pointwise use of $\join$ to combine environment selections. Since environments contain other environments recursively, via closures, a naive implementation of environment join is a very expensive operation. One solution is to employ an efficient representation of values which are fully unselected, which is often the case during the backward analysis.
 
