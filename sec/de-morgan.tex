@@ -5,7 +5,7 @@
 
 An immediate problem is that the flavour of the forward dependency required here differs from that provided by the forward analysis $\evalFwdF{T}$ defined in \secref{data-dependencies:analyses:fwd}. That was able to answer the question: what can we compute given only the data selected in $v$? But to identify the related data in another output, we must determine not what the input selection $v$ is sufficient for, but what it is necessary for: those parts of the other output that depend on $v$. In fact the question can be formulated as a kind of dual: what would we \emph{not} be able to compute if the data selected in $v$ were \emph{unavailable}?
 
-\subsection{De Morgan duality}
+\subsection{De Morgan Duality}
 \label{sec:de-morgan:de-morgan-duality}
 
 Why $\evalFwdF{T}$ is unsuitable as a forward dependency relation for linking cognate outputs can also be understood in terms of compositionality. Suppose $\Ann{V}_1$ and $\Ann{V}_2$ are the lattices of selections for two views computed from a shared input source, and $\Ann{D}$ is the lattice of selections for the shared input. Using the procedure given in \secref{data-dependencies}, we can obtain two Galois connections $\gamma: \Ann{V}_1 \to \Ann{D}$ and $\delta: \Ann{V}_2 \to \Ann{D}$ as shown in \figref{example:de-morgan:non-composable} below. (The reader can ignore \figref{example:de-morgan:composable} for the moment.)
@@ -26,7 +26,7 @@ It is an easy consequence of the complementation and De Morgan laws that any mee
 
 \noindent Dualising a Galois connection flips the direction of the arrow by swapping the roles of the upper and lower adjoints. So while $\gamma: \Ann{A} \to \Ann{B}$ and $\delta: \Ann{C} \to \Ann{B}$ are not composable, $\gamma$ and $\dual{\delta}: \Ann{B} \to \Ann{C}$ are, and the composition is achieved by transforming $\upperAdj{\delta}$ from something which determines what we can compute with $v$ into something which determines what we cannot compute without $v$. This offers a principled basis for an automated brushing and linking feature between cognate computations $T$ and $U$. When the user selects part of the output of $T$, we can use $\evalBwdF{T}$ to compute the needed data $v$, and then use $\dual{\evalFwdF{U}}$ to compute the parts of the output of $U$ that depend on $v$. This is the approach implemented in \OurLanguage, and we used this to generate \figref{introduction:vis-linking} in \secref{introduction:vis-linking}.
 
-\subsection{Example: matrix convolution}
+\subsection{Example: Matrix Convolution}
 \label{sec:de-morgan:example}
 
 We now illustrate the $(\dual{\evalFwdF{T}}, \dual{\evalBwdF{T}})$ Galois connection, contrasting it with $(\evalBwdF{T}, \evalFwdF{T})$, using an example which computes the convolution of a $5 \times 5$ matrix with a $3 \times 3$ kernel. Convolution has an intuitive dependency structure and the values involved have an easy visual presentation, making it useful for conveying the flavour of the four distinct (but connected) dependency relations that arise in the framework. The source code for the example is given in \figref{example:convolve}, and shows the \kw{convolve} function, plus \kw{zero}, \kw{wrap} and \kw{extend} which provide different methods for handling the boundaries of the input matrix. The angle-bracket notation is used to construct matrices, which were omitted from \secref{core-language}. (The formal treatment is similar to records.)
@@ -39,7 +39,7 @@ We now illustrate the $(\dual{\evalFwdF{T}}, \dual{\evalBwdF{T}})$ Galois connec
 
 We can then round-trip this output selection using the De Morgan dual $\dual{\evalBwdF{T}}$. We first negate the blue output selection (selecting the top row of the output again), and then use $\evalBwdF{T}$ to determine the needed inputs, which turn out to be the top two rows of \kw{image}, and the top row of \kw{filter}. Negating again produces the green output selection shown in the lower figure. Thus the backwards De Morgan dual computes the inputs that would \emph{not} be needed if the selected outputs were not needed: more economically, the inputs that are \emph{only} needed for the selected output. Here the round-trip reveals that if kernel cell $(1, 2)$ is unavailable, then the entire top row of the kernel might as well have been unavailable too, and similarly for the bottom 3 rows of the input.
 
-\subsection{Relationship to Galois slicing}
+\subsection{Relationship to Galois Slicing}
 \label{sec:de-morgan:galois-slicing}
 
 \input{fig/example/diff-slicing}
