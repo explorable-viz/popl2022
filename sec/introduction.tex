@@ -32,7 +32,7 @@ What we would like to do is allow data scientists to author analyses and visuali
 Second, authors often present distinct but related aspects of data in separate charts. In this situation a reader should be able to focus on (select) a visual element in one chart or other structured output and automatically see elements of a different chart which were computed using related inputs. For example in \figref{introduction:vis-linking} below, selecting the bar on the left should automatically highlight all the related visual elements on the right. This is a well-recognised use case called \emph{brushing and linking}~\cite{becker87}, which is supported by geospatial applications like GeoDa~\cite{anselin06} and charting libraries like Plotly, but tends to be baked into specific views, or require programmer effort and therefore anticipation in advance by the chart designer. Moreover these applications and libraries provide no direct access to the common data which explains why elements are related.
 
 \begin{figure}
-  \begin{subfigure}[b]{0.99\textwidth}
+  \hspace{-3mm}\begin{subfigure}[b]{0.99\textwidth}
      \centering
      {\includegraphics[scale=0.58]{fig/example/vis-linking.png}}
   \end{subfigure}\\[2mm]
